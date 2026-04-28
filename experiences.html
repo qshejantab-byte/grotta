@@ -22,46 +22,158 @@
 
 <section style="background:transparent">
   <div class="container">
+    <style>
+      .icon-card {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 2px;
+        height: 420px;
+      }
+
+      .icon-card .card-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .icon-card:hover .card-img {
+        transform: scale(1.08);
+      }
+
+      .icon-card .card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top,
+          rgba(8,8,5,0.92) 0%,
+          rgba(8,8,5,0.4) 50%,
+          rgba(8,8,5,0.05) 100%);
+        transition: background 0.4s ease;
+        z-index: 1;
+      }
+      .icon-card:hover .card-overlay {
+        background: linear-gradient(to top,
+          rgba(8,8,5,0.97) 0%,
+          rgba(8,8,5,0.6) 55%,
+          rgba(8,8,5,0.15) 100%);
+      }
+
+      .icon-card .card-text {
+        position: absolute;
+        bottom: 0;
+        left: 0; right: 0;
+        z-index: 2;
+        padding: 1.5rem 1.5rem 1.75rem;
+        transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .icon-card h4 {
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-size: 1.4rem;
+        font-weight: 300;
+        color: #e8e0d0;
+        margin-bottom: 0.5rem;
+        line-height: 1.1;
+      }
+
+      .icon-card p {
+        font-size: 0.82rem;
+        font-weight: 300;
+        line-height: 1.65;
+        color: rgba(232,224,208,0.7);
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(10px);
+        transition: max-height 0.45s ease, opacity 0.4s ease 0.05s, transform 0.45s ease;
+      }
+      .icon-card:hover p {
+        max-height: 6rem;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .icon-card .card-text::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 1px;
+        background: #c9a552;
+        margin-bottom: 0.75rem;
+        transition: width 0.4s ease;
+      }
+      .icon-card:hover .card-text::before {
+        width: 2rem;
+      }
+    </style>
+
     <div class="icon-grid">
       <div class="icon-card fade-up delay-1">
-        <span class="icon-emoji">🌋</span>
-        <h4>Volcano Viewpoints</h4>
-        <p>Watch sunrise over the volcanic highlands from scenic lookout points.</p>
+        <img class="card-img" src="https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=800&q=80" alt="Volcano Viewpoints">
+        <div class="card-overlay"></div>
+        <div class="card-text">
+          <h4>Volcano Viewpoints</h4>
+          <p>Watch sunrise over the volcanic highlands from scenic lookout points.</p>
+        </div>
       </div>
       <div class="icon-card fade-up delay-2">
-        <span class="icon-emoji">🌿</span>
-        <h4>Garden Walks</h4>
-        <p>Wander through lush gardens and connect with nature at your own pace.</p>
+        <img class="card-img" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80" alt="Garden Walks">
+        <div class="card-overlay"></div>
+        <div class="card-text">
+          <h4>Garden Walks</h4>
+          <p>Wander through lush gardens and connect with nature at your own pace.</p>
+        </div>
       </div>
       <div class="icon-card fade-up delay-3">
-        <span class="icon-emoji">🐄</span>
-        <h4>Farm Mornings</h4>
-        <p>Meet friendly cows, collect fresh eggs, and let children explore freely.</p>
+        <img class="card-img" src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=800&q=80" alt="Farm Mornings">
+        <div class="card-overlay"></div>
+        <div class="card-text">
+          <h4>Farm Mornings</h4>
+          <p>Meet friendly cows, collect fresh eggs, and let children explore freely.</p>
+        </div>
       </div>
       <div class="icon-card fade-up delay-1">
-        <span class="icon-emoji">🏊</span>
-        <h4>Pool & Jacuzzi</h4>
-        <p>Spend the afternoon beside the pool or enjoy the warmth of the outdoor jacuzzi.</p>
+        <img class="card-img" src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80" alt="Pool & Jacuzzi">
+        <div class="card-overlay"></div>
+        <div class="card-text">
+          <h4>Pool & Jacuzzi</h4>
+          <p>Spend the afternoon beside the pool or enjoy the warmth of the outdoor jacuzzi.</p>
+        </div>
       </div>
       <div class="icon-card fade-up delay-2">
-        <span class="icon-emoji">🕳️</span>
-        <h4>Cave Exploration</h4>
-        <p>A scenic 16-minute cave walk or an extended 1-hour adventure route.</p>
+        <img class="card-img" src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" alt="Cave Exploration">
+        <div class="card-overlay"></div>
+        <div class="card-text">
+          <h4>Cave Exploration</h4>
+          <p>A scenic 16-minute cave walk or an extended 1-hour adventure route.</p>
+        </div>
       </div>
       <div class="icon-card fade-up delay-3">
-        <span class="icon-emoji">🎮</span>
-        <h4>Teen Recreation</h4>
-        <p>Indoor entertainment space designed for teenagers with games and activities.</p>
+        <img class="card-img" src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&q=80" alt="Teen Recreation">
+        <div class="card-overlay"></div>
+        <div class="card-text">
+          <h4>Teen Recreation</h4>
+          <p>Indoor entertainment space designed for teenagers with games and activities.</p>
+        </div>
       </div>
       <div class="icon-card fade-up delay-1">
-        <span class="icon-emoji">🏏</span>
-        <h4>Outdoor Sports</h4>
-        <p>Pickleball court, mini football field, and gym sessions surrounded by nature.</p>
+        <img class="card-img" src="https://images.unsplash.com/photo-1599474924187-334a4ae5bd3c?w=800&q=80" alt="Outdoor Sports">
+        <div class="card-overlay"></div>
+        <div class="card-text">
+          <h4>Outdoor Sports</h4>
+          <p>Pickleball court, mini football field, and gym sessions surrounded by nature.</p>
+        </div>
       </div>
       <div class="icon-card fade-up delay-2">
-        <span class="icon-emoji">👶</span>
-        <h4>Nursery Room</h4>
-        <p>Safe indoor area for younger children with professional care available.</p>
+        <img class="card-img" src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=800&q=80" alt="Nursery Room">
+        <div class="card-overlay"></div>
+        <div class="card-text">
+          <h4>Nursery Room</h4>
+          <p>Safe indoor area for younger children with professional care available.</p>
+        </div>
       </div>
     </div>
   </div>
