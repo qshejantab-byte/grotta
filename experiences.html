@@ -6,16 +6,18 @@
 <title>Experiences at Grotta</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
-  /* Force override all icon-card styles */
-  .icon-grid {
+  /* ── HARD RESET: kill every legacy icon-card style from style.css ── */
+  .icon-emoji { display: none !important; }
+  .icon-grid  { 
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 1.25rem !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: none !important;
   }
-  @media (max-width: 860px) {
-    .icon-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  }
-  @media (max-width: 560px) {
+  @media (max-width: 700px) {
     .icon-grid { grid-template-columns: 1fr !important; }
   }
 
@@ -24,20 +26,22 @@
     overflow: hidden !important;
     cursor: pointer !important;
     border-radius: 2px !important;
-    height: 420px !important;
-    background: none !important;
+    height: 460px !important;
+    background: #111 !important;
     display: block !important;
     text-align: left !important;
     padding: 0 !important;
     border: none !important;
+    transform: none !important;
   }
-
-  /* Hide emojis completely */
-  .icon-card .icon-emoji,
-  .icon-emoji {
+  /* Hide direct h4/p/span children (legacy emoji card text) */
+  .icon-card > h4,
+  .icon-card > p,
+  .icon-card > span.icon-emoji {
     display: none !important;
   }
 
+  /* ── IMAGE ── */
   .icon-card .card-img {
     position: absolute !important;
     inset: 0 !important;
@@ -47,12 +51,13 @@
     display: block !important;
     transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
   }
-  .icon-card:hover .card-img { transform: scale(1.08) !important; }
+  .icon-card:hover .card-img { transform: scale(1.06) !important; }
 
+  /* ── OVERLAY ── */
   .icon-card .card-overlay {
     position: absolute !important;
     inset: 0 !important;
-    background: linear-gradient(to top, rgba(8,8,5,0.92) 0%, rgba(8,8,5,0.4) 50%, rgba(8,8,5,0.05) 100%) !important;
+    background: linear-gradient(to top, rgba(8,8,5,0.92) 0%, rgba(8,8,5,0.35) 50%, rgba(8,8,5,0.04) 100%) !important;
     transition: background 0.4s ease !important;
     z-index: 1 !important;
   }
@@ -60,51 +65,53 @@
     background: linear-gradient(to top, rgba(8,8,5,0.97) 0%, rgba(8,8,5,0.6) 55%, rgba(8,8,5,0.15) 100%) !important;
   }
 
+  /* ── TEXT BLOCK ── */
   .icon-card .card-text {
     position: absolute !important;
     bottom: 0 !important;
     left: 0 !important;
     right: 0 !important;
     z-index: 2 !important;
-    padding: 1.5rem 1.75rem 1.75rem !important;
+    padding: 1.6rem 2rem 2rem !important;
   }
-
-  .icon-card h4 {
+  .icon-card .card-text h4 {
     font-family: 'Cormorant Garamond', Georgia, serif !important;
-    font-size: 1.5rem !important;
+    font-size: 1.6rem !important;
     font-weight: 300 !important;
     color: #e8e0d0 !important;
     margin-bottom: 0.5rem !important;
-    line-height: 1.1 !important;
+    line-height: 1.15 !important;
+    display: block !important;
   }
-
-  .icon-card p {
-    font-size: 0.85rem !important;
+  .icon-card .card-text p {
+    font-size: 0.86rem !important;
     font-weight: 300 !important;
     line-height: 1.65 !important;
-    color: rgba(232,224,208,0.7) !important;
+    color: rgba(232,224,208,0.75) !important;
     max-height: 0 !important;
     opacity: 0 !important;
     overflow: hidden !important;
     transform: translateY(10px) !important;
     transition: max-height 0.45s ease, opacity 0.4s ease 0.05s, transform 0.45s ease !important;
+    display: block !important;
   }
-  .icon-card:hover p {
+  .icon-card:hover .card-text p {
     max-height: 6rem !important;
     opacity: 1 !important;
     transform: translateY(0) !important;
   }
 
+  /* ── GOLD LINE ── */
   .icon-card .card-text::before {
     content: '' !important;
     display: block !important;
     width: 0 !important;
     height: 1px !important;
     background: #c9a552 !important;
-    margin-bottom: 0.75rem !important;
+    margin-bottom: 0.8rem !important;
     transition: width 0.4s ease !important;
   }
-  .icon-card:hover .card-text::before { width: 2rem !important; }
+  .icon-card:hover .card-text::before { width: 2.5rem !important; }
 </style>
 </head>
 <body>
@@ -120,12 +127,12 @@
   </div>
 </div>
 
-<section style="background:transparent">
-  <div class="container">
+<section style="background:transparent; padding: 3.5rem 0 5rem;">
+  <div class="container" style="max-width:1400px !important; padding: 0 1.5rem !important;">
     <div class="icon-grid">
 
       <div class="icon-card fade-up delay-1">
-        <img class="card-img" src="https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=800&q=80" alt="Volcano Viewpoints">
+        <img class="card-img" src="https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=1200&q=80" alt="Volcano Viewpoints">
         <div class="card-overlay"></div>
         <div class="card-text">
           <h4>Volcano Viewpoints</h4>
@@ -134,7 +141,7 @@
       </div>
 
       <div class="icon-card fade-up delay-2">
-        <img class="card-img" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80" alt="Garden Walks">
+        <img class="card-img" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&q=80" alt="Garden Walks">
         <div class="card-overlay"></div>
         <div class="card-text">
           <h4>Garden Walks</h4>
@@ -143,7 +150,7 @@
       </div>
 
       <div class="icon-card fade-up delay-3">
-        <img class="card-img" src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=800&q=80" alt="Farm Mornings">
+        <img class="card-img" src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1200&q=80" alt="Farm Mornings">
         <div class="card-overlay"></div>
         <div class="card-text">
           <h4>Farm Mornings</h4>
@@ -152,7 +159,7 @@
       </div>
 
       <div class="icon-card fade-up delay-1">
-        <img class="card-img" src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80" alt="Pool & Jacuzzi">
+        <img class="card-img" src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1200&q=80" alt="Pool & Jacuzzi">
         <div class="card-overlay"></div>
         <div class="card-text">
           <h4>Pool & Jacuzzi</h4>
@@ -161,7 +168,7 @@
       </div>
 
       <div class="icon-card fade-up delay-2">
-        <img class="card-img" src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" alt="Cave Exploration">
+        <img class="card-img" src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1200&q=80" alt="Cave Exploration">
         <div class="card-overlay"></div>
         <div class="card-text">
           <h4>Cave Exploration</h4>
@@ -170,7 +177,7 @@
       </div>
 
       <div class="icon-card fade-up delay-3">
-        <img class="card-img" src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&q=80" alt="Teen Recreation">
+        <img class="card-img" src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=1200&q=80" alt="Teen Recreation">
         <div class="card-overlay"></div>
         <div class="card-text">
           <h4>Teen Recreation</h4>
@@ -179,7 +186,7 @@
       </div>
 
       <div class="icon-card fade-up delay-1">
-        <img class="card-img" src="https://images.unsplash.com/photo-1599474924187-334a4ae5bd3c?w=800&q=80" alt="Outdoor Sports">
+        <img class="card-img" src="https://images.unsplash.com/photo-1599474924187-334a4ae5bd3c?w=1200&q=80" alt="Outdoor Sports">
         <div class="card-overlay"></div>
         <div class="card-text">
           <h4>Outdoor Sports</h4>
@@ -188,7 +195,7 @@
       </div>
 
       <div class="icon-card fade-up delay-2">
-        <img class="card-img" src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=800&q=80" alt="Nursery Room">
+        <img class="card-img" src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=1200&q=80" alt="Nursery Room">
         <div class="card-overlay"></div>
         <div class="card-text">
           <h4>Nursery Room</h4>
