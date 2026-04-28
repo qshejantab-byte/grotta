@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grotta — Where Volcano Views Meet Hidden Caves</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.hero {
+  position: relative;
+  width: 100%; height: 100vh; min-height: 620px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: visible;
+}
+.hero-content { margin-bottom: 140px; }
+
+/* BOOKING BAR */
+.booking-bar {
+  position: absolute;
+  bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  background: rgba(12,11,8,.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,165,82,.25);
+  display: flex;
+  align-items: stretch;
+  width: 900px;
+  max-width: 92vw;
+  height: 64px;
+  border-radius: 2px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.6);
+}
+
+.bb-field {
+  display: flex;
+  align-items: center;
+  padding: 0 1.4rem;
+  flex: 1;
+  border-right: 1px solid rgba(201,165,82,.15);
+  cursor: pointer;
+  transition: background .2s;
+  position: relative;
+  min-width: 0;
+  gap: .7rem;
+}
+.bb-field:hover { background: rgba(201,165,82,.07); }
+
+/* Calendar icon — gold color matching BOOK NOW */
+.bb-icon {
+  color: var(--gold);
+  font-size: 1rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.bb-display {
+  font-family: 'Jost', sans-serif;
+  font-size: .88rem;
+  font-weight: 300;
+  color: var(--cream);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.bb-chevron {
+  color: rgba(201,165,82,.6);
+  font-size: .6rem;
+  flex-shrink: 0;
+  transition: transform .2s;
+}
+.bb-field.open .bb-chevron { transform: rotate(180deg); }
+
+/* ── Dropdowns pop UP ── */
+.bb-dropdown {
+  position: absolute;
+  bottom: calc(100% + 6px); /* UP instead of down */
+  left: 0;
+  min-width: 200px;
+  background: #0e0c09;
+  border: 1px solid rgba(201,165,82,.25);
+  z-index: 999;
+  display: none;
+  flex-direction: column;
+  max-height: 280px;
+  overflow-y: auto;
+  box-shadow: 0 -16px 40px rgba(0,0,0,.8);
+  border-radius: 2px;
+}
+.bb-dropdown.open { display: flex; }
+
+.bb-option {
+  font-family: 'Jost', sans-serif;
+  font-size: .86rem;
+  font-weight: 300;
+  color: var(--cream);
+  padding: .8rem 1.4rem;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  border-bottom: 1px solid rgba(201,165,82,.07);
+  white-space: nowrap;
+}
+.bb-option:last-child { border-bottom: none; }
+.bb-option:hover { background: rgba(201,165,82,.1); color: var(--gold); }
+.bb-option.selected { color: var(--gold); font-weight: 400; }
+
+.bb-dropdown::-webkit-scrollbar { width: 3px; }
+.bb-dropdown::-webkit-scrollbar-track { background: #0a0a08; }
+.bb-dropdown::-webkit-scrollbar-thumb { background: var(--gold-dark); }
+
+/* ── Custom Calendar (pops UP) ── */
+.bb-calendar {
+  position: absolute;
+  bottom: calc(100% + 6px); /* UP */
+  left: 0;
+  background: #0e0c09;
+  border: 1px solid rgba(201,165,82,.25);
+  z-index: 999;
+  display: none;
+  flex-direction: column;
+  width: 280px;
+  box-shadow: 0 -16px 40px rgba(0,0,0,.8);
+  border-radius: 2px;
+  padding: 1rem;
+}
+.bb-calendar.open { display: flex; }
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .8rem;
+}
+.cal-title {
+  font-family: 'Jost', sans-serif;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: .1em;
+}
+.cal-nav {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: .2rem .5rem;
+  transition: color .2s;
+}
+.cal-nav:hover { color: var(--gold-light); }
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.cal-day-name {
+  font-family: 'Jost', sans-serif;
+  font-size: .62rem;
+  color: var(--gold);
+  text-align: center;
+  padding: .3rem 0;
+  letter-spacing: .1em;
+}
+.cal-day {
+  font-family: 'Jost', sans-serif;
+  font-size: .78rem;
+  color: var(--cream);
+  text-align: center;
+  padding: .45rem .2rem;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background .15s, color .15s;
+}
+.cal-day:hover { background: rgba(201,165,82,.15); color: var(--gold); }
+.cal-day.selected { background: var(--gold); color: #0a0a08; font-weight: 500; }
+.cal-day.disabled { color: rgba(200,192,174,.2); cursor: not-allowed; pointer-events: none; }
+.cal-day.empty { pointer-events: none; }
+
+/* BOOK NOW */
+.bb-book {
+  background: var(--gold);
+  color: #0a0a08;
+  font-family: 'Jost', sans-serif;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  padding: 0 2.2rem;
+  flex-shrink: 0;
+  transition: background .2s;
+  white-space: nowrap;
+  border-radius: 0 2px 2px 0;
+}
+.bb-book:hover { background: var(--gold-light); }
+
+@media(max-width:860px){
+  .booking-bar { width:92vw; height:auto; flex-wrap:wrap; bottom:20px; }
+  .bb-field { flex:1 1 45%; height:54px; border-bottom:1px solid rgba(201,165,82,.12); }
+  .bb-book { flex:1 1 100%; height:48px; border-radius:0 0 2px 2px; }
+  .hero-content { margin-bottom:220px; }
+}
+@media(max-width:480px){
+  .bb-field { flex:1 1 100%; border-right:none; }
+  .hero-content { margin-bottom:380px; }
+}
+</style>
+</head>
+<body>
+
+<div id="nav-holder"></div>
+
+<!-- HERO -->
+<section class="hero" style="margin-top:0">
+  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80')"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content fade-up">
+    <span class="label">Musanze, Rwanda</span>
+    <h1>Where Volcano Views<br>Meet Hidden Caves</h1>
+    <p>A luxury highland retreat carved into the volcanic landscape of northern Rwanda. Caves, mist, and silence await.</p>
+  </div>
+
+  <!-- BOOKING BAR -->
+  <div class="booking-bar" id="booking-bar">
+
+    <!-- CHECK IN -->
+    <div class="bb-field" id="field-checkin" onclick="toggleCal('checkin')">
+      <span class="bb-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="3" width="16" height="14" rx="1.5" stroke="#c9a552" stroke-width="1.4"/>
+          <line x1="1" y1="7" x2="17" y2="7" stroke="#c9a552" stroke-width="1.4"/>
+          <line x1="5" y1="1" x2="5" y2="5" stroke="#c9a552" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="13" y1="1" x2="13" y2="5" stroke="#c9a552" stroke-width="1.4" stroke-linecap="round"/>
+          <rect x="4" y="10" width="2" height="2" rx=".3" fill="#c9a552"/>
+          <rect x="8" y="10" width="2" height="2" rx=".3" fill="#c9a552"/>
+          <rect x="12" y="10" width="2" height="2" rx=".3" fill="#c9a552"/>
+          <rect x="4" y="13" width="2" height="2" rx=".3" fill="#c9a552"/>
+          <rect x="8" y="13" width="2" height="2" rx=".3" fill="#c9a552"/>
+        </svg>
+      </span>
+      <span class="bb-display" id="disp-checkin">Check in</span>
+      <div class="bb-calendar" id="cal-checkin" onclick="event.stopPropagation()"></div>
+    </div>
+
+    <!-- CHECK OUT -->
+    <div class="bb-field" id="field-checkout" onclick="toggleCal('checkout')">
+      <span class="bb-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="3" width="16" height="14" rx="1.5" stroke="#c9a552" stroke-width="1.4"/>
+          <line x1="1" y1="7" x2="17" y2="7" stroke="#c9a552" stroke-width="1.4"/>
+          <line x1="5" y1="1" x2="5" y2="5" stroke="#c9a552" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="13" y1="1" x2="13" y2="5" stroke="#c9a552" stroke-width="1.4" stroke-linecap="round"/>
+          <rect x="4" y="10" width="2" height="2" rx=".3" fill="#c9a552"/>
+          <rect x="8" y="10" width="2" height="2" rx=".3" fill="#c9a552"/>
+          <rect x="12" y="10" width="2" height="2" rx=".3" fill="#c9a552"/>
+          <rect x="4" y="13" width="2" height="2" rx=".3" fill="#c9a552"/>
+          <rect x="8" y="13" width="2" height="2" rx=".3" fill="#c9a552"/>
+        </svg>
+      </span>
+      <span class="bb-display" id="disp-checkout">Check out</span>
+      <div class="bb-calendar" id="cal-checkout" onclick="event.stopPropagation()"></div>
+    </div>
+
+    <!-- ADULTS -->
+    <div class="bb-field" id="field-adults" onclick="toggleDrop(event,'adults')">
+      <span class="bb-display" id="disp-adults">1 Adult</span>
+      <span class="bb-chevron">▼</span>
+      <div class="bb-dropdown" id="drop-adults" onclick="event.stopPropagation()"></div>
+    </div>
+
+    <!-- TEENAGERS -->
+    <div class="bb-field" id="field-teenagers" onclick="toggleDrop(event,'teenagers')">
+      <span class="bb-display" id="disp-teenagers">0 Teenagers</span>
+      <span class="bb-chevron">▼</span>
+      <div class="bb-dropdown" id="drop-teenagers" onclick="event.stopPropagation()"></div>
+    </div>
+
+    <!-- ROOMS -->
+    <div class="bb-field" id="field-rooms" onclick="toggleDrop(event,'rooms')">
+      <span class="bb-display" id="disp-rooms">1 Room</span>
+      <span class="bb-chevron">▼</span>
+      <div class="bb-dropdown" id="drop-rooms" onclick="event.stopPropagation()"></div>
+    </div>
+
+    <button class="bb-book" onclick="goToBooking()">Book Now</button>
+  </div>
+</section>
+
+<!-- OFFER BANNER -->
+<div class="offer-banner">
+  <p>✦ <strong>SPECIAL OFFER:</strong> Book 3 nights and get a complimentary cave walk experience for two.</p>
+  <span class="badge">Limited Time</span>
+  <a href="booking.html" class="btn btn-outline" style="padding:.5rem 1.2rem;font-size:.62rem">Book Now</a>
+</div>
+
+<!-- ABOUT -->
+<section style="background:var(--bg)">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <span class="label">Established in 2023</span>
+        <h2>A Destination Born from the Earth</h2>
+        <p>Grotta is nestled in the volcanic highlands of Musanze, Rwanda — a place where ancient caves meet luxury hospitality. We believe in experiences that are rooted in the land, respectful of nature, and unforgettable.</p>
+        <p>From sunrise over the volcano to candlelit evenings inside the cave, every moment at Grotta is designed to awaken your senses and still your mind.</p>
+        <a href="experiences.html" class="btn btn-outline">Discover Grotta</a>
+      </div>
+      <div class="about-images fade-up delay-2">
+        <div class="about-img-main">
+          <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800&q=80" alt="Volcano Sunrise">
+        </div>
+        <div class="about-img-secondary">
+          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80" alt="Pool">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE EXPERIENCES -->
+<section style="background:var(--bg)">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">What Awaits You</span>
+      <h2>Signature Experiences</h2>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card fade-up delay-1">
+        <div class="exp-img"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700&q=80" alt="Volcanic Sunrises"></div>
+        <span class="label">Dawn</span>
+        <h4>Volcanic Sunrises</h4>
+        <p>Witness the first light illuminate the mist-shrouded peaks from your private terrace.</p>
+        <a href="experiences.html" class="link-arrow">Explore →</a>
+      </div>
+      <div class="exp-card fade-up delay-2">
+        <div class="exp-img"><img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=700&q=80" alt="Cave Walks"></div>
+        <span class="label">Exploration</span>
+        <h4>The Cave Walks</h4>
+        <p>Guided journeys through ancient subterranean labyrinths.</p>
+        <a href="caves.html" class="link-arrow">Explore →</a>
+      </div>
+      <div class="exp-card fade-up delay-3">
+        <div class="exp-img"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=700&q=80" alt="Pool Relaxation"></div>
+        <span class="label">Restoration</span>
+        <h4>Pool & Relaxation</h4>
+        <p>Submerge in the pool that blends into the dramatic landscape.</p>
+        <a href="wellness.html" class="link-arrow">Explore →</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <a href="experiences.html" class="btn btn-outline">All Experiences</a>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOMMODATIONS -->
+<section style="padding:0;background:var(--bg)">
+  <div class="container" style="padding:4rem 0 0">
+    <div class="section-header fade-up">
+      <span class="label">Accommodations</span>
+      <h2>Rest in the Heart of the Highlands</h2>
+    </div>
+  </div>
+  <div class="room-split fade-up">
+    <div class="room-split-img">
+      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=80" alt="Standard Room">
+    </div>
+    <div class="room-split-text">
+      <span class="label">Natural Elements</span>
+      <h3>Standard Room</h3>
+      <p>Crafted from local stone and reclaimed wood, our Standard Rooms blend seamlessly into the volcanic landscape. Floor-to-ceiling windows frame misty highland mornings.</p>
+      <a href="stay.html" class="btn btn-outline">View Room</a>
+    </div>
+  </div>
+  <div class="room-split reverse fade-up">
+    <div class="room-split-img">
+      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=900&q=80" alt="King Room with View">
+    </div>
+    <div class="room-split-text">
+      <span class="label">Elevated Sanctuary</span>
+      <h3>King Room with View</h3>
+      <p>Perched to face the open volcano highlands, the King Room with View is our most immersive retreat. Wake to panoramic mist rolling over ancient peaks.</p>
+      <a href="stay.html" class="btn btn-outline">View Room</a>
+    </div>
+  </div>
+</section>
+
+<!-- DINING -->
+<section style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Culinary Journey</span>
+      <h2>Taste the Highlands</h2>
+    </div>
+    <div class="dining-grid">
+      <div class="dining-card fade-up delay-1">
+        <div class="dining-img"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="The Restaurant"></div>
+        <h4>The Restaurant</h4>
+        <p>Fine dining featuring hyper-local ingredients elevated by modern techniques.</p>
+        <a href="dining.html" class="link-arrow">Explore →</a>
+      </div>
+      <div class="dining-card fade-up delay-2">
+        <div class="dining-img"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&q=80" alt="Garden Café"></div>
+        <h4>Garden Café</h4>
+        <p>An airy, sun-dappled space for casual breakfasts and light lunches.</p>
+        <a href="dining.html" class="link-arrow">Explore →</a>
+      </div>
+      <div class="dining-card fade-up delay-3">
+        <div class="dining-img"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=700&q=80" alt="Cave Café"></div>
+        <h4>Cave Café</h4>
+        <p>Intimate, candlelit, serving rare spirits and artisanal bites deep within the bedrock.</p>
+        <a href="dining.html" class="link-arrow">Explore →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header fade-up" style="margin-bottom:2.5rem">
+      <span class="label">Testimonials</span>
+      <h2>What Our Guests Say</h2>
+    </div>
+    <div class="testimonial-inner">
+      <div class="testimonial-slide">
+        <p class="testimonial-text">"An extraordinary stay. Waking up to volcanic mist over the peaks and spending evenings in the cave café felt like nothing else on earth. Grotta is truly one of a kind."</p>
+        <div class="stars">★★★★★</div>
+        <p class="reviewer-name">Sarah M.</p>
+        <p class="reviewer-source">TripAdvisor · Guest Review</p>
+      </div>
+      <div class="testimonial-slide" style="display:none">
+        <p class="testimonial-text">"The cave walk was unlike anything I've experienced. The guides were knowledgeable, the landscape breathtaking — and the Standard Room was the most peaceful sleep I've ever had."</p>
+        <div class="stars">★★★★★</div>
+        <p class="reviewer-name">James K.</p>
+        <p class="reviewer-source">Booking.com · Verified Guest</p>
+      </div>
+      <div class="testimonial-slide" style="display:none">
+        <p class="testimonial-text">"We celebrated our anniversary at Grotta and it exceeded every expectation. The volcano view from our room at sunrise was simply magical. We will return."</p>
+        <div class="stars">★★★★★</div>
+        <p class="reviewer-name">Amara & David L.</p>
+        <p class="reviewer-source">Google · Verified Review</p>
+      </div>
+      <div class="testimonial-dots">
+        <button class="dot active"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-holder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+// ── State ──────────────────────────────────────
+const state = {
+  checkin: null, checkout: null,
+  adults: 0, teenagers: 0, rooms: 0
+};
+
+const MONTHS = ['January','February','March','April','May','June',
+                'July','August','September','October','November','December'];
+const DAYS   = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+// ── Custom Calendar ────────────────────────────
+let calState = {};
+
+function buildCalendar(field) {
+  const now = new Date();
+  if (!calState[field]) calState[field] = { year: now.getFullYear(), month: now.getMonth() };
+  renderCalendar(field);
+}
+
+function renderCalendar(field) {
+  const cs   = calState[field];
+  const cal  = document.getElementById('cal-' + field);
+  const firstDay = new Date(cs.year, cs.month, 1).getDay();
+  const daysInMonth = new Date(cs.year, cs.month + 1, 0).getDate();
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  let html = `
+    <div class="cal-header">
+      <button class="cal-nav" onclick="shiftMonth('${field}',-1)">&#8249;</button>
+      <span class="cal-title">${MONTHS[cs.month]} ${cs.year}</span>
+      <button class="cal-nav" onclick="shiftMonth('${field}',1)">&#8250;</button>
+    </div>
+    <div class="cal-grid">
+      ${DAYS.map(d=>`<div class="cal-day-name">${d}</div>`).join('')}
+      ${Array(firstDay).fill('<div class="cal-day empty"></div>').join('')}`;
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(cs.year, cs.month, d);
+    const dateStr = `${cs.year}-${String(cs.month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isPast = date < today;
+    const isSel  = state[field] === dateStr;
+    const cls    = ['cal-day', isPast?'disabled':'', isSel?'selected':''].filter(Boolean).join(' ');
+    html += `<div class="${cls}" onclick="selectDate('${field}','${dateStr}','${d} ${MONTHS[cs.month].slice(0,3)} ${cs.year}')">${d}</div>`;
+  }
+
+  html += '</div>';
+  cal.innerHTML = html;
+}
+
+function shiftMonth(field, dir) {
+  const cs = calState[field];
+  cs.month += dir;
+  if (cs.month > 11) { cs.month = 0; cs.year++; }
+  if (cs.month < 0)  { cs.month = 11; cs.year--; }
+  renderCalendar(field);
+}
+
+function selectDate(field, dateStr, label) {
+  state[field] = dateStr;
+  const disp = document.getElementById('disp-' + field);
+  disp.textContent = label;
+  disp.style.color  = 'var(--cream)';
+  closeAll();
+  renderCalendar(field);
+}
+
+function toggleCal(field) {
+  const cal   = document.getElementById('cal-' + field);
+  const isOpen = cal.classList.contains('open');
+  closeAll();
+  if (!isOpen) {
+    buildCalendar(field);
+    cal.classList.add('open');
+    document.getElementById('field-' + field).classList.add('open');
+  }
+}
+
+// ── Custom Dropdowns ───────────────────────────
+const dropConfig = {
+  adults:    { items: Array.from({length:10},(_,i)=>`${i+1}Adult${i?'s':''}`) },
+  teenagers: { items: Array.from({length:11},(_,i)=>`${i} Teenager${i!==1?'s':''}`) },
+  rooms:     { items: Array.from({length:10},(_,i)=>`${i+1} Room${i?'s':''}`) },
+};
+
+function buildDropdowns() {
+  for (const [key, cfg] of Object.entries(dropConfig)) {
+    const drop = document.getElementById('drop-' + key);
+    drop.innerHTML = '';
+    cfg.items.forEach((label, i) => {
+      const div = document.createElement('div');
+      div.className = 'bb-option' + (state[key] === i ? ' selected' : '');
+      div.textContent = label;
+      div.addEventListener('click', () => {
+        state[key] = i;
+        document.getElementById('disp-' + key).textContent = label;
+        buildDropdowns();
+        closeAll();
+      });
+      drop.appendChild(div);
+    });
+  }
+}
+
+function toggleDrop(e, key) {
+  e.stopPropagation();
+  const drop  = document.getElementById('drop-' + key);
+  const field = document.getElementById('field-' + key);
+  const isOpen = drop.classList.contains('open');
+  closeAll();
+  if (!isOpen) {
+    drop.classList.add('open');
+    field.classList.add('open');
+  }
+}
+
+// ── Close all ──────────────────────────────────
+function closeAll() {
+  document.querySelectorAll('.bb-dropdown, .bb-calendar').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.bb-field').forEach(f => f.classList.remove('open'));
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.bb-field')) closeAll();
+});
+
+// ── Book Now ───────────────────────────────────
+function goToBooking() {
+  const p = new URLSearchParams({
+    checkin:   state.checkin   || '',
+    checkout:  state.checkout  || '',
+    adults:    state.adults + 1,
+    teenagers: state.teenagers,
+    rooms:     state.rooms + 1,
+  });
+  window.location.href = 'booking.html?' + p.toString();
+}
+
+// ── Init ───────────────────────────────────────
+buildDropdowns();
+</script>
+</body>
+</html>

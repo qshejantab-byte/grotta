@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stay at Grotta — Suites & Rooms</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ══════════════════════════════════════
+   ROOM CARDS — matching reference exactly
+══════════════════════════════════════ */
+.rc-section {
+  padding: 4rem 0 5rem;
+  background: var(--bg);
+}
+
+.rc-wrap {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto 5rem;
+  background: #151310;
+  min-height: 520px;
+}
+
+/* Reversed layout */
+.rc-wrap.rc-reversed {
+  flex-direction: row-reverse;
+}
+
+/* IMAGE — large, ~60% width, fixed height */
+.rc-img {
+  width: 60%;
+  flex-shrink: 0;
+  height: 520px;
+  overflow: hidden;
+  align-self: stretch;
+}
+.rc-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .9s ease;
+}
+.rc-wrap:hover .rc-img img { transform: scale(1.03); }
+
+/* PANEL — dark background, sits right beside image */
+.rc-panel {
+  flex: 1;
+  background: #1c1a16;
+  padding: 3rem 2.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 380px;
+  align-self: center;
+}
+
+/* Label */
+.rc-panel .label {
+  display: block;
+  font-size: .62rem;
+  letter-spacing: .28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-family: 'Jost', sans-serif;
+  margin-bottom: .8rem;
+}
+
+/* Room name */
+.rc-panel h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  color: var(--cream);
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: .6rem;
+}
+
+/* Availability — plain text, no badge */
+.rc-avail-text {
+  font-family: 'Jost', sans-serif;
+  font-size: .78rem;
+  color: var(--text-dim);
+  margin-bottom: 1.2rem;
+  font-weight: 300;
+}
+.rc-avail-text.low  { color: #e6a020; }
+.rc-avail-text.none { color: #c0392b; }
+
+/* Description */
+.rc-panel p {
+  font-size: .88rem;
+  color: var(--text);
+  line-height: 1.9;
+  margin-bottom: 1.6rem;
+}
+
+/* Tags — outlined pills, white text */
+.rc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-bottom: 2rem;
+}
+.rc-tag {
+  border: 1px solid rgba(240,232,213,.25);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-size: .6rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: .3rem .9rem;
+  font-weight: 300;
+}
+
+/* Price + Book Now on same row */
+.rc-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.rc-price-block {}
+.rc-price-block .from {
+  font-family: 'Jost', sans-serif;
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: block;
+  margin-bottom: .2rem;
+}
+.rc-price-block .amount {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.rc-price-block .per {
+  font-family: 'Jost', sans-serif;
+  font-size: .75rem;
+  color: var(--text-dim);
+  margin-left: .2rem;
+}
+
+/* BOOK NOW — gold filled button */
+.rc-book {
+  display: inline-block;
+  background: var(--gold);
+  color: #0a0a08;
+  font-family: 'Jost', sans-serif;
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  padding: .9rem 1.8rem;
+  text-decoration: none;
+  transition: background .25s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.rc-book:hover { background: var(--gold-light); }
+.rc-book.booked {
+  background: transparent;
+  border: 1px solid var(--text-dim);
+  color: var(--text-dim);
+  pointer-events: none;
+  opacity: .5;
+}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .rc-wrap,
+  .rc-wrap.rc-reversed {
+    flex-direction: column;
+    width: 95%;
+  }
+  .rc-img { width: 100%; height: 280px; }
+  .rc-panel { height: auto; padding: 2rem 1.5rem; }
+}
+@media(max-width:600px){
+  .rc-img { height: 220px; }
+  .rc-panel { padding: 1.6rem 1.2rem; }
+  .rc-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .rc-book { width: 100%; text-align: center; }
+}
+</style>
+</head>
+<body>
+<div id="nav-holder"></div>
+
+<!-- HERO -->
+<div class="page-hero" style="overflow:visible;margin-bottom:0;">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1600&q=80');background-position:center center;"></div>
+  <div class="page-hero-overlay" style="background:linear-gradient(to bottom,rgba(8,8,5,.2) 0%,rgba(8,8,5,.2) 50%,rgba(8,8,5,.85) 85%,rgba(8,8,5,1) 100%);"></div>
+  <div class="page-hero-content">
+    <span class="label">Suites & Rooms</span>
+    <h1>Stay at Grotta</h1>
+    <p>Grotta offers 50 thoughtfully designed rooms surrounded by gardens, views, and quiet spaces to relax between experiences.</p>
+  </div>
+</div>
+
+<!-- ROOMS -->
+<div class="rc-section">
+
+  <!-- Standard Room — image LEFT -->
+  <div class="rc-wrap fade-up">
+    <div class="rc-img">
+      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1000&q=80" alt="Standard Room">
+    </div>
+    <div class="rc-panel">
+      <span class="label">The Essential</span>
+      <h3>Standard Room</h3>
+      <div class="rc-avail-text" id="avail-standard">10 rooms available</div>
+      <p>Ideal for short stays and weekend escapes. Comfortable, quiet, and surrounded by gardens. Crafted from local stone and reclaimed wood.</p>
+      <div class="rc-tags">
+        <span class="rc-tag">King Bed</span>
+        <span class="rc-tag">Rain Shower</span>
+        <span class="rc-tag">Wi-Fi</span>
+      </div>
+      <div class="rc-bottom">
+        <div class="rc-price-block">
+          <span class="from">From</span>
+          <span class="amount">120,000 RWF<span class="per"> / night</span></span>
+        </div>
+        <a href="booking.html?room=standard" class="rc-book" id="book-standard">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- King Room — image RIGHT -->
+  <div class="rc-wrap rc-reversed fade-up">
+    <div class="rc-img">
+      <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1000&q=80" alt="King Room">
+    </div>
+    <div class="rc-panel">
+      <span class="label">Elevated Comfort</span>
+      <h3>King Room</h3>
+      <div class="rc-avail-text" id="avail-king">10 rooms available</div>
+      <p>Ideal for couples and relaxed travel. Spacious with enhanced amenities for a longer, more comfortable stay.</p>
+      <div class="rc-tags">
+        <span class="rc-tag">Oversized King Bed</span>
+        <span class="rc-tag">Lounge Area</span>
+        <span class="rc-tag">Minibar</span>
+      </div>
+      <div class="rc-bottom">
+        <div class="rc-price-block">
+          <span class="from">From</span>
+          <span class="amount">175,000 RWF<span class="per"> / night</span></span>
+        </div>
+        <a href="booking.html?room=king" class="rc-book" id="book-king">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- King Room with View — image LEFT -->
+  <div class="rc-wrap fade-up">
+    <div class="rc-img">
+      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1000&q=80" alt="King Room with View">
+    </div>
+    <div class="rc-panel">
+      <span class="label">The Vista</span>
+      <h3>King Room with View</h3>
+      <div class="rc-avail-text" id="avail-king_view">10 rooms available</div>
+      <p>Open views toward the volcano highlands. An expansive aperture offering uninterrupted views of the surrounding landscape.</p>
+      <div class="rc-tags">
+        <span class="rc-tag">Valley View</span>
+        <span class="rc-tag">Private Terrace</span>
+        <span class="rc-tag">Soaking Tub</span>
+      </div>
+      <div class="rc-bottom">
+        <div class="rc-price-block">
+          <span class="from">From</span>
+          <span class="amount">185,000 RWF<span class="per"> / night</span></span>
+        </div>
+        <a href="booking.html?room=king_view" class="rc-book" id="book-king_view">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deluxe Room — image RIGHT -->
+  <div class="rc-wrap rc-reversed fade-up">
+    <div class="rc-img">
+      <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=1000&q=80" alt="Deluxe Room">
+    </div>
+    <div class="rc-panel">
+      <span class="label">Refined Grandeur</span>
+      <h3>Deluxe Room</h3>
+      <div class="rc-avail-text" id="avail-deluxe">10 rooms available</div>
+      <p>Spacious and refined for longer stays. Separate sleeping and lounging quarters with premium amenities.</p>
+      <div class="rc-tags">
+        <span class="rc-tag">Stone Tub</span>
+        <span class="rc-tag">Separate Lounge</span>
+        <span class="rc-tag">Premium Bar</span>
+      </div>
+      <div class="rc-bottom">
+        <div class="rc-price-block">
+          <span class="from">From</span>
+          <span class="amount">250,000 RWF<span class="per"> / night</span></span>
+        </div>
+        <a href="booking.html?room=deluxe" class="rc-book" id="book-deluxe">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Executive Room — image LEFT -->
+  <div class="rc-wrap fade-up">
+    <div class="rc-img">
+      <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1000&q=80" alt="Executive Room">
+    </div>
+    <div class="rc-panel">
+      <span class="label">The Pinnacle</span>
+      <h3>Executive Room</h3>
+      <div class="rc-avail-text" id="avail-executive">10 rooms available</div>
+      <p>Maximum comfort and privacy. The ultimate expression of luxury with dedicated service and expansive spaces.</p>
+      <div class="rc-tags">
+        <span class="rc-tag">Private Pool</span>
+        <span class="rc-tag">Butler Service</span>
+        <span class="rc-tag">2 Bedrooms</span>
+      </div>
+      <div class="rc-bottom">
+        <div class="rc-price-block">
+          <span class="from">From</span>
+          <span class="amount">350,000 RWF<span class="per"> / night</span></span>
+        </div>
+        <a href="booking.html?room=executive" class="rc-book" id="book-executive">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="footer-holder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  ['standard','king','king_view','deluxe','executive'].forEach(key => {
+    const avail = window.GrottaRooms.getAvailable(key);
+    const availEl = document.getElementById('avail-' + key);
+    const btn = document.getElementById('book-' + key);
+
+    // Update availability text
+    if (availEl) {
+      if (avail === 0) {
+        availEl.textContent = 'Fully Booked';
+        availEl.classList.add('none');
+      } else if (avail <= 2) {
+        availEl.textContent = 'Only ' + avail + ' room' + (avail > 1 ? 's' : '') + ' left!';
+        availEl.classList.add('low');
+      } else {
+        availEl.textContent = avail + ' rooms available';
+      }
+    }
+
+    // Disable book button if sold out
+    if (btn && avail === 0) {
+      btn.textContent = 'Fully Booked';
+      btn.classList.add('booked');
+    }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your Stay — Grotta</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.booking-page { padding-top: calc(var(--nav-h) + 3rem); padding-bottom: 5rem; }
+.booking-hero { text-align: center; margin-bottom: 2.5rem; }
+.booking-hero h1 { margin-bottom: .5rem; }
+.booking-hero p  { max-width: 480px; margin: 0 auto; }
+
+.step-header { font-size: .6rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin: 1.8rem 0 1rem; padding-bottom: .4rem; border-bottom: 1px solid var(--border); font-weight: 500; }
+.step-header:first-child { margin-top: 0; }
+
+.date-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.room-option { display: flex; align-items: center; justify-content: space-between; padding: .9rem 1rem; border: 1px solid var(--border); margin-bottom: .7rem; cursor: pointer; transition: var(--t); border-radius: 0; }
+.room-option:hover { border-color: var(--gold); background: rgba(201,165,82,.04); }
+.room-option.selected { border-color: var(--gold); background: rgba(201,165,82,.07); }
+.room-option.unavailable { opacity: .4; cursor: not-allowed; pointer-events: none; }
+.ro-info h5 { font-family: var(--serif); color: var(--cream); font-size: .95rem; margin-bottom: .18rem; }
+.ro-avail { font-size: .68rem; }
+.ro-avail.ok { color: #4caf7d; }
+.ro-avail.low { color: #e6a020; }
+.ro-avail.none { color: #c0392b; }
+.ro-price { text-align: right; }
+.rp-val { font-family: var(--serif); color: var(--gold); font-size: 1rem; }
+.rp-ngt { font-size: .67rem; color: var(--text-dim); display: block; }
+
+.nights-info { background: rgba(201,165,82,.06); border: 1px solid var(--border); padding: .8rem 1rem; font-size: .82rem; color: var(--text); margin-bottom: 1.2rem; }
+.nights-info span { color: var(--gold); font-weight: 500; }
+
+.summary-box { background: var(--bg2); border: 1px solid var(--border); padding: 1.8rem; position: sticky; top: calc(var(--nav-h) + 1rem); }
+.summary-box h4 { color: var(--cream); margin-bottom: 1.2rem; border-bottom: 1px solid var(--border); padding-bottom: .8rem; font-family: var(--serif); font-size: 1.2rem; }
+.sum-row { display: flex; justify-content: space-between; font-size: .82rem; padding: .5rem 0; border-bottom: 1px solid var(--border); }
+.sum-row:last-child { border-bottom: none; }
+.sum-lbl { color: var(--text-dim); }
+.sum-val { color: var(--cream); }
+.sum-total { font-family: var(--serif); font-size: 1.15rem; color: var(--gold); }
+.sum-room-avail { margin-top: .8rem; padding-top: .8rem; border-top: 1px solid var(--border); }
+.sum-room-avail p { font-size: .72rem; color: var(--text-dim); margin-bottom: .4rem; }
+.avail-bar { display: flex; gap: .25rem; flex-wrap: wrap; margin-bottom: .5rem; }
+.avail-pip { width: 12px; height: 12px; border-radius: 50%; background: #4caf7d; }
+.avail-pip.used { background: var(--bg3); border: 1px solid var(--border); }
+
+.confirm-panel { background: rgba(76,175,125,.07); border: 1px solid rgba(76,175,125,.3); padding: 2.5rem; text-align: center; display: none; }
+.confirm-panel.show { display: block; }
+.confirm-panel h3 { color: #4caf7d; font-family: var(--serif); font-size: 1.8rem; margin-bottom: .8rem; }
+.confirm-panel p { font-size: .9rem; margin-bottom: .5rem; }
+.confirm-panel .conf-ref { font-family: var(--serif); font-size: 1.1rem; color: var(--gold); margin: 1rem 0; }
+
+@media(max-width:900px){
+  .booking-layout { grid-template-columns: 1fr; }
+  .summary-box { position: static; }
+  .date-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div id="nav-holder"></div>
+
+<div class="booking-page">
+  <div class="container">
+    <div class="booking-hero">
+      <span class="label" style="display:block;margin-bottom:.8rem">Reserve Your Stay</span>
+      <h1>Book at Grotta</h1>
+      <p>Complete your booking below. All prices are in Rwandan Francs (RWF) per night.</p>
+    </div>
+
+    <div class="booking-layout" style="display:grid;grid-template-columns:1fr 360px;gap:2.5rem;align-items:start">
+
+      <!-- FORM PANEL -->
+      <div class="booking-form-panel" id="booking-form-panel">
+
+        <div class="step-header">Step 1 — Select Your Room</div>
+
+        <!-- Room Options -->
+        <div id="room-options"></div>
+
+        <div class="step-header">Step 2 — Choose Your Dates</div>
+        <div class="form-grid date-row" style="margin-bottom:1rem">
+          <div class="form-group">
+            <label>Check-In Date</label>
+            <input type="date" id="checkin" onchange="calcNights()">
+          </div>
+          <div class="form-group">
+            <label>Check-Out Date</label>
+            <input type="date" id="checkout" onchange="calcNights()">
+          </div>
+        </div>
+        <div class="nights-info" id="nights-info" style="display:none">
+          Duration: <span id="nights-text">0 nights</span>
+        </div>
+
+        <div class="step-header">Step 3 — Guest Details</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="fname" placeholder="First name">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lname" placeholder="Last name">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" id="phone" placeholder="+250 ...">
+          </div>
+          <div class="form-group">
+            <label>Adults</label>
+            <select id="adults" onchange="updateSummary()">
+              <option value="1">1 Adult</option>
+              <option value="2">2 Adults</option>
+              <option value="3">3 Adults</option>
+              <option value="4">4 Adults</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Children / Teenagers</label>
+            <select id="children">
+              <option value="0">0 Children</option>
+              <option value="1">1 Child</option>
+              <option value="2">2 Children</option>
+              <option value="3">3 Children</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Special Requests (Optional)</label>
+            <textarea id="requests" placeholder="Any dietary requirements, special occasions, accessibility needs..."></textarea>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
+          <button class="btn btn-gold" id="confirm-btn" onclick="confirmBooking()">Confirm Booking</button>
+          <p id="form-error" style="color:#c0392b;font-size:.8rem;display:none">Please fill in all required fields and select a room.</p>
+        </div>
+
+        <!-- CONFIRMATION -->
+        <div class="confirm-panel" id="confirm-panel">
+          <h3>✓ Booking Confirmed!</h3>
+          <p>Thank you for choosing Grotta. Your reservation is confirmed.</p>
+          <p class="conf-ref" id="conf-ref"></p>
+          <p id="conf-details"></p>
+          <p style="margin-top:1.2rem;font-size:.82rem;color:var(--text-dim)">A confirmation email will be sent to the address provided. Our team will be in touch shortly with arrival instructions.</p>
+          <a href="index.html" class="btn btn-outline" style="margin-top:1.5rem;display:inline-block">Return to Home</a>
+        </div>
+
+      </div>
+
+      <!-- SUMMARY PANEL -->
+      <div class="summary-box">
+        <h4>Booking Summary</h4>
+        <div class="sum-row"><span class="sum-lbl">Room</span><span class="sum-val" id="s-room">—</span></div>
+        <div class="sum-row"><span class="sum-lbl">Check-In</span><span class="sum-val" id="s-checkin">—</span></div>
+        <div class="sum-row"><span class="sum-lbl">Check-Out</span><span class="sum-val" id="s-checkout">—</span></div>
+        <div class="sum-row"><span class="sum-lbl">Nights</span><span class="sum-val" id="s-nights">—</span></div>
+        <div class="sum-row"><span class="sum-lbl">Guests</span><span class="sum-val" id="s-guests">—</span></div>
+        <div class="sum-row"><span class="sum-lbl">Rate / Night</span><span class="sum-val" id="s-rate">—</span></div>
+        <div class="sum-row" style="padding-top:.8rem;margin-top:.3rem;border-top:1px solid var(--gold-dark)">
+          <span class="sum-lbl" style="color:var(--cream);font-weight:500">Total</span>
+          <span class="sum-total" id="s-total">—</span>
+        </div>
+
+        <!-- Availability visual for selected room -->
+        <div class="sum-room-avail" id="avail-section" style="display:none">
+          <p>Room availability</p>
+          <div class="avail-bar" id="avail-pips"></div>
+          <p id="avail-text" style="font-size:.7rem;margin-top:.2rem"></p>
+        </div>
+
+        <!-- All rooms quick view -->
+        <div style="margin-top:1.2rem;border-top:1px solid var(--border);padding-top:1.2rem">
+          <p style="font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem">All Room Availability</p>
+          <div id="all-avail"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="footer-holder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+// Pre-fill from URL params
+const params = new URLSearchParams(location.search);
+const preRoom  = params.get('room') || '';
+const preCI    = params.get('checkin') || '';
+const preCO    = params.get('checkout') || '';
+const preAdult = params.get('adults') || '1';
+
+const ROOMS = {
+  standard:  { name: 'Standard Room',       price: 120000, label: 'The Essential' },
+  king:      { name: 'King Room',            price: 175000, label: 'Elevated Comfort' },
+  king_view: { name: 'King Room with View',  price: 185000, label: 'The Vista' },
+  deluxe:    { name: 'Deluxe Room',          price: 250000, label: 'Refined Grandeur' },
+  executive: { name: 'Executive Room',       price: 350000, label: 'The Pinnacle' },
+};
+
+let selectedRoom = preRoom || '';
+let nights = 0;
+
+function fmtPrice(n){ return n.toLocaleString() + ' RWF'; }
+
+function renderRoomOptions() {
+  const container = document.getElementById('room-options');
+  let html = '';
+  for (const [key, room] of Object.entries(ROOMS)) {
+    const avail = window.GrottaRooms.getAvailable(key);
+    const unavail = avail === 0;
+    let availClass = 'ok', availText = `${avail} rooms available`;
+    if (avail <= 2 && avail > 0) { availClass = 'low'; availText = `Only ${avail} left!`; }
+    if (avail === 0)              { availClass = 'none'; availText = 'Fully Booked'; }
+    const selClass = selectedRoom === key ? 'selected' : '';
+    const uClass   = unavail ? 'unavailable' : '';
+    html += `
+    <div class="room-option ${selClass} ${uClass}" onclick="selectRoom('${key}')" id="ro-${key}">
+      <div class="ro-info">
+        <h5>${room.name}</h5>
+        <span class="ro-avail ${availClass}">${availText}</span>
+      </div>
+      <div class="ro-price">
+        <span class="rp-val">${fmtPrice(room.price)}</span>
+        <span class="rp-ngt">/ night</span>
+      </div>
+    </div>`;
+  }
+  container.innerHTML = html;
+}
+
+function renderAllAvail() {
+  const el = document.getElementById('all-avail');
+  let html = '';
+  for (const [key, room] of Object.entries(ROOMS)) {
+    const avail = window.GrottaRooms.getAvailable(key);
+    const total = window.GrottaRooms.ROOM_DEFAULTS[key].total;
+    let col = '#4caf7d';
+    if (avail <= 2 && avail > 0) col = '#e6a020';
+    if (avail === 0) col = '#c0392b';
+    html += `<div style="display:flex;justify-content:space-between;font-size:.75rem;padding:.3rem 0;border-bottom:1px solid var(--border)">
+      <span style="color:var(--text)">${room.name}</span>
+      <span style="color:${col};font-weight:500">${avail}/${total}</span>
+    </div>`;
+  }
+  el.innerHTML = html;
+}
+
+function selectRoom(key) {
+  selectedRoom = key;
+  document.querySelectorAll('.room-option').forEach(el => el.classList.remove('selected'));
+  const el = document.getElementById('ro-' + key);
+  if (el) el.classList.add('selected');
+  updateSummary();
+  showAvailPips(key);
+}
+
+function showAvailPips(key) {
+  const avail = window.GrottaRooms.getAvailable(key);
+  const total = window.GrottaRooms.ROOM_DEFAULTS[key].total;
+  const used  = total - avail;
+  const section = document.getElementById('avail-section');
+  const pips    = document.getElementById('avail-pips');
+  const text    = document.getElementById('avail-text');
+  section.style.display = 'block';
+  let pipsHtml = '';
+  for (let i = 0; i < total; i++) pipsHtml += `<div class="avail-pip${i < used ? ' used' : ''}"></div>`;
+  pips.innerHTML = pipsHtml;
+  if (avail === 0) text.innerHTML = '<span style="color:#c0392b">Fully Booked</span>';
+  else if (avail <= 2) text.innerHTML = `<span style="color:#e6a020">Only ${avail} room${avail>1?'s':''} remaining!</span>`;
+  else text.innerHTML = `<span style="color:#4caf7d">${avail} of ${total} rooms available</span>`;
+}
+
+function calcNights() {
+  const ci = document.getElementById('checkin').value;
+  const co = document.getElementById('checkout').value;
+  const infoBox = document.getElementById('nights-info');
+  if (ci && co) {
+    const d = (new Date(co) - new Date(ci)) / 86400000;
+    nights = d > 0 ? d : 0;
+    if (nights > 0) {
+      document.getElementById('nights-text').textContent = nights + ' night' + (nights > 1 ? 's' : '');
+      infoBox.style.display = 'block';
+    } else {
+      nights = 0;
+      infoBox.style.display = 'none';
+    }
+  }
+  updateSummary();
+}
+
+function fmtDate(str) {
+  if (!str) return '—';
+  return new Date(str + 'T12:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+}
+
+function updateSummary() {
+  const ci = document.getElementById('checkin')?.value || '';
+  const co = document.getElementById('checkout')?.value || '';
+  const adults = document.getElementById('adults')?.value || '1';
+  const children = document.getElementById('children')?.value || '0';
+
+  const room = ROOMS[selectedRoom];
+  document.getElementById('s-room').textContent     = room ? room.name : '—';
+  document.getElementById('s-checkin').textContent  = fmtDate(ci);
+  document.getElementById('s-checkout').textContent = fmtDate(co);
+  document.getElementById('s-nights').textContent   = nights ? nights + ' night' + (nights > 1 ? 's' : '') : '—';
+  document.getElementById('s-guests').textContent   = adults + ' adult' + (adults > 1 ? 's' : '') + (children > 0 ? `, ${children} child${children > 1 ? 'ren' : ''}` : '');
+  document.getElementById('s-rate').textContent     = room ? fmtPrice(room.price) : '—';
+
+  const total = room && nights > 0 ? room.price * nights : null;
+  document.getElementById('s-total').textContent    = total ? fmtPrice(total) : '—';
+}
+
+function confirmBooking() {
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const ci    = document.getElementById('checkin').value;
+  const co    = document.getElementById('checkout').value;
+  const errEl = document.getElementById('form-error');
+
+  if (!selectedRoom || !fname || !lname || !email || !ci || !co || nights <= 0) {
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+
+  const booked = window.GrottaRooms.bookRoom(selectedRoom, 1);
+  if (!booked) {
+    errEl.textContent = 'Sorry, this room is no longer available. Please select another.';
+    errEl.style.display = 'block';
+    renderRoomOptions();
+    renderAllAvail();
+    return;
+  }
+
+  // Show confirmation
+  const room = ROOMS[selectedRoom];
+  const total = room.price * nights;
+  const ref = 'GRT-' + Date.now().toString().slice(-6).toUpperCase();
+  document.getElementById('conf-ref').textContent = 'Booking Reference: ' + ref;
+  document.getElementById('conf-details').textContent =
+    `${fname} ${lname} · ${room.name} · ${fmtDate(ci)} → ${fmtDate(co)} · ${nights} night${nights>1?'s':''} · ${fmtPrice(total)}`;
+
+  document.getElementById('confirm-btn').style.display = 'none';
+  document.getElementById('confirm-panel').classList.add('show');
+
+  // Refresh availability
+  renderRoomOptions();
+  renderAllAvail();
+  if (selectedRoom) showAvailPips(selectedRoom);
+}
+
+// INIT
+document.addEventListener('DOMContentLoaded', () => {
+  renderRoomOptions();
+  renderAllAvail();
+
+  if (preCI) document.getElementById('checkin').value = preCI;
+  if (preCO) document.getElementById('checkout').value = preCO;
+  if (preAdult) document.getElementById('adults').value = preAdult;
+  if (preCI && preCO) calcNights();
+
+  if (preRoom && ROOMS[preRoom]) {
+    selectRoom(preRoom);
+  }
+
+  // Set min dates
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('checkin').min  = today;
+  document.getElementById('checkout').min = today;
+
+  updateSummary();
+});
+</script>
+</body>
+</html>
