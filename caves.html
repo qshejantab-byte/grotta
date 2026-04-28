@@ -97,7 +97,7 @@ body {
 /* Image panel — absolute, bleeds to screen edge, 55% wide */
 .cave-img-panel {
   position: absolute;
-  top: 0; bottom: 0;
+  top: 1.5rem; bottom: 1.5rem;
   width: 55%;
   overflow: hidden;
   z-index: 2;
@@ -222,23 +222,39 @@ body {
 
 /* ── MOBILE — stack vertically ── */
 @media (max-width: 860px) {
-  .cave-row { min-height: unset; }
+  .cave-row {
+    min-height: unset;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(201,165,82,.07);
+  }
+  .cave-row:last-child { border-bottom: none; }
 
   .cave-img-panel {
     position: relative;
-    width: 100%; height: 280px;
-    left: auto; right: auto; top: auto; bottom: auto;
+    width: 100%; height: 260px;
+    top: auto; bottom: auto; left: auto; right: auto;
   }
+
+  /* on mobile, always show image on top regardless of left/right class */
+  .cave-row.right .cave-img-panel { right: auto; }
+
   .cave-text-panel {
     position: relative;
-    width: 100%; left: auto; right: auto;
-    top: auto; bottom: auto;
+    width: 100%;
+    top: auto; bottom: auto; left: auto; right: auto;
   }
+  .cave-row.left  .cave-text-panel { left: auto; }
+  .cave-row.right .cave-text-panel { right: auto; }
+
   .cave-text-inner,
   .cave-row.right .cave-text-inner {
-    padding: 2.5rem 1.5rem 3rem;
+    padding: 2rem 1.5rem 2.5rem;
     max-width: 100%;
   }
+
+  .cave-dot { display: none !important; }
+  .centre-line { display: none !important; }
 }
 
 /* ── DESKTOP — show centre line + dot ── */
