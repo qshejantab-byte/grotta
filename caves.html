@@ -5,70 +5,380 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Grotta Cave Experience</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:    #080805;
+  --bg2:   #0e0c09;
+  --gold:  #c9a552;
+  --cream: #e8e0d0;
+  --muted: rgba(232,224,208,.5);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Jost', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HERO ── */
+.page-hero {
+  position: relative;
+  width: 100%; height: 80vh; min-height: 540px;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.page-hero-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center 30%;
+}
+.page-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(8,8,5,.1) 0%, rgba(8,8,5,.1) 40%,
+    rgba(8,8,5,.85) 72%, rgba(8,8,5,1) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 6vw 4.5rem;
+  max-width: 680px;
+}
+.hero-label {
+  display: inline-block;
+  font-size: .6rem; font-weight: 500;
+  letter-spacing: .25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.hero-content h1 {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 300; line-height: 1.05;
+  color: var(--cream); margin-bottom: 1rem;
+}
+.hero-content p {
+  font-size: 1rem; font-weight: 300;
+  line-height: 1.75; color: var(--muted);
+  max-width: 460px;
+}
+
+/* ── CAVES SECTION ── */
+.caves-section {
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Vertical centre-line */
+.centre-line {
+  position: absolute;
+  left: 50%; top: 0; bottom: 0;
+  width: 1px;
+  background: rgba(201,165,82,.15);
+  transform: translateX(-50%);
+  z-index: 1;
+  display: none; /* shown via media query below */
+}
+
+/* ── EACH ROW ── */
+.cave-row {
+  position: relative;
+  min-height: 520px;
+  border-bottom: 1px solid rgba(201,165,82,.07);
+}
+.cave-row:last-child { border-bottom: none; }
+
+/* Image panel — absolute, bleeds to screen edge, 55% wide */
+.cave-img-panel {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 55%;
+  overflow: hidden;
+  z-index: 2;
+}
+.cave-row.left  .cave-img-panel { left: 0; }
+.cave-row.right .cave-img-panel { right: 0; }
+
+.cave-img-panel img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 1.2s ease;
+}
+.cave-row:hover .cave-img-panel img { transform: scale(1.04); }
+
+/* Depth badge */
+.depth-badge {
+  position: absolute;
+  top: 1.1rem; right: 1.1rem;
+  background: rgba(8,8,5,.65);
+  backdrop-filter: blur(8px);
+  padding: .35rem .85rem;
+  font-size: .58rem; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Gold dot at centre junction */
+.cave-dot {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 18px rgba(201,165,82,.6);
+  z-index: 10;
+  display: none; /* shown via media query */
+}
+
+/* Text panel — sits in the remaining 45% */
+.cave-text-panel {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 45%;
+  display: flex;
+  align-items: flex-start;
+  z-index: 3;
+}
+.cave-row.left  .cave-text-panel { left: 55%; }
+.cave-row.right .cave-text-panel { right: 55%; }
+
+.cave-text-inner {
+  /* padding-top creates the downward offset so text doesn't start at the very top */
+  padding: clamp(3.5rem, 9vw, 7rem) 3.5rem 3rem;
+  max-width: 420px;
+  width: 100%;
+}
+.cave-row.right .cave-text-inner {
+  padding-left: 2.5rem;
+  padding-right: 3.5rem;
+}
+
+/* Pills */
+.cave-pills {
+  display: flex; gap: .55rem;
+  margin-bottom: 1.5rem; flex-wrap: wrap;
+}
+.cave-pill {
+  font-size: .6rem; font-weight: 500;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,165,82,.25);
+  padding: .3rem .8rem;
+}
+.cave-pill.filled { background: rgba(201,165,82,.08); }
+
+/* Title */
+.cave-text-inner h2 {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 3.5vw, 3.6rem);
+  font-weight: 300; line-height: 1.08;
+  color: var(--cream); margin-bottom: 1.1rem;
+}
+
+/* Short desc */
+.cave-desc {
+  font-size: .95rem; font-weight: 300;
+  line-height: 1.8; color: var(--muted);
+}
+
+/* Hover-expanded desc */
+.cave-hover-desc {
+  max-height: 0; opacity: 0;
+  overflow: hidden;
+  transition: max-height .5s ease, opacity .4s ease, margin-top .4s ease;
+  margin-top: 0;
+  font-size: .85rem; font-weight: 300;
+  line-height: 1.75; color: rgba(232,224,208,.4);
+  border-left: 1px solid rgba(201,165,82,.25);
+  padding-left: 1rem;
+}
+.cave-row:hover .cave-hover-desc {
+  max-height: 8rem; opacity: 1; margin-top: 1.25rem;
+}
+
+/* CTA link */
+.cave-cta {
+  display: inline-flex; align-items: center; gap: .5rem;
+  margin-top: 1.75rem;
+  font-size: .62rem; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  transition: gap .25s;
+}
+.cave-cta svg {
+  width: 16px; height: 16px;
+  transition: transform .25s;
+}
+.cave-cta:hover { gap: .85rem; }
+.cave-cta:hover svg { transform: translateX(4px); }
+
+/* ── MOBILE — stack vertically ── */
+@media (max-width: 860px) {
+  .cave-row { min-height: unset; }
+
+  .cave-img-panel {
+    position: relative;
+    width: 100%; height: 280px;
+    left: auto; right: auto; top: auto; bottom: auto;
+  }
+  .cave-text-panel {
+    position: relative;
+    width: 100%; left: auto; right: auto;
+    top: auto; bottom: auto;
+  }
+  .cave-text-inner,
+  .cave-row.right .cave-text-inner {
+    padding: 2.5rem 1.5rem 3rem;
+    max-width: 100%;
+  }
+}
+
+/* ── DESKTOP — show centre line + dot ── */
+@media (min-width: 861px) {
+  .centre-line { display: block; }
+  .cave-dot    { display: block; }
+}
+
+/* ── COMING SOON ── */
+.coming-soon {
+  background: var(--bg2);
+  padding: 5rem 6vw;
+  border-top: 1px solid rgba(201,165,82,.1);
+}
+.coming-soon .cs-label {
+  display: inline-block;
+  font-size: .6rem; font-weight: 500;
+  letter-spacing: .25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: .9rem;
+}
+.coming-soon h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300; color: var(--cream); margin-bottom: .75rem;
+}
+.coming-soon p {
+  font-size: .95rem; font-weight: 300;
+  line-height: 1.75; color: var(--muted); max-width: 460px;
+}
+</style>
 </head>
 <body>
+
 <div id="nav-holder"></div>
 
+<!-- HERO -->
 <div class="page-hero">
   <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1600&q=80')"></div>
-  <div class="page-hero-overlay" style="background:linear-gradient(to bottom,rgba(8,8,5,.2) 0%,
-  rgba(8,8,5,.2) 45%,rgba(8,8,5,.85) 75%,rgba(8,8,5,1) 100%);"></div>
-  <div class="page-hero-content">
-    <span class="label">Underground</span>
-    <h1>The Grotta Cave Experience</h1>
-    <p>The caves represent one of the most distinctive natural features accessible directly from a resort environment in northern Rwanda.</p>
+  <div class="page-hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-label">Underground</span>
+    <h1>The Caves</h1>
+    <p>Formed over millennia. Hollowed by water. Now open to those who seek the quiet dark.</p>
   </div>
 </div>
 
-<section style="background:transparent">
-  <div class="container">
+<!-- CAVES SECTION -->
+<div class="caves-section">
+  <div class="centre-line"></div>
 
-    <div class="cave-entry fade-up">
-      <div class="cave-entry-img">
-        <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" alt="Scenic Cave Walk">
-      </div>
-      <div class="cave-entry-text">
-        <span class="cave-time">16 Minutes</span>
-        <h3>Scenic Cave Walk</h3>
-        <p>A gentle guided walk through illuminated passages revealing the hidden geology of the highlands. Perfect for families and first-time explorers. Our expert guides will walk you through chambers formed over millennia, sharing the stories embedded in every stone.</p>
+  <!-- Row 1 — image LEFT -->
+  <div class="cave-row left">
+    <div class="cave-img-panel">
+      <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" alt="Scenic Cave Walk">
+      <div class="depth-badge">Depth: 50M</div>
+    </div>
+    <div class="cave-dot"></div>
+    <div class="cave-text-panel">
+      <div class="cave-text-inner">
+        <div class="cave-pills">
+          <span class="cave-pill filled">16 Minutes</span>
+          <span class="cave-pill">Easy</span>
+        </div>
+        <h2>Scenic Cave Walk</h2>
+        <p class="cave-desc">Illuminated passages. Geological wonders. Perfect for first-timers.</p>
+        <p class="cave-hover-desc">A gentle guided walk through lit passages revealing hidden geology. Even path, well-lit, rich with formations. Families welcome.</p>
+        <a href="booking.html" class="cave-cta">
+          Book this walk
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
       </div>
     </div>
-
-    <div class="cave-entry reversed fade-up">
-      <div class="cave-entry-img">
-        <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&q=80" alt="Adventure Cave Route">
-      </div>
-      <div class="cave-entry-text">
-        <span class="cave-time">Up to 1 Hour</span>
-        <h3>Adventure Cave Route</h3>
-        <p>An extended exploration through deeper passages for adventurous guests. Led by expert guides through ancient subterranean labyrinths. This experience takes you into the heart of the highland cave system, through chambers that few have ever entered.</p>
-      </div>
-    </div>
-
-    <div class="cave-entry fade-up">
-      <div class="cave-entry-img">
-        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80" alt="Cave Café">
-      </div>
-      <div class="cave-entry-text">
-        <span class="cave-time">Open Daily</span>
-        <h3>Cave Café</h3>
-        <p>Enjoy coffee beside natural rock formations in our unique cave-side café. An experience unlike any other in Rwanda. Savour artisanal bites and rare spirits in a setting carved from ancient volcanic stone, lit only by candlelight and filtered highland sunlight.</p>
-      </div>
-    </div>
-
   </div>
-</section>
 
-<div class="coming-soon fade-up">
-  <div class="container">
-    <span class="label">Coming Soon</span>
-    <h2>Future Cave Spa</h2>
-    <p>A cave-side wellness experience inspired by volcanic landscapes and natural stone environments. Opening 2025.</p>
+  <!-- Row 2 — image RIGHT -->
+  <div class="cave-row right">
+    <div class="cave-img-panel">
+      <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&q=80" alt="Adventure Route">
+      <div class="depth-badge">Depth: 120M</div>
+    </div>
+    <div class="cave-dot"></div>
+    <div class="cave-text-panel">
+      <div class="cave-text-inner">
+        <div class="cave-pills">
+          <span class="cave-pill filled">Up to 1 Hour</span>
+          <span class="cave-pill">Moderate</span>
+        </div>
+        <h2>Adventure Route</h2>
+        <p class="cave-desc">Deeper passages. Ancient labyrinths. Expert guides.</p>
+        <p class="cave-hover-desc">Extended exploration through deeper passages. Some stooping required. Sturdy shoes recommended. Maximum 8 guests.</p>
+        <a href="booking.html" class="cave-cta">
+          Book this walk
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
   </div>
+
+  <!-- Row 3 — image LEFT -->
+  <div class="cave-row left">
+    <div class="cave-img-panel">
+      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80" alt="Cave Café">
+      <div class="depth-badge">Depth: Surface</div>
+    </div>
+    <div class="cave-dot"></div>
+    <div class="cave-text-panel">
+      <div class="cave-text-inner">
+        <div class="cave-pills">
+          <span class="cave-pill filled">Open Daily</span>
+          <span class="cave-pill">Casual</span>
+        </div>
+        <h2>Cave Café</h2>
+        <p class="cave-desc">Coffee among stone walls. Rare spirits. Quiet light.</p>
+        <p class="cave-hover-desc">Enjoy coffee beside natural rock formations. Hot drinks, light meals, and the cool silence of stone. Open 10AM–6PM.</p>
+        <a href="booking.html" class="cave-cta">
+          Reserve a seat
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- COMING SOON -->
+<div class="coming-soon">
+  <span class="cs-label">Coming Soon</span>
+  <h2>Future Cave Spa</h2>
+  <p>A cave-side wellness experience inspired by volcanic landscapes and natural stone environments. Opening 2025.</p>
 </div>
 
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
+
 </body>
 </html>
