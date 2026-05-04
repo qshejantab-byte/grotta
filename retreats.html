@@ -5,120 +5,946 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Retreats — Grotta</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+
+/* ══════════════════════════════════════
+   RETREATS — Architectural Luxury
+   Mood: stone monolith · executive · spatial
+   Palette: deep charcoal · volcanic grey ·
+            concrete beige · restrained gold
+══════════════════════════════════════ */
+
+:root {
+  --rt-black:   #060604;
+  --rt-charcoal:#0d0c09;
+  --rt-stone:   #181612;
+  --rt-concrete:#1e1c17;
+  --rt-beige:   #aea89a;
+  --rt-gold:    #c9a552;
+  --rt-gold-dim:rgba(201,165,82,.18);
+  --rt-green:   rgba(38,52,38,.18);
+  --rt-border:  rgba(180,172,155,.1);
+  --rt-text:    #958e80;
+  --rt-cream:   #e8e2d6;
+  --rt-ease:    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ══════════════════════
+   HERO
+══════════════════════ */
+.rt-hero {
+  position: relative;
+  height: 65vh;
+  min-height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 5vw;
+}
+
+/* Background — editorial poster, not full-bleed aggressive */
+.rt-hero-bg {
+  position: absolute;
+  inset: -4%;
+  background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1600&q=80');
+  background-size: cover;
+  background-position: center 25%;
+  will-change: transform;
+  filter: brightness(.78) saturate(.65);
+  animation: rt-drift 28s var(--rt-ease) forwards;
+}
+@keyframes rt-drift {
+  from { transform: scale(1.02) translateX(0); }
+  to   { transform: scale(1)    translateX(-.8%); }
+}
+
+/* Architectural shadow — lighter, smoother */
+.rt-hero-shadow {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(100deg,
+      rgba(6,6,4,.88) 0%,
+      rgba(6,6,4,.60) 36%,
+      rgba(6,6,4,.18) 58%,
+      rgba(6,6,4,.04) 100%),
+    linear-gradient(to bottom,
+      rgba(6,6,4,.32) 0%,
+      rgba(6,6,4,.04) 32%,
+      rgba(6,6,4,.45) 68%,
+      rgba(6,6,4,.85) 100%);
+  z-index: 1;
+}
+
+/* Framing border — very subtle inset "poster" lines */
+.rt-hero-frame {
+  position: absolute;
+  inset: 2.2rem;
+  border: 1px solid rgba(201,165,82,.07);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  animation: rt-frame-in 1.8s ease 0.8s forwards;
+}
+@keyframes rt-frame-in {
+  from { opacity: 0; inset: 3.5rem; }
+  to   { opacity: 1; inset: 2.2rem; }
+}
+
+/* Vertical light beam — architectural accent */
+.rt-hero-beam {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 42%;
+  width: 1px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(201,165,82,.12) 25%,
+    rgba(201,165,82,.07) 70%,
+    transparent 100%);
+  z-index: 2;
+  animation: rt-beam-in 2.5s ease 1.2s both;
+}
+@keyframes rt-beam-in {
+  from { opacity: 0; transform: scaleY(0); transform-origin: top; }
+  to   { opacity: 1; transform: scaleY(1); }
+}
+
+/* Content — left-aligned, architectural */
+.rt-hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 0 clamp(1.5rem, 6vw, 5rem);
+  max-width: 680px;
+}
+
+.rt-hero-label {
+  display: inline-block;
+  font-family: 'Jost', sans-serif;
+  font-size: .58rem;
+  font-weight: 400;
+  letter-spacing: .48em;
+  text-transform: uppercase;
+  color: rgba(201,165,82,.55);
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: rt-label-in 1s ease .3s forwards;
+}
+@keyframes rt-label-in {
+  from { opacity: 0; letter-spacing: .65em; }
+  to   { opacity: 1; letter-spacing: .48em; }
+}
+
+.rt-hero-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.6rem, 5.5vw, 5rem);
+  font-weight: 400;
+  color: var(--rt-cream);
+  line-height: 1.04;
+  letter-spacing: -.02em;
+  margin-bottom: 1.4rem;
+  clip-path: inset(0 0 100% 0);
+  animation: rt-title-reveal 1.1s var(--rt-ease) .7s forwards;
+}
+@keyframes rt-title-reveal {
+  from { clip-path: inset(0 0 100% 0); opacity: .4; }
+  to   { clip-path: inset(0 0   0% 0); opacity: 1; }
+}
+
+.rt-hero-sub {
+  font-family: 'Jost', sans-serif;
+  font-size: .88rem;
+  font-weight: 300;
+  color: rgba(232,226,214,.55);
+  line-height: 1.95;
+  max-width: 420px;
+  margin-bottom: 2.4rem;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: rt-sub-in 1s var(--rt-ease) 1.2s forwards;
+}
+@keyframes rt-sub-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* CTA — sharp architectural style */
+.rt-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Jost', sans-serif;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--rt-cream);
+  text-decoration: none;
+  padding: .9rem 2rem;
+  border: 1px solid rgba(232,226,214,.25);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: rt-sub-in 1s var(--rt-ease) 1.6s forwards;
+  transition: color .3s ease, border-color .3s ease;
+}
+/* Border draw on hover */
+.rt-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--rt-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s var(--rt-ease);
+}
+.rt-cta::after {
+  content: '→';
+  font-size: .85rem;
+  transition: transform .3s ease;
+}
+.rt-cta:hover { color: var(--rt-gold); border-color: transparent; }
+.rt-cta:hover::before { transform: scaleX(1); }
+.rt-cta:hover::after  { transform: translateX(5px); }
+.rt-cta:active { transform: translateY(1px); }
+
+/* ══════════════════════
+   CARDS SECTION
+══════════════════════ */
+.rt-section {
+  padding: 7rem 0 8rem;
+  background: var(--rt-charcoal);
+  position: relative;
+}
+
+/* Subtle concrete-grain texture */
+.rt-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(180,172,155,.012) 0px,
+      rgba(180,172,155,.012) 1px,
+      transparent 1px,
+      transparent 60px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(180,172,155,.012) 0px,
+      rgba(180,172,155,.012) 1px,
+      transparent 1px,
+      transparent 60px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rt-section-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Section header — left-aligned, architectural */
+.rt-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rt-border);
+  gap: 2rem;
+}
+.rt-section-header h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  color: var(--rt-cream);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  margin: 0;
+}
+.rt-section-header p {
+  font-size: .78rem;
+  color: var(--rt-text);
+  max-width: 320px;
+  text-align: right;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ── Grid — 3 columns, equal-height rows ── */
+.rt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr; /* equal height rows */
+  gap: 1px;
+  background: var(--rt-border);
+}
+
+/* ── Card base — refined architectural panels ── */
+.venue-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--rt-stone);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column; /* image + body stack, body stretches */
+  /* scroll reveal */
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity .75s var(--rt-ease),
+    transform .75s var(--rt-ease),
+    box-shadow .45s ease;
+}
+.venue-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Hover — clean architectural lift, gold top lip */
+.venue-card:hover {
+  z-index: 2;
+  box-shadow:
+    0 2px 0 rgba(201,165,82,.18),
+    0 20px 50px rgba(0,0,0,.65),
+    0 4px 16px rgba(0,0,0,.35);
+  transform: translateY(-4px);
+}
+
+/* Featured card — full-width, stacks like others */
+.venue-card[style*="grid-column"] {
+  grid-column: 1 / -1 !important;
+  display: flex !important;
+  flex-direction: column;
+}
+
+/* ── Image — fixed height, consistent across all cards ── */
+.vc-img {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+.vc-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.8) saturate(.72) contrast(1.03);
+  transition: transform 1.4s var(--rt-ease), filter .7s ease;
+  object-position: center 25%;
+}
+.venue-card:hover .vc-img img {
+  transform: scale(1.05);
+  filter: brightness(.9) saturate(.82) contrast(1.01);
+}
+
+/* Overlay */
+.vc-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top,
+      rgba(18,16,12,.9) 0%,
+      rgba(18,16,12,.35) 35%,
+      transparent 70%);
+  pointer-events: none;
+  transition: opacity .5s ease;
+}
+.venue-card:hover .vc-img::after { opacity: .8; }
+
+/* Featured image — slightly taller but proportional */
+.venue-card[style*="grid-column"] .vc-img {
+  height: 260px;
+}
+.venue-card[style*="grid-column"] .vc-img img {
+  object-position: center 30%;
+}
+.venue-card[style*="grid-column"] .vc-img::after {
+  background:
+    linear-gradient(to top,
+      rgba(18,16,12,.85) 0%,
+      rgba(18,16,12,.3) 40%,
+      transparent 70%);
+}
+
+/* ── Body — flex:1 so equal-height cards fill evenly ── */
+.vc-body {
+  padding: 1.5rem 1.8rem 1.8rem;
+  background: var(--rt-stone);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* top-align so short/long text stays consistent */
+  flex: 1; /* stretch to fill remaining card height */
+  position: relative;
+  border-top: 1px solid rgba(180,172,155,.05);
+}
+
+/* Animated gold top-line draw — from left */
+.vc-body::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 1.8rem;
+  width: 0;
+  height: 1px;
+  background: var(--rt-gold);
+  transition: width .55s var(--rt-ease) .04s;
+}
+.venue-card:hover .vc-body::before { width: calc(100% - 3.6rem); }
+
+/* Tag — minimal, uppercase, muted */
+.vc-tag {
+  display: block;
+  font-family: 'Jost', sans-serif;
+  font-size: .52rem;
+  font-weight: 500;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: rgba(180,172,155,.45);
+  margin-bottom: .7rem;
+  transition: color .3s ease;
+}
+.venue-card:hover .vc-tag { color: rgba(201,165,82,.6); }
+
+.vc-body h4 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--rt-cream);
+  margin-bottom: 0;
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  transition: color .3s ease;
+}
+.venue-card:hover .vc-body h4 { color: #fff; }
+
+.vc-divider {
+  width: 1.4rem;
+  height: 1px;
+  background: rgba(201,165,82,.2);
+  margin: .8rem 0 .75rem;
+  transition: width .45s var(--rt-ease), background .3s ease;
+}
+.venue-card:hover .vc-divider {
+  width: 2.6rem;
+  background: rgba(201,165,82,.38);
+}
+
+.vc-body p {
+  font-size: .82rem;
+  color: rgba(149,142,128,.75);
+  line-height: 1.92;
+  transition: color .3s ease;
+}
+.venue-card:hover .vc-body p { color: rgba(174,168,154,.9); }
+
+/* Featured card body — consistent with regular cards */
+.venue-card[style*="grid-column"] .vc-body {
+  justify-content: flex-start;
+  flex: 1;
+  padding: 1.5rem 1.8rem 1.8rem;
+  border-top: 1px solid rgba(180,172,155,.05);
+  border-left: none;
+}
+.venue-card[style*="grid-column"] .vc-body h4 {
+  font-size: 1.7rem;
+  line-height: 1.1;
+}
+.venue-card[style*="grid-column"] .vc-divider { width: 2rem; }
+.venue-card[style*="grid-column"]:hover .vc-divider { width: 3rem; }
+
+/* ══════════════════════
+   INQUIRY FORM
+══════════════════════ */
+.rt-form-section {
+  background: var(--rt-black);
+  padding: 7rem 0 8rem;
+  position: relative;
+}
+
+/* Fine horizontal rule above section */
+.rt-form-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right,
+    transparent,
+    var(--rt-border) 20%,
+    var(--rt-border) 80%,
+    transparent);
+}
+
+.rt-form-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Form header */
+.rt-form-header {
+  margin-bottom: 3.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--rt-border);
+}
+.rt-form-header .label {
+  display: block;
+  margin-bottom: .9rem;
+  font-size: .58rem;
+  letter-spacing: .38em;
+}
+.rt-form-header h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  color: var(--rt-cream);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  margin-bottom: .7rem;
+}
+.rt-form-header p {
+  font-size: .84rem;
+  color: var(--rt-text);
+  line-height: 1.8;
+}
+
+/* ── Form grid ── */
+.rt-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.rt-form-group {
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--rt-border);
+  position: relative;
+}
+.rt-form-group:nth-child(odd)  { padding-right: 2.5rem; border-right: 1px solid var(--rt-border); }
+.rt-form-group:nth-child(even) { padding-left: 2.5rem; }
+.rt-form-group.rt-full {
+  grid-column: 1 / -1;
+  padding-right: 0;
+  padding-left: 0;
+  border-right: none;
+}
+
+.rt-form-group label {
+  font-family: 'Jost', sans-serif;
+  font-size: .56rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(201,165,82,.5);
+  margin-bottom: .65rem;
+  font-weight: 500;
+}
+
+.rt-form-group input,
+.rt-form-group textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(180,172,155,.15);
+  color: var(--rt-cream);
+  font-family: 'Jost', sans-serif;
+  font-size: .88rem;
+  font-weight: 300;
+  padding: .55rem 0;
+  outline: none;
+  width: 100%;
+  transition: border-color .35s ease;
+  caret-color: var(--rt-gold);
+}
+.rt-form-group input::placeholder,
+.rt-form-group textarea::placeholder {
+  color: rgba(180,172,155,.25);
+  font-size: .82rem;
+}
+.rt-form-group input:focus,
+.rt-form-group textarea:focus {
+  border-bottom-color: var(--rt-gold);
+}
+
+/* Animated underline on focus */
+.rt-form-group::after {
+  content: '';
+  position: absolute;
+  bottom: 1.4rem; left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--rt-gold);
+  transition: width .4s var(--rt-ease);
+  pointer-events: none;
+}
+.rt-form-group:focus-within::after { width: 100%; }
+.rt-form-group.rt-full:focus-within::after { width: 100%; }
+
+.rt-form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ── Pill selectors for radio ── */
+.rt-pills {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-top: .5rem;
+}
+.rt-pill {
+  position: relative;
+}
+.rt-pill input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0; height: 0;
+}
+.rt-pill label {
+  display: inline-block;
+  font-family: 'Jost', sans-serif;
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--rt-text);
+  border: 1px solid var(--rt-border);
+  padding: .45rem 1.1rem;
+  cursor: pointer;
+  transition: border-color .25s ease, color .25s ease, background .25s ease;
+  font-weight: 400;
+  /* reset label styles from global form */
+  margin-bottom: 0;
+  letter-spacing: .18em;
+}
+.rt-pill input[type="radio"]:checked + label {
+  border-color: var(--rt-gold);
+  color: var(--rt-gold);
+  background: rgba(201,165,82,.05);
+}
+.rt-pill label:hover {
+  border-color: rgba(201,165,82,.4);
+  color: rgba(201,165,82,.7);
+}
+
+/* ── Submit button ── */
+.rt-submit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2.5rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.rt-submit-row p {
+  font-size: .76rem;
+  color: var(--rt-text);
+  max-width: 380px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.rt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .9rem;
+  font-family: 'Jost', sans-serif;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--rt-black);
+  background: var(--rt-gold);
+  border: 1px solid var(--rt-gold);
+  padding: 1rem 2.4rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color .3s ease, background .3s ease, transform .15s ease;
+}
+.rt-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--rt-cream);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s var(--rt-ease);
+  z-index: 0;
+}
+.rt-btn span { position: relative; z-index: 1; }
+.rt-btn:hover::before { transform: scaleX(1); }
+.rt-btn:hover { color: var(--rt-black); }
+.rt-btn:active { transform: translateY(1px); }
+
+/* Confirmation */
+.confirmation-box {
+  background: rgba(38,52,38,.12);
+  border: 1px solid rgba(201,165,82,.2);
+  padding: 2rem;
+  text-align: center;
+  display: none;
+  margin-top: 1.5rem;
+}
+.confirmation-box.show { display: block; }
+.confirmation-box h3 { color: var(--rt-gold); font-size: 1.1rem; margin-bottom: .6rem; }
+.confirmation-box p  { font-size: .84rem; color: var(--rt-text); }
+
+/* ══════════════════════
+   RESPONSIVE
+══════════════════════ */
+
+@media(max-width:900px){
+  .rt-hero { height: 65vh; min-height: 460px; padding-bottom: 3.5rem; }
+  .rt-hero-sub { max-width: 100%; }
+  .rt-hero-beam { display: none; }
+  .rt-hero-frame { inset: 1.2rem; }
+
+  .rt-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .rt-form-grid { grid-template-columns: 1fr; }
+  .rt-form-group:nth-child(odd) { padding-right: 0; border-right: none; }
+  .rt-form-group:nth-child(even){ padding-left: 0; }
+  .rt-section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .rt-section-header p { text-align: left; max-width: 100%; }
+}
+
+@media(max-width:600px){
+  .rt-hero { height: 65vh; min-height: 420px; padding-bottom: 2.8rem; }
+  .rt-hero-content { padding: 0 1.4rem; }
+  .rt-hero-title { font-size: clamp(2.2rem, 7vw, 3rem); margin-bottom: 1rem; }
+  .rt-hero-sub { font-size: .83rem; margin-bottom: 1.8rem; }
+  .rt-hero-frame { display: none; }
+
+  .rt-grid { grid-template-columns: 1fr; }
+  .venue-card[style*="grid-column"] { grid-column: auto !important; }
+
+  .rt-section { padding: 4rem 0 5rem; }
+  .rt-form-section { padding: 4rem 0 5rem; }
+  .rt-submit-row { flex-direction: column; align-items: flex-start; }
+  .rt-btn { width: 100%; justify-content: center; }
+}
+</style>
 </head>
 <body>
 <div id="nav-holder"></div>
 
-<div class="page-hero">
-  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1600&q=80')"></div>
-  <div class="page-hero-overlay" style="background:linear-gradient(to bottom,rgba(8,8,5,.2) 0%,
-  rgba(8,8,5,.2) 45%,rgba(8,8,5,.85) 75%,rgba(8,8,5,1) 100%);"></div>
-  <div class="page-hero-content">
-    <span class="label">Retreats</span>
-    <h1>Space for Teams, Leaders, and Creators</h1>
-    <p>Elevate your next gathering in an environment designed for profound connection and unhindered focus.</p>
+<!-- ══ HERO ══════════════════════════════════ -->
+<div class="rt-hero" id="rt-hero">
+  <div class="rt-hero-bg" id="rt-hero-bg"></div>
+  <div class="rt-hero-shadow"></div>
+  <div class="rt-hero-frame"></div>
+  <div class="rt-hero-beam"></div>
+
+  <div class="rt-hero-content">
+    <span class="rt-hero-label">Retreats</span>
+    <h1 class="rt-hero-title">Space for Teams,<br>Leaders, and Creators</h1>
+    <p class="rt-hero-sub">Elevate your next gathering in an environment designed for profound connection and unhindered focus.</p>
+    <a href="#rt-cards" class="rt-cta">
+      <span>Explore Retreats</span>
+    </a>
   </div>
 </div>
 
-<section style="background:transparent">
-  <div class="container">
-    <div class="venue-grid">
-      <div class="venue-card fade-up delay-1">
-        <div class="vc-img"><img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=700&q=80" alt="Corporate Alignment"></div>
+<!-- ══ CARDS ══════════════════════════════════ -->
+<div class="rt-section" id="rt-cards">
+  <div class="rt-section-inner">
+
+    <div class="rt-section-header fade-up">
+      <h2>Four Retreat Formats</h2>
+      <p>Designed for the demands of high-performance teams and individuals who require an environment equal to their ambition.</p>
+    </div>
+
+    <div class="rt-grid">
+
+      <!-- Corporate Alignment -->
+      <div class="venue-card" data-delay="0">
+        <div class="vc-img">
+          <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=900&q=85" alt="Corporate Alignment">
+        </div>
         <div class="vc-body">
+          <span class="vc-tag">Strategy</span>
           <h4>Corporate Alignment</h4>
-          <p>Executive offsites designed to foster clarity and unified direction.</p>
+          <div class="vc-divider"></div>
+          <p>Executive offsites designed to foster clarity and unified direction among leadership teams.</p>
         </div>
       </div>
-      <div class="venue-card fade-up delay-2">
-        <div class="vc-img"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=700&q=80" alt="Leadership Development"></div>
+
+      <!-- Leadership Development -->
+      <div class="venue-card" data-delay="100">
+        <div class="vc-img">
+          <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=900&q=85" alt="Leadership Development">
+        </div>
         <div class="vc-body">
+          <span class="vc-tag">Leadership</span>
           <h4>Leadership Development</h4>
-          <p>Intimate spaces for visionary thinking and high-level strategy.</p>
+          <div class="vc-divider"></div>
+          <p>Intimate spaces for visionary thinking, high-level strategy, and the sharpening of executive presence.</p>
         </div>
       </div>
-      <div class="venue-card fade-up delay-3">
-        <div class="vc-img"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&q=80" alt="Creative Incubation"></div>
+
+      <!-- Creative Incubation -->
+      <div class="venue-card" data-delay="200">
+        <div class="vc-img">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&q=85" alt="Creative Incubation">
+        </div>
         <div class="vc-body">
+          <span class="vc-tag">Creative</span>
           <h4>Creative Incubation</h4>
-          <p>Surroundings that inspire innovation and deep creative flow.</p>
+          <div class="vc-divider"></div>
+          <p>Surroundings that inspire innovation and sustained creative flow, away from habitual environments.</p>
         </div>
       </div>
-      <div class="venue-card fade-up delay-1" style="grid-column:1/3">
-        <div class="vc-img" style="height:280px"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=80" alt="Wellness & Renewal"></div>
+
+      <!-- Wellness & Renewal — featured full-width -->
+      <div class="venue-card" style="grid-column:1/3" data-delay="300">
+        <div class="vc-img">
+          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=85" alt="Wellness & Renewal">
+        </div>
         <div class="vc-body">
+          <span class="vc-tag">Wellness</span>
           <h4>Wellness & Renewal</h4>
-          <p>Restore balance with curated wellness programs and nature immersion.</p>
+          <div class="vc-divider"></div>
+          <p>Restore balance with curated wellness programs, nature immersion, and the silence of the highland landscape.</p>
         </div>
       </div>
+
     </div>
   </div>
-</section>
+</div>
 
-<!-- INQUIRY FORM -->
-<section style="background:var(--bg2)">
-  <div class="container">
-    <div class="section-header fade-up">
+<!-- ══ INQUIRY FORM ════════════════════════════ -->
+<div class="rt-form-section">
+  <div class="rt-form-inner">
+
+    <div class="rt-form-header fade-up">
+      <span class="label">Bespoke Proposals</span>
       <h2>Inquire About a Retreat</h2>
-      <p>Provide details about your vision, and our team will craft a bespoke proposal.</p>
+      <p>Provide details about your vision and our team will craft a proposal tailored to your objectives, group, and timeline.</p>
     </div>
-    <div class="form-container fade-up">
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" placeholder="Your full name">
-        </div>
-        <div class="form-group">
-          <label>Company / Organization</label>
-          <input type="text" placeholder="Company name">
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" placeholder="your@email.com">
-        </div>
-        <div class="form-group">
-          <label>Phone</label>
-          <input type="tel" placeholder="+250 ...">
-        </div>
-        <div class="form-group">
-          <label>Group Size</label>
-          <input type="text" placeholder="e.g. 20">
-        </div>
-        <div class="form-group">
-          <label>Preferred Dates</label>
-          <input type="text" placeholder="Month / Year">
-        </div>
-        <div class="form-group full">
-          <label>Retreat Focus</label>
-          <div class="radio-group">
-            <label><input type="radio" name="focus" value="corporate" checked> Corporate</label>
-            <label><input type="radio" name="focus" value="leadership"> Leadership</label>
-            <label><input type="radio" name="focus" value="creative"> Creative</label>
-            <label><input type="radio" name="focus" value="wellness"> Wellness</label>
+
+    <div class="rt-form-grid fade-up">
+
+      <div class="rt-form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Your full name">
+      </div>
+
+      <div class="rt-form-group">
+        <label>Company / Organization</label>
+        <input type="text" placeholder="Company name">
+      </div>
+
+      <div class="rt-form-group">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+
+      <div class="rt-form-group">
+        <label>Phone</label>
+        <input type="tel" placeholder="+250 ...">
+      </div>
+
+      <div class="rt-form-group">
+        <label>Group Size</label>
+        <input type="text" placeholder="e.g. 20">
+      </div>
+
+      <div class="rt-form-group">
+        <label>Preferred Dates</label>
+        <input type="text" placeholder="Month / Year">
+      </div>
+
+      <!-- Retreat Focus — pill selectors -->
+      <div class="rt-form-group rt-full">
+        <label>Retreat Focus</label>
+        <div class="rt-pills">
+          <div class="rt-pill">
+            <input type="radio" name="focus" id="r-corporate" value="corporate" checked>
+            <label for="r-corporate">Corporate</label>
+          </div>
+          <div class="rt-pill">
+            <input type="radio" name="focus" id="r-leadership" value="leadership">
+            <label for="r-leadership">Leadership</label>
+          </div>
+          <div class="rt-pill">
+            <input type="radio" name="focus" id="r-creative" value="creative">
+            <label for="r-creative">Creative</label>
+          </div>
+          <div class="rt-pill">
+            <input type="radio" name="focus" id="r-wellness" value="wellness">
+            <label for="r-wellness">Wellness</label>
           </div>
         </div>
-        <div class="form-group full">
-          <label>Additional Requirements</label>
-          <textarea placeholder="Tell us about your vision, requirements, or any special requests..."></textarea>
-        </div>
       </div>
-      <button class="btn btn-gold" onclick="submitRetreat(this)">Submit Inquiry</button>
-      <div class="confirmation-box" id="retreat-confirm">
-        <h3>✓ Inquiry Received</h3>
-        <p>Thank you! Our retreats team will review your submission and reach out within 48 hours with a bespoke proposal.</p>
+
+      <!-- Additional requirements -->
+      <div class="rt-form-group rt-full">
+        <label>Additional Requirements</label>
+        <textarea placeholder="Tell us about your vision, requirements, or any special requests..."></textarea>
       </div>
+
+    </div><!-- /.rt-form-grid -->
+
+    <div class="rt-submit-row fade-up">
+      <p>Our retreats team reviews every inquiry personally and responds within 48 hours with a bespoke proposal.</p>
+      <button class="rt-btn" onclick="submitRetreat(this)">
+        <span>Submit Inquiry →</span>
+      </button>
     </div>
+
+    <div class="confirmation-box" id="retreat-confirm">
+      <h3>✓ Inquiry Received</h3>
+      <p>Thank you. Our retreats team will review your submission and reach out within 48 hours with a bespoke proposal.</p>
+    </div>
+
   </div>
-</section>
+</div>
 
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 <script>
+// ── Form submit ──────────────────────────────────────────────
 function submitRetreat(btn) {
   btn.style.display = 'none';
   document.getElementById('retreat-confirm').classList.add('show');
 }
+
+// ── Hero parallax ────────────────────────────────────────────
+const heroBg   = document.getElementById('rt-hero-bg');
+const heroEl   = document.getElementById('rt-hero');
+
+function rtParallax() {
+  if (!heroBg) return;
+  const scrollY  = window.scrollY;
+  const heroH    = heroEl.offsetHeight;
+  const progress = Math.min(scrollY / heroH, 1);
+
+  // Background drifts slower than scroll
+  heroBg.style.transform = `scale(1) translateY(${scrollY * 0.28}px)`;
+}
+window.addEventListener('scroll', rtParallax, { passive: true });
+rtParallax();
+
+// ── Cards scroll reveal — left-to-right stagger ──────────────
+const rtCards = document.querySelectorAll('.venue-card');
+const rtObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const delay = parseInt(entry.target.dataset.delay || 0);
+      setTimeout(() => entry.target.classList.add('visible'), delay);
+      rtObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+rtCards.forEach(card => rtObs.observe(card));
 </script>
 </body>
 </html>
