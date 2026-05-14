@@ -882,7 +882,31 @@ textarea.bk-input:focus { border-color: var(--gold); }
     <!-- STEP 4: Wellness Add-ons -->
     <div class="bk-panel" id="panel-4">
       <h2 class="bk-panel-title">Elevate Your Stay</h2>
-      <span class="bk-panel-sub">These enhancements are entirely optional — and entirely worth it.</span>
+      <span class="bk-panel-sub">Select a meal plan and any additional enhancements for your stay.</span>
+
+      <!-- Meal Plan Selector -->
+      <div style="margin-bottom:2.5rem">
+        <div style="font-family:var(--sans);font-size:.56rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,165,82,.5);margin-bottom:1.2rem">Meal Plan</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,165,82,.08)">
+          <div class="bk-meal-opt" id="meal-bb" onclick="selectMeal('bb')" style="background:var(--bg2);padding:1.4rem 1.2rem;cursor:pointer;border:1px solid transparent;transition:all .3s ease;position:relative">
+            <div style="font-family:var(--sans);font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.45);margin-bottom:.5rem">Bed & Breakfast</div>
+            <div style="font-family:var(--serif);font-size:1.1rem;color:#c9a552;margin-bottom:.3rem">Included</div>
+            <div style="font-size:.72rem;color:rgba(200,192,174,.45);line-height:1.7">Breakfast only. No additional charge.</div>
+          </div>
+          <div class="bk-meal-opt" id="meal-hb" onclick="selectMeal('hb')" style="background:var(--bg2);padding:1.4rem 1.2rem;cursor:pointer;border:1px solid transparent;transition:all .3s ease;position:relative">
+            <div style="font-family:var(--sans);font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.45);margin-bottom:.5rem">Half Board+</div>
+            <div style="font-family:var(--serif);font-size:1.1rem;color:#c9a552;margin-bottom:.3rem">+$45<span style="font-size:.75rem"> /adult/night</span></div>
+            <div style="font-size:.72rem;color:rgba(200,192,174,.45);line-height:1.7">Breakfast + dinner included.</div>
+          </div>
+          <div class="bk-meal-opt" id="meal-fb" onclick="selectMeal('fb')" style="background:var(--bg2);padding:1.4rem 1.2rem;cursor:pointer;border:1px solid transparent;transition:all .3s ease;position:relative">
+            <div style="font-family:var(--sans);font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.45);margin-bottom:.5rem">Full Board+</div>
+            <div style="font-family:var(--serif);font-size:1.1rem;color:#c9a552;margin-bottom:.3rem">+$90<span style="font-size:.75rem"> /adult/night</span></div>
+            <div style="font-size:.72rem;color:rgba(200,192,174,.45);line-height:1.7">All meals — breakfast, lunch & dinner.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-family:var(--sans);font-size:.56rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,165,82,.5);margin-bottom:1.2rem">Additional Enhancements</div>
       <div class="bk-addons-grid" id="bk-addons-grid"></div>
       <div class="bk-nav">
         <button class="bk-nav-prev" onclick="prevStep(4)">‹ Back</button>
@@ -980,38 +1004,52 @@ textarea.bk-input:focus { border-color: var(--gold); }
 
 // Room data
 const ROOMS = {
-  standard:  {
-    name: 'Standard Room', label: 'The Essential', price: 120000,
-    desc: 'Crafted from local stone and reclaimed wood. Floor-to-ceiling windows frame misty highland mornings.',
+  standard: {
+    name: 'Standard Room', label: 'The Essential', price: 180000,
+    desc: 'Crafted from local stone and reclaimed wood. Breakfast, swimming, gym, property tour, car cleaning, bonfire.',
     chips: ['King Bed', 'Rain Shower', 'Garden View', '32m²'],
     badge: null,
     img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=85'
   },
   king: {
-    name: 'King Room', label: 'Elevated Comfort', price: 175000,
-    desc: 'A separate lounge area creates natural space to unwind. Enhanced amenities throughout.',
-    chips: ['Oversized King', 'Lounge Area', 'Minibar', '44m²'],
+    name: 'King Room', label: 'Elevated Comfort', price: 195000,
+    desc: 'All Standard inclusions plus Jacuzzi access and gaming room.',
+    chips: ['Oversized King', 'Jacuzzi Access', 'Gaming', '44m²'],
     badge: 'Most Popular',
     img: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=700&q=85'
   },
-  king_view: {
-    name: 'King Room with View', label: 'The Vista', price: 185000,
-    desc: 'Wake to panoramic mist over ancient volcanic peaks from your private terrace.',
+  king_volcano: {
+    name: 'King Volcano View', label: 'The Volcano Vista', price: 205000,
+    desc: 'Wake to panoramic mist over the Virunga volcanic peaks. Private terrace, soaking tub, Jacuzzi and gaming access.',
     chips: ['Volcano View', 'Private Terrace', 'Soaking Tub', '48m²'],
     badge: null,
     img: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=700&q=85'
   },
+  king_pool: {
+    name: 'King Pool View', label: 'The Pool Vista', price: 205000,
+    desc: 'Overlooking the resort pool with highland landscape beyond. Private terrace, soaking tub, Jacuzzi and gaming access.',
+    chips: ['Pool View', 'Private Terrace', 'Soaking Tub', '48m²'],
+    badge: null,
+    img: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=700&q=85'
+  },
+  family: {
+    name: 'Family Room', label: 'For Every Generation', price: 265000,
+    desc: 'All King Room inclusions plus farm experience and kids movie room.',
+    chips: ['King + Twin Beds', 'Farm Experience', 'Movie Room', '55m²'],
+    badge: 'Family Pick',
+    img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=85'
+  },
   deluxe: {
-    name: 'Deluxe Room', label: 'Refined Grandeur', price: 250000,
-    desc: 'Hand-selected materials, stone finishes, and bespoke furnishings in every corner.',
-    chips: ['Stone Bath', 'Separate Lounge', 'Premium Bar', '64m²'],
+    name: 'Deluxe Room', label: 'Refined Grandeur', price: 315000,
+    desc: 'All Family inclusions plus yoga access. Stone bath, separate lounge, premium bar.',
+    chips: ['Stone Bath', 'Yoga Access', 'Farm Experience', '64m²'],
     badge: null,
     img: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=700&q=85'
   },
   executive: {
-    name: 'Executive Room', label: 'The Pinnacle', price: 350000,
-    desc: 'Private pool, butler service, and two bedrooms. Nothing withheld. Nothing ordinary.',
-    chips: ['Private Pool', 'Butler Service', '2 Bedrooms', '120m²'],
+    name: 'Executive Room', label: 'The Pinnacle', price: 385000,
+    desc: 'All Deluxe inclusions plus massage chair and sauna. Private pool, butler service.',
+    chips: ['Private Pool', 'Massage Chair', 'Sauna', '120m²'],
     badge: 'Best Value',
     img: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=700&q=85'
   }
@@ -1032,9 +1070,27 @@ const ADDONS = [
 // State
 let currentStep = 1;
 let selectedRoom = '';
+let selectedMeal = 'bb';
+let mealSupplement = 0;
 let nights = 0;
 let selectedAddons = new Set();
 const params = new URLSearchParams(location.search);
+
+function selectMeal(plan) {
+  selectedMeal = plan;
+  const rates = { bb: 0, hb: 45, fb: 90 };
+  mealSupplement = rates[plan] || 0;
+  document.querySelectorAll('.bk-meal-opt').forEach(el => {
+    el.style.borderColor = 'transparent';
+    el.style.background = 'var(--bg2)';
+  });
+  const sel = document.getElementById('meal-' + plan);
+  if (sel) {
+    sel.style.borderColor = 'rgba(201,165,82,.35)';
+    sel.style.background = '#141109';
+  }
+  updateSummary();
+}
 
 function fmtPrice(n) { return n.toLocaleString() + ' RWF'; }
 function fmtDate(str) {
@@ -1046,13 +1102,21 @@ function fmtShort(str) {
   return new Date(str + 'T12:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'short' });
 }
 
+// Room inventory totals per document
+const ROOM_TOTALS = {
+  standard: 3, king: 6, king_volcano: 3, king_pool: 6,
+  family: 3, deluxe: 6, executive: 2
+};
+// Simple availability tracker (in-memory)
+const roomAvail = { ...ROOM_TOTALS };
+
 /* ── Render room cards ─────────────────────────────────── */
 function renderRooms() {
   const container = document.getElementById('bk-room-cards');
   let html = '';
   for (const [key, room] of Object.entries(ROOMS)) {
-    const avail = window.GrottaRooms ? window.GrottaRooms.getAvailable(key) : 10;
-    const total = window.GrottaRooms ? window.GrottaRooms.ROOM_DEFAULTS[key].total : 10;
+    const total = ROOM_TOTALS[key] || 10;
+    const avail = roomAvail[key] ?? total;
     const used  = total - avail;
     const unavail = avail === 0;
     let availColor = '#4caf7d', availLabel = `${avail} available`;
@@ -1130,10 +1194,10 @@ function toggleAddon(id) {
 /* ── Render all availability ───────────────────────────── */
 function renderAllAvail() {
   const el = document.getElementById('bk-all-avail');
-  if (!window.GrottaRooms) return;
+  if (!el) return;
   el.innerHTML = Object.entries(ROOMS).map(([key, room]) => {
-    const avail = window.GrottaRooms.getAvailable(key);
-    const total = window.GrottaRooms.ROOM_DEFAULTS[key].total;
+    const total = ROOM_TOTALS[key] || 10;
+    const avail = roomAvail[key] ?? total;
     let col = '#4caf7d';
     if (avail <= 2 && avail > 0) col = '#e6a020';
     if (avail === 0) col = '#c0392b';
@@ -1172,10 +1236,11 @@ function calcNights() {
 function updateSummary() {
   const ci = document.getElementById('checkin')?.value || '';
   const co = document.getElementById('checkout')?.value || '';
-  const adults = document.getElementById('adults')?.value || '1';
-  const children = document.getElementById('children')?.value || '0';
+  const adults = parseInt(document.getElementById('adults')?.value || '1');
+  const children = parseInt(document.getElementById('children')?.value || '0');
   const room = ROOMS[selectedRoom];
   const addonTotal = [...selectedAddons].reduce((s, id) => s + (ADDONS.find(a=>a.id===id)?.price||0), 0);
+  const mealTotal = mealSupplement * adults * (nights || 0);
 
   document.getElementById('s-room').textContent = room ? room.name : '—';
   document.getElementById('s-checkin').textContent = fmtDate(ci);
@@ -1192,10 +1257,9 @@ function updateSummary() {
     addonsRow.style.display = 'none';
   }
 
-  const total = room && nights > 0 ? (room.price * nights) + addonTotal : null;
+  const total = room && nights > 0 ? (room.price * nights) + addonTotal + mealTotal : null;
   document.getElementById('s-total').textContent = total ? fmtPrice(total) : '—';
 
-  // Mobile CTA
   if (total) {
     document.getElementById('mobile-total').textContent = fmtPrice(total);
     document.getElementById('mobile-nights').textContent = nights + ' nights · ' + (room?.name || '');
@@ -1204,6 +1268,43 @@ function updateSummary() {
     document.getElementById('mobile-nights').textContent = '';
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ── Step navigation ───────────────────────────────────── */
 function goToStep(n) {
@@ -1302,13 +1403,15 @@ function confirmBooking() {
 
   if (!selectedRoom) { errEl.textContent = 'No room selected.'; errEl.style.display = 'block'; return; }
 
-  const booked = window.GrottaRooms ? window.GrottaRooms.bookRoom(selectedRoom, 1) : true;
+  const booked = roomAvail[selectedRoom] > 0;
   if (!booked) {
     errEl.textContent = 'This room is no longer available. Please go back and select another.';
     errEl.style.display = 'block';
     renderRooms(); renderAllAvail();
     return;
   }
+  // Decrement availability
+  if (roomAvail[selectedRoom] > 0) roomAvail[selectedRoom]--;
 
   // Hide all panels
   document.querySelectorAll('.bk-panel').forEach(p => p.classList.remove('active'));
