@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cave Café Menu — Grotta</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+.mn-hero{position:relative;height:80vh;min-height:520px;display:flex;align-items:flex-end;overflow:hidden}
+.mn-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1600&q=85');background-size:cover;background-position:center 30%;filter:brightness(.38) saturate(.8)}
+.mn-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,5,4,.15) 0%,rgba(6,5,4,.65) 60%,rgba(6,5,4,1) 100%)}
+.mn-hero-content{position:relative;z-index:2;padding:0 6vw 5rem;max-width:680px}
+.mn-label{font-family:'Jost',sans-serif;font-size:.58rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#c9a552;margin-bottom:1rem;display:block}
+.mn-hero-content h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;color:#e8e0d0;margin-bottom:1rem}
+.mn-hero-content p{font-size:.95rem;font-weight:300;line-height:1.85;color:rgba(232,224,208,.5);max-width:440px}
+.mn-body{max-width:860px;margin:0 auto;padding:5rem 2rem 8rem}
+.mn-intro{margin-bottom:4.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,165,82,.08)}
+.mn-intro p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem;font-weight:300;line-height:1.75;color:rgba(232,224,208,.65);font-style:italic}
+.mn-section{margin-bottom:4rem}
+.mn-section-title{font-family:'Jost',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:#c9a552;margin-bottom:2rem;display:flex;align-items:center;gap:1.4rem}
+.mn-section-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,165,82,.2),transparent)}
+.mn-item{display:grid;grid-template-columns:1fr auto;gap:2rem;padding:1.3rem 0;border-bottom:1px solid rgba(201,165,82,.05);align-items:start}
+.mn-item:last-child{border-bottom:none}
+.mn-item-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;font-weight:400;color:#e8e0d0;margin-bottom:.35rem;line-height:1.2}
+.mn-item-desc{font-size:.8rem;color:rgba(232,224,208,.45);line-height:1.75;font-weight:300}
+.mn-item-note{font-size:.68rem;color:#c9a552;font-style:italic;margin-top:.3rem;opacity:.6}
+.mn-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;color:#c9a552;white-space:nowrap;padding-top:.15rem}
+.mn-cta-section{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(201,165,82,.08)}
+.mn-cta-section p{font-size:.88rem;color:rgba(232,224,208,.45);margin-bottom:2rem;line-height:1.85}
+.mn-back{display:inline-flex;align-items:center;gap:.5rem;font-family:'Jost',sans-serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.5);text-decoration:none;margin-bottom:3rem;transition:color .3s ease,gap .3s ease}
+.mn-back:hover{color:#c9a552;gap:.9rem}
+.mn-back svg{width:14px;height:14px;transition:transform .3s ease}
+.mn-back:hover svg{transform:translateX(-3px)}
+</style>
+</head>
+<body>
+<div id="nav-holder"></div>
+<div class="mn-hero">
+  <div class="mn-hero-bg"></div>
+  <div class="mn-hero-overlay"></div>
+  <div class="mn-hero-content">
+    <span class="mn-label">Cave Café · Open Daily 10AM–10PM</span>
+    <h1>Cave Café</h1>
+    <p>Coffee among stone walls. Rare spirits. The cool silence of bedrock, and light that arrives as though it has travelled far to reach you.</p>
+  </div>
+</div>
+<div class="mn-body">
+  <a href="../dining.html" class="mn-back">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
+    Return to Dining
+  </a>
+  <div class="mn-intro">
+    <p>"To sit inside the Cave Café is to understand, in a quiet and immediate way, that the earth has been here longer than any of us. The menu honours that understanding — slow preparations, rare things, nothing in a hurry."</p>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Coffee & Hot Drinks</div>
+    <div class="mn-item"><div><div class="mn-item-name">Grotta Cave Press</div><div class="mn-item-desc">Cold-brew pressed in the cave overnight, served black or with highland cream</div></div><div class="mn-price">3,500 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Volcanic Flat White</div><div class="mn-item-desc">Single-origin Rwandan espresso, steamed oat milk, served in stone ceramic</div></div><div class="mn-price">4,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Cave Stone Tea</div><div class="mn-item-desc">Ceremonial loose-leaf blend, steeped in cave-temperature spring water</div><div class="mn-item-note">Changes with the season</div></div><div class="mn-price">3,800 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Spiced Highland Cacao</div><div class="mn-item-desc">70% dark cacao, Rwandan spices, smoked chili, served warm</div></div><div class="mn-price">4,500 RWF</div></div>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Rare Spirits</div>
+    <div class="mn-item"><div><div class="mn-item-name">Cave-Aged Whisky</div><div class="mn-item-desc">Single malt aged within the cave system, served neat or with one stone ice</div><div class="mn-item-note">Limited bottles available</div></div><div class="mn-price">18,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Volcanic Gin</div><div class="mn-item-desc">Gin infused with highland botanicals, served long with cave spring water</div></div><div class="mn-price">14,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Sommelier's Cave Selection</div><div class="mn-item-desc">A glass chosen from our cellar, guided by the mood of the evening</div></div><div class="mn-price">12,000 RWF</div></div>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Artisanal Bites</div>
+    <div class="mn-item"><div><div class="mn-item-name">Stone-Ground Bread & Ash Butter</div><div class="mn-item-desc">Slow-fermented sourdough, charcoal butter, fleur de sel</div></div><div class="mn-price">5,500 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Charcuterie of the Cave</div><div class="mn-item-desc">Cured meats, cave-aged cheeses, mustard, cornichons, seeded crisp</div></div><div class="mn-price">16,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Dark Chocolate Truffle</div><div class="mn-item-desc">Three-piece truffle selection, finished with volcanic salt</div></div><div class="mn-price">8,000 RWF</div></div>
+  </div>
+  <div class="mn-cta-section">
+    <p>Walk-ins are welcome. For private seatings and evening reservations, we invite you to reach out in advance.</p>
+    <a href="../booking.html" class="btn btn-gold">Continue to Reservation</a>
+  </div>
+</div>
+<div id="footer-holder"></div>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

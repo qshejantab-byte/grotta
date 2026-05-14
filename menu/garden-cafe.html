@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garden Café Menu — Grotta</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#080805;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+.mn-hero{position:relative;height:80vh;min-height:520px;display:flex;align-items:flex-end;overflow:hidden}
+.mn-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=85');background-size:cover;background-position:center 35%;filter:brightness(.45) saturate(.9)}
+.mn-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,5,.1) 0%,rgba(8,8,5,.6) 60%,rgba(8,8,5,1) 100%)}
+.mn-hero-content{position:relative;z-index:2;padding:0 6vw 5rem;max-width:680px}
+.mn-label{font-family:'Jost',sans-serif;font-size:.58rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#c9a552;margin-bottom:1rem;display:block}
+.mn-hero-content h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;color:#e8e0d0;margin-bottom:1rem}
+.mn-hero-content p{font-size:.95rem;font-weight:300;line-height:1.85;color:rgba(232,224,208,.55);max-width:440px}
+.mn-body{max-width:860px;margin:0 auto;padding:5rem 2rem 8rem}
+.mn-intro{margin-bottom:4.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,165,82,.1)}
+.mn-intro p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem;font-weight:300;line-height:1.75;color:rgba(232,224,208,.7);font-style:italic}
+.mn-section{margin-bottom:4rem}
+.mn-section-title{font-family:'Jost',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:#c9a552;margin-bottom:2rem;display:flex;align-items:center;gap:1.4rem}
+.mn-section-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,165,82,.25),transparent)}
+.mn-item{display:grid;grid-template-columns:1fr auto;gap:2rem;padding:1.3rem 0;border-bottom:1px solid rgba(201,165,82,.06);align-items:start}
+.mn-item:last-child{border-bottom:none}
+.mn-item-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;font-weight:400;color:#e8e0d0;margin-bottom:.35rem;line-height:1.2}
+.mn-item-desc{font-size:.8rem;color:rgba(232,224,208,.5);line-height:1.75;font-weight:300}
+.mn-item-note{font-size:.68rem;color:#c9a552;font-style:italic;margin-top:.3rem;opacity:.7}
+.mn-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;color:#c9a552;white-space:nowrap;padding-top:.15rem}
+.mn-cta-section{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(201,165,82,.1)}
+.mn-cta-section p{font-size:.88rem;color:rgba(232,224,208,.5);margin-bottom:2rem;line-height:1.85}
+.mn-back{display:inline-flex;align-items:center;gap:.5rem;font-family:'Jost',sans-serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.6);text-decoration:none;margin-bottom:3rem;transition:color .3s ease,gap .3s ease}
+.mn-back:hover{color:#c9a552;gap:.9rem}
+.mn-back svg{width:14px;height:14px;transition:transform .3s ease}
+.mn-back:hover svg{transform:translateX(-3px)}
+</style>
+</head>
+<body>
+<div id="nav-holder"></div>
+<div class="mn-hero">
+  <div class="mn-hero-bg"></div>
+  <div class="mn-hero-overlay"></div>
+  <div class="mn-hero-content">
+    <span class="mn-label">Garden Café · Breakfast & Lunch · 7AM–3PM</span>
+    <h1>Garden Café</h1>
+    <p>Sun-dappled and unhurried. A space for slow mornings and light afternoons in the company of birdsong and bloom.</p>
+  </div>
+</div>
+<div class="mn-body">
+  <a href="../dining.html" class="mn-back">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
+    Return to Dining
+  </a>
+  <div class="mn-intro">
+    <p>"The Garden Café exists for mornings that deserve to last longer. Fresh ingredients arrive before the day begins. Everything is made simply, beautifully, and with an unhurried hand."</p>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Breakfast</div>
+    <div class="mn-item"><div><div class="mn-item-name">Highland Eggs Benedict</div><div class="mn-item-desc">Free-range farm eggs, sourdough muffin, spinach, hollandaise with chive oil</div><div class="mn-item-note">Eggs collected daily from our Mini Farm</div></div><div class="mn-price">12,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Garden Fruit Bowl</div><div class="mn-item-desc">Seasonal highland fruit, honey from local hives, house granola, plant milk yoghurt</div></div><div class="mn-price">9,500 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Avocado & Stone Toast</div><div class="mn-item-desc">Stone-ground sourdough, ripe avocado, heirloom tomato, dukkah, lemon</div></div><div class="mn-price">10,500 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Full Garden Breakfast</div><div class="mn-item-desc">Two eggs your way, roasted tomato, sautéed mushrooms, garden herbs, toast</div></div><div class="mn-price">15,000 RWF</div></div>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Light Lunch</div>
+    <div class="mn-item"><div><div class="mn-item-name">Grotta Garden Salad</div><div class="mn-item-desc">Mixed highland greens, roasted beetroot, feta, candied walnut, champagne vinaigrette</div></div><div class="mn-price">13,500 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Open Herb Sandwich</div><div class="mn-item-desc">Slow-roasted vegetables, hummus, pickled cucumber, fresh herbs on stone bread</div></div><div class="mn-price">11,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Soup of the Garden</div><div class="mn-item-desc">Seasonal vegetable broth with fresh herbs, served with warm sourdough</div><div class="mn-item-note">Changes daily</div></div><div class="mn-price">8,500 RWF</div></div>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Drinks</div>
+    <div class="mn-item"><div><div class="mn-item-name">Rwandan Single Origin Coffee</div><div class="mn-item-desc">Prepared your way — pour over, cold brew, or espresso</div></div><div class="mn-price">4,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Fresh Garden Juice</div><div class="mn-item-desc">Cold-pressed seasonal fruits and vegetables from the garden</div></div><div class="mn-price">5,500 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Hibiscus Iced Tea</div><div class="mn-item-desc">Dried highland hibiscus, honey, fresh mint, served long</div></div><div class="mn-price">4,500 RWF</div></div>
+  </div>
+  <div class="mn-cta-section">
+    <p>The Garden Café welcomes walk-ins throughout the morning and afternoon. Reservations are appreciated for groups of four or more.</p>
+    <a href="../booking.html" class="btn btn-gold">Continue to Reservation</a>
+  </div>
+</div>
+<div id="footer-holder"></div>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

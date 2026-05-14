@@ -1,4 +1,3 @@
-// Shared nav HTML
 const NAV_HTML = `
 <nav class="navbar">
   <a href="index.html" class="nav-logo">G R O T T A</a>
@@ -8,10 +7,10 @@ const NAV_HTML = `
     <a href="experiences.html">Experiences</a>
     <a href="caves.html">Caves</a>
     <a href="dining.html">Dining</a>
-    <a href="wellness.html">Wellness</a>
     <a href="retreats.html">Retreats</a>
-    <a href="families.html">Families</a>
+    <a href="events.html">Events</a>
     <a href="weddings.html">Weddings</a>
+    <a href="membership.html">Membership</a>
   </div>
   <button class="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -23,10 +22,10 @@ const NAV_HTML = `
   <a href="experiences.html">Experiences</a>
   <a href="caves.html">Caves</a>
   <a href="dining.html">Dining</a>
-  <a href="wellness.html">Wellness</a>
   <a href="retreats.html">Retreats</a>
-  <a href="families.html">Families</a>
+  <a href="events.html">Events</a>
   <a href="weddings.html">Weddings</a>
+  <a href="membership.html">Membership</a>
 </div>`;
 
 const FOOTER_HTML = `
@@ -46,14 +45,16 @@ const FOOTER_HTML = `
       </div>
       <div class="footer-col">
         <h5>Activities</h5>
-        <a href="wellness.html">Wellness</a>
         <a href="retreats.html">Retreats</a>
-        <a href="families.html">Families</a>
+        <a href="events.html">Events</a>
+        <a href="weddings.html">Weddings</a>
+        <a href="membership.html">Membership</a>
       </div>
       <div class="footer-col">
         <h5>Info</h5>
+        <a href="booking.html">Book a Stay</a>
+        <a href="membership.html">Membership</a>
         <a href="weddings.html">Weddings</a>
-        <a href="booking.html">Contact</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -61,16 +62,14 @@ const FOOTER_HTML = `
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
       </div>
-      <p>© 2024 Grotta Resort. All Rights Reserved.</p>
+      <p>© ${new Date().getFullYear()} Grotta Resort. All Rights Reserved.</p>
     </div>
   </div>
 </footer>`;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Inject nav
   const navHolder = document.getElementById('nav-holder');
   if (navHolder) navHolder.innerHTML = NAV_HTML;
-  // Inject footer
   const footerHolder = document.getElementById('footer-holder');
   if (footerHolder) footerHolder.innerHTML = FOOTER_HTML;
 });

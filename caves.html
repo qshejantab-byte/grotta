@@ -28,7 +28,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── HERO ── */
+/* ══════════════════════
+   HERO
+══════════════════════ */
 .page-hero {
   position: relative;
   width: 100%; height: 80vh; min-height: 540px;
@@ -68,11 +70,289 @@ body {
   max-width: 460px;
 }
 
-/* ── CAVES SECTION ── */
+/* ══════════════════════
+   CAVE JOURNEY SECTION
+══════════════════════ */
+.cave-journey {
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Grain overlay for depth texture */
+.cave-journey::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 100;
+  opacity: .6;
+}
+
+/* Scroll-driven depth darkening overlay */
+.depth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4,3,2,0);
+  pointer-events: none;
+  z-index: 99;
+  transition: background .4s ease;
+}
+
+/* Journey intro */
+.journey-intro {
+  text-align: center;
+  padding: 6rem 2rem 5rem;
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.journey-intro .hero-label {
+  margin-bottom: 1.2rem;
+  display: block;
+}
+.journey-intro h2 {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.08;
+  letter-spacing: -.01em;
+  margin-bottom: 1.4rem;
+}
+.journey-intro > p {
+  font-size: .92rem;
+  color: var(--muted);
+  line-height: 2;
+  font-style: italic;
+}
+
+/* Descending line */
+.descent-line {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(201,165,82,.4), transparent);
+  margin: 0 auto 0;
+}
+
+/* ── Zone blocks ── */
+.cj-zone {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .9s cubic-bezier(0.25,0.46,0.45,0.94),
+              transform .9s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.cj-zone.visible { opacity: 1; transform: translateY(0); }
+
+/* Zone backgrounds */
+.cj-zone-a {
+  background: linear-gradient(to bottom,
+    #0f0e0a 0%, #0a0906 50%, #060504 100%);
+}
+.cj-zone-b {
+  background: linear-gradient(to bottom,
+    #060504 0%, #0a0804 50%, #070603 100%);
+}
+.cj-zone-c {
+  background: #030302;
+}
+
+/* Full bleed image */
+.cj-bg-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: .18;
+  transition: opacity .6s ease;
+}
+.cj-zone-a .cj-bg-img { opacity: .22; }
+.cj-zone-b .cj-bg-img { opacity: .14; }
+.cj-zone-c .cj-bg-img { opacity: .07; }
+.cj-zone:hover .cj-bg-img { opacity: .28; }
+.cj-zone-c:hover .cj-bg-img { opacity: .12; }
+
+/* Fog effect for deep cave */
+.cj-fog {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 80%,
+    rgba(30,25,15,.6) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  animation: fog-drift 8s ease-in-out infinite alternate;
+}
+@keyframes fog-drift {
+  from { transform: translateY(0) scaleX(1); opacity: .7; }
+  to   { transform: translateY(-10px) scaleX(1.04); opacity: 1; }
+}
+
+/* Zone content */
+.cj-content {
+  position: relative;
+  z-index: 5;
+  padding: 6rem clamp(2rem, 5vw, 5rem);
+  max-width: 720px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Depth indicator */
+.cj-depth {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: 1.4rem;
+}
+.cj-depth-line {
+  width: 2rem; height: 1px;
+  background: rgba(201,165,82,.4);
+}
+.cj-depth-text {
+  font-family: var(--sans);
+  font-size: .56rem;
+  font-weight: 500;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(201,165,82,.5);
+}
+
+/* Zone label */
+.cj-zone-label {
+  font-family: var(--sans);
+  font-size: .58rem;
+  font-weight: 400;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(201,165,82,.4);
+  margin-bottom: .6rem;
+  display: block;
+}
+
+.cj-content h2 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  margin-bottom: 1.3rem;
+}
+.cj-zone-c .cj-content h2 {
+  color: rgba(232,224,208,.55);
+}
+
+/* Gold rule */
+.cj-rule {
+  width: 2.5rem; height: 1px;
+  background: rgba(201,165,82,.3);
+  margin-bottom: 1.4rem;
+}
+
+.cj-content > p {
+  font-size: .9rem;
+  color: var(--muted);
+  line-height: 1.95;
+  margin-bottom: 1rem;
+}
+.cj-zone-c .cj-content > p {
+  color: rgba(232,224,208,.3);
+}
+
+/* Use list */
+.cj-uses {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.cj-uses li {
+  font-family: var(--sans);
+  font-size: .76rem;
+  font-weight: 300;
+  color: rgba(201,165,82,.45);
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  letter-spacing: .04em;
+}
+.cj-uses li::before {
+  content: '';
+  width: .5rem; height: 1px;
+  background: rgba(201,165,82,.3);
+  flex-shrink: 0;
+}
+
+/* Zone A — Entry: left side */
+.cj-zone-a .cj-content { margin-left: 0; }
+
+/* Zone B — Main: centered */
+.cj-zone-b .cj-content { margin: 0 auto; }
+
+/* Zone C — Deep: left side */
+.cj-zone-c .cj-content { margin-left: 0; }
+
+/* Coming soon badge for deep cave */
+.cj-soon {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-family: var(--sans);
+  font-size: .56rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(201,165,82,.3);
+  border: 1px solid rgba(201,165,82,.15);
+  padding: .35rem 1rem;
+}
+
+/* Vertical zone connector */
+.zone-connector {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(201,165,82,.25), transparent);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* ══════════════════════
+   CAVES SECTION (existing rows)
+══════════════════════ */
 .caves-section {
   background: var(--bg);
   position: relative;
   overflow: hidden;
+}
+
+/* Section title for existing rows */
+.caves-section-header {
+  text-align: center;
+  padding: 5rem 2rem 4rem;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(201,165,82,.08);
+}
+.caves-section-header .hero-label {
+  display: block;
+  margin-bottom: .9rem;
+}
+.caves-section-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  color: var(--cream);
+  letter-spacing: -.01em;
 }
 
 /* Vertical centre-line */
@@ -83,7 +363,7 @@ body {
   background: rgba(201,165,82,.15);
   transform: translateX(-50%);
   z-index: 1;
-  display: none; /* shown via media query below */
+  display: none;
 }
 
 /* ── EACH ROW ── */
@@ -94,7 +374,6 @@ body {
 }
 .cave-row:last-child { border-bottom: none; }
 
-/* Image panel — absolute, bleeds to screen edge, 55% wide */
 .cave-img-panel {
   position: absolute;
   top: 1.5rem; bottom: 1.5rem;
@@ -112,7 +391,6 @@ body {
 }
 .cave-row:hover .cave-img-panel img { transform: scale(1.04); }
 
-/* Depth badge */
 .depth-badge {
   position: absolute;
   top: 1.1rem; right: 1.1rem;
@@ -124,7 +402,6 @@ body {
   color: var(--gold);
 }
 
-/* Gold dot at centre junction */
 .cave-dot {
   position: absolute;
   left: 50%; top: 50%;
@@ -134,10 +411,9 @@ body {
   background: var(--gold);
   box-shadow: 0 0 18px rgba(201,165,82,.6);
   z-index: 10;
-  display: none; /* shown via media query */
+  display: none;
 }
 
-/* Text panel — sits in the remaining 45% */
 .cave-text-panel {
   position: absolute;
   top: 0; bottom: 0;
@@ -150,7 +426,6 @@ body {
 .cave-row.right .cave-text-panel { right: 55%; }
 
 .cave-text-inner {
-  /* padding-top creates the downward offset so text doesn't start at the very top */
   padding: clamp(3.5rem, 9vw, 7rem) 3.5rem 3rem;
   max-width: 420px;
   width: 100%;
@@ -160,7 +435,28 @@ body {
   padding-right: 3.5rem;
 }
 
-/* Pills */
+/* Zone location tag */
+.cave-location-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--sans);
+  font-size: .54rem;
+  font-weight: 400;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(201,165,82,.4);
+  margin-bottom: 1rem;
+}
+.cave-location-tag::before {
+  content: '';
+  display: block;
+  width: .4rem; height: .4rem;
+  border-radius: 50%;
+  background: rgba(201,165,82,.35);
+  flex-shrink: 0;
+}
+
 .cave-pills {
   display: flex; gap: .55rem;
   margin-bottom: 1.5rem; flex-wrap: wrap;
@@ -174,7 +470,6 @@ body {
 }
 .cave-pill.filled { background: rgba(201,165,82,.08); }
 
-/* Title */
 .cave-text-inner h2 {
   font-family: var(--serif);
   font-size: clamp(2.2rem, 3.5vw, 3.6rem);
@@ -182,13 +477,11 @@ body {
   color: var(--cream); margin-bottom: 1.1rem;
 }
 
-/* Short desc */
 .cave-desc {
   font-size: .95rem; font-weight: 300;
   line-height: 1.8; color: var(--muted);
 }
 
-/* Hover-expanded desc */
 .cave-hover-desc {
   max-height: 0; opacity: 0;
   overflow: hidden;
@@ -203,24 +496,37 @@ body {
   max-height: 8rem; opacity: 1; margin-top: 1.25rem;
 }
 
-/* CTA link */
+/* Updated CTAs */
 .cave-cta {
-  display: inline-flex; align-items: center; gap: .5rem;
+  display: inline-flex; align-items: center; gap: .6rem;
   margin-top: 1.75rem;
   font-size: .62rem; font-weight: 500;
   letter-spacing: .22em; text-transform: uppercase;
   color: var(--gold);
   text-decoration: none;
-  transition: gap .25s;
+  position: relative;
+  padding-bottom: .3rem;
+  transition: gap .3s ease, color .3s ease;
 }
+/* Animated underline */
+.cave-cta::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width .35s ease;
+}
+.cave-cta:hover::after { width: 100%; }
 .cave-cta svg {
   width: 16px; height: 16px;
-  transition: transform .25s;
+  transition: transform .3s ease;
+  flex-shrink: 0;
 }
-.cave-cta:hover { gap: .85rem; }
-.cave-cta:hover svg { transform: translateX(4px); }
+.cave-cta:hover { gap: 1rem; color: rgba(226,201,126,1); }
+.cave-cta:hover svg { transform: translateX(5px); }
 
-/* ── MOBILE — stack vertically ── */
+/* ── MOBILE ── */
 @media (max-width: 860px) {
   .cave-row {
     min-height: unset;
@@ -229,16 +535,12 @@ body {
     border-bottom: 1px solid rgba(201,165,82,.07);
   }
   .cave-row:last-child { border-bottom: none; }
-
   .cave-img-panel {
     position: relative;
     width: 100%; height: 260px;
     top: auto; bottom: auto; left: auto; right: auto;
   }
-
-  /* on mobile, always show image on top regardless of left/right class */
   .cave-row.right .cave-img-panel { right: auto; }
-
   .cave-text-panel {
     position: relative;
     width: 100%;
@@ -246,18 +548,21 @@ body {
   }
   .cave-row.left  .cave-text-panel { left: auto; }
   .cave-row.right .cave-text-panel { right: auto; }
-
   .cave-text-inner,
   .cave-row.right .cave-text-inner {
     padding: 2rem 1.5rem 2.5rem;
     max-width: 100%;
   }
-
   .cave-dot { display: none !important; }
   .centre-line { display: none !important; }
+
+  .cj-zone { min-height: auto; padding: 5rem 0; }
+  .cj-content { padding: 3rem 1.8rem; max-width: 100%; }
+  .cj-zone-a .cj-content,
+  .cj-zone-b .cj-content,
+  .cj-zone-c .cj-content { margin: 0; }
 }
 
-/* ── DESKTOP — show centre line + dot ── */
 @media (min-width: 861px) {
   .centre-line { display: block; }
   .cave-dot    { display: block; }
@@ -288,9 +593,12 @@ body {
 </head>
 <body>
 
+<!-- Depth overlay — darkens on scroll via JS -->
+<div class="depth-overlay" id="depth-overlay"></div>
+
 <div id="nav-holder"></div>
 
-<!-- HERO -->
+<!-- ── HERO ── -->
 <div class="page-hero">
   <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1600&q=80')"></div>
   <div class="page-hero-overlay"></div>
@@ -301,11 +609,95 @@ body {
   </div>
 </div>
 
-<!-- CAVES SECTION -->
+<!-- ══ CAVE JOURNEY ══ -->
+<div class="cave-journey">
+
+  <!-- Intro -->
+  <div class="journey-intro fade-up">
+    <span class="hero-label">The Cave Journey</span>
+    <h2>A Descent Into<br>Silence</h2>
+    <p>"Each step into the cave is a transition — from light to shadow, from noise to silence."</p>
+  </div>
+
+  <div class="descent-line"></div>
+
+  <!-- Zone A: Entry Chamber -->
+  <div class="zone-connector"></div>
+  <div class="cj-zone cj-zone-a" id="zone-a">
+    <div class="cj-bg-img" style="background-image:url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1200&q=80')"></div>
+    <div class="cj-content">
+      <div class="cj-depth">
+        <div class="cj-depth-line"></div>
+        <span class="cj-depth-text">Depth: 0 — 20m</span>
+      </div>
+      <span class="cj-zone-label">Zone A</span>
+      <h2>Entry<br>Chamber</h2>
+      <div class="cj-rule"></div>
+      <p>The threshold between the outside world and the cave. Here, light begins to fade, sound softens, and the atmosphere shifts around you.</p>
+      <p>This is where the eyes adjust. Where breath slows. Where the cave begins its quiet introduction.</p>
+      <ul class="cj-uses">
+        <li>Gradual transition from daylight to cave atmosphere</li>
+        <li>Introduction to the geological formations</li>
+        <li>A moment to find your stillness before descending</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Zone B: Main Chamber -->
+  <div class="zone-connector"></div>
+  <div class="cj-zone cj-zone-b" id="zone-b">
+    <div class="cj-bg-img" style="background-image:url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=80')"></div>
+    <div class="cj-content">
+      <div class="cj-depth">
+        <div class="cj-depth-line"></div>
+        <span class="cj-depth-text">Depth: 20 — 80m</span>
+      </div>
+      <span class="cj-zone-label">Zone B</span>
+      <h2>Main<br>Chamber</h2>
+      <div class="cj-rule"></div>
+      <p>The heart of the cave — a space of gathering, dining, and shared experience within ancient stone.</p>
+      <p>Candlelight finds the walls. Conversation finds a new register. The cave becomes a room.</p>
+      <ul class="cj-uses">
+        <li>Dining experiences and wine tasting beneath the earth</li>
+        <li>Intimate events and private gatherings</li>
+        <li>The Cave Café — open daily from 10AM to 6PM</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Zone C: Deep Cave -->
+  <div class="zone-connector"></div>
+  <div class="cj-zone cj-zone-c" id="zone-c">
+    <div class="cj-bg-img" style="background-image:url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&q=80')"></div>
+    <div class="cj-fog"></div>
+    <div class="cj-content">
+      <div class="cj-depth">
+        <div class="cj-depth-line"></div>
+        <span class="cj-depth-text">Depth: 80 — 150m+</span>
+      </div>
+      <span class="cj-zone-label">Zone C</span>
+      <h2>Deep<br>Cave</h2>
+      <div class="cj-rule"></div>
+      <p>A deeper layer. Reserved for those who wish to go further. Details are few — the experience speaks for itself.</p>
+      <p>Coming soon.</p>
+      <span class="cj-soon">Advanced Experiences — Opening 2025</span>
+    </div>
+  </div>
+
+  <div class="zone-connector"></div>
+
+</div>
+
+<!-- ══ CAVE EXPERIENCES (existing rows) ══ -->
 <div class="caves-section">
   <div class="centre-line"></div>
 
-  <!-- Row 1 — image LEFT -->
+  <div class="caves-section-header fade-up">
+    <span class="hero-label">Cave Experiences</span>
+    <h2>Choose Your Depth</h2>
+  </div>
+
+  <!-- Row 1 — Scenic Cave Walk -->
   <div class="cave-row left">
     <div class="cave-img-panel">
       <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" alt="Scenic Cave Walk">
@@ -314,6 +706,7 @@ body {
     <div class="cave-dot"></div>
     <div class="cave-text-panel">
       <div class="cave-text-inner">
+        <span class="cave-location-tag">Entry Chamber</span>
         <div class="cave-pills">
           <span class="cave-pill filled">16 Minutes</span>
           <span class="cave-pill">Easy</span>
@@ -322,7 +715,7 @@ body {
         <p class="cave-desc">Illuminated passages. Geological wonders. Perfect for first-timers.</p>
         <p class="cave-hover-desc">A gentle guided walk through lit passages revealing hidden geology. Even path, well-lit, rich with formations. Families welcome.</p>
         <a href="booking.html" class="cave-cta">
-          Book this walk
+          Begin This Experience
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
@@ -331,7 +724,7 @@ body {
     </div>
   </div>
 
-  <!-- Row 2 — image RIGHT -->
+  <!-- Row 2 — Adventure Route -->
   <div class="cave-row right">
     <div class="cave-img-panel">
       <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&q=80" alt="Adventure Route">
@@ -340,6 +733,7 @@ body {
     <div class="cave-dot"></div>
     <div class="cave-text-panel">
       <div class="cave-text-inner">
+        <span class="cave-location-tag">Toward the Deep Cave</span>
         <div class="cave-pills">
           <span class="cave-pill filled">Up to 1 Hour</span>
           <span class="cave-pill">Moderate</span>
@@ -348,7 +742,7 @@ body {
         <p class="cave-desc">Deeper passages. Ancient labyrinths. Expert guides.</p>
         <p class="cave-hover-desc">Extended exploration through deeper passages. Some stooping required. Sturdy shoes recommended. Maximum 8 guests.</p>
         <a href="booking.html" class="cave-cta">
-          Book this walk
+          Explore Further
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
@@ -357,7 +751,7 @@ body {
     </div>
   </div>
 
-  <!-- Row 3 — image LEFT -->
+  <!-- Row 3 — Cave Café -->
   <div class="cave-row left">
     <div class="cave-img-panel">
       <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80" alt="Cave Café">
@@ -366,6 +760,7 @@ body {
     <div class="cave-dot"></div>
     <div class="cave-text-panel">
       <div class="cave-text-inner">
+        <span class="cave-location-tag">Main Chamber</span>
         <div class="cave-pills">
           <span class="cave-pill filled">Open Daily</span>
           <span class="cave-pill">Casual</span>
@@ -374,7 +769,7 @@ body {
         <p class="cave-desc">Coffee among stone walls. Rare spirits. Quiet light.</p>
         <p class="cave-hover-desc">Enjoy coffee beside natural rock formations. Hot drinks, light meals, and the cool silence of stone. Open 10AM–6PM.</p>
         <a href="booking.html" class="cave-cta">
-          Reserve a seat
+          Begin This Experience
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
@@ -385,7 +780,7 @@ body {
 
 </div>
 
-<!-- COMING SOON -->
+<!-- ── COMING SOON ── -->
 <div class="coming-soon">
   <span class="cs-label">Coming Soon</span>
   <h2>Future Cave Spa</h2>
@@ -395,6 +790,36 @@ body {
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
+<script>
+// ── Scroll-driven depth darkening ─────────────────────────────
+const depthOverlay = document.getElementById('depth-overlay');
+const journeyTop   = document.querySelector('.cave-journey');
+const zoneC        = document.getElementById('zone-c');
 
+function updateDepth() {
+  if (!journeyTop) return;
+  const scrollY  = window.scrollY;
+  const pageH    = document.body.scrollHeight - window.innerHeight;
+  const progress = Math.min(scrollY / pageH, 1);
+
+  // Gradually darken from 0 to rgba(4,3,2,0.38) as user scrolls
+  const darkness = Math.min(progress * 0.42, 0.38);
+  depthOverlay.style.background = `rgba(4,3,2,${darkness})`;
+}
+window.addEventListener('scroll', updateDepth, { passive: true });
+updateDepth();
+
+// ── Scroll reveal for cave journey zones ─────────────────────
+const zoneObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      zoneObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.cj-zone').forEach(z => zoneObs.observe(z));
+</script>
 </body>
 </html>

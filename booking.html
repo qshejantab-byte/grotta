@@ -3,376 +3,1378 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book Your Stay — Grotta</title>
+<title>Reserve Your Stay — Grotta</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
-.booking-page { padding-top: calc(var(--nav-h) + 3rem); padding-bottom: 5rem; }
-.booking-hero { text-align: center; margin-bottom: 2.5rem; }
-.booking-hero h1 { margin-bottom: .5rem; }
-.booking-hero p  { max-width: 480px; margin: 0 auto; }
 
-.step-header { font-size: .6rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin: 1.8rem 0 1rem; padding-bottom: .4rem; border-bottom: 1px solid var(--border); font-weight: 500; }
-.step-header:first-child { margin-top: 0; }
+/* ══════════════════════════════════════
+   BOOKING PAGE — Cinematic Luxury
+══════════════════════════════════════ */
 
-.date-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+*, *::before, *::after { box-sizing: border-box; }
 
-.room-option { display: flex; align-items: center; justify-content: space-between; padding: .9rem 1rem; border: 1px solid var(--border); margin-bottom: .7rem; cursor: pointer; transition: var(--t); border-radius: 0; }
-.room-option:hover { border-color: var(--gold); background: rgba(201,165,82,.04); }
-.room-option.selected { border-color: var(--gold); background: rgba(201,165,82,.07); }
-.room-option.unavailable { opacity: .4; cursor: not-allowed; pointer-events: none; }
-.ro-info h5 { font-family: var(--serif); color: var(--cream); font-size: .95rem; margin-bottom: .18rem; }
-.ro-avail { font-size: .68rem; }
-.ro-avail.ok { color: #4caf7d; }
-.ro-avail.low { color: #e6a020; }
-.ro-avail.none { color: #c0392b; }
-.ro-price { text-align: right; }
-.rp-val { font-family: var(--serif); color: var(--gold); font-size: 1rem; }
-.rp-ngt { font-size: .67rem; color: var(--text-dim); display: block; }
+/* ── HERO ── */
+.bk-hero {
+  position: relative;
+  height: 60vh; min-height: 460px;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.bk-hero-bg {
+  position: absolute; inset: -5%;
+  background-image: url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1600&q=85');
+  background-size: cover; background-position: center 30%;
+  filter: brightness(.45) saturate(.75);
+  animation: bk-zoom 24s cubic-bezier(.25,.46,.45,.94) forwards;
+  will-change: transform;
+}
+@keyframes bk-zoom {
+  from { transform: scale(1.05); }
+  to   { transform: scale(1); }
+}
+.bk-hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(8,8,5,.2) 0%,
+      rgba(8,8,5,.1) 35%,
+      rgba(8,8,5,.7) 70%,
+      rgba(8,8,5,1) 100%),
+    radial-gradient(ellipse 80% 60% at 50% 50%,
+      transparent 40%, rgba(8,8,5,.4) 100%);
+}
+.bk-hero-content {
+  position: relative; z-index: 10;
+  padding: 0 6vw 4rem;
+  max-width: 680px;
+}
+.bk-hero-content .label {
+  display: block; margin-bottom: 1rem;
+  opacity: 0; animation: bk-up .85s ease .3s forwards;
+}
+.bk-hero-content h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-weight: 300; color: #e8e0d0;
+  line-height: 1.04; letter-spacing: -.02em;
+  margin-bottom: 1rem;
+  opacity: 0; transform: translateY(22px);
+  animation: bk-rise 1s cubic-bezier(.34,1.06,.64,1) .55s forwards;
+}
+.bk-hero-content p {
+  font-size: .9rem; color: rgba(232,224,208,.55);
+  line-height: 2; max-width: 420px;
+  opacity: 0; filter: blur(3px);
+  animation: bk-blur .9s ease .95s forwards;
+}
+@keyframes bk-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bk-rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bk-blur {
+  from { opacity: 0; filter: blur(3px); transform: translateY(8px); }
+  to   { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
 
-.nights-info { background: rgba(201,165,82,.06); border: 1px solid var(--border); padding: .8rem 1rem; font-size: .82rem; color: var(--text); margin-bottom: 1.2rem; }
-.nights-info span { color: var(--gold); font-weight: 500; }
+/* ── PROGRESS BAR ── */
+.bk-progress {
+  background: var(--bg2);
+  border-bottom: 1px solid rgba(201,165,82,.1);
+  padding: 0;
+  position: sticky; top: 0; z-index: 100;
+}
+.bk-progress-inner {
+  display: flex; max-width: 1100px; margin: 0 auto;
+}
+.bk-step {
+  flex: 1; display: flex; align-items: center; gap: .7rem;
+  padding: 1.1rem 1.4rem; cursor: pointer;
+  position: relative;
+  transition: background .3s ease;
+  border-right: 1px solid rgba(201,165,82,.08);
+}
+.bk-step:last-child { border-right: none; }
+.bk-step:hover { background: rgba(201,165,82,.03); }
+.bk-step.active { background: rgba(201,165,82,.05); }
+.bk-step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%; border: 1px solid rgba(201,165,82,.25);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); font-size: .62rem;
+  font-weight: 500; color: rgba(201,165,82,.45);
+  flex-shrink: 0;
+  transition: border-color .3s ease, color .3s ease, background .3s ease;
+}
+.bk-step.active .bk-step-num {
+  border-color: var(--gold); color: #080805;
+  background: var(--gold);
+}
+.bk-step.done .bk-step-num {
+  border-color: rgba(76,175,125,.5); color: #4caf7d;
+  background: rgba(76,175,125,.1);
+}
+.bk-step.done .bk-step-num::after { content: '✓'; font-size: .7rem; }
+.bk-step-label {
+  font-family: var(--sans); font-size: .55rem;
+  font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(200,192,174,.35);
+  transition: color .3s ease;
+}
+.bk-step.active .bk-step-label { color: rgba(201,165,82,.8); }
+.bk-step.done .bk-step-label { color: rgba(76,175,125,.65); }
 
-.summary-box { background: var(--bg2); border: 1px solid var(--border); padding: 1.8rem; position: sticky; top: calc(var(--nav-h) + 1rem); }
-.summary-box h4 { color: var(--cream); margin-bottom: 1.2rem; border-bottom: 1px solid var(--border); padding-bottom: .8rem; font-family: var(--serif); font-size: 1.2rem; }
-.sum-row { display: flex; justify-content: space-between; font-size: .82rem; padding: .5rem 0; border-bottom: 1px solid var(--border); }
-.sum-row:last-child { border-bottom: none; }
-.sum-lbl { color: var(--text-dim); }
-.sum-val { color: var(--cream); }
-.sum-total { font-family: var(--serif); font-size: 1.15rem; color: var(--gold); }
-.sum-room-avail { margin-top: .8rem; padding-top: .8rem; border-top: 1px solid var(--border); }
-.sum-room-avail p { font-size: .72rem; color: var(--text-dim); margin-bottom: .4rem; }
-.avail-bar { display: flex; gap: .25rem; flex-wrap: wrap; margin-bottom: .5rem; }
-.avail-pip { width: 12px; height: 12px; border-radius: 50%; background: #4caf7d; }
-.avail-pip.used { background: var(--bg3); border: 1px solid var(--border); }
+/* Progress line */
+.bk-progress-line {
+  height: 2px;
+  background: linear-gradient(to right, var(--gold) 0%, rgba(201,165,82,.1) 0%);
+  transition: background 0.5s ease;
+}
 
-.confirm-panel { background: rgba(76,175,125,.07); border: 1px solid rgba(76,175,125,.3); padding: 2.5rem; text-align: center; display: none; }
-.confirm-panel.show { display: block; }
-.confirm-panel h3 { color: #4caf7d; font-family: var(--serif); font-size: 1.8rem; margin-bottom: .8rem; }
-.confirm-panel p { font-size: .9rem; margin-bottom: .5rem; }
-.confirm-panel .conf-ref { font-family: var(--serif); font-size: 1.1rem; color: var(--gold); margin: 1rem 0; }
+/* ── LAYOUT ── */
+.bk-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem 6rem;
+  align-items: start;
+}
 
-@media(max-width:900px){
-  .booking-layout { grid-template-columns: 1fr; }
-  .summary-box { position: static; }
-  .date-row { grid-template-columns: 1fr; }
+/* ── STEP PANELS ── */
+.bk-panel { display: none; }
+.bk-panel.active { display: block; animation: bk-panel-in .55s cubic-bezier(.25,.46,.45,.94); }
+@keyframes bk-panel-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.bk-panel-title {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 300; color: var(--cream);
+  line-height: 1.1; letter-spacing: -.01em;
+  margin-bottom: .5rem;
+}
+.bk-panel-sub {
+  font-size: .82rem; color: rgba(200,192,174,.5);
+  line-height: 1.85; margin-bottom: 2.5rem; display: block;
+}
+
+/* ══════════════════════
+   STEP 1 — ROOM CARDS
+══════════════════════ */
+.bk-room-cards {
+  display: flex; flex-direction: column; gap: 1px;
+  background: rgba(201,165,82,.08);
+}
+
+.bk-room-card {
+  position: relative; display: flex;
+  background: var(--bg2); overflow: hidden;
+  cursor: pointer; min-height: 200px;
+  transition: background .35s ease, box-shadow .4s ease;
+  border: 1px solid rgba(201,165,82,.0);
+}
+.bk-room-card:hover { background: #131108; }
+.bk-room-card.selected {
+  border-color: rgba(201,165,82,.3);
+  box-shadow: 0 0 0 1px rgba(201,165,82,.15), 0 8px 40px rgba(0,0,0,.5);
+  background: #141109;
+}
+.bk-room-card.unavailable { opacity: .4; cursor: not-allowed; pointer-events: none; }
+
+/* Gold top line */
+.bk-room-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 1px; background: var(--gold); z-index: 5;
+  transition: width .55s cubic-bezier(.25,.46,.45,.94);
+}
+.bk-room-card:hover::before,
+.bk-room-card.selected::before { width: 100%; }
+
+.bk-room-img {
+  width: 260px; flex-shrink: 0;
+  position: relative; overflow: hidden;
+}
+.bk-room-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.7) saturate(.85);
+  transition: transform 1.2s cubic-bezier(.25,.46,.45,.94), filter .8s ease;
+}
+.bk-room-card:hover .bk-room-img img { transform: scale(1.06); filter: brightness(.82) saturate(.92); }
+
+.bk-room-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, transparent 55%, var(--bg2) 100%);
+  pointer-events: none;
+}
+.bk-room-card.selected .bk-room-img::after {
+  background: linear-gradient(to right, transparent 55%, #141109 100%);
+}
+
+/* Badge */
+.bk-room-badge {
+  position: absolute; top: .9rem; left: .9rem; z-index: 5;
+  font-family: var(--sans); font-size: .48rem; font-weight: 600;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: #080805; background: var(--gold); padding: .25rem .7rem;
+}
+
+/* Availability chip */
+.bk-room-avail-chip {
+  position: absolute; bottom: .9rem; right: .9rem; z-index: 5;
+  background: rgba(8,8,5,.75); backdrop-filter: blur(6px);
+  border: 1px solid rgba(201,165,82,.18);
+  font-family: var(--sans); font-size: .5rem;
+  font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  padding: .25rem .65rem;
+}
+
+/* Room body */
+.bk-room-body {
+  flex: 1; padding: 1.6rem 2rem; display: flex;
+  flex-direction: column; justify-content: center;
+}
+.bk-room-label {
+  font-family: var(--sans); font-size: .5rem;
+  font-weight: 500; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(201,165,82,.45); margin-bottom: .5rem; display: block;
+  transition: color .3s ease;
+}
+.bk-room-card:hover .bk-room-label,
+.bk-room-card.selected .bk-room-label { color: rgba(201,165,82,.7); }
+
+.bk-room-name {
+  font-family: var(--serif); font-size: clamp(1.3rem, 2vw, 1.7rem);
+  font-weight: 300; color: var(--cream); line-height: 1.1;
+  margin-bottom: .55rem; letter-spacing: -.01em;
+  transition: color .3s ease;
+}
+.bk-room-card:hover .bk-room-name,
+.bk-room-card.selected .bk-room-name { color: #fff; }
+
+.bk-room-desc {
+  font-size: .78rem; color: rgba(200,192,174,.55);
+  line-height: 1.85; margin-bottom: 1rem;
+  transition: color .3s ease;
+}
+.bk-room-card:hover .bk-room-desc { color: rgba(200,192,174,.75); }
+
+/* Room highlights */
+.bk-room-chips {
+  display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.2rem;
+}
+.bk-room-chip {
+  font-family: var(--sans); font-size: .5rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(200,192,174,.45);
+  border: 1px solid rgba(201,165,82,.1);
+  padding: .2rem .6rem;
+  transition: color .3s ease, border-color .3s ease;
+}
+.bk-room-card:hover .bk-room-chip,
+.bk-room-card.selected .bk-room-chip {
+  color: rgba(200,192,174,.7);
+  border-color: rgba(201,165,82,.2);
+}
+
+.bk-room-footer {
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: .8rem;
+  padding-top: 1rem; border-top: 1px solid rgba(201,165,82,.08);
+}
+.bk-room-price {
+  font-family: var(--serif); font-size: 1.4rem;
+  font-weight: 400; color: var(--gold); line-height: 1;
+}
+.bk-room-price small {
+  font-family: var(--sans); font-size: .65rem;
+  color: rgba(200,192,174,.4); margin-left: .25rem; font-weight: 300;
+}
+
+/* Availability dots */
+.bk-avail-dots { display: flex; gap: 3px; align-items: center; }
+.bk-avail-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #4caf7d;
+}
+.bk-avail-dot.used { background: rgba(200,192,174,.15); }
+.bk-avail-label {
+  font-family: var(--sans); font-size: .58rem;
+  color: rgba(200,192,174,.4); margin-left: .5rem;
+}
+
+/* Selected check */
+.bk-room-check {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid rgba(201,165,82,.3);
+  display: flex; align-items: center; justify-content: center;
+  color: transparent; font-size: .85rem;
+  transition: all .35s cubic-bezier(.25,.46,.45,.94);
+  flex-shrink: 0;
+}
+.bk-room-card.selected .bk-room-check {
+  background: var(--gold); border-color: var(--gold);
+  color: #080805; font-weight: 700;
+}
+
+/* ══════════════════════
+   STEP 2 — DATES
+══════════════════════ */
+.bk-date-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  margin-bottom: 1.8rem;
+}
+.bk-field-wrap { position: relative; }
+.bk-field-label {
+  font-family: var(--sans); font-size: .52rem;
+  font-weight: 500; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(201,165,82,.5); display: block; margin-bottom: .6rem;
+}
+.bk-date-input {
+  width: 100%; background: var(--bg2);
+  border: 1px solid rgba(201,165,82,.14);
+  color: var(--cream); font-family: var(--sans);
+  font-size: .9rem; font-weight: 300;
+  padding: 1rem 1.2rem; outline: none;
+  transition: border-color .35s ease, background .3s ease;
+  caret-color: var(--gold);
+  -webkit-appearance: none; appearance: none;
+}
+.bk-date-input:focus {
+  border-color: var(--gold); background: rgba(201,165,82,.03);
+}
+.bk-date-input::-webkit-calendar-picker-indicator {
+  filter: invert(.6) sepia(1) saturate(.5) hue-rotate(10deg);
+  cursor: pointer; opacity: .6;
+}
+
+/* Stay summary */
+.bk-stay-summary {
+  background: rgba(201,165,82,.05);
+  border: 1px solid rgba(201,165,82,.15);
+  padding: 1.4rem 1.8rem;
+  display: flex; align-items: center; gap: 2rem;
+  flex-wrap: wrap;
+}
+.bk-stay-stat { display: flex; flex-direction: column; gap: .3rem; }
+.bk-stay-stat-value {
+  font-family: var(--serif); font-size: 1.6rem;
+  font-weight: 300; color: var(--gold); line-height: 1;
+}
+.bk-stay-stat-label {
+  font-family: var(--sans); font-size: .52rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(200,192,174,.45);
+}
+.bk-stay-divider {
+  width: 1px; height: 40px; background: rgba(201,165,82,.15); flex-shrink: 0;
+}
+
+/* ══════════════════════
+   STEP 3 — GUEST DETAILS
+══════════════════════ */
+.bk-form-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+}
+.bk-form-grid .full { grid-column: 1 / -1; }
+
+.bk-input {
+  width: 100%; background: var(--bg2);
+  border: none; border-bottom: 1px solid rgba(201,165,82,.15);
+  color: var(--cream); font-family: var(--sans);
+  font-size: .88rem; font-weight: 300;
+  padding: .7rem 0; outline: none;
+  transition: border-color .35s ease;
+  caret-color: var(--gold);
+}
+.bk-input::placeholder { color: rgba(200,192,174,.28); }
+.bk-input:focus { border-bottom-color: var(--gold); }
+
+/* Animated underline */
+.bk-field-line {
+  position: relative;
+}
+.bk-field-line::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; width: 0; height: 1px;
+  background: var(--gold);
+  transition: width .4s cubic-bezier(.25,.46,.45,.94);
+}
+.bk-field-line:focus-within::after { width: 100%; }
+
+.bk-select {
+  width: 100%; background: var(--bg2);
+  border: 1px solid rgba(201,165,82,.14);
+  color: var(--cream); font-family: var(--sans);
+  font-size: .85rem; font-weight: 300;
+  padding: .85rem 1rem; outline: none;
+  transition: border-color .35s ease;
+  -webkit-appearance: none; appearance: none;
+  cursor: pointer;
+}
+.bk-select:focus { border-color: var(--gold); }
+.bk-select option { background: #0e0c09; }
+
+textarea.bk-input {
+  min-height: 90px; resize: vertical;
+  border: 1px solid rgba(201,165,82,.14); padding: .7rem 1rem;
+}
+textarea.bk-input:focus { border-color: var(--gold); }
+
+/* ══════════════════════
+   STEP 4 — WELLNESS ADD-ONS
+══════════════════════ */
+.bk-addons-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: rgba(201,165,82,.08);
+}
+
+.bk-addon {
+  background: var(--bg2); padding: 1.6rem 1.8rem;
+  cursor: pointer; position: relative; overflow: hidden;
+  transition: background .3s ease;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.bk-addon:hover { background: #131108; }
+.bk-addon.selected { background: #141109; }
+.bk-addon::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 1px; background: var(--gold);
+  transition: width .5s cubic-bezier(.25,.46,.45,.94);
+}
+.bk-addon:hover::before,
+.bk-addon.selected::before { width: 100%; }
+
+.bk-addon-icon {
+  font-size: 1.5rem; flex-shrink: 0;
+  width: 42px; height: 42px;
+  border: 1px solid rgba(201,165,82,.15);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  transition: border-color .3s ease;
+}
+.bk-addon.selected .bk-addon-icon { border-color: rgba(201,165,82,.4); }
+
+.bk-addon-body { flex: 1; }
+.bk-addon-name {
+  font-family: var(--serif); font-size: 1rem;
+  font-weight: 400; color: var(--cream); margin-bottom: .3rem;
+  line-height: 1.15; transition: color .3s ease;
+}
+.bk-addon.selected .bk-addon-name { color: #fff; }
+.bk-addon-desc {
+  font-size: .74rem; color: rgba(200,192,174,.45);
+  line-height: 1.75; margin-bottom: .6rem;
+}
+.bk-addon-price {
+  font-family: var(--serif); font-size: .95rem;
+  color: var(--gold); font-weight: 400;
+}
+
+/* Add-on check */
+.bk-addon-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1px solid rgba(201,165,82,.25);
+  display: flex; align-items: center; justify-content: center;
+  color: transparent; font-size: .65rem; flex-shrink: 0;
+  transition: all .3s cubic-bezier(.25,.46,.45,.94);
+  margin-top: .1rem;
+}
+.bk-addon.selected .bk-addon-check {
+  background: var(--gold); border-color: var(--gold); color: #080805; font-weight: 700;
+}
+
+/* ══════════════════════
+   STEP 5 — REVIEW
+══════════════════════ */
+.bk-review-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: rgba(201,165,82,.08); margin-bottom: 2rem;
+}
+.bk-review-block {
+  background: var(--bg2); padding: 1.5rem 1.8rem;
+}
+.bk-review-block-label {
+  font-family: var(--sans); font-size: .5rem;
+  font-weight: 500; letter-spacing: .26em; text-transform: uppercase;
+  color: rgba(201,165,82,.4); margin-bottom: .6rem; display: block;
+}
+.bk-review-block-value {
+  font-family: var(--serif); font-size: 1.05rem;
+  font-weight: 300; color: var(--cream); line-height: 1.3;
+}
+.bk-review-policy {
+  background: rgba(201,165,82,.04);
+  border-left: 2px solid rgba(201,165,82,.25);
+  padding: 1.2rem 1.5rem;
+  font-size: .78rem; color: rgba(200,192,174,.55); line-height: 1.85;
+  margin-bottom: 1.8rem;
+}
+
+/* ══════════════════════
+   STEP NAVIGATION
+══════════════════════ */
+.bk-nav {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-top: 2.5rem; gap: 1rem;
+}
+.bk-nav-prev {
+  font-family: var(--sans); font-size: .6rem;
+  font-weight: 400; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(200,192,174,.45); background: transparent; border: none;
+  cursor: pointer; display: flex; align-items: center; gap: .5rem;
+  transition: color .3s ease, gap .3s ease;
+  padding: 0;
+}
+.bk-nav-prev:hover { color: var(--cream); gap: .3rem; }
+.bk-nav-next {
+  display: inline-flex; align-items: center; gap: .8rem;
+  font-family: var(--sans); font-size: .62rem; font-weight: 500;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: #080805; background: var(--gold);
+  border: none; cursor: pointer; padding: 1rem 2.4rem;
+  position: relative; overflow: hidden;
+  transition: transform .25s ease, box-shadow .3s ease;
+}
+.bk-nav-next::before {
+  content: ''; position: absolute; inset: 0;
+  background: #e2c97e; transform: scaleX(0);
+  transform-origin: left; transition: transform .4s cubic-bezier(.25,.46,.45,.94); z-index: 0;
+}
+.bk-nav-next span { position: relative; z-index: 1; }
+.bk-nav-next:hover::before { transform: scaleX(1); }
+.bk-nav-next:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201,165,82,.28); }
+
+.bk-error {
+  font-family: var(--sans); font-size: .75rem;
+  color: #c0392b; display: none; margin-top: .8rem;
+}
+
+/* ══════════════════════
+   SUMMARY PANEL
+══════════════════════ */
+.bk-summary {
+  background: rgba(16,14,10,.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,165,82,.14);
+  position: sticky; top: 80px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5),
+              inset 0 1px 0 rgba(201,165,82,.08);
+}
+
+.bk-sum-room-img {
+  height: 180px; overflow: hidden; position: relative;
+}
+.bk-sum-room-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.65) saturate(.8);
+  transition: transform 1.2s ease;
+}
+.bk-summary:hover .bk-sum-room-img img { transform: scale(1.04); }
+.bk-sum-room-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(16,14,10,.9) 100%);
+}
+
+.bk-sum-body { padding: 1.8rem; }
+.bk-sum-title {
+  font-family: var(--sans); font-size: .52rem;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: rgba(201,165,82,.45); margin-bottom: 1.2rem; display: block;
+}
+
+.bk-sum-row {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: .7rem 0;
+  border-bottom: 1px solid rgba(201,165,82,.07);
+  font-family: var(--sans); font-size: .8rem;
+}
+.bk-sum-row:last-child { border-bottom: none; }
+.bk-sum-lbl { color: rgba(200,192,174,.45); }
+.bk-sum-val { color: var(--cream); text-align: right; }
+.bk-sum-total {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 0 0; margin-top: .5rem;
+  border-top: 1px solid rgba(201,165,82,.2);
+}
+.bk-sum-total-lbl {
+  font-family: var(--sans); font-size: .58rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--cream);
+}
+.bk-sum-total-val {
+  font-family: var(--serif); font-size: 1.5rem;
+  font-weight: 400; color: var(--gold);
+}
+
+/* All rooms quick view */
+.bk-all-avail {
+  border-top: 1px solid rgba(201,165,82,.1);
+  padding: 1.2rem 1.8rem;
+}
+.bk-all-avail-title {
+  font-family: var(--sans); font-size: .5rem;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: rgba(201,165,82,.4); margin-bottom: .8rem; display: block;
+}
+.bk-avail-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .4rem 0; border-bottom: 1px solid rgba(201,165,82,.05);
+  font-size: .72rem;
+}
+.bk-avail-row:last-child { border-bottom: none; }
+.bk-avail-name { color: rgba(200,192,174,.55); }
+
+/* ══════════════════════
+   CONFIRMATION
+══════════════════════ */
+.bk-confirm {
+  display: none; text-align: center; padding: 4rem 2rem;
+  animation: bk-panel-in .7s cubic-bezier(.25,.46,.45,.94);
+}
+.bk-confirm.show { display: block; }
+
+.bk-confirm-check {
+  width: 72px; height: 72px; border-radius: 50%;
+  border: 1px solid rgba(76,175,125,.4);
+  background: rgba(76,175,125,.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; margin: 0 auto 2rem;
+  animation: bk-check-pop .6s cubic-bezier(.34,1.56,.64,1) .2s both;
+}
+@keyframes bk-check-pop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.bk-confirm h2 {
+  font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300; color: var(--cream); margin-bottom: .7rem;
+}
+.bk-confirm-sub {
+  font-size: .9rem; color: rgba(200,192,174,.55);
+  line-height: 2; margin-bottom: 1.8rem; display: block;
+  max-width: 480px; margin-left: auto; margin-right: auto;
+}
+.bk-confirm-ref {
+  font-family: var(--serif); font-size: 1.1rem;
+  color: var(--gold); letter-spacing: .1em;
+  display: block; margin: 1.5rem auto;
+  background: rgba(201,165,82,.06);
+  border: 1px solid rgba(201,165,82,.2);
+  padding: 1rem 2rem; width: fit-content;
+}
+.bk-confirm-card {
+  background: var(--bg2); border: 1px solid rgba(201,165,82,.12);
+  padding: 2rem; max-width: 500px; margin: 2rem auto;
+  text-align: left;
+}
+.bk-confirm-row {
+  display: flex; justify-content: space-between;
+  padding: .6rem 0; border-bottom: 1px solid rgba(201,165,82,.07);
+  font-size: .82rem;
+}
+.bk-confirm-row:last-child { border-bottom: none; }
+.bk-confirm-row-lbl { color: rgba(200,192,174,.45); }
+.bk-confirm-row-val { color: var(--cream); }
+
+/* ══════════════════════
+   MOBILE
+══════════════════════ */
+.bk-mobile-cta {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 400;
+  background: rgba(14,12,9,.95); backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(201,165,82,.15);
+  padding: 1rem 1.5rem;
+  display: none; align-items: center; justify-content: space-between;
+  gap: 1rem;
+}
+.bk-mobile-price {
+  font-family: var(--serif); font-size: 1.1rem; color: var(--gold);
+}
+.bk-mobile-price small {
+  font-family: var(--sans); font-size: .6rem;
+  color: rgba(200,192,174,.4); display: block;
+}
+
+/* ── Responsive ── */
+@media(max-width:1000px){
+  .bk-layout { grid-template-columns: 1fr; }
+  .bk-summary { position: static; order: -1; }
+  .bk-sum-room-img { height: 140px; }
+  .bk-mobile-cta { display: flex; }
+  .bk-layout { padding-bottom: 90px; }
+}
+@media(max-width:700px){
+  .bk-room-img { width: 120px; }
+  .bk-addons-grid { grid-template-columns: 1fr; }
+  .bk-date-grid { grid-template-columns: 1fr; }
+  .bk-form-grid { grid-template-columns: 1fr; }
+  .bk-review-grid { grid-template-columns: 1fr; }
+  .bk-progress-inner { overflow-x: auto; }
+  .bk-step-label { display: none; }
+  .bk-step { padding: .9rem 1rem; }
+}
+@media(max-width:480px){
+  .bk-room-img { display: none; }
+  .bk-hero { height: 50vh; }
+  .bk-hero-content h1 { font-size: clamp(2.2rem, 7vw, 3rem); }
 }
 </style>
 </head>
 <body>
 <div id="nav-holder"></div>
 
-<div class="booking-page">
-  <div class="container">
-    <div class="booking-hero">
-      <span class="label" style="display:block;margin-bottom:.8rem">Reserve Your Stay</span>
-      <h1>Book at Grotta</h1>
-      <p>Complete your booking below. All prices are in Rwandan Francs (RWF) per night.</p>
+<!-- ══ HERO ══ -->
+<div class="bk-hero">
+  <div class="bk-hero-bg" id="bk-hero-bg"></div>
+  <div class="bk-hero-overlay"></div>
+  <div class="bk-hero-content">
+    <span class="label">Reserve Your Stay</span>
+    <h1>Begin Your<br>Journey</h1>
+    <p>Each reservation is the start of something you will carry with you long after you leave.</p>
+  </div>
+</div>
+
+<!-- ══ PROGRESS ══ -->
+<div class="bk-progress">
+  <div class="bk-progress-inner" id="bk-progress-inner">
+    <div class="bk-step active" onclick="goToStep(1)" id="step-tab-1">
+      <div class="bk-step-num" id="step-num-1">1</div>
+      <span class="bk-step-label">Select Dates</span>
     </div>
-
-    <div class="booking-layout" style="display:grid;grid-template-columns:1fr 360px;gap:2.5rem;align-items:start">
-
-      <!-- FORM PANEL -->
-      <div class="booking-form-panel" id="booking-form-panel">
-
-        <div class="step-header">Step 1 — Select Your Room</div>
-
-        <!-- Room Options -->
-        <div id="room-options"></div>
-
-        <div class="step-header">Step 2 — Choose Your Dates</div>
-        <div class="form-grid date-row" style="margin-bottom:1rem">
-          <div class="form-group">
-            <label>Check-In Date</label>
-            <input type="date" id="checkin" onchange="calcNights()">
-          </div>
-          <div class="form-group">
-            <label>Check-Out Date</label>
-            <input type="date" id="checkout" onchange="calcNights()">
-          </div>
-        </div>
-        <div class="nights-info" id="nights-info" style="display:none">
-          Duration: <span id="nights-text">0 nights</span>
-        </div>
-
-        <div class="step-header">Step 3 — Guest Details</div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text" id="fname" placeholder="First name">
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" id="lname" placeholder="Last name">
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="email" placeholder="your@email.com">
-          </div>
-          <div class="form-group">
-            <label>Phone</label>
-            <input type="tel" id="phone" placeholder="+250 ...">
-          </div>
-          <div class="form-group">
-            <label>Adults</label>
-            <select id="adults" onchange="updateSummary()">
-              <option value="1">1 Adult</option>
-              <option value="2">2 Adults</option>
-              <option value="3">3 Adults</option>
-              <option value="4">4 Adults</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Children / Teenagers</label>
-            <select id="children">
-              <option value="0">0 Children</option>
-              <option value="1">1 Child</option>
-              <option value="2">2 Children</option>
-              <option value="3">3 Children</option>
-            </select>
-          </div>
-          <div class="form-group full">
-            <label>Special Requests (Optional)</label>
-            <textarea id="requests" placeholder="Any dietary requirements, special occasions, accessibility needs..."></textarea>
-          </div>
-        </div>
-
-        <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
-          <button class="btn btn-gold" id="confirm-btn" onclick="confirmBooking()">Confirm Booking</button>
-          <p id="form-error" style="color:#c0392b;font-size:.8rem;display:none">Please fill in all required fields and select a room.</p>
-        </div>
-
-        <!-- CONFIRMATION -->
-        <div class="confirm-panel" id="confirm-panel">
-          <h3>✓ Booking Confirmed!</h3>
-          <p>Thank you for choosing Grotta. Your reservation is confirmed.</p>
-          <p class="conf-ref" id="conf-ref"></p>
-          <p id="conf-details"></p>
-          <p style="margin-top:1.2rem;font-size:.82rem;color:var(--text-dim)">A confirmation email will be sent to the address provided. Our team will be in touch shortly with arrival instructions.</p>
-          <a href="index.html" class="btn btn-outline" style="margin-top:1.5rem;display:inline-block">Return to Home</a>
-        </div>
-
-      </div>
-
-      <!-- SUMMARY PANEL -->
-      <div class="summary-box">
-        <h4>Booking Summary</h4>
-        <div class="sum-row"><span class="sum-lbl">Room</span><span class="sum-val" id="s-room">—</span></div>
-        <div class="sum-row"><span class="sum-lbl">Check-In</span><span class="sum-val" id="s-checkin">—</span></div>
-        <div class="sum-row"><span class="sum-lbl">Check-Out</span><span class="sum-val" id="s-checkout">—</span></div>
-        <div class="sum-row"><span class="sum-lbl">Nights</span><span class="sum-val" id="s-nights">—</span></div>
-        <div class="sum-row"><span class="sum-lbl">Guests</span><span class="sum-val" id="s-guests">—</span></div>
-        <div class="sum-row"><span class="sum-lbl">Rate / Night</span><span class="sum-val" id="s-rate">—</span></div>
-        <div class="sum-row" style="padding-top:.8rem;margin-top:.3rem;border-top:1px solid var(--gold-dark)">
-          <span class="sum-lbl" style="color:var(--cream);font-weight:500">Total</span>
-          <span class="sum-total" id="s-total">—</span>
-        </div>
-
-        <!-- Availability visual for selected room -->
-        <div class="sum-room-avail" id="avail-section" style="display:none">
-          <p>Room availability</p>
-          <div class="avail-bar" id="avail-pips"></div>
-          <p id="avail-text" style="font-size:.7rem;margin-top:.2rem"></p>
-        </div>
-
-        <!-- All rooms quick view -->
-        <div style="margin-top:1.2rem;border-top:1px solid var(--border);padding-top:1.2rem">
-          <p style="font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem">All Room Availability</p>
-          <div id="all-avail"></div>
-        </div>
-      </div>
-
+    <div class="bk-step" onclick="goToStep(2)" id="step-tab-2">
+      <div class="bk-step-num" id="step-num-2">2</div>
+      <span class="bk-step-label">Choose Room</span>
+    </div>
+    <div class="bk-step" onclick="goToStep(3)" id="step-tab-3">
+      <div class="bk-step-num" id="step-num-3">3</div>
+      <span class="bk-step-label">Guest Details</span>
+    </div>
+    <div class="bk-step" onclick="goToStep(4)" id="step-tab-4">
+      <div class="bk-step-num" id="step-num-4">4</div>
+      <span class="bk-step-label">Enhancements</span>
+    </div>
+    <div class="bk-step" onclick="goToStep(5)" id="step-tab-5">
+      <div class="bk-step-num" id="step-num-5">5</div>
+      <span class="bk-step-label">Review</span>
     </div>
   </div>
+  <div class="bk-progress-line" id="bk-progress-line"></div>
+</div>
+
+<!-- ══ LAYOUT ══ -->
+<div class="bk-layout">
+
+  <!-- FORM SIDE -->
+  <div id="bk-form-side">
+
+    <!-- STEP 1: Select Dates -->
+    <div class="bk-panel active" id="panel-1">
+      <h2 class="bk-panel-title">Select Your Dates</h2>
+      <span class="bk-panel-sub">Choose your arrival and departure first — we'll show you available rooms for your stay.</span>
+      <div class="bk-date-grid">
+        <div class="bk-field-wrap">
+          <label class="bk-field-label">Arrival</label>
+          <input type="date" class="bk-date-input" id="checkin" onchange="calcNights()">
+        </div>
+        <div class="bk-field-wrap">
+          <label class="bk-field-label">Departure</label>
+          <input type="date" class="bk-date-input" id="checkout" onchange="calcNights()">
+        </div>
+      </div>
+      <div class="bk-stay-summary" id="bk-stay-summary" style="display:none">
+        <div class="bk-stay-stat">
+          <span class="bk-stay-stat-value" id="stat-nights">—</span>
+          <span class="bk-stay-stat-label">Nights</span>
+        </div>
+        <div class="bk-stay-divider"></div>
+        <div class="bk-stay-stat">
+          <span class="bk-stay-stat-value" id="stat-arrival">—</span>
+          <span class="bk-stay-stat-label">Arrival</span>
+        </div>
+        <div class="bk-stay-divider"></div>
+        <div class="bk-stay-stat">
+          <span class="bk-stay-stat-value" id="stat-departure">—</span>
+          <span class="bk-stay-stat-label">Departure</span>
+        </div>
+        <div class="bk-stay-divider"></div>
+        <div class="bk-stay-stat">
+          <span class="bk-stay-stat-value" id="stat-price">—</span>
+          <span class="bk-stay-stat-label">Estimated Total</span>
+        </div>
+      </div>
+      <div class="bk-nav">
+        <div></div>
+        <button class="bk-nav-next" onclick="nextStep(1)"><span>Choose Room</span> ›</button>
+      </div>
+      <div class="bk-error" id="err-1">Please select valid check-in and check-out dates.</div>
+    </div>
+
+    <!-- STEP 2: Choose Room -->
+    <div class="bk-panel" id="panel-2">
+      <h2 class="bk-panel-title">Choose Your Room</h2>
+      <span class="bk-panel-sub">Select the accommodation that speaks to you. All rooms are positioned within the highland grounds.</span>
+      <div class="bk-room-cards" id="bk-room-cards"></div>
+      <div class="bk-nav">
+        <button class="bk-nav-prev" onclick="prevStep(2)">‹ Back</button>
+        <button class="bk-nav-next" onclick="nextStep(2)"><span>Guest Details</span> ›</button>
+      </div>
+      <div class="bk-error" id="err-2">Please select a room to continue.</div>
+    </div>
+
+    <!-- STEP 3: Guest Details -->
+    <div class="bk-panel" id="panel-3">
+      <h2 class="bk-panel-title">Your Details</h2>
+      <span class="bk-panel-sub">Tell us a little about yourself so we can prepare your arrival.</span>
+      <div class="bk-form-grid">
+        <div class="bk-field-wrap bk-field-line">
+          <label class="bk-field-label">First Name</label>
+          <input class="bk-input" type="text" id="fname" placeholder="Given name">
+        </div>
+        <div class="bk-field-wrap bk-field-line">
+          <label class="bk-field-label">Last Name</label>
+          <input class="bk-input" type="text" id="lname" placeholder="Family name">
+        </div>
+        <div class="bk-field-wrap bk-field-line">
+          <label class="bk-field-label">Email</label>
+          <input class="bk-input" type="email" id="email" placeholder="your@email.com">
+        </div>
+        <div class="bk-field-wrap bk-field-line">
+          <label class="bk-field-label">Phone</label>
+          <input class="bk-input" type="tel" id="phone" placeholder="+250 ...">
+        </div>
+        <div class="bk-field-wrap">
+          <label class="bk-field-label">Adults</label>
+          <select class="bk-select" id="adults" onchange="updateSummary()">
+            <option value="1">1 Adult</option>
+            <option value="2">2 Adults</option>
+            <option value="3">3 Adults</option>
+            <option value="4">4 Adults</option>
+          </select>
+        </div>
+        <div class="bk-field-wrap">
+          <label class="bk-field-label">Children / Teenagers</label>
+          <select class="bk-select" id="children">
+            <option value="0">0 Children</option>
+            <option value="1">1 Child</option>
+            <option value="2">2 Children</option>
+            <option value="3">3 Children</option>
+          </select>
+        </div>
+        <div class="bk-field-wrap full">
+          <label class="bk-field-label">Special Requests</label>
+          <textarea class="bk-input" id="requests" placeholder="Dietary requirements, special occasions, accessibility needs — we will do our best to accommodate."></textarea>
+        </div>
+      </div>
+      <div class="bk-nav">
+        <button class="bk-nav-prev" onclick="prevStep(3)">‹ Back</button>
+        <button class="bk-nav-next" onclick="nextStep(3)"><span>Enhancements</span> ›</button>
+      </div>
+      <div class="bk-error" id="err-3">Please fill in your first name, last name, and email.</div>
+    </div>
+
+    <!-- STEP 4: Wellness Add-ons -->
+    <div class="bk-panel" id="panel-4">
+      <h2 class="bk-panel-title">Elevate Your Stay</h2>
+      <span class="bk-panel-sub">These enhancements are entirely optional — and entirely worth it.</span>
+      <div class="bk-addons-grid" id="bk-addons-grid"></div>
+      <div class="bk-nav">
+        <button class="bk-nav-prev" onclick="prevStep(4)">‹ Back</button>
+        <button class="bk-nav-next" onclick="nextStep(4)"><span>Review Booking</span> ›</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Review & Confirm -->
+    <div class="bk-panel" id="panel-5">
+      <h2 class="bk-panel-title">Review Your Booking</h2>
+      <span class="bk-panel-sub">Everything looks right? Confirm below and we will begin preparing for your arrival.</span>
+
+      <div class="bk-review-grid" id="bk-review-grid"></div>
+
+      <div class="bk-review-policy">
+        <strong style="color:rgba(201,165,82,.7);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;">Cancellation Policy</strong><br><br>
+        Free cancellation up to 72 hours before arrival. Cancellations within 72 hours are subject to a one-night charge. No-shows are charged the full stay amount. Our team is available to assist with any changes.
+      </div>
+
+      <div class="bk-nav">
+        <button class="bk-nav-prev" onclick="prevStep(5)">‹ Back</button>
+        <button class="bk-nav-next" onclick="confirmBooking()" id="confirm-btn" style="background:var(--gold)">
+          <span>Confirm Reservation</span> ✓
+        </button>
+      </div>
+      <div class="bk-error" id="err-5"></div>
+    </div>
+
+    <!-- CONFIRMATION -->
+    <div class="bk-confirm" id="bk-confirm">
+      <div class="bk-confirm-check">✓</div>
+      <h2>Your stay is confirmed.</h2>
+      <span class="bk-confirm-sub">We have reserved your room and will have everything ready for your arrival. A confirmation will be sent to your email.</span>
+      <span class="bk-confirm-ref" id="conf-ref"></span>
+      <div class="bk-confirm-card" id="conf-card"></div>
+      <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="index.html" class="bk-nav-next" style="text-decoration:none"><span>Return to Grotta</span> →</a>
+        <a href="experiences.html" style="
+          font-family:var(--sans);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+          color:rgba(201,165,82,.7);text-decoration:none;border:1px solid rgba(201,165,82,.25);
+          padding:.95rem 2rem;transition:border-color .3s ease,color .3s ease;
+          display:inline-flex;align-items:center;">
+          Explore Experiences
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SUMMARY SIDE -->
+  <div class="bk-summary">
+    <div class="bk-sum-room-img" id="sum-room-img">
+      <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=700&q=85" id="sum-room-img-el" alt="Selected Room">
+    </div>
+    <div class="bk-sum-body">
+      <span class="bk-sum-title">Booking Summary</span>
+      <div class="bk-sum-row"><span class="bk-sum-lbl">Room</span><span class="bk-sum-val" id="s-room">—</span></div>
+      <div class="bk-sum-row"><span class="bk-sum-lbl">Arrival</span><span class="bk-sum-val" id="s-checkin">—</span></div>
+      <div class="bk-sum-row"><span class="bk-sum-lbl">Departure</span><span class="bk-sum-val" id="s-checkout">—</span></div>
+      <div class="bk-sum-row"><span class="bk-sum-lbl">Nights</span><span class="bk-sum-val" id="s-nights">—</span></div>
+      <div class="bk-sum-row"><span class="bk-sum-lbl">Guests</span><span class="bk-sum-val" id="s-guests">—</span></div>
+      <div class="bk-sum-row"><span class="bk-sum-lbl">Rate / Night</span><span class="bk-sum-val" id="s-rate">—</span></div>
+      <div class="bk-sum-row" id="s-addons-row" style="display:none"><span class="bk-sum-lbl">Enhancements</span><span class="bk-sum-val" id="s-addons">—</span></div>
+      <div class="bk-sum-total">
+        <span class="bk-sum-total-lbl">Total</span>
+        <span class="bk-sum-total-val" id="s-total">—</span>
+      </div>
+    </div>
+    <div class="bk-all-avail">
+      <span class="bk-all-avail-title">Room Availability</span>
+      <div id="bk-all-avail"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Mobile sticky CTA -->
+<div class="bk-mobile-cta" id="bk-mobile-cta">
+  <div class="bk-mobile-price">
+    <span id="mobile-total">Select room & dates</span>
+    <small id="mobile-nights"></small>
+  </div>
+  <button class="bk-nav-next" onclick="mobileNext()" style="padding:.85rem 1.8rem;font-size:.58rem">
+    <span id="mobile-cta-label">Continue</span> ›
+  </button>
 </div>
 
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 <script>
-// Pre-fill from URL params
-const params = new URLSearchParams(location.search);
-const preRoom  = params.get('room') || '';
-const preCI    = params.get('checkin') || '';
-const preCO    = params.get('checkout') || '';
-const preAdult = params.get('adults') || '1';
+/* ══════════════════════════════════════
+   BOOKING PAGE STATE & DATA
+══════════════════════════════════════ */
 
+// Room data
 const ROOMS = {
-  standard:  { name: 'Standard Room',       price: 120000, label: 'The Essential' },
-  king:      { name: 'King Room',            price: 175000, label: 'Elevated Comfort' },
-  king_view: { name: 'King Room with View',  price: 185000, label: 'The Vista' },
-  deluxe:    { name: 'Deluxe Room',          price: 250000, label: 'Refined Grandeur' },
-  executive: { name: 'Executive Room',       price: 350000, label: 'The Pinnacle' },
+  standard:  {
+    name: 'Standard Room', label: 'The Essential', price: 120000,
+    desc: 'Crafted from local stone and reclaimed wood. Floor-to-ceiling windows frame misty highland mornings.',
+    chips: ['King Bed', 'Rain Shower', 'Garden View', '32m²'],
+    badge: null,
+    img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=85'
+  },
+  king: {
+    name: 'King Room', label: 'Elevated Comfort', price: 175000,
+    desc: 'A separate lounge area creates natural space to unwind. Enhanced amenities throughout.',
+    chips: ['Oversized King', 'Lounge Area', 'Minibar', '44m²'],
+    badge: 'Most Popular',
+    img: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=700&q=85'
+  },
+  king_view: {
+    name: 'King Room with View', label: 'The Vista', price: 185000,
+    desc: 'Wake to panoramic mist over ancient volcanic peaks from your private terrace.',
+    chips: ['Volcano View', 'Private Terrace', 'Soaking Tub', '48m²'],
+    badge: null,
+    img: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=700&q=85'
+  },
+  deluxe: {
+    name: 'Deluxe Room', label: 'Refined Grandeur', price: 250000,
+    desc: 'Hand-selected materials, stone finishes, and bespoke furnishings in every corner.',
+    chips: ['Stone Bath', 'Separate Lounge', 'Premium Bar', '64m²'],
+    badge: null,
+    img: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=700&q=85'
+  },
+  executive: {
+    name: 'Executive Room', label: 'The Pinnacle', price: 350000,
+    desc: 'Private pool, butler service, and two bedrooms. Nothing withheld. Nothing ordinary.',
+    chips: ['Private Pool', 'Butler Service', '2 Bedrooms', '120m²'],
+    badge: 'Best Value',
+    img: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=700&q=85'
+  }
 };
 
-let selectedRoom = preRoom || '';
+// Add-ons
+const ADDONS = [
+  { id: 'sauna',    icon: '🌋', name: 'Volcanic Sauna Ritual',    desc: 'An hour-long immersive sauna ritual using volcanic stones and highland herbs.',           price: 45000 },
+  { id: 'jacuzzi',  icon: '♾',  name: 'Private Jacuzzi Session',  desc: 'A dedicated jacuzzi setting prepared exclusively for your evening.',                       price: 35000 },
+  { id: 'massage',  icon: '🌿', name: 'In-Room Massage',          desc: 'A 60-minute therapeutic massage delivered in the privacy of your room.',                   price: 60000 },
+  { id: 'trek',     icon: '🏔', name: 'Volcano Trek Experience',  desc: 'A guided dawn trek to the volcanic viewpoint with breakfast at the summit.',               price: 55000 },
+  { id: 'romantic', icon: '🕯', name: 'Romantic Cave Setup',      desc: 'Private candlelit dinner arrangement within the cave, for two.',                           price: 80000 },
+  { id: 'transfer', icon: '🚗', name: 'Airport Transfer',         desc: 'Private vehicle to and from Kigali International Airport.',                                price: 40000 },
+  { id: 'wellness', icon: '✨', name: 'Full Wellness Package',    desc: 'Sauna, massage, and jacuzzi — the complete restoration experience.',                       price: 120000 },
+  { id: 'sunrise',  icon: '🌅', name: 'Sunrise Cave Experience',  desc: 'Enter the caves as the first light finds its way through. A rare and quiet beginning.',    price: 30000 },
+];
+
+// State
+let currentStep = 1;
+let selectedRoom = '';
 let nights = 0;
+let selectedAddons = new Set();
+const params = new URLSearchParams(location.search);
 
-function fmtPrice(n){ return n.toLocaleString() + ' RWF'; }
+function fmtPrice(n) { return n.toLocaleString() + ' RWF'; }
+function fmtDate(str) {
+  if (!str) return '—';
+  return new Date(str + 'T12:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+}
+function fmtShort(str) {
+  if (!str) return '—';
+  return new Date(str + 'T12:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'short' });
+}
 
-function renderRoomOptions() {
-  const container = document.getElementById('room-options');
+/* ── Render room cards ─────────────────────────────────── */
+function renderRooms() {
+  const container = document.getElementById('bk-room-cards');
   let html = '';
   for (const [key, room] of Object.entries(ROOMS)) {
-    const avail = window.GrottaRooms.getAvailable(key);
+    const avail = window.GrottaRooms ? window.GrottaRooms.getAvailable(key) : 10;
+    const total = window.GrottaRooms ? window.GrottaRooms.ROOM_DEFAULTS[key].total : 10;
+    const used  = total - avail;
     const unavail = avail === 0;
-    let availClass = 'ok', availText = `${avail} rooms available`;
-    if (avail <= 2 && avail > 0) { availClass = 'low'; availText = `Only ${avail} left!`; }
-    if (avail === 0)              { availClass = 'none'; availText = 'Fully Booked'; }
-    const selClass = selectedRoom === key ? 'selected' : '';
-    const uClass   = unavail ? 'unavailable' : '';
+    let availColor = '#4caf7d', availLabel = `${avail} available`;
+    if (avail <= 2 && avail > 0) { availColor = '#e6a020'; availLabel = `Only ${avail} left`; }
+    if (avail === 0) { availColor = '#c0392b'; availLabel = 'Fully Booked'; }
+
+    let dots = '';
+    for (let i = 0; i < total; i++) {
+      dots += `<div class="bk-avail-dot${i < used ? ' used' : ''}"></div>`;
+    }
+
+    const sel = selectedRoom === key;
+    const chips = room.chips.map(c => `<span class="bk-room-chip">${c}</span>`).join('');
+
     html += `
-    <div class="room-option ${selClass} ${uClass}" onclick="selectRoom('${key}')" id="ro-${key}">
-      <div class="ro-info">
-        <h5>${room.name}</h5>
-        <span class="ro-avail ${availClass}">${availText}</span>
+    <div class="bk-room-card${sel ? ' selected' : ''}${unavail ? ' unavailable' : ''}"
+         onclick="selectRoom('${key}')" id="rc-${key}">
+      <div class="bk-room-img">
+        <img src="${room.img}" alt="${room.name}" loading="lazy">
+        ${room.badge ? `<span class="bk-room-badge">${room.badge}</span>` : ''}
+        <span class="bk-room-avail-chip" style="color:${availColor}">${availLabel}</span>
       </div>
-      <div class="ro-price">
-        <span class="rp-val">${fmtPrice(room.price)}</span>
-        <span class="rp-ngt">/ night</span>
+      <div class="bk-room-body">
+        <span class="bk-room-label">${room.label}</span>
+        <div class="bk-room-name">${room.name}</div>
+        <div class="bk-room-desc">${room.desc}</div>
+        <div class="bk-room-chips">${chips}</div>
+        <div class="bk-room-footer">
+          <div class="bk-room-price">${fmtPrice(room.price)}<small>/ night</small></div>
+          <div style="display:flex;align-items:center;gap:.4rem">
+            <div class="bk-avail-dots">${dots}</div>
+            <span class="bk-avail-label">${avail}/${total}</span>
+          </div>
+          <div class="bk-room-check">${sel ? '✓' : ''}</div>
+        </div>
       </div>
     </div>`;
   }
   container.innerHTML = html;
 }
 
+function selectRoom(key) {
+  selectedRoom = key;
+  renderRooms();
+  // Update summary image
+  const imgEl = document.getElementById('sum-room-img-el');
+  if (imgEl && ROOMS[key]) imgEl.src = ROOMS[key].img;
+  updateSummary();
+}
+
+/* ── Render add-ons ────────────────────────────────────── */
+function renderAddons() {
+  const container = document.getElementById('bk-addons-grid');
+  container.innerHTML = ADDONS.map(a => `
+    <div class="bk-addon${selectedAddons.has(a.id) ? ' selected' : ''}"
+         onclick="toggleAddon('${a.id}')" id="addon-${a.id}">
+      <div class="bk-addon-icon">${a.icon}</div>
+      <div class="bk-addon-body">
+        <div class="bk-addon-name">${a.name}</div>
+        <div class="bk-addon-desc">${a.desc}</div>
+        <div class="bk-addon-price">${fmtPrice(a.price)}</div>
+      </div>
+      <div class="bk-addon-check">${selectedAddons.has(a.id) ? '✓' : ''}</div>
+    </div>
+  `).join('');
+}
+
+function toggleAddon(id) {
+  if (selectedAddons.has(id)) selectedAddons.delete(id);
+  else selectedAddons.add(id);
+  renderAddons();
+  updateSummary();
+}
+
+/* ── Render all availability ───────────────────────────── */
 function renderAllAvail() {
-  const el = document.getElementById('all-avail');
-  let html = '';
-  for (const [key, room] of Object.entries(ROOMS)) {
+  const el = document.getElementById('bk-all-avail');
+  if (!window.GrottaRooms) return;
+  el.innerHTML = Object.entries(ROOMS).map(([key, room]) => {
     const avail = window.GrottaRooms.getAvailable(key);
     const total = window.GrottaRooms.ROOM_DEFAULTS[key].total;
     let col = '#4caf7d';
     if (avail <= 2 && avail > 0) col = '#e6a020';
     if (avail === 0) col = '#c0392b';
-    html += `<div style="display:flex;justify-content:space-between;font-size:.75rem;padding:.3rem 0;border-bottom:1px solid var(--border)">
-      <span style="color:var(--text)">${room.name}</span>
-      <span style="color:${col};font-weight:500">${avail}/${total}</span>
+    return `<div class="bk-avail-row">
+      <span class="bk-avail-name">${room.name}</span>
+      <span style="color:${col};font-weight:500;font-family:var(--sans);font-size:.72rem">${avail}/${total}</span>
     </div>`;
-  }
-  el.innerHTML = html;
+  }).join('');
 }
 
-function selectRoom(key) {
-  selectedRoom = key;
-  document.querySelectorAll('.room-option').forEach(el => el.classList.remove('selected'));
-  const el = document.getElementById('ro-' + key);
-  if (el) el.classList.add('selected');
-  updateSummary();
-  showAvailPips(key);
-}
-
-function showAvailPips(key) {
-  const avail = window.GrottaRooms.getAvailable(key);
-  const total = window.GrottaRooms.ROOM_DEFAULTS[key].total;
-  const used  = total - avail;
-  const section = document.getElementById('avail-section');
-  const pips    = document.getElementById('avail-pips');
-  const text    = document.getElementById('avail-text');
-  section.style.display = 'block';
-  let pipsHtml = '';
-  for (let i = 0; i < total; i++) pipsHtml += `<div class="avail-pip${i < used ? ' used' : ''}"></div>`;
-  pips.innerHTML = pipsHtml;
-  if (avail === 0) text.innerHTML = '<span style="color:#c0392b">Fully Booked</span>';
-  else if (avail <= 2) text.innerHTML = `<span style="color:#e6a020">Only ${avail} room${avail>1?'s':''} remaining!</span>`;
-  else text.innerHTML = `<span style="color:#4caf7d">${avail} of ${total} rooms available</span>`;
-}
-
+/* ── Date calc ─────────────────────────────────────────── */
 function calcNights() {
   const ci = document.getElementById('checkin').value;
   const co = document.getElementById('checkout').value;
-  const infoBox = document.getElementById('nights-info');
+  const summary = document.getElementById('bk-stay-summary');
   if (ci && co) {
-    const d = (new Date(co) - new Date(ci)) / 86400000;
+    const d = Math.round((new Date(co) - new Date(ci)) / 86400000);
     nights = d > 0 ? d : 0;
     if (nights > 0) {
-      document.getElementById('nights-text').textContent = nights + ' night' + (nights > 1 ? 's' : '');
-      infoBox.style.display = 'block';
+      document.getElementById('stat-nights').textContent = nights;
+      document.getElementById('stat-arrival').textContent = fmtShort(ci);
+      document.getElementById('stat-departure').textContent = fmtShort(co);
+      const room = ROOMS[selectedRoom];
+      const addonTotal = [...selectedAddons].reduce((s, id) => s + (ADDONS.find(a=>a.id===id)?.price||0), 0);
+      const total = room ? (room.price * nights) + addonTotal : null;
+      document.getElementById('stat-price').textContent = total ? fmtPrice(total) : '—';
+      summary.style.display = 'flex';
     } else {
-      nights = 0;
-      infoBox.style.display = 'none';
+      nights = 0; summary.style.display = 'none';
     }
   }
   updateSummary();
 }
 
-function fmtDate(str) {
-  if (!str) return '—';
-  return new Date(str + 'T12:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
-}
-
+/* ── Summary update ────────────────────────────────────── */
 function updateSummary() {
   const ci = document.getElementById('checkin')?.value || '';
   const co = document.getElementById('checkout')?.value || '';
   const adults = document.getElementById('adults')?.value || '1';
   const children = document.getElementById('children')?.value || '0';
-
   const room = ROOMS[selectedRoom];
-  document.getElementById('s-room').textContent     = room ? room.name : '—';
-  document.getElementById('s-checkin').textContent  = fmtDate(ci);
-  document.getElementById('s-checkout').textContent = fmtDate(co);
-  document.getElementById('s-nights').textContent   = nights ? nights + ' night' + (nights > 1 ? 's' : '') : '—';
-  document.getElementById('s-guests').textContent   = adults + ' adult' + (adults > 1 ? 's' : '') + (children > 0 ? `, ${children} child${children > 1 ? 'ren' : ''}` : '');
-  document.getElementById('s-rate').textContent     = room ? fmtPrice(room.price) : '—';
+  const addonTotal = [...selectedAddons].reduce((s, id) => s + (ADDONS.find(a=>a.id===id)?.price||0), 0);
 
-  const total = room && nights > 0 ? room.price * nights : null;
-  document.getElementById('s-total').textContent    = total ? fmtPrice(total) : '—';
+  document.getElementById('s-room').textContent = room ? room.name : '—';
+  document.getElementById('s-checkin').textContent = fmtDate(ci);
+  document.getElementById('s-checkout').textContent = fmtDate(co);
+  document.getElementById('s-nights').textContent = nights ? nights + ' night' + (nights > 1 ? 's' : '') : '—';
+  document.getElementById('s-guests').textContent = adults + ' adult' + (adults > 1 ? 's' : '') + (children > 0 ? `, ${children} child${children > 1 ? 'ren' : ''}` : '');
+  document.getElementById('s-rate').textContent = room ? fmtPrice(room.price) : '—';
+
+  const addonsRow = document.getElementById('s-addons-row');
+  if (selectedAddons.size > 0) {
+    addonsRow.style.display = 'flex';
+    document.getElementById('s-addons').textContent = fmtPrice(addonTotal) + ` (${selectedAddons.size})`;
+  } else {
+    addonsRow.style.display = 'none';
+  }
+
+  const total = room && nights > 0 ? (room.price * nights) + addonTotal : null;
+  document.getElementById('s-total').textContent = total ? fmtPrice(total) : '—';
+
+  // Mobile CTA
+  if (total) {
+    document.getElementById('mobile-total').textContent = fmtPrice(total);
+    document.getElementById('mobile-nights').textContent = nights + ' nights · ' + (room?.name || '');
+  } else {
+    document.getElementById('mobile-total').textContent = 'Select room & dates';
+    document.getElementById('mobile-nights').textContent = '';
+  }
 }
 
+/* ── Step navigation ───────────────────────────────────── */
+function goToStep(n) {
+  // Only allow going back or to completed steps
+  if (n > currentStep) return; // can't skip forward
+  setStep(n);
+}
+
+function nextStep(from) {
+  // Validate
+  const errEl = document.getElementById('err-' + from);
+  if (errEl) errEl.style.display = 'none';
+
+  if (from === 1) {
+    const ci = document.getElementById('checkin').value;
+    const co = document.getElementById('checkout').value;
+    if (!ci || !co || nights <= 0) { if (errEl) errEl.style.display = 'block'; return; }
+  }
+  if (from === 2 && !selectedRoom) {
+    if (errEl) errEl.style.display = 'block'; return;
+  }
+  if (from === 3) {
+    const fname = document.getElementById('fname').value.trim();
+    const lname = document.getElementById('lname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!fname || !lname || !email) { if (errEl) errEl.style.display = 'block'; return; }
+  }
+  if (from === 4) {
+    buildReview();
+  }
+  setStep(from + 1);
+}
+
+function prevStep(from) { setStep(from - 1); }
+
+function setStep(n) {
+  currentStep = n;
+  document.querySelectorAll('.bk-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('panel-' + n);
+  if (panel) panel.classList.add('active');
+  document.querySelectorAll('.bk-step').forEach((tab, i) => {
+    const num = i + 1;
+    tab.classList.remove('active', 'done');
+    const numEl = document.getElementById('step-num-' + num);
+    if (num < n) { tab.classList.add('done'); numEl.textContent = ''; }
+    else if (num === n) { tab.classList.add('active'); numEl.textContent = num; }
+    else { numEl.textContent = num; }
+  });
+  const pct = ((n - 1) / 4) * 100;
+  document.getElementById('bk-progress-line').style.background =
+    `linear-gradient(to right, var(--gold) ${pct}%, rgba(201,165,82,.1) ${pct}%)`;
+  const labels = ['', 'Choose Room', 'Guest Details', 'Enhancements', 'Review Booking', 'Confirm'];
+  document.getElementById('mobile-cta-label').textContent = labels[n] || 'Continue';
+  window.scrollTo({ top: document.querySelector('.bk-progress').offsetTop - 10, behavior: 'smooth' });
+}
+
+function mobileNext() { nextStep(currentStep); }
+
+/* ── Build review ──────────────────────────────────────── */
+function buildReview() {
+  const ci = document.getElementById('checkin').value;
+  const co = document.getElementById('checkout').value;
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const adults = document.getElementById('adults').value;
+  const children = document.getElementById('children').value;
+  const room = ROOMS[selectedRoom];
+  const addonTotal = [...selectedAddons].reduce((s, id) => s + (ADDONS.find(a=>a.id===id)?.price||0), 0);
+  const total = room ? (room.price * nights) + addonTotal : 0;
+
+  const blocks = [
+    { label: 'Room', value: room ? `${room.label} — ${room.name}` : '—' },
+    { label: 'Arrival', value: fmtDate(ci) },
+    { label: 'Departure', value: fmtDate(co) },
+    { label: 'Duration', value: nights + ' nights' },
+    { label: 'Guest', value: `${fname} ${lname}` },
+    { label: 'Guests', value: `${adults} adults${children > 0 ? `, ${children} children` : ''}` },
+    { label: 'Enhancements', value: selectedAddons.size > 0 ? [...selectedAddons].map(id => ADDONS.find(a=>a.id===id)?.name).join(', ') : 'None' },
+    { label: 'Room Subtotal', value: room ? fmtPrice(room.price * nights) : '—' },
+    { label: 'Enhancements', value: addonTotal > 0 ? fmtPrice(addonTotal) : '—' },
+    { label: 'Total', value: fmtPrice(total) },
+  ];
+
+  document.getElementById('bk-review-grid').innerHTML = blocks.map(b => `
+    <div class="bk-review-block">
+      <span class="bk-review-block-label">${b.label}</span>
+      <div class="bk-review-block-value">${b.value}</div>
+    </div>
+  `).join('');
+}
+
+/* ── Confirm booking ───────────────────────────────────── */
 function confirmBooking() {
+  const errEl = document.getElementById('err-5');
+  errEl.style.display = 'none';
+
+  if (!selectedRoom) { errEl.textContent = 'No room selected.'; errEl.style.display = 'block'; return; }
+
+  const booked = window.GrottaRooms ? window.GrottaRooms.bookRoom(selectedRoom, 1) : true;
+  if (!booked) {
+    errEl.textContent = 'This room is no longer available. Please go back and select another.';
+    errEl.style.display = 'block';
+    renderRooms(); renderAllAvail();
+    return;
+  }
+
+  // Hide all panels
+  document.querySelectorAll('.bk-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.bk-step').forEach(t => t.classList.add('done'));
+
+  // Build confirmation
+  const ci = document.getElementById('checkin').value;
+  const co = document.getElementById('checkout').value;
   const fname = document.getElementById('fname').value.trim();
   const lname = document.getElementById('lname').value.trim();
   const email = document.getElementById('email').value.trim();
-  const ci    = document.getElementById('checkin').value;
-  const co    = document.getElementById('checkout').value;
-  const errEl = document.getElementById('form-error');
-
-  if (!selectedRoom || !fname || !lname || !email || !ci || !co || nights <= 0) {
-    errEl.style.display = 'block';
-    return;
-  }
-  errEl.style.display = 'none';
-
-  const booked = window.GrottaRooms.bookRoom(selectedRoom, 1);
-  if (!booked) {
-    errEl.textContent = 'Sorry, this room is no longer available. Please select another.';
-    errEl.style.display = 'block';
-    renderRoomOptions();
-    renderAllAvail();
-    return;
-  }
-
-  // Show confirmation
   const room = ROOMS[selectedRoom];
-  const total = room.price * nights;
+  const addonTotal = [...selectedAddons].reduce((s, id) => s + (ADDONS.find(a=>a.id===id)?.price||0), 0);
+  const total = room.price * nights + addonTotal;
   const ref = 'GRT-' + Date.now().toString().slice(-6).toUpperCase();
-  document.getElementById('conf-ref').textContent = 'Booking Reference: ' + ref;
-  document.getElementById('conf-details').textContent =
-    `${fname} ${lname} · ${room.name} · ${fmtDate(ci)} → ${fmtDate(co)} · ${nights} night${nights>1?'s':''} · ${fmtPrice(total)}`;
 
-  document.getElementById('confirm-btn').style.display = 'none';
-  document.getElementById('confirm-panel').classList.add('show');
+  document.getElementById('conf-ref').textContent = `Booking Reference: ${ref}`;
+  document.getElementById('conf-card').innerHTML = [
+    { l: 'Guest', v: `${fname} ${lname}` },
+    { l: 'Email', v: email },
+    { l: 'Room', v: room.name },
+    { l: 'Arrival', v: fmtDate(ci) },
+    { l: 'Departure', v: fmtDate(co) },
+    { l: 'Nights', v: nights },
+    { l: 'Total', v: fmtPrice(total) },
+  ].map(r => `<div class="bk-confirm-row"><span class="bk-confirm-row-lbl">${r.l}</span><span class="bk-confirm-row-val">${r.v}</span></div>`).join('');
 
-  // Refresh availability
-  renderRoomOptions();
-  renderAllAvail();
-  if (selectedRoom) showAvailPips(selectedRoom);
+  document.getElementById('bk-confirm').classList.add('show');
+  document.getElementById('bk-mobile-cta').style.display = 'none';
+
+  renderRooms(); renderAllAvail();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// INIT
+/* ── Parallax ──────────────────────────────────────────── */
+const heroBg = document.getElementById('bk-hero-bg');
+window.addEventListener('scroll', () => {
+  if (heroBg) heroBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+}, { passive: true });
+
+/* ── Init ──────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  renderRoomOptions();
+  renderRooms();
+  renderAddons();
   renderAllAvail();
 
-  if (preCI) document.getElementById('checkin').value = preCI;
-  if (preCO) document.getElementById('checkout').value = preCO;
-  if (preAdult) document.getElementById('adults').value = preAdult;
+  // Pre-fill from URL — dates first, then room
+  const preRoom  = params.get('room') || '';
+  const preCI    = params.get('checkin') || '';
+  const preCO    = params.get('checkout') || '';
+  const preAdult = params.get('adults') || '1';
+
+  if (preCI)    { document.getElementById('checkin').value = preCI; }
+  if (preCO)    { document.getElementById('checkout').value = preCO; }
+  if (preAdult) { document.getElementById('adults').value = preAdult; }
   if (preCI && preCO) calcNights();
 
-  if (preRoom && ROOMS[preRoom]) {
+  // If dates are set, jump to room selection step
+  if (preCI && preCO && nights > 0) {
+    if (preRoom && ROOMS[preRoom]) selectRoom(preRoom);
+    setStep(2);
+  } else if (preRoom && ROOMS[preRoom]) {
     selectRoom(preRoom);
   }
 
-  // Set min dates
+  // Min dates
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('checkin').min  = today;
   document.getElementById('checkout').min = today;

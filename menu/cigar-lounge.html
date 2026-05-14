@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cigar Lounge — Grotta</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#050403;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+.mn-hero{position:relative;height:80vh;min-height:520px;display:flex;align-items:flex-end;overflow:hidden}
+.mn-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1544148103-0773bf10d330?w=1600&q=85');background-size:cover;background-position:center 30%;filter:brightness(.32) saturate(.75)}
+.mn-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,4,3,.2) 0%,rgba(5,4,3,.7) 60%,rgba(5,4,3,1) 100%)}
+.mn-hero-content{position:relative;z-index:2;padding:0 6vw 5rem;max-width:680px}
+.mn-label{font-family:'Jost',sans-serif;font-size:.58rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#c9a552;margin-bottom:1rem;display:block}
+.mn-hero-content h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;color:#e8e0d0;margin-bottom:1rem}
+.mn-hero-content p{font-size:.95rem;font-weight:300;line-height:1.85;color:rgba(232,224,208,.45);max-width:440px}
+.mn-body{max-width:860px;margin:0 auto;padding:5rem 2rem 8rem}
+.mn-intro{margin-bottom:4.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,165,82,.07)}
+.mn-intro p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem;font-weight:300;line-height:1.75;color:rgba(232,224,208,.6);font-style:italic}
+.mn-section{margin-bottom:4rem}
+.mn-section-title{font-family:'Jost',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:#c9a552;margin-bottom:2rem;display:flex;align-items:center;gap:1.4rem}
+.mn-section-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,165,82,.2),transparent)}
+.mn-item{display:grid;grid-template-columns:1fr auto;gap:2rem;padding:1.3rem 0;border-bottom:1px solid rgba(201,165,82,.05);align-items:start}
+.mn-item:last-child{border-bottom:none}
+.mn-item-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;font-weight:400;color:#e8e0d0;margin-bottom:.35rem;line-height:1.2}
+.mn-item-desc{font-size:.8rem;color:rgba(232,224,208,.45);line-height:1.75;font-weight:300}
+.mn-item-note{font-size:.68rem;color:#c9a552;font-style:italic;margin-top:.3rem;opacity:.55}
+.mn-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;color:#c9a552;white-space:nowrap;padding-top:.15rem}
+.mn-access{background:rgba(201,165,82,.04);border:1px solid rgba(201,165,82,.1);padding:2rem;margin-bottom:3rem;font-size:.84rem;color:rgba(232,224,208,.5);line-height:1.85}
+.mn-cta-section{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(201,165,82,.07)}
+.mn-cta-section p{font-size:.88rem;color:rgba(232,224,208,.45);margin-bottom:2rem;line-height:1.85}
+.mn-back{display:inline-flex;align-items:center;gap:.5rem;font-family:'Jost',sans-serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.5);text-decoration:none;margin-bottom:3rem;transition:color .3s ease,gap .3s ease}
+.mn-back:hover{color:#c9a552;gap:.9rem}
+.mn-back svg{width:14px;height:14px;transition:transform .3s ease}
+.mn-back:hover svg{transform:translateX(-3px)}
+</style>
+</head>
+<body>
+<div id="nav-holder"></div>
+<div class="mn-hero">
+  <div class="mn-hero-bg"></div>
+  <div class="mn-hero-overlay"></div>
+  <div class="mn-hero-content">
+    <span class="mn-label">Cigar Lounge · By Invitation · From 7PM</span>
+    <h1>Cigar Lounge</h1>
+    <p>A space for those who know the value of silence and selected company. Reserved, refined, and entirely unhurried.</p>
+  </div>
+</div>
+<div class="mn-body">
+  <a href="../dining.html" class="mn-back">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
+    Return to Dining
+  </a>
+  <div class="mn-access">The Cigar Lounge at Grotta is accessible by prior reservation and invitation. Our concierge team would be pleased to arrange access during your stay.</div>
+  <div class="mn-intro">
+    <p>"The Cigar Lounge was built for evenings that deserve their own room. A curated selection, the right glass, and the understanding that nothing here needs to be explained."</p>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Premium Cigars</div>
+    <div class="mn-item"><div><div class="mn-item-name">Cohiba Siglo VI</div><div class="mn-item-desc">Cuban, full body, cedar and earthy notes, 150mm</div><div class="mn-item-note">Available in limited supply</div></div><div class="mn-price">95,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Davidoff Millennium Blend</div><div class="mn-item-desc">Dominican, medium-full, cream and spice, 127mm</div></div><div class="mn-price">68,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Arturo Fuente Opus X</div><div class="mn-item-desc">Dominican, full body, leather and pepper, 140mm</div></div><div class="mn-price">75,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">House Selection</div><div class="mn-item-desc">Curated by our sommelier — presented and discussed on arrival</div><div class="mn-item-note">Changes seasonally</div></div><div class="mn-price">48,000 RWF</div></div>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Spirits & Accompaniments</div>
+    <div class="mn-item"><div><div class="mn-item-name">Single Malt Whisky</div><div class="mn-item-desc">Selection from our private cellar, served neat with one stone</div></div><div class="mn-price">28,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Aged Cognac</div><div class="mn-item-desc">VSOP and XO selections, warmed in crystal</div></div><div class="mn-price">32,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Dark Chocolate</div><div class="mn-item-desc">70% volcanic salt chocolate, served alongside your cigar</div></div><div class="mn-price">8,000 RWF</div></div>
+  </div>
+  <div class="mn-cta-section">
+    <p>Access to the Cigar Lounge is arranged through the concierge. We invite you to make your request at any point during your stay.</p>
+    <a href="../booking.html" class="btn btn-gold">Continue to Reservation</a>
+  </div>
+</div>
+<div id="footer-holder"></div>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

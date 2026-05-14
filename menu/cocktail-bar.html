@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cocktail Bar Menu — Grotta</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#080805;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+.mn-hero{position:relative;height:80vh;min-height:520px;display:flex;align-items:flex-end;overflow:hidden}
+.mn-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=1600&q=85');background-size:cover;background-position:center 30%;filter:brightness(.38) saturate(.85)}
+.mn-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,5,.15) 0%,rgba(8,8,5,.65) 60%,rgba(8,8,5,1) 100%)}
+.mn-hero-content{position:relative;z-index:2;padding:0 6vw 5rem;max-width:680px}
+.mn-label{font-family:'Jost',sans-serif;font-size:.58rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#c9a552;margin-bottom:1rem;display:block}
+.mn-hero-content h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;color:#e8e0d0;margin-bottom:1rem}
+.mn-hero-content p{font-size:.95rem;font-weight:300;line-height:1.85;color:rgba(232,224,208,.5);max-width:440px}
+.mn-body{max-width:860px;margin:0 auto;padding:5rem 2rem 8rem}
+.mn-intro{margin-bottom:4.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,165,82,.1)}
+.mn-intro p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem;font-weight:300;line-height:1.75;color:rgba(232,224,208,.65);font-style:italic}
+.mn-section{margin-bottom:4rem}
+.mn-section-title{font-family:'Jost',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:#c9a552;margin-bottom:2rem;display:flex;align-items:center;gap:1.4rem}
+.mn-section-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,165,82,.25),transparent)}
+.mn-item{display:grid;grid-template-columns:1fr auto;gap:2rem;padding:1.3rem 0;border-bottom:1px solid rgba(201,165,82,.06);align-items:start}
+.mn-item:last-child{border-bottom:none}
+.mn-item-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;font-weight:400;color:#e8e0d0;margin-bottom:.35rem;line-height:1.2}
+.mn-item-desc{font-size:.8rem;color:rgba(232,224,208,.5);line-height:1.75;font-weight:300}
+.mn-item-note{font-size:.68rem;color:#c9a552;font-style:italic;margin-top:.3rem;opacity:.65}
+.mn-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;color:#c9a552;white-space:nowrap;padding-top:.15rem}
+.mn-cta-section{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(201,165,82,.1)}
+.mn-cta-section p{font-size:.88rem;color:rgba(232,224,208,.5);margin-bottom:2rem;line-height:1.85}
+.mn-back{display:inline-flex;align-items:center;gap:.5rem;font-family:'Jost',sans-serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.6);text-decoration:none;margin-bottom:3rem;transition:color .3s ease,gap .3s ease}
+.mn-back:hover{color:#c9a552;gap:.9rem}
+.mn-back svg{width:14px;height:14px;transition:transform .3s ease}
+.mn-back:hover svg{transform:translateX(-3px)}
+</style>
+</head>
+<body>
+<div id="nav-holder"></div>
+<div class="mn-hero">
+  <div class="mn-hero-bg"></div>
+  <div class="mn-hero-overlay"></div>
+  <div class="mn-hero-content">
+    <span class="mn-label">Cocktail Bar · Evenings from 5PM</span>
+    <h1>Cocktail Bar</h1>
+    <p>An evening found, not rushed. Crafted drinks, warm light, and the kind of conversation that arrives naturally when time slows down.</p>
+  </div>
+</div>
+<div class="mn-body">
+  <a href="../dining.html" class="mn-back">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
+    Return to Dining
+  </a>
+  <div class="mn-intro">
+    <p>"Every cocktail at Grotta is composed with the same care given to any dish — built on local ingredients, considered technique, and the question of what this moment calls for."</p>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Signature Cocktails</div>
+    <div class="mn-item"><div><div class="mn-item-name">Volcanic Sunset</div><div class="mn-item-desc">Rwandan rum, passion fruit, hibiscus reduction, smoked chili salt rim</div></div><div class="mn-price">16,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Cave Negroni</div><div class="mn-item-desc">Cave-aged gin, sweet vermouth, bitter orange, one black stone</div><div class="mn-item-note">Our interpretation of a classic</div></div><div class="mn-price">18,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Highland Mist</div><div class="mn-item-desc">Whisky, honey, fresh ginger, lemon, cave spring water</div></div><div class="mn-price">17,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Garden Spritz</div><div class="mn-item-desc">Elderflower, cucumber, prosecco, fresh mint, lime</div></div><div class="mn-price">14,500 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Grotta Old Fashioned</div><div class="mn-item-desc">Single malt, raw cane sugar, aromatic bitters, orange peel</div></div><div class="mn-price">19,000 RWF</div></div>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Wines by the Glass</div>
+    <div class="mn-item"><div><div class="mn-item-name">Sommelier's White</div><div class="mn-item-desc">Chosen weekly to complement the season and the mood of the bar</div></div><div class="mn-price">12,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Sommelier's Red</div><div class="mn-item-desc">Full-bodied or medium — discussed with your server</div></div><div class="mn-price">13,500 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Sparkling Selection</div><div class="mn-item-desc">House sparkling or champagne by request</div></div><div class="mn-price">15,000 RWF</div></div>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Bar Bites</div>
+    <div class="mn-item"><div><div class="mn-item-name">Spiced Cashews & Cave Salt</div><div class="mn-item-desc">Warm, house-spiced cashews, finished with volcanic salt flakes</div></div><div class="mn-price">5,000 RWF</div></div>
+    <div class="mn-item"><div><div class="mn-item-name">Charcuterie Board</div><div class="mn-item-desc">Cured meats, cave-aged cheeses, cornichons, stone bread</div></div><div class="mn-price">18,000 RWF</div></div>
+  </div>
+  <div class="mn-cta-section">
+    <p>The bar welcomes guests through the evening. Reservations for groups and private events are available on request.</p>
+    <a href="../booking.html" class="btn btn-gold">Continue to Reservation</a>
+  </div>
+</div>
+<div id="footer-holder"></div>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

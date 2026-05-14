@@ -3,948 +3,1543 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Retreats — Grotta</title>
+<title>Retreats at Grotta — Volcanic Highland Sanctuary</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 
 /* ══════════════════════════════════════
-   RETREATS — Architectural Luxury
-   Mood: stone monolith · executive · spatial
-   Palette: deep charcoal · volcanic grey ·
-            concrete beige · restrained gold
+   RETREATS — Cinematic Editorial Luxury
+   Restoration · Connection · Clarity
 ══════════════════════════════════════ */
 
-:root {
-  --rt-black:   #060604;
-  --rt-charcoal:#0d0c09;
-  --rt-stone:   #181612;
-  --rt-concrete:#1e1c17;
-  --rt-beige:   #aea89a;
-  --rt-gold:    #c9a552;
-  --rt-gold-dim:rgba(201,165,82,.18);
-  --rt-green:   rgba(38,52,38,.18);
-  --rt-border:  rgba(180,172,155,.1);
-  --rt-text:    #958e80;
-  --rt-cream:   #e8e2d6;
-  --rt-ease:    cubic-bezier(0.22, 1, 0.36, 1);
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ══════════════════════
-   HERO
-══════════════════════ */
-.rt-hero {
-  position: relative;
-  height: 65vh;
-  min-height: 500px;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 5vw;
-}
-
-/* Background — editorial poster, not full-bleed aggressive */
-.rt-hero-bg {
-  position: absolute;
-  inset: -4%;
-  background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1600&q=80');
-  background-size: cover;
-  background-position: center 25%;
-  will-change: transform;
-  filter: brightness(.78) saturate(.65);
-  animation: rt-drift 28s var(--rt-ease) forwards;
-}
-@keyframes rt-drift {
-  from { transform: scale(1.02) translateX(0); }
-  to   { transform: scale(1)    translateX(-.8%); }
-}
-
-/* Architectural shadow — lighter, smoother */
-.rt-hero-shadow {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(100deg,
-      rgba(6,6,4,.88) 0%,
-      rgba(6,6,4,.60) 36%,
-      rgba(6,6,4,.18) 58%,
-      rgba(6,6,4,.04) 100%),
-    linear-gradient(to bottom,
-      rgba(6,6,4,.32) 0%,
-      rgba(6,6,4,.04) 32%,
-      rgba(6,6,4,.45) 68%,
-      rgba(6,6,4,.85) 100%);
-  z-index: 1;
-}
-
-/* Framing border — very subtle inset "poster" lines */
-.rt-hero-frame {
-  position: absolute;
-  inset: 2.2rem;
-  border: 1px solid rgba(201,165,82,.07);
-  z-index: 3;
-  pointer-events: none;
-  opacity: 0;
-  animation: rt-frame-in 1.8s ease 0.8s forwards;
-}
-@keyframes rt-frame-in {
-  from { opacity: 0; inset: 3.5rem; }
-  to   { opacity: 1; inset: 2.2rem; }
-}
-
-/* Vertical light beam — architectural accent */
-.rt-hero-beam {
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 42%;
-  width: 1px;
-  background: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(201,165,82,.12) 25%,
-    rgba(201,165,82,.07) 70%,
-    transparent 100%);
-  z-index: 2;
-  animation: rt-beam-in 2.5s ease 1.2s both;
-}
-@keyframes rt-beam-in {
-  from { opacity: 0; transform: scaleY(0); transform-origin: top; }
-  to   { opacity: 1; transform: scaleY(1); }
-}
-
-/* Content — left-aligned, architectural */
-.rt-hero-content {
-  position: relative;
-  z-index: 10;
-  padding: 0 clamp(1.5rem, 6vw, 5rem);
-  max-width: 680px;
-}
-
-.rt-hero-label {
-  display: inline-block;
+body {
+  background: #080805;
+  color: #e8e0d0;
   font-family: 'Jost', sans-serif;
-  font-size: .58rem;
-  font-weight: 400;
-  letter-spacing: .48em;
-  text-transform: uppercase;
-  color: rgba(201,165,82,.55);
-  margin-bottom: 1.8rem;
-  opacity: 0;
-  animation: rt-label-in 1s ease .3s forwards;
-}
-@keyframes rt-label-in {
-  from { opacity: 0; letter-spacing: .65em; }
-  to   { opacity: 1; letter-spacing: .48em; }
-}
-
-.rt-hero-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.6rem, 5.5vw, 5rem);
-  font-weight: 400;
-  color: var(--rt-cream);
-  line-height: 1.04;
-  letter-spacing: -.02em;
-  margin-bottom: 1.4rem;
-  clip-path: inset(0 0 100% 0);
-  animation: rt-title-reveal 1.1s var(--rt-ease) .7s forwards;
-}
-@keyframes rt-title-reveal {
-  from { clip-path: inset(0 0 100% 0); opacity: .4; }
-  to   { clip-path: inset(0 0   0% 0); opacity: 1; }
-}
-
-.rt-hero-sub {
-  font-family: 'Jost', sans-serif;
-  font-size: .88rem;
   font-weight: 300;
-  color: rgba(232,226,214,.55);
-  line-height: 1.95;
-  max-width: 420px;
-  margin-bottom: 2.4rem;
-  opacity: 0;
-  transform: translateY(16px);
-  animation: rt-sub-in 1s var(--rt-ease) 1.2s forwards;
-}
-@keyframes rt-sub-in {
-  to { opacity: 1; transform: translateY(0); }
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* CTA — sharp architectural style */
-.rt-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
+/* ── Grain ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 998;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none; opacity: .5;
+}
+
+/* ── Reveal ── */
+.reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity .95s cubic-bezier(.25,.46,.45,.94),
+              transform .95s cubic-bezier(.25,.46,.45,.94);
+}
+.reveal.from-left  { transform: translateX(-44px); }
+.reveal.from-right { transform: translateX(44px); }
+.reveal.visible    { opacity: 1 !important; transform: translate(0,0) !important; }
+.reveal.d1 { transition-delay: .12s; }
+.reveal.d2 { transition-delay: .24s; }
+.reveal.d3 { transition-delay: .36s; }
+.reveal.d4 { transition-delay: .48s; }
+
+/* ── Shared typography ── */
+.rt-label {
   font-family: 'Jost', sans-serif;
-  font-size: .62rem;
-  font-weight: 500;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--rt-cream);
-  text-decoration: none;
-  padding: .9rem 2rem;
-  border: 1px solid rgba(232,226,214,.25);
+  font-size: .55rem; font-weight: 500;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: rgba(201,165,82,.48); display: block; margin-bottom: .9rem;
+}
+.rt-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 300; color: #e8e0d0;
+  line-height: 1.04; letter-spacing: -.02em;
+}
+.rt-body {
+  font-size: .9rem; font-weight: 300;
+  color: rgba(232,224,208,.52); line-height: 2.1;
+}
+.rt-rule {
+  width: 2rem; height: 1px;
+  background: rgba(201,165,82,.28); margin: 1.3rem 0;
+}
+.rt-ornament {
+  display: flex; align-items: center; gap: 1.2rem; max-width: 240px;
+}
+.rt-ornament.center { margin: 0 auto; }
+.rt-ornament::before, .rt-ornament::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,165,82,.22));
+}
+.rt-ornament::after { background: linear-gradient(to left, transparent, rgba(201,165,82,.22)); }
+.rt-ornament span { font-size: .6rem; color: rgba(201,165,82,.38); flex-shrink: 0; }
+
+/* ── Buttons ── */
+.rt-btn-gold {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-family: 'Jost', sans-serif; font-size: .62rem;
+  font-weight: 500; letter-spacing: .24em; text-transform: uppercase;
+  color: #080805; background: #c9a552;
+  border: none; cursor: pointer; padding: 1.1rem 2.6rem;
+  position: relative; overflow: hidden; text-decoration: none;
+  transition: transform .25s ease, box-shadow .3s ease;
+}
+.rt-btn-gold::before {
+  content: ''; position: absolute; inset: 0;
+  background: #e2c97e; transform: scaleX(0);
+  transform-origin: left; transition: transform .4s cubic-bezier(.25,.46,.45,.94); z-index: 0;
+}
+.rt-btn-gold span { position: relative; z-index: 1; }
+.rt-btn-gold:hover::before { transform: scaleX(1); }
+.rt-btn-gold:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(201,165,82,.3); }
+
+.rt-btn-outline {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-family: 'Jost', sans-serif; font-size: .62rem;
+  font-weight: 400; letter-spacing: .24em; text-transform: uppercase;
+  color: rgba(232,224,208,.7); background: transparent;
+  border: 1px solid rgba(232,224,208,.28); cursor: pointer;
+  padding: 1.05rem 2.4rem; text-decoration: none;
+  transition: border-color .3s ease, color .3s ease, transform .25s ease;
+}
+.rt-btn-outline:hover { border-color: #c9a552; color: #c9a552; transform: translateY(-2px); }
+
+/* ══════════════════════════════════════
+   1. HERO
+══════════════════════════════════════ */
+.rt-hero {
+  position: relative; height: 100vh; min-height: 680px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; text-align: center;
+}
+.rt-hero-bg {
+  position: absolute; inset: -5%;
+  background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85');
+  background-size: cover; background-position: center 35%;
+  filter: brightness(.4) saturate(.72);
+  animation: rt-ken 28s cubic-bezier(.25,.46,.45,.94) forwards;
+  will-change: transform;
+}
+@keyframes rt-ken {
+  from { transform: scale(1.07); }
+  to   { transform: scale(1); }
+}
+.rt-hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 90% 65% at 50% 45%, rgba(201,130,40,.05) 0%, transparent 65%),
+    linear-gradient(to bottom, rgba(8,8,5,.3) 0%, rgba(8,8,5,.08) 28%, rgba(8,8,5,.6) 68%, rgba(8,8,5,1) 100%);
+}
+.rt-hero-mist {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 110% 50% at 50% 60%, rgba(220,200,160,.03) 0%, transparent 60%);
+  animation: rt-mist 12s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes rt-mist {
+  from { transform: translateX(-2%) scaleX(1); opacity: .6; }
+  to   { transform: translateX(2%) scaleX(1.04); opacity: 1; }
+}
+.rt-hero-content {
+  position: relative; z-index: 10;
+  max-width: 800px; padding: 0 2rem;
+}
+.rt-hero-content .rt-label {
+  opacity: 0; animation: rt-up .85s ease .35s forwards; margin-bottom: 1.5rem;
+}
+.rt-hero-content h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  font-weight: 300; color: #f0e8d5;
+  line-height: 1.02; letter-spacing: -.03em; margin-bottom: 1.3rem;
+  opacity: 0; transform: translateY(26px);
+  animation: rt-rise 1.1s cubic-bezier(.34,1.06,.64,1) .55s forwards;
+}
+.rt-hero-sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  font-weight: 300; font-style: italic;
+  color: rgba(232,224,208,.58); margin-bottom: .9rem; display: block;
+  opacity: 0; filter: blur(3px);
+  animation: rt-blur .9s ease .95s forwards;
+}
+.rt-hero-desc {
+  font-size: .9rem; color: rgba(232,224,208,.42);
+  line-height: 2; max-width: 520px; margin: 0 auto 3rem;
+  opacity: 0; animation: rt-blur .9s ease 1.2s forwards;
+}
+.rt-hero-ctas {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: rt-up .8s ease 1.6s forwards;
+}
+@keyframes rt-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes rt-rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes rt-blur {
+  from { opacity: 0; filter: blur(3px); transform: translateY(8px); }
+  to   { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+.rt-hero-scroll {
+  position: absolute; bottom: 2.2rem; left: 50%;
+  transform: translateX(-50%); z-index: 10;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  opacity: 0; animation: rt-up .8s ease 2.1s forwards;
+}
+.rt-hero-scroll span {
+  font-family: 'Jost', sans-serif; font-size: .5rem;
+  letter-spacing: .32em; text-transform: uppercase; color: rgba(201,165,82,.32);
+}
+.rt-scroll-line {
+  width: 1px; height: 38px;
+  background: linear-gradient(to bottom, rgba(201,165,82,.38), transparent);
+  animation: rt-scroll 2.4s ease-in-out infinite;
+}
+@keyframes rt-scroll {
+  0%,100% { opacity: .4; transform: scaleY(1); transform-origin: top; }
+  50% { opacity: .8; transform: scaleY(1.18); }
+}
+
+/* ══════════════════════════════════════
+   2. MORE THAN A VENUE
+══════════════════════════════════════ */
+.rt-why {
+  background: #080805; padding: 9rem 0;
+  position: relative; overflow: hidden;
+}
+.rt-why::before {
+  content: ''; position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse, rgba(201,165,82,.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+.rt-why-inner {
+  max-width: 1300px; margin: 0 auto; padding: 0 2rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center;
+}
+.rt-why-text .rt-title { margin-bottom: 1.5rem; }
+.rt-why-text .rt-body { margin-bottom: 1rem; }
+
+/* Why blocks */
+.rt-why-blocks { display: flex; flex-direction: column; gap: 1px; background: rgba(201,165,82,.07); margin-top: 2.5rem; }
+.rt-why-block {
+  background: #0e0c09; padding: 1.8rem 2rem;
+  display: flex; gap: 1.4rem; align-items: flex-start;
+  transition: background .35s ease;
+}
+.rt-why-block:hover { background: #131109; }
+.rt-why-block-icon {
+  font-size: 1.1rem; flex-shrink: 0;
+  width: 38px; height: 38px;
+  border: 1px solid rgba(201,165,82,.15); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .35s ease;
+}
+.rt-why-block:hover .rt-why-block-icon { border-color: rgba(201,165,82,.35); }
+.rt-why-block-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.05rem; font-weight: 400; color: #e8e0d0;
+  margin-bottom: .3rem; transition: color .3s ease;
+}
+.rt-why-block:hover .rt-why-block-title { color: #fff; }
+.rt-why-block-desc {
+  font-size: .78rem; color: rgba(200,192,174,.45); line-height: 1.8;
+}
+
+/* Why images — overlapping composition */
+.rt-why-images { position: relative; height: 560px; }
+.rt-why-img-1 {
+  position: absolute; top: 0; left: 0; right: 18%; height: 380px; overflow: hidden;
+}
+.rt-why-img-2 {
+  position: absolute; bottom: 0; right: 0; left: 30%; height: 260px; overflow: hidden;
+}
+.rt-why-img-1 img, .rt-why-img-2 img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.65) saturate(.82);
+  transition: transform 1.4s cubic-bezier(.25,.46,.45,.94), filter .8s ease;
+}
+.rt-why-img-1:hover img, .rt-why-img-2:hover img { transform: scale(1.05); filter: brightness(.78) saturate(.9); }
+.rt-why-img-1::after, .rt-why-img-2::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,5,.5) 0%, transparent 55%);
+  pointer-events: none;
+}
+.rt-why-img-1::before {
+  content: ''; position: absolute; inset: 0;
+  border: 1px solid rgba(201,165,82,.12); z-index: 2; pointer-events: none;
+}
+
+/* ══════════════════════════════════════
+   3. RETREAT TYPES
+══════════════════════════════════════ */
+.rt-types {
+  background: #0a0906; padding: 8rem 0;
   position: relative;
-  overflow: hidden;
-  opacity: 0;
-  animation: rt-sub-in 1s var(--rt-ease) 1.6s forwards;
+}
+.rt-types::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,165,82,.12) 30%, rgba(201,165,82,.12) 70%, transparent);
+}
+.rt-types-header {
+  text-align: center; max-width: 580px;
+  margin: 0 auto 5rem; padding: 0 2rem;
+}
+.rt-types-header .rt-rule { margin: 1.2rem auto; }
+
+.rt-types-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: rgba(201,165,82,.07);
+  max-width: 1400px; margin: 0 auto;
+}
+
+.rt-type-card {
+  position: relative; min-height: 500px;
+  overflow: hidden; cursor: default;
+  display: flex; align-items: flex-end;
+}
+.rt-type-card img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.42) saturate(.72);
+  transition: filter 1.4s ease, transform 1.8s cubic-bezier(.25,.46,.45,.94);
+}
+.rt-type-card:hover img { filter: brightness(.58) saturate(.88); transform: scale(1.06); }
+.rt-type-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,5,.98) 0%, rgba(8,8,5,.3) 50%, transparent 80%);
+  pointer-events: none; transition: background .5s ease;
+}
+.rt-type-card:hover::after {
+  background: linear-gradient(to top, rgba(8,8,5,1) 0%, rgba(8,8,5,.55) 55%, transparent 85%);
+}
+.rt-type-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 2px; background: rgba(201,165,82,.6); z-index: 5;
+  transition: width .65s cubic-bezier(.25,.46,.45,.94);
+}
+.rt-type-card:hover::before { width: 100%; }
+
+.rt-type-text {
+  position: relative; z-index: 3; padding: 2.2rem 2.4rem; width: 100%;
+}
+.rt-type-text .rt-label { font-size: .48rem; margin-bottom: .5rem; }
+.rt-type-text h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  font-weight: 300; color: #f0e8d5; line-height: 1.08;
+  margin-bottom: .65rem; transition: color .3s ease;
+}
+.rt-type-card:hover .rt-type-text h3 { color: #fff; }
+.rt-type-text p {
+  font-size: .78rem; color: rgba(232,224,208,.42); line-height: 1.8;
+  max-height: 0; overflow: hidden; opacity: 0; transform: translateY(8px);
+  transition: max-height .55s ease, opacity .5s ease .05s, transform .5s ease .05s;
+}
+.rt-type-card:hover .rt-type-text p { max-height: 5rem; opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════
+   4. CURATED RETREAT EXPERIENCES
+══════════════════════════════════════ */
+.rt-curated {
+  background: #080805; padding: 8rem 0;
+}
+.rt-curated-header {
+  text-align: center; max-width: 600px;
+  margin: 0 auto 6rem; padding: 0 2rem;
+}
+.rt-curated-header .rt-rule { margin: 1.2rem auto; }
+
+/* Alternating immersive experience panels */
+.rt-exp-panel {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 500px; position: relative;
+  overflow: hidden; margin-bottom: 1px;
+  background: rgba(201,165,82,.04);
+}
+.rt-exp-panel.reverse { direction: rtl; }
+.rt-exp-panel.reverse > * { direction: ltr; }
+
+.rt-exp-img {
+  position: relative; overflow: hidden;
+}
+.rt-exp-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.55) saturate(.78);
+  transition: filter 1.4s ease, transform 1.8s cubic-bezier(.25,.46,.45,.94);
+}
+.rt-exp-panel:hover .rt-exp-img img { filter: brightness(.7) saturate(.9); transform: scale(1.04); }
+.rt-exp-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, transparent 60%, #080805 100%);
+  pointer-events: none;
+}
+.rt-exp-panel.reverse .rt-exp-img-overlay {
+  background: linear-gradient(to left, transparent 60%, #080805 100%);
+}
+
+.rt-exp-text {
+  background: #080805; padding: 4.5rem 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+.rt-exp-num {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 6rem; font-weight: 300;
+  color: rgba(201,165,82,.06); line-height: 1;
+  position: absolute; top: 2rem; right: 2.5rem;
+  letter-spacing: -.04em; pointer-events: none;
+  transition: color .4s ease;
+}
+.rt-exp-panel:hover .rt-exp-num { color: rgba(201,165,82,.11); }
+.rt-exp-text .rt-label { margin-bottom: .6rem; }
+.rt-exp-text h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 300; color: #f0e8d5; line-height: 1.08;
+  letter-spacing: -.015em; margin-bottom: 1rem;
+}
+.rt-exp-text p {
+  font-size: .88rem; color: rgba(232,224,208,.52); line-height: 2; margin-bottom: 1.4rem;
+}
+.rt-exp-text .rt-rule { margin: 1rem 0 1.4rem; }
+
+/* Rhythm tags */
+.rt-rhythm {
+  display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .8rem;
+}
+.rt-rhythm-tag {
+  font-family: 'Jost', sans-serif; font-size: .5rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(200,192,174,.4);
+  border: 1px solid rgba(201,165,82,.1);
+  padding: .22rem .7rem;
   transition: color .3s ease, border-color .3s ease;
 }
-/* Border draw on hover */
-.rt-cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1px solid var(--rt-gold);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .45s var(--rt-ease);
-}
-.rt-cta::after {
-  content: '→';
-  font-size: .85rem;
-  transition: transform .3s ease;
-}
-.rt-cta:hover { color: var(--rt-gold); border-color: transparent; }
-.rt-cta:hover::before { transform: scaleX(1); }
-.rt-cta:hover::after  { transform: translateX(5px); }
-.rt-cta:active { transform: translateY(1px); }
-
-/* ══════════════════════
-   CARDS SECTION
-══════════════════════ */
-.rt-section {
-  padding: 7rem 0 8rem;
-  background: var(--rt-charcoal);
-  position: relative;
+.rt-exp-panel:hover .rt-rhythm-tag {
+  color: rgba(200,192,174,.65); border-color: rgba(201,165,82,.2);
 }
 
-/* Subtle concrete-grain texture */
-.rt-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      rgba(180,172,155,.012) 0px,
-      rgba(180,172,155,.012) 1px,
-      transparent 1px,
-      transparent 60px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      rgba(180,172,155,.012) 0px,
-      rgba(180,172,155,.012) 1px,
-      transparent 1px,
-      transparent 60px
-    );
-  pointer-events: none;
-  z-index: 0;
+/* ══════════════════════════════════════
+   5. LIFESTYLE — A Different Pace
+══════════════════════════════════════ */
+.rt-lifestyle {
+  background: #0a0906; padding: 8rem 0;
+  position: relative; overflow: hidden;
 }
+.rt-lifestyle::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,165,82,.1) 30%, rgba(201,165,82,.1) 70%, transparent);
+}
+.rt-lifestyle-inner { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+.rt-lifestyle-header { max-width: 560px; margin-bottom: 5rem; }
 
-.rt-section-inner {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-/* Section header — left-aligned, architectural */
-.rt-section-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 4rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--rt-border);
-  gap: 2rem;
-}
-.rt-section-header h2 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: 400;
-  color: var(--rt-cream);
-  line-height: 1.1;
-  letter-spacing: -.01em;
-  margin: 0;
-}
-.rt-section-header p {
-  font-size: .78rem;
-  color: var(--rt-text);
-  max-width: 320px;
-  text-align: right;
-  line-height: 1.8;
-  margin: 0;
-}
-
-/* ── Grid — 3 columns, equal-height rows ── */
-.rt-grid {
+/* Lifestyle moments — horizontal cinematic grid */
+.rt-moments-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 1fr; /* equal height rows */
-  gap: 1px;
-  background: var(--rt-border);
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: 340px 280px;
+  gap: 1px; background: rgba(201,165,82,.07);
 }
-
-/* ── Card base — refined architectural panels ── */
-.venue-card {
-  position: relative;
-  overflow: hidden;
-  background: var(--rt-stone);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column; /* image + body stack, body stretches */
-  /* scroll reveal */
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity .75s var(--rt-ease),
-    transform .75s var(--rt-ease),
-    box-shadow .45s ease;
+.rt-moment {
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-end; cursor: default;
 }
-.venue-card.visible {
-  opacity: 1;
-  transform: translateY(0);
+.rt-moment:first-child { grid-row: 1 / 3; }
+.rt-moment img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.48) saturate(.75);
+  transition: filter 1.2s ease, transform 1.6s cubic-bezier(.25,.46,.45,.94);
 }
-/* Hover — clean architectural lift, gold top lip */
-.venue-card:hover {
-  z-index: 2;
-  box-shadow:
-    0 2px 0 rgba(201,165,82,.18),
-    0 20px 50px rgba(0,0,0,.65),
-    0 4px 16px rgba(0,0,0,.35);
-  transform: translateY(-4px);
-}
-
-/* Featured card — full-width, stacks like others */
-.venue-card[style*="grid-column"] {
-  grid-column: 1 / -1 !important;
-  display: flex !important;
-  flex-direction: column;
-}
-
-/* ── Image — fixed height, consistent across all cards ── */
-.vc-img {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  position: relative;
-  flex-shrink: 0;
-}
-.vc-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: brightness(.8) saturate(.72) contrast(1.03);
-  transition: transform 1.4s var(--rt-ease), filter .7s ease;
-  object-position: center 25%;
-}
-.venue-card:hover .vc-img img {
-  transform: scale(1.05);
-  filter: brightness(.9) saturate(.82) contrast(1.01);
-}
-
-/* Overlay */
-.vc-img::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to top,
-      rgba(18,16,12,.9) 0%,
-      rgba(18,16,12,.35) 35%,
-      transparent 70%);
+.rt-moment:hover img { filter: brightness(.62) saturate(.88); transform: scale(1.05); }
+.rt-moment::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,5,.92) 0%, rgba(8,8,5,.2) 45%, transparent 72%);
   pointer-events: none;
-  transition: opacity .5s ease;
 }
-.venue-card:hover .vc-img::after { opacity: .8; }
-
-/* Featured image — slightly taller but proportional */
-.venue-card[style*="grid-column"] .vc-img {
-  height: 260px;
+.rt-moment::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 2px; background: rgba(201,165,82,.5); z-index: 5;
+  transition: width .55s cubic-bezier(.25,.46,.45,.94);
 }
-.venue-card[style*="grid-column"] .vc-img img {
-  object-position: center 30%;
+.rt-moment:hover::before { width: 100%; }
+.rt-moment-text {
+  position: relative; z-index: 3; padding: 1.8rem 2rem; width: 100%;
 }
-.venue-card[style*="grid-column"] .vc-img::after {
-  background:
-    linear-gradient(to top,
-      rgba(18,16,12,.85) 0%,
-      rgba(18,16,12,.3) 40%,
-      transparent 70%);
-}
-
-/* ── Body — flex:1 so equal-height cards fill evenly ── */
-.vc-body {
-  padding: 1.5rem 1.8rem 1.8rem;
-  background: var(--rt-stone);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* top-align so short/long text stays consistent */
-  flex: 1; /* stretch to fill remaining card height */
-  position: relative;
-  border-top: 1px solid rgba(180,172,155,.05);
-}
-
-/* Animated gold top-line draw — from left */
-.vc-body::before {
-  content: '';
-  position: absolute;
-  top: -1px; left: 1.8rem;
-  width: 0;
-  height: 1px;
-  background: var(--rt-gold);
-  transition: width .55s var(--rt-ease) .04s;
-}
-.venue-card:hover .vc-body::before { width: calc(100% - 3.6rem); }
-
-/* Tag — minimal, uppercase, muted */
-.vc-tag {
-  display: block;
-  font-family: 'Jost', sans-serif;
-  font-size: .52rem;
-  font-weight: 500;
-  letter-spacing: .32em;
-  text-transform: uppercase;
-  color: rgba(180,172,155,.45);
-  margin-bottom: .7rem;
-  transition: color .3s ease;
-}
-.venue-card:hover .vc-tag { color: rgba(201,165,82,.6); }
-
-.vc-body h4 {
+.rt-moment-text .rt-label { font-size: .46rem; margin-bottom: .4rem; }
+.rt-moment-text h4 {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--rt-cream);
-  margin-bottom: 0;
-  line-height: 1.15;
-  letter-spacing: -.01em;
-  transition: color .3s ease;
+  font-size: clamp(1.3rem, 1.8vw, 1.9rem);
+  font-weight: 300; color: #f0e8d5; transition: color .3s ease;
 }
-.venue-card:hover .vc-body h4 { color: #fff; }
+.rt-moment:hover .rt-moment-text h4 { color: #fff; }
 
-.vc-divider {
-  width: 1.4rem;
-  height: 1px;
-  background: rgba(201,165,82,.2);
-  margin: .8rem 0 .75rem;
-  transition: width .45s var(--rt-ease), background .3s ease;
+/* Full-bleed quote */
+.rt-quote-strip {
+  position: relative; height: 300px; overflow: hidden; margin-top: 1px;
 }
-.venue-card:hover .vc-divider {
-  width: 2.6rem;
-  background: rgba(201,165,82,.38);
+.rt-quote-strip img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.32) saturate(.65);
+}
+.rt-quote-strip::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(8,8,5,.85) 0%, rgba(8,8,5,.2) 40%, rgba(8,8,5,.2) 60%, rgba(8,8,5,.85) 100%);
+  pointer-events: none;
+}
+.rt-quote-content {
+  position: absolute; inset: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+}
+.rt-quote-content blockquote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 300; font-style: italic; color: rgba(240,232,213,.72);
+  line-height: 1.5; max-width: 720px; padding: 0 2rem;
 }
 
-.vc-body p {
-  font-size: .82rem;
-  color: rgba(149,142,128,.75);
-  line-height: 1.92;
-  transition: color .3s ease;
+/* ══════════════════════════════════════
+   6. WHAT'S INCLUDED
+══════════════════════════════════════ */
+.rt-included {
+  background: #080805; padding: 8rem 0;
 }
-.venue-card:hover .vc-body p { color: rgba(174,168,154,.9); }
+.rt-included-header {
+  text-align: center; max-width: 560px; margin: 0 auto 5rem; padding: 0 2rem;
+}
+.rt-included-header .rt-rule { margin: 1.2rem auto; }
 
-/* Featured card body — consistent with regular cards */
-.venue-card[style*="grid-column"] .vc-body {
-  justify-content: flex-start;
-  flex: 1;
-  padding: 1.5rem 1.8rem 1.8rem;
-  border-top: 1px solid rgba(180,172,155,.05);
-  border-left: none;
+.rt-included-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(201,165,82,.07);
+  max-width: 1300px; margin: 0 auto;
 }
-.venue-card[style*="grid-column"] .vc-body h4 {
-  font-size: 1.7rem;
-  line-height: 1.1;
+.rt-included-item {
+  background: #0c0b08; padding: 2.5rem 2rem;
+  transition: background .35s ease; position: relative; overflow: hidden;
 }
-.venue-card[style*="grid-column"] .vc-divider { width: 2rem; }
-.venue-card[style*="grid-column"]:hover .vc-divider { width: 3rem; }
+.rt-included-item:hover { background: #111009; }
+.rt-included-item::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 1px; background: rgba(201,165,82,.4);
+  transition: width .55s cubic-bezier(.25,.46,.45,.94);
+}
+.rt-included-item:hover::before { width: 60%; }
+.rt-included-icon {
+  font-size: 1.3rem; display: block; margin-bottom: 1.2rem; opacity: .75;
+  transition: opacity .3s ease;
+}
+.rt-included-item:hover .rt-included-icon { opacity: 1; }
+.rt-included-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem; font-weight: 300; color: #e8e0d0;
+  margin-bottom: .5rem; transition: color .3s ease;
+}
+.rt-included-item:hover .rt-included-name { color: #fff; }
+.rt-included-desc {
+  font-size: .78rem; color: rgba(200,192,174,.42); line-height: 1.8; font-style: italic;
+}
 
-/* ══════════════════════
-   INQUIRY FORM
-══════════════════════ */
-.rt-form-section {
-  background: var(--rt-black);
-  padding: 7rem 0 8rem;
+/* ══════════════════════════════════════
+   7. TESTIMONIALS
+══════════════════════════════════════ */
+.rt-testimonials {
+  background: #0a0906; padding: 8rem 0;
   position: relative;
 }
-
-/* Fine horizontal rule above section */
-.rt-form-section::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(to right,
-    transparent,
-    var(--rt-border) 20%,
-    var(--rt-border) 80%,
-    transparent);
+.rt-testimonials::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,165,82,.12) 30%, rgba(201,165,82,.12) 70%, transparent);
 }
 
-.rt-form-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 2rem;
+/* Featured quote — large editorial */
+.rt-testimonial-featured {
+  max-width: 900px; margin: 0 auto 5rem; padding: 0 2rem; text-align: center;
 }
-
-/* Form header */
-.rt-form-header {
-  margin-bottom: 3.5rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--rt-border);
-}
-.rt-form-header .label {
-  display: block;
-  margin-bottom: .9rem;
-  font-size: .58rem;
-  letter-spacing: .38em;
-}
-.rt-form-header h2 {
+.rt-testimonial-featured .rt-label { margin-bottom: 1.5rem; }
+.rt-testimonial-quote-mark {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 400;
-  color: var(--rt-cream);
-  line-height: 1.1;
-  letter-spacing: -.01em;
-  margin-bottom: .7rem;
+  font-size: 5rem; line-height: .8; color: rgba(201,165,82,.18);
+  display: block; margin-bottom: .5rem;
 }
-.rt-form-header p {
-  font-size: .84rem;
-  color: var(--rt-text);
-  line-height: 1.8;
+.rt-testimonial-featured blockquote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-weight: 300; font-style: italic; color: #f0e8d5;
+  line-height: 1.45; letter-spacing: -.01em; margin-bottom: 1.8rem;
+}
+.rt-testimonial-attr {
+  font-family: 'Jost', sans-serif; font-size: .6rem;
+  letter-spacing: .28em; text-transform: uppercase; color: rgba(201,165,82,.45);
 }
 
-/* ── Form grid ── */
-.rt-form-grid {
+/* Smaller testimonials grid */
+.rt-testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: rgba(201,165,82,.07);
+  max-width: 1200px; margin: 0 auto;
+}
+.rt-testimonial-card {
+  background: #0e0c09; padding: 2.5rem 2.2rem;
+  position: relative; overflow: hidden; transition: background .35s ease;
+}
+.rt-testimonial-card:hover { background: #121009; }
+.rt-testimonial-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 1px; background: rgba(201,165,82,.4);
+  transition: width .5s cubic-bezier(.25,.46,.45,.94);
+}
+.rt-testimonial-card:hover::before { width: 55%; }
+.rt-testimonial-stars {
+  color: #c9a552; font-size: .75rem; letter-spacing: .15em;
+  margin-bottom: 1.2rem; display: block;
+}
+.rt-testimonial-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem; font-style: italic; font-weight: 300;
+  color: rgba(232,224,208,.7); line-height: 1.75; margin-bottom: 1.4rem;
+}
+.rt-testimonial-name {
+  font-family: 'Jost', sans-serif; font-size: .58rem;
+  letter-spacing: .2em; text-transform: uppercase; color: rgba(201,165,82,.42);
+}
+
+/* ══════════════════════════════════════
+   8. GALLERY
+══════════════════════════════════════ */
+.rt-gallery {
+  background: #080805; padding: 8rem 0;
+}
+.rt-gallery-header {
+  text-align: center; max-width: 560px; margin: 0 auto 4rem; padding: 0 2rem;
+}
+.rt-gallery-header .rt-rule { margin: 1.2rem auto; }
+.rt-gallery-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-rows: 360px 280px;
+  gap: 1px; background: rgba(201,165,82,.07);
+  max-width: 1400px; margin: 0 auto;
 }
+.rt-gallery-item {
+  position: relative; overflow: hidden;
+}
+.rt-gallery-item:first-child { grid-row: 1 / 3; }
+.rt-gallery-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.68) saturate(.82);
+  transition: transform 1.4s cubic-bezier(.25,.46,.45,.94), filter .8s ease;
+}
+.rt-gallery-item:hover img { transform: scale(1.06); filter: brightness(.82) saturate(.92); }
+.rt-gallery-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,5,.6) 0%, transparent 45%);
+  opacity: 0; transition: opacity .45s ease; pointer-events: none;
+}
+.rt-gallery-item:hover::after { opacity: 1; }
 
-.rt-form-group {
-  display: flex;
-  flex-direction: column;
-  padding: 1.4rem 0;
-  border-bottom: 1px solid var(--rt-border);
+/* ══════════════════════════════════════
+   9. PLANNING SECTION
+══════════════════════════════════════ */
+.rt-planning {
+  background: #0a0906; padding: 8rem 0;
   position: relative;
 }
-.rt-form-group:nth-child(odd)  { padding-right: 2.5rem; border-right: 1px solid var(--rt-border); }
-.rt-form-group:nth-child(even) { padding-left: 2.5rem; }
-.rt-form-group.rt-full {
-  grid-column: 1 / -1;
-  padding-right: 0;
-  padding-left: 0;
-  border-right: none;
+.rt-planning::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,165,82,.12) 30%, rgba(201,165,82,.12) 70%, transparent);
+}
+.rt-planning-inner {
+  max-width: 1300px; margin: 0 auto; padding: 0 2rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+}
+.rt-planning-text .rt-title { margin-bottom: 1.4rem; }
+.rt-planning-text .rt-body { margin-bottom: 2rem; }
+
+.rt-planning-steps {
+  display: flex; flex-direction: column; gap: 1px; background: rgba(201,165,82,.07);
+}
+.rt-planning-step {
+  background: #0e0c09; padding: 1.6rem 2rem;
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  transition: background .35s ease;
+}
+.rt-planning-step:hover { background: #131109; }
+.rt-planning-step-num {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.4rem; font-weight: 300; color: rgba(201,165,82,.35);
+  flex-shrink: 0; line-height: 1; transition: color .3s ease;
+}
+.rt-planning-step:hover .rt-planning-step-num { color: rgba(201,165,82,.6); }
+.rt-planning-step-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem; font-weight: 400; color: #e8e0d0;
+  margin-bottom: .3rem; transition: color .3s ease;
+}
+.rt-planning-step:hover .rt-planning-step-title { color: #fff; }
+.rt-planning-step-desc {
+  font-size: .76rem; color: rgba(200,192,174,.42); line-height: 1.75;
 }
 
-.rt-form-group label {
-  font-family: 'Jost', sans-serif;
-  font-size: .56rem;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-  color: rgba(201,165,82,.5);
-  margin-bottom: .65rem;
-  font-weight: 500;
+/* Planning image */
+.rt-planning-img {
+  position: relative; height: 540px; overflow: hidden;
 }
-
-.rt-form-group input,
-.rt-form-group textarea {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(180,172,155,.15);
-  color: var(--rt-cream);
-  font-family: 'Jost', sans-serif;
-  font-size: .88rem;
-  font-weight: 300;
-  padding: .55rem 0;
-  outline: none;
-  width: 100%;
-  transition: border-color .35s ease;
-  caret-color: var(--rt-gold);
+.rt-planning-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.62) saturate(.8);
+  transition: transform 1.4s cubic-bezier(.25,.46,.45,.94);
 }
-.rt-form-group input::placeholder,
-.rt-form-group textarea::placeholder {
-  color: rgba(180,172,155,.25);
-  font-size: .82rem;
-}
-.rt-form-group input:focus,
-.rt-form-group textarea:focus {
-  border-bottom-color: var(--rt-gold);
-}
-
-/* Animated underline on focus */
-.rt-form-group::after {
-  content: '';
-  position: absolute;
-  bottom: 1.4rem; left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--rt-gold);
-  transition: width .4s var(--rt-ease);
+.rt-planning-img:hover img { transform: scale(1.04); }
+.rt-planning-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 55%, rgba(8,8,5,.5) 100%);
   pointer-events: none;
 }
-.rt-form-group:focus-within::after { width: 100%; }
-.rt-form-group.rt-full:focus-within::after { width: 100%; }
-
-.rt-form-group textarea {
-  min-height: 100px;
-  resize: vertical;
+.rt-planning-img::before {
+  content: ''; position: absolute;
+  bottom: 0; right: 0; width: 48px; height: 48px;
+  border-right: 1px solid rgba(201,165,82,.3);
+  border-bottom: 1px solid rgba(201,165,82,.3);
+  z-index: 2; pointer-events: none;
 }
 
-/* ── Pill selectors for radio ── */
-.rt-pills {
-  display: flex;
-  gap: .5rem;
-  flex-wrap: wrap;
-  margin-top: .5rem;
+/* ══════════════════════════════════════
+   10. FINAL CTA
+══════════════════════════════════════ */
+.rt-final {
+  position: relative; min-height: 600px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; text-align: center;
 }
-.rt-pill {
+.rt-final-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=1600&q=85');
+  background-size: cover; background-position: center 35%;
+  filter: brightness(.28) saturate(.65); will-change: transform;
+}
+.rt-final-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(8,8,5,.4) 0%, rgba(8,8,5,.82) 100%);
+}
+.rt-final-bloom {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,140,60,.04) 0%, transparent 70%);
+  animation: rt-bloom 8s ease-in-out infinite alternate; pointer-events: none;
+}
+@keyframes rt-bloom {
+  from { opacity: .5; transform: scale(1); }
+  to   { opacity: 1; transform: scale(1.06); }
+}
+.rt-final-content {
+  position: relative; z-index: 5; max-width: 640px; padding: 0 2rem;
+}
+.rt-final-content .rt-label { margin-bottom: 1.3rem; }
+.rt-final-content h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  font-weight: 300; color: #f0e8d5;
+  line-height: 1.04; letter-spacing: -.025em; margin-bottom: 1.2rem;
+}
+.rt-final-sub {
+  font-size: .9rem; color: rgba(232,224,208,.48);
+  line-height: 2; margin-bottom: 3rem; display: block; max-width: 480px;
+  margin-left: auto; margin-right: auto;
+}
+.rt-final-ctas {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+
+/* ══════════════════════════════════════
+   INQUIRY MODAL
+══════════════════════════════════════ */
+.rt-modal-backdrop {
+  position: fixed; inset: 0; z-index: 800;
+  background: rgba(8,8,5,.88); backdrop-filter: blur(10px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .45s ease;
+  display: flex; align-items: center; justify-content: center; padding: 2rem;
+}
+.rt-modal-backdrop.open { opacity: 1; pointer-events: all; }
+.rt-modal {
+  background: #0e0c09; border: 1px solid rgba(201,165,82,.15);
+  max-width: 640px; width: 100%; max-height: 90vh; overflow-y: auto;
   position: relative;
+  transform: translateY(30px) scale(.97);
+  transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+  box-shadow: 0 40px 100px rgba(0,0,0,.7), 0 0 0 1px rgba(201,165,82,.06);
 }
-.rt-pill input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  width: 0; height: 0;
+.rt-modal-backdrop.open .rt-modal { transform: translateY(0) scale(1); }
+.rt-modal-top { padding: 2.8rem 3rem 0; position: relative; }
+.rt-modal-close {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  background: none; border: 1px solid rgba(201,165,82,.15); cursor: pointer;
+  font-family: 'Jost', sans-serif; font-size: .55rem;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(200,192,174,.4); padding: .4rem .9rem;
+  transition: color .3s ease, border-color .3s ease;
 }
-.rt-pill label {
-  display: inline-block;
-  font-family: 'Jost', sans-serif;
-  font-size: .6rem;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--rt-text);
-  border: 1px solid var(--rt-border);
-  padding: .45rem 1.1rem;
-  cursor: pointer;
-  transition: border-color .25s ease, color .25s ease, background .25s ease;
-  font-weight: 400;
-  /* reset label styles from global form */
-  margin-bottom: 0;
-  letter-spacing: .18em;
+.rt-modal-close:hover { color: rgba(200,192,174,.8); border-color: rgba(201,165,82,.3); }
+.rt-modal-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2rem; font-weight: 300; color: #e8e0d0;
+  line-height: 1.1; margin-bottom: .5rem;
 }
-.rt-pill input[type="radio"]:checked + label {
-  border-color: var(--rt-gold);
-  color: var(--rt-gold);
-  background: rgba(201,165,82,.05);
+.rt-modal-sub {
+  font-size: .78rem; color: rgba(200,192,174,.45); line-height: 1.85;
 }
-.rt-pill label:hover {
-  border-color: rgba(201,165,82,.4);
-  color: rgba(201,165,82,.7);
+.rt-modal-divider {
+  height: 1px; margin: 2rem 3rem;
+  background: linear-gradient(to right, rgba(201,165,82,.2), transparent);
 }
-
-/* ── Submit button ── */
-.rt-submit-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 2.5rem;
-  gap: 2rem;
-  flex-wrap: wrap;
+.rt-modal-form { padding: 0 3rem 3rem; }
+.rt-modal-field { margin-bottom: 1.8rem; position: relative; }
+.rt-modal-label {
+  font-family: 'Jost', sans-serif; font-size: .52rem;
+  letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(201,165,82,.48); display: block; margin-bottom: .65rem;
 }
-.rt-submit-row p {
-  font-size: .76rem;
-  color: var(--rt-text);
-  max-width: 380px;
-  line-height: 1.75;
-  margin: 0;
+.rt-modal-input, .rt-modal-select, .rt-modal-textarea {
+  width: 100%; background: transparent;
+  border: none; border-bottom: 1px solid rgba(200,192,174,.14);
+  color: #e8e0d0; font-family: 'Jost', sans-serif;
+  font-size: .88rem; font-weight: 300;
+  padding: .65rem 0; outline: none; caret-color: #c9a552;
+  transition: border-color .35s ease; -webkit-appearance: none;
 }
-
-.rt-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: .9rem;
-  font-family: 'Jost', sans-serif;
-  font-size: .62rem;
-  font-weight: 500;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--rt-black);
-  background: var(--rt-gold);
-  border: 1px solid var(--rt-gold);
-  padding: 1rem 2.4rem;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: color .3s ease, background .3s ease, transform .15s ease;
+.rt-modal-input::placeholder, .rt-modal-textarea::placeholder { color: rgba(200,192,174,.22); }
+.rt-modal-input:focus, .rt-modal-select:focus, .rt-modal-textarea:focus { border-bottom-color: #c9a552; }
+.rt-modal-select { cursor: pointer; }
+.rt-modal-select option { background: #0e0c09; }
+.rt-modal-field::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: #c9a552;
+  transition: width .4s cubic-bezier(.25,.46,.45,.94);
 }
-.rt-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--rt-cream);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .4s var(--rt-ease);
-  z-index: 0;
+.rt-modal-field:focus-within::after { width: 100%; }
+.rt-modal-textarea { min-height: 80px; resize: vertical; }
+.rt-modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
+.rt-modal-submit { width: 100%; padding: 1.1rem; margin-top: .5rem; }
+.rt-modal-confirm {
+  display: none; text-align: center; padding: 3.5rem 3rem;
+  animation: rt-up .6s ease;
 }
-.rt-btn span { position: relative; z-index: 1; }
-.rt-btn:hover::before { transform: scaleX(1); }
-.rt-btn:hover { color: var(--rt-black); }
-.rt-btn:active { transform: translateY(1px); }
-
-/* Confirmation */
-.confirmation-box {
-  background: rgba(38,52,38,.12);
-  border: 1px solid rgba(201,165,82,.2);
-  padding: 2rem;
-  text-align: center;
-  display: none;
-  margin-top: 1.5rem;
+.rt-modal-confirm.show { display: block; }
+.rt-modal-confirm-check {
+  width: 60px; height: 60px; border-radius: 50%;
+  border: 1px solid rgba(201,165,82,.3); background: rgba(201,165,82,.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin: 0 auto 2rem;
+  animation: rt-pop .6s cubic-bezier(.34,1.56,.64,1) .1s both;
 }
-.confirmation-box.show { display: block; }
-.confirmation-box h3 { color: var(--rt-gold); font-size: 1.1rem; margin-bottom: .6rem; }
-.confirmation-box p  { font-size: .84rem; color: var(--rt-text); }
-
-/* ══════════════════════
-   RESPONSIVE
-══════════════════════ */
-
-@media(max-width:900px){
-  .rt-hero { height: 65vh; min-height: 460px; padding-bottom: 3.5rem; }
-  .rt-hero-sub { max-width: 100%; }
-  .rt-hero-beam { display: none; }
-  .rt-hero-frame { inset: 1.2rem; }
-
-  .rt-grid { grid-template-columns: repeat(2, 1fr); }
-
-  .rt-form-grid { grid-template-columns: 1fr; }
-  .rt-form-group:nth-child(odd) { padding-right: 0; border-right: none; }
-  .rt-form-group:nth-child(even){ padding-left: 0; }
-  .rt-section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .rt-section-header p { text-align: left; max-width: 100%; }
+@keyframes rt-pop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.rt-modal-confirm h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.8rem; font-weight: 300; color: #e8e0d0; margin-bottom: .8rem;
+}
+.rt-modal-confirm p {
+  font-size: .82rem; color: rgba(200,192,174,.5);
+  line-height: 2; max-width: 380px; margin: 0 auto 1.2rem;
+}
+.rt-modal-confirm-note {
+  font-size: .68rem; color: rgba(201,165,82,.35); font-style: italic; letter-spacing: .06em;
 }
 
+/* ── Floating CTA ── */
+.rt-float-cta {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 500;
+  background: #c9a552; color: #080805;
+  font-family: 'Jost', sans-serif; font-size: .58rem;
+  font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  border: none; cursor: pointer; padding: 1rem 1.8rem;
+  box-shadow: 0 8px 32px rgba(201,165,82,.35);
+  display: flex; align-items: center; gap: .6rem;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .4s ease, transform .4s ease,
+              background .3s ease, box-shadow .3s ease;
+}
+.rt-float-cta.visible { opacity: 1; transform: translateY(0); }
+.rt-float-cta:hover {
+  background: #e2c97e;
+  box-shadow: 0 12px 42px rgba(201,165,82,.5);
+  transform: translateY(-3px);
+}
+.rt-float-cta-pip { display: none; }
+.rt-float-cta-text { color: #080805; }
+.rt-float-cta-arrow { color: #080805; font-size: .85rem; transition: transform .3s ease; }
+.rt-float-cta:hover .rt-float-cta-arrow { transform: translateX(3px); }
 @media(max-width:600px){
-  .rt-hero { height: 65vh; min-height: 420px; padding-bottom: 2.8rem; }
-  .rt-hero-content { padding: 0 1.4rem; }
-  .rt-hero-title { font-size: clamp(2.2rem, 7vw, 3rem); margin-bottom: 1rem; }
-  .rt-hero-sub { font-size: .83rem; margin-bottom: 1.8rem; }
-  .rt-hero-frame { display: none; }
+  .rt-float-cta { bottom: 1rem; right: 1rem; font-size: .54rem; padding: .85rem 1.4rem; }
+}
 
-  .rt-grid { grid-template-columns: 1fr; }
-  .venue-card[style*="grid-column"] { grid-column: auto !important; }
-
-  .rt-section { padding: 4rem 0 5rem; }
-  .rt-form-section { padding: 4rem 0 5rem; }
-  .rt-submit-row { flex-direction: column; align-items: flex-start; }
-  .rt-btn { width: 100%; justify-content: center; }
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:1100px){
+  .rt-why-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+  .rt-why-images { height: 340px; }
+  .rt-why-img-1 { right: 0; height: 240px; }
+  .rt-why-img-2 { display: none; }
+  .rt-types-grid { grid-template-columns: 1fr 1fr; }
+  .rt-exp-panel { grid-template-columns: 1fr; }
+  .rt-exp-panel.reverse { direction: ltr; }
+  .rt-exp-img { height: 320px; }
+  .rt-exp-img-overlay { display: none; }
+  .rt-exp-text { padding: 3rem 2.5rem; }
+  .rt-exp-num { display: none; }
+  .rt-moments-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 280px 280px 280px; }
+  .rt-moment:first-child { grid-row: auto; grid-column: 1 / -1; }
+  .rt-included-grid { grid-template-columns: 1fr 1fr; }
+  .rt-testimonials-grid { grid-template-columns: 1fr 1fr; }
+  .rt-gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 280px 280px; }
+  .rt-gallery-item:first-child { grid-row: 1; grid-column: 1 / -1; }
+  .rt-planning-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+  .rt-planning-img { height: 340px; }
+  .rt-modal-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:700px){
+  .rt-hero-content h1 { font-size: clamp(3rem, 10vw, 4.5rem); }
+  .rt-hero-ctas, .rt-final-ctas { flex-direction: column; align-items: center; }
+  .rt-types-grid { grid-template-columns: 1fr; }
+  .rt-type-card { min-height: 360px; }
+  .rt-moments-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .rt-moment { min-height: 260px; }
+  .rt-included-grid { grid-template-columns: 1fr; }
+  .rt-testimonials-grid { grid-template-columns: 1fr; }
+  .rt-gallery-grid { grid-template-columns: 1fr; }
+  .rt-gallery-item, .rt-gallery-item:first-child { grid-column: 1; grid-row: auto; height: 260px; }
+  .rt-modal-top, .rt-modal-form { padding-left: 1.8rem; padding-right: 1.8rem; }
+  .rt-modal-divider { margin: 1.5rem 1.8rem; }
+  .rt-quote-strip { height: 220px; }
 }
 </style>
 </head>
 <body>
 <div id="nav-holder"></div>
 
-<!-- ══ HERO ══════════════════════════════════ -->
+<!-- ══ 1. HERO ══ -->
 <div class="rt-hero" id="rt-hero">
   <div class="rt-hero-bg" id="rt-hero-bg"></div>
-  <div class="rt-hero-shadow"></div>
-  <div class="rt-hero-frame"></div>
-  <div class="rt-hero-beam"></div>
-
+  <div class="rt-hero-overlay"></div>
+  <div class="rt-hero-mist"></div>
   <div class="rt-hero-content">
-    <span class="rt-hero-label">Retreats</span>
-    <h1 class="rt-hero-title">Space for Teams,<br>Leaders, and Creators</h1>
-    <p class="rt-hero-sub">Elevate your next gathering in an environment designed for profound connection and unhindered focus.</p>
-    <a href="#rt-cards" class="rt-cta">
-      <span>Explore Retreats</span>
-    </a>
+    <span class="rt-label">Restoration · Connection · Clarity · Gathering</span>
+    <h1>Retreats<br>at Grotta</h1>
+    <span class="rt-hero-sub">"Designed for restoration, connection, creativity, and intentional gathering."</span>
+    <p class="rt-hero-desc">From wellness escapes to leadership retreats, Grotta offers a setting that encourages clarity, calm, and meaningful experiences.</p>
+    <div class="rt-hero-ctas">
+      <button class="rt-btn-gold" onclick="document.getElementById('rt-types-section').scrollIntoView({behavior:'smooth'})"><span>Choose a Retreat</span></button>
+      <button class="rt-btn-outline" onclick="document.getElementById('rt-included-section').scrollIntoView({behavior:'smooth'})">Customise Retreat</button>
+    </div>
+  </div>
+  <div class="rt-hero-scroll">
+    <span>Discover</span>
+    <div class="rt-scroll-line"></div>
   </div>
 </div>
 
-<!-- ══ CARDS ══════════════════════════════════ -->
-<div class="rt-section" id="rt-cards">
-  <div class="rt-section-inner">
-
-    <div class="rt-section-header fade-up">
-      <h2>Four Retreat Formats</h2>
-      <p>Designed for the demands of high-performance teams and individuals who require an environment equal to their ambition.</p>
+<!-- ══ 2. MORE THAN A VENUE ══ -->
+<div class="rt-why">
+  <div class="rt-why-inner">
+    <div class="reveal from-left">
+      <span class="rt-label">The Setting</span>
+      <h2 class="rt-title">More Than<br>a Venue</h2>
+      <div class="rt-rule"></div>
+      <p class="rt-body">Grotta is a place where the environment does half the work. The volcanic landscape, the quiet of the highlands, the way mist moves through the property at dawn — these things shift how people think, connect, and feel.</p>
+      <p class="rt-body" style="margin-top:.9rem">The best retreats happen in places that offer something beyond four walls. Grotta offers a world.</p>
+      <div class="rt-why-blocks" style="margin-top:2.5rem">
+        <div class="rt-why-block">
+          <div class="rt-why-block-icon">🌋</div>
+          <div>
+            <div class="rt-why-block-title">Volcanic Nature Immersion</div>
+            <div class="rt-why-block-desc">Ancient landscape that shifts perspective before the first session begins.</div>
+          </div>
+        </div>
+        <div class="rt-why-block">
+          <div class="rt-why-block-icon">🔇</div>
+          <div>
+            <div class="rt-why-block-title">Privacy and Calm</div>
+            <div class="rt-why-block-desc">A property designed for focus — no distraction, only the work that matters.</div>
+          </div>
+        </div>
+        <div class="rt-why-block">
+          <div class="rt-why-block-icon">🌿</div>
+          <div>
+            <div class="rt-why-block-title">Wellness Integration</div>
+            <div class="rt-why-block-desc">Sauna, pool, gardens, and movement — available alongside every gathering.</div>
+          </div>
+        </div>
+        <div class="rt-why-block">
+          <div class="rt-why-block-icon">🤝</div>
+          <div>
+            <div class="rt-why-block-title">Personalized Coordination</div>
+            <div class="rt-why-block-desc">Every retreat is shaped around the group — their rhythm, their needs, their intention.</div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="rt-grid">
-
-      <!-- Corporate Alignment -->
-      <div class="venue-card" data-delay="0">
-        <div class="vc-img">
-          <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=900&q=85" alt="Corporate Alignment">
-        </div>
-        <div class="vc-body">
-          <span class="vc-tag">Strategy</span>
-          <h4>Corporate Alignment</h4>
-          <div class="vc-divider"></div>
-          <p>Executive offsites designed to foster clarity and unified direction among leadership teams.</p>
-        </div>
+    <div class="rt-why-images reveal from-right">
+      <div class="rt-why-img-1">
+        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900&q=85" alt="Highlands" loading="lazy">
       </div>
-
-      <!-- Leadership Development -->
-      <div class="venue-card" data-delay="100">
-        <div class="vc-img">
-          <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=900&q=85" alt="Leadership Development">
-        </div>
-        <div class="vc-body">
-          <span class="vc-tag">Leadership</span>
-          <h4>Leadership Development</h4>
-          <div class="vc-divider"></div>
-          <p>Intimate spaces for visionary thinking, high-level strategy, and the sharpening of executive presence.</p>
-        </div>
+      <div class="rt-why-img-2">
+        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=900&q=85" alt="Wellness" loading="lazy">
       </div>
-
-      <!-- Creative Incubation -->
-      <div class="venue-card" data-delay="200">
-        <div class="vc-img">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&q=85" alt="Creative Incubation">
-        </div>
-        <div class="vc-body">
-          <span class="vc-tag">Creative</span>
-          <h4>Creative Incubation</h4>
-          <div class="vc-divider"></div>
-          <p>Surroundings that inspire innovation and sustained creative flow, away from habitual environments.</p>
-        </div>
-      </div>
-
-      <!-- Wellness & Renewal — featured full-width -->
-      <div class="venue-card" style="grid-column:1/3" data-delay="300">
-        <div class="vc-img">
-          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=85" alt="Wellness & Renewal">
-        </div>
-        <div class="vc-body">
-          <span class="vc-tag">Wellness</span>
-          <h4>Wellness & Renewal</h4>
-          <div class="vc-divider"></div>
-          <p>Restore balance with curated wellness programs, nature immersion, and the silence of the highland landscape.</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>
 
-<!-- ══ INQUIRY FORM ════════════════════════════ -->
-<div class="rt-form-section">
-  <div class="rt-form-inner">
-
-    <div class="rt-form-header fade-up">
-      <span class="label">Bespoke Proposals</span>
-      <h2>Inquire About a Retreat</h2>
-      <p>Provide details about your vision and our team will craft a proposal tailored to your objectives, group, and timeline.</p>
+<!-- ══ 3. RETREAT TYPES ══ -->
+<div class="rt-types" id="rt-types-section">
+  <div class="rt-types-header reveal">
+    <span class="rt-label">What We Hold Space For</span>
+    <h2 class="rt-title">Retreat Types</h2>
+    <div class="rt-rule" style="margin:1.2rem auto"></div>
+    <p class="rt-body" style="max-width:440px;margin:0 auto">Each gathering has its own character. Grotta adapts to hold the full range.</p>
+  </div>
+  <div class="rt-types-grid">
+    <div class="rt-type-card reveal d1">
+      <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=900&q=85" alt="Wellness" loading="lazy">
+      <div class="rt-type-text">
+        <span class="rt-label">Restoration</span>
+        <h3>Wellness Retreats</h3>
+        <p>Structured around stillness. Sauna rituals, guided movement, shared meals, and the slow restoration that only altitude and nature can offer.</p>
+      </div>
     </div>
-
-    <div class="rt-form-grid fade-up">
-
-      <div class="rt-form-group">
-        <label>Full Name</label>
-        <input type="text" placeholder="Your full name">
+    <div class="rt-type-card reveal d2">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&q=85" alt="Leadership" loading="lazy">
+      <div class="rt-type-text">
+        <span class="rt-label">Clarity</span>
+        <h3>Leadership Retreats</h3>
+        <p>The volcanic highlands create the right conditions for honest conversation, strategic thinking, and the kind of clarity that doesn't come from conference rooms.</p>
       </div>
-
-      <div class="rt-form-group">
-        <label>Company / Organization</label>
-        <input type="text" placeholder="Company name">
+    </div>
+    <div class="rt-type-card reveal d3">
+      <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=900&q=85" alt="Creative" loading="lazy">
+      <div class="rt-type-text">
+        <span class="rt-label">Creativity</span>
+        <h3>Creative Retreats</h3>
+        <p>A place where ideas arrive differently. The landscape disrupts the ordinary and creates space for creative work that matters.</p>
       </div>
-
-      <div class="rt-form-group">
-        <label>Email</label>
-        <input type="email" placeholder="your@email.com">
+    </div>
+    <div class="rt-type-card reveal d1">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85" alt="Corporate" loading="lazy">
+      <div class="rt-type-text">
+        <span class="rt-label">Intentional</span>
+        <h3>Corporate Retreats</h3>
+        <p>Not a conference. A carefully shaped gathering where teams reconnect, align, and return with renewed sense of direction.</p>
       </div>
-
-      <div class="rt-form-group">
-        <label>Phone</label>
-        <input type="tel" placeholder="+250 ...">
+    </div>
+    <div class="rt-type-card reveal d2">
+      <img src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=900&q=85" alt="Couples" loading="lazy">
+      <div class="rt-type-text">
+        <span class="rt-label">Connection</span>
+        <h3>Couples Retreats</h3>
+        <p>Evenings by the fire. Mornings in the gardens. A setting designed for the kind of presence that everyday life rarely allows.</p>
       </div>
-
-      <div class="rt-form-group">
-        <label>Group Size</label>
-        <input type="text" placeholder="e.g. 20">
+    </div>
+    <div class="rt-type-card reveal d3">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=85" alt="Private Group" loading="lazy">
+      <div class="rt-type-text">
+        <span class="rt-label">Community</span>
+        <h3>Private Group Escapes</h3>
+        <p>A place entirely your own. Friends, family, or a chosen community — gathered in the volcanic highlands with nothing to do but be together.</p>
       </div>
+    </div>
+  </div>
+</div>
 
-      <div class="rt-form-group">
-        <label>Preferred Dates</label>
-        <input type="text" placeholder="Month / Year">
+<!-- ══ 4. CURATED RETREAT EXPERIENCES ══ -->
+<div class="rt-curated">
+  <div class="rt-curated-header reveal">
+    <span class="rt-label">Curated Atmospheres</span>
+    <h2 class="rt-title">Retreat<br>Experiences</h2>
+    <div class="rt-rule" style="margin:1.2rem auto"></div>
+    <p class="rt-body">Not packages. Moods — shaped around restoration, connection, creativity, and slow living.</p>
+  </div>
+
+  <!-- Panel 1: Wellness Escape -->
+  <div class="rt-exp-panel reveal">
+    <div class="rt-exp-img">
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=85" alt="Wellness Escape" loading="lazy">
+      <div class="rt-exp-img-overlay"></div>
+    </div>
+    <div class="rt-exp-text">
+      <span class="rt-exp-num">01</span>
+      <span class="rt-label">Deep Restoration</span>
+      <h3>Wellness Escape</h3>
+      <div class="rt-rule"></div>
+      <p>Three days structured around the body and the breath. Each morning begins with movement at altitude. Afternoons move between the sauna, the jacuzzi, and guided stillness. Evenings are slow, warm, and shared. The landscape does the rest.</p>
+      <div class="rt-rhythm">
+        <span class="rt-rhythm-tag">Morning Ritual</span>
+        <span class="rt-rhythm-tag">Sauna</span>
+        <span class="rt-rhythm-tag">Guided Movement</span>
+        <span class="rt-rhythm-tag">Shared Dining</span>
+        <span class="rt-rhythm-tag">Evening Stillness</span>
       </div>
+    </div>
+  </div>
 
-      <!-- Retreat Focus — pill selectors -->
-      <div class="rt-form-group rt-full">
-        <label>Retreat Focus</label>
-        <div class="rt-pills">
-          <div class="rt-pill">
-            <input type="radio" name="focus" id="r-corporate" value="corporate" checked>
-            <label for="r-corporate">Corporate</label>
+  <!-- Panel 2: Creative Residency -->
+  <div class="rt-exp-panel reverse reveal">
+    <div class="rt-exp-img">
+      <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1200&q=85" alt="Creative Residency" loading="lazy">
+      <div class="rt-exp-img-overlay"></div>
+    </div>
+    <div class="rt-exp-text">
+      <span class="rt-exp-num">02</span>
+      <span class="rt-label">Creative Work</span>
+      <h3>Creative Residency</h3>
+      <div class="rt-rule"></div>
+      <p>Five days of uninterrupted creative time in the volcanic highlands. Morning sessions in curated work spaces with highland views. Afternoons free for exploration, reflection, and nature immersion. The distance from ordinary life creates the conditions for extraordinary work.</p>
+      <div class="rt-rhythm">
+        <span class="rt-rhythm-tag">Morning Sessions</span>
+        <span class="rt-rhythm-tag">Nature Walks</span>
+        <span class="rt-rhythm-tag">Cave Exploration</span>
+        <span class="rt-rhythm-tag">Evening Critique</span>
+        <span class="rt-rhythm-tag">Community Dinner</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel 3: Leadership Retreat -->
+  <div class="rt-exp-panel reveal">
+    <div class="rt-exp-img">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=85" alt="Leadership Retreat" loading="lazy">
+      <div class="rt-exp-img-overlay"></div>
+    </div>
+    <div class="rt-exp-text">
+      <span class="rt-exp-num">03</span>
+      <span class="rt-label">Strategic Clarity</span>
+      <h3>Leadership Retreat</h3>
+      <div class="rt-rule"></div>
+      <p>Two to four days designed for teams who need to think clearly together. Morning strategy sessions with highland views. Afternoon reflection and nature immersion to let ideas settle. Fireside evenings that create the conditions for real conversation. The kind that changes things.</p>
+      <div class="rt-rhythm">
+        <span class="rt-rhythm-tag">Morning Strategy</span>
+        <span class="rt-rhythm-tag">Nature Reflection</span>
+        <span class="rt-rhythm-tag">Team Wellness</span>
+        <span class="rt-rhythm-tag">Fireside Dialogue</span>
+        <span class="rt-rhythm-tag">Shared Meals</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel 4: Slow Living Weekend -->
+  <div class="rt-exp-panel reverse reveal">
+    <div class="rt-exp-img">
+      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=85" alt="Slow Living" loading="lazy">
+      <div class="rt-exp-img-overlay"></div>
+    </div>
+    <div class="rt-exp-text">
+      <span class="rt-exp-num">04</span>
+      <span class="rt-label">Unhurried Living</span>
+      <h3>Slow Living Weekend</h3>
+      <div class="rt-rule"></div>
+      <p>A weekend with no agenda beyond presence. Café mornings with no meetings to attend. Garden walks with no destination. Pool afternoons with no notifications. The firepit in the evening with people who matter. This is the retreat for those who need to remember what rest actually feels like.</p>
+      <div class="rt-rhythm">
+        <span class="rt-rhythm-tag">Café Mornings</span>
+        <span class="rt-rhythm-tag">Garden Walks</span>
+        <span class="rt-rhythm-tag">Pool Afternoons</span>
+        <span class="rt-rhythm-tag">No Agenda</span>
+        <span class="rt-rhythm-tag">Firepit Evenings</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel 5: Highlands Reflection -->
+  <div class="rt-exp-panel reveal">
+    <div class="rt-exp-img">
+      <img src="https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=1200&q=85" alt="Highlands" loading="lazy">
+      <div class="rt-exp-img-overlay"></div>
+    </div>
+    <div class="rt-exp-text">
+      <span class="rt-exp-num">05</span>
+      <span class="rt-label">Immersion</span>
+      <h3>Highlands Reflection</h3>
+      <div class="rt-rule"></div>
+      <p>A journey through the volcanic landscape — not just around the property but into the caves, along the highland paths, and toward the volcano viewpoints at first light. A retreat for those who find clarity through movement, altitude, and the particular silence of ancient places.</p>
+      <div class="rt-rhythm">
+        <span class="rt-rhythm-tag">Sunrise Treks</span>
+        <span class="rt-rhythm-tag">Cave Journeys</span>
+        <span class="rt-rhythm-tag">Highland Walks</span>
+        <span class="rt-rhythm-tag">Volcano Views</span>
+        <span class="rt-rhythm-tag">Stillness Practice</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 5. LIFESTYLE ══ -->
+<div class="rt-lifestyle">
+  <div class="rt-lifestyle-inner">
+    <div class="rt-lifestyle-header reveal">
+      <span class="rt-label">The Atmosphere</span>
+      <h2 class="rt-title">A Different Pace<br>of Gathering</h2>
+      <div class="rt-rule"></div>
+      <p class="rt-body" style="max-width:480px">The retreat begins before the first session. It begins when people arrive and the landscape takes hold. When the air is different. When the pace changes. Grotta provides the conditions — the rest happens naturally.</p>
+    </div>
+    <div class="rt-moments-grid reveal">
+      <div class="rt-moment">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85" alt="Volcano dawn" loading="lazy">
+        <div class="rt-moment-text">
+          <span class="rt-label">Dawn</span>
+          <h4>Volcano at First Light</h4>
+        </div>
+      </div>
+      <div class="rt-moment">
+        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=900&q=85" alt="Wellness morning" loading="lazy">
+        <div class="rt-moment-text">
+          <span class="rt-label">Morning</span>
+          <h4>Wellness Ritual</h4>
+        </div>
+      </div>
+      <div class="rt-moment">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85" alt="Shared dining" loading="lazy">
+        <div class="rt-moment-text">
+          <span class="rt-label">Midday</span>
+          <h4>Shared Dining</h4>
+        </div>
+      </div>
+      <div class="rt-moment">
+        <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=900&q=85" alt="Cave" loading="lazy">
+        <div class="rt-moment-text">
+          <span class="rt-label">Afternoon</span>
+          <h4>Cave Exploration</h4>
+        </div>
+      </div>
+      <div class="rt-moment">
+        <img src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=900&q=85" alt="Firepit evening" loading="lazy">
+        <div class="rt-moment-text">
+          <span class="rt-label">Evening</span>
+          <h4>Fireside Gathering</h4>
+        </div>
+      </div>
+    </div>
+    <div class="rt-quote-strip reveal" style="margin-top:1px">
+      <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1600&q=85" alt="Highland atmosphere" loading="lazy">
+      <div class="rt-quote-content">
+        <blockquote>"Grotta changed the rhythm of our retreat entirely. People slowed down, connected more deeply, and left transformed."</blockquote>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 6. WHAT'S INCLUDED ══ -->
+<div class="rt-included" id="rt-included-section">
+  <div class="rt-included-header reveal">
+    <span class="rt-label">Retreat Support</span>
+    <h2 class="rt-title">What Every<br>Retreat Includes</h2>
+    <div class="rt-rule" style="margin:1.2rem auto"></div>
+    <p class="rt-body" style="max-width:440px;margin:0 auto">Every gathering at Grotta is supported by the full environment of the property.</p>
+  </div>
+  <div class="rt-included-grid reveal">
+    <div class="rt-included-item">
+      <span class="rt-included-icon">🛏</span>
+      <div class="rt-included-name">Accommodation</div>
+      <p class="rt-included-desc">"Rooms designed for deep rest. Highland air, stone finishes, and views that change the morning."</p>
+    </div>
+    <div class="rt-included-item">
+      <span class="rt-included-icon">🌿</span>
+      <div class="rt-included-name">Wellness Access</div>
+      <p class="rt-included-desc">"Sauna, pool, jacuzzi, and gym — available throughout the retreat for individual restoration."</p>
+    </div>
+    <div class="rt-included-item">
+      <span class="rt-included-icon">🍽</span>
+      <div class="rt-included-name">Dining Experiences</div>
+      <p class="rt-included-desc">"Highland ingredients, prepared with care. Meals that become part of the retreat experience itself."</p>
+    </div>
+    <div class="rt-included-item">
+      <span class="rt-included-icon">🪑</span>
+      <div class="rt-included-name">Gathering Spaces</div>
+      <p class="rt-included-desc">"Indoor and outdoor spaces configured for the needs of your specific gathering."</p>
+    </div>
+    <div class="rt-included-item">
+      <span class="rt-included-icon">🤝</span>
+      <div class="rt-included-name">Private Coordination</div>
+      <p class="rt-included-desc">"A dedicated team that ensures every detail is handled before you arrive."</p>
+    </div>
+    <div class="rt-included-item">
+      <span class="rt-included-icon">🏔</span>
+      <div class="rt-included-name">Guided Experiences</div>
+      <p class="rt-included-desc">"Cave walks, highland treks, farm mornings — curated around the rhythm of your retreat."</p>
+    </div>
+    <div class="rt-included-item">
+      <span class="rt-included-icon">🌋</span>
+      <div class="rt-included-name">Nature Integration</div>
+      <p class="rt-included-desc">"The volcanic landscape is not a backdrop. It is part of the retreat programme itself."</p>
+    </div>
+    <div class="rt-included-item">
+      <span class="rt-included-icon">📋</span>
+      <div class="rt-included-name">Flexible Planning</div>
+      <p class="rt-included-desc">"No rigid template. Every retreat is shaped around your group, your goals, your pace."</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 7. TESTIMONIALS ══ -->
+<div class="rt-testimonials">
+  <div class="rt-testimonial-featured reveal">
+    <span class="rt-label">Gatherings That Stay With People</span>
+    <span class="rt-testimonial-quote-mark">"</span>
+    <blockquote>Grotta changed the rhythm of our retreat entirely. People slowed down, connected more deeply, and left transformed. The landscape held something none of us expected.</blockquote>
+    <span class="rt-testimonial-attr">— Sarah K. · Leadership Retreat · 2024</span>
+  </div>
+  <div class="rt-testimonials-grid reveal">
+    <div class="rt-testimonial-card">
+      <span class="rt-testimonial-stars">★★★★★</span>
+      <p class="rt-testimonial-text">"The creative residency at Grotta produced more meaningful work in five days than months of studio time back home. Something about the altitude and the silence."</p>
+      <span class="rt-testimonial-name">Marcus A. · Creative Residency · 2024</span>
+    </div>
+    <div class="rt-testimonial-card">
+      <span class="rt-testimonial-stars">★★★★★</span>
+      <p class="rt-testimonial-text">"We came as a team that needed to reconnect. We left as people who genuinely trusted each other again. Grotta created the conditions. The conversations happened naturally."</p>
+      <span class="rt-testimonial-name">Yuki M. · Corporate Retreat · 2023</span>
+    </div>
+    <div class="rt-testimonial-card">
+      <span class="rt-testimonial-stars">★★★★★</span>
+      <p class="rt-testimonial-text">"Three days of the slow living retreat and I genuinely could not remember the last time I had felt that present. That calm. The volcanic landscape does something to time."</p>
+      <span class="rt-testimonial-name">Amara L. · Slow Living Weekend · 2024</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 8. GALLERY ══ -->
+<div class="rt-gallery">
+  <div class="rt-gallery-header reveal">
+    <span class="rt-label">The Visual Story</span>
+    <h2 class="rt-title">Retreats at<br>Grotta</h2>
+    <div class="rt-rule" style="margin:1.2rem auto"></div>
+  </div>
+  <div class="rt-gallery-grid reveal">
+    <div class="rt-gallery-item">
+      <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200&q=85" alt="Landscape" loading="lazy">
+    </div>
+    <div class="rt-gallery-item">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85" alt="Dining" loading="lazy">
+    </div>
+    <div class="rt-gallery-item">
+      <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=900&q=85" alt="Wellness" loading="lazy">
+    </div>
+    <div class="rt-gallery-item">
+      <img src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=900&q=85" alt="Firepit" loading="lazy">
+    </div>
+    <div class="rt-gallery-item">
+      <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=900&q=85" alt="Caves" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- ══ 9. PLANNING ══ -->
+<div class="rt-planning">
+  <div class="rt-planning-inner">
+    <div class="reveal from-left">
+      <span class="rt-label">The Process</span>
+      <h2 class="rt-title">Designed Around<br>Your Gathering</h2>
+      <div class="rt-rule"></div>
+      <p class="rt-body">Every retreat at Grotta begins with a conversation. Our team works with you to understand the purpose of your gathering and shape an experience built entirely around it.</p>
+      <p class="rt-body" style="margin-top:.9rem">No template. No standard package. Just a setting and a team committed to making your retreat extraordinary.</p>
+      <div class="rt-planning-steps" style="margin-top:2.5rem">
+        <div class="rt-planning-step">
+          <span class="rt-planning-step-num">01</span>
+          <div>
+            <div class="rt-planning-step-title">Initial Conversation</div>
+            <div class="rt-planning-step-desc">We begin by understanding your group, your intention, and the experience you want to create.</div>
           </div>
-          <div class="rt-pill">
-            <input type="radio" name="focus" id="r-leadership" value="leadership">
-            <label for="r-leadership">Leadership</label>
+        </div>
+        <div class="rt-planning-step">
+          <span class="rt-planning-step-num">02</span>
+          <div>
+            <div class="rt-planning-step-title">Retreat Design</div>
+            <div class="rt-planning-step-desc">Our team shapes a retreat rhythm — spaces, meals, experiences — tailored to your gathering.</div>
           </div>
-          <div class="rt-pill">
-            <input type="radio" name="focus" id="r-creative" value="creative">
-            <label for="r-creative">Creative</label>
+        </div>
+        <div class="rt-planning-step">
+          <span class="rt-planning-step-num">03</span>
+          <div>
+            <div class="rt-planning-step-title">Detail Coordination</div>
+            <div class="rt-planning-step-desc">Every element confirmed before you arrive. You carry only the intention to be present.</div>
           </div>
-          <div class="rt-pill">
-            <input type="radio" name="focus" id="r-wellness" value="wellness">
-            <label for="r-wellness">Wellness</label>
+        </div>
+        <div class="rt-planning-step">
+          <span class="rt-planning-step-num">04</span>
+          <div>
+            <div class="rt-planning-step-title">Your Retreat Begins</div>
+            <div class="rt-planning-step-desc">The landscape takes hold. The gathering unfolds. Everything is ready. The rest is yours.</div>
           </div>
         </div>
       </div>
-
-      <!-- Additional requirements -->
-      <div class="rt-form-group rt-full">
-        <label>Additional Requirements</label>
-        <textarea placeholder="Tell us about your vision, requirements, or any special requests..."></textarea>
+      <div style="margin-top:2.5rem">
+        <button class="rt-btn-gold" onclick="openModal()"><span>Begin Planning</span></button>
       </div>
-
-    </div><!-- /.rt-form-grid -->
-
-    <div class="rt-submit-row fade-up">
-      <p>Our retreats team reviews every inquiry personally and responds within 48 hours with a bespoke proposal.</p>
-      <button class="rt-btn" onclick="submitRetreat(this)">
-        <span>Submit Inquiry →</span>
-      </button>
     </div>
-
-    <div class="confirmation-box" id="retreat-confirm">
-      <h3>✓ Inquiry Received</h3>
-      <p>Thank you. Our retreats team will review your submission and reach out within 48 hours with a bespoke proposal.</p>
+    <div class="rt-planning-img reveal from-right">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=85" alt="Highland planning" loading="lazy">
     </div>
-
   </div>
 </div>
+
+<!-- ══ 10. FINAL CTA ══ -->
+<div class="rt-final">
+  <div class="rt-final-bg" id="rt-final-bg"></div>
+  <div class="rt-final-overlay"></div>
+  <div class="rt-final-bloom"></div>
+  <div class="rt-final-content reveal">
+    <span class="rt-label">The Invitation</span>
+    <h2>Begin Planning<br>Your Retreat</h2>
+    <div style="display:flex;align-items:center;gap:1.2rem;justify-content:center;max-width:220px;margin:1.8rem auto 1rem">
+      <div style="flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.22))"></div>
+      <span style="font-size:.6rem;color:rgba(201,165,82,.38)">✦</span>
+      <div style="flex:1;height:1px;background:linear-gradient(to left,transparent,rgba(201,165,82,.22))"></div>
+    </div>
+    <span class="rt-final-sub">Whether you're creating space for restoration, leadership, creativity, or connection, Grotta offers a setting designed to bring people closer together.</span>
+    <div class="rt-final-ctas">
+      <button class="rt-btn-gold" onclick="openModal()"><span>Plan a Retreat</span></button>
+      <button class="rt-btn-outline" onclick="closeModal()">Schedule a Consultation</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ INQUIRY MODAL ══ -->
+<div class="rt-modal-backdrop" id="rt-modal-backdrop" onclick="handleBackdropClick(event)">
+  <div class="rt-modal" id="rt-modal">
+    <div id="rt-form-content">
+      <div class="rt-modal-top">
+        <button class="rt-modal-close" onclick="closeModal()">Close ✕</button>
+        <span class="rt-label">Retreat Inquiry</span>
+        <h2 class="rt-modal-title">Begin Shaping<br>Your Retreat</h2>
+        <p class="rt-modal-sub">Our team will be in touch to begin a conversation about your gathering at Grotta.</p>
+      </div>
+      <div class="rt-modal-divider"></div>
+      <div class="rt-modal-form">
+        <div class="rt-modal-grid">
+          <div class="rt-modal-field">
+            <label class="rt-modal-label">Full Name</label>
+            <input class="rt-modal-input" type="text" id="rt-name" placeholder="Your name">
+          </div>
+          <div class="rt-modal-field">
+            <label class="rt-modal-label">Email</label>
+            <input class="rt-modal-input" type="email" id="rt-email" placeholder="your@email.com">
+          </div>
+          <div class="rt-modal-field">
+            <label class="rt-modal-label">Phone</label>
+            <input class="rt-modal-input" type="tel" id="rt-phone" placeholder="+250 ...">
+          </div>
+          <div class="rt-modal-field">
+            <label class="rt-modal-label">Estimated Guests</label>
+            <input class="rt-modal-input" type="text" id="rt-guests" placeholder="e.g. 12">
+          </div>
+        </div>
+        <div class="rt-modal-field">
+          <label class="rt-modal-label">Retreat Type</label>
+          <select class="rt-modal-select" id="rt-type">
+            <option value="">Select a retreat type...</option>
+            <option>Wellness Retreat</option>
+            <option>Leadership Retreat</option>
+            <option>Creative Retreat</option>
+            <option>Corporate Retreat</option>
+            <option>Couples Retreat</option>
+            <option>Private Group Escape</option>
+            <option>Slow Living Weekend</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="rt-modal-field">
+          <label class="rt-modal-label">Preferred Dates</label>
+          <input class="rt-modal-input" type="text" id="rt-dates" placeholder="Month / Year or date range">
+        </div>
+        <div class="rt-modal-field">
+          <label class="rt-modal-label">Tell Us About Your Gathering</label>
+          <textarea class="rt-modal-textarea" id="rt-notes" placeholder="What is the intention of your retreat? What would you like people to feel, experience, or take away..."></textarea>
+        </div>
+        <button class="rt-btn-gold rt-modal-submit" onclick="submitInquiry()">
+          <span>Send Inquiry</span>
+        </button>
+      </div>
+    </div>
+    <div class="rt-modal-confirm" id="rt-confirm">
+      <div class="rt-modal-confirm-check">✦</div>
+      <h3>Your inquiry has been received.</h3>
+      <p>Our team will contact you shortly to begin shaping your retreat experience at Grotta.</p>
+      <p class="rt-modal-confirm-note">Each retreat is curated with intention and personalized around your gathering.</p>
+    </div>
+  </div>
+</div>
+
+<button class="rt-float-cta" id="rt-float-cta" onclick="openModal()">
+  <span class="rt-float-cta-text">Begin Planning</span>
+  <span class="rt-float-cta-arrow">→</span>
+</button>
 
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 <script>
-// ── Form submit ──────────────────────────────────────────────
-function submitRetreat(btn) {
-  btn.style.display = 'none';
-  document.getElementById('retreat-confirm').classList.add('show');
+// ── Floating CTA — always visible after scroll threshold ──────
+const floatCta = document.getElementById('rt-float-cta');
+window.addEventListener('scroll', () => {
+  floatCta.classList.toggle('visible', window.scrollY > 500);
+}, { passive: true });
+// ── Modal ─────────────────────────────────────────────────────
+function openModal() {
+  document.getElementById('rt-modal-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('rt-modal-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleBackdropClick(e) {
+  if (e.target === document.getElementById('rt-modal-backdrop')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function submitInquiry() {  
+  const name  = document.getElementById('rt-name').value.trim();
+  const email = document.getElementById('rt-email').value.trim();
+  if (!name || !email) {
+    document.getElementById('rt-email').style.borderBottomColor = 'rgba(201,80,60,.5)';
+    setTimeout(() => document.getElementById('rt-email').style.borderBottomColor = '', 1400);
+    return;
+  }
+  document.getElementById('rt-form-content').style.display = 'none';
+  document.getElementById('rt-confirm').classList.add('show');
 }
 
-// ── Hero parallax ────────────────────────────────────────────
-const heroBg   = document.getElementById('rt-hero-bg');
-const heroEl   = document.getElementById('rt-hero');
-
-function rtParallax() {
-  if (!heroBg) return;
-  const scrollY  = window.scrollY;
-  const heroH    = heroEl.offsetHeight;
-  const progress = Math.min(scrollY / heroH, 1);
-
-  // Background drifts slower than scroll
-  heroBg.style.transform = `scale(1) translateY(${scrollY * 0.28}px)`;
-}
-window.addEventListener('scroll', rtParallax, { passive: true });
-rtParallax();
-
-// ── Cards scroll reveal — left-to-right stagger ──────────────
-const rtCards = document.querySelectorAll('.venue-card');
-const rtObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const delay = parseInt(entry.target.dataset.delay || 0);
-      setTimeout(() => entry.target.classList.add('visible'), delay);
-      rtObs.unobserve(entry.target);
-    }
+// ── Scroll reveal ─────────────────────────────────────────────
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-rtCards.forEach(card => rtObs.observe(card));
+// ── Parallax ──────────────────────────────────────────────────
+const heroBg  = document.getElementById('rt-hero-bg');
+const finalBg = document.getElementById('rt-final-bg');
+const finalEl = document.querySelector('.rt-final');
+
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (heroBg) heroBg.style.transform = `translateY(${y * 0.28}px)`;
+  if (finalBg && finalEl) {
+    const r = finalEl.getBoundingClientRect();
+    finalBg.style.transform = `translateY(${(window.innerHeight/2 - r.top - r.height/2) * .15}px)`;
+  }
+}, { passive: true });
 </script>
 </body>
 </html>

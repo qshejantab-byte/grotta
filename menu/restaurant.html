@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Menu — Grotta</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#080805;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+.mn-hero{position:relative;height:80vh;min-height:520px;display:flex;align-items:flex-end;overflow:hidden}
+.mn-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85');background-size:cover;background-position:center 30%;filter:brightness(.5) saturate(.9)}
+.mn-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,5,.1) 0%,rgba(8,8,5,.6) 60%,rgba(8,8,5,1) 100%)}
+.mn-hero-content{position:relative;z-index:2;padding:0 6vw 5rem;max-width:680px}
+.mn-label{font-family:'Jost',sans-serif;font-size:.58rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#c9a552;margin-bottom:1rem;display:block}
+.mn-hero-content h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;color:#e8e0d0;margin-bottom:1rem}
+.mn-hero-content p{font-size:.95rem;font-weight:300;line-height:1.85;color:rgba(232,224,208,.55);max-width:440px}
+.mn-body{max-width:860px;margin:0 auto;padding:5rem 2rem 8rem}
+.mn-intro{margin-bottom:4.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,165,82,.1)}
+.mn-intro p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem;font-weight:300;line-height:1.75;color:rgba(232,224,208,.75);font-style:italic}
+.mn-section{margin-bottom:4rem}
+.mn-section-title{font-family:'Jost',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:#c9a552;margin-bottom:2rem;display:flex;align-items:center;gap:1.4rem}
+.mn-section-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,165,82,.25),transparent)}
+.mn-item{display:grid;grid-template-columns:1fr auto;gap:2rem;padding:1.3rem 0;border-bottom:1px solid rgba(201,165,82,.06);align-items:start}
+.mn-item:last-child{border-bottom:none}
+.mn-item-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;font-weight:400;color:#e8e0d0;margin-bottom:.35rem;line-height:1.2}
+.mn-item-desc{font-size:.8rem;color:rgba(232,224,208,.5);line-height:1.75;font-weight:300}
+.mn-item-note{font-size:.68rem;color:#c9a552;font-style:italic;margin-top:.3rem;opacity:.7}
+.mn-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;color:#c9a552;white-space:nowrap;padding-top:.15rem}
+.mn-cta-section{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(201,165,82,.1)}
+.mn-cta-section p{font-size:.88rem;color:rgba(232,224,208,.5);margin-bottom:2rem;line-height:1.85}
+.mn-back{display:inline-flex;align-items:center;gap:.5rem;font-family:'Jost',sans-serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.6);text-decoration:none;margin-bottom:3rem;transition:color .3s ease,gap .3s ease}
+.mn-back:hover{color:#c9a552;gap:.9rem}
+.mn-back svg{width:14px;height:14px;transition:transform .3s ease}
+.mn-back:hover svg{transform:translateX(-3px)}
+</style>
+</head>
+<body>
+<div id="nav-holder"></div>
+<div class="mn-hero">
+  <div class="mn-hero-bg"></div>
+  <div class="mn-hero-overlay"></div>
+  <div class="mn-hero-content">
+    <span class="mn-label">Fine Dining · Dinner from 6PM</span>
+    <h1>The Restaurant</h1>
+    <p>Where the highland landscape meets the plate — a tasting experience composed with precision and reverence.</p>
+  </div>
+</div>
+<div class="mn-body">
+  <a href="../dining.html" class="mn-back">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
+    Return to Dining
+  </a>
+  <div class="mn-intro">
+    <p>"Every dish at The Restaurant begins with a question: what does this landscape taste like today? The answer changes with the season, with the harvest, with the quiet decisions made each morning in the kitchen."</p>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Starters</div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Volcanic Soil Beet</div><div class="mn-item-desc">Slow-roasted highland beet, smoked goat curd, wild herbs, charred lemon</div><div class="mn-item-note">From our partner farms, Musanze</div></div>
+      <div class="mn-price">8,500 RWF</div>
+    </div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Stone-Pressed Tuna</div><div class="mn-item-desc">Cold-pressed tuna, cucumber water, yuzu, toasted sesame, micro sorrel</div></div>
+      <div class="mn-price">12,000 RWF</div>
+    </div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Cave-Aged Cheese Selection</div><div class="mn-item-desc">Three artisanal cheeses aged within the Grotta cave system, honeycomb, seeded crackers</div><div class="mn-item-note">Selection changes weekly</div></div>
+      <div class="mn-price">14,500 RWF</div>
+    </div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Mushroom Duxelles Tart</div><div class="mn-item-desc">Highland mushrooms, butter pastry, truffle cream, chive oil</div></div>
+      <div class="mn-price">9,000 RWF</div>
+    </div>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Main Courses</div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Highland Grass-Fed Beef</div><div class="mn-item-desc">72-hour short rib, roasted marrow bone, wild garlic purée, jus de terroir</div><div class="mn-item-note">Musanze Valley raised</div></div>
+      <div class="mn-price">38,000 RWF</div>
+    </div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Lake Kivu Tilapia</div><div class="mn-item-desc">Pan-seared tilapia, saffron butter, compressed fennel, crispy capers, lemon velouté</div></div>
+      <div class="mn-price">32,000 RWF</div>
+    </div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Roasted Root Garden</div><div class="mn-item-desc">Seasonal vegetables slow-cooked in clay, hazelnut cream, herb oil, puffed grain</div><div class="mn-item-note">Entirely plant-based</div></div>
+      <div class="mn-price">28,000 RWF</div>
+    </div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Duck Confit en Croûte</div><div class="mn-item-desc">Slow-confit duck leg, flaky pastry crust, cherry gastrique, smoked potato</div></div>
+      <div class="mn-price">35,000 RWF</div>
+    </div>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Desserts</div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Dark Chocolate & Ash</div><div class="mn-item-desc">Volcanic ash chocolate sphere, salted caramel, miso ice cream</div></div>
+      <div class="mn-price">9,500 RWF</div>
+    </div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Passion Fruit Pavlova</div><div class="mn-item-desc">Crisp meringue, highland passion fruit, vanilla cream, edible flowers</div></div>
+      <div class="mn-price">8,000 RWF</div>
+    </div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Cheese Trolley</div><div class="mn-item-desc">A selection of cave-aged and imported cheeses, presented tableside</div><div class="mn-item-note">Seasonal availability</div></div>
+      <div class="mn-price">16,000 RWF</div>
+    </div>
+  </div>
+  <div class="mn-section">
+    <div class="mn-section-title">Wines & Drinks</div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Sommelier's Selection</div><div class="mn-item-desc">Paired wines chosen to complement each course, explained by our sommelier</div></div>
+      <div class="mn-price">45,000 RWF</div>
+    </div>
+    <div class="mn-item">
+      <div><div class="mn-item-name">Grotta Highland Tea</div><div class="mn-item-desc">Rare highland blends sourced from Rwanda's northern terroir, served ceremonially</div></div>
+      <div class="mn-price">4,500 RWF</div>
+    </div>
+  </div>
+  <div class="mn-cta-section">
+    <p>Reservations are encouraged. Our team will be happy to accommodate dietary preferences, allergies, and special occasions.</p>
+    <a href="../booking.html" class="btn btn-gold">Continue to Reservation</a>
+  </div>
+</div>
+<div id="footer-holder"></div>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

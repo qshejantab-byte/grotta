@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reserve a Retreat — Grotta</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════
+   RETREAT BOOKING — Cinematic Universe
+   Discover · Feel · Imagine · Then Book
+══════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #060504;
+  color: #e8e0d0;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Grain ── */
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none; opacity: .55;
+}
+
+/* ── Typography ── */
+.rb-label {
+  font-family: 'Jost', sans-serif; font-size: .54rem;
+  font-weight: 500; letter-spacing: .36em; text-transform: uppercase;
+  color: rgba(201,165,82,.48); display: block;
+}
+.rb-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+/* ── Animations ── */
+@keyframes rb-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes rb-fade {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes rb-panel-in {
+  from { opacity: 0; transform: translateY(20px) scale(.99); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ══════════════════════════════════════
+   TOP NAV BAR
+══════════════════════════════════════ */
+.rb-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 3rem;
+  background: rgba(6,5,4,.8); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(201,165,82,.08);
+}
+.rb-nav-logo {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem; font-weight: 300; letter-spacing: .22em;
+  color: rgba(201,165,82,.7); text-decoration: none;
+}
+.rb-nav-back {
+  display: flex; align-items: center; gap: .5rem;
+  font-family: 'Jost', sans-serif; font-size: .54rem;
+  font-weight: 400; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(200,192,174,.4); text-decoration: none;
+  border: none; background: none; cursor: pointer;
+  transition: color .3s ease, gap .3s ease;
+}
+.rb-nav-back:hover { color: rgba(200,192,174,.75); gap: .3rem; }
+
+/* Step indicator */
+.rb-steps {
+  display: flex; align-items: center; gap: .4rem;
+}
+.rb-step-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(201,165,82,.18);
+  transition: background .4s ease, transform .4s ease;
+}
+.rb-step-dot.active {
+  background: #c9a552; transform: scale(1.3);
+}
+.rb-step-dot.done { background: rgba(201,165,82,.5); }
+
+/* ══════════════════════════════════════
+   STEP PANELS
+══════════════════════════════════════ */
+.rb-step-panel {
+  display: none; min-height: 100vh; padding-top: 70px;
+}
+.rb-step-panel.active {
+  display: block;
+  animation: rb-panel-in .65s cubic-bezier(.25,.46,.45,.94);
+}
+
+/* ══════════════════════════════════════
+   STEP 1 — RETREAT SELECTION
+   Full-screen cinematic cards
+══════════════════════════════════════ */
+.rb-selection {
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+
+/* Ambient background that shifts with hovered retreat */
+.rb-selection-bg {
+  position: fixed; inset: 0; z-index: 0;
+  background-size: cover; background-position: center;
+  filter: brightness(.18) saturate(.6);
+  transition: background-image .8s ease, filter .8s ease;
+  will-change: background-image;
+}
+.rb-selection-bg-overlay {
+  position: fixed; inset: 0; z-index: 1;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 50%, transparent 30%, rgba(6,5,4,.7) 100%),
+    linear-gradient(to bottom, rgba(6,5,4,.6) 0%, rgba(6,5,4,.2) 40%, rgba(6,5,4,.85) 100%);
+}
+
+.rb-selection-inner {
+  position: relative; z-index: 10;
+  padding: 4rem 4vw 4rem;
+  flex: 1;
+}
+
+.rb-selection-header {
+  text-align: center; margin-bottom: 4rem;
+  animation: rb-up .9s ease .2s both;
+}
+.rb-selection-header .rb-label { margin-bottom: 1rem; }
+.rb-selection-header h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-weight: 300; color: #f0e8d5;
+  line-height: 1.04; letter-spacing: -.025em; margin-bottom: .8rem;
+}
+.rb-selection-header p {
+  font-size: .88rem; color: rgba(232,224,208,.45);
+  line-height: 2; max-width: 460px; margin: 0 auto;
+}
+
+/* Retreat cards grid */
+.rb-retreats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: rgba(201,165,82,.07);
+  max-width: 1400px; margin: 0 auto;
+}
+
+.rb-retreat-card {
+  position: relative; min-height: 520px;
+  overflow: hidden; cursor: pointer;
+  display: flex; align-items: flex-end;
+  transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+  animation: rb-up .9s cubic-bezier(.25,.46,.45,.94) both;
+}
+.rb-retreat-card:nth-child(1) { animation-delay: .3s; }
+.rb-retreat-card:nth-child(2) { animation-delay: .42s; }
+.rb-retreat-card:nth-child(3) { animation-delay: .54s; }
+.rb-retreat-card:nth-child(4) { animation-delay: .36s; }
+.rb-retreat-card:nth-child(5) { animation-delay: .48s; }
+.rb-retreat-card:nth-child(6) { animation-delay: .6s; }
+
+.rb-retreat-card:hover { transform: scale(1.012); z-index: 2; }
+
+.rb-retreat-card-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(.42) saturate(.72);
+  transition: filter 1.4s ease, transform 1.8s cubic-bezier(.25,.46,.45,.94);
+}
+.rb-retreat-card:hover .rb-retreat-card-img {
+  filter: brightness(.58) saturate(.88); transform: scale(1.06);
+}
+
+/* Multi-layer overlay */
+.rb-retreat-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top,
+    rgba(6,5,4,.98) 0%,
+    rgba(6,5,4,.45) 40%,
+    rgba(6,5,4,.08) 70%,
+    transparent 100%);
+  transition: background .55s ease;
+  pointer-events: none;
+}
+.rb-retreat-card:hover::after {
+  background: linear-gradient(to top,
+    rgba(6,5,4,1) 0%,
+    rgba(6,5,4,.6) 45%,
+    rgba(6,5,4,.15) 75%,
+    transparent 100%);
+}
+
+/* Gold top line */
+.rb-retreat-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 2px; background: rgba(201,165,82,.6); z-index: 5;
+  transition: width .65s cubic-bezier(.25,.46,.45,.94);
+}
+.rb-retreat-card:hover::before { width: 100%; }
+
+/* Duration badge */
+.rb-retreat-duration {
+  position: absolute; top: 1.4rem; right: 1.4rem; z-index: 5;
+  background: rgba(6,5,4,.72); backdrop-filter: blur(8px);
+  border: 1px solid rgba(201,165,82,.2);
+  font-family: 'Jost', sans-serif; font-size: .48rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(201,165,82,.7); padding: .28rem .75rem;
+}
+
+/* Card text */
+.rb-retreat-text {
+  position: relative; z-index: 3; padding: 2rem 2.2rem; width: 100%;
+}
+.rb-retreat-text .rb-label { margin-bottom: .5rem; font-size: .46rem; color: rgba(201,165,82,.38); }
+.rb-retreat-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+  font-weight: 300; color: #f0e8d5; line-height: 1.1;
+  margin-bottom: .5rem; transition: color .3s ease;
+}
+.rb-retreat-card:hover .rb-retreat-name { color: #fff; }
+.rb-retreat-tagline {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: .95rem; font-style: italic; font-weight: 300;
+  color: rgba(232,224,208,.42); line-height: 1.65;
+  max-height: 0; overflow: hidden; opacity: 0; transform: translateY(8px);
+  transition: max-height .55s ease, opacity .5s ease .05s, transform .5s ease .05s;
+}
+.rb-retreat-card:hover .rb-retreat-tagline { max-height: 4rem; opacity: 1; transform: translateY(0); }
+.rb-retreat-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: .9rem; margin-top: .8rem;
+  border-top: 1px solid rgba(201,165,82,.1);
+}
+.rb-retreat-price {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem; color: #c9a552;
+}
+.rb-retreat-price small {
+  font-family: 'Jost', sans-serif; font-size: .6rem;
+  color: rgba(200,192,174,.38); margin-left: .2rem;
+}
+.rb-retreat-arrow {
+  font-size: .85rem; color: rgba(201,165,82,.4);
+  transition: transform .35s cubic-bezier(.25,.46,.45,.94), color .3s ease;
+}
+.rb-retreat-card:hover .rb-retreat-arrow { transform: translateX(5px); color: #c9a552; }
+
+/* ══════════════════════════════════════
+   STEP 2 — DETAIL OVERLAY
+   Full-screen layered panel
+══════════════════════════════════════ */
+.rb-detail {
+  min-height: 100vh; display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 0; align-items: start;
+}
+
+.rb-detail-img-side {
+  position: sticky; top: 70px;
+  height: calc(100vh - 70px);
+  overflow: hidden;
+}
+.rb-detail-img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(.55) saturate(.8);
+  transition: transform 1.4s cubic-bezier(.25,.46,.45,.94);
+}
+.rb-detail-img-side:hover .rb-detail-img { transform: scale(1.03); }
+.rb-detail-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, transparent 50%, rgba(6,5,4,1) 100%),
+              linear-gradient(to bottom, rgba(6,5,4,.4) 0%, transparent 30%);
+}
+.rb-detail-img-caption {
+  position: absolute; bottom: 2rem; left: 2rem; z-index: 5;
+}
+
+.rb-detail-story {
+  background: #060504;
+  padding: 3rem 3rem 5rem;
+  border-left: 1px solid rgba(201,165,82,.08);
+  /* No sticky, no fixed height — flows naturally */
+}
+.rb-detail-story::-webkit-scrollbar { width: 2px; }
+.rb-detail-story::-webkit-scrollbar-thumb { background: rgba(201,165,82,.25); }
+
+.rb-detail-story .rb-label { margin-bottom: .8rem; }
+.rb-detail-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300; color: #f0e8d5; line-height: 1.08;
+  letter-spacing: -.02em; margin-bottom: .8rem;
+}
+.rb-detail-tagline {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem; font-style: italic; font-weight: 300;
+  color: rgba(232,224,208,.5); margin-bottom: 2rem; display: block;
+}
+.rb-detail-rule { width: 2rem; height: 1px; background: rgba(201,165,82,.28); margin-bottom: 2rem; }
+.rb-detail-desc {
+  font-size: .88rem; color: rgba(232,224,208,.52);
+  line-height: 2.1; margin-bottom: 2rem;
+}
+
+/* Itinerary */
+.rb-itinerary { margin-bottom: 2.5rem; }
+.rb-itinerary-title {
+  font-family: 'Jost', sans-serif; font-size: .54rem;
+  font-weight: 500; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(201,165,82,.45); margin-bottom: 1.2rem; display: block;
+}
+.rb-itinerary-item {
+  display: flex; gap: 1rem; padding: .9rem 0;
+  border-bottom: 1px solid rgba(201,165,82,.07);
+}
+.rb-itinerary-item:last-child { border-bottom: none; }
+.rb-itinerary-time {
+  font-family: 'Jost', sans-serif; font-size: .6rem;
+  color: rgba(201,165,82,.45); min-width: 50px; padding-top: .05rem;
+  flex-shrink: 0;
+}
+.rb-itinerary-text {
+  font-size: .82rem; color: rgba(200,192,174,.6); line-height: 1.7;
+}
+
+/* Inclusions */
+.rb-inclusions { margin-bottom: 2rem; }
+.rb-inclusions-title {
+  font-family: 'Jost', sans-serif; font-size: .54rem;
+  font-weight: 500; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(201,165,82,.45); margin-bottom: 1rem; display: block;
+}
+.rb-inclusion {
+  display: flex; align-items: center; gap: .65rem;
+  padding: .5rem 0; font-size: .8rem; color: rgba(200,192,174,.6);
+}
+.rb-inclusion::before {
+  content: '—'; color: rgba(201,165,82,.35); flex-shrink: 0; font-size: .7rem;
+}
+
+/* Price display */
+.rb-detail-price-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 0; border-top: 1px solid rgba(201,165,82,.12);
+  margin-bottom: 1.5rem;
+}
+.rb-detail-price-val {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2rem; color: #c9a552;
+}
+.rb-detail-price-note {
+  font-family: 'Jost', sans-serif; font-size: .62rem;
+  color: rgba(200,192,174,.35); display: block; margin-top: .2rem;
+}
+
+/* ══════════════════════════════════════
+   STEP 3 — DATE SELECTION
+   Elegant calendar experience
+══════════════════════════════════════ */
+.rb-dates {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 2rem 2rem 4rem;
+}
+
+.rb-dates-header {
+  text-align: center; margin-bottom: 3rem;
+  animation: rb-up .8s ease .1s both;
+}
+.rb-dates-header .rb-label { margin-bottom: 1rem; }
+.rb-dates-header h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300; color: #f0e8d5; line-height: 1.08;
+  letter-spacing: -.02em; margin-bottom: .5rem;
+}
+.rb-dates-header p {
+  font-size: .82rem; color: rgba(232,224,208,.42); line-height: 2;
+}
+
+/* Calendar */
+.rb-cal {
+  background: rgba(10,8,6,.85); backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,165,82,.14);
+  box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(201,165,82,.06);
+  max-width: 720px; width: 100%;
+  animation: rb-up .8s ease .25s both;
+}
+
+.rb-cal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.6rem 2rem; border-bottom: 1px solid rgba(201,165,82,.1);
+}
+.rb-cal-month {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.6rem; font-weight: 300; color: #e8e0d0; letter-spacing: -.01em;
+}
+.rb-cal-nav-btns { display: flex; gap: .5rem; }
+.rb-cal-nav {
+  background: none; border: 1px solid rgba(201,165,82,.2);
+  color: rgba(201,165,82,.6); width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: .9rem;
+  transition: border-color .25s, color .25s, background .25s;
+}
+.rb-cal-nav:hover { border-color: rgba(201,165,82,.5); color: #c9a552; background: rgba(201,165,82,.05); }
+
+.rb-cal-days {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  padding: .8rem 1.5rem .3rem;
+}
+.rb-cal-dayname {
+  font-family: 'Jost', sans-serif; font-size: .46rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(201,165,82,.3); text-align: center; padding: .3rem 0;
+}
+
+.rb-cal-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 2px; padding: 0 1.5rem 1.5rem;
+}
+
+.rb-cal-cell {
+  aspect-ratio: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  cursor: default; position: relative; border-radius: 2px;
+  transition: background .25s ease;
+}
+.rb-cal-cell.available { cursor: pointer; }
+.rb-cal-cell.available:hover { background: rgba(201,165,82,.08); }
+.rb-cal-cell.in-range { background: rgba(201,165,82,.06); }
+.rb-cal-cell.range-start,
+.rb-cal-cell.range-end {
+  background: rgba(201,165,82,.18);
+  outline: 1px solid rgba(201,165,82,.4);
+}
+.rb-cal-cell.other-month { opacity: .22; }
+.rb-cal-cell.past { opacity: .2; pointer-events: none; }
+.rb-cal-cell.today .rb-cal-num { color: #c9a552; }
+
+.rb-cal-num {
+  font-family: 'Jost', sans-serif; font-size: .78rem;
+  font-weight: 300; color: rgba(200,192,174,.55); line-height: 1;
+}
+.rb-cal-cell.available .rb-cal-num { color: rgba(200,192,174,.82); }
+.rb-cal-cell.range-start .rb-cal-num,
+.rb-cal-cell.range-end .rb-cal-num { color: #c9a552; font-weight: 500; }
+
+/* Availability glow dot */
+.rb-cal-avail-dot {
+  width: 4px; height: 4px; border-radius: 50%; margin-top: 2px;
+}
+.rb-cal-avail-dot.avail    { background: #7ab87a; }
+.rb-cal-avail-dot.limited  { background: #e6a020; }
+.rb-cal-avail-dot.full     { background: rgba(200,100,100,.5); }
+
+/* Stay summary */
+.rb-stay-bar {
+  max-width: 720px; width: 100%;
+  background: rgba(201,165,82,.05);
+  border: 1px solid rgba(201,165,82,.15);
+  padding: 1.2rem 2rem; margin-top: 1px;
+  display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+}
+.rb-stay-stat { display: flex; flex-direction: column; gap: .25rem; }
+.rb-stay-val {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem; color: #c9a552; line-height: 1;
+}
+.rb-stay-key {
+  font-family: 'Jost', sans-serif; font-size: .48rem;
+  letter-spacing: .2em; text-transform: uppercase; color: rgba(200,192,174,.4);
+}
+.rb-stay-divider { width: 1px; height: 36px; background: rgba(201,165,82,.12); flex-shrink: 0; }
+
+/* ══════════════════════════════════════
+   STEP 4 — CONFIRMATION CARD
+══════════════════════════════════════ */
+.rb-confirm-step {
+  min-height: 100vh; display: flex;
+  align-items: center; justify-content: center;
+  padding: 2rem;
+}
+.rb-confirm-inner {
+  max-width: 680px; width: 100%;
+  animation: rb-panel-in .7s cubic-bezier(.25,.46,.45,.94);
+}
+.rb-confirm-inner .rb-label { margin-bottom: 1rem; }
+.rb-confirm-inner h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 300; color: #f0e8d5; line-height: 1.08;
+  margin-bottom: 2.5rem;
+}
+
+/* Summary card */
+.rb-summary-card {
+  background: rgba(10,8,6,.88); backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,165,82,.16);
+  box-shadow: 0 24px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(201,165,82,.06);
+  margin-bottom: 2rem; overflow: hidden;
+}
+.rb-summary-card-img {
+  height: 200px; overflow: hidden; position: relative;
+}
+.rb-summary-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(.55) saturate(.8);
+}
+.rb-summary-card-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(10,8,6,.9) 100%);
+}
+.rb-summary-card-body { padding: 2rem; }
+.rb-summary-rows { margin-bottom: 1.8rem; }
+.rb-summary-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .75rem 0; border-bottom: 1px solid rgba(201,165,82,.07);
+  font-family: 'Jost', sans-serif; font-size: .8rem;
+}
+.rb-summary-row:last-child { border-bottom: none; }
+.rb-summary-row-lbl { color: rgba(200,192,174,.42); }
+.rb-summary-row-val { color: #e8e0d0; text-align: right; }
+.rb-summary-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 0 0; border-top: 1px solid rgba(201,165,82,.18);
+}
+.rb-summary-total-lbl {
+  font-family: 'Jost', sans-serif; font-size: .58rem;
+  letter-spacing: .2em; text-transform: uppercase; color: #e8e0d0;
+}
+.rb-summary-total-val {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2rem; color: #c9a552;
+}
+
+/* Guest field */
+.rb-guest-field {
+  margin-bottom: 1.5rem; border-bottom: 1px solid rgba(201,165,82,.12);
+  padding-bottom: 1.5rem;
+}
+.rb-guest-label {
+  font-family: 'Jost', sans-serif; font-size: .5rem;
+  letter-spacing: .26em; text-transform: uppercase;
+  color: rgba(201,165,82,.45); display: block; margin-bottom: .6rem;
+}
+.rb-guest-input {
+  width: 100%; background: transparent; border: none;
+  border-bottom: 1px solid rgba(200,192,174,.14);
+  color: #e8e0d0; font-family: 'Jost', sans-serif;
+  font-size: .88rem; font-weight: 300;
+  padding: .6rem 0; outline: none; caret-color: #c9a552;
+  transition: border-color .35s ease;
+}
+.rb-guest-input::placeholder { color: rgba(200,192,174,.22); }
+.rb-guest-input:focus { border-bottom-color: #c9a552; }
+
+/* Confirm check animation */
+.rb-confirmed {
+  display: none; text-align: center; padding: 4rem 2rem;
+  animation: rb-panel-in .7s ease;
+}
+.rb-confirmed.show { display: block; }
+.rb-confirmed-check {
+  width: 72px; height: 72px; border-radius: 50%;
+  border: 1px solid rgba(201,165,82,.35);
+  background: rgba(201,165,82,.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; margin: 0 auto 2rem;
+  animation: rb-pop .6s cubic-bezier(.34,1.56,.64,1) .15s both;
+}
+@keyframes rb-pop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.rb-confirmed h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem; font-weight: 300; color: #f0e8d5; margin-bottom: .7rem;
+}
+.rb-confirmed p {
+  font-size: .85rem; color: rgba(200,192,174,.5); line-height: 2;
+  max-width: 420px; margin: 0 auto 1.4rem;
+}
+.rb-confirmed-ref {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem; color: #c9a552; letter-spacing: .1em;
+  display: block; background: rgba(201,165,82,.06);
+  border: 1px solid rgba(201,165,82,.2);
+  padding: 1rem 2rem; width: fit-content; margin: 1.5rem auto;
+}
+
+/* ══════════════════════════════════════
+   SHARED BUTTONS
+══════════════════════════════════════ */
+.rb-btn-gold {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-family: 'Jost', sans-serif; font-size: .62rem;
+  font-weight: 500; letter-spacing: .24em; text-transform: uppercase;
+  color: #060504; background: #c9a552;
+  border: none; cursor: pointer; padding: 1.1rem 2.6rem;
+  position: relative; overflow: hidden; text-decoration: none;
+  transition: transform .25s ease, box-shadow .3s ease;
+}
+.rb-btn-gold::before {
+  content: ''; position: absolute; inset: 0; background: #e2c97e;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94); z-index: 0;
+}
+.rb-btn-gold span { position: relative; z-index: 1; }
+.rb-btn-gold:hover::before { transform: scaleX(1); }
+.rb-btn-gold:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(201,165,82,.3); }
+
+.rb-btn-outline {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-family: 'Jost', sans-serif; font-size: .6rem;
+  font-weight: 400; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(232,224,208,.65); background: transparent;
+  border: 1px solid rgba(232,224,208,.25); cursor: pointer;
+  padding: 1rem 2.2rem; text-decoration: none;
+  transition: border-color .3s ease, color .3s ease, transform .25s ease;
+}
+.rb-btn-outline:hover { border-color: #c9a552; color: #c9a552; transform: translateY(-2px); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .rb-retreats-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:1000px){
+  .rb-detail { grid-template-columns: 1fr; }
+  .rb-detail-img-side {
+    position: relative; top: 0; height: 320px;
+    overflow: hidden;
+  }
+  .rb-detail-img-overlay {
+    background: linear-gradient(to bottom, transparent 40%, rgba(6,5,4,1) 100%);
+  }
+  .rb-detail-story {
+    max-height: none; position: static;
+    border-left: none; border-top: 1px solid rgba(201,165,82,.08);
+    padding: 2.5rem 2rem;
+    overflow-y: visible;
+  }
+}
+@media(max-width:700px){
+  .rb-nav { padding: 1rem 1.2rem; }
+  .rb-nav-logo { font-size: .9rem; }
+  .rb-retreats-grid { grid-template-columns: 1fr; }
+  .rb-retreat-card { min-height: 340px; }
+  .rb-selection-inner { padding: 1.5rem 1rem 2rem; }
+  .rb-selection-header h1 { font-size: clamp(2rem, 8vw, 3rem); }
+  .rb-selection-header { margin-bottom: 2.5rem; }
+  .rb-detail-story { padding: 2rem 1.2rem; }
+  .rb-detail-title { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+  .rb-dates { padding: 1rem 1rem 3rem; }
+  .rb-dates-header h2 { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+  .rb-cal-head { padding: 1rem 1.2rem; }
+  .rb-cal-month { font-size: 1.2rem; }
+  .rb-cal-days { padding: .6rem .8rem .2rem; }
+  .rb-cal-grid { padding: 0 .8rem 1rem; gap: 1px; }
+  .rb-cal-cell { min-height: 38px; }
+  .rb-cal-num { font-size: .68rem; }
+  .rb-stay-bar { padding: 1rem 1.2rem; gap: 1rem; flex-wrap: wrap; }
+  .rb-stay-val { font-size: 1.1rem; }
+  .rb-confirm-step { padding: 1rem; align-items: flex-start; }
+  .rb-confirm-inner { max-width: 100%; }
+  .rb-confirm-inner h2 { font-size: clamp(1.8rem, 6vw, 2.5rem); margin-bottom: 1.5rem; }
+  .rb-summary-card-img { height: 160px; }
+  .rb-summary-card-body { padding: 1.2rem; }
+  .rb-btn-gold, .rb-btn-outline { padding: .9rem 1.6rem; font-size: .58rem; }
+  .rb-step-panel { padding-top: 60px; }
+  .rb-confirmed { padding: 2.5rem 1rem; }
+  .rb-confirmed h2 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="rb-nav">
+  <a href="retreats.html" class="rb-nav-back">← Back to Retreats</a>
+  <a href="index.html" class="rb-nav-logo">G R O T T A</a>
+  <div class="rb-steps" id="rb-steps">
+    <div class="rb-step-dot active" id="sd-1"></div>
+    <div class="rb-step-dot" id="sd-2"></div>
+    <div class="rb-step-dot" id="sd-3"></div>
+    <div class="rb-step-dot" id="sd-4"></div>
+  </div>
+</nav>
+
+<!-- ══ AMBIENT BACKGROUND ══ -->
+<div class="rb-selection-bg" id="rb-ambient-bg"></div>
+<div class="rb-selection-bg-overlay"></div>
+
+<!-- ══════════════════════════════════════
+     STEP 1 — SELECT YOUR RETREAT
+══════════════════════════════════════ -->
+<div class="rb-step-panel active" id="rb-panel-1">
+  <div class="rb-selection">
+    <div class="rb-selection-inner">
+      <div class="rb-selection-header">
+        <span class="rb-label">Grotta · Musanze, Rwanda</span>
+        <h1>Reserve a Retreat</h1>
+        <p>Choose the experience that calls to you. Each retreat is a different way of arriving at the same place.</p>
+      </div>
+
+      <div class="rb-retreats-grid" id="rb-retreats-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     STEP 2 — RETREAT DETAIL
+══════════════════════════════════════ -->
+<div class="rb-step-panel" id="rb-panel-2">
+  <div class="rb-detail">
+    <!-- Image side -->
+    <div class="rb-detail-img-side">
+      <img class="rb-detail-img" id="rb-detail-img" src="" alt="">
+      <div class="rb-detail-img-overlay"></div>
+      <div class="rb-detail-img-caption">
+        <span class="rb-label" id="rb-detail-cap-label"></span>
+      </div>
+    </div>
+    <!-- Story side -->
+    <div class="rb-detail-story">
+      <span class="rb-label" id="rb-d-label"></span>
+      <h2 class="rb-detail-title" id="rb-d-title"></h2>
+      <span class="rb-detail-tagline" id="rb-d-tagline"></span>
+      <div class="rb-detail-rule"></div>
+      <p class="rb-detail-desc" id="rb-d-desc"></p>
+
+      <!-- Sample day itinerary -->
+      <div class="rb-itinerary">
+        <span class="rb-itinerary-title">A Day in the Retreat</span>
+        <div id="rb-d-itinerary"></div>
+      </div>
+
+      <!-- Inclusions -->
+      <div class="rb-inclusions">
+        <span class="rb-inclusions-title">What's Included</span>
+        <div id="rb-d-inclusions"></div>
+      </div>
+
+      <!-- Price -->
+      <div class="rb-detail-price-row">
+        <div>
+          <div class="rb-detail-price-val" id="rb-d-price"></div>
+          <span class="rb-detail-price-note">per person · all inclusions</span>
+        </div>
+        <span class="rb-label" id="rb-d-duration"></span>
+      </div>
+
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+        <button class="rb-btn-gold" onclick="goToStep(3)"><span>Select Your Dates</span></button>
+        <button class="rb-btn-outline" onclick="goToStep(1)">← Change Retreat</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     STEP 3 — SELECT DATES
+══════════════════════════════════════ -->
+<div class="rb-step-panel" id="rb-panel-3">
+  <div class="rb-dates">
+    <div class="rb-dates-header">
+      <span class="rb-label" id="rb-dates-retreat-label"></span>
+      <h2>Select Your Dates</h2>
+      <p>Choose your arrival. The retreat duration is set — your departure will be calculated automatically.</p>
+    </div>
+
+    <div class="rb-cal">
+      <div class="rb-cal-head">
+        <span class="rb-cal-month" id="rb-cal-month"></span>
+        <div class="rb-cal-nav-btns">
+          <button class="rb-cal-nav" id="rb-cal-prev">‹</button>
+          <button class="rb-cal-nav" id="rb-cal-next">›</button>
+        </div>
+      </div>
+      <div class="rb-cal-days">
+        <div class="rb-cal-dayname">Su</div>
+        <div class="rb-cal-dayname">Mo</div>
+        <div class="rb-cal-dayname">Tu</div>
+        <div class="rb-cal-dayname">We</div>
+        <div class="rb-cal-dayname">Th</div>
+        <div class="rb-cal-dayname">Fr</div>
+        <div class="rb-cal-dayname">Sa</div>
+      </div>
+      <div class="rb-cal-grid" id="rb-cal-grid"></div>
+    </div>
+
+    <div class="rb-stay-bar" id="rb-stay-bar" style="display:none">
+      <div class="rb-stay-stat">
+        <span class="rb-stay-val" id="rb-stay-arrival">—</span>
+        <span class="rb-stay-key">Arrival</span>
+      </div>
+      <div class="rb-stay-divider"></div>
+      <div class="rb-stay-stat">
+        <span class="rb-stay-val" id="rb-stay-departure">—</span>
+        <span class="rb-stay-key">Departure</span>
+      </div>
+      <div class="rb-stay-divider"></div>
+      <div class="rb-stay-stat">
+        <span class="rb-stay-val" id="rb-stay-nights">—</span>
+        <span class="rb-stay-key">Nights</span>
+      </div>
+      <div class="rb-stay-divider"></div>
+      <div class="rb-stay-stat">
+        <span class="rb-stay-val" id="rb-stay-total">—</span>
+        <span class="rb-stay-key">Total</span>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:.8rem;margin-top:2rem;flex-wrap:wrap;justify-content:center">
+      <button class="rb-btn-gold" id="rb-dates-next" onclick="goToStep(4)" style="display:none"><span>Review & Confirm</span></button>
+      <button class="rb-btn-outline" onclick="goToStep(2)">← Back</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     STEP 4 — CONFIRM
+══════════════════════════════════════ -->
+<div class="rb-step-panel" id="rb-panel-4">
+  <div class="rb-confirm-step">
+    <div class="rb-confirm-inner" id="rb-confirm-inner">
+      <span class="rb-label">Almost There</span>
+      <h2>Your Retreat,<br>Confirmed.</h2>
+
+      <div class="rb-summary-card">
+        <div class="rb-summary-card-img">
+          <img id="rb-conf-img" src="" alt="">
+        </div>
+        <div class="rb-summary-card-body">
+          <div class="rb-summary-rows" id="rb-summary-rows"></div>
+          <div class="rb-summary-total">
+            <span class="rb-summary-total-lbl">Total</span>
+            <span class="rb-summary-total-val" id="rb-conf-total"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guest details -->
+      <div class="rb-guest-field">
+        <label class="rb-guest-label">Your Name</label>
+        <input class="rb-guest-input" type="text" id="rb-guest-name" placeholder="Full name">
+      </div>
+      <div class="rb-guest-field">
+        <label class="rb-guest-label">Email</label>
+        <input class="rb-guest-input" type="email" id="rb-guest-email" placeholder="your@email.com">
+      </div>
+      <div class="rb-guest-field" style="border-bottom:none;padding-bottom:0">
+        <label class="rb-guest-label">Special Requests (Optional)</label>
+        <textarea class="rb-guest-input" id="rb-guest-notes" placeholder="Any requests or details we should know for your retreat..." style="min-height:70px;resize:vertical;border:1px solid rgba(201,165,82,.14);padding:.7rem 1rem;margin-top:.3rem"></textarea>
+      </div>
+
+      <div style="display:flex;gap:.8rem;margin-top:2rem;flex-wrap:wrap">
+        <button class="rb-btn-gold" onclick="confirmRetreat()"><span>Confirm Retreat</span></button>
+        <button class="rb-btn-outline" onclick="goToStep(3)">← Change Dates</button>
+      </div>
+      <p style="font-size:.72rem;color:rgba(200,192,174,.32);line-height:1.8;margin-top:1.2rem">
+        Free cancellation up to 14 days before arrival. Our team will contact you within 24 hours to finalise your retreat.
+      </p>
+    </div>
+
+    <!-- Confirmed state -->
+    <div class="rb-confirmed" id="rb-confirmed">
+      <div class="rb-confirmed-check">✦</div>
+      <h2>Your retreat is reserved.</h2>
+      <p>We are preparing everything for your arrival. Our retreat team will be in touch within 24 hours to begin the conversation about your experience.</p>
+      <span class="rb-confirmed-ref" id="rb-conf-ref"></span>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem">
+        <a href="index.html" class="rb-btn-gold"><span>Return to Grotta</span></a>
+        <a href="experiences.html" class="rb-btn-outline">Explore Experiences</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   RETREAT DATA
+══════════════════════════════════════ */
+const RETREATS = [
+  {
+    id: 'wellness',
+    label: 'Restoration', name: 'Wellness Deep Reset',
+    tagline: '"Three days structured around the body and the breath."',
+    desc: 'Each morning begins with guided movement at altitude. Afternoons move between the volcanic sauna, the outdoor jacuzzi, and stillness. Evenings are slow, warm, and shared around the fire. The landscape does the rest.',
+    img: 'https://images.unsplash.com/photo-1544148103-0773bf10d330?w=1400&q=85',
+    duration: '3 Nights', nights: 3, price: 480000,
+    itinerary: [
+      { time: 'Dawn', text: 'Highland movement session as the mist settles across the grounds.' },
+      { time: 'Morning', text: 'Slow breakfast, farm walk, and open time in the gardens.' },
+      { time: 'Afternoon', text: 'Sauna ritual, jacuzzi session, and guided breathwork.' },
+      { time: 'Evening', text: 'Shared dinner and fireside gathering. No agenda.' },
+    ],
+    inclusions: ['Accommodation (3 nights)', 'All meals & café access', 'Daily sauna & jacuzzi sessions', 'Guided movement classes', 'Garden & nature access', 'Wellness coordinator'],
+  },
+  {
+    id: 'volcano',
+    label: 'Immersion', name: 'Volcano Silence Retreat',
+    tagline: '"Altitude, stone, and the particular silence of ancient places."',
+    desc: 'A journey through the volcanic landscape — cave explorations, dawn treks to the viewpoints, and evenings by open fire. For those who find clarity through movement and the particular quiet of highlands.',
+    img: 'https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=1400&q=85',
+    duration: '4 Nights', nights: 4, price: 620000,
+    itinerary: [
+      { time: 'Sunrise', text: 'Trek to the volcanic viewpoint. Breakfast at altitude.' },
+      { time: 'Morning', text: 'Cave exploration — guided journey through the ancient chambers.' },
+      { time: 'Afternoon', text: 'Free time. Pool, gardens, or stillness in the highland air.' },
+      { time: 'Evening', text: 'Cave café evening — rare spirits, stone walls, candlelight.' },
+    ],
+    inclusions: ['Accommodation (4 nights)', 'All meals & café access', 'Guided volcano trek', 'Extended cave journey', 'Cave café evening', 'Highland guide'],
+  },
+  {
+    id: 'creative',
+    label: 'Creativity', name: 'Creative Residency',
+    tagline: '"Five days of uninterrupted creative time in the volcanic highlands."',
+    desc: 'Morning sessions in curated work spaces with highland views. Afternoons free for exploration, reflection, and nature immersion. The distance from ordinary life creates conditions for extraordinary work.',
+    img: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1400&q=85',
+    duration: '5 Nights', nights: 5, price: 750000,
+    itinerary: [
+      { time: 'Morning', text: 'Dedicated creative session in highland studio space.' },
+      { time: 'Midday', text: 'Shared lunch. Open conversation with fellow residents.' },
+      { time: 'Afternoon', text: 'Nature walk, cave visit, or pool time — your choice.' },
+      { time: 'Evening', text: 'Group dinner and optional evening critique session.' },
+    ],
+    inclusions: ['Accommodation (5 nights)', 'All meals', 'Dedicated studio access', 'Cave & garden exploration', 'Group evening sessions', 'Community dinner'],
+  },
+  {
+    id: 'leadership',
+    label: 'Clarity', name: 'Leadership Retreat',
+    tagline: '"The volcanic highlands create conditions for honest conversation."',
+    desc: 'Morning strategy sessions with highland views. Afternoon reflection and nature immersion to let ideas settle. Fireside evenings that create the conditions for real conversation — the kind that changes things.',
+    img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1400&q=85',
+    duration: '3 Nights', nights: 3, price: 540000,
+    itinerary: [
+      { time: 'Morning', text: 'Facilitated strategy session in the highland meeting space.' },
+      { time: 'Midday', text: 'Shared lunch. Informal conversation in the gardens.' },
+      { time: 'Afternoon', text: 'Nature walk or individual reflection time.' },
+      { time: 'Evening', text: 'Fireside dialogue. The conversations that matter.' },
+    ],
+    inclusions: ['Accommodation (3 nights)', 'All meals & café', 'Meeting space access', 'Facilitation support', 'Nature & wellness access', 'Private coordination'],
+  },
+  {
+    id: 'slow',
+    label: 'Unhurried', name: 'Slow Living Weekend',
+    tagline: '"A weekend with no agenda beyond presence."',
+    desc: 'Café mornings with no meetings to attend. Garden walks with no destination. Pool afternoons with no notifications. The firepit in the evening with people who matter. For those who need to remember what rest actually feels like.',
+    img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&q=85',
+    duration: '2 Nights', nights: 2, price: 320000,
+    itinerary: [
+      { time: 'Morning', text: 'Café breakfast. Open time. No agenda.' },
+      { time: 'Midday', text: 'Garden walk or pool. Lunch at your own pace.' },
+      { time: 'Afternoon', text: 'Sauna. Nap. Read. Whatever rest means to you.' },
+      { time: 'Evening', text: 'Dinner and firepit. The weekend in its best form.' },
+    ],
+    inclusions: ['Accommodation (2 nights)', 'All meals & café', 'Sauna & pool access', 'Garden walks', 'Firepit evenings', 'Flexible schedule'],
+  },
+  {
+    id: 'couples',
+    label: 'Connection', name: 'Couples Reconnection',
+    tagline: '"Evenings by the fire. Mornings in the gardens."',
+    desc: 'A setting designed for the kind of presence that everyday life rarely allows. Private jacuzzi evenings, farm mornings, and a cave dinner for two. For two people who want to slow down together.',
+    img: 'https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=1400&q=85',
+    duration: '3 Nights', nights: 3, price: 580000,
+    itinerary: [
+      { time: 'Morning', text: 'Farm walk and private breakfast in the gardens.' },
+      { time: 'Afternoon', text: 'Pool, gardens, or couples massage session.' },
+      { time: 'Evening', text: 'Private jacuzzi under the highland sky.' },
+      { time: 'Night', text: 'Cave dinner for two — stone walls, candlelight, silence.' },
+    ],
+    inclusions: ['Accommodation (3 nights)', 'All meals', 'Private jacuzzi evening', 'Cave dinner for two', 'Couples massage', 'Farm morning experience'],
+  },
+];
+
+let selectedRetreat = null;
+let selectedArrival = null;
+let currentStep = 1;
+let calDate = new Date();
+
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+/* ── Render retreat cards ───────────────────────────── */
+function renderRetreats() {
+  const grid = document.getElementById('rb-retreats-grid');
+  grid.innerHTML = RETREATS.map(r => `
+    <div class="rb-retreat-card" onclick="selectRetreat('${r.id}')"
+         onmouseenter="setAmbient('${r.img}')"
+         onmouseleave="clearAmbient()">
+      <img class="rb-retreat-card-img" src="${r.img}" alt="${r.name}" loading="lazy">
+      <span class="rb-retreat-duration">${r.duration}</span>
+      <div class="rb-retreat-text">
+        <span class="rb-label">${r.label}</span>
+        <div class="rb-retreat-name">${r.name}</div>
+        <div class="rb-retreat-tagline">${r.tagline}</div>
+        <div class="rb-retreat-footer">
+          <div class="rb-retreat-price">
+            ${(r.price).toLocaleString()} RWF<small>/ person</small>
+          </div>
+          <span class="rb-retreat-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ── Ambient bg shift ───────────────────────────────── */
+function setAmbient(img) {
+  const bg = document.getElementById('rb-ambient-bg');
+  bg.style.backgroundImage = `url('${img}')`;
+  bg.style.filter = 'brightness(.22) saturate(.6)';
+}
+function clearAmbient() {
+  const bg = document.getElementById('rb-ambient-bg');
+  bg.style.filter = 'brightness(.0)';
+}
+
+/* ── Select retreat ─────────────────────────────────── */
+function selectRetreat(id) {
+  selectedRetreat = RETREATS.find(r => r.id === id);
+  if (!selectedRetreat) return;
+
+  // Populate detail panel
+  document.getElementById('rb-detail-img').src = selectedRetreat.img;
+  document.getElementById('rb-detail-cap-label').textContent = selectedRetreat.label + ' · ' + selectedRetreat.duration;
+  document.getElementById('rb-d-label').textContent = selectedRetreat.label;
+  document.getElementById('rb-d-title').textContent = selectedRetreat.name;
+  document.getElementById('rb-d-tagline').textContent = selectedRetreat.tagline;
+  document.getElementById('rb-d-desc').textContent = selectedRetreat.desc;
+  document.getElementById('rb-d-price').textContent = selectedRetreat.price.toLocaleString() + ' RWF';
+  document.getElementById('rb-d-duration').textContent = selectedRetreat.duration;
+
+  document.getElementById('rb-d-itinerary').innerHTML = selectedRetreat.itinerary.map(i =>
+    `<div class="rb-itinerary-item">
+      <span class="rb-itinerary-time">${i.time}</span>
+      <span class="rb-itinerary-text">${i.text}</span>
+    </div>`
+  ).join('');
+
+  document.getElementById('rb-d-inclusions').innerHTML = selectedRetreat.inclusions.map(i =>
+    `<div class="rb-inclusion">${i}</div>`
+  ).join('');
+
+  goToStep(2);
+}
+
+/* ── Calendar ───────────────────────────────────────── */
+function renderCal() {
+  const y = calDate.getFullYear(), m = calDate.getMonth();
+  document.getElementById('rb-cal-month').textContent = `${MONTHS[m]} ${y}`;
+  const firstDay = new Date(y, m, 1).getDay();
+  const daysInMonth = new Date(y, m + 1, 0).getDate();
+  const daysInPrev = new Date(y, m, 0).getDate();
+  const today = new Date(); today.setHours(0,0,0,0);
+  let html = '';
+
+  for (let i = firstDay - 1; i >= 0; i--) {
+    html += `<div class="rb-cal-cell other-month"><span class="rb-cal-num">${daysInPrev - i}</span></div>`;
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(y, m, d);
+    const isPast = date < today;
+    const isToday = date.getTime() === today.getTime();
+    let cls = 'rb-cal-cell';
+    if (isPast) cls += ' past';
+    else cls += ' available';
+    if (isToday) cls += ' today';
+
+    // Check if in selected range
+    if (selectedArrival) {
+      const dep = new Date(selectedArrival);
+      dep.setDate(dep.getDate() + (selectedRetreat?.nights || 2));
+      if (date.getTime() === selectedArrival.getTime()) cls += ' range-start';
+      else if (date.getTime() === dep.getTime()) cls += ' range-end';
+      else if (date > selectedArrival && date < dep) cls += ' in-range';
+    }
+
+    // Random availability dots for effect
+    const dotType = isPast ? '' : (d % 7 === 0 ? 'full' : d % 3 === 0 ? 'limited' : 'avail');
+
+    html += `<div class="${cls}" onclick="${isPast ? '' : `selectArrival(${y},${m},${d})`}">
+      <span class="rb-cal-num">${d}</span>
+      ${!isPast ? `<div class="rb-cal-avail-dot ${dotType}"></div>` : ''}
+    </div>`;
+  }
+  const total = firstDay + daysInMonth;
+  const rem = total % 7 === 0 ? 0 : 7 - (total % 7);
+  for (let d = 1; d <= rem; d++) {
+    html += `<div class="rb-cal-cell other-month"><span class="rb-cal-num">${d}</span></div>`;
+  }
+  document.getElementById('rb-cal-grid').innerHTML = html;
+}
+
+function selectArrival(y, m, d) {
+  selectedArrival = new Date(y, m, d);
+  renderCal();
+
+  const dep = new Date(selectedArrival);
+  dep.setDate(dep.getDate() + (selectedRetreat?.nights || 2));
+
+  const fmt = dt => dt.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+  const fmtShort = dt => dt.toLocaleDateString('en-GB', { day:'numeric', month:'short' });
+
+  document.getElementById('rb-stay-arrival').textContent = fmtShort(selectedArrival);
+  document.getElementById('rb-stay-departure').textContent = fmtShort(dep);
+  document.getElementById('rb-stay-nights').textContent = selectedRetreat?.nights || 2;
+  document.getElementById('rb-stay-total').textContent = (selectedRetreat?.price || 0).toLocaleString() + ' RWF';
+  document.getElementById('rb-stay-bar').style.display = 'flex';
+  document.getElementById('rb-dates-next').style.display = 'inline-flex';
+}
+
+document.getElementById('rb-cal-prev').addEventListener('click', () => {
+  calDate.setMonth(calDate.getMonth() - 1); renderCal();
+});
+document.getElementById('rb-cal-next').addEventListener('click', () => {
+  calDate.setMonth(calDate.getMonth() + 1); renderCal();
+});
+
+/* ── Build confirmation ─────────────────────────────── */
+function buildConfirmation() {
+  if (!selectedRetreat || !selectedArrival) return;
+  const dep = new Date(selectedArrival);
+  dep.setDate(dep.getDate() + selectedRetreat.nights);
+  const fmt = dt => dt.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+
+  document.getElementById('rb-conf-img').src = selectedRetreat.img;
+  document.getElementById('rb-conf-total').textContent = selectedRetreat.price.toLocaleString() + ' RWF';
+  document.getElementById('rb-dates-retreat-label').textContent = selectedRetreat.label + ' · ' + selectedRetreat.name;
+
+  document.getElementById('rb-summary-rows').innerHTML = [
+    { l: 'Retreat', v: selectedRetreat.name },
+    { l: 'Duration', v: selectedRetreat.duration },
+    { l: 'Arrival', v: fmt(selectedArrival) },
+    { l: 'Departure', v: fmt(dep) },
+    { l: 'Included', v: selectedRetreat.inclusions.slice(0,3).join(', ') + '...' },
+    { l: 'Rate', v: selectedRetreat.price.toLocaleString() + ' RWF / person' },
+  ].map(r => `<div class="rb-summary-row">
+    <span class="rb-summary-row-lbl">${r.l}</span>
+    <span class="rb-summary-row-val">${r.v}</span>
+  </div>`).join('');
+}
+
+/* ── Confirm retreat ────────────────────────────────── */
+function confirmRetreat() {
+  const name = document.getElementById('rb-guest-name').value.trim();
+  const email = document.getElementById('rb-guest-email').value.trim();
+  if (!name || !email) {
+    document.getElementById('rb-guest-name').style.borderBottomColor = 'rgba(200,80,60,.5)';
+    setTimeout(() => document.getElementById('rb-guest-name').style.borderBottomColor = '', 1400);
+    return;
+  }
+  const ref = 'GRT-R-' + Date.now().toString().slice(-5).toUpperCase();
+  document.getElementById('rb-conf-ref').textContent = `Retreat Reference: ${ref}`;
+  document.getElementById('rb-confirm-inner').style.display = 'none';
+  document.getElementById('rb-confirmed').classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Step navigation ────────────────────────────────── */
+function goToStep(n) {
+  currentStep = n;
+  document.querySelectorAll('.rb-step-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('rb-panel-' + n).classList.add('active');
+
+  // Update dots
+  [1,2,3,4].forEach(i => {
+    const dot = document.getElementById('sd-' + i);
+    dot.classList.remove('active', 'done');
+    if (i < n) dot.classList.add('done');
+    else if (i === n) dot.classList.add('active');
+  });
+
+  if (n === 3) {
+    renderCal();
+    if (selectedRetreat) document.getElementById('rb-dates-retreat-label').textContent = selectedRetreat.label + ' · ' + selectedRetreat.name;
+  }
+  if (n === 4) buildConfirmation();
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Init ───────────────────────────────────────────── */
+renderRetreats();
+clearAmbient();
+</script>
+</body>
+</html>

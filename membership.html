@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Membership — Grotta</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════
+   MEMBERSHIP — Cinematic Lifestyle
+   Volcanic luxury · quiet belonging
+══════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #080805;
+  color: #e8e0d0;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Grain texture overlay ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+  pointer-events: none; opacity: .55;
+}
+
+/* ── Shared reveal ── */
+.reveal {
+  opacity: 0; transform: translateY(34px);
+  transition: opacity .95s cubic-bezier(.25,.46,.45,.94),
+              transform .95s cubic-bezier(.25,.46,.45,.94);
+}
+.reveal.from-left  { transform: translateX(-42px); }
+.reveal.from-right { transform: translateX(42px); }
+.reveal.visible    { opacity: 1 !important; transform: translate(0,0) !important; }
+.reveal.d1 { transition-delay: .1s; }
+.reveal.d2 { transition-delay: .22s; }
+.reveal.d3 { transition-delay: .34s; }
+.reveal.d4 { transition-delay: .46s; }
+
+/* ── Shared typography ── */
+.mb-label {
+  font-family: 'Jost', sans-serif;
+  font-size: .55rem; font-weight: 500;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: rgba(201,165,82,.48); display: block; margin-bottom: .9rem;
+}
+.mb-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 300; color: #e8e0d0;
+  line-height: 1.06; letter-spacing: -.02em;
+}
+.mb-rule {
+  width: 2rem; height: 1px;
+  background: rgba(201,165,82,.28); margin: 1.3rem 0;
+}
+.mb-body {
+  font-size: .9rem; font-weight: 300;
+  color: rgba(232,224,208,.52); line-height: 2.1;
+}
+.mb-ornament {
+  display: flex; align-items: center; gap: 1.2rem;
+  justify-content: center; margin: 2rem auto;
+  max-width: 220px;
+}
+.mb-ornament::before, .mb-ornament::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,165,82,.22));
+}
+.mb-ornament::after { background: linear-gradient(to left, transparent, rgba(201,165,82,.22)); }
+.mb-ornament-dot { font-size: .6rem; color: rgba(201,165,82,.38); }
+
+/* ── Buttons ── */
+.mb-btn-gold {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-family: 'Jost', sans-serif; font-size: .62rem;
+  font-weight: 500; letter-spacing: .24em; text-transform: uppercase;
+  color: #080805; background: #c9a552;
+  border: none; cursor: pointer; padding: 1.1rem 2.6rem;
+  position: relative; overflow: hidden;
+  transition: transform .25s ease, box-shadow .3s ease;
+  text-decoration: none;
+}
+.mb-btn-gold::before {
+  content: ''; position: absolute; inset: 0;
+  background: #e2c97e; transform: scaleX(0);
+  transform-origin: left; transition: transform .4s cubic-bezier(.25,.46,.45,.94); z-index: 0;
+}
+.mb-btn-gold span { position: relative; z-index: 1; }
+.mb-btn-gold:hover::before { transform: scaleX(1); }
+.mb-btn-gold:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(201,165,82,.3); }
+
+.mb-btn-outline {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-family: 'Jost', sans-serif; font-size: .62rem;
+  font-weight: 400; letter-spacing: .24em; text-transform: uppercase;
+  color: rgba(232,224,208,.7); background: transparent;
+  border: 1px solid rgba(232,224,208,.28); cursor: pointer;
+  padding: 1.05rem 2.4rem; text-decoration: none;
+  transition: border-color .3s ease, color .3s ease, transform .25s ease;
+}
+.mb-btn-outline:hover { border-color: #c9a552; color: #c9a552; transform: translateY(-2px); }
+
+/* ══════════════════════════════════════
+   1. HERO
+══════════════════════════════════════ */
+.mb-hero {
+  position: relative; height: 100vh; min-height: 680px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; text-align: center;
+}
+
+.mb-hero-bg {
+  position: absolute; inset: -5%;
+  background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=85');
+  background-size: cover; background-position: center 35%;
+  filter: brightness(.4) saturate(.72);
+  animation: mb-ken 28s cubic-bezier(.25,.46,.45,.94) forwards;
+  will-change: transform;
+}
+@keyframes mb-ken {
+  from { transform: scale(1.07); }
+  to   { transform: scale(1); }
+}
+
+.mb-hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 90% 65% at 50% 45%,
+      rgba(201,130,40,.05) 0%, transparent 60%),
+    linear-gradient(to bottom,
+      rgba(8,8,5,.3) 0%,
+      rgba(8,8,5,.08) 28%,
+      rgba(8,8,5,.55) 68%,
+      rgba(8,8,5,1) 100%);
+}
+
+/* Warm ambient bloom */
+.mb-hero-bloom {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 50% 55%,
+    rgba(201,160,80,.04) 0%, transparent 65%);
+  animation: mb-bloom 10s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes mb-bloom {
+  from { opacity: .5; transform: scale(1); }
+  to   { opacity: 1; transform: scale(1.06); }
+}
+
+.mb-hero-content {
+  position: relative; z-index: 10;
+  max-width: 740px; padding: 0 2rem;
+}
+.mb-hero-content .mb-label {
+  opacity: 0; animation: mb-up .85s ease .35s forwards;
+  margin-bottom: 1.5rem;
+}
+.mb-hero-content h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3.2rem, 7.5vw, 7rem);
+  font-weight: 300; color: #f0e8d5;
+  line-height: 1.02; letter-spacing: -.03em;
+  margin-bottom: 1.2rem;
+  opacity: 0; transform: translateY(26px);
+  animation: mb-rise 1.1s cubic-bezier(.34,1.06,.64,1) .55s forwards;
+}
+.mb-hero-sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  font-weight: 300; font-style: italic;
+  color: rgba(232,224,208,.58); margin-bottom: .9rem; display: block;
+  opacity: 0; filter: blur(3px);
+  animation: mb-blur .9s ease .95s forwards;
+}
+.mb-hero-desc {
+  font-size: .9rem; color: rgba(232,224,208,.45);
+  line-height: 2; max-width: 460px; margin: 0 auto 3rem;
+  opacity: 0; animation: mb-blur .9s ease 1.2s forwards;
+}
+.mb-hero-ctas {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: mb-up .8s ease 1.6s forwards;
+}
+
+@keyframes mb-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes mb-rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes mb-blur {
+  from { opacity: 0; filter: blur(3px); transform: translateY(8px); }
+  to   { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+/* Scroll hint */
+.mb-hero-scroll {
+  position: absolute; bottom: 2.2rem; left: 50%;
+  transform: translateX(-50%); z-index: 10;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  opacity: 0; animation: mb-up .8s ease 2.1s forwards;
+}
+.mb-hero-scroll span {
+  font-family: 'Jost', sans-serif; font-size: .5rem;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: rgba(201,165,82,.32);
+}
+.mb-scroll-line {
+  width: 1px; height: 38px;
+  background: linear-gradient(to bottom, rgba(201,165,82,.38), transparent);
+  animation: mb-scroll 2.4s ease-in-out infinite;
+}
+@keyframes mb-scroll {
+  0%,100% { opacity: .4; transform: scaleY(1); transform-origin: top; }
+  50% { opacity: .8; transform: scaleY(1.18); }
+}
+
+/* ══════════════════════════════════════
+   2. PURPOSE — A Space to Return To
+══════════════════════════════════════ */
+.mb-purpose {
+  background: #080805; padding: 9rem 0;
+  position: relative; overflow: hidden;
+}
+.mb-purpose::before {
+  content: ''; position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 700px; height: 500px;
+  background: radial-gradient(ellipse, rgba(201,165,82,.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.mb-purpose-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: center;
+}
+
+.mb-purpose-text .mb-title { margin-bottom: 1.4rem; }
+.mb-purpose-text .mb-body { margin-bottom: 1.8rem; }
+
+/* Concept blocks */
+.mb-concepts { display: flex; flex-direction: column; gap: 1px; background: rgba(201,165,82,.08); }
+.mb-concept {
+  background: #0e0c09; padding: 1.8rem 2rem;
+  display: flex; gap: 1.4rem; align-items: flex-start;
+  transition: background .35s ease;
+}
+.mb-concept:hover { background: #131109; }
+.mb-concept-icon {
+  font-size: 1.2rem; flex-shrink: 0;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(201,165,82,.15); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .35s ease;
+}
+.mb-concept:hover .mb-concept-icon { border-color: rgba(201,165,82,.35); }
+.mb-concept-body {}
+.mb-concept-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.05rem; font-weight: 400; color: #e8e0d0;
+  margin-bottom: .3rem; transition: color .3s ease;
+}
+.mb-concept:hover .mb-concept-title { color: #fff; }
+.mb-concept-desc {
+  font-size: .78rem; color: rgba(200,192,174,.45);
+  line-height: 1.8; transition: color .3s ease;
+}
+.mb-concept:hover .mb-concept-desc { color: rgba(200,192,174,.65); }
+
+/* Purpose image side */
+.mb-purpose-img {
+  position: relative; height: 520px; overflow: hidden;
+}
+.mb-purpose-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.65) saturate(.8);
+  transition: transform 1.4s cubic-bezier(.25,.46,.45,.94);
+}
+.mb-purpose-img:hover img { transform: scale(1.04); }
+.mb-purpose-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(8,8,5,.2) 0%, transparent 55%),
+              linear-gradient(to bottom, transparent 50%, rgba(8,8,5,.5) 100%);
+  pointer-events: none;
+}
+/* Gold corner */
+.mb-purpose-img::before {
+  content: ''; position: absolute; bottom: 0; right: 0;
+  width: 48px; height: 48px;
+  border-right: 1px solid rgba(201,165,82,.3);
+  border-bottom: 1px solid rgba(201,165,82,.3);
+  z-index: 2; pointer-events: none;
+}
+
+/* ══════════════════════════════════════
+   3. WHAT'S INCLUDED — Access Cards
+══════════════════════════════════════ */
+.mb-included {
+  background: #0a0906; padding: 8rem 0;
+  position: relative;
+}
+.mb-included::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,165,82,.12) 30%, rgba(201,165,82,.12) 70%, transparent);
+}
+
+.mb-included-header {
+  text-align: center; max-width: 560px;
+  margin: 0 auto 5rem; padding: 0 2rem;
+}
+.mb-included-header .mb-rule { margin: 1.2rem auto; }
+
+.mb-access-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(201,165,82,.08);
+  max-width: 1400px; margin: 0 auto;
+}
+
+.mb-access-card {
+  position: relative; min-height: 520px;
+  overflow: hidden; cursor: default;
+  display: flex; align-items: flex-end;
+}
+.mb-access-card img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.42) saturate(.72);
+  transition: filter 1.4s ease, transform 1.8s cubic-bezier(.25,.46,.45,.94);
+}
+.mb-access-card:hover img { filter: brightness(.58) saturate(.88); transform: scale(1.06); }
+
+.mb-access-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top,
+    rgba(8,8,5,.98) 0%,
+    rgba(8,8,5,.5) 40%,
+    rgba(8,8,5,.08) 70%,
+    transparent 100%);
+  pointer-events: none;
+  transition: background .55s ease;
+}
+.mb-access-card:hover::after {
+  background: linear-gradient(to top,
+    rgba(8,8,5,1) 0%,
+    rgba(8,8,5,.65) 45%,
+    rgba(8,8,5,.15) 75%,
+    transparent 100%);
+}
+
+/* Gold top line */
+.mb-access-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 2px; background: rgba(201,165,82,.6); z-index: 5;
+  transition: width .65s cubic-bezier(.25,.46,.45,.94);
+}
+.mb-access-card:hover::before { width: 100%; }
+
+/* Included badge */
+.mb-access-badge {
+  position: absolute; top: 1.4rem; left: 1.4rem; z-index: 5;
+  font-family: 'Jost', sans-serif; font-size: .46rem;
+  font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  color: #080805; background: rgba(201,165,82,.9);
+  padding: .25rem .75rem;
+}
+
+.mb-access-text {
+  position: relative; z-index: 3; padding: 2.2rem 2rem; width: 100%;
+}
+.mb-access-text .mb-label { font-size: .48rem; color: rgba(201,165,82,.38); margin-bottom: .5rem; }
+.mb-access-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 300; color: #f0e8d5; line-height: 1.1;
+  margin-bottom: .65rem; transition: color .3s ease;
+}
+.mb-access-card:hover .mb-access-name { color: #fff; }
+.mb-access-desc {
+  font-size: .78rem; font-style: italic;
+  color: rgba(232,224,208,.42); line-height: 1.8;
+  max-height: 0; overflow: hidden; opacity: 0; transform: translateY(8px);
+  transition: max-height .55s ease, opacity .5s ease .05s, transform .5s ease .05s;
+}
+.mb-access-card:hover .mb-access-desc { max-height: 5rem; opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════
+   4. OPTIONAL ENHANCEMENTS
+══════════════════════════════════════ */
+.mb-optional {
+  background: #080805; padding: 8rem 0;
+}
+
+.mb-optional-header {
+  text-align: center; max-width: 520px;
+  margin: 0 auto 4.5rem; padding: 0 2rem;
+}
+.mb-optional-header .mb-rule { margin: 1.2rem auto; }
+
+.mb-opt-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: rgba(201,165,82,.06);
+  max-width: 1100px; margin: 0 auto;
+}
+
+.mb-opt-card {
+  background: #0c0b08; padding: 2.8rem 2.5rem;
+  position: relative; overflow: hidden;
+  transition: background .35s ease;
+}
+.mb-opt-card:hover { background: #101009; }
+.mb-opt-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 1px; background: rgba(201,165,82,.3);
+  transition: width .55s cubic-bezier(.25,.46,.45,.94);
+}
+.mb-opt-card:hover::before { width: 55%; }
+
+.mb-opt-icon {
+  font-size: 1.4rem; display: block; margin-bottom: 1.3rem;
+  opacity: .7; transition: opacity .3s ease;
+}
+.mb-opt-card:hover .mb-opt-icon { opacity: 1; }
+.mb-opt-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.3rem; font-weight: 300; color: #e8e0d0;
+  margin-bottom: .55rem; letter-spacing: -.01em;
+  transition: color .3s ease;
+}
+.mb-opt-card:hover .mb-opt-name { color: #fff; }
+.mb-opt-desc {
+  font-size: .8rem; color: rgba(200,192,174,.42);
+  line-height: 1.85; font-style: italic;
+  transition: color .3s ease;
+}
+.mb-opt-card:hover .mb-opt-desc { color: rgba(200,192,174,.62); }
+
+/* Subtle "optional" note */
+.mb-opt-note {
+  text-align: center; margin-top: 3rem;
+  font-family: 'Jost', sans-serif; font-size: .72rem;
+  color: rgba(200,192,174,.35); font-style: italic;
+}
+
+/* ══════════════════════════════════════
+   5. LIFESTYLE SECTION
+══════════════════════════════════════ */
+.mb-lifestyle {
+  background: #0a0906; padding: 8rem 0;
+  position: relative; overflow: hidden;
+}
+.mb-lifestyle::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,165,82,.1) 30%, rgba(201,165,82,.1) 70%, transparent);
+}
+
+.mb-lifestyle-inner {
+  max-width: 1300px; margin: 0 auto; padding: 0 2rem;
+}
+
+/* Editorial split */
+.mb-lifestyle-top {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center; margin-bottom: 4rem;
+}
+.mb-lifestyle-text .mb-title { margin-bottom: 1.4rem; }
+
+/* Overlapping image composition */
+.mb-lifestyle-images {
+  position: relative; height: 480px;
+}
+.mb-ls-img-1 {
+  position: absolute; top: 0; left: 0; right: 15%;
+  height: 340px; overflow: hidden;
+}
+.mb-ls-img-2 {
+  position: absolute; bottom: 0; right: 0; left: 30%;
+  height: 240px; overflow: hidden;
+}
+.mb-ls-img-1 img, .mb-ls-img-2 img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.65) saturate(.8);
+  transition: transform 1.4s cubic-bezier(.25,.46,.45,.94), filter .8s ease;
+}
+.mb-ls-img-1:hover img, .mb-ls-img-2:hover img {
+  transform: scale(1.05); filter: brightness(.78) saturate(.9);
+}
+.mb-ls-img-1::after, .mb-ls-img-2::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,5,.5) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* Gold overlap border */
+.mb-ls-img-1::before {
+  content: ''; position: absolute;
+  top: -1px; left: -1px; right: -1px; bottom: -1px;
+  border: 1px solid rgba(201,165,82,.12); z-index: 2;
+  pointer-events: none;
+}
+
+/* Horizontal full-bleed atmosphere strip */
+.mb-lifestyle-strip {
+  height: 320px; overflow: hidden; position: relative;
+}
+.mb-lifestyle-strip img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.52) saturate(.75);
+  transition: transform 1.8s cubic-bezier(.25,.46,.45,.94);
+}
+.mb-lifestyle-strip:hover img { transform: scale(1.03); }
+.mb-lifestyle-strip::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(to right, rgba(8,8,5,.8) 0%, rgba(8,8,5,.2) 35%, rgba(8,8,5,.2) 65%, rgba(8,8,5,.8) 100%),
+    linear-gradient(to bottom, rgba(8,8,5,.4) 0%, transparent 30%, rgba(8,8,5,.4) 100%);
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.mb-lifestyle-strip-text {
+  position: absolute; inset: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  pointer-events: none;
+}
+.mb-lifestyle-strip-text blockquote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 300; font-style: italic; color: rgba(240,232,213,.72);
+  line-height: 1.5; max-width: 680px; padding: 0 2rem;
+}
+
+/* ══════════════════════════════════════
+   6. FINAL CTA
+══════════════════════════════════════ */
+.mb-final {
+  position: relative; min-height: 600px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; text-align: center;
+}
+.mb-final-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1600&q=85');
+  background-size: cover; background-position: center 40%;
+  filter: brightness(.3) saturate(.65);
+  will-change: transform;
+}
+.mb-final-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%,
+    rgba(8,8,5,.4) 0%, rgba(8,8,5,.82) 100%);
+}
+/* Warm bloom */
+.mb-final-bloom {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%,
+    rgba(201,140,60,.04) 0%, transparent 70%);
+  animation: mb-bloom 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+.mb-final-content {
+  position: relative; z-index: 5;
+  max-width: 620px; padding: 0 2rem;
+}
+.mb-final-content .mb-label { margin-bottom: 1.3rem; }
+.mb-final-content h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  font-weight: 300; color: #f0e8d5;
+  line-height: 1.04; letter-spacing: -.025em; margin-bottom: 1.2rem;
+}
+.mb-final-sub {
+  font-size: .9rem; color: rgba(232,224,208,.48);
+  line-height: 2; margin-bottom: 3rem; display: block;
+}
+.mb-final-ctas {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+
+/* ══════════════════════════════════════
+   MODAL — Application
+══════════════════════════════════════ */
+.mb-modal-backdrop {
+  position: fixed; inset: 0; z-index: 800;
+  background: rgba(8,8,5,.88);
+  backdrop-filter: blur(10px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .45s ease;
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+}
+.mb-modal-backdrop.open { opacity: 1; pointer-events: all; }
+
+.mb-modal {
+  background: #0e0c09;
+  border: 1px solid rgba(201,165,82,.15);
+  max-width: 620px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  position: relative;
+  transform: translateY(30px) scale(.97);
+  transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+  box-shadow: 0 40px 100px rgba(0,0,0,.7), 0 0 0 1px rgba(201,165,82,.06);
+}
+.mb-modal-backdrop.open .mb-modal { transform: translateY(0) scale(1); }
+
+.mb-modal-top {
+  padding: 2.8rem 3rem 0;
+  position: relative;
+}
+.mb-modal-close {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Jost', sans-serif; font-size: .55rem;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(200,192,174,.4);
+  padding: .4rem .9rem; border: 1px solid rgba(201,165,82,.15);
+  transition: color .3s ease, border-color .3s ease;
+}
+.mb-modal-close:hover { color: rgba(200,192,174,.8); border-color: rgba(201,165,82,.3); }
+
+.mb-modal-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2rem; font-weight: 300; color: #e8e0d0;
+  line-height: 1.1; margin-bottom: .5rem;
+}
+.mb-modal-sub {
+  font-size: .78rem; color: rgba(200,192,174,.45);
+  line-height: 1.85; margin-bottom: 0;
+}
+
+.mb-modal-divider {
+  height: 1px; margin: 2rem 3rem;
+  background: linear-gradient(to right, rgba(201,165,82,.2), transparent);
+}
+
+/* Modal form */
+.mb-modal-form { padding: 0 3rem 3rem; }
+
+.mb-modal-field {
+  margin-bottom: 2rem; position: relative;
+}
+.mb-modal-label {
+  font-family: 'Jost', sans-serif; font-size: .52rem;
+  letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(201,165,82,.48); display: block; margin-bottom: .65rem;
+}
+.mb-modal-input, .mb-modal-textarea {
+  width: 100%; background: transparent;
+  border: none; border-bottom: 1px solid rgba(200,192,174,.14);
+  color: #e8e0d0; font-family: 'Jost', sans-serif;
+  font-size: .88rem; font-weight: 300;
+  padding: .65rem 0; outline: none; caret-color: #c9a552;
+  transition: border-color .35s ease;
+}
+.mb-modal-input::placeholder, .mb-modal-textarea::placeholder {
+  color: rgba(200,192,174,.22);
+}
+.mb-modal-input:focus, .mb-modal-textarea:focus { border-bottom-color: #c9a552; }
+
+/* Animated underline */
+.mb-modal-field::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; width: 0; height: 1px;
+  background: #c9a552;
+  transition: width .4s cubic-bezier(.25,.46,.45,.94);
+}
+.mb-modal-field:focus-within::after { width: 100%; }
+
+.mb-modal-textarea { min-height: 80px; resize: vertical; }
+
+/* Interest pills */
+.mb-interest-pills { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .6rem; }
+.mb-interest-input { display: none; }
+.mb-interest-label {
+  font-family: 'Jost', sans-serif; font-size: .58rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(200,192,174,.42); border: 1px solid rgba(201,165,82,.14);
+  padding: .4rem 1.1rem; cursor: pointer;
+  transition: border-color .25s ease, color .25s ease, background .25s ease;
+}
+.mb-interest-input:checked + .mb-interest-label {
+  border-color: #c9a552; color: #c9a552; background: rgba(201,165,82,.05);
+}
+.mb-interest-label:hover { border-color: rgba(201,165,82,.35); color: rgba(201,165,82,.75); }
+
+.mb-modal-submit { width: 100%; padding: 1.1rem; margin-top: .5rem; }
+
+/* Modal confirmation */
+.mb-modal-confirm {
+  display: none; text-align: center; padding: 3.5rem 3rem;
+  animation: mb-up .6s ease;
+}
+.mb-modal-confirm.show { display: block; }
+.mb-modal-confirm-check {
+  width: 60px; height: 60px; border-radius: 50%;
+  border: 1px solid rgba(201,165,82,.3); background: rgba(201,165,82,.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin: 0 auto 2rem;
+  animation: mb-pop .6s cubic-bezier(.34,1.56,.64,1) .1s both;
+}
+@keyframes mb-pop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.mb-modal-confirm h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.8rem; font-weight: 300; color: #e8e0d0; margin-bottom: .8rem;
+}
+.mb-modal-confirm p {
+  font-size: .82rem; color: rgba(200,192,174,.5);
+  line-height: 2; max-width: 380px; margin: 0 auto 1.4rem;
+}
+.mb-modal-confirm-note {
+  font-size: .68rem; color: rgba(201,165,82,.35);
+  font-style: italic; letter-spacing: .06em;
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:1100px){
+  .mb-access-grid { grid-template-columns: repeat(2, 1fr); }
+  .mb-opt-grid { grid-template-columns: 1fr 1fr; }
+  .mb-lifestyle-top { grid-template-columns: 1fr; gap: 3rem; }
+  .mb-lifestyle-images { height: 340px; }
+  .mb-ls-img-1 { right: 0%; height: 240px; }
+  .mb-ls-img-2 { display: none; }
+  .mb-purpose-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+  .mb-purpose-img { height: 340px; }
+}
+@media(max-width:700px){
+  .mb-hero-content h1 { font-size: clamp(3rem, 10vw, 4.5rem); }
+  .mb-access-grid { grid-template-columns: 1fr; }
+  .mb-access-card { min-height: 380px; }
+  .mb-opt-grid { grid-template-columns: 1fr; }
+  .mb-hero-ctas, .mb-final-ctas { flex-direction: column; align-items: center; }
+  .mb-modal { max-height: 95vh; }
+  .mb-modal-top, .mb-modal-form { padding-left: 1.8rem; padding-right: 1.8rem; }
+  .mb-modal-divider { margin-left: 1.8rem; margin-right: 1.8rem; }
+  .mb-lifestyle-strip { height: 240px; }
+}
+</style>
+</head>
+<body>
+<div id="nav-holder"></div>
+
+<!-- ══ 1. HERO ══ -->
+<div class="mb-hero" id="mb-hero">
+  <div class="mb-hero-bg" id="mb-hero-bg"></div>
+  <div class="mb-hero-overlay"></div>
+  <div class="mb-hero-bloom"></div>
+
+  <div class="mb-hero-content">
+    <span class="mb-label">For Those Who Return</span>
+    <h1>The Grotta<br>Membership</h1>
+    <span class="mb-hero-sub">"A more continuous way to experience Grotta."</span>
+    <p class="mb-hero-desc">Designed for those who return, the membership offers ongoing access to selected spaces and experiences across the property.</p>
+    <div class="mb-hero-ctas">
+      <button class="mb-btn-gold" onclick="openModal()"><span>Apply for Membership</span></button>
+      <button class="mb-btn-outline" onclick="document.getElementById('mb-purpose').scrollIntoView({behavior:'smooth'})">Learn More</button>
+    </div>
+  </div>
+
+  <div class="mb-hero-scroll">
+    <span>Discover</span>
+    <div class="mb-scroll-line"></div>
+  </div>
+</div>
+
+<!-- ══ 2. PURPOSE ══ -->
+<div class="mb-purpose" id="mb-purpose">
+  <div class="mb-purpose-inner">
+
+    <div class="mb-purpose-text reveal from-left">
+      <span class="mb-label">The Idea</span>
+      <h2 class="mb-title">A Space<br>to Return To</h2>
+      <div class="mb-rule"></div>
+      <p class="mb-body">The Grotta Membership is built around two ideas — continuity and community. It offers a way to experience the property beyond a single visit, with access to spaces designed for everyday use and meaningful connection.</p>
+      <p class="mb-body" style="margin-top:.9rem">Not a transaction. A rhythm.</p>
+      <div class="mb-concepts" style="margin-top:2.5rem">
+        <div class="mb-concept">
+          <div class="mb-concept-icon">🔁</div>
+          <div class="mb-concept-body">
+            <div class="mb-concept-title">Recurring Access</div>
+            <div class="mb-concept-desc">The property becomes familiar — a place you return to, not just visit.</div>
+          </div>
+        </div>
+        <div class="mb-concept">
+          <div class="mb-concept-icon">🌿</div>
+          <div class="mb-concept-body">
+            <div class="mb-concept-title">Community Presence</div>
+            <div class="mb-concept-desc">A small, considered group of members who share the space and its atmosphere.</div>
+          </div>
+        </div>
+        <div class="mb-concept">
+          <div class="mb-concept-icon">🏔</div>
+          <div class="mb-concept-body">
+            <div class="mb-concept-title">Familiar Environment</div>
+            <div class="mb-concept-desc">The gardens, the café, the stillness — they become part of your regular life.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-purpose-img reveal from-right">
+      <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900&q=85" alt="Grotta highlands" loading="lazy">
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ 3. WHAT'S INCLUDED ══ -->
+<div class="mb-included">
+  <div class="mb-included-header reveal">
+    <span class="mb-label">Membership Access</span>
+    <h2 class="mb-title">What You<br>Return To</h2>
+    <div class="mb-rule" style="margin:1.2rem auto"></div>
+    <p class="mb-body" style="max-width:420px;margin:0 auto">Each space is chosen for how it feels across seasons, across moods, across visits.</p>
+  </div>
+
+  <div class="mb-access-grid">
+
+    <div class="mb-access-card reveal d1">
+      <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=900&q=85" alt="Gym" loading="lazy">
+      <span class="mb-access-badge">Included</span>
+      <div class="mb-access-text">
+        <span class="mb-label">Movement</span>
+        <div class="mb-access-name">Gym & Training Space</div>
+        <p class="mb-access-desc">"A place to begin the morning with intention. The mountains in the window, the floor cool underfoot."</p>
+      </div>
+    </div>
+
+    <div class="mb-access-card reveal d2">
+      <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=900&q=85" alt="Family Gardens" loading="lazy">
+      <span class="mb-access-badge">Included</span>
+      <div class="mb-access-text">
+        <span class="mb-label">Play & Open Space</span>
+        <div class="mb-access-name">Family Gardens</div>
+        <p class="mb-access-desc">"Space designed for children to roam freely while the wider property stays calm and unhurried."</p>
+      </div>
+    </div>
+
+    <div class="mb-access-card reveal d3">
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=85" alt="Garden Spaces" loading="lazy">
+      <span class="mb-access-badge">Included</span>
+      <div class="mb-access-text">
+        <span class="mb-label">Nature & Stillness</span>
+        <div class="mb-access-name">Garden Spaces</div>
+        <p class="mb-access-desc">"Curated paths through highland greenery. No agenda. Just the kind of quiet that arrives without asking."</p>
+      </div>
+    </div>
+
+    <div class="mb-access-card reveal d4">
+      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=900&q=85" alt="Café" loading="lazy">
+      <span class="mb-access-badge">Included</span>
+      <div class="mb-access-text">
+        <span class="mb-label">Social & Ritual</span>
+        <div class="mb-access-name">Café Access</div>
+        <p class="mb-access-desc">"A familiar place to begin the day or pause in the afternoon. The same corner. The same light. Yours."</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ 4. OPTIONAL ENHANCEMENTS ══ -->
+<div class="mb-optional">
+  <div class="mb-optional-header reveal">
+    <span class="mb-label">At Your Discretion</span>
+    <h2 class="mb-title">Optional<br>Enhancements</h2>
+    <div class="mb-rule" style="margin:1.2rem auto"></div>
+    <p class="mb-body" style="max-width:400px;margin:0 auto">Available as part of an extended experience, whenever the moment calls for it.</p>
+  </div>
+
+  <div class="mb-opt-grid reveal">
+    <div class="mb-opt-card">
+      <span class="mb-opt-icon">🌊</span>
+      <div class="mb-opt-name">Pool</div>
+      <p class="mb-opt-desc">"Water, light, and the open highland air. An afternoon that asks nothing of you in return."</p>
+    </div>
+    <div class="mb-opt-card">
+      <span class="mb-opt-icon">🌋</span>
+      <div class="mb-opt-name">Sauna</div>
+      <p class="mb-opt-desc">"Volcanic stone, dry heat, and a silence that belongs only to this place."</p>
+    </div>
+    <div class="mb-opt-card">
+      <span class="mb-opt-icon">🎬</span>
+      <div class="mb-opt-name">Cinema</div>
+      <p class="mb-opt-desc">"Curated screenings under the highland sky. Blankets, warmth, and a carefully chosen title."</p>
+    </div>
+  </div>
+
+  <p class="mb-opt-note reveal">Enhancements may be accessed individually and are not part of the core membership.</p>
+</div>
+
+<!-- ══ 5. LIFESTYLE ══ -->
+<div class="mb-lifestyle">
+  <div class="mb-lifestyle-inner">
+
+    <div class="mb-lifestyle-top">
+      <div class="mb-lifestyle-text reveal from-left">
+        <span class="mb-label">The Rhythm</span>
+        <h2 class="mb-title">A Different Way<br>to Experience Grotta</h2>
+        <div class="mb-rule"></div>
+        <p class="mb-body">From morning routines to evening gatherings, the membership integrates Grotta into daily life — not just occasional visits. The property becomes a reference point. A place you know the light of in the early hours.</p>
+        <p class="mb-body" style="margin-top:1rem">It is, above all, a place to come back to.</p>
+      </div>
+      <div class="mb-lifestyle-images reveal from-right">
+        <div class="mb-ls-img-1">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=85" alt="Café morning" loading="lazy">
+        </div>
+        <div class="mb-ls-img-2">
+          <img src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=900&q=85" alt="Evening fire" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-lifestyle-strip reveal">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85" alt="Volcanic landscape" loading="lazy">
+      <div class="mb-lifestyle-strip-text">
+        <blockquote>"The value of a place is in how it makes you feel when you return."</blockquote>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ 6. FINAL CTA ══ -->
+<div class="mb-final" id="mb-final-cta">
+  <div class="mb-final-bg" id="mb-final-bg"></div>
+  <div class="mb-final-overlay"></div>
+  <div class="mb-final-bloom"></div>
+  <div class="mb-final-content reveal">
+    <span class="mb-label">The Next Step</span>
+    <h2>Become Part of<br>the Experience</h2>
+    <div class="mb-ornament" style="margin:1.8rem auto 1rem"><span class="mb-ornament-dot">✦</span></div>
+    <span class="mb-final-sub">Memberships are reviewed to ensure a balanced and considered community.</span>
+    <div class="mb-final-ctas">
+      <button class="mb-btn-gold" onclick="openModal()"><span>Apply for Membership</span></button>
+      <button class="mb-btn-outline" onclick="document.getElementById('mb-purpose').scrollIntoView({behavior:'smooth'})">Schedule a Visit</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL ══ -->
+<div class="mb-modal-backdrop" id="mb-modal-backdrop" onclick="handleBackdropClick(event)">
+  <div class="mb-modal" id="mb-modal">
+
+    <div id="mb-form-content">
+      <div class="mb-modal-top">
+        <button class="mb-modal-close" onclick="closeModal()">Close ✕</button>
+        <span class="mb-label">Membership Application</span>
+        <h2 class="mb-modal-title">Tell Us<br>About Yourself</h2>
+        <p class="mb-modal-sub">Our team reviews each application personally and will be in touch shortly.</p>
+      </div>
+
+      <div class="mb-modal-divider"></div>
+
+      <div class="mb-modal-form">
+        <div class="mb-modal-field">
+          <label class="mb-modal-label">Full Name</label>
+          <input class="mb-modal-input" type="text" id="mb-name" placeholder="Your name">
+        </div>
+        <div class="mb-modal-field">
+          <label class="mb-modal-label">Email</label>
+          <input class="mb-modal-input" type="email" id="mb-email" placeholder="your@email.com">
+        </div>
+        <div class="mb-modal-field">
+          <label class="mb-modal-label">Phone</label>
+          <input class="mb-modal-input" type="tel" id="mb-phone" placeholder="+250 ...">
+        </div>
+        <div class="mb-modal-field" style="margin-bottom:2rem">
+          <label class="mb-modal-label">Membership Interest</label>
+          <div class="mb-interest-pills">
+            <div>
+              <input type="radio" name="mb-interest" id="i-individual" class="mb-interest-input" value="Individual" checked>
+              <label class="mb-interest-label" for="i-individual">Individual</label>
+            </div>
+            <div>
+              <input type="radio" name="mb-interest" id="i-family" class="mb-interest-input" value="Family">
+              <label class="mb-interest-label" for="i-family">Family</label>
+            </div>
+            <div>
+              <input type="radio" name="mb-interest" id="i-corporate" class="mb-interest-input" value="Corporate">
+              <label class="mb-interest-label" for="i-corporate">Corporate</label>
+            </div>
+          </div>
+        </div>
+        <div class="mb-modal-field">
+          <label class="mb-modal-label">A Note (Optional)</label>
+          <textarea class="mb-modal-textarea" id="mb-note" placeholder="Tell us a little about how you imagine using Grotta..."></textarea>
+        </div>
+        <button class="mb-btn-gold mb-modal-submit" onclick="submitMembership()">
+          <span>Submit Application</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-modal-confirm" id="mb-confirm">
+      <div class="mb-modal-confirm-check">✦</div>
+      <h3>Your request has been received.</h3>
+      <p>Our team will reach out to you shortly to begin a conversation about your membership.</p>
+      <p class="mb-modal-confirm-note">Memberships are reviewed to ensure a balanced community.</p>
+    </div>
+
+  </div>
+</div>
+
+<div id="footer-holder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+// ── Modal ─────────────────────────────────────────────────────
+function openModal() {
+  document.getElementById('mb-modal-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('mb-modal-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleBackdropClick(e) {
+  if (e.target === document.getElementById('mb-modal-backdrop')) closeModal();
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+function submitMembership() {
+  const name  = document.getElementById('mb-name').value.trim();
+  const email = document.getElementById('mb-email').value.trim();
+  if (!name || !email) {
+    document.getElementById('mb-email').style.borderBottomColor = 'rgba(201,80,60,.5)';
+    setTimeout(() => document.getElementById('mb-email').style.borderBottomColor = '', 1400);
+    return;
+  }
+  document.getElementById('mb-form-content').style.display = 'none';
+  document.getElementById('mb-confirm').classList.add('show');
+}
+
+// ── Scroll reveal ─────────────────────────────────────────────
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+// ── Parallax ──────────────────────────────────────────────────
+const heroBg  = document.getElementById('mb-hero-bg');
+const finalBg = document.getElementById('mb-final-bg');
+const finalEl = document.getElementById('mb-final-cta');
+
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (heroBg) heroBg.style.transform = `translateY(${y * 0.28}px)`;
+  if (finalBg && finalEl) {
+    const r = finalEl.getBoundingClientRect();
+    finalBg.style.transform = `translateY(${(window.innerHeight/2 - r.top - r.height/2) * .15}px)`;
+  }
+}, { passive: true });
+</script>
+</body>
+</html>

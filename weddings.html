@@ -3,295 +3,1401 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weddings at Grotta</title>
+<title>Weddings at Grotta — Intimate Volcanic Celebrations</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════
+   WEDDINGS — Cinematic Volcanic Luxury
+══════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #080805;
+  color: #e8e0d0;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Shared reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity .9s cubic-bezier(.25,.46,.45,.94),
+              transform .9s cubic-bezier(.25,.46,.45,.94);
+}
+.reveal.from-left  { transform: translateX(-44px); }
+.reveal.from-right { transform: translateX(44px); }
+.reveal.visible    { opacity: 1 !important; transform: translate(0,0) !important; }
+.reveal.d1 { transition-delay: .12s; }
+.reveal.d2 { transition-delay: .24s; }
+.reveal.d3 { transition-delay: .36s; }
+.reveal.d4 { transition-delay: .48s; }
+
+/* ── Typography ── */
+.wg-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+.wg-label {
+  font-family: 'Jost', sans-serif;
+  font-size: .56rem; font-weight: 500;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: rgba(201,165,82,.5); display: block;
+  margin-bottom: .9rem;
+}
+.wg-rule {
+  width: 2rem; height: 1px;
+  background: rgba(201,165,82,.3);
+  margin: 1.2rem 0;
+}
+.wg-section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 300; color: #e8e0d0;
+  line-height: 1.06; letter-spacing: -.02em;
+}
+
+/* ── Section spacing ── */
+.wg-section { padding: 8rem 0; position: relative; }
+.wg-section-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.wg-section-header { text-align: center; margin-bottom: 5rem; }
+.wg-section-header .wg-rule { margin: 1.2rem auto; }
+
+/* ══════════════════════════════════════
+   FLOATING INQUIRE
+══════════════════════════════════════ */
+.wg-float {
+  position: fixed; bottom: 2.5rem; right: 2.5rem; z-index: 500;
+  font-family: 'Jost', sans-serif; font-size: .58rem;
+  font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+  color: #080805; background: #c9a552;
+  border: none; cursor: pointer; padding: .9rem 1.8rem;
+  box-shadow: 0 8px 32px rgba(201,165,82,.35);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .5s ease, transform .5s ease,
+              background .3s ease, box-shadow .3s ease;
+}
+.wg-float.visible { opacity: 1; transform: translateY(0); }
+.wg-float:hover {
+  background: #e2c97e;
+  box-shadow: 0 12px 44px rgba(201,165,82,.5);
+  transform: translateY(-3px);
+}
+
+/* ══════════════════════════════════════
+   1. HERO
+══════════════════════════════════════ */
+.wg-hero {
+  position: relative; height: 100vh; min-height: 680px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; text-align: center;
+}
+
+.wg-hero-bg {
+  position: absolute; inset: -5%;
+  background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=85');
+  background-size: cover; background-position: center 30%;
+  filter: brightness(.45) saturate(.75);
+  animation: wg-ken-burns 28s cubic-bezier(.25,.46,.45,.94) forwards;
+  will-change: transform;
+}
+@keyframes wg-ken-burns {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1); }
+}
+
+/* Layered overlays */
+.wg-hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%,
+      rgba(201,120,40,.06) 0%, transparent 65%),
+    linear-gradient(to bottom,
+      rgba(8,8,5,.3) 0%,
+      rgba(8,8,5,.08) 30%,
+      rgba(8,8,5,.55) 70%,
+      rgba(8,8,5,1) 100%);
+}
+
+/* Mist drift */
+.wg-hero-mist {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 120% 50% at 50% 60%,
+    rgba(220,200,160,.03) 0%, transparent 60%);
+  animation: wg-mist 12s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes wg-mist {
+  from { transform: translateX(-2%) scaleX(1); opacity: .6; }
+  to   { transform: translateX(2%) scaleX(1.04); opacity: 1; }
+}
+
+.wg-hero-content {
+  position: relative; z-index: 10;
+  max-width: 780px; padding: 0 2rem;
+}
+
+.wg-hero-content .wg-label {
+  opacity: 0; animation: wg-up .85s ease .35s forwards;
+  margin-bottom: 1.4rem;
+}
+.wg-hero-content h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  font-weight: 300; color: #f0e8d5;
+  line-height: 1.02; letter-spacing: -.03em;
+  margin-bottom: 1.3rem;
+  opacity: 0; transform: translateY(26px);
+  animation: wg-rise 1.1s cubic-bezier(.34,1.06,.64,1) .55s forwards;
+}
+.wg-hero-tagline {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  font-weight: 300; font-style: italic;
+  color: rgba(232,224,208,.58); line-height: 1.75;
+  margin-bottom: 2.8rem;
+  opacity: 0; filter: blur(4px);
+  animation: wg-blur .95s ease 1s forwards;
+}
+
+@keyframes wg-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes wg-rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes wg-blur {
+  from { opacity: 0; filter: blur(4px); transform: translateY(10px); }
+  to   { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+.wg-hero-ctas {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: wg-up .8s ease 1.5s forwards;
+}
+.wg-btn-primary {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-family: 'Jost', sans-serif; font-size: .62rem;
+  font-weight: 500; letter-spacing: .26em; text-transform: uppercase;
+  color: #080805; background: #c9a552; text-decoration: none;
+  border: none; cursor: pointer; padding: 1.1rem 2.6rem;
+  position: relative; overflow: hidden;
+  transition: transform .25s ease, box-shadow .3s ease;
+}
+.wg-btn-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: #e2c97e; transform: scaleX(0);
+  transform-origin: left; transition: transform .4s cubic-bezier(.25,.46,.45,.94); z-index: 0;
+}
+.wg-btn-primary span { position: relative; z-index: 1; }
+.wg-btn-primary:hover::before { transform: scaleX(1); }
+.wg-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(201,165,82,.32); }
+
+.wg-btn-secondary {
+  display: inline-flex; align-items: center;
+  font-family: 'Jost', sans-serif; font-size: .62rem;
+  font-weight: 400; letter-spacing: .26em; text-transform: uppercase;
+  color: rgba(232,224,208,.75); background: transparent;
+  border: 1px solid rgba(232,224,208,.3); cursor: pointer;
+  padding: 1.05rem 2.4rem; text-decoration: none;
+  transition: border-color .3s ease, color .3s ease, transform .25s ease;
+}
+.wg-btn-secondary:hover { border-color: #c9a552; color: #c9a552; transform: translateY(-2px); }
+
+/* Scroll indicator */
+.wg-hero-scroll {
+  position: absolute; bottom: 2.2rem; left: 50%;
+  transform: translateX(-50%); z-index: 10;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  opacity: 0; animation: wg-up .8s ease 2s forwards;
+}
+.wg-hero-scroll span {
+  font-family: 'Jost', sans-serif; font-size: .5rem;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: rgba(201,165,82,.35);
+}
+.wg-hero-scroll-line {
+  width: 1px; height: 38px;
+  background: linear-gradient(to bottom, rgba(201,165,82,.4), transparent);
+  animation: wg-scroll-pulse 2.4s ease-in-out infinite;
+}
+@keyframes wg-scroll-pulse {
+  0%,100% { opacity: .4; transform: scaleY(1); transform-origin: top; }
+  50%      { opacity: .85; transform: scaleY(1.18); }
+}
+
+/* ══════════════════════════════════════
+   2. STATISTICS
+══════════════════════════════════════ */
+.wg-stats {
+  background: var(--bg2, #0e0c09);
+  border-top: 1px solid rgba(201,165,82,.1);
+  border-bottom: 1px solid rgba(201,165,82,.1);
+  padding: 4rem 0;
+}
+.wg-stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(201,165,82,.08);
+  max-width: 1200px; margin: 0 auto;
+}
+.wg-stat-item {
+  background: var(--bg2, #0e0c09);
+  padding: 2.5rem 2rem; text-align: center;
+  transition: background .3s ease;
+}
+.wg-stat-item:hover { background: #131109; }
+.wg-stat-value {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.8rem, 4vw, 4.2rem);
+  font-weight: 300; color: #c9a552; line-height: 1;
+  display: block; margin-bottom: .5rem;
+}
+.wg-stat-label {
+  font-family: 'Jost', sans-serif; font-size: .56rem;
+  font-weight: 400; letter-spacing: .24em; text-transform: uppercase;
+  color: rgba(200,192,174,.45);
+}
+
+/* ══════════════════════════════════════
+   3. STORY INTRO
+══════════════════════════════════════ */
+.wg-story {
+  background: #080805;
+  padding: 9rem 0;
+  position: relative; overflow: hidden;
+}
+.wg-story::before {
+  content: '';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px; height: 500px;
+  background: radial-gradient(ellipse, rgba(201,165,82,.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+.wg-story-inner {
+  max-width: 680px; margin: 0 auto;
+  padding: 0 2rem; text-align: center;
+}
+.wg-story h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 300; color: #e8e0d0;
+  line-height: 1.1; letter-spacing: -.02em; margin-bottom: 1.5rem;
+}
+.wg-story p {
+  font-size: .92rem; color: rgba(232,224,208,.55);
+  line-height: 2.1;
+}
+.wg-ornament {
+  display: flex; align-items: center; gap: 1.2rem;
+  justify-content: center; margin: 2rem auto;
+  max-width: 240px;
+}
+.wg-ornament::before, .wg-ornament::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,165,82,.25));
+}
+.wg-ornament::after { background: linear-gradient(to left, transparent, rgba(201,165,82,.25)); }
+.wg-ornament-symbol { font-size: .65rem; color: rgba(201,165,82,.42); }
+
+/* ══════════════════════════════════════
+   4. VENUES
+══════════════════════════════════════ */
+.wg-venues {
+  background: #0a0906;
+  padding: 8rem 0;
+}
+.wg-venues-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px; background: rgba(201,165,82,.08);
+  max-width: 1400px; margin: 4rem auto 0;
+}
+
+.wg-venue {
+  position: relative; min-height: 580px;
+  overflow: hidden; cursor: default;
+  display: flex; align-items: flex-end;
+}
+.wg-venue img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.45) saturate(.75);
+  transition: filter 1.4s ease, transform 1.8s cubic-bezier(.25,.46,.45,.94);
+}
+.wg-venue:hover img { filter: brightness(.6) saturate(.88); transform: scale(1.05); }
+
+.wg-venue::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top,
+    rgba(8,8,5,.98) 0%,
+    rgba(8,8,5,.45) 40%,
+    rgba(8,8,5,.08) 70%,
+    transparent 100%);
+  pointer-events: none;
+  transition: background .5s ease;
+}
+.wg-venue:hover::after {
+  background: linear-gradient(to top,
+    rgba(8,8,5,1) 0%,
+    rgba(8,8,5,.6) 45%,
+    rgba(8,8,5,.15) 75%,
+    transparent 100%);
+}
+
+/* Gold top line */
+.wg-venue::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 2px; background: rgba(201,165,82,.6); z-index: 5;
+  transition: width .65s cubic-bezier(.25,.46,.45,.94);
+}
+.wg-venue:hover::before { width: 100%; }
+
+/* Capacity badge */
+.wg-venue-cap {
+  position: absolute; top: 1.4rem; right: 1.4rem; z-index: 5;
+  background: rgba(8,8,5,.75); backdrop-filter: blur(8px);
+  border: 1px solid rgba(201,165,82,.22);
+  font-family: 'Jost', sans-serif; font-size: .5rem;
+  font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(201,165,82,.75); padding: .3rem .85rem;
+}
+
+.wg-venue-text {
+  position: relative; z-index: 3; padding: 2.5rem 2.8rem;
+  width: 100%;
+}
+.wg-venue-text .wg-label { font-size: .5rem; color: rgba(201,165,82,.4); margin-bottom: .5rem; }
+.wg-venue-text h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  font-weight: 300; color: #f0e8d5; line-height: 1.1;
+  letter-spacing: -.01em; margin-bottom: .7rem;
+  transition: color .3s ease;
+}
+.wg-venue:hover .wg-venue-text h3 { color: #fff; }
+.wg-venue-text p {
+  font-size: .82rem; color: rgba(232,224,208,.45); line-height: 1.85;
+  max-height: 0; overflow: hidden; opacity: 0; transform: translateY(8px);
+  transition: max-height .55s ease, opacity .5s ease .05s, transform .5s ease .05s;
+}
+.wg-venue:hover .wg-venue-text p { max-height: 5rem; opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════
+   5. COUPLE QUOTE (cinematic)
+══════════════════════════════════════ */
+.wg-quote-section {
+  position: relative; min-height: 500px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; text-align: center;
+}
+.wg-quote-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=1600&q=85');
+  background-size: cover; background-position: center 40%;
+  filter: brightness(.28) saturate(.6);
+  will-change: transform;
+}
+.wg-quote-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%,
+    rgba(8,8,5,.35) 0%, rgba(8,8,5,.8) 100%);
+}
+.wg-quote-content {
+  position: relative; z-index: 5;
+  max-width: 720px; padding: 5rem 2rem;
+}
+.wg-quote-mark {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 5rem; line-height: 1; color: rgba(201,165,82,.2);
+  display: block; margin-bottom: .5rem;
+}
+.wg-quote-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-weight: 300; font-style: italic; color: #f0e8d5;
+  line-height: 1.45; letter-spacing: -.01em; margin-bottom: 1.8rem;
+}
+.wg-quote-attr {
+  font-family: 'Jost', sans-serif; font-size: .6rem;
+  letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(201,165,82,.5);
+}
+
+/* ══════════════════════════════════════
+   6. TIMELINE
+══════════════════════════════════════ */
+.wg-timeline-section {
+  background: #080805; padding: 8rem 0;
+}
+.wg-timeline {
+  max-width: 900px; margin: 4rem auto 0; padding: 0 2rem;
+  position: relative;
+}
+/* Vertical line */
+.wg-timeline::before {
+  content: ''; position: absolute;
+  left: 50%; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom,
+    transparent, rgba(201,165,82,.2) 10%,
+    rgba(201,165,82,.2) 90%, transparent);
+  transform: translateX(-50%);
+}
+
+.wg-tl-step {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 2rem; align-items: center; margin-bottom: 3.5rem;
+  opacity: 0;
+  transition: opacity .8s cubic-bezier(.25,.46,.45,.94),
+              transform .8s cubic-bezier(.25,.46,.45,.94);
+}
+.wg-tl-step:nth-child(odd)  { transform: translateX(-30px); }
+.wg-tl-step:nth-child(even) { transform: translateX(30px); }
+.wg-tl-step.visible { opacity: 1; transform: translateX(0) !important; }
+
+/* Odd: text left, dot center, empty right */
+/* Even: empty left, dot center, text right */
+.wg-tl-step:nth-child(odd) .wg-tl-text  { text-align: right; }
+.wg-tl-step:nth-child(even) .wg-tl-text { grid-column: 3; text-align: left; }
+.wg-tl-step:nth-child(even) .wg-tl-dot  { grid-column: 2; grid-row: 1; }
+.wg-tl-step:nth-child(even) .wg-tl-empty{ grid-column: 1; grid-row: 1; }
+
+.wg-tl-dot {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid rgba(201,165,82,.3);
+  background: #080805;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem; font-weight: 300; color: rgba(201,165,82,.6);
+  flex-shrink: 0; position: relative; z-index: 2;
+  transition: border-color .4s ease, background .4s ease, color .4s ease;
+}
+.wg-tl-step.visible .wg-tl-dot {
+  border-color: rgba(201,165,82,.55); color: #c9a552;
+}
+
+.wg-tl-text h5 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.3rem; font-weight: 400; color: #e8e0d0;
+  margin-bottom: .35rem; letter-spacing: -.01em;
+}
+.wg-tl-text p {
+  font-size: .78rem; color: rgba(200,192,174,.45); line-height: 1.75;
+}
+.wg-tl-empty { /* spacer */ }
+
+/* ══════════════════════════════════════
+   7. PRICING
+══════════════════════════════════════ */
+.wg-pricing {
+  background: #0a0906; padding: 8rem 0;
+  position: relative; overflow: hidden;
+}
+.wg-pricing::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,165,82,.12) 30%, rgba(201,165,82,.12) 70%, transparent);
+}
+
+.wg-pricing-grid {
+  display: grid; grid-template-columns: 1fr 1.1fr 1fr;
+  gap: 1px; background: rgba(201,165,82,.08);
+  max-width: 1100px; margin: 4rem auto 0;
+}
+
+.wg-pkg {
+  background: #0e0c09; padding: 3rem 2.5rem;
+  position: relative; overflow: hidden;
+  transition: background .35s ease;
+}
+.wg-pkg:hover { background: #121009; }
+.wg-pkg.featured { background: #111009; }
+
+/* Gold top bar */
+.wg-pkg::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 1px; background: #c9a552;
+  transition: width .6s cubic-bezier(.25,.46,.45,.94);
+}
+.wg-pkg:hover::before, .wg-pkg.featured::before { width: 100%; }
+
+.wg-pkg-badge {
+  font-family: 'Jost', sans-serif; font-size: .48rem;
+  font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: #080805; background: #c9a552; padding: .25rem .8rem;
+  display: inline-block; margin-bottom: 1.5rem;
+}
+
+.wg-pkg .wg-label { margin-bottom: .6rem; }
+.wg-pkg-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2rem; font-weight: 300; color: #e8e0d0;
+  line-height: 1.1; margin-bottom: 1rem;
+}
+.wg-pkg-price {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.8rem; font-weight: 300; color: #c9a552;
+  line-height: 1; margin-bottom: .3rem;
+}
+.wg-pkg-price-note {
+  font-family: 'Jost', sans-serif; font-size: .65rem;
+  color: rgba(200,192,174,.35); margin-bottom: 2rem; display: block;
+}
+.wg-pkg-divider { width: 1.8rem; height: 1px; background: rgba(201,165,82,.25); margin: 1.5rem 0; }
+.wg-pkg-features {
+  list-style: none; padding: 0; margin: 0 0 2.5rem;
+  display: flex; flex-direction: column; gap: .7rem;
+}
+.wg-pkg-features li {
+  font-family: 'Jost', sans-serif; font-size: .8rem;
+  color: rgba(200,192,174,.6); display: flex;
+  align-items: flex-start; gap: .7rem; line-height: 1.5;
+}
+.wg-pkg-features li::before {
+  content: '—'; color: rgba(201,165,82,.35); flex-shrink: 0; font-size: .7rem; margin-top: .1rem;
+}
+
+/* ── Add-ons table ── */
+.wg-addons {
+  max-width: 1100px; margin: 4rem auto 0; padding: 0 2rem;
+}
+.wg-addons-title {
+  font-family: 'Jost', sans-serif; font-size: .58rem;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: rgba(201,165,82,.45); margin-bottom: 1.8rem; display: block;
+}
+.wg-addon-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 0; border-bottom: 1px solid rgba(201,165,82,.07);
+  transition: background .25s ease;
+}
+.wg-addon-row:hover { padding-left: .5rem; }
+.wg-addon-row:last-child { border-bottom: none; }
+.wg-addon-name { font-size: .85rem; color: rgba(200,192,174,.65); }
+.wg-addon-price {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem; color: #c9a552; flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════
+   8. GALLERY
+══════════════════════════════════════ */
+.wg-gallery {
+  background: #080805; padding: 8rem 0;
+}
+.wg-gallery-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-rows: 320px 260px;
+  gap: 1px; background: rgba(201,165,82,.07);
+  max-width: 1400px; margin: 4rem auto 0;
+}
+.wg-gallery-item {
+  position: relative; overflow: hidden;
+}
+.wg-gallery-item:first-child { grid-row: 1 / 3; }
+.wg-gallery-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.72) saturate(.85);
+  transition: transform 1.4s cubic-bezier(.25,.46,.45,.94), filter .8s ease;
+}
+.wg-gallery-item:hover img { transform: scale(1.06); filter: brightness(.85) saturate(.95); }
+.wg-gallery-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,5,.6) 0%, transparent 50%);
+  opacity: 0; transition: opacity .45s ease;
+  pointer-events: none;
+}
+.wg-gallery-item:hover::after { opacity: 1; }
+
+/* ══════════════════════════════════════
+   9. TESTIMONIALS
+══════════════════════════════════════ */
+.wg-testimonials {
+  background: #0a0906; padding: 8rem 0;
+}
+.wg-testimonials-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px; background: rgba(201,165,82,.07);
+  max-width: 1200px; margin: 4rem auto 0;
+}
+.wg-testimonial {
+  background: #0e0c09; padding: 2.8rem 2.5rem;
+  position: relative; overflow: hidden;
+  transition: background .35s ease;
+}
+.wg-testimonial:hover { background: #121009; }
+.wg-testimonial::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 0; height: 1px; background: rgba(201,165,82,.4);
+  transition: width .5s cubic-bezier(.25,.46,.45,.94);
+}
+.wg-testimonial:hover::before { width: 60%; }
+.wg-testimonial-stars {
+  color: #c9a552; font-size: .75rem; letter-spacing: .2em;
+  margin-bottom: 1.4rem; display: block;
+}
+.wg-testimonial-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.05rem; font-style: italic; font-weight: 300;
+  color: rgba(232,224,208,.7); line-height: 1.75; margin-bottom: 1.6rem;
+}
+.wg-testimonial-name {
+  font-family: 'Jost', sans-serif; font-size: .6rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(201,165,82,.45);
+}
+
+/* ══════════════════════════════════════
+   10. FAQ ACCORDION
+══════════════════════════════════════ */
+.wg-faq {
+  background: #080805; padding: 8rem 0;
+}
+.wg-faq-list {
+  max-width: 800px; margin: 4rem auto 0; padding: 0 2rem;
+}
+.wg-faq-item {
+  border-bottom: 1px solid rgba(201,165,82,.1);
+}
+.wg-faq-q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: 1.6rem 0; background: none; border: none; cursor: pointer;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem; font-weight: 300; color: #e8e0d0;
+  text-align: left; gap: 1.5rem;
+  transition: color .3s ease;
+}
+.wg-faq-q:hover { color: #fff; }
+.wg-faq-icon {
+  width: 22px; height: 22px; flex-shrink: 0;
+  border: 1px solid rgba(201,165,82,.25); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(201,165,82,.5); font-size: .7rem;
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94),
+              border-color .3s ease, color .3s ease;
+}
+.wg-faq-item.open .wg-faq-icon {
+  transform: rotate(45deg); border-color: var(--gold, #c9a552); color: #c9a552;
+}
+.wg-faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height .5s cubic-bezier(.25,.46,.45,.94),
+              padding .4s ease;
+  font-size: .85rem; color: rgba(200,192,174,.55); line-height: 1.95;
+  padding: 0;
+}
+.wg-faq-item.open .wg-faq-a {
+  max-height: 200px;
+  padding-bottom: 1.5rem;
+}
+
+/* ══════════════════════════════════════
+   11. VENDORS
+══════════════════════════════════════ */
+.wg-vendors {
+  background: #0a0906; padding: 8rem 0;
+}
+.wg-vendors-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(201,165,82,.08);
+  max-width: 1200px; margin: 4rem auto 0;
+}
+.wg-vendor {
+  background: #0e0c09; padding: 2.2rem 2rem;
+  transition: background .3s ease;
+}
+.wg-vendor:hover { background: #131009; }
+.wg-vendor-type {
+  font-family: 'Jost', sans-serif; font-size: .5rem;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: rgba(201,165,82,.4); margin-bottom: .65rem; display: block;
+}
+.wg-vendor-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem; font-weight: 400; color: #e8e0d0;
+  margin-bottom: .9rem; line-height: 1.2;
+}
+.wg-vendor a {
+  font-family: 'Jost', sans-serif; font-size: .68rem;
+  color: rgba(201,165,82,.5); text-decoration: none;
+  transition: color .3s ease;
+}
+.wg-vendor a:hover { color: #c9a552; }
+
+/* ══════════════════════════════════════
+   12. INQUIRY FORM
+══════════════════════════════════════ */
+.wg-inquiry {
+  background: #080805; padding: 8rem 0;
+  position: relative;
+}
+.wg-inquiry::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,165,82,.12) 30%, rgba(201,165,82,.12) 70%, transparent);
+}
+.wg-inquiry-inner {
+  max-width: 780px; margin: 0 auto; padding: 0 2rem;
+}
+.wg-inquiry-header { text-align: center; margin-bottom: 4rem; }
+
+/* Form fields */
+.wg-form-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+}
+.wg-form-group {
+  display: flex; flex-direction: column;
+  padding: 1.4rem 0; border-bottom: 1px solid rgba(201,165,82,.1);
+  position: relative;
+}
+.wg-form-group:nth-child(odd) { padding-right: 2.5rem; border-right: 1px solid rgba(201,165,82,.1); }
+.wg-form-group:nth-child(even) { padding-left: 2.5rem; }
+.wg-form-group.full {
+  grid-column: 1 / -1; padding-right: 0; padding-left: 0; border-right: none;
+}
+.wg-form-label {
+  font-family: 'Jost', sans-serif; font-size: .52rem;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: rgba(201,165,82,.5); font-weight: 500; margin-bottom: .65rem;
+}
+.wg-form-input, .wg-form-textarea {
+  background: transparent; border: none;
+  border-bottom: 1px solid rgba(200,192,174,.12);
+  color: #e8e0d0; font-family: 'Jost', sans-serif;
+  font-size: .88rem; font-weight: 300;
+  padding: .6rem 0; outline: none; width: 100%;
+  transition: border-color .35s ease; caret-color: #c9a552;
+}
+.wg-form-input::placeholder, .wg-form-textarea::placeholder {
+  color: rgba(200,192,174,.22);
+}
+.wg-form-input:focus, .wg-form-textarea:focus { border-bottom-color: #c9a552; }
+.wg-form-textarea { min-height: 90px; resize: vertical; }
+
+/* Pill selectors */
+.wg-pills { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .6rem; }
+.wg-pill-input { display: none; }
+.wg-pill-label {
+  font-family: 'Jost', sans-serif; font-size: .58rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(200,192,174,.45); border: 1px solid rgba(201,165,82,.15);
+  padding: .38rem 1rem; cursor: pointer; font-weight: 400;
+  transition: border-color .25s ease, color .25s ease, background .25s ease;
+}
+.wg-pill-input:checked + .wg-pill-label {
+  border-color: #c9a552; color: #c9a552; background: rgba(201,165,82,.05);
+}
+.wg-pill-label:hover { border-color: rgba(201,165,82,.4); color: rgba(201,165,82,.8); }
+
+.wg-form-submit {
+  margin-top: 3rem; display: flex; justify-content: center;
+}
+
+/* Confirmation */
+.wg-confirm {
+  display: none; text-align: center; padding: 3.5rem 2rem;
+  animation: bk-panel-in .6s ease;
+}
+.wg-confirm.show { display: block; }
+@keyframes bk-panel-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.wg-confirm-check {
+  width: 64px; height: 64px; border-radius: 50%;
+  border: 1px solid rgba(76,175,125,.4); background: rgba(76,175,125,.07);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin: 0 auto 2rem;
+}
+.wg-confirm h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2rem; font-weight: 300; color: #e8e0d0; margin-bottom: .8rem;
+}
+.wg-confirm p {
+  font-size: .85rem; color: rgba(200,192,174,.5); line-height: 2; max-width: 460px; margin: 0 auto;
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:1000px){
+  .wg-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .wg-venues-grid { grid-template-columns: 1fr; }
+  .wg-venue { min-height: 380px; }
+  .wg-pricing-grid { grid-template-columns: 1fr; }
+  .wg-gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 260px 260px; }
+  .wg-gallery-item:first-child { grid-row: 1; grid-column: 1 / -1; }
+  .wg-testimonials-grid { grid-template-columns: 1fr; }
+  .wg-vendors-grid { grid-template-columns: 1fr 1fr; }
+  .wg-form-grid { grid-template-columns: 1fr; }
+  .wg-form-group:nth-child(odd) { padding-right: 0; border-right: none; }
+  .wg-form-group:nth-child(even) { padding-left: 0; }
+}
+@media(max-width:700px){
+  .wg-hero-content h1 { font-size: clamp(3rem, 10vw, 4.5rem); }
+  .wg-stats-grid { grid-template-columns: 1fr 1fr; }
+  .wg-timeline::before { display: none; }
+  .wg-tl-step { grid-template-columns: 1fr; gap: .8rem; text-align: left !important; }
+  .wg-tl-step:nth-child(even) .wg-tl-text { grid-column: 1; grid-row: auto; }
+  .wg-tl-step:nth-child(even) .wg-tl-dot  { grid-column: 1; grid-row: auto; }
+  .wg-tl-empty { display: none; }
+  .wg-tl-step:nth-child(odd) .wg-tl-text { text-align: left; }
+  .wg-vendors-grid { grid-template-columns: 1fr; }
+  .wg-gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .wg-gallery-item:first-child { grid-column: 1; height: 280px; }
+  .wg-gallery-item { height: 240px; }
+  .wg-float { bottom: 1.2rem; right: 1.2rem; }
+  .wg-hero-ctas { flex-direction: column; align-items: center; }
+}
+</style>
 </head>
 <body>
 <div id="nav-holder"></div>
 
-<!-- FLOATING INQUIRE -->
-<button class="float-inquire" onclick="document.getElementById('begin-story').scrollIntoView({behavior:'smooth'})">Inquire</button>
+<!-- Floating Inquire -->
+<button class="wg-float" id="wg-float"
+  onclick="document.getElementById('wg-inquiry-section').scrollIntoView({behavior:'smooth'})">
+  Inquire →
+</button>
 
-<!-- HERO -->
-<div class="page-hero" style="height:100vh">
-  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80')"></div>
-  <div class="page-hero-overlay" style="background:linear-gradient(to bottom,rgba(8,8,5,.35) 0%,rgba(8,8,5,.65) 100%)"></div>
-  <div class="page-hero-content">
-    <span class="label">Intimate Celebrations</span>
-    <h1>Weddings at Grotta</h1>
-    <p>Volcanoes as your backdrop. Caves as your cocktail hour. Gardens as your aisle.</p>
-    <button class="btn btn-gold" onclick="document.getElementById('begin-story').scrollIntoView({behavior:'smooth'})">Begin Your Story</button>
+<!-- ══ 1. HERO ══ -->
+<div class="wg-hero" id="wg-hero">
+  <div class="wg-hero-bg" id="wg-hero-bg"></div>
+  <div class="wg-hero-overlay"></div>
+  <div class="wg-hero-mist"></div>
+
+  <div class="wg-hero-content">
+    <span class="wg-label">Intimate Celebrations · Musanze, Rwanda</span>
+    <h1>Weddings<br>at Grotta</h1>
+    <p class="wg-hero-tagline">Volcanoes as your backdrop.<br>Caves as your cocktail hour.<br>Gardens as your aisle.</p>
+    <div class="wg-hero-ctas">
+      <button class="wg-btn-primary" onclick="document.getElementById('wg-inquiry-section').scrollIntoView({behavior:'smooth'})">
+        <span>Begin Your Story</span>
+      </button>
+      <a href="#wg-venues" class="wg-btn-secondary">Explore Venues</a>
+    </div>
+  </div>
+
+  <div class="wg-hero-scroll">
+    <span>Discover</span>
+    <div class="wg-hero-scroll-line"></div>
   </div>
 </div>
 
-<!-- ABOUT + VENUE TYPES -->
-<section style="background:var(--bg)">
-  <div class="container">
-    <div class="about-grid fade-up">
-      <div class="about-text">
-        <span class="label">Why Grotta</span>
-        <h2>A Setting Unlike Any Other</h2>
-        <p>Grotta is nestled among the Virunga Volcanoes' untouched highland landscape. Its privileged location and premium facilities engage visitors in a celebration of sights, sounds, and scents.</p>
+<!-- ══ 2. STATISTICS ══ -->
+<div class="wg-stats reveal">
+  <div class="wg-stats-grid">
+    <div class="wg-stat-item reveal d1">
+      <span class="wg-stat-value">150+</span>
+      <span class="wg-stat-label">Celebrations Hosted</span>
+    </div>
+    <div class="wg-stat-item reveal d2">
+      <span class="wg-stat-value">3</span>
+      <span class="wg-stat-label">Distinct Venues</span>
+    </div>
+    <div class="wg-stat-item reveal d3">
+      <span class="wg-stat-value">48h</span>
+      <span class="wg-stat-label">Response Guarantee</span>
+    </div>
+    <div class="wg-stat-item reveal d4">
+      <span class="wg-stat-value">∞</span>
+      <span class="wg-stat-label">Memories Made</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 3. STORY INTRO ══ -->
+<div class="wg-story">
+  <div class="wg-story-inner reveal">
+    <span class="wg-label">Why Grotta</span>
+    <h2>A Setting That Cannot<br>Be Recreated</h2>
+    <div class="wg-ornament"><span class="wg-ornament-symbol">✦</span></div>
+    <p>Grotta is nestled among the Virunga Volcanoes' untouched highland landscape. Ancient caves, living gardens, open fire, and mist that moves through the valleys at dawn — this is not a venue. It is a world unto itself. And for one day, it is entirely yours.</p>
+  </div>
+</div>
+
+<!-- ══ 4. VENUES ══ -->
+<div class="wg-venues" id="wg-venues">
+  <div class="wg-section-inner">
+    <div class="wg-section-header reveal">
+      <span class="wg-label">Venues</span>
+      <h2 class="wg-section-title">A Space to Fall<br>In Love With</h2>
+      <div class="wg-rule" style="margin:1.2rem auto"></div>
+      <p style="font-size:.88rem;color:rgba(200,192,174,.5);line-height:1.95;max-width:480px;margin:0 auto">Each venue offers a distinct atmosphere — from ancient stone chambers to volcano-framed open sky.</p>
+    </div>
+  </div>
+
+  <div class="wg-venues-grid">
+    <div class="wg-venue reveal d1">
+      <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200&q=85" alt="Highland Panorama" loading="lazy">
+      <span class="wg-venue-cap">Up to 150 Guests</span>
+      <div class="wg-venue-text">
+        <span class="wg-label">Outdoor · Ceremony & Reception</span>
+        <h3>Highland Panorama</h3>
+        <p>Dramatic volcano backdrop as the sun descends. The sky becomes part of your ceremony.</p>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-        <div class="icon-card" style="text-align:center">
-          <span class="icon-emoji">🕯️</span>
-          <h4>Cave Ceremonies</h4>
-        </div>
-        <div class="icon-card" style="text-align:center">
-          <span class="icon-emoji">🔥</span>
-          <h4>Jacuzzi Evenings</h4>
-        </div>
+    </div>
+    <div class="wg-venue reveal d2">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=85" alt="Garden Terrace" loading="lazy">
+      <span class="wg-venue-cap">Up to 200 Guests</span>
+      <div class="wg-venue-text">
+        <span class="wg-label">Garden · Ceremony & Reception</span>
+        <h3>Garden Terrace</h3>
+        <p>Lush highland flora frames every moment. Natural light, open air, and the scent of the earth.</p>
+      </div>
+    </div>
+    <div class="wg-venue reveal d3">
+      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=85" alt="Cave Grotto" loading="lazy">
+      <span class="wg-venue-cap">Up to 40 Guests</span>
+      <div class="wg-venue-text">
+        <span class="wg-label">Underground · Intimate Ceremony</span>
+        <h3>Cave Grotto</h3>
+        <p>Candlelit ceremony within ancient stone. A space formed over millennia, reserved for you.</p>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- VENUES -->
-<section style="background:var(--bg2)">
-  <div class="container">
-    <div class="section-header fade-up">
-      <span class="label">Venues</span>
-      <h2>A Space to Fall in Love With</h2>
-      <p>Each venue offers a distinct mood — from ancient caves to volcano-framed gardens.</p>
-    </div>
-    <div class="venue-grid">
-      <div class="venue-card fade-up delay-1">
-        <div class="vc-img"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700&q=80" alt="Highland Panorama"></div>
-        <div class="vc-body">
-          <span class="guest-count">Up to 150 Guests</span>
-          <h4>Highland Panorama</h4>
-          <p>Dramatic volcano backdrop at sunset.</p>
-        </div>
-      </div>
-      <div class="venue-card fade-up delay-2">
-        <div class="vc-img"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&q=80" alt="Garden Terrace"></div>
-        <div class="vc-body">
-          <span class="guest-count">Up to 200 Guests</span>
-          <h4>Garden Terrace</h4>
-          <p>Open-air garden with natural light.</p>
-        </div>
-      </div>
-      <div class="venue-card fade-up delay-3">
-        <div class="vc-img"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=700&q=80" alt="Cave Grotto"></div>
-        <div class="vc-body">
-          <span class="guest-count">Up to 40 Guests</span>
-          <h4>Cave Grotto</h4>
-          <p>Candlelit ceremony inside ancient stone.</p>
-        </div>
-      </div>
+<!-- ══ 5. COUPLE QUOTE ══ -->
+<div class="wg-quote-section">
+  <div class="wg-quote-bg" id="wg-quote-bg"></div>
+  <div class="wg-quote-overlay"></div>
+  <div class="wg-quote-content reveal">
+    <span class="wg-quote-mark">"</span>
+    <p class="wg-quote-text">This space has existed for thousands of years. The fire, the stone, the mist — they were here long before us, and they made our ceremony feel like part of something ancient and true.</p>
+    <span class="wg-quote-attr">Amara & David · Cave Grotto Ceremony · 2024</span>
+  </div>
+</div>
+
+<!-- ══ 6. TIMELINE ══ -->
+<div class="wg-timeline-section">
+  <div class="wg-section-inner">
+    <div class="wg-section-header reveal">
+      <span class="wg-label">Your Journey</span>
+      <h2 class="wg-section-title">From Vision<br>to Celebration</h2>
     </div>
   </div>
-</section>
-
-<!-- PLANNING TIMELINE -->
-<section style="background:var(--bg)">
-  <div class="container">
-    <div class="section-header fade-up">
-      <span class="label">Your Journey</span>
-      <h2>Wedding Planning Timeline</h2>
-    </div>
-    <div class="timeline fade-up">
-      <div class="timeline-step">
-        <div class="step-num">1</div>
+  <div class="wg-timeline" id="wg-timeline">
+    <div class="wg-tl-step" data-tl>
+      <div class="wg-tl-text">
         <h5>Inquiry</h5>
-        <p>Submit your vision and dates</p>
+        <p>Share your vision, preferred dates, and guest count. We respond within 48 hours.</p>
       </div>
-      <div class="timeline-step">
-        <div class="step-num">2</div>
+      <div class="wg-tl-dot">1</div>
+      <div class="wg-tl-empty"></div>
+    </div>
+    <div class="wg-tl-step" data-tl>
+      <div class="wg-tl-empty"></div>
+      <div class="wg-tl-dot">2</div>
+      <div class="wg-tl-text">
         <h5>Consultation</h5>
-        <p>Meet our wedding team virtually or in person</p>
+        <p>Meet our wedding team — virtually or in person at Grotta — to walk through your day.</p>
       </div>
-      <div class="timeline-step">
-        <div class="step-num">3</div>
+    </div>
+    <div class="wg-tl-step" data-tl>
+      <div class="wg-tl-text">
         <h5>Proposal</h5>
-        <p>Receive your bespoke package</p>
+        <p>Receive your bespoke package, tailored to your vision and curated by our team.</p>
       </div>
-      <div class="timeline-step">
-        <div class="step-num">4</div>
+      <div class="wg-tl-dot">3</div>
+      <div class="wg-tl-empty"></div>
+    </div>
+    <div class="wg-tl-step" data-tl>
+      <div class="wg-tl-empty"></div>
+      <div class="wg-tl-dot">4</div>
+      <div class="wg-tl-text">
         <h5>Planning</h5>
-        <p>Coordinate details with our team</p>
+        <p>We coordinate every detail — vendors, menus, flowers, arrivals — so you simply arrive.</p>
       </div>
-      <div class="timeline-step">
-        <div class="step-num">5</div>
+    </div>
+    <div class="wg-tl-step" data-tl>
+      <div class="wg-tl-text">
         <h5>Your Day</h5>
-        <p>Celebrate in the volcano highlands</p>
+        <p>Celebrate in the volcanic highlands of Rwanda. Everything is ready. This moment is yours.</p>
       </div>
+      <div class="wg-tl-dot">5</div>
+      <div class="wg-tl-empty"></div>
     </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section style="background:var(--bg2)">
-  <div class="container">
-    <div class="section-header fade-up">
-      <span class="label">Investment</span>
-      <h2>Wedding Packages</h2>
-    </div>
-    <div class="pricing-grid">
-      <div class="pricing-card fade-up delay-1">
-        <h4>Intimate</h4>
-        <div class="pricing-amount">$4,500</div>
-        <ul class="pricing-features">
-          <li>Up to 20 guests</li>
-          <li>Venue hire</li>
-          <li>3-course dinner</li>
-          <li>Bridal suite (1 night)</li>
-        </ul>
-        <button class="btn btn-outline" style="width:100%" onclick="document.getElementById('begin-story').scrollIntoView({behavior:'smooth'})">Select</button>
-      </div>
-      <div class="pricing-card featured fade-up delay-2">
-        <div class="popular-badge">Most Popular</div>
-        <h4>Signature</h4>
-        <div class="pricing-amount">$8,500</div>
-        <ul class="pricing-features">
-          <li>Up to 60 guests</li>
-          <li>Any venue</li>
-          <li>5-course tasting menu</li>
-          <li>Open bar (3 hours)</li>
-          <li>Cave cocktail hour</li>
-          <li>Photography (4 hours)</li>
-        </ul>
-        <button class="btn btn-gold" style="width:100%" onclick="document.getElementById('begin-story').scrollIntoView({behavior:'smooth'})">Select</button>
-      </div>
-      <div class="pricing-card fade-up delay-3">
-        <h4>Full Buyout</h4>
-        <div class="pricing-amount">$22,000</div>
-        <ul class="pricing-features">
-          <li>Up to 150 guests</li>
-          <li>All 26 rooms (2 nights)</li>
-          <li>All venues included</li>
-          <li>Full open bar</li>
-          <li>Butler service</li>
-        </ul>
-        <button class="btn btn-outline" style="width:100%" onclick="document.getElementById('begin-story').scrollIntoView({behavior:'smooth'})">Select</button>
-      </div>
-    </div>
-
-    <!-- ADDONS -->
-    <div class="addons-table fade-up" style="margin-top:2.5rem">
-      <h4>Add-On Services</h4>
-      <div class="addon-row"><span>Professional Photography (4 hours)</span><span class="addon-price">$800</span></div>
-      <div class="addon-row"><span>Professional Photography (8 hours)</span><span class="addon-price">$1,500</span></div>
-      <div class="addon-row"><span>Videography (highlight reel)</span><span class="addon-price">$1,200</span></div>
-      <div class="addon-row"><span>Floral Design Package</span><span class="addon-price">$600 – $2,500</span></div>
-      <div class="addon-row"><span>Live Band (4-piece)</span><span class="addon-price">$1,800</span></div>
-      <div class="addon-row"><span>DJ & Sound System</span><span class="addon-price">$900</span></div>
-      <div class="addon-row"><span>Late-night snack station</span><span class="addon-price">$400</span></div>
-      <div class="addon-row"><span>Fireworks display</span><span class="addon-price">$1,200</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- VIRTUAL TOUR -->
-<div class="virtual-tour fade-up">
-  <div class="container">
-    <span class="label">Experience Before You Arrive</span>
-    <h2>360° Virtual Tour</h2>
-    <p>Explore our venues from anywhere. Walk through the Cave Grotto, stand at the Highland Panorama, and envision your day.</p>
-    <button class="btn btn-outline">🎬 Launch Virtual Tour</button>
   </div>
 </div>
 
-<!-- REAL WEDDINGS -->
-<section style="background:var(--bg)">
-  <div class="container">
-    <div class="section-header fade-up">
-      <span class="label">Real Weddings</span>
-      <h2>Love Stories from Grotta</h2>
-    </div>
-    <div class="gallery-filters fade-up">
-      <select class="filter-select"><option>All Venues</option><option>Highland Panorama</option><option>Garden Terrace</option><option>Cave Grotto</option></select>
-      <select class="filter-select"><option>All Seasons</option><option>Dry Season</option><option>Green Season</option></select>
-      <select class="filter-select"><option>All Guest Counts</option><option>Under 30</option><option>30–60</option><option>60+</option></select>
-    </div>
-    <div class="gallery-grid fade-up">
-      <div class="g-img"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Wedding 1"></div>
-      <div class="g-img"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80" alt="Wedding 2"></div>
-      <div class="g-img"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&q=80" alt="Wedding 3"></div>
+<!-- ══ 7. PRICING ══ -->
+<div class="wg-pricing">
+  <div class="wg-section-inner">
+    <div class="wg-section-header reveal">
+      <span class="wg-label">Investment</span>
+      <h2 class="wg-section-title">Wedding Packages</h2>
     </div>
   </div>
-</section>
+  <div class="wg-pricing-grid reveal">
+    <div class="wg-pkg">
+      <span class="wg-label">For the Intimate</span>
+      <div class="wg-pkg-name">Intimate</div>
+      <div class="wg-pkg-price">$4,500</div>
+      <span class="wg-pkg-price-note">All-inclusive · Up to 20 guests</span>
+      <div class="wg-pkg-divider"></div>
+      <ul class="wg-pkg-features">
+        <li>Venue hire (your choice)</li>
+        <li>3-course candlelit dinner</li>
+        <li>Bridal suite — 1 night</li>
+        <li>Dedicated coordinator</li>
+        <li>Welcome flowers</li>
+      </ul>
+      <button class="wg-btn-secondary" style="width:100%;padding:.9rem;"
+        onclick="document.getElementById('wg-inquiry-section').scrollIntoView({behavior:'smooth'})">
+        Begin Inquiry
+      </button>
+    </div>
+    <div class="wg-pkg featured">
+      <span class="wg-pkg-badge">Most Requested</span>
+      <span class="wg-label">For the Signature Day</span>
+      <div class="wg-pkg-name">Signature</div>
+      <div class="wg-pkg-price">$8,500</div>
+      <span class="wg-pkg-price-note">All-inclusive · Up to 60 guests</span>
+      <div class="wg-pkg-divider"></div>
+      <ul class="wg-pkg-features">
+        <li>Any venue at Grotta</li>
+        <li>5-course tasting menu</li>
+        <li>Open bar — 3 hours</li>
+        <li>Cave cocktail hour</li>
+        <li>Photography — 4 hours</li>
+        <li>Bridal suite — 2 nights</li>
+        <li>Full coordination team</li>
+      </ul>
+      <button class="wg-btn-primary" style="width:100%;padding:.95rem;"
+        onclick="document.getElementById('wg-inquiry-section').scrollIntoView({behavior:'smooth'})">
+        <span>Begin Inquiry</span>
+      </button>
+    </div>
+    <div class="wg-pkg">
+      <span class="wg-label">For the Complete Vision</span>
+      <div class="wg-pkg-name">Full Buyout</div>
+      <div class="wg-pkg-price">$22,000</div>
+      <span class="wg-pkg-price-note">All-inclusive · Up to 150 guests</span>
+      <div class="wg-pkg-divider"></div>
+      <ul class="wg-pkg-features">
+        <li>All venues included</li>
+        <li>All 26 rooms — 2 nights</li>
+        <li>Full open bar throughout</li>
+        <li>Butler service for all</li>
+        <li>Complete vendor coordination</li>
+        <li>Photography & videography</li>
+      </ul>
+      <button class="wg-btn-secondary" style="width:100%;padding:.9rem;"
+        onclick="document.getElementById('wg-inquiry-section').scrollIntoView({behavior:'smooth'})">
+        Begin Inquiry
+      </button>
+    </div>
+  </div>
 
-<!-- TRUSTED VENDORS -->
-<section style="background:var(--bg2)">
-  <div class="container">
-    <div class="section-header fade-up">
-      <span class="label">Preferred Partners</span>
-      <h2>Trusted Vendors</h2>
-      <p>We've curated a list of exceptional local vendors who know Grotta and will bring your vision to life.</p>
-    </div>
-    <div class="vendor-grid fade-up">
-      <div class="vendor-card">
-        <h5>Bloom Floral Design</h5>
-        <span class="vendor-type">Florist</span>
-        <a href="mailto:hello@bloom.rw">hello@bloom.rw</a>
-      </div>
-      <div class="vendor-card">
-        <h5>Volcano Lens Photography</h5>
-        <span class="vendor-type">Photographer</span>
-        <a href="mailto:info@volcanolens.com">info@volcanolens.com</a>
-      </div>
-      <div class="vendor-card">
-        <h5>Highland Harmony</h5>
-        <span class="vendor-type">Music / Entertainment</span>
-        <a href="mailto:bookings@highlandharmony.rw">bookings@highlandharmony.rw</a>
-      </div>
-      <div class="vendor-card">
-        <h5>Cave Cakes by Grace</h5>
-        <span class="vendor-type">Catering / Desserts</span>
-        <a href="mailto:grace@cavecakes.rw">grace@cavecakes.rw</a>
-      </div>
-    </div>
+  <!-- Add-ons -->
+  <div class="wg-addons reveal">
+    <span class="wg-addons-title">Add-On Services</span>
+    <div class="wg-addon-row"><span class="wg-addon-name">Professional Photography (4 hours)</span><span class="wg-addon-price">$800</span></div>
+    <div class="wg-addon-row"><span class="wg-addon-name">Professional Photography (8 hours)</span><span class="wg-addon-price">$1,500</span></div>
+    <div class="wg-addon-row"><span class="wg-addon-name">Videography — highlight reel</span><span class="wg-addon-price">$1,200</span></div>
+    <div class="wg-addon-row"><span class="wg-addon-name">Floral Design Package</span><span class="wg-addon-price">$600 – $2,500</span></div>
+    <div class="wg-addon-row"><span class="wg-addon-name">Live Band — 4-piece</span><span class="wg-addon-price">$1,800</span></div>
+    <div class="wg-addon-row"><span class="wg-addon-name">DJ & Sound System</span><span class="wg-addon-price">$900</span></div>
+    <div class="wg-addon-row"><span class="wg-addon-name">Late-night snack station</span><span class="wg-addon-price">$400</span></div>
+    <div class="wg-addon-row"><span class="wg-addon-name">Fireworks display</span><span class="wg-addon-price">$1,200</span></div>
   </div>
-</section>
+</div>
 
-<!-- BEGIN YOUR STORY FORM -->
-<section id="begin-story" style="background:var(--bg)">
-  <div class="container">
-    <div class="section-header fade-up">
-      <h2>Begin Your Story</h2>
-      <p>Tell us your vision. Our wedding team responds within 48 hours.</p>
+<!-- ══ 8. GALLERY ══ -->
+<div class="wg-gallery">
+  <div class="wg-section-inner">
+    <div class="wg-section-header reveal">
+      <span class="wg-label">Real Weddings</span>
+      <h2 class="wg-section-title">Love Stories<br>From Grotta</h2>
     </div>
-    <div class="form-container fade-up">
-      <div class="form-grid">
-        <div class="form-group full">
-          <label>Name</label>
-          <input type="text" placeholder="Your full name">
-        </div>
-        <div class="form-group full">
-          <label>Email</label>
-          <input type="email" placeholder="your@email.com">
-        </div>
-        <div class="form-group">
-          <label>Preferred Date</label>
-          <input type="text" placeholder="Month / Year">
-        </div>
-        <div class="form-group">
-          <label>Guest Count</label>
-          <input type="text" placeholder="e.g. 80">
-        </div>
-        <div class="form-group full">
-          <label>Additional Details</label>
-          <textarea placeholder="Tell us about your vision, preferred venue, theme, or any special requests..."></textarea>
-        </div>
+  </div>
+  <div class="wg-gallery-grid reveal">
+    <div class="wg-gallery-item">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=85" alt="Wedding" loading="lazy">
+    </div>
+    <div class="wg-gallery-item">
+      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=85" alt="Dinner" loading="lazy">
+    </div>
+    <div class="wg-gallery-item">
+      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=900&q=85" alt="Cave" loading="lazy">
+    </div>
+    <div class="wg-gallery-item">
+      <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900&q=85" alt="Highlands" loading="lazy">
+    </div>
+    <div class="wg-gallery-item">
+      <img src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=900&q=85" alt="Firepit" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- ══ 9. TESTIMONIALS ══ -->
+<div class="wg-testimonials">
+  <div class="wg-section-inner">
+    <div class="wg-section-header reveal">
+      <span class="wg-label">Testimonials</span>
+      <h2 class="wg-section-title">Words from<br>Our Couples</h2>
+    </div>
+  </div>
+  <div class="wg-testimonials-grid">
+    <div class="wg-testimonial reveal d1">
+      <span class="wg-testimonial-stars">★★★★★</span>
+      <p class="wg-testimonial-text">"The cave ceremony was unlike anything we had imagined. The silence inside the stone, the candlelight — it felt ancient and intimate. Our guests still speak about it."</p>
+      <span class="wg-testimonial-name">Sarah & Marcus · Cave Grotto · 2024</span>
+    </div>
+    <div class="wg-testimonial reveal d2">
+      <span class="wg-testimonial-stars">★★★★★</span>
+      <p class="wg-testimonial-text">"Watching the sun descend behind the volcanoes as we exchanged vows — we didn't need decorations. The landscape was everything. Grotta understood that."</p>
+      <span class="wg-testimonial-name">Amara & James · Highland Panorama · 2023</span>
+    </div>
+    <div class="wg-testimonial reveal d3">
+      <span class="wg-testimonial-stars">★★★★★</span>
+      <p class="wg-testimonial-text">"Every detail was handled with such care. The food, the florals, the transitions between spaces — it felt like a film. We are already planning to return for our anniversary."</p>
+      <span class="wg-testimonial-name">Yuki & Tom · Garden Terrace · 2024</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 10. FAQ ══ -->
+<div class="wg-faq">
+  <div class="wg-section-inner">
+    <div class="wg-section-header reveal">
+      <span class="wg-label">Questions</span>
+      <h2 class="wg-section-title">What You May<br>Want to Know</h2>
+    </div>
+    <div class="wg-faq-list">
+      <div class="wg-faq-item">
+        <button class="wg-faq-q" onclick="toggleFaq(this)">
+          How far in advance should we book?
+          <span class="wg-faq-icon">+</span>
+        </button>
+        <div class="wg-faq-a">We recommend booking at least 9–12 months in advance for peak season dates (June–September and December). For more intimate ceremonies of under 30 guests, 4–6 months may be possible.</div>
       </div>
-      <button class="btn btn-gold" onclick="submitWedding(this)">Send Inquiry</button>
-      <div class="confirmation-box" id="wedding-confirm">
-        <h3>✓ We've Received Your Inquiry</h3>
-        <p>Thank you for reaching out. Our wedding team will contact you within 48 hours to begin planning your perfect day at Grotta.</p>
+      <div class="wg-faq-item">
+        <button class="wg-faq-q" onclick="toggleFaq(this)">
+          Can we host the entire resort exclusively?
+          <span class="wg-faq-icon">+</span>
+        </button>
+        <div class="wg-faq-a">Yes. Our Full Buyout package includes exclusive access to all 26 rooms for two nights, all venues, all dining spaces, and a dedicated team. This is ideal for larger celebrations and multi-day wedding weekends.</div>
+      </div>
+      <div class="wg-faq-item">
+        <button class="wg-faq-q" onclick="toggleFaq(this)">
+          Are outside vendors permitted?
+          <span class="wg-faq-icon">+</span>
+        </button>
+        <div class="wg-faq-a">We have a curated list of trusted local vendors who know Grotta well. Outside vendors are welcome with prior approval and a small coordination fee. We will work closely with any team you bring.</div>
+      </div>
+      <div class="wg-faq-item">
+        <button class="wg-faq-q" onclick="toggleFaq(this)">
+          What is the weather like for outdoor ceremonies?
+          <span class="wg-faq-icon">+</span>
+        </button>
+        <div class="wg-faq-a">Musanze's dry season (June–September) offers ideal conditions for outdoor ceremonies — warm days, cool evenings, and clear views of the volcanoes. We can also provide elegant weather contingency plans for any time of year.</div>
+      </div>
+      <div class="wg-faq-item">
+        <button class="wg-faq-q" onclick="toggleFaq(this)">
+          Can we arrange international guest coordination?
+          <span class="wg-faq-icon">+</span>
+        </button>
+        <div class="wg-faq-a">Absolutely. Our team can coordinate airport transfers, accommodation blocks, and curated guest experiences for international visitors. Rwanda's Kigali International Airport is approximately 2.5 hours from Grotta.</div>
       </div>
     </div>
   </div>
-</section>
+</div>
+
+<!-- ══ 11. VENDORS ══ -->
+<div class="wg-vendors">
+  <div class="wg-section-inner">
+    <div class="wg-section-header reveal">
+      <span class="wg-label">Preferred Partners</span>
+      <h2 class="wg-section-title">Trusted Vendors</h2>
+      <div class="wg-rule" style="margin:1.2rem auto"></div>
+      <p style="font-size:.88rem;color:rgba(200,192,174,.5);line-height:1.95;max-width:460px;margin:0 auto">A carefully selected circle of local creatives who know Grotta and will bring your vision to life.</p>
+    </div>
+  </div>
+  <div class="wg-vendors-grid reveal">
+    <div class="wg-vendor">
+      <span class="wg-vendor-type">Florist</span>
+      <div class="wg-vendor-name">Bloom Floral Design</div>
+      <a href="mailto:hello@bloom.rw">hello@bloom.rw</a>
+    </div>
+    <div class="wg-vendor">
+      <span class="wg-vendor-type">Photography</span>
+      <div class="wg-vendor-name">Volcano Lens</div>
+      <a href="mailto:info@volcanolens.com">info@volcanolens.com</a>
+    </div>
+    <div class="wg-vendor">
+      <span class="wg-vendor-type">Music & Entertainment</span>
+      <div class="wg-vendor-name">Highland Harmony</div>
+      <a href="mailto:bookings@highlandharmony.rw">bookings@highlandharmony.rw</a>
+    </div>
+    <div class="wg-vendor">
+      <span class="wg-vendor-type">Catering & Desserts</span>
+      <div class="wg-vendor-name">Cave Cakes by Grace</div>
+      <a href="mailto:grace@cavecakes.rw">grace@cavecakes.rw</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 12. INQUIRY FORM ══ -->
+<div class="wg-inquiry" id="wg-inquiry-section">
+  <div class="wg-inquiry-inner">
+    <div class="wg-inquiry-header reveal">
+      <span class="wg-label">Begin Your Story</span>
+      <h2 class="wg-section-title">Tell Us Your Vision</h2>
+      <div class="wg-ornament" style="margin:1.5rem auto 1rem"><span class="wg-ornament-symbol">✦</span></div>
+      <p style="font-size:.88rem;color:rgba(200,192,174,.5);line-height:2;max-width:440px;margin:0 auto">Our wedding team reviews every inquiry personally and responds within 48 hours.</p>
+    </div>
+
+    <div id="wg-form-wrap">
+      <div class="wg-form-grid reveal">
+        <div class="wg-form-group">
+          <label class="wg-form-label">Full Name</label>
+          <input class="wg-form-input" type="text" id="wg-name" placeholder="Your full name">
+        </div>
+        <div class="wg-form-group">
+          <label class="wg-form-label">Email</label>
+          <input class="wg-form-input" type="email" id="wg-email" placeholder="your@email.com">
+        </div>
+        <div class="wg-form-group">
+          <label class="wg-form-label">Preferred Date</label>
+          <input class="wg-form-input" type="text" id="wg-date" placeholder="Month / Year">
+        </div>
+        <div class="wg-form-group">
+          <label class="wg-form-label">Estimated Guest Count</label>
+          <input class="wg-form-input" type="text" id="wg-guests" placeholder="e.g. 60">
+        </div>
+
+        <!-- Venue selector -->
+        <div class="wg-form-group full">
+          <label class="wg-form-label">Preferred Venue</label>
+          <div class="wg-pills">
+            <div class="wg-pill">
+              <input type="radio" name="wg-venue" id="v-highland" class="wg-pill-input" value="highland">
+              <label class="wg-pill-label" for="v-highland">Highland Panorama</label>
+            </div>
+            <div class="wg-pill">
+              <input type="radio" name="wg-venue" id="v-garden" class="wg-pill-input" value="garden">
+              <label class="wg-pill-label" for="v-garden">Garden Terrace</label>
+            </div>
+            <div class="wg-pill">
+              <input type="radio" name="wg-venue" id="v-cave" class="wg-pill-input" value="cave">
+              <label class="wg-pill-label" for="v-cave">Cave Grotto</label>
+            </div>
+            <div class="wg-pill">
+              <input type="radio" name="wg-venue" id="v-unsure" class="wg-pill-input" value="unsure" checked>
+              <label class="wg-pill-label" for="v-unsure">Not Sure Yet</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package selector -->
+        <div class="wg-form-group full">
+          <label class="wg-form-label">Package Interest</label>
+          <div class="wg-pills">
+            <div class="wg-pill">
+              <input type="radio" name="wg-pkg" id="p-intimate" class="wg-pill-input" value="intimate">
+              <label class="wg-pill-label" for="p-intimate">Intimate — $4,500</label>
+            </div>
+            <div class="wg-pill">
+              <input type="radio" name="wg-pkg" id="p-signature" class="wg-pill-input" value="signature">
+              <label class="wg-pill-label" for="p-signature">Signature — $8,500</label>
+            </div>
+            <div class="wg-pill">
+              <input type="radio" name="wg-pkg" id="p-buyout" class="wg-pill-input" value="buyout">
+              <label class="wg-pill-label" for="p-buyout">Full Buyout — $22,000</label>
+            </div>
+            <div class="wg-pill">
+              <input type="radio" name="wg-pkg" id="p-custom" class="wg-pill-input" value="custom" checked>
+              <label class="wg-pill-label" for="p-custom">Tell Us Your Vision</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="wg-form-group full">
+          <label class="wg-form-label">Your Vision</label>
+          <textarea class="wg-form-textarea" id="wg-vision" placeholder="Tell us about the ceremony you envision — the atmosphere, the feeling, the details that matter most to you..."></textarea>
+        </div>
+      </div>
+
+      <div class="wg-form-submit">
+        <button class="wg-btn-primary" onclick="submitWedding(this)"><span>Send Inquiry →</span></button>
+      </div>
+    </div>
+
+    <div class="wg-confirm" id="wg-confirm">
+      <div class="wg-confirm-check">✓</div>
+      <h3>Your inquiry has been received.</h3>
+      <p>Our wedding team will review your vision personally and reach out within 48 hours to begin planning your celebration at Grotta.</p>
+    </div>
+  </div>
+</div>
 
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 <script>
+// ── Float button ──────────────────────────────────────────────
+const floatBtn = document.getElementById('wg-float');
+window.addEventListener('scroll', () => {
+  floatBtn.classList.toggle('visible', window.scrollY > 500);
+}, { passive: true });
+
+// ── Hero parallax ─────────────────────────────────────────────
+const heroBg = document.getElementById('wg-hero-bg');
+const quoteBg = document.getElementById('wg-quote-bg');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (heroBg) heroBg.style.transform = `scale(1) translateY(${y * 0.28}px)`;
+  if (quoteBg) {
+    const el = quoteBg.parentElement;
+    const r = el.getBoundingClientRect();
+    quoteBg.style.transform = `translateY(${(window.innerHeight/2 - r.top - r.height/2) * .15}px)`;
+  }
+}, { passive: true });
+
+// ── Scroll reveal ─────────────────────────────────────────────
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+// Timeline reveal
+const tlObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); tlObs.unobserve(e.target); }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.wg-tl-step').forEach(s => tlObs.observe(s));
+
+// ── FAQ accordion ─────────────────────────────────────────────
+function toggleFaq(btn) {
+  const item = btn.closest('.wg-faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.wg-faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── Form submit ───────────────────────────────────────────────
 function submitWedding(btn) {
-  btn.style.display = 'none';
-  document.getElementById('wedding-confirm').classList.add('show');
+  const name  = document.getElementById('wg-name').value.trim();
+  const email = document.getElementById('wg-email').value.trim();
+  if (!name || !email) {
+    btn.style.animation = 'none';
+    btn.style.outline = '1px solid rgba(201,80,60,.5)';
+    setTimeout(() => btn.style.outline = '', 1400);
+    return;
+  }
+  document.getElementById('wg-form-wrap').style.display = 'none';
+  document.getElementById('wg-confirm').classList.add('show');
+  window.scrollTo({ top: document.getElementById('wg-inquiry-section').offsetTop - 60, behavior: 'smooth' });
 }
 </script>
 </body>

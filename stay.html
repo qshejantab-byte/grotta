@@ -8,378 +8,955 @@
 <style>
 
 /* ══════════════════════════════════════
-   LUXURY ROOM CARDS — Premium Redesign
+   PAGE TRANSITION
 ══════════════════════════════════════ */
+.page-transition-out {
+  position: fixed; inset: 0;
+  background: #080805; z-index: 9999;
+  opacity: 0; pointer-events: none;
+  transition: opacity .45s cubic-bezier(.25,.46,.45,.94);
+}
+.page-transition-out.active { opacity: 1; pointer-events: all; }
 
+/* ══════════════════════════════════════
+   VIDEO HERO
+══════════════════════════════════════ */
+.stay-hero {
+  position: relative;
+  height: 100vh; min-height: 640px;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+
+.stay-hero-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(.65) saturate(.85);
+}
+
+/* Fallback bg if video fails */
+.stay-hero-video-fallback {
+  position: absolute; inset: -5%;
+  background-image: url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1600&q=80');
+  background-size: cover; background-position: center;
+  filter: brightness(.65) saturate(.85);
+}
+
+.stay-hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(8,8,5,.2) 0%,
+      rgba(8,8,5,.05) 30%,
+      rgba(8,8,5,.55) 68%,
+      rgba(8,8,5,1) 100%),
+    radial-gradient(ellipse 100% 70% at 50% 50%,
+      transparent 40%, rgba(8,8,5,.35) 100%);
+}
+
+.stay-hero-content {
+  position: relative; z-index: 10;
+  padding: 0 6vw 5.5rem;
+  max-width: 720px;
+}
+
+.stay-hero-content .label {
+  opacity: 0; animation: sh-up .85s ease .35s forwards;
+  display: block; margin-bottom: 1.1rem;
+}
+.stay-hero-content h1 {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6.5vw, 5.8rem);
+  font-weight: 300; color: #e8e0d0;
+  line-height: 1.03; letter-spacing: -.02em;
+  margin-bottom: 1rem;
+  opacity: 0; transform: translateY(22px);
+  animation: sh-rise 1s cubic-bezier(.34,1.06,.64,1) .55s forwards;
+}
+.stay-hero-content p {
+  font-size: .95rem; font-weight: 300;
+  color: rgba(232,224,208,.55); line-height: 2;
+  max-width: 480px; margin-bottom: 2.5rem;
+  opacity: 0; filter: blur(3px);
+  animation: sh-blur .95s ease 1s forwards;
+}
+
+@keyframes sh-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes sh-rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes sh-blur {
+  from { opacity: 0; filter: blur(3px); transform: translateY(8px); }
+  to   { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+/* Scroll indicator */
+.stay-scroll-hint {
+  position: absolute; bottom: 2rem; left: 6vw; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  opacity: 0; animation: sh-up .8s ease 1.8s forwards;
+}
+.stay-scroll-hint span {
+  font-family: var(--sans); font-size: .5rem;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: rgba(201,165,82,.35);
+}
+.stay-scroll-line {
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, rgba(201,165,82,.4), transparent);
+  animation: sh-pulse 2.4s ease-in-out infinite;
+}
+@keyframes sh-pulse {
+  0%,100% { opacity: .4; transform: scaleY(1); transform-origin: top; }
+  50% { opacity: .8; transform: scaleY(1.18); }
+}
+
+/* ══════════════════════════════════════
+   BOOKING BAR
+══════════════════════════════════════ */
+.stay-booking-bar {
+  position: relative; z-index: 50;
+  background: rgba(14,12,9,.85);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  border-top: 1px solid rgba(201,165,82,.1);
+  border-bottom: 1px solid rgba(201,165,82,.08);
+  padding: 1.6rem 6vw;
+  transition: background .4s ease, box-shadow .4s ease;
+}
+.stay-booking-bar.sticky {
+  position: fixed; top: 0; left: 0; right: 0;
+  box-shadow: 0 8px 40px rgba(0,0,0,.6);
+  z-index: 200;
+}
+
+.booking-bar-inner {
+  display: flex; align-items: center;
+  gap: 1px; max-width: 1200px; margin: 0 auto;
+  background: rgba(201,165,82,.08);
+}
+
+.booking-field {
+  flex: 1; display: flex; flex-direction: column;
+  padding: .8rem 1.4rem; position: relative;
+  background: rgba(8,8,5,.5); min-width: 0;
+  border-right: 1px solid rgba(201,165,82,.08);
+  transition: background .3s ease;
+}
+.booking-field:hover, .booking-field:focus-within {
+  background: rgba(201,165,82,.04);
+}
+.booking-field:last-of-type { border-right: none; }
+
+.booking-field label {
+  font-family: var(--sans); font-size: .5rem;
+  font-weight: 500; letter-spacing: .28em;
+  text-transform: uppercase; color: rgba(201,165,82,.5);
+  margin-bottom: .35rem; display: block;
+}
+.booking-field input, .booking-field select {
+  background: transparent; border: none;
+  color: #e8e0d0; font-family: var(--sans);
+  font-size: .86rem; font-weight: 300;
+  outline: none; width: 100%; cursor: pointer;
+  caret-color: var(--gold);
+}
+.booking-field input::placeholder { color: rgba(200,192,174,.4); }
+.booking-field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(.6) sepia(1) saturate(.5) hue-rotate(10deg);
+  cursor: pointer; opacity: .5;
+}
+.booking-field select option { background: #0e0c09; color: #e8e0d0; }
+
+.booking-bar-btn {
+  flex-shrink: 0; padding: 0 2.2rem;
+  font-family: var(--sans); font-size: .62rem;
+  font-weight: 500; letter-spacing: .24em;
+  text-transform: uppercase; color: #080805;
+  background: var(--gold); border: none;
+  cursor: pointer; height: 100%; min-height: 62px;
+  position: relative; overflow: hidden;
+  transition: background .3s ease, transform .25s ease;
+  white-space: nowrap;
+}
+.booking-bar-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: #e2c97e; transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94); z-index: 0;
+}
+.booking-bar-btn span { position: relative; z-index: 1; }
+.booking-bar-btn:hover::before { transform: scaleX(1); }
+.booking-bar-btn:hover { transform: translateY(-1px); }
+
+/* ══════════════════════════════════════
+   ROOM CARDS — Enhanced
+══════════════════════════════════════ */
 .rc-section {
   padding: 5rem 0 7rem;
   background: var(--bg);
 }
 
+.rc-section-header {
+  text-align: center;
+  padding: 0 2rem 4rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.rc-section-header .label { display: block; margin-bottom: .9rem; }
+.rc-section-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300; color: var(--cream);
+  line-height: 1.08; letter-spacing: -.01em;
+}
+
 /* ── Card wrapper ── */
 .rc-wrap {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 92%;
-  max-width: 1260px;
-  margin: 0 auto 8rem;
-  /* Lift + glow on hover */
-  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              filter 0.55s ease;
-  /* Scroll-reveal: start hidden, slide from left */
-  opacity: 0;
-  transform: translateX(-60px);
+  display: flex; align-items: center;
+  position: relative; width: 92%;
+  max-width: 1260px; margin: 0 auto 8rem;
+  opacity: 0; transform: translateX(-60px);
+  transition:
+    opacity .85s cubic-bezier(.25,.46,.45,.94),
+    transform .85s cubic-bezier(.25,.46,.45,.94),
+    filter .55s ease;
 }
 .rc-wrap.rc-reversed {
   flex-direction: row-reverse;
-  transform: translateX(60px); /* start hidden, slide from right */
+  transform: translateX(60px);
 }
-.rc-wrap.visible {
-  opacity: 1;
-  transform: translateX(0) !important;
-}
+.rc-wrap.visible { opacity: 1; transform: translateX(0) !important; }
 .rc-wrap:hover {
   transform: translateY(-6px) !important;
-  filter: drop-shadow(0 28px 60px rgba(0,0,0,0.65))
-          drop-shadow(0 0 40px rgba(201,165,82,0.07));
+  filter: drop-shadow(0 28px 60px rgba(0,0,0,.65))
+          drop-shadow(0 0 40px rgba(201,165,82,.07));
 }
 
-/* ── Glow border effect ── */
+/* Glow border */
 .rc-wrap::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  background: linear-gradient(
-    135deg,
-    rgba(201,165,82,0.22) 0%,
-    rgba(201,165,82,0.04) 40%,
-    rgba(201,165,82,0.04) 60%,
-    rgba(201,165,82,0.14) 100%
-  );
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  border-radius: 1px;
+  content: ''; position: absolute; inset: -1px;
+  background: linear-gradient(135deg,
+    rgba(201,165,82,.22) 0%, rgba(201,165,82,.04) 40%,
+    rgba(201,165,82,.04) 60%, rgba(201,165,82,.14) 100%);
+  z-index: 0; pointer-events: none; opacity: 0;
+  transition: opacity .4s ease; border-radius: 1px;
 }
 .rc-wrap:hover::before { opacity: 1; }
 
-/* ── IMAGE — 58% wide, full height ── */
+/* Badge */
+.rc-badge {
+  position: absolute;
+  top: 1.2rem; left: 1.2rem; z-index: 10;
+  font-family: var(--sans); font-size: .5rem;
+  font-weight: 600; letter-spacing: .18em;
+  text-transform: uppercase; color: #080805;
+  background: var(--gold); padding: .3rem .9rem;
+}
+
+/* Image */
 .rc-img {
-  width: 58%;
-  flex-shrink: 0;
-  height: 560px;
-  overflow: hidden;
-  align-self: stretch;
-  position: relative;
-  z-index: 1;
+  width: 58%; flex-shrink: 0; height: 560px;
+  overflow: hidden; align-self: stretch;
+  position: relative; z-index: 1;
 }
 .rc-img img {
-  width: 100%;
-  height: 110%; /* extra height for parallax room */
-  object-fit: cover;
-  display: block;
+  width: 100%; height: 110%;
+  object-fit: cover; display: block;
   object-position: center 0%;
-  transition: transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 1.4s cubic-bezier(.25,.46,.45,.94);
   will-change: transform;
+  loading: lazy;
 }
-.rc-wrap:hover .rc-img img {
-  transform: scale(1.06);
+.rc-wrap:hover .rc-img img { transform: scale(1.06); }
+
+/* Image overlay info */
+.rc-img-info {
+  position: absolute; bottom: 1.2rem; right: 1.2rem;
+  z-index: 5; display: flex; gap: .5rem; flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.rc-img-chip {
+  background: rgba(8,8,5,.72);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(201,165,82,.18);
+  font-family: var(--sans); font-size: .5rem;
+  font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; color: rgba(201,165,82,.75);
+  padding: .28rem .72rem;
 }
 
-/* ── Room number watermark ── */
+/* View overlay on hover */
+.rc-img-hover-overlay {
+  position: absolute; inset: 0; z-index: 4;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(8,8,5,.45);
+  opacity: 0;
+  transition: opacity .45s cubic-bezier(.25,.46,.45,.94);
+}
+.rc-wrap:hover .rc-img-hover-overlay { opacity: 1; }
+.rc-img-hover-overlay span {
+  font-family: var(--sans); font-size: .62rem;
+  font-weight: 500; letter-spacing: .28em;
+  text-transform: uppercase; color: #e8e0d0;
+  border: 1px solid rgba(232,224,208,.4);
+  padding: .75rem 1.8rem;
+  transition: border-color .3s ease, color .3s ease;
+}
+.rc-img-hover-overlay span:hover {
+  border-color: var(--gold); color: var(--gold);
+}
+
+/* Room number */
 .rc-num {
-  position: absolute;
-  bottom: 1.4rem;
-  left: 1.6rem;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 5rem;
-  font-weight: 300;
-  color: rgba(201,165,82,0.12);
-  line-height: 1;
-  letter-spacing: -.02em;
-  pointer-events: none;
-  z-index: 3;
-  transition: color 0.4s ease;
+  position: absolute; bottom: 1.4rem; left: 1.6rem;
+  font-family: var(--serif); font-size: 5rem; font-weight: 300;
+  color: rgba(201,165,82,.12); line-height: 1; letter-spacing: -.02em;
+  pointer-events: none; z-index: 3;
+  transition: color .4s ease, transform .4s ease;
 }
-.rc-wrap.rc-reversed .rc-num {
-  left: auto;
-  right: 1.6rem;
-}
-.rc-wrap:hover .rc-num { color: rgba(201,165,82,0.2); }
+.rc-wrap.rc-reversed .rc-num { left: auto; right: 1.6rem; }
+.rc-wrap:hover .rc-num { color: rgba(201,165,82,.22); transform: scale(1.05); }
 
-/* ── PANEL — overlaps image by 80px ── */
+/* Panel */
 .rc-panel {
   flex: 1;
-  background: rgba(20, 18, 13, 0.82);
+  background: rgba(20,18,13,.88);
   backdrop-filter: blur(18px) saturate(1.2);
   -webkit-backdrop-filter: blur(18px) saturate(1.2);
-  border: 1px solid rgba(201,165,82,0.14);
+  border: 1px solid rgba(201,165,82,.14);
   padding: 3.4rem 3rem 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 420px;
-  align-self: center;
-  position: relative;
-  z-index: 2;
-  /* Overlap: pull panel over image */
+  display: flex; flex-direction: column; justify-content: center;
+  min-height: 440px; align-self: center;
+  position: relative; z-index: 2;
   margin-left: -80px;
-  box-shadow:
-    -20px 0 60px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(201,165,82,0.08);
+  box-shadow: -20px 0 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(201,165,82,.08);
+  transition: background .4s ease;
 }
 .rc-wrap.rc-reversed .rc-panel {
-  margin-left: 0;
-  margin-right: -80px;
-  box-shadow:
-    20px 0 60px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(201,165,82,0.08);
+  margin-left: 0; margin-right: -80px;
+  box-shadow: 20px 0 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(201,165,82,.08);
 }
+.rc-wrap:hover .rc-panel { background: rgba(22,20,14,.92); }
 
-/* Gold top accent line */
+/* Gold top line */
 .rc-panel::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 3rem;
-  width: 0;
-  height: 1px;
-  background: var(--gold);
-  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+  content: ''; position: absolute; top: 0; left: 3rem;
+  width: 0; height: 1px; background: var(--gold);
+  transition: width .65s cubic-bezier(.25,.46,.45,.94) .1s;
 }
 .rc-wrap:hover .rc-panel::before { width: calc(100% - 6rem); }
 
-/* ── Label ── */
-.rc-panel .label {
-  display: block;
-  font-size: .6rem;
-  letter-spacing: .3em;
-  color: var(--gold);
-  text-transform: uppercase;
-  font-family: 'Jost', sans-serif;
+/* Social proof */
+.rc-social-proof {
+  display: flex; align-items: center; gap: .6rem;
   margin-bottom: .9rem;
-  font-weight: 500;
+}
+.rc-social-proof-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #c97a3a; flex-shrink: 0;
+  animation: sp-pulse 2s ease-in-out infinite;
+}
+@keyframes sp-pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .6; transform: scale(.8); }
+}
+.rc-social-proof-text {
+  font-family: var(--sans); font-size: .68rem;
+  font-weight: 300; color: rgba(201,140,60,.7);
+  letter-spacing: .04em;
 }
 
-/* ── Room title ── */
+.rc-panel .label {
+  display: block; font-size: .6rem; letter-spacing: .3em;
+  color: var(--gold); text-transform: uppercase;
+  font-family: var(--sans); margin-bottom: .9rem; font-weight: 500;
+}
 .rc-panel h3 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  color: var(--cream);
-  font-size: clamp(2rem, 3vw, 2.9rem);
-  font-weight: 300;
-  line-height: 1.08;
-  margin-bottom: .55rem;
-  letter-spacing: -.01em;
+  font-family: var(--serif); color: var(--cream);
+  font-size: clamp(2rem, 3vw, 2.9rem); font-weight: 300;
+  line-height: 1.08; margin-bottom: .55rem; letter-spacing: -.01em;
+  transition: color .3s ease;
+}
+.rc-wrap:hover .rc-panel h3 { color: #fff; }
+
+/* Room subtitle */
+.rc-subtitle {
+  font-family: var(--serif); font-size: 1rem;
+  font-style: italic; font-weight: 300;
+  color: rgba(201,165,82,.55); margin-bottom: 1rem;
+  display: block;
 }
 
-/* ── Availability ── */
 .rc-avail-text {
-  font-family: 'Jost', sans-serif;
-  font-size: .72rem;
-  color: var(--text-dim);
-  margin-bottom: 1.3rem;
-  font-weight: 300;
-  display: flex;
-  align-items: center;
-  gap: .5rem;
+  font-family: var(--sans); font-size: .72rem;
+  color: var(--text-dim); margin-bottom: 1.3rem;
+  font-weight: 300; display: flex; align-items: center; gap: .5rem;
 }
 .rc-avail-text::before {
-  content: '';
-  display: inline-block;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: #4caf7d;
-  flex-shrink: 0;
+  content: ''; display: inline-block;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #4caf7d; flex-shrink: 0;
 }
 .rc-avail-text.low { color: #e6a020; }
 .rc-avail-text.low::before { background: #e6a020; }
 .rc-avail-text.none { color: #c0392b; }
 .rc-avail-text.none::before { background: #c0392b; }
 
-/* ── Divider ── */
-.rc-divider {
-  width: 2.5rem;
-  height: 1px;
-  background: rgba(201,165,82,0.3);
-  margin-bottom: 1.2rem;
-}
+.rc-divider { width: 2.5rem; height: 1px; background: rgba(201,165,82,.3); margin-bottom: 1.2rem; }
 
-/* ── Description ── */
 .rc-panel p {
-  font-size: .86rem;
-  color: rgba(200,192,174,0.8);
-  line-height: 1.95;
-  margin-bottom: 1.6rem;
+  font-size: .86rem; color: rgba(200,192,174,.8);
+  line-height: 1.95; margin-bottom: 1.4rem;
+  transition: color .3s ease;
+}
+.rc-wrap:hover .rc-panel p { color: rgba(210,202,184,.9); }
+
+/* Highlights */
+.rc-highlights {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: .5rem .8rem; margin-bottom: 1.4rem;
+}
+.rc-highlight {
+  display: flex; align-items: center; gap: .5rem;
+  font-family: var(--sans); font-size: .72rem;
+  font-weight: 300; color: rgba(201,165,82,.55);
+  transition: color .3s ease;
+}
+.rc-wrap:hover .rc-highlight { color: rgba(201,165,82,.75); }
+.rc-highlight-icon {
+  font-size: .85rem; flex-shrink: 0;
 }
 
-/* ── Tags ── */
 .rc-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-  margin-bottom: 2.2rem;
+  display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem;
 }
 .rc-tag {
-  border: 1px solid rgba(240,232,213,0.15);
-  color: rgba(240,232,213,0.65);
-  font-family: 'Jost', sans-serif;
-  font-size: .56rem;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  padding: .3rem .95rem;
-  font-weight: 300;
-  transition: border-color 0.3s ease, color 0.3s ease;
+  border: 1px solid rgba(240,232,213,.15);
+  color: rgba(240,232,213,.65);
+  font-family: var(--sans); font-size: .56rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  padding: .3rem .95rem; font-weight: 300;
+  transition: border-color .3s ease, color .3s ease, background .3s ease;
 }
 .rc-wrap:hover .rc-tag {
-  border-color: rgba(201,165,82,0.2);
-  color: rgba(240,232,213,0.8);
+  border-color: rgba(201,165,82,.22);
+  color: rgba(240,232,213,.82);
+  background: rgba(201,165,82,.03);
 }
 
-/* ── Price + CTA row ── */
+/* Price + CTAs */
 .rc-bottom {
-  display: flex;
-  align-items: center;
+  display: flex; align-items: center;
   justify-content: space-between;
-  margin-top: auto;
-  padding-top: 1.4rem;
-  border-top: 1px solid rgba(201,165,82,0.1);
-  gap: 1rem;
+  margin-top: auto; padding-top: 1.4rem;
+  border-top: 1px solid rgba(201,165,82,.1); gap: 1rem;
 }
-
-.rc-price-block {
-  display: flex;
-  flex-direction: column;
-}
+.rc-price-block { display: flex; flex-direction: column; }
 .rc-price-block .from {
-  font-family: 'Jost', sans-serif;
-  font-size: .56rem;
-  letter-spacing: .25em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  display: block;
-  margin-bottom: .25rem;
+  font-family: var(--sans); font-size: .56rem; letter-spacing: .25em;
+  text-transform: uppercase; color: var(--text-dim);
+  display: block; margin-bottom: .25rem;
 }
 .rc-price-block .amount {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 2rem;
-  color: var(--gold);
-  line-height: 1;
-  font-weight: 400;
-  letter-spacing: -.01em;
+  font-family: var(--serif); font-size: 2rem; color: var(--gold);
+  line-height: 1; font-weight: 400; letter-spacing: -.01em;
 }
 .rc-price-block .per {
-  font-family: 'Jost', sans-serif;
-  font-size: .7rem;
-  color: var(--text-dim);
-  margin-left: .3rem;
-  font-weight: 300;
+  font-family: var(--sans); font-size: .7rem;
+  color: var(--text-dim); margin-left: .3rem; font-weight: 300;
 }
 
-/* ── Book Now ── */
-.rc-book {
-  display: inline-flex;
-  align-items: center;
-  gap: .7rem;
-  background: var(--gold);
-  color: #0a0a08;
-  font-family: 'Jost', sans-serif;
-  font-size: .62rem;
-  font-weight: 600;
-  letter-spacing: .25em;
-  text-transform: uppercase;
-  padding: .95rem 2rem;
-  text-decoration: none;
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  white-space: nowrap;
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
-}
-.rc-book::after {
-  content: '→';
-  font-size: .8rem;
-  transition: transform 0.3s ease;
-  display: inline-block;
-}
-.rc-book:hover {
-  background: var(--gold-light);
-  transform: scale(1.03);
-  box-shadow: 0 8px 28px rgba(201,165,82,0.3);
-}
-.rc-book:hover::after { transform: translateX(3px); }
+.rc-ctas { display: flex; gap: .6rem; align-items: center; flex-shrink: 0; }
 
-.rc-book.booked {
+.rc-details-btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--sans); font-size: .58rem;
+  font-weight: 400; letter-spacing: .2em;
+  text-transform: uppercase; color: rgba(201,165,82,.7);
   background: transparent;
-  border: 1px solid rgba(200,192,174,0.2);
-  color: var(--text-dim);
-  pointer-events: none;
-  opacity: .45;
+  border: 1px solid rgba(201,165,82,.25);
+  padding: .88rem 1.4rem; cursor: pointer;
+  transition: border-color .3s ease, color .3s ease, background .3s ease;
+  white-space: nowrap;
 }
-.rc-book.booked::after { display: none; }
+.rc-details-btn:hover {
+  border-color: var(--gold); color: var(--gold);
+  background: rgba(201,165,82,.04);
+}
 
-/* ── Responsive ── */
+.rc-book {
+  display: inline-flex; align-items: center; gap: .7rem;
+  background: var(--gold); color: #0a0a08;
+  font-family: var(--sans); font-size: .62rem;
+  font-weight: 600; letter-spacing: .25em; text-transform: uppercase;
+  padding: .95rem 2rem; text-decoration: none; cursor: pointer; border: none;
+  white-space: nowrap; flex-shrink: 0;
+  position: relative; overflow: hidden;
+  transition: background .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+.rc-book::before {
+  content: ''; position: absolute; inset: 0;
+  background: #e2c97e; transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94); z-index: 0;
+}
+.rc-book span, .rc-book-arrow { position: relative; z-index: 1; }
+.rc-book-arrow { font-size: .8rem; display: inline-block; transition: transform .3s ease; }
+.rc-book:hover::before { transform: scaleX(1); }
+.rc-book:hover { transform: scale(1.03); box-shadow: 0 8px 28px rgba(201,165,82,.3); }
+.rc-book:hover .rc-book-arrow { transform: translateX(3px); }
+.rc-book.booked {
+  background: transparent; border: 1px solid rgba(200,192,174,.2);
+  color: var(--text-dim); pointer-events: none; opacity: .45;
+}
+
+/* Compare toggle */
+.rc-compare-toggle {
+  position: absolute; top: 1rem; right: 1rem; z-index: 15;
+  display: flex; align-items: center; gap: .4rem;
+  font-family: var(--sans); font-size: .5rem;
+  font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(200,192,174,.4);
+  cursor: pointer; user-select: none;
+  transition: color .25s ease;
+}
+.rc-compare-toggle:hover { color: var(--gold); }
+.rc-compare-toggle input { display: none; }
+.rc-compare-toggle .rc-toggle-box {
+  width: 14px; height: 14px;
+  border: 1px solid rgba(201,165,82,.3);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .25s ease, border-color .25s ease;
+}
+.rc-compare-toggle input:checked + .rc-toggle-box {
+  background: var(--gold); border-color: var(--gold);
+}
+.rc-compare-toggle input:checked + .rc-toggle-box::after {
+  content: '✓'; font-size: .55rem; color: #080805; font-weight: 700;
+}
+
+/* ══════════════════════════════════════
+   EXPERIENCE STRIP (between rooms)
+══════════════════════════════════════ */
+.stay-exp-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: rgba(201,165,82,.08);
+  margin: 2rem 0 8rem; max-width: 100%; overflow: hidden;
+}
+.stay-exp-item {
+  position: relative; height: 320px; overflow: hidden;
+  cursor: default;
+}
+.stay-exp-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.5) saturate(.75);
+  transition: filter 1.2s ease, transform 1.4s cubic-bezier(.25,.46,.45,.94);
+}
+.stay-exp-item:hover img { filter: brightness(.65) saturate(.88); transform: scale(1.05); }
+.stay-exp-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,5,.88) 0%, rgba(8,8,5,.2) 50%, transparent 80%);
+  pointer-events: none;
+}
+.stay-exp-item::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; width: 0; height: 2px;
+  background: rgba(201,165,82,.5); z-index: 5;
+  transition: width .5s cubic-bezier(.25,.46,.45,.94);
+}
+.stay-exp-item:hover::before { width: 100%; }
+.stay-exp-text {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  z-index: 3; padding: 1.8rem 2rem;
+}
+.stay-exp-text .label { font-size: .5rem; color: rgba(201,165,82,.4); margin-bottom: .4rem; }
+.stay-exp-text h4 {
+  font-family: var(--serif); font-size: clamp(1.4rem, 2vw, 1.9rem);
+  font-weight: 300; color: #e8e0d0; line-height: 1.1;
+}
+
+/* ══════════════════════════════════════
+   COMPARE MODAL
+══════════════════════════════════════ */
+.compare-modal {
+  position: fixed; inset: 0; z-index: 500;
+  display: flex; align-items: flex-end;
+  background: rgba(8,8,5,.8);
+  backdrop-filter: blur(6px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .4s ease;
+}
+.compare-modal.open { opacity: 1; pointer-events: all; }
+
+.compare-inner {
+  width: 100%; background: #0e0c09;
+  border-top: 1px solid rgba(201,165,82,.15);
+  max-height: 80vh; overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+  padding: 2.5rem 3rem 3rem;
+}
+.compare-modal.open .compare-inner { transform: translateY(0); }
+
+.compare-header {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem; padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(201,165,82,.1);
+}
+.compare-header h3 {
+  font-family: var(--serif); font-size: 1.8rem;
+  font-weight: 300; color: var(--cream);
+}
+.compare-close {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--sans); font-size: .6rem;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(201,165,82,.6); padding: .5rem 1rem;
+  border: 1px solid rgba(201,165,82,.2);
+  transition: color .3s ease, border-color .3s ease;
+}
+.compare-close:hover { color: var(--gold); border-color: var(--gold); }
+
+.compare-table {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--sans); font-size: .82rem;
+}
+.compare-table th {
+  font-family: var(--serif); font-size: 1.1rem;
+  font-weight: 300; color: var(--cream);
+  text-align: left; padding: .8rem 1rem;
+  background: rgba(201,165,82,.04);
+  border-bottom: 1px solid rgba(201,165,82,.1);
+}
+.compare-table th:first-child {
+  font-family: var(--sans); font-size: .56rem;
+  font-weight: 500; letter-spacing: .22em;
+  text-transform: uppercase; color: rgba(201,165,82,.5);
+}
+.compare-table td {
+  padding: .85rem 1rem; color: rgba(200,192,174,.75);
+  border-bottom: 1px solid rgba(201,165,82,.05);
+  vertical-align: middle;
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td:first-child {
+  font-size: .72rem; letter-spacing: .1em;
+  color: rgba(201,165,82,.5); font-weight: 400;
+}
+.compare-check { color: #4caf7d; font-size: 1rem; }
+.compare-x { color: rgba(200,192,174,.2); font-size: 1rem; }
+.compare-price {
+  font-family: var(--serif); font-size: 1.2rem;
+  font-weight: 400; color: var(--gold);
+}
+
+/* ══════════════════════════════════════
+   ROOM DETAIL MODAL
+══════════════════════════════════════ */
+.room-modal {
+  position: fixed; inset: 0; z-index: 600;
+  background: rgba(8,8,5,.92);
+  backdrop-filter: blur(8px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .45s ease;
+  overflow-y: auto;
+}
+.room-modal.open { opacity: 1; pointer-events: all; }
+
+.room-modal-inner {
+  max-width: 1100px; margin: 0 auto;
+  background: #0e0c09;
+  min-height: 100vh;
+  transform: translateY(30px);
+  transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+}
+.room-modal.open .room-modal-inner { transform: translateY(0); }
+
+/* Modal close */
+.modal-close {
+  position: fixed; top: 1.5rem; right: 1.5rem; z-index: 700;
+  background: rgba(14,12,9,.9); border: 1px solid rgba(201,165,82,.2);
+  width: 44px; height: 44px; display: flex;
+  align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1.2rem; color: var(--cream);
+  transition: border-color .3s ease, color .3s ease;
+}
+.modal-close:hover { border-color: var(--gold); color: var(--gold); }
+
+/* Gallery */
+.modal-gallery {
+  position: relative; height: 60vh; overflow: hidden;
+}
+.modal-gallery-track {
+  display: flex; height: 100%;
+  transition: transform .7s cubic-bezier(.25,.46,.45,.94);
+}
+.modal-gallery-slide {
+  flex-shrink: 0; width: 100%; height: 100%;
+}
+.modal-gallery-slide img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.gallery-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(8,8,5,.6); border: 1px solid rgba(201,165,82,.2);
+  color: var(--cream); font-size: 1.2rem; width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 5;
+  transition: background .3s ease, border-color .3s ease;
+}
+.gallery-btn:hover { background: rgba(201,165,82,.15); border-color: var(--gold); }
+.gallery-prev { left: 1.5rem; }
+.gallery-next { right: 1.5rem; }
+
+.modal-gallery-dots {
+  position: absolute; bottom: 1.2rem; left: 50%;
+  transform: translateX(-50%); display: flex; gap: .5rem; z-index: 5;
+}
+.gallery-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(201,165,82,.3); cursor: pointer;
+  transition: background .3s ease;
+}
+.gallery-dot.active { background: var(--gold); }
+
+/* Modal content */
+.modal-content { padding: 3rem 4rem; }
+.modal-content .label { display: block; margin-bottom: .8rem; }
+.modal-content h2 {
+  font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300; color: var(--cream);
+  line-height: 1.08; letter-spacing: -.01em; margin-bottom: .6rem;
+}
+.modal-tagline {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.1rem; font-weight: 300;
+  color: rgba(201,165,82,.55); margin-bottom: 2rem; display: block;
+}
+.modal-divider { width: 2.5rem; height: 1px; background: rgba(201,165,82,.3); margin: 1.5rem 0; }
+
+.modal-highlights {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(201,165,82,.08); margin: 1.5rem 0 2.5rem;
+}
+.modal-highlight {
+  background: #0e0c09; padding: 1.4rem 1rem; text-align: center;
+}
+.modal-highlight-icon { font-size: 1.5rem; display: block; margin-bottom: .5rem; }
+.modal-highlight-value {
+  font-family: var(--serif); font-size: 1.2rem; font-weight: 300;
+  color: var(--cream); display: block; margin-bottom: .2rem;
+}
+.modal-highlight-label {
+  font-family: var(--sans); font-size: .52rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(201,165,82,.4); display: block;
+}
+
+.modal-desc {
+  font-size: .88rem; color: rgba(200,192,174,.75); line-height: 2;
+  margin-bottom: 2rem;
+}
+
+.modal-amenities {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: .6rem; margin-bottom: 2.5rem;
+}
+.modal-amenity {
+  display: flex; align-items: center; gap: .6rem;
+  font-family: var(--sans); font-size: .76rem;
+  color: rgba(200,192,174,.65); font-weight: 300;
+}
+.modal-amenity::before {
+  content: '—'; color: rgba(201,165,82,.4); flex-shrink: 0;
+}
+
+.modal-booking-bar {
+  display: flex; align-items: center; gap: 1px;
+  background: rgba(201,165,82,.08); padding: 0;
+  border: 1px solid rgba(201,165,82,.1); margin-bottom: 1.5rem;
+}
+.modal-booking-bar .booking-field { flex: 1; }
+
+.modal-price-row {
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  padding-top: 1.5rem; border-top: 1px solid rgba(201,165,82,.1);
+}
+.modal-price {
+  font-family: var(--serif); font-size: 2.2rem;
+  font-weight: 400; color: var(--gold); line-height: 1;
+}
+.modal-price-label {
+  font-family: var(--sans); font-size: .7rem;
+  color: var(--text-dim); display: block; margin-top: .2rem;
+}
+
+/* ══════════════════════════════════════
+   STICKY FLOAT BUTTON
+══════════════════════════════════════ */
+.stay-float-btn {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 300;
+  background: var(--gold); color: #080805;
+  font-family: var(--sans); font-size: .58rem;
+  font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  text-decoration: none; padding: 1rem 1.8rem;
+  box-shadow: 0 8px 32px rgba(201,165,82,.35);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .4s ease, transform .4s ease,
+              background .3s ease, box-shadow .3s ease;
+}
+.stay-float-btn.visible { opacity: 1; transform: translateY(0); }
+.stay-float-btn:hover {
+  background: #e2c97e;
+  box-shadow: 0 12px 42px rgba(201,165,82,.5);
+  transform: translateY(-3px);
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
 @media(max-width:900px){
-  .rc-wrap,
-  .rc-wrap.rc-reversed {
-    flex-direction: column;
-    width: 95%;
-    transform: translateY(40px);
-    margin-bottom: 4rem;
+  .booking-bar-inner { flex-direction: column; }
+  .booking-field { border-right: none; border-bottom: 1px solid rgba(201,165,82,.08); }
+  .booking-bar-btn { min-height: 52px; }
+  .stay-exp-strip { grid-template-columns: 1fr; }
+  .stay-exp-item { height: 240px; }
+  .rc-wrap, .rc-wrap.rc-reversed {
+    flex-direction: column; width: 95%;
+    transform: translateY(40px); margin-bottom: 4rem;
   }
   .rc-wrap.visible { transform: translateY(0) !important; }
   .rc-wrap:hover { transform: translateY(-4px) !important; }
   .rc-img { width: 100%; height: 300px; }
-  .rc-panel {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: -2px;
-    min-height: auto;
-    padding: 2.2rem 1.8rem;
-  }
-  .rc-wrap.rc-reversed .rc-panel { margin-right: 0; }
+  .rc-panel { margin: 0; min-height: auto; padding: 2.2rem 1.8rem; }
+  .rc-wrap.rc-reversed .rc-panel { margin: 0; }
   .rc-num { font-size: 3.5rem; }
+  .modal-content { padding: 2rem; }
+  .modal-highlights { grid-template-columns: repeat(2,1fr); }
+  .modal-amenities { grid-template-columns: repeat(2,1fr); }
+  .compare-inner { padding: 1.5rem; }
+  .compare-table { font-size: .72rem; }
+  .rc-ctas { flex-direction: column; gap: .4rem; }
+  .rc-details-btn, .rc-book { width: 100%; justify-content: center; }
 }
 @media(max-width:600px){
   .rc-section { padding: 3rem 0 5rem; }
   .rc-img { height: 240px; }
   .rc-panel { padding: 1.8rem 1.3rem; }
   .rc-panel h3 { font-size: 1.7rem; }
-  .rc-bottom { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
-  .rc-book { width: 100%; text-align: center; justify-content: center; }
+  .rc-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .rc-num { font-size: 2.8rem; }
+  .modal-highlights { grid-template-columns: repeat(2,1fr); }
+  .modal-amenities { grid-template-columns: 1fr 1fr; }
+  .stay-float-btn { bottom: 1rem; right: 1rem; font-size: .54rem; padding: .85rem 1.4rem; }
 }
 </style>
 </head>
 <body>
+<div class="page-transition-out" id="page-out"></div>
 <div id="nav-holder"></div>
 
-<!-- HERO -->
-<div class="page-hero" style="overflow:visible;margin-bottom:0;">
-  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1600&q=80');background-position:center center;"></div>
-  <div class="page-hero-overlay" style="background:linear-gradient(to bottom,rgba(8,8,5,.2) 0%,rgba(8,8,5,.2) 50%,rgba(8,8,5,.85) 85%,rgba(8,8,5,1) 100%);"></div>
-  <div class="page-hero-content">
+<!-- ══ VIDEO HERO ══ -->
+<div class="stay-hero" id="stay-hero">
+  <!-- Video hero — uses Unsplash video or fallback image -->
+  <div class="stay-hero-video-fallback" id="stay-hero-bg"></div>
+  <div class="stay-hero-overlay"></div>
+
+  <div class="stay-hero-content">
     <span class="label">Suites & Rooms</span>
-    <h1>Stay at Grotta</h1>
-    <p>Grotta offers 50 thoughtfully designed rooms surrounded by gardens, views, and quiet spaces to relax between experiences.</p>
+    <h1>Stay at<br>Grotta</h1>
+    <p>Fifty thoughtfully designed rooms surrounded by gardens, highland views, and the quiet that comes only from altitude.</p>
+    <a href="#rc-rooms" class="rc-book" style="opacity:0;animation:sh-up .8s ease 1.5s forwards;text-decoration:none;">
+      <span>Explore Rooms</span>
+      <span class="rc-book-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="stay-scroll-hint">
+    <span>Scroll</span>
+    <div class="stay-scroll-line"></div>
   </div>
 </div>
 
-<!-- ROOMS -->
-<div class="rc-section">
+<!-- ══ BOOKING BAR ══ -->
+<div class="stay-booking-bar" id="stay-booking-bar">
+  <div class="booking-bar-inner">
+    <div class="booking-field">
+      <label>Check In</label>
+      <input type="date" id="bb-checkin">
+    </div>
+    <div class="booking-field">
+      <label>Check Out</label>
+      <input type="date" id="bb-checkout">
+    </div>
+    <div class="booking-field">
+      <label>Guests</label>
+      <select id="bb-guests">
+        <option value="1">1 Guest</option>
+        <option value="2" selected>2 Guests</option>
+        <option value="3">3 Guests</option>
+        <option value="4">4 Guests</option>
+        <option value="5">5+ Guests</option>
+      </select>
+    </div>
+    <button class="booking-bar-btn" onclick="searchAvailability()">
+      <span>Search Availability</span>
+    </button>
+  </div>
+</div>
 
-  <!-- Standard Room — image LEFT -->
-  <div class="rc-wrap">
+<!-- ══ ROOMS ══ -->
+<div class="rc-section" id="rc-rooms">
+
+  <div class="rc-section-header fade-up">
+    <span class="label">Our Accommodations</span>
+    <h2>Where You Will Rest</h2>
+  </div>
+
+  <!-- 01: Standard Room -->
+  <div class="rc-wrap" data-room="standard">
+    <label class="rc-compare-toggle" title="Add to compare">
+      <input type="checkbox" class="compare-cb" value="standard">
+      <span class="rc-toggle-box"></span>
+      Compare
+    </label>
     <div class="rc-img">
-      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=85" alt="Standard Room">
+      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=85" alt="Standard Room" loading="lazy">
+      <div class="rc-img-info">
+        <span class="rc-img-chip">👤 2 Guests</span>
+        <span class="rc-img-chip">📐 32m²</span>
+        <span class="rc-img-chip">🏔 Garden View</span>
+      </div>
+      <div class="rc-img-hover-overlay">
+        <span onclick="openModal('standard')">View Details</span>
+      </div>
     </div>
     <div class="rc-num">01</div>
     <div class="rc-panel">
+      <div class="rc-social-proof">
+        <div class="rc-social-proof-dot"></div>
+        <span class="rc-social-proof-text">4 people viewing · Booked 3 times today</span>
+      </div>
       <span class="label">The Essential</span>
       <h3>Standard Room</h3>
+      <span class="rc-subtitle">Where simplicity becomes a statement.</span>
       <div class="rc-avail-text" id="avail-standard">10 rooms available</div>
       <div class="rc-divider"></div>
-      <p>Ideal for short stays and weekend escapes. Comfortable, quiet, and surrounded by gardens. Crafted from local stone and reclaimed wood with floor-to-ceiling windows framing misty highland mornings.</p>
+      <p>Crafted from local stone and reclaimed wood, with floor-to-ceiling windows framing misty highland mornings. Ideal for short stays and weekend escapes.</p>
+      <div class="rc-highlights">
+        <span class="rc-highlight"><span class="rc-highlight-icon">🛏</span> King Bed</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">🚿</span> Rain Shower</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">🌿</span> Garden View</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">📐</span> 32m²</span>
+      </div>
       <div class="rc-tags">
         <span class="rc-tag">King Bed</span>
         <span class="rc-tag">Rain Shower</span>
@@ -391,23 +968,53 @@
           <span class="from">From</span>
           <span class="amount">120,000 RWF<span class="per"> / night</span></span>
         </div>
-        <a href="booking.html?room=standard" class="rc-book" id="book-standard">Book Now</a>
+        <div class="rc-ctas">
+          <button class="rc-details-btn" onclick="openModal('standard')">Details</button>
+          <a href="booking.html?room=standard" class="rc-book" id="book-standard">
+            <span>Book Now</span><span class="rc-book-arrow">→</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- King Room — image RIGHT -->
-  <div class="rc-wrap rc-reversed">
+  <!-- 02: King Room -->
+  <div class="rc-wrap rc-reversed" data-room="king">
+    <span class="rc-badge">Most Popular</span>
+    <label class="rc-compare-toggle" title="Add to compare">
+      <input type="checkbox" class="compare-cb" value="king">
+      <span class="rc-toggle-box"></span>
+      Compare
+    </label>
     <div class="rc-img">
-      <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1200&q=85" alt="King Room">
+      <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1200&q=85" alt="King Room" loading="lazy">
+      <div class="rc-img-info">
+        <span class="rc-img-chip">👤 2 Guests</span>
+        <span class="rc-img-chip">📐 44m²</span>
+        <span class="rc-img-chip">🌅 Sunrise View</span>
+      </div>
+      <div class="rc-img-hover-overlay">
+        <span onclick="openModal('king')">View Details</span>
+      </div>
     </div>
     <div class="rc-num">02</div>
     <div class="rc-panel">
+      <div class="rc-social-proof">
+        <div class="rc-social-proof-dot"></div>
+        <span class="rc-social-proof-text">7 people viewing · Booked 8 times today</span>
+      </div>
       <span class="label">Elevated Comfort</span>
       <h3>King Room</h3>
+      <span class="rc-subtitle">Space to breathe. Time to linger.</span>
       <div class="rc-avail-text" id="avail-king">10 rooms available</div>
       <div class="rc-divider"></div>
-      <p>Ideal for couples and relaxed travel. Spacious with enhanced amenities for a longer, more comfortable stay. A separate lounge area creates natural space to unwind after a day in the highlands.</p>
+      <p>Spacious with enhanced amenities for a longer, more comfortable stay. A separate lounge area creates natural space to unwind after a day in the highlands.</p>
+      <div class="rc-highlights">
+        <span class="rc-highlight"><span class="rc-highlight-icon">🛏</span> Oversized King</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">🛋</span> Lounge Area</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">🥂</span> Minibar</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">📐</span> 44m²</span>
+      </div>
       <div class="rc-tags">
         <span class="rc-tag">Oversized King Bed</span>
         <span class="rc-tag">Lounge Area</span>
@@ -419,23 +1026,77 @@
           <span class="from">From</span>
           <span class="amount">175,000 RWF<span class="per"> / night</span></span>
         </div>
-        <a href="booking.html?room=king" class="rc-book" id="book-king">Book Now</a>
+        <div class="rc-ctas">
+          <button class="rc-details-btn" onclick="openModal('king')">Details</button>
+          <a href="booking.html?room=king" class="rc-book" id="book-king">
+            <span>Book Now</span><span class="rc-book-arrow">→</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- King Room with View — image LEFT -->
-  <div class="rc-wrap">
+  <!-- Experience strip (after first 2 rooms) -->
+  <div class="stay-exp-strip fade-up">
+    <div class="stay-exp-item">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85" alt="Dining" loading="lazy">
+      <div class="stay-exp-text">
+        <span class="label">Culinary</span>
+        <h4>Five Dining Venues</h4>
+      </div>
+    </div>
+    <div class="stay-exp-item">
+      <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=900&q=85" alt="Caves" loading="lazy">
+      <div class="stay-exp-text">
+        <span class="label">Underground</span>
+        <h4>The Cave Experience</h4>
+      </div>
+    </div>
+    <div class="stay-exp-item">
+      <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=900&q=85" alt="Wellness" loading="lazy">
+      <div class="stay-exp-text">
+        <span class="label">Restore</span>
+        <h4>Wellness & Spa</h4>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03: King Room with View -->
+  <div class="rc-wrap" data-room="king_view">
+    <label class="rc-compare-toggle">
+      <input type="checkbox" class="compare-cb" value="king_view">
+      <span class="rc-toggle-box"></span>
+      Compare
+    </label>
     <div class="rc-img">
-      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=85" alt="King Room with View">
+      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=85" alt="King Room with View" loading="lazy">
+      <div class="rc-img-info">
+        <span class="rc-img-chip">👤 2 Guests</span>
+        <span class="rc-img-chip">📐 48m²</span>
+        <span class="rc-img-chip">🌋 Volcano View</span>
+      </div>
+      <div class="rc-img-hover-overlay">
+        <span onclick="openModal('king_view')">View Details</span>
+      </div>
     </div>
     <div class="rc-num">03</div>
     <div class="rc-panel">
+      <div class="rc-social-proof">
+        <div class="rc-social-proof-dot"></div>
+        <span class="rc-social-proof-text">5 people viewing · Only 3 left</span>
+      </div>
       <span class="label">The Vista</span>
       <h3>King Room with View</h3>
+      <span class="rc-subtitle">The highland landscape, framed for you.</span>
       <div class="rc-avail-text" id="avail-king_view">10 rooms available</div>
       <div class="rc-divider"></div>
-      <p>Open views toward the volcano highlands. An expansive aperture offering uninterrupted vistas of the surrounding landscape. Wake to panoramic mist rolling over ancient peaks from your private terrace.</p>
+      <p>Wake to panoramic mist rolling over ancient peaks from your private terrace. An expansive aperture offering uninterrupted vistas of the volcanic highland landscape.</p>
+      <div class="rc-highlights">
+        <span class="rc-highlight"><span class="rc-highlight-icon">🌋</span> Volcano Panorama</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">🏡</span> Private Terrace</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">🛁</span> Soaking Tub</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">📐</span> 48m²</span>
+      </div>
       <div class="rc-tags">
         <span class="rc-tag">Valley View</span>
         <span class="rc-tag">Private Terrace</span>
@@ -447,23 +1108,48 @@
           <span class="from">From</span>
           <span class="amount">185,000 RWF<span class="per"> / night</span></span>
         </div>
-        <a href="booking.html?room=king_view" class="rc-book" id="book-king_view">Book Now</a>
+        <div class="rc-ctas">
+          <button class="rc-details-btn" onclick="openModal('king_view')">Details</button>
+          <a href="booking.html?room=king_view" class="rc-book" id="book-king_view">
+            <span>Book Now</span><span class="rc-book-arrow">→</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Deluxe Room — image RIGHT -->
-  <div class="rc-wrap rc-reversed">
+  <!-- 04: Deluxe Room -->
+  <div class="rc-wrap rc-reversed" data-room="deluxe">
+    <label class="rc-compare-toggle">
+      <input type="checkbox" class="compare-cb" value="deluxe">
+      <span class="rc-toggle-box"></span>
+      Compare
+    </label>
     <div class="rc-img">
-      <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=1200&q=85" alt="Deluxe Room">
+      <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=1200&q=85" alt="Deluxe Room" loading="lazy">
+      <div class="rc-img-info">
+        <span class="rc-img-chip">👤 3 Guests</span>
+        <span class="rc-img-chip">📐 64m²</span>
+        <span class="rc-img-chip">🌄 Panoramic</span>
+      </div>
+      <div class="rc-img-hover-overlay">
+        <span onclick="openModal('deluxe')">View Details</span>
+      </div>
     </div>
     <div class="rc-num">04</div>
     <div class="rc-panel">
       <span class="label">Refined Grandeur</span>
       <h3>Deluxe Room</h3>
+      <span class="rc-subtitle">Hand-selected. Bespoke. Unforgettable.</span>
       <div class="rc-avail-text" id="avail-deluxe">10 rooms available</div>
       <div class="rc-divider"></div>
-      <p>Spacious and refined for longer stays. Separate sleeping and lounging quarters with premium amenities throughout. Hand-selected materials, stone finishes, and bespoke furnishings define every corner.</p>
+      <p>Separate sleeping and lounging quarters with premium amenities. Hand-selected materials, stone finishes, and bespoke furnishings define every corner of this extraordinary space.</p>
+      <div class="rc-highlights">
+        <span class="rc-highlight"><span class="rc-highlight-icon">🛁</span> Stone Bath</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">🛋</span> Separate Lounge</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">🍾</span> Premium Bar</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">📐</span> 64m²</span>
+      </div>
       <div class="rc-tags">
         <span class="rc-tag">Stone Tub</span>
         <span class="rc-tag">Separate Lounge</span>
@@ -475,23 +1161,53 @@
           <span class="from">From</span>
           <span class="amount">250,000 RWF<span class="per"> / night</span></span>
         </div>
-        <a href="booking.html?room=deluxe" class="rc-book" id="book-deluxe">Book Now</a>
+        <div class="rc-ctas">
+          <button class="rc-details-btn" onclick="openModal('deluxe')">Details</button>
+          <a href="booking.html?room=deluxe" class="rc-book" id="book-deluxe">
+            <span>Book Now</span><span class="rc-book-arrow">→</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Executive Room — image LEFT -->
-  <div class="rc-wrap">
+  <!-- 05: Executive Room -->
+  <div class="rc-wrap" data-room="executive">
+    <span class="rc-badge" style="background:#1a1510;border:1px solid rgba(201,165,82,.4);color:var(--gold);">Best Value</span>
+    <label class="rc-compare-toggle">
+      <input type="checkbox" class="compare-cb" value="executive">
+      <span class="rc-toggle-box"></span>
+      Compare
+    </label>
     <div class="rc-img">
-      <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=85" alt="Executive Room">
+      <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=85" alt="Executive Room" loading="lazy">
+      <div class="rc-img-info">
+        <span class="rc-img-chip">👤 4 Guests</span>
+        <span class="rc-img-chip">📐 120m²</span>
+        <span class="rc-img-chip">♾ Private Pool</span>
+      </div>
+      <div class="rc-img-hover-overlay">
+        <span onclick="openModal('executive')">View Details</span>
+      </div>
     </div>
     <div class="rc-num">05</div>
     <div class="rc-panel">
+      <div class="rc-social-proof">
+        <div class="rc-social-proof-dot"></div>
+        <span class="rc-social-proof-text">2 rooms remaining this month</span>
+      </div>
       <span class="label">The Pinnacle</span>
       <h3>Executive Room</h3>
+      <span class="rc-subtitle">Grotta's most immersive expression of luxury.</span>
       <div class="rc-avail-text" id="avail-executive">10 rooms available</div>
       <div class="rc-divider"></div>
-      <p>Maximum comfort and privacy. The ultimate expression of luxury with dedicated service and expansive spaces. A private pool, two bedrooms, and butler service make this Grotta's most immersive offering.</p>
+      <p>A private pool, two bedrooms, full terrace, and dedicated butler service. The ultimate expression of the Grotta experience — nothing withheld, nothing ordinary.</p>
+      <div class="rc-highlights">
+        <span class="rc-highlight"><span class="rc-highlight-icon">🏊</span> Private Pool</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">🛎</span> Butler Service</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">🛏</span> 2 Bedrooms</span>
+        <span class="rc-highlight"><span class="rc-highlight-icon">📐</span> 120m²</span>
+      </div>
       <div class="rc-tags">
         <span class="rc-tag">Private Pool</span>
         <span class="rc-tag">Butler Service</span>
@@ -503,24 +1219,327 @@
           <span class="from">From</span>
           <span class="amount">350,000 RWF<span class="per"> / night</span></span>
         </div>
-        <a href="booking.html?room=executive" class="rc-book" id="book-executive">Book Now</a>
+        <div class="rc-ctas">
+          <button class="rc-details-btn" onclick="openModal('executive')">Details</button>
+          <a href="booking.html?room=executive" class="rc-book" id="book-executive">
+            <span>Book Now</span><span class="rc-book-arrow">→</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- Compare CTA -->
+  <div style="text-align:center;padding:1rem 0 3rem;">
+    <button onclick="openCompare()" style="
+      font-family:var(--sans);font-size:.6rem;font-weight:500;
+      letter-spacing:.24em;text-transform:uppercase;
+      color:rgba(201,165,82,.7);background:transparent;border:1px solid rgba(201,165,82,.2);
+      padding:.8rem 2rem;cursor:pointer;
+      transition:border-color .3s ease,color .3s ease;">
+      Compare Selected Rooms
+    </button>
+  </div>
+
 </div>
+
+<!-- ══ COMPARE MODAL ══ -->
+<div class="compare-modal" id="compare-modal">
+  <div class="compare-inner">
+    <div class="compare-header">
+      <h3>Room Comparison</h3>
+      <button class="compare-close" onclick="closeCompare()">Close ✕</button>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Standard</th>
+            <th>King</th>
+            <th>King + View</th>
+            <th>Deluxe</th>
+            <th>Executive</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Size</td><td>32m²</td><td>44m²</td><td>48m²</td><td>64m²</td><td>120m²</td></tr>
+          <tr><td>Guests</td><td>2</td><td>2</td><td>2</td><td>3</td><td>4</td></tr>
+          <tr><td>Bed</td><td>King</td><td>Oversized King</td><td>Oversized King</td><td>King + Day Bed</td><td>2× King</td></tr>
+          <tr><td>View</td><td>Garden</td><td>Sunrise</td><td>Volcano</td><td>Panoramic</td><td>360°</td></tr>
+          <tr><td>Terrace</td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-check">✓</span></td><td><span class="compare-check">✓</span></td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td>Soaking Tub</td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-check">✓</span></td><td><span class="compare-check">✓</span></td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td>Minibar</td><td><span class="compare-x">✕</span></td><td><span class="compare-check">✓</span></td><td><span class="compare-check">✓</span></td><td><span class="compare-check">✓</span></td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td>Butler Service</td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td>Private Pool</td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-check">✓</span></td></tr>
+          <tr>
+            <td>Price / Night</td>
+            <td><span class="compare-price">120k RWF</span></td>
+            <td><span class="compare-price">175k RWF</span></td>
+            <td><span class="compare-price">185k RWF</span></td>
+            <td><span class="compare-price">250k RWF</span></td>
+            <td><span class="compare-price">350k RWF</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ROOM DETAIL MODAL ══ -->
+<div class="room-modal" id="room-modal">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div class="room-modal-inner">
+    <!-- Gallery -->
+    <div class="modal-gallery">
+      <div class="modal-gallery-track" id="modal-gallery-track"></div>
+      <button class="gallery-btn gallery-prev" onclick="galleryPrev()">‹</button>
+      <button class="gallery-btn gallery-next" onclick="galleryNext()">›</button>
+      <div class="modal-gallery-dots" id="modal-dots"></div>
+    </div>
+    <!-- Content -->
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+</div>
+
+<!-- ══ STICKY FLOAT BTN ══ -->
+<a href="booking.html" class="stay-float-btn" id="stay-float-btn">Reserve Your Room →</a>
 
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 <script>
-// ── Availability update ──────────────────────────────────────
+// ── Room data ─────────────────────────────────────────────────
+const roomData = {
+  standard: {
+    name: 'Standard Room', label: 'The Essential',
+    subtitle: 'Where simplicity becomes a statement.',
+    price: '120,000 RWF', tagline: 'Crafted calm, from floor to sky.',
+    guests: '2', size: '32m²', bed: 'King', view: 'Garden',
+    desc: 'Crafted from local stone and reclaimed wood, with floor-to-ceiling windows framing misty highland mornings. Every material in this room was chosen with restraint and intention. The light changes slowly here — and that is precisely the point.',
+    amenities: ['King Bed', 'Rain Shower', 'Wi-Fi', 'Garden View', 'In-room Safe', 'Air Conditioning', 'Smart TV', 'Minibar', 'Bathrobes & Slippers', 'Nightly Turndown'],
+    images: [
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1400&q=85',
+      'https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4?w=1400&q=85',
+      'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1400&q=85',
+    ]
+  },
+  king: {
+    name: 'King Room', label: 'Elevated Comfort',
+    subtitle: 'Space to breathe. Time to linger.',
+    price: '175,000 RWF', tagline: 'More room for what matters.',
+    guests: '2', size: '44m²', bed: 'Oversized King', view: 'Sunrise',
+    desc: 'A separate lounge area creates natural space to unwind after a day in the highlands. Enhanced amenities and a generous footprint make this the choice for guests who refuse to rush. The windows face east — wake to light before the world does.',
+    amenities: ['Oversized King Bed', 'Lounge Area', 'Minibar', 'Rainfall Shower', 'Wi-Fi', 'Smart TV', 'In-room Safe', 'Air Conditioning', 'Bathrobes & Slippers', 'Nightly Turndown', 'Pillow Menu'],
+    images: [
+      'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1400&q=85',
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1400&q=85',
+      'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1400&q=85',
+    ]
+  },
+  king_view: {
+    name: 'King Room with View', label: 'The Vista',
+    subtitle: 'The highland landscape, framed for you.',
+    price: '185,000 RWF', tagline: 'The volcano at your window.',
+    guests: '2', size: '48m²', bed: 'Oversized King', view: 'Volcano',
+    desc: 'Wake to panoramic mist rolling over ancient peaks from your private terrace. The view from this room changes with the weather — and it is never ordinary. A soaking tub positioned toward the window makes the most of every moment of daylight.',
+    amenities: ['Oversized King Bed', 'Private Terrace', 'Soaking Tub', 'Volcano Panorama', 'Minibar', 'Wi-Fi', 'Smart TV', 'Air Conditioning', 'Bathrobes & Slippers', 'Nightly Turndown', 'Pillow Menu', 'Binoculars'],
+    images: [
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1400&q=85',
+      'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1400&q=85',
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1400&q=85',
+    ]
+  },
+  deluxe: {
+    name: 'Deluxe Room', label: 'Refined Grandeur',
+    subtitle: 'Hand-selected. Bespoke. Unforgettable.',
+    price: '250,000 RWF', tagline: 'Every detail, considered.',
+    guests: '3', size: '64m²', bed: 'King + Day Bed', view: 'Panoramic',
+    desc: 'Hand-selected materials, stone finishes, and bespoke furnishings define every corner of this extraordinary space. Separate sleeping and lounging quarters create a private world within the resort. The stone bath — fed with mineral water from the highland springs — is reason enough alone.',
+    amenities: ['King Bed + Day Bed', 'Stone Bath', 'Separate Lounge', 'Premium Bar', 'Butler Call', 'Private Terrace', 'Wi-Fi', 'Smart TV', 'Air Conditioning', 'Nightly Turndown', 'Pillow Menu', 'Welcome Champagne'],
+    images: [
+      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=1400&q=85',
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1400&q=85',
+      'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1400&q=85',
+    ]
+  },
+  executive: {
+    name: 'Executive Room', label: 'The Pinnacle',
+    subtitle: "Grotta's most immersive expression of luxury.",
+    price: '350,000 RWF', tagline: 'Nothing withheld. Nothing ordinary.',
+    guests: '4', size: '120m²', bed: '2× King Beds', view: '360° Highland',
+    desc: "A private pool, two bedrooms, full terrace, and dedicated butler service. This is not a room — it is a residence. Nothing in the Grotta inventory surpasses what is offered here, and no detail has been left unconsidered. For guests who require everything.",
+    amenities: ['2× King Beds', 'Private Pool', 'Butler Service', 'Full Terrace', 'Stone Bath', 'Premium Bar', 'Separate Dining', 'Wi-Fi', 'Multiple Smart TVs', 'Air Conditioning', 'Welcome Hamper', 'Airport Transfer'],
+    images: [
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1400&q=85',
+      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=1400&q=85',
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1400&q=85',
+    ]
+  }
+};
+
+// ── Modal ─────────────────────────────────────────────────────
+let currentSlide = 0;
+let currentRoom = null;
+
+function openModal(roomKey) {
+  const room = roomData[roomKey];
+  currentRoom = roomKey;
+  currentSlide = 0;
+
+  // Gallery
+  const track = document.getElementById('modal-gallery-track');
+  const dots = document.getElementById('modal-dots');
+  track.innerHTML = room.images.map(src =>
+    `<div class="modal-gallery-slide"><img src="${src}" alt="${room.name}"></div>`
+  ).join('');
+  dots.innerHTML = room.images.map((_, i) =>
+    `<div class="gallery-dot ${i===0?'active':''}" onclick="goToSlide(${i})"></div>`
+  ).join('');
+
+  // Content
+  document.getElementById('modal-content').innerHTML = `
+    <span class="label">${room.label}</span>
+    <h2>${room.name}</h2>
+    <span class="modal-tagline">${room.tagline}</span>
+    <div class="modal-highlights">
+      <div class="modal-highlight">
+        <span class="modal-highlight-icon">👤</span>
+        <span class="modal-highlight-value">${room.guests}</span>
+        <span class="modal-highlight-label">Guests</span>
+      </div>
+      <div class="modal-highlight">
+        <span class="modal-highlight-icon">📐</span>
+        <span class="modal-highlight-value">${room.size}</span>
+        <span class="modal-highlight-label">Room Size</span>
+      </div>
+      <div class="modal-highlight">
+        <span class="modal-highlight-icon">🛏</span>
+        <span class="modal-highlight-value" style="font-size:.9rem">${room.bed}</span>
+        <span class="modal-highlight-label">Bed Type</span>
+      </div>
+      <div class="modal-highlight">
+        <span class="modal-highlight-icon">🏔</span>
+        <span class="modal-highlight-value" style="font-size:.85rem">${room.view}</span>
+        <span class="modal-highlight-label">View</span>
+      </div>
+    </div>
+    <div class="modal-divider"></div>
+    <p class="modal-desc">${room.desc}</p>
+    <div class="modal-amenities">
+      ${room.amenities.map(a => `<div class="modal-amenity">${a}</div>`).join('')}
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-price-row">
+      <div>
+        <div class="modal-price">${room.price}</div>
+        <span class="modal-price-label">per night · taxes included</span>
+      </div>
+      <a href="booking.html?room=${roomKey}" class="rc-book" style="text-decoration:none;">
+        <span>Book This Room</span><span class="rc-book-arrow">→</span>
+      </a>
+    </div>
+  `;
+
+  document.getElementById('room-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('room-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function goToSlide(i) {
+  currentSlide = i;
+  const track = document.getElementById('modal-gallery-track');
+  track.style.transform = `translateX(-${i * 100}%)`;
+  document.querySelectorAll('.gallery-dot').forEach((d, idx) => {
+    d.classList.toggle('active', idx === i);
+  });
+}
+
+function galleryPrev() {
+  const room = roomData[currentRoom];
+  const total = room ? room.images.length : 1;
+  goToSlide((currentSlide - 1 + total) % total);
+}
+function galleryNext() {
+  const room = roomData[currentRoom];
+  const total = room ? room.images.length : 1;
+  goToSlide((currentSlide + 1) % total);
+}
+
+// Close on backdrop
+document.getElementById('room-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ── Compare ───────────────────────────────────────────────────
+function openCompare() {
+  document.getElementById('compare-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCompare() {
+  document.getElementById('compare-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('compare-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeCompare();
+});
+
+// ── Booking bar ───────────────────────────────────────────────
+function searchAvailability() {
+  const checkin  = document.getElementById('bb-checkin').value;
+  const checkout = document.getElementById('bb-checkout').value;
+  const guests   = document.getElementById('bb-guests').value;
+  if (!checkin || !checkout) {
+    alert('Please select check-in and check-out dates.');
+    return;
+  }
+  const url = `booking.html?checkin=${checkin}&checkout=${checkout}&guests=${guests}`;
+  window.location.href = url;
+}
+
+// Set default dates
+(function() {
+  const today = new Date();
+  const tom   = new Date(today); tom.setDate(tom.getDate() + 1);
+  const day3  = new Date(today); day3.setDate(day3.getDate() + 3);
+  const fmt   = d => d.toISOString().split('T')[0];
+  document.getElementById('bb-checkin').value  = fmt(tom);
+  document.getElementById('bb-checkout').value = fmt(day3);
+})();
+
+// ── Sticky booking bar ────────────────────────────────────────
+const bookingBar = document.getElementById('stay-booking-bar');
+const bookingBarTop = bookingBar ? bookingBar.offsetTop : 0;
+
+// ── Sticky float button ───────────────────────────────────────
+const floatBtn = document.getElementById('stay-float-btn');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  // Float button appears after hero
+  if (floatBtn) floatBtn.classList.toggle('visible', y > 600);
+  // Sticky booking bar
+  if (bookingBar) {
+    if (y > bookingBarTop + 80) {
+      bookingBar.classList.add('sticky');
+      document.getElementById('rc-rooms').style.paddingTop = bookingBar.offsetHeight + 'px';
+    } else {
+      bookingBar.classList.remove('sticky');
+      document.getElementById('rc-rooms').style.paddingTop = '';
+    }
+  }
+}, { passive: true });
+
+// ── Availability ──────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  if (!window.GrottaRooms) return;
   ['standard','king','king_view','deluxe','executive'].forEach(key => {
     const avail   = window.GrottaRooms.getAvailable(key);
     const availEl = document.getElementById('avail-' + key);
     const btn     = document.getElementById('book-' + key);
-
     if (availEl) {
       if (avail === 0) {
         availEl.textContent = 'Fully Booked';
@@ -533,13 +1552,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     if (btn && avail === 0) {
-      btn.textContent = 'Fully Booked';
+      btn.querySelector('span') ? btn.querySelector('span').textContent = 'Fully Booked' : null;
       btn.classList.add('booked');
     }
   });
 });
 
-// ── Scroll reveal — directional slide ───────────────────────
+// ── Scroll reveal ─────────────────────────────────────────────
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -547,34 +1566,33 @@ const revealObs = new IntersectionObserver((entries) => {
       revealObs.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 
 document.querySelectorAll('.rc-wrap').forEach(card => {
-  // Override the default .fade-up observer from main.js
-  // Apply transition for directional slide
   card.style.transition =
-    'opacity 0.75s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.75s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.55s ease';
+    'opacity .85s cubic-bezier(.25,.46,.45,.94), transform .85s cubic-bezier(.25,.46,.45,.94), filter .55s ease';
   revealObs.observe(card);
 });
 
-// ── Parallax on scroll ───────────────────────────────────────
+// ── Parallax ──────────────────────────────────────────────────
 function applyParallax() {
   document.querySelectorAll('.rc-img img').forEach(img => {
     const rect   = img.closest('.rc-img').getBoundingClientRect();
     const vh     = window.innerHeight;
-    // How far the center of the card is from screen center, as fraction
     const center = (rect.top + rect.height / 2 - vh / 2) / vh;
-    // Shift image vertically: max ±8%
     const shift  = center * 8;
-    // Only apply if card is near viewport
     if (rect.top < vh + 200 && rect.bottom > -200) {
       img.style.objectPosition = `center ${50 + shift}%`;
     }
   });
 }
-
 window.addEventListener('scroll', applyParallax, { passive: true });
 applyParallax();
+
+// ── Keyboard close ────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closeCompare(); }
+});
 </script>
 </body>
 </html>

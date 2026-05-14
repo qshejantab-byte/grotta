@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events at Grotta</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#080805;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .85s cubic-bezier(.25,.46,.45,.94),transform .85s cubic-bezier(.25,.46,.45,.94)}
+.reveal.from-left{transform:translateX(-40px)}.reveal.from-right{transform:translateX(40px)}
+.reveal.visible{opacity:1!important;transform:translate(0,0)!important}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}
+.ev-label{font-family:'Jost',sans-serif;font-size:.55rem;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:rgba(201,165,82,.5);display:block;margin-bottom:.85rem}
+.ev-rule{width:2rem;height:1px;background:rgba(201,165,82,.3);margin:1.1rem 0}
+.ev-section-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:300;color:#e8e0d0;line-height:1.06;letter-spacing:-.01em}
+
+/* ══════════════════════════════════════
+   HERO — Cinematic Immersive Calendar
+══════════════════════════════════════ */
+.ev-hero {
+  position: relative;
+  height: 100vh; min-height: 700px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  background: #060504;
+}
+
+/* ── Full cinematic background ── */
+.ev-hero-scene {
+  position: absolute; inset: 0; z-index: 0;
+}
+.ev-hero-bg {
+  position: absolute; inset: -6%;
+  background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1600&q=85');
+  background-size: cover; background-position: center 30%;
+  filter: brightness(.1) saturate(.45);
+  animation: ev-breathe 28s cubic-bezier(.25,.46,.45,.94) forwards;
+  will-change: transform;
+}
+@keyframes ev-breathe { from{transform:scale(1.06)} to{transform:scale(1)} }
+
+/* Layered cinematic overlays */
+.ev-hero-vignette {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 50%, transparent 20%, rgba(4,3,2,.85) 100%),
+    linear-gradient(to bottom,
+      rgba(4,3,2,.7) 0%,
+      rgba(4,3,2,.25) 20%,
+      rgba(4,3,2,.25) 60%,
+      rgba(4,3,2,.95) 88%,
+      rgba(4,3,2,1) 100%),
+    linear-gradient(to right, rgba(4,3,2,.7) 0%, transparent 20%, transparent 80%, rgba(4,3,2,.7) 100%);
+}
+
+/* Ambient gold glow from below */
+.ev-hero-glow {
+  position: absolute; bottom: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 400px;
+  background: radial-gradient(ellipse, rgba(201,140,40,.07) 0%, transparent 65%);
+  animation: ev-glow 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes ev-glow {
+  from { opacity: .5; transform: translateX(-50%) scale(1); }
+  to   { opacity: 1;  transform: translateX(-50%) scale(1.15); }
+}
+
+/* Grain */
+.ev-hero-grain {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+  opacity: .6; pointer-events: none;
+}
+
+/* ── Floating editorial header ── */
+.ev-hero-header {
+  position: absolute; top: 0; left: 0; right: 0;
+  z-index: 20; padding: 3.5rem 4vw 0;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  animation: ev-fade-down .9s cubic-bezier(.25,.46,.45,.94) .4s both;
+}
+@keyframes ev-fade-down {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ev-hero-heading {
+  display: flex; flex-direction: column; gap: .5rem;
+}
+.ev-hero-heading .ev-label { margin-bottom: 0; }
+.ev-hero-heading h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.8rem, 5.5vw, 5.2rem);
+  font-weight: 300; color: #f0e8d5;
+  line-height: 1.02; letter-spacing: -.025em;
+}
+.ev-hero-tagline {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(.95rem, 1.4vw, 1.2rem);
+  font-weight: 300; font-style: italic;
+  color: rgba(232,224,208,.45); max-width: 380px;
+  line-height: 1.6;
+}
+.ev-hero-header-ctas {
+  display: flex; flex-direction: column; align-items: flex-end; gap: .6rem;
+}
+
+/* ── IMMERSIVE CALENDAR — the world itself ── */
+.ev-hero-calendar-wrap {
+  position: absolute; inset: 0; z-index: 10;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 4vw 3rem;
+  pointer-events: none;
+}
+
+/* Month navigation — floats above calendar */
+.ev-cal-nav-row {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem; pointer-events: all;
+}
+.ev-cal-month-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  font-weight: 300; color: rgba(240,232,213,.7);
+  letter-spacing: -.02em; line-height: 1;
+}
+.ev-cal-nav-btns { display: flex; gap: .6rem; align-items: center; }
+.ev-cal-nav-btn {
+  background: rgba(8,8,5,.6); backdrop-filter: blur(8px);
+  border: 1px solid rgba(201,165,82,.2);
+  color: rgba(201,165,82,.6); width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1rem;
+  transition: border-color .25s ease, color .25s ease, background .25s ease;
+}
+.ev-cal-nav-btn:hover { border-color: rgba(201,165,82,.5); color: #c9a552; background: rgba(201,165,82,.06); }
+.ev-cal-today-btn {
+  font-family: 'Jost', sans-serif; font-size: .48rem; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(201,165,82,.4); background: rgba(8,8,5,.55);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(201,165,82,.14);
+  padding: .32rem .85rem; cursor: pointer;
+  transition: color .25s, border-color .25s;
+}
+.ev-cal-today-btn:hover { color: #c9a552; border-color: rgba(201,165,82,.4); }
+
+/* Day labels row */
+.ev-cal-days-row {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  margin-bottom: .5rem; pointer-events: all;
+  border-left: 1px solid rgba(201,165,82,.08);
+  border-bottom: 1px solid rgba(201,165,82,.12);
+}
+.ev-cal-day-label {
+  font-family: 'Jost', sans-serif; font-size: .46rem;
+  font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(201,165,82,.28); text-align: center; padding: .3rem 0;
+  border-right: 1px solid rgba(201,165,82,.08);
+}
+
+/* Calendar grid — no box, just floating cells */
+.ev-cal-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 0; pointer-events: all;
+  border-left: 1px solid rgba(201,165,82,.18);
+  border-top: 1px solid rgba(201,165,82,.18);
+}
+
+.ev-cal-cell {
+  min-height: 64px; padding: .5rem .5rem .4rem;
+  position: relative; cursor: default;
+  transition: background .3s ease;
+  border-right: 1px solid rgba(201,165,82,.18);
+  border-bottom: 1px solid rgba(201,165,82,.18);
+}
+.ev-cal-cell.other-month { opacity: .18; }
+.ev-cal-cell.has-event { cursor: pointer; }
+.ev-cal-cell.has-event:hover {
+  background: rgba(201,165,82,.06);
+}
+.ev-cal-cell.selected {
+  background: rgba(201,165,82,.1);
+  outline: 1px solid rgba(201,165,82,.3);
+}
+
+/* Today ring */
+.ev-cal-cell.today .ev-cal-date-num {
+  color: #c9a552;
+}
+.ev-cal-cell.today::after {
+  content: ''; position: absolute;
+  bottom: .35rem; left: 50%; transform: translateX(-50%);
+  width: 3px; height: 3px; border-radius: 50%; background: #c9a552;
+}
+
+.ev-cal-date-num {
+  font-family: 'Jost', sans-serif; font-size: .72rem;
+  font-weight: 300; color: rgba(200,192,174,.38); display: block; line-height: 1;
+  margin-bottom: .3rem;
+}
+
+/* Event indicator */
+.ev-cal-event-indicator {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.ev-cal-ev-tag {
+  display: flex; align-items: center; gap: .25rem;
+}
+.ev-cal-ev-pip {
+  width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
+  box-shadow: 0 0 6px currentColor;
+}
+.ev-cal-ev-pip.music    { background: #c9a552; color: #c9a552; }
+.ev-cal-ev-pip.cinema   { background: #7c9eca; color: #7c9eca; }
+.ev-cal-ev-pip.special  { background: #c8843a; color: #c8843a; }
+.ev-cal-ev-pip.wellness { background: #7ab87a; color: #7ab87a; }
+.ev-cal-ev-pip.dining   { background: #ca7a52; color: #ca7a52; }
+
+.ev-cal-ev-label {
+  font-family: 'Jost', sans-serif; font-size: .42rem;
+  color: rgba(200,192,174,.45); white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; max-width: 80px;
+}
+
+/* ── Floating event preview panel ── */
+.ev-preview-panel {
+  position: fixed; z-index: 300;
+  background: rgba(10,8,6,.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,165,82,.18);
+  padding: 1.4rem 1.6rem;
+  width: 260px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(201,165,82,.06);
+  opacity: 0; pointer-events: none;
+  transform: translateY(8px) scale(.97);
+  transition: opacity .3s ease, transform .3s cubic-bezier(.25,.46,.45,.94);
+}
+.ev-preview-panel.show {
+  opacity: 1; pointer-events: all;
+  transform: translateY(0) scale(1);
+}
+.ev-preview-type {
+  font-family: 'Jost', sans-serif; font-size: .48rem; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase;
+  display: flex; align-items: center; gap: .4rem; margin-bottom: .65rem;
+}
+.ev-preview-pip { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.ev-preview-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem; font-weight: 300; color: #e8e0d0;
+  line-height: 1.2; margin-bottom: .5rem;
+}
+.ev-preview-desc {
+  font-size: .72rem; color: rgba(200,192,174,.5); line-height: 1.7;
+  margin-bottom: .8rem;
+}
+.ev-preview-time {
+  font-family: 'Jost', sans-serif; font-size: .5rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(201,165,82,.5);
+  padding-top: .7rem; border-top: 1px solid rgba(201,165,82,.1);
+}
+
+/* ── Bottom fade into page ── */
+.ev-hero-bottom-fade {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 140px; z-index: 5;
+  background: linear-gradient(to bottom, transparent, rgba(6,5,4,1) 100%);
+  pointer-events: none;
+}
+
+/* Scroll hint */
+.ev-scroll-hint {
+  position: absolute; bottom: 1.8rem; left: 50%;
+  transform: translateX(-50%); z-index: 20;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+}
+.ev-scroll-hint span {
+  font-size: .48rem; letter-spacing: .32em; text-transform: uppercase;
+  color: rgba(201,165,82,.28); font-family: 'Jost', sans-serif;
+}
+.ev-scroll-line {
+  width: 1px; height: 34px;
+  background: linear-gradient(to bottom, rgba(201,165,82,.35), transparent);
+  animation: ev-pulse 2.4s ease-in-out infinite;
+}
+@keyframes ev-pulse { 0%,100%{opacity:.4;transform:scaleY(1);transform-origin:top} 50%{opacity:.8;transform:scaleY(1.18)} }
+
+/* ── Buttons ── */
+.ev-btn-gold {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-family: 'Jost', sans-serif; font-size: .6rem; font-weight: 500;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: #080805; background: #c9a552; text-decoration: none; border: none;
+  cursor: pointer; padding: .9rem 2.2rem; position: relative; overflow: hidden;
+  transition: transform .25s ease, box-shadow .3s ease;
+}
+.ev-btn-gold::before {
+  content: ''; position: absolute; inset: 0; background: #e2c97e;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94); z-index: 0;
+}
+.ev-btn-gold span { position: relative; z-index: 1; }
+.ev-btn-gold:hover::before { transform: scaleX(1); }
+.ev-btn-gold:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201,165,82,.28); }
+
+.ev-btn-outline {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-family: 'Jost', sans-serif; font-size: .6rem; font-weight: 400;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: rgba(232,224,208,.65); background: rgba(8,8,5,.5);
+  backdrop-filter: blur(8px);
+  text-decoration: none; border: 1px solid rgba(232,224,208,.22); cursor: pointer;
+  padding: .88rem 2.2rem;
+  transition: border-color .3s ease, color .3s ease, transform .25s ease;
+}
+.ev-btn-outline:hover { border-color: #c9a552; color: #c9a552; transform: translateY(-2px); }
+
+/* ── WEEKLY SECTION ── */
+.ev-weekly-section{background:#0a0906;padding:8rem 0;position:relative}
+.ev-weekly-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.1) 30%,rgba(201,165,82,.1) 70%,transparent)}
+.ev-weekly-intro{text-align:center;max-width:560px;margin:0 auto 5rem;padding:0 2rem}
+.ev-weekly-intro .ev-rule{margin:1.1rem auto}
+.ev-weekly-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(201,165,82,.08);max-width:1400px;margin:0 auto}
+.ev-weekly-card{position:relative;min-height:560px;overflow:hidden;cursor:default;display:flex;align-items:flex-end}
+.ev-weekly-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.42) saturate(.8);transition:filter 1.2s ease,transform 1.4s cubic-bezier(.25,.46,.45,.94)}
+.ev-weekly-card:hover .ev-weekly-card-bg{filter:brightness(.58) saturate(.9);transform:scale(1.04)}
+.ev-weekly-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,5,.95) 0%,rgba(8,8,5,.45) 40%,rgba(8,8,5,.1) 70%,transparent 100%);transition:background .5s ease}
+.ev-weekly-card:hover .ev-weekly-card-overlay{background:linear-gradient(to top,rgba(8,8,5,.98) 0%,rgba(8,8,5,.6) 45%,rgba(8,8,5,.2) 75%,transparent 100%)}
+.ev-weekly-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 100%,rgba(201,165,82,.07) 0%,transparent 70%);opacity:0;transition:opacity .6s ease;z-index:2;pointer-events:none}
+.ev-weekly-card:hover::before{opacity:1}
+.ev-date-badge{position:absolute;top:1.5rem;right:1.5rem;background:rgba(201,165,82,.12);border:1px solid rgba(201,165,82,.22);backdrop-filter:blur(8px);padding:.4rem .9rem;font-family:'Jost',sans-serif;font-size:.54rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,165,82,.75);z-index:5}
+.ev-weekly-card-text{position:relative;z-index:5;padding:2.5rem 2.8rem;width:100%}
+.ev-weekly-card-text .ev-label{color:rgba(201,165,82,.5);margin-bottom:.6rem}
+.ev-weekly-card-text h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2rem,3vw,2.8rem);font-weight:300;color:#e8e0d0;line-height:1.08;letter-spacing:-.01em;margin-bottom:.9rem;transition:color .3s ease}
+.ev-weekly-card:hover .ev-weekly-card-text h3{color:#fff}
+.ev-weekly-card-text p{font-size:.85rem;color:rgba(232,224,208,.55);line-height:1.9;max-width:360px;max-height:0;overflow:hidden;opacity:0;transform:translateY(10px);transition:max-height .5s ease,opacity .45s ease .05s,transform .45s ease .05s}
+.ev-weekly-card:hover .ev-weekly-card-text p{max-height:6rem;opacity:1;transform:translateY(0)}
+.ev-weekly-card-text::before{content:'';display:block;width:0;height:1px;background:#c9a552;margin-bottom:.9rem;transition:width .45s cubic-bezier(.25,.46,.45,.94)}
+.ev-weekly-card:hover .ev-weekly-card-text::before{width:2.5rem}
+.ev-schedule-cta{text-align:center;margin-top:3.5rem;padding:0 2rem}
+
+/* ── SEASONAL ── */
+.ev-seasonal-section{position:relative;min-height:600px;display:flex;align-items:center;overflow:hidden;background:#060504}
+.ev-seasonal-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&q=85');background-size:cover;background-position:center 30%;filter:brightness(.3) saturate(.7);transition:filter 1.4s ease;will-change:transform}
+.ev-seasonal-section:hover .ev-seasonal-bg{filter:brightness(.38) saturate(.78)}
+.ev-seasonal-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(6,5,4,.92) 0%,rgba(6,5,4,.6) 40%,rgba(6,5,4,.18) 70%,transparent 100%),linear-gradient(to bottom,rgba(6,5,4,.3) 0%,transparent 30%,rgba(6,5,4,.5) 100%)}
+.ev-seasonal-glow{position:absolute;width:600px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(220,140,40,.06) 0%,transparent 70%);top:50%;left:25%;transform:translate(-50%,-50%);animation:seasonal-pulse 6s ease-in-out infinite alternate;pointer-events:none;z-index:1}
+@keyframes seasonal-pulse{from{opacity:.5;transform:translate(-50%,-50%) scale(1)}to{opacity:1;transform:translate(-50%,-50%) scale(1.2)}}
+.ev-seasonal-content{position:relative;z-index:10;max-width:560px;padding:5rem 7vw}
+.ev-seasonal-content .ev-label{margin-bottom:1rem}
+.ev-seasonal-content h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.6rem,5vw,4.5rem);font-weight:300;color:#f0e8d5;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.2rem}
+.ev-seasonal-divider{width:2rem;height:1px;background:rgba(201,165,82,.3);margin:1.3rem 0 1.6rem}
+.ev-seasonal-content p{font-size:.88rem;color:rgba(232,224,208,.52);line-height:2;margin-bottom:2rem}
+
+/* ── UPCOMING LIST ── */
+.ev-list-section{background:#080805;padding:7rem 0;position:relative}
+.ev-list-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.1) 30%,rgba(201,165,82,.1) 70%,transparent)}
+.ev-list-inner{max-width:1100px;margin:0 auto;padding:0 2rem}
+.ev-list-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;gap:2rem;flex-wrap:wrap}
+.ev-filters{display:flex;gap:.5rem;flex-wrap:wrap}
+.ev-filter-btn{font-family:'Jost',sans-serif;font-size:.56rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,192,174,.45);background:none;border:1px solid rgba(201,165,82,.12);padding:.4rem 1rem;cursor:pointer;transition:color .25s ease,border-color .25s ease}
+.ev-filter-btn.active,.ev-filter-btn:hover{color:rgba(201,165,82,.8);border-color:rgba(201,165,82,.35)}
+.ev-item{display:grid;grid-template-columns:80px 1fr auto;gap:2rem;align-items:start;padding:1.6rem 0;border-bottom:1px solid rgba(201,165,82,.07);transition:border-color .3s ease}
+.ev-item:hover{border-color:rgba(201,165,82,.18)}
+.ev-item.hidden{display:none}
+.ev-item-date{display:flex;flex-direction:column;align-items:center;padding-top:.2rem}
+.ev-item-day{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.2rem;font-weight:300;color:rgba(201,165,82,.6);line-height:1}
+.ev-item-month{font-family:'Jost',sans-serif;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,192,174,.35)}
+.ev-item-content{}
+.ev-item-type{font-family:'Jost',sans-serif;font-size:.52rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,165,82,.45);display:block;margin-bottom:.5rem}
+.ev-item-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem;font-weight:300;color:#e8e0d0;line-height:1.15;margin-bottom:.5rem}
+.ev-item-desc{font-size:.8rem;color:rgba(200,192,174,.48);line-height:1.85}
+.ev-item-tag{font-family:'Jost',sans-serif;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(201,165,82,.38);border:1px solid rgba(201,165,82,.15);padding:.3rem .8rem;height:fit-content;white-space:nowrap}
+
+/* ── FINAL CTA ── */
+.ev-cta-section{background:#0a0906;padding:8rem 0;position:relative;text-align:center}
+.ev-cta-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.1) 30%,rgba(201,165,82,.1) 70%,transparent)}
+.ev-cta-inner{max-width:560px;margin:0 auto;padding:0 2rem}
+.ev-cta-inner .ev-label{margin-bottom:1.2rem}
+.ev-cta-inner h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:300;color:#e8e0d0;line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem}
+.ev-ornament{display:flex;align-items:center;gap:1.2rem;max-width:200px;margin:1.4rem auto}
+.ev-ornament::before,.ev-ornament::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.22))}
+.ev-ornament::after{background:linear-gradient(to left,transparent,rgba(201,165,82,.22))}
+.ev-ornament-dot{font-size:.6rem;color:rgba(201,165,82,.38)}
+.ev-cta-inner p{font-size:.88rem;color:rgba(200,192,174,.48);line-height:2;margin-bottom:2.5rem}
+.ev-cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .ev-weekly-grid{grid-template-columns:1fr}
+  .ev-item{grid-template-columns:60px 1fr auto;gap:1rem}
+  .ev-hero-header{flex-direction:column;gap:1.5rem;padding:2.5rem 1.5rem 0}
+  .ev-hero-header-ctas{align-items:flex-start}
+  .ev-hero-calendar-wrap{padding:0 1.5rem 2rem}
+  .ev-cal-cell{min-height:48px}
+  .ev-cal-ev-label{display:none}
+}
+@media(max-width:600px){
+  .ev-hero-heading h1{font-size:clamp(2rem,9vw,3.2rem)}
+  .ev-cal-cell{min-height:40px;padding:.35rem .25rem}
+  .ev-cal-date-num{font-size:.62rem}
+  .ev-item{grid-template-columns:50px 1fr;gap:.8rem}
+  .ev-item-tag{display:none}
+  .ev-cta-btns{flex-direction:column;align-items:center}
+  .ev-hero-header-ctas{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div id="nav-holder"></div>
+
+<!-- ══ HERO — Cinematic Immersive Calendar ══ -->
+<div class="ev-hero" id="ev-hero">
+
+  <!-- Cinematic scene -->
+  <div class="ev-hero-scene">
+    <div class="ev-hero-bg" id="ev-hero-bg"></div>
+    <div class="ev-hero-vignette"></div>
+    <div class="ev-hero-glow"></div>
+    <div class="ev-hero-grain"></div>
+  </div>
+
+  <!-- Floating header: text + CTAs float over the scene -->
+  <div class="ev-hero-header">
+    <div class="ev-hero-heading">
+      <span class="ev-label">Curated Experiences · Musanze, Rwanda</span>
+      <h1>Events at Grotta</h1>
+      <span class="ev-hero-tagline">"A calendar of gatherings, music, cinema, wellness, and seasonal moments."</span>
+    </div>
+    <div class="ev-hero-header-ctas">
+      <a href="#ev-upcoming" class="ev-btn-gold"><span>View Upcoming Events</span></a>
+      <a href="booking.html" class="ev-btn-outline">Reserve Experience</a>
+    </div>
+  </div>
+
+  <!-- IMMERSIVE CALENDAR — sits at the bottom, floats in the world -->
+  <div class="ev-hero-calendar-wrap">
+
+    <!-- Month nav row -->
+    <div class="ev-cal-nav-row">
+      <span class="ev-cal-month-display" id="cal-month-label"></span>
+      <div class="ev-cal-nav-btns">
+        <button class="ev-cal-today-btn" id="cal-today-btn">Today</button>
+        <button class="ev-cal-nav-btn" id="cal-prev">‹</button>
+        <button class="ev-cal-nav-btn" id="cal-next">›</button>
+      </div>
+    </div>
+
+    <!-- Day labels -->
+    <div class="ev-cal-days-row">
+      <div class="ev-cal-day-label">Sun</div>
+      <div class="ev-cal-day-label">Mon</div>
+      <div class="ev-cal-day-label">Tue</div>
+      <div class="ev-cal-day-label">Wed</div>
+      <div class="ev-cal-day-label">Thu</div>
+      <div class="ev-cal-day-label">Fri</div>
+      <div class="ev-cal-day-label">Sat</div>
+    </div>
+
+    <!-- Calendar grid -->
+    <div class="ev-cal-grid" id="cal-grid"></div>
+
+  </div>
+
+  <!-- Bottom fade -->
+  <div class="ev-hero-bottom-fade"></div>
+
+  <!-- Scroll -->
+  <div class="ev-scroll-hint">
+    <span>Discover</span>
+    <div class="ev-scroll-line"></div>
+  </div>
+
+</div>
+
+<!-- Floating preview panel (appended to body) -->
+<div class="ev-preview-panel" id="ev-preview-panel"></div>
+
+<!-- ══ WEEKLY RHYTHM ══ -->
+<section class="ev-weekly-section">
+  <div class="ev-weekly-intro reveal">
+    <span class="ev-label">Every Week</span>
+    <h2 class="ev-section-title">Weekly Rhythm</h2>
+    <div class="ev-rule" style="margin:1.1rem auto"></div>
+    <p style="font-size:.88rem;color:rgba(232,224,208,.55);line-height:1.95">A consistent flow of moments woven into each week at Grotta.</p>
+  </div>
+  <div class="ev-weekly-grid">
+    <div class="ev-weekly-card reveal d1">
+      <div class="ev-weekly-card-bg" style="background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&q=85')"></div>
+      <div class="ev-weekly-card-overlay"></div>
+      <div class="ev-date-badge">Every Weekend</div>
+      <div class="ev-weekly-card-text">
+        <span class="ev-label">Signature Experience · Music</span>
+        <h3>Live Music Evenings</h3>
+        <p>An evolving lineup of live performances that bring energy to the evenings — curated to complement the atmosphere of the gardens, the cave, and the social hours that follow dinner.</p>
+      </div>
+    </div>
+    <div class="ev-weekly-card reveal d2">
+      <div class="ev-weekly-card-bg" style="background-image:url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&q=85')"></div>
+      <div class="ev-weekly-card-overlay"></div>
+      <div class="ev-date-badge">Every Thursday</div>
+      <div class="ev-weekly-card-text">
+        <span class="ev-label">Weekly · Cinema</span>
+        <h3>Cinema Nights</h3>
+        <p>Curated screenings in an open-air setting under the highland sky. Blankets provided. Cave-pressed coffee, wine, and the quiet company of other guests.</p>
+      </div>
+    </div>
+  </div>
+  <div class="ev-schedule-cta reveal">
+    <a href="#ev-upcoming" class="ev-btn-outline">See This Week's Schedule</a>
+  </div>
+</section>
+
+<!-- ══ SEASONAL ══ -->
+<section class="ev-seasonal-section" id="ev-seasonal">
+  <div class="ev-seasonal-bg" id="ev-seasonal-bg"></div>
+  <div class="ev-seasonal-overlay"></div>
+  <div class="ev-seasonal-glow"></div>
+  <div class="ev-seasonal-content reveal">
+    <span class="ev-label">Seasonal Highlight · December</span>
+    <h2>The December<br>Festival</h2>
+    <div class="ev-seasonal-divider"></div>
+    <p>A once-a-year celebration bringing together music, fire, food, and community in a larger seasonal gathering. The gardens transform. The caves open late. The evening has no fixed end.</p>
+    <a href="#ev-upcoming" class="ev-btn-gold"><span>Register Interest →</span></a>
+  </div>
+</section>
+
+<!-- ══ UPCOMING EVENTS ══ -->
+<section class="ev-list-section" id="ev-upcoming">
+  <div class="ev-list-inner">
+    <div class="ev-list-header reveal">
+      <div>
+        <span class="ev-label">Calendar</span>
+        <h2 class="ev-section-title">Upcoming Events</h2>
+      </div>
+      <div class="ev-filters">
+        <button class="ev-filter-btn active" data-filter="all">All</button>
+        <button class="ev-filter-btn" data-filter="music">Music</button>
+        <button class="ev-filter-btn" data-filter="cinema">Cinema</button>
+        <button class="ev-filter-btn" data-filter="seasonal">Seasonal</button>
+        <button class="ev-filter-btn" data-filter="special">Special</button>
+      </div>
+    </div>
+    <div class="ev-list" id="ev-list">
+      <div class="ev-item reveal" data-type="music"><div class="ev-item-date"><span class="ev-item-day">10</span><span class="ev-item-month">May</span></div><div class="ev-item-content"><span class="ev-item-type">Music</span><div class="ev-item-name">Live Session — Acoustic Duo</div><div class="ev-item-desc">An intimate acoustic evening in the garden. Two performers, open sky, and music that slows things down.</div></div><span class="ev-item-tag">Weekend</span></div>
+      <div class="ev-item reveal d1" data-type="cinema"><div class="ev-item-date"><span class="ev-item-day">15</span><span class="ev-item-month">May</span></div><div class="ev-item-content"><span class="ev-item-type">Cinema</span><div class="ev-item-name">Cinema Night — Open Air</div><div class="ev-item-desc">A curated film screening under the highland sky. Blankets, wine, and a carefully chosen title — announced weekly.</div></div><span class="ev-item-tag">Thursday</span></div>
+      <div class="ev-item reveal d2" data-type="music"><div class="ev-item-date"><span class="ev-item-day">17</span><span class="ev-item-month">May</span></div><div class="ev-item-content"><span class="ev-item-type">Music</span><div class="ev-item-name">Live Music — Jazz Evening</div><div class="ev-item-desc">A jazz quartet performing across the garden and terrace. Dinner reservations recommended for the full experience.</div></div><span class="ev-item-tag">Saturday</span></div>
+      <div class="ev-item reveal d1" data-type="special"><div class="ev-item-date"><span class="ev-item-day">24</span><span class="ev-item-month">May</span></div><div class="ev-item-content"><span class="ev-item-type">Special Event</span><div class="ev-item-name">Cave Wine Tasting</div><div class="ev-item-desc">A guided tasting of cave-aged wines within the Main Chamber. Limited to twelve guests. Hosted by our resident sommelier.</div></div><span class="ev-item-tag">Limited</span></div>
+      <div class="ev-item reveal d2" data-type="cinema"><div class="ev-item-date"><span class="ev-item-day">29</span><span class="ev-item-month">May</span></div><div class="ev-item-content"><span class="ev-item-type">Cinema</span><div class="ev-item-name">Cinema Night — Double Feature</div><div class="ev-item-desc">A rare double screening for the long evening. Title one begins at dusk, title two follows after a short interval.</div></div><span class="ev-item-tag">Thursday</span></div>
+      <div class="ev-item reveal d1" data-type="music"><div class="ev-item-date"><span class="ev-item-day">07</span><span class="ev-item-month">Jun</span></div><div class="ev-item-content"><span class="ev-item-type">Music</span><div class="ev-item-name">Firepit Sessions — Solo Guitar</div><div class="ev-item-desc">An intimate solo performance around the central firepit. Drinks from the cocktail bar. No seating assignments.</div></div><span class="ev-item-tag">Weekend</span></div>
+      <div class="ev-item reveal d2" data-type="special"><div class="ev-item-date"><span class="ev-item-day">21</span><span class="ev-item-month">Jun</span></div><div class="ev-item-content"><span class="ev-item-type">Special Event</span><div class="ev-item-name">Highland Solstice Dinner</div><div class="ev-item-desc">A celebratory dinner in the Event Garden on the longest day of the year. Seasonal menu, live music, open seating under the stars.</div></div><span class="ev-item-tag">Annual</span></div>
+      <div class="ev-item reveal d3" data-type="seasonal"><div class="ev-item-date"><span class="ev-item-day">20</span><span class="ev-item-month">Dec</span></div><div class="ev-item-content"><span class="ev-item-type">Seasonal Festival</span><div class="ev-item-name">The December Festival</div><div class="ev-item-desc">Grotta's annual celebration. Music, fire, food, and community gathered for one evening. Registration opens October.</div></div><span class="ev-item-tag">Annual</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ══ -->
+<section class="ev-cta-section">
+  <div class="ev-cta-inner reveal">
+    <span class="ev-label">Stay Connected</span>
+    <h2>Join the<br>Next Moment</h2>
+    <div class="ev-ornament"><span class="ev-ornament-dot">✦</span></div>
+    <p>Events at Grotta evolve with the season. Plan your visit around a moment that speaks to you.</p>
+    <div class="ev-cta-btns">
+      <a href="#ev-upcoming" class="ev-btn-gold"><span>View Full Calendar →</span></a>
+      <a href="booking.html" class="ev-btn-outline">Plan Your Visit</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-holder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const now=new Date();
+const Y=now.getFullYear(), M=now.getMonth();
+
+const CAL_EVENTS={
+  [`${Y}-${M}-3`]: {type:'wellness',pip:'wellness',title:'Wellness Morning',desc:'Guided movement and highland wellness ritual.',time:'7:00 AM'},
+  [`${Y}-${M}-10`]:{type:'music',   pip:'music',   title:'Live Session — Acoustic Duo',desc:'An intimate acoustic evening in the garden.',time:'7:00 PM'},
+  [`${Y}-${M}-15`]:{type:'cinema',  pip:'cinema',  title:'Cinema Night — Open Air',desc:'Curated film screening under the highland sky.',time:'8:30 PM'},
+  [`${Y}-${M}-17`]:{type:'music',   pip:'music',   title:'Live Music — Jazz Evening',desc:'A jazz quartet performing across the garden.',time:'7:30 PM'},
+  [`${Y}-${M}-20`]:{type:'dining',  pip:'dining',  title:'Cave Wine Tasting',desc:'Cave-aged wines. 12 guests. Hosted by our sommelier.',time:'6:00 PM'},
+  [`${Y}-${M}-24`]:{type:'special', pip:'special', title:'Cave Wine Tasting',desc:'Guided tasting of cave-aged wines. Limited.',time:'6:00 PM'},
+  [`${Y}-${M}-29`]:{type:'cinema',  pip:'cinema',  title:'Cinema Night — Double Feature',desc:'Rare double screening for the long evening.',time:'7:00 PM'},
+  [`${Y}-${M+1}-7`]:{type:'music',  pip:'music',   title:'Firepit Sessions — Solo Guitar',desc:'Intimate solo performance around the firepit.',time:'8:00 PM'},
+  [`${Y}-${M+1}-14`]:{type:'dining',pip:'dining',  title:'Family Garden Day',desc:'A full day of experiences in the Family Gardens.',time:'All Day'},
+  [`${Y}-${M+1}-21`]:{type:'special',pip:'special',title:'Highland Solstice Dinner',desc:'Celebratory dinner in the Event Garden.',time:'7:00 PM'},
+};
+
+let calDate=new Date();
+let previewTimeout=null;
+
+function calKey(y,m,d){return `${y}-${m}-${d}`}
+
+function renderCalendar(){
+  const y=calDate.getFullYear(), m=calDate.getMonth();
+  document.getElementById('cal-month-label').textContent=`${MONTHS[m]} ${y}`;
+  const firstDay=new Date(y,m,1).getDay();
+  const daysInMonth=new Date(y,m+1,0).getDate();
+  const daysInPrev=new Date(y,m,0).getDate();
+  const today=new Date();
+  let html='';
+
+  // Prev month
+  for(let i=firstDay-1;i>=0;i--){
+    html+=`<div class="ev-cal-cell other-month"><span class="ev-cal-date-num">${daysInPrev-i}</span></div>`;
+  }
+
+  // Current month
+  for(let d=1;d<=daysInMonth;d++){
+    const key=calKey(y,m,d);
+    const ev=CAL_EVENTS[key];
+    const isToday=(d===today.getDate()&&m===today.getMonth()&&y===today.getFullYear());
+    let cls='ev-cal-cell';
+    if(isToday) cls+=' today';
+    if(ev) cls+=' has-event';
+    html+=`<div class="${cls}" data-key="${key}"
+      onmouseenter="showPreview(event,'${key}')"
+      onmouseleave="hidePreview()"
+      onclick="showPreview(event,'${key}',true)">
+      <span class="ev-cal-date-num">${d}</span>
+      ${ev?`<div class="ev-cal-event-indicator"><div class="ev-cal-ev-tag"><div class="ev-cal-ev-pip ${ev.pip}"></div><span class="ev-cal-ev-label">${ev.title}</span></div></div>`:''}
+    </div>`;
+  }
+
+  // Next month
+  const total=firstDay+daysInMonth;
+  const rem=total%7===0?0:7-(total%7);
+  for(let d=1;d<=rem;d++){
+    html+=`<div class="ev-cal-cell other-month"><span class="ev-cal-date-num">${d}</span></div>`;
+  }
+
+  document.getElementById('cal-grid').innerHTML=html;
+}
+
+const COLORS={music:'#c9a552',cinema:'#7c9eca',special:'#c8843a',wellness:'#7ab87a',dining:'#ca7a52'};
+
+function showPreview(e,key,pinned=false){
+  const ev=CAL_EVENTS[key];
+  if(!ev) return;
+  clearTimeout(previewTimeout);
+  const panel=document.getElementById('ev-preview-panel');
+  const col=COLORS[ev.pip]||'#c9a552';
+  panel.innerHTML=`
+    <div class="ev-preview-type" style="color:${col}">
+      <div class="ev-preview-pip" style="background:${col}"></div>${ev.type}
+    </div>
+    <div class="ev-preview-title">${ev.title}</div>
+    <div class="ev-preview-desc">${ev.desc}</div>
+    <div class="ev-preview-time">🕐 ${ev.time}</div>`;
+
+  // Position near cursor
+  const rect=e.currentTarget.getBoundingClientRect();
+  const pw=260, ph=140;
+  let left=rect.right+12;
+  let top=rect.top;
+  if(left+pw>window.innerWidth-16) left=rect.left-pw-12;
+  if(top+ph>window.innerHeight-16) top=window.innerHeight-ph-16;
+  panel.style.left=left+'px';
+  panel.style.top=top+'px';
+  panel.classList.add('show');
+
+  // Highlight cell
+  document.querySelectorAll('.ev-cal-cell.selected').forEach(c=>c.classList.remove('selected'));
+  e.currentTarget.classList.add('selected');
+}
+
+function hidePreview(){
+  previewTimeout=setTimeout(()=>{
+    document.getElementById('ev-preview-panel').classList.remove('show');
+  },300);
+}
+
+document.getElementById('ev-preview-panel').addEventListener('mouseenter',()=>clearTimeout(previewTimeout));
+document.getElementById('ev-preview-panel').addEventListener('mouseleave',hidePreview);
+
+document.getElementById('cal-prev').addEventListener('click',()=>{
+  calDate.setMonth(calDate.getMonth()-1); renderCalendar();
+});
+document.getElementById('cal-next').addEventListener('click',()=>{
+  calDate.setMonth(calDate.getMonth()+1); renderCalendar();
+});
+document.getElementById('cal-today-btn').addEventListener('click',()=>{
+  calDate=new Date(); renderCalendar();
+});
+
+renderCalendar();
+
+// Reveal
+const revObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');revObs.unobserve(x.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// Parallax
+const heroBg=document.getElementById('ev-hero-bg');
+const seasonalBg=document.getElementById('ev-seasonal-bg');
+const seasonalEl=document.getElementById('ev-seasonal');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(heroBg)heroBg.style.transform=`translateY(${y*.3}px)`;
+  if(seasonalBg&&seasonalEl){const r=seasonalEl.getBoundingClientRect();seasonalBg.style.transform=`translateY(${(window.innerHeight/2-r.top-r.height/2)*.15}px)`}
+},{passive:true});
+
+// Filter
+document.querySelectorAll('.ev-filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.ev-filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    document.querySelectorAll('.ev-item').forEach(item=>{
+      if(f==='all'||item.dataset.type===f){item.classList.remove('hidden');setTimeout(()=>item.classList.add('visible'),50)}
+      else item.classList.add('hidden');
+    });
+  });
+});
+</script>
+</body>
+</html>
