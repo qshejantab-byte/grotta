@@ -8,6 +8,7 @@ const NAV_HTML = `
     <a href="caves.html">Caves</a>
     <a href="dining.html">Dining</a>
     <a href="events.html">Events & Retreats</a>
+    <a href="packages.html">Packages</a>
     <a href="weddings.html">Weddings</a>
     <a href="membership.html">Membership</a>
   </div>
@@ -22,6 +23,7 @@ const NAV_HTML = `
   <a href="caves.html">Caves</a>
   <a href="dining.html">Dining</a>
   <a href="events.html">Events & Retreats</a>
+  <a href="packages.html">Packages</a>
   <a href="weddings.html">Weddings</a>
   <a href="membership.html">Membership</a>
 </div>`;
@@ -44,6 +46,7 @@ const FOOTER_HTML = `
       <div class="footer-col">
         <h5>Activities</h5>
         <a href="events.html">Events & Retreats</a>
+        <a href="packages.html">Packages</a>
         <a href="weddings.html">Weddings</a>
         <a href="membership.html">Membership</a>
       </div>
