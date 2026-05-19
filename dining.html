@@ -188,21 +188,29 @@
   backdrop-filter: blur(10px);
   opacity: 0; pointer-events: none;
   transition: opacity .45s cubic-bezier(.25,.46,.45,.94);
-  display: flex; align-items: center; justify-content: center;
-  padding: 1.5rem;
+  display: flex; align-items: flex-end; justify-content: center;
+  padding: 0;
+}
+@media(min-width:700px){
+  .menu-modal-backdrop { align-items: center; padding: 1.5rem; }
 }
 .menu-modal-backdrop.open { opacity: 1; pointer-events: all; }
 
 .menu-modal {
   background: #0e0c09;
   border: 1px solid rgba(201,165,82,.15);
+  border-bottom: none;
   width: 100%; max-width: 780px;
-  max-height: 88vh; overflow-y: auto;
+  max-height: 92vh; overflow-y: auto;
   position: relative;
   transform: translateY(28px) scale(.97);
   transition: transform .5s cubic-bezier(.25,.46,.45,.94);
   box-shadow: 0 40px 100px rgba(0,0,0,.7),
               0 0 0 1px rgba(201,165,82,.06);
+  border-radius: 2px 2px 0 0;
+}
+@media(min-width:700px){
+  .menu-modal { border-bottom: 1px solid rgba(201,165,82,.15); border-radius: 2px; max-height: 88vh; }
 }
 .menu-modal-backdrop.open .menu-modal { transform: translateY(0) scale(1); }
 
@@ -213,14 +221,16 @@
 
 /* Modal header */
 .menu-modal-header {
-  padding: 2.4rem 3rem 0;
+  padding: 1.6rem 1.4rem 1.2rem;
   position: sticky; top: 0; z-index: 10;
   background: #0e0c09;
   border-bottom: 1px solid rgba(201,165,82,.08);
-  padding-bottom: 1.6rem;
+}
+@media(min-width:700px){
+  .menu-modal-header { padding: 2.4rem 3rem 0; padding-bottom: 1.6rem; }
 }
 .menu-modal-close {
-  position: absolute; top: 1.4rem; right: 1.8rem;
+  position: absolute; top: 1rem; right: 1.2rem;
   background: none; border: 1px solid rgba(201,165,82,.18); cursor: pointer;
   font-family: 'Jost', sans-serif; font-size: .55rem;
   letter-spacing: .22em; text-transform: uppercase;
@@ -245,7 +255,8 @@
 }
 
 /* Modal body — reuse mn-* styles */
-.menu-modal-body { padding: 2.5rem 3rem 3rem; }
+.menu-modal-body { padding: 1.5rem 1.4rem 2rem; }
+@media(min-width:700px){ .menu-modal-body { padding: 2.5rem 3rem 3rem; } }
 
 .menu-modal-intro {
   font-family: 'Cormorant Garamond', Georgia, serif;

@@ -747,10 +747,10 @@
   .hp-social-item:last-child { grid-column: 1 / -1; min-height: 300px; }
 }
 @media(max-width:860px){
-  .booking-bar { width:92vw; height:auto; flex-wrap:wrap; bottom:20px; }
-  .bb-field { flex:1 1 45%; height:54px; border-bottom:1px solid rgba(201,165,82,.12); }
-  .bb-book { flex:1 1 100%; height:48px; border-radius:0 0 2px 2px; }
-  .hp-hero-content { margin-bottom:220px; }
+  .booking-bar { width:94vw; height:auto; flex-wrap:wrap; bottom:16px; border-radius:2px; }
+  .bb-field { flex:1 1 45%; height:52px; border-right:none; border-bottom:1px solid rgba(201,165,82,.12); }
+  .bb-book { flex:1 1 100%; height:46px; border-radius:0 0 2px 2px; }
+  .hp-hero-content { margin-bottom:240px; }
   .hp-packages-grid { grid-template-columns: 1fr; }
   .hp-pkg-card { min-height: 360px; }
   .hp-rooms-grid { grid-template-columns: 1fr; gap: 1rem; }
@@ -761,12 +761,17 @@
   .hp-cave-content { padding: 4rem 2rem; }
 }
 @media(max-width:600px){
-  .hp-hero-content h1 { font-size: clamp(2.8rem, 9vw, 4rem); }
-  .hp-hero-content { margin-bottom: 300px; }
-  .bb-field { flex:1 1 100%; border-right:none; }
-  .hp-what { padding: 5rem 1.5rem; }
+  .hp-hero-content h1 { font-size: clamp(2.4rem, 9vw, 3.5rem); }
+  .hp-hero-content { margin-bottom: 340px; }
+  .booking-bar { width:96vw; bottom:12px; }
+  .bb-field { flex:1 1 100%; height:50px; border-right:none; border-bottom:1px solid rgba(201,165,82,.1); padding:0 1rem; }
+  .bb-field:last-of-type { border-bottom:none; }
+  .bb-display { font-size:.82rem; }
+  .bb-book { flex:1 1 100%; height:48px; font-size:.62rem; }
+  .hp-what { padding: 4rem 1.5rem; }
   .hp-final-ctas { flex-direction: column; align-items: center; }
-  .hp-hero-ctas { flex-direction: column; align-items: center; }
+  .hp-hero-ctas { flex-direction: column; align-items: center; width:100%; }
+  .hp-btn-primary, .hp-btn-secondary { width:100%; max-width:280px; justify-content:center; }
 }
 </style>
 </head>
@@ -778,10 +783,11 @@
   <div class="hp-hero-video-wrap">
     <!-- Temporary placeholder video — replace src with your real Grotta footage later -->
     <video class="hp-hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80">
-      <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_25fps.mp4" type="video/mp4">
-      <!-- Fallback if video fails to load -->
-      <div class="hp-hero-video-fallback"></div>
+      <source src="https://cdn.coverr.co/videos/coverr-aerial-view-of-mountains-and-clouds-1634/1080p.mp4" type="video/mp4">
+      <source src="https://cdn.coverr.co/videos/coverr-misty-mountain-landscape-3949/1080p.mp4" type="video/mp4">
     </video>
+    <!-- Fallback image shown if video fails -->
+    <div class="hp-hero-video-fallback"></div>
   </div>
   <div class="hp-hero-overlay"></div>
 
@@ -790,7 +796,7 @@
     <h1>A World Beneath<br>and Beyond</h1>
     <p>Caves, gardens, fire, and silence — designed as one continuous experience.</p>
     <div class="hp-hero-ctas">
-      <a href="retreats.html" class="hp-btn-primary"><span>Explore Packages</span></a>
+      <a href="experiences.html" class="hp-btn-primary"><span>Explore Experiences</span></a>
       <a href="stay.html" class="hp-btn-secondary">Book Your Stay</a>
     </div>
   </div>

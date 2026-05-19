@@ -292,21 +292,25 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 /* ══ RESPONSIVE ══ */
 @media(max-width:1100px){
   .pk-hero-top{padding:7rem 4vw 3rem 5vw}
+  .pk-hero-top{padding:6rem 4vw 3rem 5vw}
   .pk-hero-left{max-width:100%;text-align:center}
   .pk-hero-sub{max-width:100%;margin-left:auto;margin-right:auto}
   .pk-hero-ctas{justify-content:center}
   .pk-hero-accent-line{display:none}
   .pk-hero-right{position:static;transform:none;flex-direction:row;justify-content:center;opacity:1;animation:none;background:transparent;gap:0;border-top:1px solid rgba(201,165,82,.08);padding:1.5rem 4vw}
   .pk-nav-panel-inner{grid-template-columns:1fr 1fr}
+  .pk-nav-item{padding:1rem 1.2rem .9rem}
+  .pk-nav-tagline{display:none}
   .pk-intro-inner{grid-template-columns:1fr;gap:4rem}
   .pk-intro-images{height:340px}
   .pk-intro-img-2{display:none}
   .pk-intro-img-1{right:0;height:100%}
   .pk-panel{grid-template-columns:1fr}
   .pk-panel.rev{direction:ltr}
-  .pk-panel-img{height:300px}
+  .pk-panel-img{height:280px}
   .pk-panel-img-fade{display:none}
-  .pk-panel-body{padding:3rem 2.5rem}
+  .pk-panel-body{padding:2.5rem 1.8rem}
+  .pk-panel-includes{gap:.3rem}
   .pk-inc-split{grid-template-columns:1fr;gap:2rem}
   .pk-rhythm-grid{grid-template-columns:1fr 1fr}
   .pk-rhythm-bg-text{display:none}
@@ -319,12 +323,15 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 @media(max-width:700px){
   .pk-hero-right{flex-wrap:wrap;gap:1px}
   .pk-nav-panel-inner{grid-template-columns:1fr 1fr}
+  .pk-nav-name{font-size:.85rem}
   .pk-rhythm-grid{grid-template-columns:1fr}
   .pk-gallery-grid{grid-template-columns:1fr;grid-template-rows:auto}
   .pk-gal-item{height:240px!important;grid-column:auto!important;grid-row:auto!important}
   .pk-final-ctas,.pk-hero-ctas{flex-direction:column;align-items:center}
   .pk-form{padding:2rem 1.5rem}
-  .pk-interlude{height:280px}
+  .pk-interlude{height:260px}
+  .pk-panel-footer{flex-direction:column;align-items:flex-start;gap:.8rem}
+  .pk-panel-body{padding:2rem 1.4rem}
 }
 </style>
 </head>

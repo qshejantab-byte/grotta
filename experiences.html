@@ -229,6 +229,13 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
   .ex-couples-intro{grid-template-columns:1fr;gap:2rem}
 }
 @media(max-width:700px){
+  /* Journey nav — shrink for mobile */
+  .ex-journey-nav-inner{padding:1rem 1rem;gap:0;overflow-x:auto;justify-content:flex-start}
+  .ex-jnode{min-width:60px;gap:.3rem}
+  .ex-jnode-circle{width:36px;height:36px}
+  .ex-jnode-num{font-size:.7rem}
+  .ex-jnode-label{font-size:.38rem;letter-spacing:.14em}
+  .ex-jline{min-width:20px;flex:1}
   .ex-hero{grid-template-columns:1fr;grid-template-rows:repeat(4,42vh)}
   .ex-cat{flex:1!important}
   .ex-cat-sub{max-height:3rem;opacity:.55;transform:none}
@@ -248,6 +255,8 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 @media(max-width:480px){
   .ex-fam-jgrid{grid-template-columns:1fr}
   .ex-fam-j:nth-child(5){display:flex}
+  .ex-jnode-label{display:none}
+  .ex-jnode-circle{width:32px;height:32px}
 }
 </style>
 </head>

@@ -847,6 +847,12 @@
   .rc-ctas { flex-direction: column; gap: .4rem; }
   .rc-details-btn, .rc-book { width: 100%; justify-content: center; }
 }
+@media(max-width:700px){
+  /* Fix included-with-every-stay 6-col grid → 3 cols on tablet */
+  [style*="repeat(6,1fr)"]{ grid-template-columns: repeat(3,1fr) !important; }
+  /* Fix recommended-for 3-col grid → 1 col on mobile */
+  [style*="repeat(3,1fr)"]{ grid-template-columns: repeat(2,1fr) !important; }
+}
 @media(max-width:600px){
   .rc-section { padding: 3rem 0 5rem; }
   .rc-img { height: 240px; }
@@ -857,6 +863,8 @@
   .modal-highlights { grid-template-columns: repeat(2,1fr); }
   .modal-amenities { grid-template-columns: 1fr 1fr; }
   .stay-float-btn { bottom: 1rem; right: 1rem; font-size: .54rem; padding: .85rem 1.4rem; }
+  [style*="repeat(6,1fr)"]{ grid-template-columns: repeat(2,1fr) !important; }
+  [style*="repeat(3,1fr)"]{ grid-template-columns: 1fr !important; }
 }
 </style>
 </head>
