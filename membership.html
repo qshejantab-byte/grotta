@@ -612,7 +612,12 @@ body::before {
   transform: translateY(30px) scale(.97);
   transition: transform .5s cubic-bezier(.25,.46,.45,.94);
   box-shadow: 0 40px 100px rgba(0,0,0,.7), 0 0 0 1px rgba(201,165,82,.06);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201,165,82,.2) transparent;
 }
+.mb-modal::-webkit-scrollbar { width: 3px; }
+.mb-modal::-webkit-scrollbar-track { background: transparent; }
+.mb-modal::-webkit-scrollbar-thumb { background: rgba(201,165,82,.2); border-radius: 2px; }
 .mb-modal-backdrop.open .mb-modal { transform: translateY(0) scale(1); }
 
 .mb-modal-top {

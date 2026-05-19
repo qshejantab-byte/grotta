@@ -216,8 +216,9 @@
 
 /* Scrollbar */
 .menu-modal::-webkit-scrollbar { width: 3px; }
-.menu-modal::-webkit-scrollbar-track { background: #080805; }
-.menu-modal::-webkit-scrollbar-thumb { background: rgba(201,165,82,.3); }
+.menu-modal::-webkit-scrollbar-track { background: transparent; }
+.menu-modal::-webkit-scrollbar-thumb { background: rgba(201,165,82,.25); border-radius: 2px; }
+.menu-modal { scrollbar-width: thin; scrollbar-color: rgba(201,165,82,.2) transparent; }
 
 /* Modal header */
 .menu-modal-header {
