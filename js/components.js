@@ -1,6 +1,57 @@
 const NAV_HTML = `
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.grotta-wordmark {
+  font-family: 'Cinzel', 'Palatino Linotype', Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: .46em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding-right: .46em;
+  display: inline-block;
+  line-height: 1;
+  background: linear-gradient(
+    to bottom,
+    #c9a552 0%,
+    #f0d878 40%,
+    #c9a552 60%,
+    #9a7828 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: opacity .35s ease;
+}
+.grotta-wordmark:hover { opacity: .75 }
+.grotta-wordmark-footer {
+  font-family: 'Cinzel', 'Palatino Linotype', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  padding-right: .42em;
+  display: inline-block;
+  background: linear-gradient(
+    to bottom,
+    #c9a552 0%,
+    #f0d878 40%,
+    #c9a552 60%,
+    #9a7828 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+</style>
 <nav class="navbar">
-  <a href="index.html" class="nav-logo">G R O T T A</a>
+  <a href="index.html" class="grotta-wordmark">GROTTA</a>
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="stay.html">Stay</a>
@@ -33,7 +84,7 @@ const FOOTER_HTML = `
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <span class="nav-logo">G R O T T A</span>
+        <span class="grotta-wordmark-footer">GROTTA</span>
         <p>A volcano-highland destination combining caves, nature retreats, family travel, wellness experiences, and exploration in Musanze, Rwanda.</p>
       </div>
       <div class="footer-col">
