@@ -80,7 +80,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 /* Package Navigator — floating glass panel */
 .pk-nav-panel{position:relative;z-index:10;grid-row:2;padding:0 4vw;opacity:0;animation:pk-nav-in .9s cubic-bezier(.25,.46,.45,.94) 1.5s forwards}
 @keyframes pk-nav-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.pk-nav-panel-inner{background:rgba(8,7,5,.84);backdrop-filter:blur(28px) saturate(1.4);-webkit-backdrop-filter:blur(28px) saturate(1.4);border:1px solid rgba(201,165,82,.15);border-bottom:none;box-shadow:0 -16px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(201,165,82,.1);padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background-color:rgba(201,165,82,.08)}
+.pk-nav-panel-inner{background:rgba(8,7,5,.84);backdrop-filter:blur(28px) saturate(1.4);-webkit-backdrop-filter:blur(28px) saturate(1.4);border:1px solid rgba(201,165,82,.15);border-bottom:none;box-shadow:0 -16px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(201,165,82,.1);padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background-color:rgba(201,165,82,.08);position:relative;padding-top:2.8rem}
 .pk-nav-item{background:rgba(8,7,5,.9);padding:1.4rem 1.6rem 1.2rem;cursor:pointer;transition:background .35s ease;position:relative;overflow:hidden;text-decoration:none;display:block}
 .pk-nav-item::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:#c9a552;transition:width .5s cubic-bezier(.25,.46,.45,.94)}
 .pk-nav-item:hover::before,.pk-nav-item.active::before{width:100%}
@@ -93,6 +93,34 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 .pk-nav-meta{display:flex;gap:.8rem;align-items:center}
 .pk-nav-dur{font-family:'Jost',sans-serif;font-size:.42rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,165,82,.4)}
 .pk-nav-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:.85rem;color:rgba(201,165,82,.6)}
+
+/* ── Guest toggle ── */
+.pk-guest-toggle{
+  display:flex;align-items:center;justify-content:center;
+  gap:0;
+  background:rgba(8,7,5,.9);
+  border:1px solid rgba(201,165,82,.18);
+  padding:3px;
+  position:absolute;right:2rem;top:50%;transform:translateY(-50%);
+  z-index:20;
+}
+.pk-guest-btn{
+  font-family:'Jost',sans-serif;
+  font-size:.44rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(200,192,174,.4);
+  background:transparent;border:none;cursor:pointer;
+  padding:.45rem 1.1rem;
+  transition:color .3s ease,background .3s ease;
+  white-space:nowrap;
+}
+.pk-guest-btn.active{
+  background:#c9a552;
+  color:#060504;
+}
+.pk-guest-btn:not(.active):hover{
+  color:rgba(200,192,174,.75);
+}
 
 /* Scroll hint */
 .pk-hero-scroll{position:absolute;bottom:2rem;left:5vw;z-index:10;display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:pk-up .8s ease 2.2s forwards}
@@ -300,6 +328,8 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
   .pk-hero-right{position:static;transform:none;flex-direction:row;justify-content:center;opacity:1;animation:none;background:transparent;gap:0;border-top:1px solid rgba(201,165,82,.08);padding:1.5rem 4vw}
   .pk-nav-panel-inner{grid-template-columns:1fr 1fr}
   .pk-nav-item{padding:1rem 1.2rem .9rem}
+  .pk-guest-toggle{position:static;transform:none;margin:0 1.2rem .8rem;width:calc(100% - 2.4rem);justify-content:flex-start}
+  .pk-nav-panel-inner{padding-top:.8rem}
   .pk-nav-tagline{display:none}
   .pk-intro-inner{grid-template-columns:1fr;gap:4rem}
   .pk-intro-images{height:340px}
@@ -379,13 +409,22 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
   <!-- Package Navigator -->
   <div class="pk-nav-panel">
     <div class="pk-nav-panel-inner">
+
+      <!-- Guest toggle -->
+      <div class="pk-guest-toggle">
+        <button class="pk-guest-btn active" id="pk-btn-1">1 Person</button>
+        <button class="pk-guest-btn" id="pk-btn-2">2 People</button>
+      </div>
+
       <a href="#pkg-couples" class="pk-nav-item active">
         <span class="pk-nav-icon">🕯</span>
         <span class="pk-nav-name">Couples Package</span>
         <span class="pk-nav-tagline">Private firelit moments in the volcanic highlands</span>
         <div class="pk-nav-meta">
           <span class="pk-nav-dur">2–4 Nights</span>
-          <span class="pk-nav-price">From 385,000 RWF</span>
+          <span class="pk-nav-price"
+            data-p1="From 385,000 RWF"
+            data-p2="From 620,000 RWF">From 385,000 RWF</span>
         </div>
       </a>
       <a href="#pkg-wellness" class="pk-nav-item">
@@ -394,7 +433,9 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         <span class="pk-nav-tagline">Restoration through altitude, stillness and ritual</span>
         <div class="pk-nav-meta">
           <span class="pk-nav-dur">2–5 Nights</span>
-          <span class="pk-nav-price">From 315,000 RWF</span>
+          <span class="pk-nav-price"
+            data-p1="From 315,000 RWF"
+            data-p2="From 510,000 RWF">From 315,000 RWF</span>
         </div>
       </a>
       <a href="#pkg-adventure" class="pk-nav-item">
@@ -403,7 +444,9 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         <span class="pk-nav-tagline">Volcanic caves, highland trails, wild luxury</span>
         <div class="pk-nav-meta">
           <span class="pk-nav-dur">2–4 Nights</span>
-          <span class="pk-nav-price">From 265,000 RWF</span>
+          <span class="pk-nav-price"
+            data-p1="From 265,000 RWF"
+            data-p2="From 430,000 RWF">From 265,000 RWF</span>
         </div>
       </a>
       <a href="#pkg-gorilla" class="pk-nav-item">
@@ -412,7 +455,9 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         <span class="pk-nav-tagline">Once-in-a-lifetime. Rwanda's rarest experience</span>
         <div class="pk-nav-meta">
           <span class="pk-nav-dur">2–3 Nights</span>
-          <span class="pk-nav-price">From 480,000 RWF</span>
+          <span class="pk-nav-price"
+            data-p1="From 480,000 RWF"
+            data-p2="From 780,000 RWF">From 480,000 RWF</span>
         </div>
       </a>
     </div>
@@ -471,8 +516,8 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <div class="pk-panel-footer">
         <div class="pk-panel-price-block">
           <span class="pk-panel-price-from">Starting from</span>
-          <span class="pk-panel-price">385,000 RWF</span>
-          <span class="pk-panel-price-note">per room / per night · includes breakfast</span>
+          <span class="pk-panel-price" data-p1="385,000 RWF" data-p2="620,000 RWF">385,000 RWF</span>
+          <span class="pk-panel-price-note" data-p1="per person / per night · includes breakfast" data-p2="per couple / per night · includes breakfast">per person / per night · includes breakfast</span>
         </div>
         <a href="#pk-booking" class="pk-btn-gold"><span>Reserve</span></a>
       </div>
@@ -513,8 +558,8 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <div class="pk-panel-footer">
         <div class="pk-panel-price-block">
           <span class="pk-panel-price-from">Starting from</span>
-          <span class="pk-panel-price">315,000 RWF</span>
-          <span class="pk-panel-price-note">per room / per night · includes breakfast</span>
+          <span class="pk-panel-price" data-p1="315,000 RWF" data-p2="510,000 RWF">315,000 RWF</span>
+          <span class="pk-panel-price-note" data-p1="per person / per night · includes breakfast" data-p2="per couple / per night · includes breakfast">per person / per night · includes breakfast</span>
         </div>
         <a href="#pk-booking" class="pk-btn-gold"><span>Reserve</span></a>
       </div>
@@ -547,8 +592,8 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <div class="pk-panel-footer">
         <div class="pk-panel-price-block">
           <span class="pk-panel-price-from">Starting from</span>
-          <span class="pk-panel-price">265,000 RWF</span>
-          <span class="pk-panel-price-note">per room / per night · includes breakfast</span>
+          <span class="pk-panel-price" data-p1="265,000 RWF" data-p2="430,000 RWF">265,000 RWF</span>
+          <span class="pk-panel-price-note" data-p1="per person / per night · includes breakfast" data-p2="per couple / per night · includes breakfast">per person / per night · includes breakfast</span>
         </div>
         <a href="#pk-booking" class="pk-btn-gold"><span>Reserve</span></a>
       </div>
@@ -589,8 +634,8 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <div class="pk-panel-footer">
         <div class="pk-panel-price-block">
           <span class="pk-panel-price-from">Starting from</span>
-          <span class="pk-panel-price">480,000 RWF</span>
-          <span class="pk-panel-price-note">per room / per night · gorilla permit not included</span>
+          <span class="pk-panel-price" data-p1="480,000 RWF" data-p2="780,000 RWF">480,000 RWF</span>
+          <span class="pk-panel-price-note" data-p1="per person / per night · gorilla permit not included" data-p2="per couple / per night · gorilla permit not included">per person / per night · gorilla permit not included</span>
         </div>
         <a href="#pk-booking" class="pk-btn-gold"><span>Reserve</span></a>
       </div>
@@ -861,6 +906,28 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 <script>
+// ── Guest toggle (1 Person / 2 People) ───────────────────────
+const pkBtn1 = document.getElementById('pk-btn-1');
+const pkBtn2 = document.getElementById('pk-btn-2');
+
+function setGuests(count) {
+  const attr = count === 1 ? 'data-p1' : 'data-p2';
+  document.querySelectorAll('.pk-nav-price[data-p1]').forEach(el => {
+    el.textContent = el.getAttribute(attr);
+  });
+  document.querySelectorAll('.pk-panel-price[data-p1]').forEach(el => {
+    el.textContent = el.getAttribute(attr);
+  });
+  document.querySelectorAll('.pk-panel-price-note[data-p1]').forEach(el => {
+    el.textContent = el.getAttribute(attr);
+  });
+  pkBtn1.classList.toggle('active', count === 1);
+  pkBtn2.classList.toggle('active', count === 2);
+}
+
+pkBtn1.addEventListener('click', () => setGuests(1));
+pkBtn2.addEventListener('click', () => setGuests(2));
+
 // Float CTA
 const pkFloat = document.getElementById('pk-float');
 window.addEventListener('scroll', () => {
