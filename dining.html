@@ -137,16 +137,6 @@
 
     <div class="dining-grid-lower">
       <div class="dining-venue-card">
-        <div class="dv-img"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=85" alt="Garden Café"></div>
-        <div class="dv-body">
-          <span class="dv-hours">Breakfast & Lunch · 7AM–3PM</span>
-          <h4>Garden Café</h4>
-          <div class="dv-divider"></div>
-          <p>An airy, sun-dappled space for casual breakfasts and light lunches, surrounded by indigenous flora and the sound of birdsong.</p>
-          <button class="link-arrow" onclick="openMenu('garden-cafe')">Explore Menu <span class="arrow">→</span></button>
-        </div>
-      </div>
-      <div class="dining-venue-card">
         <div class="dv-img"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=900&q=85" alt="Cave Café"></div>
         <div class="dv-body">
           <span class="dv-hours">All Day · 10AM–10PM</span>
@@ -164,16 +154,6 @@
           <div class="dv-divider"></div>
           <p>Evening cocktails crafted from local ingredients. Share slow evenings in an atmosphere of warmth and understated sophistication.</p>
           <button class="link-arrow" onclick="openMenu('cocktail-bar')">Explore Menu <span class="arrow">→</span></button>
-        </div>
-      </div>
-      <div class="dining-venue-card">
-        <div class="dv-img"><img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=900&q=85" alt="Cigar Lounge"></div>
-        <div class="dv-body">
-          <span class="dv-hours">Evenings · From 7PM</span>
-          <h4>Cigar Lounge</h4>
-          <div class="dv-divider"></div>
-          <p>A refined atmosphere for quiet evenings with premium selections. By invitation and reservation only.</p>
-          <button class="link-arrow" onclick="openMenu('cigar-lounge')">Explore Menu <span class="arrow">→</span></button>
         </div>
       </div>
     </div>
@@ -369,31 +349,6 @@ const MENUS = {
       ]},
     ]
   },
-  'garden-cafe': {
-    label: 'Garden Café · Breakfast & Lunch · 7AM–3PM',
-    title: 'Garden Café',
-    sub: 'Sun-dappled and unhurried. A space for slow mornings.',
-    intro: '"Sun-dappled and unhurried. A space for slow mornings and light afternoons in the company of birdsong and bloom."',
-    cta: 'Walk-ins welcome. Dietary requirements gladly accommodated.',
-    sections: [
-      { title: 'Breakfast', items: [
-        { name: 'Highland Eggs Benedict', desc: 'Free-range farm eggs, sourdough muffin, spinach, hollandaise with chive oil', note: 'Eggs collected daily from our Mini Farm', price: '12,000 RWF' },
-        { name: 'Garden Fruit Bowl', desc: 'Seasonal highland fruit, honey from local hives, house granola, plant milk yoghurt', price: '9,500 RWF' },
-        { name: 'Avocado & Stone Toast', desc: 'Stone-ground sourdough, ripe avocado, heirloom tomato, dukkah, lemon', price: '10,500 RWF' },
-        { name: 'Full Garden Breakfast', desc: 'Two eggs your way, roasted tomato, sautéed mushrooms, garden herbs, toast', price: '15,000 RWF' },
-      ]},
-      { title: 'Light Lunch', items: [
-        { name: 'Grotta Garden Salad', desc: 'Mixed highland greens, roasted beetroot, feta, candied walnut, champagne vinaigrette', price: '13,500 RWF' },
-        { name: 'Open Herb Sandwich', desc: 'Slow-roasted vegetables, hummus, pickled cucumber, fresh herbs on stone bread', price: '11,000 RWF' },
-        { name: 'Soup of the Garden', desc: 'Seasonal vegetable broth with fresh herbs, served with warm sourdough', note: 'Changes daily', price: '8,500 RWF' },
-      ]},
-      { title: 'Drinks', items: [
-        { name: 'Rwandan Single Origin Coffee', desc: 'Prepared your way — pour over, cold brew, or espresso', price: '4,000 RWF' },
-        { name: 'Fresh Garden Juice', desc: 'Cold-pressed seasonal fruits and vegetables from the garden', price: '5,500 RWF' },
-        { name: 'Hibiscus Iced Tea', desc: 'Dried highland hibiscus, honey, fresh mint, served long', price: '4,500 RWF' },
-      ]},
-    ]
-  },
   'cave-cafe': {
     label: 'Cave Café · Open Daily 10AM–10PM',
     title: 'Cave Café',
@@ -444,26 +399,6 @@ const MENUS = {
       ]},
     ]
   },
-  'cigar-lounge': {
-    label: 'Cigar Lounge · By Invitation · From 7PM',
-    title: 'Cigar Lounge',
-    sub: 'A space for those who know the value of silence.',
-    intro: '"A space for those who know the value of silence and selected company. Reserved, refined, and entirely unhurried."',
-    cta: 'Access by invitation and reservation only. Please speak with reception to arrange your evening.',
-    sections: [
-      { title: 'Premium Cigars', items: [
-        { name: 'Cohiba Siglo VI', desc: 'Cuban, full body, cedar and earthy notes, 150mm', note: 'Available in limited supply', price: '95,000 RWF' },
-        { name: 'Davidoff Millennium Blend', desc: 'Dominican, medium-full, cream and spice, 127mm', price: '68,000 RWF' },
-        { name: 'Arturo Fuente Opus X', desc: 'Dominican, full body, leather and pepper, 140mm', price: '75,000 RWF' },
-        { name: 'House Selection', desc: 'Curated by our sommelier — presented and discussed on arrival', note: 'Changes seasonally', price: '48,000 RWF' },
-      ]},
-      { title: 'Spirits & Accompaniments', items: [
-        { name: 'Single Malt Whisky', desc: 'Selection from our private cellar, served neat with one stone', price: '28,000 RWF' },
-        { name: 'Aged Cognac', desc: 'VSOP and XO selections, warmed in crystal', price: '32,000 RWF' },
-        { name: 'Dark Chocolate', desc: '70% volcanic salt chocolate, served alongside your cigar', price: '8,000 RWF' },
-      ]},
-    ]
-  }
 };
 
 // ── Modal logic ───────────────────────────────────────────────

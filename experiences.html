@@ -108,7 +108,103 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 .ex-sec-divider{height:1px;width:100%;background:linear-gradient(to right,rgba(201,165,82,.2),transparent);margin:1.5rem 0}
 .ex-sec-divider-centered{height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.2) 30%,rgba(201,165,82,.2) 70%,transparent);margin:0 0 5rem}
 
-/* ══ PANEL SYSTEM (used by Adventures + Wellness) ══ */
+/* ══ ADVENTURE SELECTOR ══ */
+.ex-adv-types{
+  display:flex;gap:1px;background:rgba(201,165,82,.1);
+  margin:1.8rem 0 1.4rem;
+}
+.ex-adv-type{
+  flex:1;background:rgba(6,5,4,.7);
+  padding:1rem 1.2rem;cursor:pointer;
+  border-top:2px solid transparent;
+  transition:background .3s,border-color .3s;
+  display:flex;flex-direction:column;gap:.22rem;
+}
+.ex-adv-type:hover{background:rgba(201,165,82,.06)}
+.ex-adv-type.active{
+  background:rgba(201,165,82,.08);
+  border-top-color:#c9a552;
+}
+.ex-adv-type-icon{font-size:1.1rem;line-height:1}
+.ex-adv-type-name{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:.98rem;font-weight:300;
+  color:rgba(240,232,213,.75);
+  transition:color .3s;
+}
+.ex-adv-type.active .ex-adv-type-name{color:#f0e8d5}
+.ex-adv-type-sub{
+  font-family:'Jost',sans-serif;font-size:.48rem;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(200,192,174,.32);
+}
+
+/* Route chips */
+.ex-adv-routes{margin-bottom:1.4rem}
+.ex-adv-routes-label{
+  font-family:'Jost',sans-serif;font-size:.46rem;
+  font-weight:500;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(201,165,82,.38);display:block;margin-bottom:.75rem;
+}
+.ex-route-chips{display:flex;flex-direction:column;gap:2px}
+.ex-route-chip{
+  background:rgba(9,8,6,.7);border:1px solid rgba(201,165,82,.1);
+  padding:.75rem 1.1rem;cursor:pointer;text-align:left;
+  display:grid;grid-template-columns:auto 1fr auto;
+  align-items:center;gap:.6rem 1rem;
+  transition:background .3s,border-color .3s;
+  position:relative;overflow:hidden;
+}
+.ex-route-chip::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:2px;background:rgba(201,165,82,.25);
+  transition:background .3s;
+}
+.ex-route-chip:hover{background:rgba(201,165,82,.06);border-color:rgba(201,165,82,.22)}
+.ex-route-chip.active{background:rgba(201,165,82,.08);border-color:rgba(201,165,82,.3)}
+.ex-route-chip.active::before{background:#c9a552}
+.ex-route-chip-level{
+  font-family:'Jost',sans-serif;font-size:.42rem;
+  font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(201,165,82,.5);white-space:nowrap;
+}
+.ex-route-chip.active .ex-route-chip-level{color:#c9a552}
+.ex-route-chip-name{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:.95rem;font-weight:300;color:rgba(240,232,213,.72);
+  transition:color .3s;
+}
+.ex-route-chip:hover .ex-route-chip-name,
+.ex-route-chip.active .ex-route-chip-name{color:#f0e8d5}
+.ex-route-chip-detail{
+  font-family:'Jost',sans-serif;font-size:.42rem;
+  letter-spacing:.08em;color:rgba(200,192,174,.3);
+  white-space:nowrap;text-align:right;
+}
+
+/* Includes list */
+.ex-adv-includes{
+  display:flex;flex-wrap:wrap;gap:.5rem;
+  margin-bottom:.8rem;
+}
+.ex-adv-inc-item{
+  font-family:'Jost',sans-serif;font-size:.5rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(200,192,174,.45);
+  display:flex;align-items:center;gap:.45rem;
+}
+.ex-adv-inc-item::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:rgba(201,165,82,.4);flex-shrink:0;
+}
+
+@media(max-width:700px){
+  .ex-adv-types{flex-direction:column}
+  .ex-route-chip{grid-template-columns:auto 1fr;grid-template-rows:auto auto}
+  .ex-route-chip-detail{grid-column:2;text-align:left}
+}
+
+/* ══ PANEL SYSTEM ══ */
 .ex-panels{display:flex;flex-direction:column;gap:1px;background:rgba(201,165,82,.06)}
 .ex-panel{display:grid;grid-template-columns:1fr 1fr;min-height:400px;overflow:hidden}
 .ex-panel.rev{direction:rtl}
@@ -328,19 +424,70 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
     </div>
   </div>
   <div class="ex-panels" style="--panel-bg:#060504">
+
+    <!-- ── E-BIKE ── -->
     <div class="ex-panel reveal" id="panel-ebike">
       <div class="ex-panel-img">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85" alt="E-bike" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85" alt="E-Bike" loading="lazy">
         <div class="ex-panel-overlay"></div>
       </div>
       <div class="ex-panel-text">
         <span class="ex-panel-num">01</span>
         <span class="ex-label">Electric Exploration</span>
         <h3>E-Bike Mountain Journeys</h3>
-        <p>Guided electric bike trails through the volcanic highlands. Routes range from scenic village paths to challenging mountain passes — all with a Grotta guide who knows the landscape intimately.</p>
-        <div class="ex-tags"><span class="ex-tag">Half-day</span><span class="ex-tag">Guided</span><span class="ex-tag">All levels</span><span class="ex-tag">Scenic routes</span></div>
+        <p>Grotta Resort is a highland basecamp for exploration. Our electric bikes open the volcanic landscape to every guest — whether you're after a gentle scenic loop or a full mountain challenge. Guided or self-guided. Your pace, your route.</p>
+
+        <!-- Adventure type selector -->
+        <div class="ex-adv-types">
+          <div class="ex-adv-type active" onclick="selectAdvType(this)">
+            <span class="ex-adv-type-icon">⚡</span>
+            <span class="ex-adv-type-name">E-Bike Adventure</span>
+            <span class="ex-adv-type-sub">Guided or self-guided</span>
+          </div>
+          <div class="ex-adv-type" onclick="selectAdvType(this)">
+            <span class="ex-adv-type-icon">⚡+🥾</span>
+            <span class="ex-adv-type-name">Combo Adventure</span>
+            <span class="ex-adv-type-sub">Ride first, hike after</span>
+          </div>
+        </div>
+
+        <!-- Route options -->
+        <div class="ex-adv-routes">
+          <span class="ex-adv-routes-label">Choose your route</span>
+          <div class="ex-route-chips">
+            <button class="ex-route-chip active">
+              <span class="ex-route-chip-level">Easy</span>
+              <span class="ex-route-chip-name">Scenic Highland Loop</span>
+              <span class="ex-route-chip-detail">Short · Flat terrain · Village views</span>
+            </button>
+            <button class="ex-route-chip">
+              <span class="ex-route-chip-level">Moderate</span>
+              <span class="ex-route-chip-name">Viewpoints & Villages</span>
+              <span class="ex-route-chip-detail">Half-day · Rolling hills · Local stops</span>
+            </button>
+            <button class="ex-route-chip">
+              <span class="ex-route-chip-level">Challenging</span>
+              <span class="ex-route-chip-name">Volcano Ridge Ride</span>
+              <span class="ex-route-chip-detail">Full-day · Steep sections · Summit views</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="ex-adv-includes">
+          <span class="ex-adv-inc-item">Route selection + briefing</span>
+          <span class="ex-adv-inc-item">Helmet & safety gear</span>
+          <span class="ex-adv-inc-item">Grotta guide (optional)</span>
+          <span class="ex-adv-inc-item">Highland refreshments</span>
+        </div>
+        <div class="ex-tags" style="margin-top:1.5rem">
+          <span class="ex-tag">Half or full-day</span>
+          <span class="ex-tag">All fitness levels</span>
+          <span class="ex-tag">Guided or self-guided</span>
+        </div>
       </div>
     </div>
+
+    <!-- ── CAVES ── -->
     <div class="ex-panel rev reveal" id="panel-caves">
       <div class="ex-panel-img">
         <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1200&q=85" alt="Caves" loading="lazy">
@@ -354,6 +501,8 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         <div class="ex-tags"><span class="ex-tag">Guided</span><span class="ex-tag">Headlamps provided</span><span class="ex-tag">1–2 hours</span><span class="ex-tag">Photography</span></div>
       </div>
     </div>
+
+    <!-- ── HIKING ── -->
     <div class="ex-panel reveal" id="panel-hiking">
       <div class="ex-panel-img">
         <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85" alt="Hiking" loading="lazy">
@@ -363,8 +512,55 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         <span class="ex-panel-num">03</span>
         <span class="ex-label">Highland Trails</span>
         <h3>Guided Hiking</h3>
-        <p>Expert-guided treks through highland landscapes — from dawn routes to volcano viewpoints to afternoon walks through surrounding farmlands and forests.</p>
-        <div class="ex-tags"><span class="ex-tag">Dawn treks</span><span class="ex-tag">Volcano views</span><span class="ex-tag">Forest paths</span><span class="ex-tag">All distances</span></div>
+        <p>Expert-guided treks through the volcanic highlands — from gentle dawn routes to rewarding viewpoint climbs. Every route is matched to your time, fitness, and the kind of morning you want to have.</p>
+
+        <!-- Adventure type selector -->
+        <div class="ex-adv-types">
+          <div class="ex-adv-type active" onclick="selectAdvType(this)">
+            <span class="ex-adv-type-icon">🥾</span>
+            <span class="ex-adv-type-name">Hiking Adventure</span>
+            <span class="ex-adv-type-sub">Route by difficulty</span>
+          </div>
+          <div class="ex-adv-type" onclick="selectAdvType(this)">
+            <span class="ex-adv-type-icon">⚡+🥾</span>
+            <span class="ex-adv-type-name">Combo Adventure</span>
+            <span class="ex-adv-type-sub">Ride first, hike after</span>
+          </div>
+        </div>
+
+        <!-- Route options -->
+        <div class="ex-adv-routes">
+          <span class="ex-adv-routes-label">Choose your route</span>
+          <div class="ex-route-chips">
+            <button class="ex-route-chip active">
+              <span class="ex-route-chip-level">Easy</span>
+              <span class="ex-route-chip-name">Morning Garden Walk</span>
+              <span class="ex-route-chip-detail">1–2 hrs · Flat · Farm & gardens</span>
+            </button>
+            <button class="ex-route-chip">
+              <span class="ex-route-chip-level">Moderate</span>
+              <span class="ex-route-chip-name">Viewpoints & Villages</span>
+              <span class="ex-route-chip-detail">3–4 hrs · Rolling terrain · Panoramic stops</span>
+            </button>
+            <button class="ex-route-chip">
+              <span class="ex-route-chip-level">Challenging</span>
+              <span class="ex-route-chip-name">Volcano Summit Trail</span>
+              <span class="ex-route-chip-detail">5–7 hrs · Steep · Crater views</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="ex-adv-includes">
+          <span class="ex-adv-inc-item">Route selection + briefing</span>
+          <span class="ex-adv-inc-item">Expert Grotta guide</span>
+          <span class="ex-adv-inc-item">Trail snacks & water</span>
+          <span class="ex-adv-inc-item">Volcano viewpoint stop</span>
+        </div>
+        <div class="ex-tags" style="margin-top:1.5rem">
+          <span class="ex-tag">Dawn treks</span>
+          <span class="ex-tag">Volcano views</span>
+          <span class="ex-tag">All distances</span>
+        </div>
       </div>
     </div>
     <div class="ex-panel rev reveal" id="panel-sunset">
@@ -682,6 +878,21 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 <script>
+// ── Adventure type selector ──────────────────────────────────
+function selectAdvType(el) {
+  const panel = el.closest('.ex-panel-text');
+  panel.querySelectorAll('.ex-adv-type').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── Route chip selector ───────────────────────────────────────
+document.querySelectorAll('.ex-route-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    chip.closest('.ex-route-chips').querySelectorAll('.ex-route-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+  });
+});
+
 const NAV_SECTIONS=[{id:'sec-adventures',node:'jn-1',fill:null},{id:'sec-wellness',node:'jn-2',fill:'jlf-1'},{id:'sec-families',node:'jn-3',fill:'jlf-2'},{id:'sec-couples',node:'jn-4',fill:'jlf-3'}];
 
 function scrollToPanel(id){

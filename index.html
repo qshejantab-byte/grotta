@@ -433,7 +433,7 @@
 /* ══════════════════════════════════════
    6. ACCOMMODATION PREVIEW
 ══════════════════════════════════════ */
-.hp-rooms {
+.hp-rooms { position:relative; z-index:2;
   background: var(--bg);
   padding: 8rem 0;
   position: relative;
@@ -520,80 +520,127 @@
 /* ══════════════════════════════════════
    7. EXPERIENCE PREVIEW (after rooms)
 ══════════════════════════════════════ */
-.hp-exp {
-  background: var(--bg2);
-  padding: 8rem 0;
-  position: relative;
+/* ══ EXPERIENCES — Cinematic Chapters ══ */
+.hp-exp-chapters{position:relative;background:var(--bg);isolation:isolate;clear:both}
+
+/* Clean section header — sits between rooms and chapters */
+.hp-exp-header-clean{
+  text-align:center;
+  padding:7rem 2rem 4rem;
+  position:relative;
+  background:var(--bg);
+  isolation:isolate;
+  z-index:1;
 }
-.hp-exp::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201,165,82,.1) 30%, rgba(201,165,82,.1) 70%, transparent);
+.hp-exp-header-clean::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,rgba(201,165,82,.12) 30%,rgba(201,165,82,.12) 70%,transparent);
+}
+.hp-exp-header-clean .label{
+  display:block;margin-bottom:1.1rem;
+}
+.hp-exp-header-clean h2{
+  font-family:var(--serif);
+  font-size:clamp(2.4rem,5vw,5rem);
+  font-weight:300;color:#f0e8d5;
+  line-height:1.06;letter-spacing:-.025em;
+  margin-bottom:1.2rem;
+}
+.hp-exp-header-sub{
+  font-family:var(--serif);
+  font-size:clamp(.95rem,1.4vw,1.2rem);
+  font-weight:300;font-style:italic;
+  color:rgba(232,224,208,.4);
+  line-height:1.85;max-width:520px;
+  margin:0 auto;
+}
+.hp-exp-header-rule{
+  width:2rem;height:1px;
+  background:rgba(201,165,82,.35);
+  margin:2rem auto 0;
 }
 
-.hp-exp-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  grid-template-rows: 360px 280px;
-  gap: 1px; background: rgba(201,165,82,.08);
-  max-width: 1400px; margin: 4rem auto 0;
-}
+/* Vertical nav rail */
+.hp-exp-nav{position:fixed;right:2rem;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:.85rem;opacity:0;transition:opacity .5s ease;pointer-events:none}
+.hp-exp-nav.visible{opacity:1;pointer-events:all}
+.hp-exp-nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(201,165,82,.22);cursor:pointer;transition:background .4s ease,transform .4s ease,box-shadow .4s ease}
+.hp-exp-nav-dot.active{background:#c9a552;transform:scale(1.5);box-shadow:0 0 10px rgba(201,165,82,.5)}
+.hp-exp-nav-dot:hover{background:rgba(201,165,82,.55)}
 
-.hp-exp-item {
-  position: relative; overflow: hidden;
-  cursor: default; text-decoration: none;
-}
-.hp-exp-item img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: brightness(.5) saturate(.8);
-  transition: filter 1.1s ease, transform 1.4s cubic-bezier(.25,.46,.45,.94);
-}
-.hp-exp-item:hover img { filter: brightness(.65) saturate(.9); transform: scale(1.05); }
+/* Each chapter */
+.hp-ch{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+.hp-ch-bg{position:absolute;inset:0;background-size:cover;background-position:center;will-change:transform;transition:filter 1.2s ease;transform:scale(1.08)}
+.hp-ch-overlay{position:absolute;inset:0;pointer-events:none}
+.hp-ch-content{position:relative;z-index:5;max-width:1280px;margin:0 auto;padding:8rem 6vw;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;width:100%}
+.hp-ch-content.right{direction:rtl}
+.hp-ch-content.right>*{direction:ltr}
+.hp-ch-left{display:flex;flex-direction:column;gap:0}
 
-/* Span first item 2 rows */
-.hp-exp-item:nth-child(1) { grid-row: 1 / 3; }
+/* Chapter number — huge ghost */
+.hp-ch-num{font-family:var(--serif);font-size:clamp(6rem,14vw,14rem);font-weight:300;color:rgba(201,165,82,.06);line-height:1;letter-spacing:-.06em;display:block;margin-bottom:-2rem;position:relative;z-index:0;transition:color .8s ease}
+.hp-ch:hover .hp-ch-num{color:rgba(201,165,82,.1)}
 
-.hp-exp-item::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(8,8,5,.9) 0%, rgba(8,8,5,.2) 45%, transparent 70%);
-  pointer-events: none;
-}
-.hp-exp-item::before {
-  content: ''; position: absolute; top: 0; left: 0;
-  width: 0; height: 2px; background: rgba(201,165,82,.5); z-index: 5;
-  transition: width .5s cubic-bezier(.25,.46,.45,.94);
-}
-.hp-exp-item:hover::before { width: 100%; }
+/* Chapter label */
+.hp-ch-label{font-family:var(--sans);font-size:.52rem;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:rgba(201,165,82,.48);display:block;margin-bottom:1rem;position:relative;z-index:1;opacity:0;transform:translateY(12px);transition:opacity .7s ease,transform .7s ease}
+.hp-ch.in-view .hp-ch-label{opacity:1;transform:translateY(0)}
 
-.hp-exp-text {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  z-index: 3; padding: 2rem 2.2rem;
-}
-.hp-exp-text .label { font-size: .5rem; color: rgba(201,165,82,.4); margin-bottom: .5rem; }
-.hp-exp-text h3 {
-  font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-  font-weight: 300; color: #e8e0d0; line-height: 1.08;
-  letter-spacing: -.01em; margin-bottom: .5rem;
-  transition: color .3s ease;
-}
-.hp-exp-item:hover .hp-exp-text h3 { color: #fff; }
-.hp-exp-link {
-  display: inline-flex; align-items: center; gap: .5rem;
-  font-family: var(--sans); font-size: .54rem;
-  font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
-  color: rgba(201,165,82,.5); text-decoration: none;
-  border-bottom: 1px solid rgba(201,165,82,.2); padding-bottom: .2rem;
-  opacity: 0; transform: translateY(6px);
-  transition: opacity .4s ease .08s, transform .4s ease .08s,
-              color .3s ease, gap .3s ease, border-color .3s ease;
-}
-.hp-exp-item:hover .hp-exp-link { opacity: 1; transform: translateY(0); }
-.hp-exp-link:hover { color: var(--gold); border-color: var(--gold); gap: .85rem; }
+.hp-ch-title{font-family:var(--serif);font-size:clamp(2.8rem,5vw,5.5rem);font-weight:300;color:#f0e8d5;line-height:1.04;letter-spacing:-.03em;margin-bottom:1.2rem;position:relative;z-index:1;opacity:0;transform:translateY(20px);transition:opacity .85s ease .1s,transform .85s cubic-bezier(.25,.46,.45,.94) .1s}
+.hp-ch.in-view .hp-ch-title{opacity:1;transform:translateY(0)}
 
-/* Spotlight siblings */
-.hp-exp-grid:has(.hp-exp-item:hover) .hp-exp-item:not(:hover) {
-  filter: brightness(.7);
-  transition: filter .35s ease;
+.hp-ch-rule{width:2rem;height:1px;background:rgba(201,165,82,.35);margin:1rem 0 1.4rem;position:relative;z-index:1;opacity:0;transform:scaleX(0);transform-origin:left;transition:opacity .5s ease .25s,transform .6s cubic-bezier(.25,.46,.45,.94) .25s}
+.hp-ch.in-view .hp-ch-rule{opacity:1;transform:scaleX(1)}
+
+.hp-ch-body{font-size:.9rem;color:rgba(232,224,208,.5);line-height:2.1;position:relative;z-index:1;max-width:440px;opacity:0;transform:translateY(14px);transition:opacity .8s ease .3s,transform .8s ease .3s}
+.hp-ch.in-view .hp-ch-body{opacity:1;transform:translateY(0)}
+
+.hp-ch-cta{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--sans);font-size:.56rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.7);text-decoration:none;border-bottom:1px solid rgba(201,165,82,.25);padding-bottom:.3rem;margin-top:1.8rem;position:relative;z-index:1;opacity:0;transition:opacity .7s ease .4s,color .3s ease,border-color .3s ease}
+.hp-ch.in-view .hp-ch-cta{opacity:1}
+.hp-ch-cta:hover{color:#c9a552;border-color:#c9a552}
+
+/* Right side — image stack */
+.hp-ch-img-wrap{position:relative;height:clamp(400px,55vh,680px);opacity:0;transform:translateX(30px);transition:opacity .9s ease .15s,transform .9s cubic-bezier(.25,.46,.45,.94) .15s}
+.hp-ch-content.right .hp-ch-img-wrap{transform:translateX(-30px)}
+.hp-ch.in-view .hp-ch-img-wrap{opacity:1;transform:translateX(0)}
+.hp-ch-img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.72) saturate(.82)}
+/* Subtle gold shimmer on hover */
+.hp-ch-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,165,82,.04) 0%,transparent 60%);pointer-events:none}
+/* Gold accent line */
+.hp-ch-img-wrap::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:linear-gradient(to bottom,#c9a552,rgba(201,165,82,.2));z-index:2;transition:height 1.1s cubic-bezier(.25,.46,.45,.94) .4s}
+.hp-ch.in-view .hp-ch-img-wrap::before{height:100%}
+
+/* Atmospheric glow per chapter */
+.hp-ch-glow{position:absolute;pointer-events:none;border-radius:50%;filter:blur(80px);opacity:0;transition:opacity 1.5s ease}
+.hp-ch.in-view .hp-ch-glow{opacity:1}
+
+/* Dark fade between chapters */
+.hp-ch-sep{height:2px;background:linear-gradient(to right,transparent,rgba(201,165,82,.08) 30%,rgba(201,165,82,.08) 70%,transparent)}
+
+/* Final CTA chapter */
+.hp-ch-final{position:relative;padding:8rem 0;text-align:center;background:var(--bg);overflow:hidden}
+.hp-ch-final-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1400&q=85') center/cover;filter:brightness(.2) saturate(.6)}
+.hp-ch-final-overlay{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(6,5,4,.35) 0%,rgba(6,5,4,.92) 100%)}
+.hp-ch-final-content{position:relative;z-index:5;max-width:680px;margin:0 auto;padding:0 2rem}
+.hp-ch-final-h2{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.8rem);font-weight:300;color:#f0e8d5;line-height:1.06;letter-spacing:-.025em;margin-bottom:1.2rem}
+.hp-ch-final-sub{font-size:.88rem;color:rgba(232,224,208,.44);line-height:2;display:block;max-width:440px;margin:0 auto 2.8rem}
+
+/* Responsive */
+@media(max-width:1100px){
+  .hp-exp-editorial{flex-direction:column;gap:1.5rem;padding-bottom:2.8rem}
+  .hp-exp-cta-wrap{align-items:flex-start}
+  .hp-exp-counter{display:none}
+  .hp-ch-content{grid-template-columns:1fr;gap:2.5rem;padding:6rem 4vw}
+  .hp-ch-content.right{direction:ltr}
+  .hp-ch-img-wrap{height:clamp(280px,45vw,480px)}
+  .hp-exp-nav{display:none}
+}
+@media(max-width:700px){
+  .hp-ch{min-height:auto}
+  .hp-ch-content{padding:5rem 5vw}
+  .hp-ch-title{font-size:clamp(2.2rem,8vw,3.5rem)}
+  .hp-ch-img-wrap{height:260px}
+}
+@media(max-width:480px){
+  .hp-ch-num{font-size:clamp(5rem,18vw,8rem)}
 }
 
 /* ══════════════════════════════════════
@@ -743,8 +790,6 @@
 @media(max-width:1100px){
   .hp-packages-grid { grid-template-columns: 1fr 1fr; }
   .hp-rooms-grid { grid-template-columns: 1fr 1fr; }
-  .hp-exp-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 300px 280px 280px; }
-  .hp-exp-item:nth-child(1) { grid-row: auto; }
   .hp-social-grid { grid-template-columns: 1fr 1fr; }
   .hp-social-item:last-child { grid-column: 1 / -1; min-height: 300px; }
 }
@@ -915,7 +960,7 @@
         <span class="label">Restoration</span>
         <h3>Wellness Retreat</h3>
         <p>Three nights with daily wellness sessions, spa access, and garden walks at dawn.</p>
-        <a href="booking.html?package=wellness" class="hp-pkg-cta">Reserve →</a>
+        <a href="experiences.html#sec-wellness" class="hp-pkg-cta">Reserve →</a>
       </div>
     </div>
     <div class="hp-pkg-card reveal d3">
@@ -925,7 +970,7 @@
         <span class="label">Discovery</span>
         <h3>Cave Explorer</h3>
         <p>One night, extended cave journey, and an evening in the cave café with rare spirits.</p>
-        <a href="booking.html?package=cave" class="hp-pkg-cta">Reserve →</a>
+        <a href="caves.html" class="hp-pkg-cta">Reserve →</a>
       </div>
     </div>
   </div>
@@ -990,60 +1035,147 @@
   </div>
 </section>
 
-<!-- ══ 5. EXPERIENCE PREVIEW ══ -->
-<section class="hp-exp">
-  <div class="hp-section-header reveal">
+<!-- ══ EXPERIENCE CHAPTERS ══ -->
+<div class="hp-exp-chapters" id="hp-exp-chapters">
+
+  <!-- Section header — clean, no background image -->
+  <div class="hp-exp-header-clean">
     <span class="label">What Awaits</span>
     <h2>The Grotta Experiences</h2>
+    <p class="hp-exp-header-sub">Caves, fire, silence, and the unhurried luxury of being somewhere rare.</p>
+    <div class="hp-exp-header-rule"></div>
   </div>
 
-  <div class="hp-exp-grid">
-    <a class="hp-exp-item" href="caves.html">
-      <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1200&q=85" alt="Caves" loading="lazy">
-      <div class="hp-exp-text">
-        <span class="label">Underground</span>
-        <h3>Cave Experiences</h3>
-        <span class="hp-exp-link">Explore →</span>
+  <!-- Vertical nav dots -->
+  <nav class="hp-exp-nav" id="hp-exp-nav" aria-label="Experience navigation">
+    <div class="hp-exp-nav-dot active" data-ch="0" title="Caves"></div>
+    <div class="hp-exp-nav-dot" data-ch="1" title="Fire"></div>
+    <div class="hp-exp-nav-dot" data-ch="2" title="Wellness"></div>
+    <div class="hp-exp-nav-dot" data-ch="3" title="Dining"></div>
+    <div class="hp-exp-nav-dot" data-ch="4" title="Gardens"></div>
+  </nav>
+
+  <!-- Chapter 1 — Caves -->
+  <div class="hp-ch" id="hp-ch-0" data-glow="rgba(30,20,10,.6)">
+    <div class="hp-ch-bg" style="background-image:url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1400&q=85');filter:brightness(.28) saturate(.58)"></div>
+    <div class="hp-ch-overlay" style="background:linear-gradient(to right,rgba(6,5,4,.92) 0%,rgba(6,5,4,.6) 42%,rgba(6,5,4,.18) 68%,rgba(6,5,4,.55) 100%),linear-gradient(to bottom,rgba(6,5,4,.2) 0%,transparent 30%,rgba(6,5,4,.5) 100%)"></div>
+    <div class="hp-ch-glow" style="width:40vw;height:40vw;left:5%;bottom:10%;background:radial-gradient(ellipse,rgba(201,130,40,.07) 0%,transparent 65%)"></div>
+    <div class="hp-ch-content">
+      <div class="hp-ch-left">
+        <span class="hp-ch-num">01</span>
+        <span class="hp-ch-label">Underground · Ancient</span>
+        <h2 class="hp-ch-title">The Cave<br>Journeys</h2>
+        <div class="hp-ch-rule"></div>
+        <p class="hp-ch-body">Chambers formed over millennia. Volcanic stone worn smooth by underground rivers. A space where silence has texture — and light, when found, feels earned.</p>
+        <a href="caves.html" class="hp-ch-cta">Explore Caves →</a>
       </div>
-    </a>
-    <a class="hp-exp-item" href="experiences.html">
-      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=85" alt="Gardens" loading="lazy">
-      <div class="hp-exp-text">
-        <span class="label">Nature</span>
-        <h3>The Gardens</h3>
-        <span class="hp-exp-link">Explore →</span>
+      <div class="hp-ch-img-wrap">
+        <img class="hp-ch-img" src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=900&q=85" alt="Caves" loading="lazy">
       </div>
-    </a>
-    <a class="hp-exp-item" href="dining.html">
-      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=900&q=85" alt="Café" loading="lazy">
-      <div class="hp-exp-text">
-        <span class="label">Culinary</span>
-        <h3>Cave Café</h3>
-        <span class="hp-exp-link">Explore →</span>
-      </div>
-    </a>
-    <a class="hp-exp-item" href="wellness.html">
-      <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=900&q=85" alt="Wellness" loading="lazy">
-      <div class="hp-exp-text">
-        <span class="label">Restore</span>
-        <h3>Wellness</h3>
-        <span class="hp-exp-link">Explore →</span>
-      </div>
-    </a>
-    <a class="hp-exp-item" href="families.html">
-      <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=900&q=85" alt="Farm" loading="lazy">
-      <div class="hp-exp-text">
-        <span class="label">Family</span>
-        <h3>Farm Mornings</h3>
-        <span class="hp-exp-link">Explore →</span>
-      </div>
-    </a>
+    </div>
   </div>
 
-  <div style="text-align:center;margin-top:3.5rem">
-    <a href="experiences.html" class="hp-btn-primary"><span>All Experiences</span></a>
+  <div class="hp-ch-sep"></div>
+
+  <!-- Chapter 2 — Fire -->
+  <div class="hp-ch" id="hp-ch-1">
+    <div class="hp-ch-bg" style="background-image:url('https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=1400&q=85');filter:brightness(.25) saturate(.55)"></div>
+    <div class="hp-ch-overlay" style="background:linear-gradient(to left,rgba(6,5,4,.92) 0%,rgba(6,5,4,.6) 42%,rgba(6,5,4,.18) 68%,rgba(6,5,4,.55) 100%),linear-gradient(to bottom,rgba(6,5,4,.2) 0%,transparent 30%,rgba(6,5,4,.5) 100%)"></div>
+    <div class="hp-ch-glow" style="width:50vw;height:50vw;right:5%;bottom:0%;background:radial-gradient(ellipse,rgba(201,100,20,.1) 0%,transparent 60%)"></div>
+    <div class="hp-ch-content right">
+      <div class="hp-ch-left">
+        <span class="hp-ch-num">02</span>
+        <span class="hp-ch-label">Evening · Communal</span>
+        <h2 class="hp-ch-title">Highland<br>Fire</h2>
+        <div class="hp-ch-rule"></div>
+        <p class="hp-ch-body">The firepit gathers people without effort. Warm amber against cold highland air. Conversation that begins with strangers and ends with something else entirely.</p>
+        <a href="experiences.html" class="hp-ch-cta">Evening Experiences →</a>
+      </div>
+      <div class="hp-ch-img-wrap">
+        <img class="hp-ch-img" src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=900&q=85" alt="Fire" loading="lazy">
+      </div>
+    </div>
   </div>
-</section>
+
+  <div class="hp-ch-sep"></div>
+
+  <!-- Chapter 3 — Wellness -->
+  <div class="hp-ch" id="hp-ch-2">
+    <div class="hp-ch-bg" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=85');filter:brightness(.26) saturate(.52)"></div>
+    <div class="hp-ch-overlay" style="background:linear-gradient(to right,rgba(6,5,4,.92) 0%,rgba(6,5,4,.58) 42%,rgba(6,5,4,.16) 68%,rgba(6,5,4,.5) 100%),linear-gradient(to bottom,rgba(6,5,4,.2) 0%,transparent 30%,rgba(6,5,4,.5) 100%)"></div>
+    <div class="hp-ch-glow" style="width:45vw;height:45vw;left:8%;top:15%;background:radial-gradient(ellipse,rgba(180,200,210,.04) 0%,transparent 65%)"></div>
+    <div class="hp-ch-content">
+      <div class="hp-ch-left">
+        <span class="hp-ch-num">03</span>
+        <span class="hp-ch-label">Dawn · Restoration</span>
+        <h2 class="hp-ch-title">Wellness<br>at Altitude</h2>
+        <div class="hp-ch-rule"></div>
+        <p class="hp-ch-body">Sauna at dawn. Yoga in the mist. Guided walks through highland forest designed for depth, not distance. The volcanic landscape as your therapist.</p>
+        <a href="experiences.html#sec-wellness" class="hp-ch-cta">Wellness Experiences →</a>
+      </div>
+      <div class="hp-ch-img-wrap">
+        <img class="hp-ch-img" src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=900&q=85" alt="Wellness" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="hp-ch-sep"></div>
+
+  <!-- Chapter 4 — Dining -->
+  <div class="hp-ch" id="hp-ch-3">
+    <div class="hp-ch-bg" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=85');filter:brightness(.24) saturate(.55)"></div>
+    <div class="hp-ch-overlay" style="background:linear-gradient(to left,rgba(6,5,4,.92) 0%,rgba(6,5,4,.58) 42%,rgba(6,5,4,.16) 68%,rgba(6,5,4,.5) 100%),linear-gradient(to bottom,rgba(6,5,4,.2) 0%,transparent 30%,rgba(6,5,4,.5) 100%)"></div>
+    <div class="hp-ch-glow" style="width:40vw;height:40vw;right:10%;bottom:5%;background:radial-gradient(ellipse,rgba(201,150,50,.07) 0%,transparent 60%)"></div>
+    <div class="hp-ch-content right">
+      <div class="hp-ch-left">
+        <span class="hp-ch-num">04</span>
+        <span class="hp-ch-label">Culinary · Unhurried</span>
+        <h2 class="hp-ch-title">Dining<br>at Grotta</h2>
+        <div class="hp-ch-rule"></div>
+        <p class="hp-ch-body">Where the highland landscape meets the plate. Ingredients gathered within kilometres. Long tables. Candlelight. The kind of meal that becomes the memory of a trip.</p>
+        <a href="dining.html" class="hp-ch-cta">Explore Dining →</a>
+      </div>
+      <div class="hp-ch-img-wrap">
+        <img class="hp-ch-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85" alt="Dining" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="hp-ch-sep"></div>
+
+  <!-- Chapter 5 — Gardens -->
+  <div class="hp-ch" id="hp-ch-4">
+    <div class="hp-ch-bg" style="background-image:url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1400&q=85');filter:brightness(.28) saturate(.6)"></div>
+    <div class="hp-ch-overlay" style="background:linear-gradient(to right,rgba(6,5,4,.92) 0%,rgba(6,5,4,.58) 42%,rgba(6,5,4,.16) 68%,rgba(6,5,4,.5) 100%),linear-gradient(to bottom,rgba(6,5,4,.2) 0%,transparent 30%,rgba(6,5,4,.5) 100%)"></div>
+    <div class="hp-ch-glow" style="width:45vw;height:45vw;left:5%;bottom:10%;background:radial-gradient(ellipse,rgba(150,180,120,.04) 0%,transparent 65%)"></div>
+    <div class="hp-ch-content">
+      <div class="hp-ch-left">
+        <span class="hp-ch-num">05</span>
+        <span class="hp-ch-label">Nature · Stillness</span>
+        <h2 class="hp-ch-title">The Highland<br>Gardens</h2>
+        <div class="hp-ch-rule"></div>
+        <p class="hp-ch-body">Curated green spaces shaped by the volcanic altitude. Indigenous flora. Morning mist through open paths. A place to walk without a destination.</p>
+        <a href="experiences.html" class="hp-ch-cta">All Experiences →</a>
+      </div>
+      <div class="hp-ch-img-wrap">
+        <img class="hp-ch-img" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=85" alt="Gardens" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <!-- Final CTA -->
+  <div class="hp-ch-final">
+    <div class="hp-ch-final-bg"></div>
+    <div class="hp-ch-final-overlay"></div>
+    <div class="hp-ch-final-content reveal">
+      <span class="label" style="text-align:center;display:block;margin-bottom:1.2rem">The Full Picture</span>
+      <h2 class="hp-ch-final-h2">Six worlds.<br>One property.</h2>
+      <span class="hp-ch-final-sub">Every experience at Grotta is designed to do something different to the person inside it. Explore them all.</span>
+      <a href="experiences.html" class="hp-btn-primary"><span>All Experiences</span></a>
+    </div>
+  </div>
+
+</div>
 
 <!-- ══ 6. CINEMATIC CAVE SECTION ══ -->
 <section class="hp-cave" id="hp-cave">
@@ -1213,6 +1345,55 @@ function goToBooking() {
   window.location.href = 'booking.html?' + p.toString();
 }
 buildDropdowns();
+
+// ── Exp scene parallax ────────────────────────────────────────
+// ── Exp chapter scroll reveal + nav dots ─────────────────────
+const expNav     = document.getElementById('hp-exp-nav');
+const expChapters= document.getElementById('hp-exp-chapters');
+const chapters   = document.querySelectorAll('.hp-ch');
+const navDots    = document.querySelectorAll('.hp-exp-nav-dot');
+
+// Show nav when chapters section is in view
+if (expChapters) {
+  const navObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (expNav) expNav.classList.toggle('visible', e.isIntersecting);
+    });
+  }, { threshold: 0.05 });
+  navObs.observe(expChapters);
+}
+
+// Chapter reveal + active nav dot
+if (chapters.length) {
+  const chObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        const idx = e.target.id.replace('hp-ch-','');
+        navDots.forEach((d,i) => d.classList.toggle('active', String(i) === idx));
+      }
+    });
+  }, { threshold: 0.35 });
+  chapters.forEach(ch => chObs.observe(ch));
+
+  // Nav dot click → scroll to chapter
+  navDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const ch = document.getElementById('hp-ch-' + dot.dataset.ch);
+      if (ch) ch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+}
+
+// Parallax for chapter backgrounds
+const chBgs = document.querySelectorAll('.hp-ch-bg');
+window.addEventListener('scroll', () => {
+  chBgs.forEach(bg => {
+    const r = bg.parentElement.getBoundingClientRect();
+    const shift = (window.innerHeight / 2 - r.top - r.height / 2) * 0.1;
+    bg.style.transform = `translateY(${shift}px)`;
+  });
+}, { passive: true });
 
 // ── Scroll reveal ─────────────────────────────────────────────
 const revObs = new IntersectionObserver(entries => {
