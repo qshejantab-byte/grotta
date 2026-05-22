@@ -346,7 +346,9 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
   .ex-couple-card{min-height:320px}
   .ex-final-ctas{flex-direction:column;align-items:center}
   .ex-couples-hero-h2{font-size:clamp(2.5rem,9vw,4rem)}
-  .ex-sec-head{padding:4rem 1.5rem 3rem}
+  .ex-sec-head{padding:5.5rem 1.5rem 3rem}
+  /* Each section needs scroll margin to account for sticky navbar + journey nav */
+  .ex-section{scroll-margin-top:calc(68px + 80px)}
 }
 @media(max-width:480px){
   .ex-fam-jgrid{grid-template-columns:1fr}
@@ -1181,6 +1183,30 @@ function updateNav(){
 
 window.addEventListener('scroll',updateNav,{passive:true});
 updateNav();
+
+// ── Fix section head overlap with sticky journey nav on mobile ─
+function fixSectionHeadPadding() {
+  const journeyNav = document.querySelector('.ex-journey-nav');
+  const sections   = document.querySelectorAll('.ex-section');
+  if (!journeyNav) return;
+  if (window.innerWidth <= 700) {
+    const navH       = journeyNav.offsetHeight;
+    const totalPad   = 68 + navH + 20;
+    sections.forEach(sec => {
+      const head = sec.querySelector('.ex-sec-head');
+      if (head) head.style.paddingTop = totalPad + 'px';
+      sec.style.scrollMarginTop = (68 + navH) + 'px';
+    });
+  } else {
+    sections.forEach(sec => {
+      const head = sec.querySelector('.ex-sec-head');
+      if (head) head.style.paddingTop = '';
+      sec.style.scrollMarginTop = '';
+    });
+  }
+}
+fixSectionHeadPadding();
+window.addEventListener('resize', fixSectionHeadPadding, { passive: true });
 
 const revObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target)}});

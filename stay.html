@@ -124,32 +124,34 @@
 ══════════════════════════════════════ */
 .stay-booking-bar {
   position: relative; z-index: 50;
-  background: rgba(14,12,9,.85);
+  background: rgba(14,12,9,.88);
   backdrop-filter: blur(24px) saturate(1.2);
   -webkit-backdrop-filter: blur(24px) saturate(1.2);
   border-top: 1px solid rgba(201,165,82,.1);
   border-bottom: 1px solid rgba(201,165,82,.08);
   padding: 1.6rem 6vw;
-  transition: background .4s ease, box-shadow .4s ease,
-              transform .65s cubic-bezier(.25,.46,.45,.94),
-              opacity .65s cubic-bezier(.25,.46,.45,.94);
+  transition: background .5s ease, box-shadow .5s ease,
+              opacity .5s ease, transform .5s ease;
 }
+/* Sticky — semi-transparent, always visible */
 .stay-booking-bar.sticky {
-  position: fixed; top: 0; left: 0; right: 0;
-  box-shadow: 0 8px 40px rgba(0,0,0,.6);
+  position: fixed; top: 68px; left: 0; right: 0;
+  background: rgba(8,7,5,.72);
+  backdrop-filter: blur(28px) saturate(1.5);
+  -webkit-backdrop-filter: blur(28px) saturate(1.5);
+  box-shadow: 0 6px 32px rgba(0,0,0,.55),
+              inset 0 -1px 0 rgba(201,165,82,.08);
   z-index: 200;
-}
-/* Hidden state — slides up and fades out */
-.stay-booking-bar.sticky.bar-hidden {
-  transform: translateY(-110%);
-  opacity: 0;
-  pointer-events: none;
-}
-/* Visible state — slides back down */
-.stay-booking-bar.sticky.bar-visible {
-  transform: translateY(0);
   opacity: 1;
-  pointer-events: all;
+  transform: translateY(0);
+}
+/* Slide in smoothly when becoming sticky */
+.stay-booking-bar.sticky.entering {
+  animation: bar-slide-in .55s cubic-bezier(.25,.46,.45,.94) forwards;
+}
+@keyframes bar-slide-in {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .booking-bar-inner {
@@ -885,36 +887,12 @@
   .compare-inner{padding:1rem;overflow-x:auto}
   .compare-table{min-width:600px;font-size:.65rem}
   .stay-float-btn { bottom: 1rem; right: 1rem; font-size: .54rem; padding: .85rem 1.4rem; }
+
+  /* Hide booking bar on mobile */
+  .stay-booking-bar{ display:none !important; }
+  #rc-rooms{ padding-top:0 !important; }
   [style*="repeat(6,1fr)"]{ grid-template-columns: repeat(2,1fr) !important; }
   [style*="repeat(3,1fr)"]{ grid-template-columns: 1fr !important; }
-
-  /* ── Mobile booking bar: always fixed at top, scroll-hide enabled ── */
-  .stay-booking-bar{
-    position:fixed !important;
-    top:68px; left:0; right:0;
-    z-index:200;
-    padding:1rem 4vw;
-    border-top:none;
-    border-bottom:1px solid rgba(201,165,82,.1);
-    box-shadow:0 8px 32px rgba(0,0,0,.55);
-    /* Smooth slide+fade transition */
-    transition:transform .65s cubic-bezier(.25,.46,.45,.94),
-               opacity .65s cubic-bezier(.25,.46,.45,.94),
-               background .4s ease !important;
-  }
-  .stay-booking-bar.bar-hidden{
-    transform:translateY(-110%) !important;
-    opacity:0 !important;
-    pointer-events:none !important;
-  }
-  .stay-booking-bar.bar-visible,
-  .stay-booking-bar:not(.bar-hidden){
-    transform:translateY(0) !important;
-    opacity:1 !important;
-    pointer-events:all !important;
-  }
-  /* Compensate for fixed bar height */
-  #rc-rooms{ padding-top:120px !important; }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -2304,63 +2282,49 @@ function searchAvailability() {
   document.getElementById('bb-checkout').value = fmt(day3);
 })();
 
-// ── Sticky booking bar — scroll direction aware ───────────────
-const bookingBar = document.getElementById('stay-booking-bar');
-const bookingBarTop = bookingBar ? bookingBar.offsetTop : 0;
-const floatBtn = document.getElementById('stay-float-btn');
-let lastScrollY = 0;
-let scrollDir = 'up';
-let ticking = false;
-const isMobile = () => window.innerWidth <= 600;
+// ── Sticky booking bar — always visible when scrolled past ───
+const bookingBar    = document.getElementById('stay-booking-bar');
+const floatBtn      = document.getElementById('stay-float-btn');
+let wasSticky       = false;
+let ticking         = false;
+
+// Measure bar position after fonts/images load
+let bookingBarTop   = 0;
+function measureBarTop() {
+  if (bookingBar) {
+    bookingBar.classList.remove('sticky');
+    bookingBarTop = bookingBar.getBoundingClientRect().top + window.scrollY;
+  }
+}
+window.addEventListener('load', measureBarTop);
+measureBarTop();
 
 window.addEventListener('scroll', () => {
   if (!ticking) {
     requestAnimationFrame(() => {
       const y = window.scrollY;
 
-      // Determine scroll direction (ignore tiny jitter < 4px)
-      if (Math.abs(y - lastScrollY) > 4) {
-        scrollDir = y > lastScrollY ? 'down' : 'up';
-        lastScrollY = y;
-      }
-
       // Float button
       if (floatBtn) floatBtn.classList.toggle('visible', y > 600);
 
-      if (bookingBar) {
-        if (isMobile()) {
-          // On mobile: bar is always fixed — just hide/show on scroll direction
-          // Give a small dead zone at the very top so it doesn't hide immediately
-          if (y > 120) {
-            if (scrollDir === 'down') {
-              bookingBar.classList.add('bar-hidden');
-              bookingBar.classList.remove('bar-visible');
-            } else {
-              bookingBar.classList.remove('bar-hidden');
-              bookingBar.classList.add('bar-visible');
-            }
-          } else {
-            // Near top — always show
-            bookingBar.classList.remove('bar-hidden');
-            bookingBar.classList.add('bar-visible');
-          }
-        } else {
-          // Desktop: sticky after scrolling past bar
-          const isPastBar = y > bookingBarTop + 80;
-          if (isPastBar) {
-            bookingBar.classList.add('sticky');
-            document.getElementById('rc-rooms').style.paddingTop = bookingBar.offsetHeight + 'px';
-            if (scrollDir === 'down' && y > bookingBarTop + 200) {
-              bookingBar.classList.add('bar-hidden');
-              bookingBar.classList.remove('bar-visible');
-            } else {
-              bookingBar.classList.add('bar-visible');
-              bookingBar.classList.remove('bar-hidden');
-            }
-          } else {
-            bookingBar.classList.remove('sticky', 'bar-hidden', 'bar-visible');
-            document.getElementById('rc-rooms').style.paddingTop = '';
-          }
+      // Sticky logic — desktop only (mobile hidden via CSS)
+      if (bookingBar && window.innerWidth > 600) {
+        const isPastBar = y > bookingBarTop - 68;
+
+        if (isPastBar && !wasSticky) {
+          // Just became sticky — animate in
+          bookingBar.classList.add('sticky', 'entering');
+          document.getElementById('rc-rooms').style.paddingTop =
+            bookingBar.offsetHeight + 'px';
+          // Remove entering class after animation
+          setTimeout(() => bookingBar.classList.remove('entering'), 600);
+          wasSticky = true;
+
+        } else if (!isPastBar && wasSticky) {
+          // Back to natural position
+          bookingBar.classList.remove('sticky', 'entering');
+          document.getElementById('rc-rooms').style.paddingTop = '';
+          wasSticky = false;
         }
       }
 
