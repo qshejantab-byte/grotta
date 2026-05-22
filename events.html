@@ -412,8 +412,8 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
   .er-cal-legend{display:none}
 }
 @media(max-width:768px){
-  .er-cal-topbar{flex-wrap:wrap}
-  .er-cal-topbar-right{width:100%;justify-content:flex-start;gap:.5rem}
+  .er-cal-topbar{flex-wrap:wrap;gap:.5rem;padding:.7rem 1rem .6rem}
+  .er-cal-topbar-right{width:100%;justify-content:flex-start;gap:.5rem;flex-wrap:wrap}
   .er-view-switcher{order:-1}
   .er-hero-top{padding:7rem clamp(1rem,4vw,4rem) 3rem clamp(3rem,6vw,6rem)}
   .er-hero-left{max-width:100%}
@@ -422,6 +422,9 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
   .er-private-types{flex-direction:column;max-width:280px}
   .er-tl-item{grid-template-columns:1fr;gap:.7rem}
   .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  /* Calendar inner on tablet */
+  .er-annual-cal-inner{overflow:hidden}
+  .er-cal-grid-wrap{padding:.5rem 1rem .7rem}
 }
 @media(max-width:600px){
   .er-hero-h1{font-size:clamp(3.2rem,12vw,5.5rem)}
@@ -435,16 +438,59 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
   .er-sv-day{font-size:1.25rem}
   .er-sv-name{font-size:.92rem}
   .er-sv-desc{display:none}
-  .er-cal-filter{font-size:.36rem;padding:.2rem .5rem}
-  .er-cal-day-name{font-size:.28rem}
-  .er-cal-date-num{font-size:.58rem}
-  .er-month-col{min-height:50px}
-  .er-month-event-name{font-size:.26rem}
-  .er-month-tooltip{width:185px}
-  .er-tooltip-img{height:65px}
   .er-final-ctas,.er-hero-ctas,.er-private-ctas{flex-direction:column;align-items:center}
   .footer-grid{grid-template-columns:1fr}
   .footer-bottom{flex-direction:column}
+
+  /* ── Calendar mobile fixes ── */
+
+  /* Topbar: stack cleanly into rows */
+  .er-cal-topbar{
+    display:flex;flex-direction:column;
+    gap:.6rem;padding:.8rem 1rem .7rem;
+    align-items:flex-start;
+  }
+  /* Row 1: title left, nav right */
+  .er-cal-topbar-left{width:100%}
+  .er-cal-topbar-eyebrow{font-size:.38rem}
+  .er-cal-topbar-title{font-size:.85rem}
+  .er-cal-nav{align-self:flex-start}
+  .er-cal-month-label{font-size:.9rem;min-width:120px}
+
+  /* Row 2: view switcher + filters — horizontally scrollable */
+  .er-cal-topbar-right{
+    width:100%;
+    display:flex;align-items:center;
+    gap:.4rem;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding-bottom:2px;
+    flex-wrap:nowrap;
+  }
+  .er-cal-topbar-right::-webkit-scrollbar{display:none}
+  .er-view-switcher{order:0;flex-shrink:0;gap:.8rem}
+  .er-view-sep{height:10px}
+  .er-view-btn{font-size:.38rem;letter-spacing:.2em}
+  .er-cal-filter{
+    font-size:.36rem;padding:.22rem .55rem;
+    white-space:nowrap;flex-shrink:0;
+  }
+  .er-cal-legend{display:none}
+
+  /* Calendar grid — full width, proper sizing */
+  .er-cal-grid-wrap{padding:.4rem .8rem .6rem}
+  .er-cal-day-name{font-size:.26rem;letter-spacing:.06em;padding:.25rem 0}
+  .er-cal-date-num{font-size:.52rem;margin-bottom:.18rem}
+  .er-month-col{min-height:44px;padding:.28rem .22rem .2rem}
+  .er-month-event{padding:.1rem .22rem;margin-bottom:.1rem}
+  .er-month-event-name{font-size:.24rem;letter-spacing:.03em}
+
+  /* Tooltip — disable on mobile (too cramped) */
+  .er-month-tooltip{display:none}
+
+  /* Scroll hint — hide (it's bleeding into calendar) */
+  .er-hero-scroll{display:none}
 }
 
 /* ══════════════════════════════════════════════════════════
