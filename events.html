@@ -162,7 +162,8 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
 .er-annual-cal-inner::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.4) 40%,rgba(201,165,82,.4) 60%,transparent);pointer-events:none}
 
 /* Topbar */
-.er-cal-topbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 1.8rem .6rem;border-bottom:1px solid rgba(201,165,82,.08);flex-wrap:wrap}
+.er-cal-topbar{display:flex;flex-direction:column;border-bottom:1px solid rgba(201,165,82,.08)}
+.er-cal-topbar-row1{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 1.8rem .6rem;flex-wrap:wrap}
 .er-cal-topbar-left{display:flex;flex-direction:column;gap:.18rem;min-width:140px}
 .er-cal-topbar-eyebrow{font-family:'Jost',sans-serif;font-size:.4rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(201,165,82,.38)}
 .er-cal-topbar-title{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;color:rgba(240,232,213,.7);letter-spacing:.02em}
@@ -170,7 +171,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
 .er-cal-nav-btn{background:transparent;border:1px solid rgba(201,165,82,.2);color:rgba(201,165,82,.5);cursor:pointer;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:.68rem;transition:all .3s}
 .er-cal-nav-btn:hover{border-color:#c9a552;color:#c9a552;background:rgba(201,165,82,.06)}
 .er-cal-month-label{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:300;color:#f0e8d5;min-width:150px;text-align:center;letter-spacing:.02em}
-.er-cal-topbar-right{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.er-cal-topbar-right{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:.45rem 1.8rem .55rem;border-top:1px solid rgba(201,165,82,.06)}
 .er-cal-filter{font-family:'Jost',sans-serif;font-size:.4rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(200,192,174,.3);border:1px solid rgba(201,165,82,.1);padding:.24rem .6rem;cursor:pointer;background:transparent;transition:all .3s}
 .er-cal-filter:hover,.er-cal-filter.active{color:rgba(201,165,82,.8);border-color:rgba(201,165,82,.38);background:rgba(201,165,82,.06)}
 .er-cal-legend{display:flex;gap:.9rem;align-items:center}
@@ -407,13 +408,13 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
   .er-sv-item{grid-template-columns:105px 1px 1fr;gap:0 1.6rem}
   .er-tl-item{grid-template-columns:130px 1fr;gap:2rem}
   .er-footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
-  .er-cal-topbar{gap:.7rem;padding:.7rem 1.2rem .6rem}
-  .er-cal-topbar-right{gap:.7rem}
+  .er-cal-topbar-row1{gap:.7rem;padding:.7rem 1.2rem .6rem}
+  .er-cal-topbar-right{gap:.7rem;padding:.4rem 1.2rem .5rem}
   .er-cal-legend{display:none}
 }
 @media(max-width:768px){
-  .er-cal-topbar{flex-wrap:wrap;gap:.5rem;padding:.7rem 1rem .6rem}
-  .er-cal-topbar-right{width:100%;justify-content:flex-start;gap:.5rem;flex-wrap:wrap}
+  .er-cal-topbar-row1{flex-wrap:wrap;gap:.5rem;padding:.7rem 1rem .6rem}
+  .er-cal-topbar-right{width:100%;justify-content:flex-start;gap:.5rem;flex-wrap:wrap;padding:.5rem 1rem .6rem}
   .er-view-switcher{order:-1}
   .er-hero-top{padding:7rem clamp(1rem,4vw,4rem) 3rem clamp(3rem,6vw,6rem)}
   .er-hero-left{max-width:100%}
@@ -444,45 +445,54 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
 
   /* ── Calendar mobile fixes ── */
 
-  /* Topbar: stack cleanly into rows */
+  /* Topbar: 3 clean rows */
   .er-cal-topbar{
     display:flex;flex-direction:column;
-    gap:.6rem;padding:.8rem 1rem .7rem;
-    align-items:flex-start;
+    gap:0;padding:0;
+    align-items:stretch;
   }
-  /* Row 1: title left, nav right */
-  .er-cal-topbar-left{width:100%}
-  .er-cal-topbar-eyebrow{font-size:.38rem}
-  .er-cal-topbar-title{font-size:.85rem}
-  .er-cal-nav{align-self:flex-start}
-  .er-cal-month-label{font-size:.9rem;min-width:120px}
+
+  /* Row 1: title + month nav on same line */
+  .er-cal-topbar-row1{
+    display:flex;align-items:center;
+    justify-content:space-between;
+    padding:.75rem 1rem .6rem;
+    border-bottom:1px solid rgba(201,165,82,.06);
+  }
+  .er-cal-topbar-left{flex:1;min-width:0}
+  .er-cal-topbar-eyebrow{font-size:.36rem}
+  .er-cal-topbar-title{font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .er-cal-nav{flex-shrink:0;gap:.5rem}
+  .er-cal-month-label{font-size:.82rem;min-width:100px;text-align:center}
+  .er-cal-nav-btn{width:24px;height:24px;font-size:.62rem}
 
   /* Row 2: view switcher + filters — horizontally scrollable */
   .er-cal-topbar-right{
     width:100%;
     display:flex;align-items:center;
-    gap:.4rem;
+    gap:.5rem;
     overflow-x:auto;
     -webkit-overflow-scrolling:touch;
     scrollbar-width:none;
-    padding-bottom:2px;
+    padding:.55rem 1rem;
     flex-wrap:nowrap;
+    border-bottom:1px solid rgba(201,165,82,.06);
   }
   .er-cal-topbar-right::-webkit-scrollbar{display:none}
-  .er-view-switcher{order:0;flex-shrink:0;gap:.8rem}
-  .er-view-sep{height:10px}
-  .er-view-btn{font-size:.38rem;letter-spacing:.2em}
+  .er-view-switcher{flex-shrink:0;gap:.6rem;display:flex;align-items:center}
+  .er-view-sep{width:1px;height:10px;flex-shrink:0}
+  .er-view-btn{font-size:.38rem;letter-spacing:.18em;white-space:nowrap}
   .er-cal-filter{
-    font-size:.36rem;padding:.22rem .55rem;
+    font-size:.36rem;padding:.24rem .58rem;
     white-space:nowrap;flex-shrink:0;
   }
   .er-cal-legend{display:none}
 
   /* Calendar grid — full width, proper sizing */
   .er-cal-grid-wrap{padding:.4rem .8rem .6rem}
-  .er-cal-day-name{font-size:.26rem;letter-spacing:.06em;padding:.25rem 0}
-  .er-cal-date-num{font-size:.52rem;margin-bottom:.18rem}
-  .er-month-col{min-height:44px;padding:.28rem .22rem .2rem}
+  .er-cal-day-name{font-size:.28rem;letter-spacing:.06em;padding:.25rem 0}
+  .er-cal-date-num{font-size:.54rem;margin-bottom:.18rem}
+  .er-month-col{min-height:46px;padding:.28rem .22rem .2rem}
   .er-month-event{padding:.1rem .22rem;margin-bottom:.1rem}
   .er-month-event-name{font-size:.24rem;letter-spacing:.03em}
 
@@ -662,8 +672,8 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
   .pk-btn-outline,.wg-btn-gold,.wg-btn-outline{width:100%;max-width:280px;justify-content:center}
 
   /* Events calendar */
-  .er-cal-topbar{flex-wrap:wrap;padding:.7rem .9rem .6rem}
-  .er-cal-topbar-right{width:100%;gap:.4rem;justify-content:flex-start}
+  .er-cal-topbar-row1{flex-wrap:wrap;padding:.7rem .9rem .6rem}
+  .er-cal-topbar-right{width:100%;gap:.4rem;justify-content:flex-start;padding:.5rem .9rem .6rem}
   .er-view-switcher{order:-1}
   .er-cal-legend{display:none}
   .er-cal-day-name{font-size:.28rem;letter-spacing:.06em}
@@ -832,15 +842,19 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
   <div class="er-annual-cal">
     <div class="er-annual-cal-inner">
       <div class="er-cal-topbar">
-        <div class="er-cal-topbar-left">
-          <span class="er-cal-topbar-eyebrow">This Month at Grotta</span>
-          <span class="er-cal-topbar-title" id="er-cal-title">Curated Gatherings</span>
+        <!-- Row 1: title left + month nav right -->
+        <div class="er-cal-topbar-row1">
+          <div class="er-cal-topbar-left">
+            <span class="er-cal-topbar-eyebrow">This Month at Grotta</span>
+            <span class="er-cal-topbar-title" id="er-cal-title">Curated Gatherings</span>
+          </div>
+          <div class="er-cal-nav" id="er-cal-nav">
+            <button class="er-cal-nav-btn" id="er-cal-prev">‹</button>
+            <span class="er-cal-month-label" id="er-cal-label"></span>
+            <button class="er-cal-nav-btn" id="er-cal-next">›</button>
+          </div>
         </div>
-        <div class="er-cal-nav" id="er-cal-nav">
-          <button class="er-cal-nav-btn" id="er-cal-prev">‹</button>
-          <span class="er-cal-month-label" id="er-cal-label"></span>
-          <button class="er-cal-nav-btn" id="er-cal-next">›</button>
-        </div>
+        <!-- Row 2: view switcher + filters (scrollable on mobile) -->
         <div class="er-cal-topbar-right">
           <div class="er-view-switcher">
             <button class="er-view-btn active" id="er-btn-cal">Calendar</button>
@@ -1256,3 +1270,9 @@ document.querySelectorAll('.er-tl-item').forEach(el=>tlObs.observe(el));
 </script>
 </body>
 </html>
+
+
+
+
+
+
