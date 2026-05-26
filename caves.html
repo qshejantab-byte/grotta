@@ -80,7 +80,6 @@ body {
   padding: 0;
 }
 
-/* Grain overlay for depth texture */
 .cave-journey::before {
   content: '';
   position: fixed;
@@ -91,7 +90,6 @@ body {
   opacity: .6;
 }
 
-/* Scroll-driven depth darkening overlay */
 .depth-overlay {
   position: fixed;
   inset: 0;
@@ -101,7 +99,6 @@ body {
   transition: background .4s ease;
 }
 
-/* Journey intro */
 .journey-intro {
   text-align: center;
   padding: 6rem 2rem 5rem;
@@ -130,12 +127,11 @@ body {
   font-style: italic;
 }
 
-/* Descending line */
 .descent-line {
   width: 1px;
   height: 80px;
   background: linear-gradient(to bottom, rgba(201,165,82,.4), transparent);
-  margin: 0 auto 0;
+  margin: 0 auto;
 }
 
 /* ── Zone blocks ── */
@@ -152,20 +148,16 @@ body {
 }
 .cj-zone.visible { opacity: 1; transform: translateY(0); }
 
-/* Zone backgrounds */
 .cj-zone-a {
-  background: linear-gradient(to bottom,
-    #0f0e0a 0%, #0a0906 50%, #060504 100%);
+  background: linear-gradient(to bottom, #0f0e0a 0%, #0a0906 50%, #060504 100%);
 }
 .cj-zone-b {
-  background: linear-gradient(to bottom,
-    #060504 0%, #0a0804 50%, #070603 100%);
+  background: linear-gradient(to bottom, #060504 0%, #0a0804 50%, #070603 100%);
 }
 .cj-zone-c {
   background: #030302;
 }
 
-/* Full bleed image */
 .cj-bg-img {
   position: absolute;
   inset: 0;
@@ -180,7 +172,6 @@ body {
 .cj-zone:hover .cj-bg-img { opacity: .28; }
 .cj-zone-c:hover .cj-bg-img { opacity: .12; }
 
-/* Fog effect for deep cave */
 .cj-fog {
   position: absolute;
   inset: 0;
@@ -195,7 +186,6 @@ body {
   to   { transform: translateY(-10px) scaleX(1.04); opacity: 1; }
 }
 
-/* Zone content */
 .cj-content {
   position: relative;
   z-index: 5;
@@ -205,7 +195,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Depth indicator */
 .cj-depth {
   display: inline-flex;
   align-items: center;
@@ -225,7 +214,6 @@ body {
   color: rgba(201,165,82,.5);
 }
 
-/* Zone label */
 .cj-zone-label {
   font-family: var(--sans);
   font-size: .58rem;
@@ -250,7 +238,6 @@ body {
   color: rgba(232,224,208,.55);
 }
 
-/* Gold rule */
 .cj-rule {
   width: 2.5rem; height: 1px;
   background: rgba(201,165,82,.3);
@@ -267,7 +254,6 @@ body {
   color: rgba(232,224,208,.3);
 }
 
-/* Use list */
 .cj-uses {
   list-style: none;
   padding: 0;
@@ -293,16 +279,10 @@ body {
   flex-shrink: 0;
 }
 
-/* Zone A — Entry: left side */
 .cj-zone-a .cj-content { margin-left: 0; }
-
-/* Zone B — Main: centered */
 .cj-zone-b .cj-content { margin: 0 auto; }
-
-/* Zone C — Deep: left side */
 .cj-zone-c .cj-content { margin-left: 0; }
 
-/* Coming soon badge for deep cave */
 .cj-soon {
   display: inline-block;
   margin-top: 1.2rem;
@@ -316,7 +296,6 @@ body {
   padding: .35rem 1rem;
 }
 
-/* Vertical zone connector */
 .zone-connector {
   width: 1px;
   height: 60px;
@@ -327,7 +306,7 @@ body {
 }
 
 /* ══════════════════════
-   CAVES SECTION (existing rows)
+   CAVES EXPERIENCES SECTION
 ══════════════════════ */
 .caves-section {
   background: var(--bg);
@@ -335,7 +314,6 @@ body {
   overflow: hidden;
 }
 
-/* Section title for existing rows */
 .caves-section-header {
   text-align: center;
   padding: 5rem 2rem 4rem;
@@ -355,7 +333,6 @@ body {
   letter-spacing: -.01em;
 }
 
-/* Vertical centre-line */
 .centre-line {
   position: absolute;
   left: 50%; top: 0; bottom: 0;
@@ -366,7 +343,6 @@ body {
   display: none;
 }
 
-/* ── EACH ROW ── */
 .cave-row {
   position: relative;
   min-height: 520px;
@@ -435,7 +411,6 @@ body {
   padding-right: 3.5rem;
 }
 
-/* Zone location tag */
 .cave-location-tag {
   display: inline-flex;
   align-items: center;
@@ -496,7 +471,6 @@ body {
   max-height: 8rem; opacity: 1; margin-top: 1.25rem;
 }
 
-/* Updated CTAs */
 .cave-cta {
   display: inline-flex; align-items: center; gap: .6rem;
   margin-top: 1.75rem;
@@ -508,7 +482,6 @@ body {
   padding-bottom: .3rem;
   transition: gap .3s ease, color .3s ease;
 }
-/* Animated underline */
 .cave-cta::after {
   content: '';
   position: absolute;
@@ -525,6 +498,28 @@ body {
 }
 .cave-cta:hover { gap: 1rem; color: rgba(226,201,126,1); }
 .cave-cta:hover svg { transform: translateX(5px); }
+
+/* ── COMING SOON ── */
+.coming-soon {
+  background: var(--bg2);
+  padding: 5rem 6vw;
+  border-top: 1px solid rgba(201,165,82,.1);
+}
+.coming-soon .cs-label {
+  display: inline-block;
+  font-size: .6rem; font-weight: 500;
+  letter-spacing: .25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: .9rem;
+}
+.coming-soon h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300; color: var(--cream); margin-bottom: .75rem;
+}
+.coming-soon p {
+  font-size: .95rem; font-weight: 300;
+  line-height: 1.75; color: var(--muted); max-width: 460px;
+}
 
 /* ── MOBILE ── */
 @media (max-width: 860px) {
@@ -555,7 +550,6 @@ body {
   }
   .cave-dot { display: none !important; }
   .centre-line { display: none !important; }
-
   .cj-zone { min-height: auto; padding: 5rem 0; }
   .cj-content { padding: 3rem 1.8rem; max-width: 100%; }
   .cj-zone-a .cj-content,
@@ -568,96 +562,50 @@ body {
   .cave-dot    { display: block; }
 }
 
-/* ── COMING SOON ── */
-.coming-soon {
-  background: var(--bg2);
-  padding: 5rem 6vw;
-  border-top: 1px solid rgba(201,165,82,.1);
-}
-.coming-soon .cs-label {
-  display: inline-block;
-  font-size: .6rem; font-weight: 500;
-  letter-spacing: .25em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: .9rem;
-}
-.coming-soon h2 {
-  font-family: var(--serif);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 300; color: var(--cream); margin-bottom: .75rem;
-}
-.coming-soon p {
-  font-size: .95rem; font-weight: 300;
-  line-height: 1.75; color: var(--muted); max-width: 460px;
-}
-
 /* ══════════════════════════════════════════════════════════
    GROTTA — GLOBAL RESPONSIVE SYSTEM
-   Breakpoints: 1400 | 1100 | 900 | 768 | 600 | 480 | 380
 ══════════════════════════════════════════════════════════ */
-
-/* ── Ultra-wide: prevent over-stretching ── */
 @media(min-width:1600px){
   .hp-hero-content,.hp-section-header,
   .hp-what-inner,.pk-intro-inner,
   .er-hero-top,.er-featured-content,
   .er-timeline-inner{max-width:1400px;margin-left:auto;margin-right:auto}
 }
-
-/* ── Large desktop 1100px ── */
 @media(max-width:1100px){
-  /* Typography */
   h1,h2{letter-spacing:-.02em}
-  /* Chapters */
   .hp-ch-content{grid-template-columns:1fr!important;gap:2.5rem;padding:5rem 5vw}
   .hp-ch-content.right{direction:ltr!important}
   .hp-ch-img-wrap{height:clamp(260px,40vw,420px);transform:none!important}
   .hp-ch-num{font-size:clamp(5rem,10vw,9rem)}
-  /* Cave section */
   .hp-cave-content{max-width:100%;padding:4rem 5vw}
-  /* Weddings */
   .wg-pkg-grid{grid-template-columns:1fr 1fr!important}
   .wg-hero-h1{font-size:clamp(3rem,6vw,6rem)}
 }
-
-/* ── Tablet 900px ── */
 @media(max-width:900px){
-  /* Global section padding */
   section,.er-season,.er-atmosphere,.er-timeline,
   .er-testimonials,.er-private,.er-featured,
   .pk-intro,.pk-inclusions,.pk-rhythm,
   .hp-packages,.hp-rooms,.hp-what{padding:5rem 0}
-
-  /* Hero sections */
   .hp-hero{min-height:100svh}
   .er-hero{min-height:100svh}
   .hp-hero-content{padding:0 5vw;margin-bottom:220px}
   .hp-hero-content h1{font-size:clamp(2.4rem,8vw,4rem)}
   .hp-hero-content p{font-size:clamp(.85rem,2.5vw,1rem)}
-
-  /* Booking bar */
   .booking-bar{width:96vw;flex-wrap:wrap;height:auto;bottom:0}
   .bb-field{flex:1 1 45%;height:52px;border-right:none;border-bottom:1px solid rgba(201,165,82,.1)}
   .bb-book{flex:1 1 100%;height:48px}
-
-  /* Cards & grids */
   .hp-packages-grid{grid-template-columns:1fr}
   .hp-rooms-grid{grid-template-columns:1fr 1fr}
   .hp-pkg-card{min-height:320px}
-
-  /* Events */
   .er-event{grid-template-columns:1fr!important;direction:ltr!important}
   .er-event-img{height:280px}
   .er-event-img-fade{display:none}
   .er-event-body{padding:2rem 1.5rem}
   .er-featured-content{grid-template-columns:1fr!important;padding:5rem 5vw;gap:3rem}
-
-  /* Atmosphere gallery */
   .er-atm-grid{grid-template-columns:1fr 1fr!important;grid-template-rows:auto!important}
   .er-atm-item{height:220px!important}
   .er-atm-item:nth-child(1){grid-row:auto!important;grid-column:1/-1!important;height:280px!important}
   .er-atm-item:nth-child(5){grid-column:auto!important}
-
-  /* Packages */
   .pk-panel{grid-template-columns:1fr!important;direction:ltr!important}
   .pk-panel.rev{direction:ltr!important}
   .pk-panel-img{height:280px}
@@ -668,97 +616,60 @@ body {
   .pk-inc-split{grid-template-columns:1fr!important;gap:1.5rem}
   .pk-gallery-grid{grid-template-columns:1fr 1fr!important}
   .pk-testi-grid{grid-template-columns:1fr!important}
-
-  /* Stay */
   .rc-wrap,.rc-wrap.rc-reversed{flex-direction:column!important;width:96%!important}
   .rc-img{width:100%!important;height:260px!important}
   .rc-panel{margin:0!important;padding:2rem 1.5rem!important}
   .rc-ctas{flex-direction:column;gap:.5rem}
   .rc-details-btn,.rc-book{width:100%;justify-content:center;text-align:center}
   [style*="repeat(6,1fr)"]{grid-template-columns:repeat(3,1fr)!important}
-
-  /* Weddings */
   .wg-pkg-grid{grid-template-columns:1fr!important}
   .wg-hero-h1{font-size:clamp(2.8rem,7vw,5rem)}
   .wg-why-grid{grid-template-columns:1fr 1fr!important}
-
-  /* Membership */
   .mb-hero-h1{font-size:clamp(2.8rem,7vw,5rem)}
   .mb-tiers-grid{grid-template-columns:1fr!important}
-
-  /* Caves */
   .cv-featured{grid-template-columns:1fr!important}
   .cv-gallery-grid{grid-template-columns:1fr 1fr!important}
-
-  /* Nav */
   .nav-links{display:none}
   .hamburger{display:flex}
 }
-
-/* ── Mobile 600px ── */
 @media(max-width:600px){
-  /* Global */
   body{overflow-x:hidden}
-
-  /* Section padding */
   section,.er-season,.er-atmosphere,.er-timeline,
   .er-testimonials,.er-private,.er-featured,
   .pk-intro,.pk-inclusions,.pk-rhythm,
   .hp-packages,.hp-rooms,.hp-what{padding:4rem 0}
-
-  /* Typography — fluid */
   .hp-hero-content h1{font-size:clamp(2rem,9vw,3.2rem);line-height:1.1}
   .er-hero-h1{font-size:clamp(2.8rem,11vw,4.5rem)!important}
   .hp-cave-h2,.er-final-h2,.er-private-h2,
   .pk-intro-h2,.wg-hero-h1,.mb-hero-h1{font-size:clamp(2.2rem,8vw,3.5rem)!important}
   .er-featured-h2,.er-season-h2{font-size:clamp(2rem,7vw,3rem)!important}
   .hp-ch-title{font-size:clamp(2.2rem,8vw,3.2rem)!important}
-
-  /* Hero */
   .hp-hero-content{margin-bottom:300px;padding:0 5vw}
   .hp-hero-ctas{flex-direction:column;align-items:center;width:100%}
   .hp-btn-primary,.hp-btn-secondary{width:100%;max-width:280px;justify-content:center;text-align:center}
-
-  /* Booking bar — fully stacked */
   .booking-bar{width:100%;flex-direction:column;border-radius:0;bottom:0}
   .bb-field{flex:1 1 100%;height:52px;border-right:none;border-bottom:1px solid rgba(201,165,82,.1);padding:0 1.2rem}
   .bb-book{width:100%;height:52px;border-radius:0;font-size:.62rem}
-
-  /* Chapters */
   .hp-ch{min-height:auto!important}
   .hp-ch-content{padding:4rem 5vw!important;gap:2rem!important}
   .hp-ch-img-wrap{height:240px!important}
   .hp-ch-glow{display:none}
-
-  /* Experience header */
   .hp-exp-header-clean{padding:5rem 5vw 3rem}
   .hp-exp-header-clean h2{font-size:clamp(2rem,7vw,3rem)}
-
-  /* Nav panel packages */
   .pk-nav-panel-inner{grid-template-columns:1fr!important;padding-top:0}
   .pk-guest-toggle{position:static;transform:none;margin:.8rem 1rem;width:auto}
   .pk-hero-right{flex-wrap:wrap!important;border-top:1px solid rgba(201,165,82,.08);padding:1rem}
-
-  /* Stay inclusions */
   [style*="repeat(6,1fr)"]{grid-template-columns:repeat(2,1fr)!important}
   [style*="repeat(3,1fr)"]{grid-template-columns:1fr!important}
-
-  /* Rooms grid */
   .hp-rooms-grid{grid-template-columns:1fr!important}
-
-  /* Forms */
   .pk-form{padding:1.8rem 1.2rem}
   .pk-form-row{grid-template-columns:1fr!important}
   .mb-form{padding:1.8rem 1.2rem}
-
-  /* CTA rows */
   .er-final-ctas,.er-hero-ctas,.er-private-ctas,
   .pk-final-ctas,.wg-final-ctas,.hp-final-ctas,
   .er-featured-left>div,.pk-hero-ctas{flex-direction:column!important;align-items:center!important}
   .er-btn-gold,.er-btn-outline,.pk-btn-gold,
   .pk-btn-outline,.wg-btn-gold,.wg-btn-outline{width:100%;max-width:280px;justify-content:center}
-
-  /* Events calendar */
   .er-cal-topbar{flex-wrap:wrap;padding:.7rem .9rem .6rem}
   .er-cal-topbar-right{width:100%;gap:.4rem;justify-content:flex-start}
   .er-view-switcher{order:-1}
@@ -770,33 +681,21 @@ body {
   .er-sv-item{grid-template-columns:68px 1px 1fr!important;gap:0 1rem!important;padding:1.2rem 0}
   .er-sv-day{font-size:1.2rem}
   .er-sv-desc{display:none}
-
-  /* Dining modal */
   .menu-modal{border-radius:2px 2px 0 0;border-bottom:none}
   .menu-modal-body{padding:1.2rem 1.2rem 2rem}
   .menu-modal-header{padding:1.2rem 1.2rem .9rem}
-
-  /* Membership modal */
   .mb-modal{max-width:100%;margin:0;border-radius:2px 2px 0 0;border-bottom:none}
-
-  /* Footer */
   .footer-grid{grid-template-columns:1fr!important;gap:2rem}
   .footer-bottom{flex-direction:column;gap:.8rem;align-items:flex-start}
   .footer-legal{flex-wrap:wrap;gap:1rem}
-
-  /* Section headers */
   .er-season-header,.er-atm-header{grid-template-columns:1fr!important}
   .er-tl-item{grid-template-columns:1fr!important;gap:.6rem}
   .er-testi-grid{grid-template-columns:1fr!important}
-
-  /* Weddings */
   .wg-why-grid{grid-template-columns:1fr!important}
   .wg-pkg-grid{grid-template-columns:1fr!important}
   .wg-private-types{flex-direction:column!important}
   .wg-testi-grid{grid-template-columns:1fr!important}
 }
-
-/* ── Small phones 480px ── */
 @media(max-width:480px){
   .hp-hero-content h1{font-size:clamp(1.9rem,9vw,2.8rem)}
   .hp-hero-content{margin-bottom:340px}
@@ -813,8 +712,6 @@ body {
   .er-month-tooltip{display:none}
   .booking-bar .bb-label{display:none}
 }
-
-/* ── Very small phones 380px ── */
 @media(max-width:380px){
   .hp-hero-content h1{font-size:clamp(1.7rem,9vw,2.4rem)}
   .hp-hero-content{margin-bottom:380px}
@@ -824,16 +721,12 @@ body {
   .hp-ch-content{padding:3rem 4vw!important}
   .er-cal-filter{font-size:.34rem;padding:.18rem .4rem}
 }
-
-/* ── Landscape phones ── */
 @media(max-width:900px) and (orientation:landscape){
   .hp-hero{min-height:100vw}
   .er-hero{min-height:100vw}
   .hp-hero-content{margin-bottom:160px}
   .hp-hero-content h1{font-size:clamp(2rem,6vw,3rem)}
 }
-
-/* ── Touch: larger tap targets ── */
 @media(hover:none){
   .nav-links a,.footer-col a,.er-cal-filter,
   .pk-guest-btn,.er-view-btn,.pk-nav-item{
@@ -843,19 +736,16 @@ body {
   .er-btn-outline,.pk-btn-gold,.pk-btn-outline,
   .wg-btn-gold{min-height:52px}
 }
-
 </style>
 </head>
 <body>
 
-<!-- Depth overlay — darkens on scroll via JS -->
 <div class="depth-overlay" id="depth-overlay"></div>
-
 <div id="nav-holder"></div>
 
 <!-- ── HERO ── -->
 <div class="page-hero">
-  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1600&q=80')"></div>
+  <div class="page-hero-bg" style="background-image:url('images/AV7I2003.jpg')"></div>
   <div class="page-hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-label">Underground</span>
@@ -867,7 +757,6 @@ body {
 <!-- ══ CAVE JOURNEY ══ -->
 <div class="cave-journey">
 
-  <!-- Intro -->
   <div class="journey-intro fade-up">
     <span class="hero-label">The Cave Journey</span>
     <h2>A Descent Into<br>Silence</h2>
@@ -879,7 +768,7 @@ body {
   <!-- Zone A: Entry Chamber -->
   <div class="zone-connector"></div>
   <div class="cj-zone cj-zone-a" id="zone-a">
-    <div class="cj-bg-img" style="background-image:url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1200&q=80')"></div>
+    <div class="cj-bg-img" style="background-image:url('images/AV7I2009.jpg')"></div>
     <div class="cj-content">
       <div class="cj-depth">
         <div class="cj-depth-line"></div>
@@ -901,7 +790,7 @@ body {
   <!-- Zone B: Main Chamber -->
   <div class="zone-connector"></div>
   <div class="cj-zone cj-zone-b" id="zone-b">
-    <div class="cj-bg-img" style="background-image:url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=80')"></div>
+    <div class="cj-bg-img" style="background-image:url('images/AV7I1986.jpg')"></div>
     <div class="cj-content">
       <div class="cj-depth">
         <div class="cj-depth-line"></div>
@@ -923,7 +812,7 @@ body {
   <!-- Zone C: Deep Cave -->
   <div class="zone-connector"></div>
   <div class="cj-zone cj-zone-c" id="zone-c">
-    <div class="cj-bg-img" style="background-image:url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&q=80')"></div>
+    <div class="cj-bg-img" style="background-image:url('images/AV7I5710.jpg')"></div>
     <div class="cj-fog"></div>
     <div class="cj-content">
       <div class="cj-depth">
@@ -943,7 +832,7 @@ body {
 
 </div>
 
-<!-- ══ CAVE EXPERIENCES (existing rows) ══ -->
+<!-- ══ CAVE EXPERIENCES ══ -->
 <div class="caves-section">
   <div class="centre-line"></div>
 
@@ -955,7 +844,7 @@ body {
   <!-- Row 1 — Scenic Cave Walk -->
   <div class="cave-row left">
     <div class="cave-img-panel">
-      <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" alt="Scenic Cave Walk">
+      <img src="images/AV7I3495.jpg" alt="Scenic Cave Walk">
       <div class="depth-badge">Depth: 50M</div>
     </div>
     <div class="cave-dot"></div>
@@ -982,7 +871,7 @@ body {
   <!-- Row 2 — Adventure Route -->
   <div class="cave-row right">
     <div class="cave-img-panel">
-      <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&q=80" alt="Adventure Route">
+      <img src="images/AV7I3935.jpg" alt="Adventure Route">
       <div class="depth-badge">Depth: 120M</div>
     </div>
     <div class="cave-dot"></div>
@@ -1009,7 +898,7 @@ body {
   <!-- Row 3 — Cave Café -->
   <div class="cave-row left">
     <div class="cave-img-panel">
-      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80" alt="Cave Café">
+      <img src="images/AV7I5521.jpg" alt="Cave Café">
       <div class="depth-badge">Depth: Surface</div>
     </div>
     <div class="cave-dot"></div>
@@ -1046,25 +935,20 @@ body {
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 <script>
-// ── Scroll-driven depth darkening ─────────────────────────────
 const depthOverlay = document.getElementById('depth-overlay');
 const journeyTop   = document.querySelector('.cave-journey');
-const zoneC        = document.getElementById('zone-c');
 
 function updateDepth() {
   if (!journeyTop) return;
   const scrollY  = window.scrollY;
   const pageH    = document.body.scrollHeight - window.innerHeight;
   const progress = Math.min(scrollY / pageH, 1);
-
-  // Gradually darken from 0 to rgba(4,3,2,0.38) as user scrolls
   const darkness = Math.min(progress * 0.42, 0.38);
   depthOverlay.style.background = `rgba(4,3,2,${darkness})`;
 }
 window.addEventListener('scroll', updateDepth, { passive: true });
 updateDepth();
 
-// ── Scroll reveal for cave journey zones ─────────────────────
 const zoneObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
