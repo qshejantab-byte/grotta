@@ -423,84 +423,168 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
   .er-private-types{flex-direction:column;max-width:280px}
   .er-tl-item{grid-template-columns:1fr;gap:.7rem}
   .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
-  /* Calendar inner on tablet */
   .er-annual-cal-inner{overflow:hidden}
   .er-cal-grid-wrap{padding:.5rem 1rem .7rem}
 }
+
+/* ══════════════════════════════════════════════
+   MOBILE CALENDAR — Full Rebuild for phones
+   Hero becomes a normal block; calendar lives
+   below it as its own section, fully contained.
+══════════════════════════════════════════════ */
 @media(max-width:600px){
-  .er-hero-h1{font-size:clamp(3.2rem,12vw,5.5rem)}
-  .er-hero-top{padding:6rem 5vw 3rem 4.5rem!important}
+
+  /* ── Hero: break out of grid ── */
+  .er-hero{
+    display:block;
+    height:auto;
+    min-height:0;
+    overflow:visible;
+  }
+  .er-hero-top{
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    min-height:100svh;
+    padding:5rem 5vw 3rem 5vw!important;
+    box-sizing:border-box;
+  }
   .er-hero-left{max-width:100%!important}
-  .er-hero-sub{max-width:90%!important}
-  .er-hero-line{left:1.2rem}
-  .er-atm-grid{grid-template-columns:1fr}
-  .er-atm-item{height:220px!important;grid-column:auto!important;grid-row:auto!important}
-  .er-sv-item{grid-template-columns:68px 1px 1fr;gap:0 1.1rem;padding:1.3rem 0}
-  .er-sv-day{font-size:1.25rem}
-  .er-sv-name{font-size:.92rem}
-  .er-sv-desc{display:none}
-  .er-final-ctas,.er-hero-ctas,.er-private-ctas{flex-direction:column;align-items:center}
-  .footer-grid{grid-template-columns:1fr}
-  .footer-bottom{flex-direction:column}
-
-  /* ── Calendar mobile fixes ── */
-
-  /* Topbar: 3 clean rows */
-  .er-cal-topbar{
-    display:flex;flex-direction:column;
-    gap:0;padding:0;
-    align-items:stretch;
+  .er-hero-h1{font-size:clamp(3rem,12vw,5rem)!important}
+  .er-hero-sub{max-width:100%!important;font-size:clamp(.82rem,3.5vw,.95rem)}
+  .er-hero-line{display:none}
+  .er-hero-scroll{display:none}
+  .er-hero-ctas{flex-direction:column;align-items:stretch;gap:.7rem}
+  .er-btn-gold,.er-btn-outline{
+    width:100%;justify-content:center;
+    padding:.95rem 1.5rem;font-size:.6rem;
   }
 
-  /* Row 1: title + month nav on same line */
+  /* ── Calendar: standalone block, fully contained ── */
+  .er-annual-cal{
+    grid-row:unset;
+    position:relative;
+    display:block;
+    width:100%;
+    max-width:100vw;
+    overflow:hidden;
+    box-sizing:border-box;
+  }
+  .er-annual-cal-inner{
+    width:100%;
+    max-width:100%;
+    overflow:hidden;
+    box-sizing:border-box;
+    border-left:none;
+    border-right:none;
+  }
+
+  /* ── Topbar Row 1: title LEFT, nav arrows RIGHT ── */
+  .er-cal-topbar{
+    display:flex;flex-direction:column;gap:0;padding:0;
+  }
   .er-cal-topbar-row1{
     display:flex;align-items:center;
     justify-content:space-between;
-    padding:.75rem 1rem .6rem;
-    border-bottom:1px solid rgba(201,165,82,.06);
+    gap:.4rem;
+    padding:.8rem 4vw .65rem;
+    border-bottom:1px solid rgba(201,165,82,.07);
+    flex-wrap:nowrap;
   }
-  .er-cal-topbar-left{flex:1;min-width:0}
-  .er-cal-topbar-eyebrow{font-size:.36rem}
-  .er-cal-topbar-title{font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .er-cal-nav{flex-shrink:0;gap:.5rem}
-  .er-cal-month-label{font-size:.82rem;min-width:100px;text-align:center}
-  .er-cal-nav-btn{width:24px;height:24px;font-size:.62rem}
+  .er-cal-topbar-left{flex:1;min-width:0;overflow:hidden}
+  .er-cal-topbar-eyebrow{font-size:clamp(.28rem,2.2vw,.38rem);letter-spacing:.26em;display:block;margin-bottom:.12rem}
+  .er-cal-topbar-title{font-size:clamp(.68rem,3.6vw,.9rem);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+  .er-cal-nav{flex-shrink:0;display:flex;align-items:center;gap:.4rem}
+  .er-cal-nav-btn{width:28px;height:28px;font-size:.72rem;flex-shrink:0}
+  .er-cal-month-label{font-size:clamp(.68rem,3.4vw,.88rem);min-width:clamp(68px,21vw,105px);text-align:center;white-space:nowrap}
 
-  /* Row 2: view switcher + filters — horizontally scrollable */
+  /* ── Topbar Row 2: scrollable filters ── */
   .er-cal-topbar-right{
-    width:100%;
     display:flex;align-items:center;
-    gap:.5rem;
+    gap:.45rem;
+    padding:.5rem 4vw .5rem;
     overflow-x:auto;
     -webkit-overflow-scrolling:touch;
     scrollbar-width:none;
-    padding:.55rem 1rem;
     flex-wrap:nowrap;
-    border-bottom:1px solid rgba(201,165,82,.06);
+    width:100%;
+    border-bottom:1px solid rgba(201,165,82,.07);
+    box-sizing:border-box;
   }
   .er-cal-topbar-right::-webkit-scrollbar{display:none}
-  .er-view-switcher{flex-shrink:0;gap:.6rem;display:flex;align-items:center}
-  .er-view-sep{width:1px;height:10px;flex-shrink:0}
-  .er-view-btn{font-size:.38rem;letter-spacing:.18em;white-space:nowrap}
+  .er-view-switcher{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+  .er-view-sep{width:1px;height:10px;flex-shrink:0;background:rgba(201,165,82,.15)}
+  .er-view-btn{font-size:clamp(.28rem,2.5vw,.4rem);letter-spacing:.18em;white-space:nowrap;padding:.12rem 0;flex-shrink:0}
   .er-cal-filter{
-    font-size:.36rem;padding:.24rem .58rem;
-    white-space:nowrap;flex-shrink:0;
+    font-size:clamp(.28rem,2.5vw,.38rem);letter-spacing:.13em;
+    padding:.3rem .6rem;white-space:nowrap;flex-shrink:0;
+    min-height:28px;display:flex;align-items:center;
   }
   .er-cal-legend{display:none}
 
-  /* Calendar grid — full width, proper sizing */
-  .er-cal-grid-wrap{padding:.4rem .8rem .6rem}
-  .er-cal-day-name{font-size:.28rem;letter-spacing:.06em;padding:.25rem 0}
-  .er-cal-date-num{font-size:.54rem;margin-bottom:.18rem}
-  .er-month-col{min-height:46px;padding:.28rem .22rem .2rem}
-  .er-month-event{padding:.1rem .22rem;margin-bottom:.1rem}
-  .er-month-event-name{font-size:.24rem;letter-spacing:.03em}
+  /* ── Calendar grid — proportional, no overflow ── */
+  .er-cal-grid-wrap{
+    padding:.45rem 2vw .55rem;
+    width:100%;box-sizing:border-box;overflow:hidden;
+  }
+  .er-cal-days{
+    display:grid;grid-template-columns:repeat(7,1fr);
+    gap:1px;margin-bottom:1px;width:100%;
+  }
+  .er-cal-day-name{
+    font-size:clamp(.2rem,2vw,.3rem);
+    letter-spacing:.04em;padding:.28rem 0;text-align:center;
+  }
+  .er-months-grid{
+    display:grid;grid-template-columns:repeat(7,1fr);
+    gap:1px;width:100%;
+  }
+  .er-month-col{
+    min-height:clamp(36px,9.5vw,50px);
+    padding:clamp(.15rem,.9vw,.28rem) clamp(.08rem,.6vw,.18rem) .12rem;
+    overflow:hidden;box-sizing:border-box;
+    border:1px solid transparent;
+  }
+  .er-cal-date-num{
+    font-size:clamp(.42rem,2.7vw,.6rem);
+    margin-bottom:.1rem;display:block;line-height:1;
+  }
+  .er-month-event{
+    padding:.07rem .12rem;margin-bottom:.07rem;border-left-width:1.5px;
+  }
+  .er-month-event-name{
+    font-size:clamp(.16rem,1.7vw,.24rem);
+    letter-spacing:.02em;white-space:nowrap;
+    overflow:hidden;text-overflow:ellipsis;display:block;
+  }
+  .er-month-col.is-current::after{width:3px;height:3px;bottom:.18rem}
+  .er-month-tooltip{display:none!important}
 
-  /* Tooltip — disable on mobile (too cramped) */
-  .er-month-tooltip{display:none}
+  /* ── Season view mobile ── */
+  .er-season-view{padding:1.1rem 4vw .8rem}
+  .er-sv-item{grid-template-columns:54px 1px 1fr;gap:0 .85rem;padding:1rem 0}
+  .er-sv-day{font-size:1.05rem}
+  .er-sv-name{font-size:.88rem}
+  .er-sv-desc{display:none}
 
-  /* Scroll hint — hide (it's bleeding into calendar) */
-  .er-hero-scroll{display:none}
+  /* ── Rest of 600px rules ── */
+  .er-atm-grid{grid-template-columns:1fr}
+  .er-atm-item{height:220px!important;grid-column:auto!important;grid-row:auto!important}
+  .er-final-ctas,.er-private-ctas{flex-direction:column;align-items:center}
+  .er-season-header,.er-atm-header{grid-template-columns:1fr!important}
+  .er-tl-item{grid-template-columns:1fr!important;gap:.6rem}
+  .er-testi-grid{grid-template-columns:1fr!important}
+  .wg-why-grid{grid-template-columns:1fr!important}
+  .wg-pkg-grid{grid-template-columns:1fr!important}
+  .wg-private-types{flex-direction:column!important}
+  .wg-testi-grid{grid-template-columns:1fr!important}
+  .menu-modal{border-radius:2px 2px 0 0;border-bottom:none}
+  .menu-modal-body{padding:1.2rem 1.2rem 2rem}
+  .menu-modal-header{padding:1.2rem 1.2rem .9rem}
+  .mb-modal{max-width:100%;margin:0;border-radius:2px 2px 0 0;border-bottom:none}
+  .footer-grid{grid-template-columns:1fr!important;gap:2rem}
+  .footer-bottom{flex-direction:column;gap:.8rem;align-items:flex-start}
+  .footer-legal{flex-wrap:wrap;gap:1rem}
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -518,59 +602,42 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
 
 /* ── Large desktop 1100px ── */
 @media(max-width:1100px){
-  /* Typography */
   h1,h2{letter-spacing:-.02em}
-  /* Chapters */
   .hp-ch-content{grid-template-columns:1fr!important;gap:2.5rem;padding:5rem 5vw}
   .hp-ch-content.right{direction:ltr!important}
   .hp-ch-img-wrap{height:clamp(260px,40vw,420px);transform:none!important}
   .hp-ch-num{font-size:clamp(5rem,10vw,9rem)}
-  /* Cave section */
   .hp-cave-content{max-width:100%;padding:4rem 5vw}
-  /* Weddings */
   .wg-pkg-grid{grid-template-columns:1fr 1fr!important}
   .wg-hero-h1{font-size:clamp(3rem,6vw,6rem)}
 }
 
 /* ── Tablet 900px ── */
 @media(max-width:900px){
-  /* Global section padding */
   section,.er-season,.er-atmosphere,.er-timeline,
   .er-testimonials,.er-private,.er-featured,
   .pk-intro,.pk-inclusions,.pk-rhythm,
   .hp-packages,.hp-rooms,.hp-what{padding:5rem 0}
-
-  /* Hero sections */
   .hp-hero{min-height:100svh}
   .er-hero{min-height:100svh}
   .hp-hero-content{padding:0 5vw;margin-bottom:220px}
   .hp-hero-content h1{font-size:clamp(2.4rem,8vw,4rem)}
   .hp-hero-content p{font-size:clamp(.85rem,2.5vw,1rem)}
-
-  /* Booking bar */
   .booking-bar{width:96vw;flex-wrap:wrap;height:auto;bottom:0}
   .bb-field{flex:1 1 45%;height:52px;border-right:none;border-bottom:1px solid rgba(201,165,82,.1)}
   .bb-book{flex:1 1 100%;height:48px}
-
-  /* Cards & grids */
   .hp-packages-grid{grid-template-columns:1fr}
   .hp-rooms-grid{grid-template-columns:1fr 1fr}
   .hp-pkg-card{min-height:320px}
-
-  /* Events */
   .er-event{grid-template-columns:1fr!important;direction:ltr!important}
   .er-event-img{height:280px}
   .er-event-img-fade{display:none}
   .er-event-body{padding:2rem 1.5rem}
   .er-featured-content{grid-template-columns:1fr!important;padding:5rem 5vw;gap:3rem}
-
-  /* Atmosphere gallery */
   .er-atm-grid{grid-template-columns:1fr 1fr!important;grid-template-rows:auto!important}
   .er-atm-item{height:220px!important}
   .er-atm-item:nth-child(1){grid-row:auto!important;grid-column:1/-1!important;height:280px!important}
   .er-atm-item:nth-child(5){grid-column:auto!important}
-
-  /* Packages */
   .pk-panel{grid-template-columns:1fr!important;direction:ltr!important}
   .pk-panel.rev{direction:ltr!important}
   .pk-panel-img{height:280px}
@@ -581,132 +648,60 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
   .pk-inc-split{grid-template-columns:1fr!important;gap:1.5rem}
   .pk-gallery-grid{grid-template-columns:1fr 1fr!important}
   .pk-testi-grid{grid-template-columns:1fr!important}
-
-  /* Stay */
   .rc-wrap,.rc-wrap.rc-reversed{flex-direction:column!important;width:96%!important}
   .rc-img{width:100%!important;height:260px!important}
   .rc-panel{margin:0!important;padding:2rem 1.5rem!important}
   .rc-ctas{flex-direction:column;gap:.5rem}
   .rc-details-btn,.rc-book{width:100%;justify-content:center;text-align:center}
   [style*="repeat(6,1fr)"]{grid-template-columns:repeat(3,1fr)!important}
-
-  /* Weddings */
   .wg-pkg-grid{grid-template-columns:1fr!important}
   .wg-hero-h1{font-size:clamp(2.8rem,7vw,5rem)}
   .wg-why-grid{grid-template-columns:1fr 1fr!important}
-
-  /* Membership */
   .mb-hero-h1{font-size:clamp(2.8rem,7vw,5rem)}
   .mb-tiers-grid{grid-template-columns:1fr!important}
-
-  /* Caves */
   .cv-featured{grid-template-columns:1fr!important}
   .cv-gallery-grid{grid-template-columns:1fr 1fr!important}
-
-  /* Nav */
   .nav-links{display:none}
   .hamburger{display:flex}
 }
 
 /* ── Mobile 600px ── */
 @media(max-width:600px){
-  /* Global */
   body{overflow-x:hidden}
-
-  /* Section padding */
   section,.er-season,.er-atmosphere,.er-timeline,
   .er-testimonials,.er-private,.er-featured,
   .pk-intro,.pk-inclusions,.pk-rhythm,
   .hp-packages,.hp-rooms,.hp-what{padding:4rem 0}
-
-  /* Typography — fluid */
   .hp-hero-content h1{font-size:clamp(2rem,9vw,3.2rem);line-height:1.1}
-  .er-hero-h1{font-size:clamp(2.8rem,11vw,4.5rem)!important}
   .hp-cave-h2,.er-final-h2,.er-private-h2,
   .pk-intro-h2,.wg-hero-h1,.mb-hero-h1{font-size:clamp(2.2rem,8vw,3.5rem)!important}
   .er-featured-h2,.er-season-h2{font-size:clamp(2rem,7vw,3rem)!important}
   .hp-ch-title{font-size:clamp(2.2rem,8vw,3.2rem)!important}
-
-  /* Hero */
   .hp-hero-content{margin-bottom:300px;padding:0 5vw}
   .hp-hero-ctas{flex-direction:column;align-items:center;width:100%}
   .hp-btn-primary,.hp-btn-secondary{width:100%;max-width:280px;justify-content:center;text-align:center}
-
-  /* Booking bar — fully stacked */
   .booking-bar{width:100%;flex-direction:column;border-radius:0;bottom:0}
   .bb-field{flex:1 1 100%;height:52px;border-right:none;border-bottom:1px solid rgba(201,165,82,.1);padding:0 1.2rem}
   .bb-book{width:100%;height:52px;border-radius:0;font-size:.62rem}
-
-  /* Chapters */
   .hp-ch{min-height:auto!important}
   .hp-ch-content{padding:4rem 5vw!important;gap:2rem!important}
   .hp-ch-img-wrap{height:240px!important}
   .hp-ch-glow{display:none}
-
-  /* Experience header */
   .hp-exp-header-clean{padding:5rem 5vw 3rem}
   .hp-exp-header-clean h2{font-size:clamp(2rem,7vw,3rem)}
-
-  /* Nav panel packages */
   .pk-nav-panel-inner{grid-template-columns:1fr!important;padding-top:0}
   .pk-guest-toggle{position:static;transform:none;margin:.8rem 1rem;width:auto}
   .pk-hero-right{flex-wrap:wrap!important;border-top:1px solid rgba(201,165,82,.08);padding:1rem}
-
-  /* Stay inclusions */
   [style*="repeat(6,1fr)"]{grid-template-columns:repeat(2,1fr)!important}
   [style*="repeat(3,1fr)"]{grid-template-columns:1fr!important}
-
-  /* Rooms grid */
   .hp-rooms-grid{grid-template-columns:1fr!important}
-
-  /* Forms */
   .pk-form{padding:1.8rem 1.2rem}
   .pk-form-row{grid-template-columns:1fr!important}
   .mb-form{padding:1.8rem 1.2rem}
-
-  /* CTA rows */
-  .er-final-ctas,.er-hero-ctas,.er-private-ctas,
-  .pk-final-ctas,.wg-final-ctas,.hp-final-ctas,
+  .er-final-ctas,.pk-final-ctas,.wg-final-ctas,.hp-final-ctas,
   .er-featured-left>div,.pk-hero-ctas{flex-direction:column!important;align-items:center!important}
   .er-btn-gold,.er-btn-outline,.pk-btn-gold,
   .pk-btn-outline,.wg-btn-gold,.wg-btn-outline{width:100%;max-width:280px;justify-content:center}
-
-  /* Events calendar */
-  .er-cal-topbar-row1{flex-wrap:wrap;padding:.7rem .9rem .6rem}
-  .er-cal-topbar-right{width:100%;gap:.4rem;justify-content:flex-start;padding:.5rem .9rem .6rem}
-  .er-view-switcher{order:-1}
-  .er-cal-legend{display:none}
-  .er-cal-day-name{font-size:.28rem;letter-spacing:.06em}
-  .er-cal-date-num{font-size:.58rem}
-  .er-month-col{min-height:50px}
-  .er-month-event-name{font-size:.26rem}
-  .er-sv-item{grid-template-columns:68px 1px 1fr!important;gap:0 1rem!important;padding:1.2rem 0}
-  .er-sv-day{font-size:1.2rem}
-  .er-sv-desc{display:none}
-
-  /* Dining modal */
-  .menu-modal{border-radius:2px 2px 0 0;border-bottom:none}
-  .menu-modal-body{padding:1.2rem 1.2rem 2rem}
-  .menu-modal-header{padding:1.2rem 1.2rem .9rem}
-
-  /* Membership modal */
-  .mb-modal{max-width:100%;margin:0;border-radius:2px 2px 0 0;border-bottom:none}
-
-  /* Footer */
-  .footer-grid{grid-template-columns:1fr!important;gap:2rem}
-  .footer-bottom{flex-direction:column;gap:.8rem;align-items:flex-start}
-  .footer-legal{flex-wrap:wrap;gap:1rem}
-
-  /* Section headers */
-  .er-season-header,.er-atm-header{grid-template-columns:1fr!important}
-  .er-tl-item{grid-template-columns:1fr!important;gap:.6rem}
-  .er-testi-grid{grid-template-columns:1fr!important}
-
-  /* Weddings */
-  .wg-why-grid{grid-template-columns:1fr!important}
-  .wg-pkg-grid{grid-template-columns:1fr!important}
-  .wg-private-types{flex-direction:column!important}
-  .wg-testi-grid{grid-template-columns:1fr!important}
 }
 
 /* ── Small phones 480px ── */
@@ -735,7 +730,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
   .navbar{padding:0 4vw}
   .grotta-wordmark{font-size:1.1rem!important}
   .hp-ch-content{padding:3rem 4vw!important}
-  .er-cal-filter{font-size:.34rem;padding:.18rem .4rem}
+  .er-cal-filter{font-size:.28rem;padding:.18rem .4rem}
 }
 
 /* ── Landscape phones ── */
@@ -1270,9 +1265,3 @@ document.querySelectorAll('.er-tl-item').forEach(el=>tlObs.observe(el));
 </script>
 </body>
 </html>
-
-
-
-
-
-
