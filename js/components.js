@@ -355,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <a href="stay.html">Stay</a>
     <a href="experiences.html">Experiences</a>
     <a href="caves.html">Caves</a>
-    <a href="dining.html">Dining</a>
+    <a href="dining.html">Spaces</a>
     <a href="events.html">Events & Retreats</a>
     <a href="packages.html">Packages</a>
     <a href="weddings.html">Weddings</a>
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- Secondary links -->
     <nav class="mn-secondary">
       <a href="caves.html">Caves</a>
-      <a href="dining.html">Dining</a>
+      <a href="dining.html">Spaces</a>
       <a href="events.html">Events & Retreats</a>
       <a href="packages.html">Packages</a>
       <a href="weddings.html">Weddings</a>
@@ -429,7 +429,7 @@ const FOOTER_HTML = `
         <a href="stay.html">Stay</a>
         <a href="experiences.html">Experiences</a>
         <a href="caves.html">Caves</a>
-        <a href="dining.html">Dining</a>
+        <a href="dining.html">Spaces</a>
       </div>
       <div class="footer-col">
         <h5>Activities</h5>
