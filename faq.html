@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Grotta Resort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+
+/* ══════════════════════
+   FAQ PAGE
+══════════════════════ */
+
+/* Hero */
+.faq-hero {
+  position: relative;
+  height: 52vh; min-height: 380px;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.faq-hero-bg {
+  position: absolute; inset: -5%;
+  background-image: url('images/DSC03812.JPG');
+  background-size: cover; background-position: center 45%;
+  filter: brightness(.3) saturate(.75);
+}
+.faq-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(8,8,5,.3) 0%, rgba(8,8,5,.7) 65%, rgba(8,8,5,1) 100%);
+}
+.faq-hero-content {
+  position: relative; z-index: 5;
+  padding: 0 6vw 4rem;
+  max-width: 700px;
+}
+.faq-hero-label {
+  display: block;
+  font-family: 'Jost', sans-serif;
+  font-size: .52rem; font-weight: 500;
+  letter-spacing: .38em; text-transform: uppercase;
+  color: rgba(201,165,82,.5); margin-bottom: 1rem;
+}
+.faq-hero-content h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 300; color: #f0e8d5;
+  line-height: 1.04; letter-spacing: -.025em;
+  margin-bottom: .8rem;
+}
+.faq-hero-content p {
+  font-family: 'Jost', sans-serif;
+  font-size: .88rem; font-weight: 300;
+  color: rgba(200,192,174,.5); line-height: 1.9;
+  max-width: 460px;
+}
+
+/* Category tabs */
+.faq-tabs-wrap {
+  background: #0a0906;
+  border-bottom: 1px solid rgba(201,165,82,.08);
+  position: sticky; top: 68px; z-index: 100;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.faq-tabs-wrap::-webkit-scrollbar { display: none; }
+.faq-tabs {
+  display: flex; align-items: center;
+  gap: 0; max-width: 1100px;
+  margin: 0 auto; padding: 0 4vw;
+  min-width: max-content;
+}
+.faq-tab {
+  font-family: 'Jost', sans-serif;
+  font-size: .52rem; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(200,192,174,.38);
+  background: none; border: none;
+  padding: 1.2rem 1.4rem;
+  cursor: pointer; white-space: nowrap;
+  position: relative;
+  transition: color .3s ease;
+}
+.faq-tab::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px; background: var(--gold, #c9a552);
+  transform: scaleX(0);
+  transition: transform .35s cubic-bezier(.25,.46,.45,.94);
+}
+.faq-tab:hover { color: rgba(200,192,174,.7); }
+.faq-tab.active { color: rgba(201,165,82,.85); }
+.faq-tab.active::after { transform: scaleX(1); }
+
+/* Main layout */
+.faq-main {
+  background: #080805;
+  padding: 5rem 0 8rem;
+}
+.faq-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 4vw;
+}
+
+/* Category section */
+.faq-category {
+  display: none;
+  animation: faq-in .45s cubic-bezier(.25,.46,.45,.94);
+}
+.faq-category.active { display: block; }
+@keyframes faq-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.faq-category-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 300; color: rgba(240,232,213,.88);
+  letter-spacing: -.02em; line-height: 1.06;
+  margin-bottom: .5rem;
+}
+.faq-category-sub {
+  font-family: 'Jost', sans-serif;
+  font-size: .82rem; font-weight: 300;
+  color: rgba(200,192,174,.42); line-height: 1.85;
+  margin-bottom: 3rem; display: block;
+}
+.faq-rule {
+  width: 2.5rem; height: 1px;
+  background: rgba(201,165,82,.28);
+  margin-bottom: 2.5rem;
+}
+
+/* Accordion */
+.faq-item {
+  border-bottom: 1px solid rgba(201,165,82,.08);
+}
+.faq-item:first-of-type { border-top: 1px solid rgba(201,165,82,.08); }
+.faq-q {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 1.5rem;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: .9rem; font-weight: 400;
+  color: rgba(232,224,208,.78);
+  line-height: 1.5;
+  background: none; border: none;
+  text-align: left; width: 100%;
+  transition: color .3s ease;
+}
+.faq-q:hover { color: rgba(232,224,208,.95); }
+.faq-item.open .faq-q { color: rgba(240,232,213,1); }
+.faq-icon {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  border: 1px solid rgba(201,165,82,.22);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .35s ease, transform .4s cubic-bezier(.25,.46,.45,.94);
+  position: relative;
+}
+.faq-icon::before, .faq-icon::after {
+  content: '';
+  position: absolute;
+  background: rgba(201,165,82,.6);
+  transition: opacity .3s ease, transform .4s cubic-bezier(.25,.46,.45,.94);
+}
+.faq-icon::before { width: 10px; height: 1px; }
+.faq-icon::after  { width: 1px; height: 10px; }
+.faq-item.open .faq-icon { border-color: rgba(201,165,82,.5); }
+.faq-item.open .faq-icon::after { transform: rotate(90deg); opacity: 0; }
+.faq-a-wrap {
+  max-height: 0; overflow: hidden;
+  transition: max-height .5s cubic-bezier(.25,.46,.45,.94);
+}
+.faq-item.open .faq-a-wrap { max-height: 600px; }
+.faq-a {
+  padding: 0 0 1.8rem;
+  font-family: 'Jost', sans-serif;
+  font-size: .86rem; font-weight: 300;
+  color: rgba(200,192,174,.58); line-height: 2;
+}
+.faq-a strong {
+  color: rgba(201,165,82,.65);
+  font-weight: 500;
+}
+.faq-a a {
+  color: rgba(201,165,82,.65);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201,165,82,.2);
+  transition: color .3s ease, border-color .3s ease;
+}
+.faq-a a:hover { color: #c9a552; border-color: #c9a552; }
+
+/* Contact CTA at bottom */
+.faq-contact {
+  margin-top: 5rem;
+  padding: 3rem;
+  border: 1px solid rgba(201,165,82,.12);
+  background: rgba(201,165,82,.03);
+  text-align: center;
+}
+.faq-contact h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 300; color: rgba(240,232,213,.88);
+  margin-bottom: .6rem;
+}
+.faq-contact p {
+  font-family: 'Jost', sans-serif;
+  font-size: .84rem; font-weight: 300;
+  color: rgba(200,192,174,.45); line-height: 1.85;
+  margin-bottom: 2rem; max-width: 420px; margin-left: auto; margin-right: auto;
+}
+.faq-contact-btns {
+  display: flex; gap: 1rem;
+  justify-content: center; flex-wrap: wrap;
+}
+.faq-btn-primary {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: 'Jost', sans-serif; font-size: .6rem;
+  font-weight: 500; letter-spacing: .24em; text-transform: uppercase;
+  color: #080805; background: #c9a552;
+  text-decoration: none; padding: 1rem 2.2rem;
+  transition: background .3s ease;
+}
+.faq-btn-primary:hover { background: #e2c97e; }
+.faq-btn-ghost {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: 'Jost', sans-serif; font-size: .6rem;
+  font-weight: 400; letter-spacing: .24em; text-transform: uppercase;
+  color: rgba(232,224,208,.6); text-decoration: none;
+  padding: 1rem 2.2rem;
+  border: 1px solid rgba(232,224,208,.18);
+  transition: border-color .3s ease, color .3s ease;
+}
+.faq-btn-ghost:hover { border-color: rgba(201,165,82,.45); color: #c9a552; }
+
+/* Responsive */
+@media(max-width:600px) {
+  .faq-tabs { padding: 0 4vw; }
+  .faq-tab { padding: 1rem .9rem; font-size: .48rem; }
+  .faq-main { padding: 3.5rem 0 6rem; }
+  .faq-q { font-size: .84rem; padding: 1.3rem 0; }
+  .faq-contact { padding: 2rem 1.5rem; }
+  .faq-contact-btns { flex-direction: column; align-items: center; }
+  .faq-btn-primary, .faq-btn-ghost { width: 100%; max-width: 280px; justify-content: center; }
+}
+
+</style>
+</head>
+<body>
+<div id="nav-holder"></div>
+
+<!-- HERO -->
+<div class="faq-hero">
+  <div class="faq-hero-bg"></div>
+  <div class="faq-hero-overlay"></div>
+  <div class="faq-hero-content">
+    <span class="faq-hero-label">Grotta Resort · Help Centre</span>
+    <h1>Frequently Asked<br>Questions</h1>
+    <p>Everything you need to know about staying, celebrating, and exploring at Grotta Resort.</p>
+  </div>
+</div>
+
+<!-- CATEGORY TABS -->
+<div class="faq-tabs-wrap">
+  <div class="faq-tabs" role="tablist">
+    <button class="faq-tab active" onclick="showCat('rooms')" role="tab">Rooms</button>
+    <button class="faq-tab" onclick="showCat('dining')" role="tab">Dining</button>
+    <button class="faq-tab" onclick="showCat('activities')" role="tab">Activities</button>
+    <button class="faq-tab" onclick="showCat('weddings')" role="tab">Weddings</button>
+    <button class="faq-tab" onclick="showCat('events')" role="tab">Events</button>
+    <button class="faq-tab" onclick="showCat('corporate')" role="tab">Corporate</button>
+    <button class="faq-tab" onclick="showCat('booking')" role="tab">Booking</button>
+  </div>
+</div>
+
+<!-- FAQ CONTENT -->
+<div class="faq-main">
+  <div class="faq-inner">
+
+    <!-- ROOMS -->
+    <div class="faq-category active" id="cat-rooms">
+      <h2 class="faq-category-title">Rooms & Accommodation</h2>
+      <span class="faq-category-sub">Everything about our 26 rooms, amenities, and staying at Grotta Resort.</span>
+      <div class="faq-rule"></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">How many rooms does Grotta Resort have? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Grotta Resort has <strong>26 physical rooms</strong> across 6 categories: Standard (3), King Room (6), King Volcano View (3), King Pool View (6), Deluxe (6), and Executive (2). Family Rooms are not additional rooms — they are created by combining two double rooms, and are available subject to configuration.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">What is included in every room? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Every room at Grotta Resort includes: <strong>daily highland breakfast</strong>, access to the swimming pool, gym access, a guided property tour, complimentary car cleaning, and an evening bonfire. Wi-Fi, air conditioning, in-room safe, smart TV, and bathrobes are also standard in all rooms.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Do all rooms have a Jacuzzi? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">No. Jacuzzi access is available in the <strong>King Volcano View, King Pool View, Family Room, and Deluxe Room</strong>. The Standard Room and King Room do not include Jacuzzi access.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">What is a Family Room and how does it work? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">The Family Room is a <strong>room configuration</strong>, not a separate room type. It is created by combining two double rooms into a connected suite with dedicated sleeping areas for parents and children. When a Family Room is booked, two double rooms are allocated to that booking. Availability is subject to configuration at time of booking. Family Rooms sleep up to 4 guests.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">What are the room rates? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Room rates per night, per room (Bed & Breakfast included):<br><br>
+        <strong>Standard Room</strong> — $115<br>
+        <strong>King Room</strong> — $130<br>
+        <strong>King Volcano View</strong> — $136<br>
+        <strong>King Pool View</strong> — $136<br>
+        <strong>Family Room</strong> — $176 (room configuration)<br>
+        <strong>Deluxe Room</strong> — $210<br>
+        <strong>Executive Room</strong> — $260<br><br>
+        Rates may vary during peak periods and public holidays.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Can I upgrade my room after booking? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes. Room upgrades are subject to availability. Please contact our reservations team as early as possible at <a href="mailto:reservations@grottaresort.com">reservations@grottaresort.com</a> or via WhatsApp to request an upgrade before your arrival.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">What are the check-in and check-out times? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Standard check-in is <strong>2:00 PM</strong> and check-out is <strong>11:00 AM</strong>. Early check-in and late check-out may be available upon request and subject to room availability. Please enquire with our team in advance.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Is the resort suitable for children? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes. Grotta Resort welcomes families. The Family Room and Deluxe Room include access to the kids movie room and farm experience. The property also has outdoor spaces suited for families. We recommend the Family Room configuration for families with children.</div></div>
+      </div>
+    </div>
+
+    <!-- DINING -->
+    <div class="faq-category" id="cat-dining">
+      <h2 class="faq-category-title">Dining</h2>
+      <span class="faq-category-sub">Our restaurant, Cave Café, Cocktail Bar, and meal plan options.</span>
+      <div class="faq-rule"></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">What dining options are available at Grotta Resort? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Grotta Resort has three dining and drinking venues: <strong>The Restaurant</strong> (fine dining, dinner from 6PM), the <strong>Cave Café</strong> (all-day café and rare spirits, 10AM–10PM), and the <strong>Cocktail Bar / Lounge</strong> (evenings from 5PM). Each has its own menu and atmosphere.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Is breakfast included in the room rate? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes. A <strong>highland breakfast is included</strong> with every room, every night. We also offer Half Board (breakfast + dinner, +$45 per adult per day) and Full Board (all meals, +$90 per adult per day) upgrades.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Do I need to reserve a table at The Restaurant? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Reservations are <strong>strongly encouraged</strong> for The Restaurant, especially during weekends and peak periods. Walk-ins are welcome subject to availability. You can reserve via the website, by email, or by asking at reception on arrival.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Can dietary requirements be accommodated? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes. Our kitchen accommodates most dietary requirements including vegetarian, vegan, gluten-free, and common allergies. Please inform us of any dietary needs at the time of booking or at least 24 hours before dining so our team can prepare accordingly.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Can I bring outside food or beverages? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><strong>Outside catering for food is not permitted</strong> at Grotta Resort. All food and beverages must be provided by the resort. This ensures the quality and consistency of your dining experience. Exceptions may apply for special celebration cakes with prior arrangement — please contact our team.</div></div>
+      </div>
+    </div>
+
+    <!-- ACTIVITIES -->
+    <div class="faq-category" id="cat-activities">
+      <h2 class="faq-category-title">Activities & Experiences</h2>
+      <span class="faq-category-sub">Caves, outdoor sports, wellness, and experiences available at the resort.</span>
+      <div class="faq-rule"></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">What activities are available at Grotta Resort? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Activities at Grotta Resort include: cave exploration (guided walks, adventure routes), use of the swimming pool, gym, outdoor sports area, highland cycling, trail running, yoga sessions, farm experience, and guided property tours. Gorilla trekking packages can also be arranged — Grotta is minutes from Volcanoes National Park.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Do I need to book activities in advance? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Some activities such as cave adventure routes, yoga sessions, and guided experiences require advance booking due to limited availability. Pool and gym access are available to all guests at any time. We recommend booking any experiences at least 24–48 hours in advance.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Is the cave suitable for everyone? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">The <strong>Scenic Cave Walk</strong> (16 minutes, easy) is suitable for most guests including families and older visitors. The <strong>Adventure Route</strong> (up to 1 hour, moderate) requires some stooping and sturdy footwear, with a maximum of 8 guests. All cave visits are guided by our team. Guests with mobility challenges should speak to our team for personalised advice.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Can I arrange gorilla trekking through Grotta Resort? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes. Our concierge team can assist with arranging gorilla trekking permits and logistics through Volcanoes National Park. Grotta Resort is ideally positioned as a base for gorilla trekking — minutes from the park entrance. Please contact us in advance as permits must be secured early, especially during peak season.</div></div>
+      </div>
+    </div>
+
+    <!-- WEDDINGS -->
+    <div class="faq-category" id="cat-weddings">
+      <h2 class="faq-category-title">Weddings</h2>
+      <span class="faq-category-sub">Celebrations, receptions, and wedding events at Grotta Resort.</span>
+      <div class="faq-rule"></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Is Grotta Resort licensed to conduct legal wedding ceremonies? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><strong>Grotta Resort is not licensed to legally conduct wedding ceremonies.</strong> Guests are welcome to host celebrations, receptions, and symbolic ceremonies at the resort. Legal wedding ceremonies must be conducted through the appropriate civil or religious authorities before or after your Grotta celebration. Our team can advise on this process.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">How many wedding venues does Grotta Resort have? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Grotta Resort has <strong>two ceremony and reception venues</strong>: the <strong>Highland Panorama</strong> (outdoor, up to 150 guests, volcano backdrop) and the <strong>Garden Terrace</strong> (garden setting, up to 200 guests). Both venues can be configured for ceremonies, receptions, and celebrations.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Are outside caterers permitted at weddings? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><strong>Outside catering for food is not permitted.</strong> All food and beverage at wedding events must be provided by Grotta Resort. External vendors for other services — such as photography, floristry, and entertainment — may be considered subject to prior approval by our events team. A coordination fee may apply.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">What is the minimum guest count for a wedding booking? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">We accommodate weddings of various sizes. Please contact our wedding team directly to discuss your guest count and requirements. Every celebration at Grotta is bespoke — we do not offer fixed packages with minimum counts.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">How far in advance should I book a wedding at Grotta Resort? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">We recommend booking <strong>at least 6–12 months in advance</strong> for larger celebrations, especially during peak season (June–September and December–January). Popular dates fill quickly. Contact our wedding team to check availability for your preferred date.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Is add-on service pricing available upfront? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Add-on services such as photography, floristry, entertainment, and fireworks are priced <strong>upon request</strong>. Pricing depends on the specific service, supplier, and scope of your event. Our wedding team will provide a custom quotation based on your requirements.</div></div>
+      </div>
+    </div>
+
+    <!-- EVENTS -->
+    <div class="faq-category" id="cat-events">
+      <h2 class="faq-category-title">Events & Retreats</h2>
+      <span class="faq-category-sub">Private events, retreats, and group bookings at Grotta Resort.</span>
+      <div class="faq-rule"></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">What types of events can be hosted at Grotta Resort? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Grotta Resort hosts a wide range of events including private celebrations, wellness retreats, family gatherings, milestone events, corporate retreats, conferences, workshops, and team-building experiences. Our team works with each group to create a bespoke event experience.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Can I book the entire resort for a private event? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes. Exclusive resort buyouts are available for private events and large group bookings. This gives your group full access to all 26 rooms, all venues, and all facilities. Please contact our events team to discuss your requirements and availability.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Do you offer wellness and yoga retreats? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes. Grotta Resort offers curated wellness retreat packages combining accommodation, guided yoga sessions, highland activities, and full-board meals. Retreats can be tailored for groups or individuals. Visit our Retreats page for more information or contact us to discuss a bespoke retreat.</div></div>
+      </div>
+    </div>
+
+    <!-- CORPORATE -->
+    <div class="faq-category" id="cat-corporate">
+      <h2 class="faq-category-title">Corporate & Group Events</h2>
+      <span class="faq-category-sub">Conferences, team building, workshops, and corporate retreats.</span>
+      <div class="faq-rule"></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">What corporate facilities does Grotta Resort offer? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Grotta Resort offers a <strong>dedicated conference room</strong> for meetings, presentations, and workshops, and a <strong>large outdoor event tent</strong> for conferences, team events, and group gatherings. Both spaces can be configured to your event requirements and are supported by our events team.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">What is the capacity for corporate events? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">The conference room accommodates smaller groups for focused sessions and meetings. The outdoor event tent can accommodate larger groups. For specific capacity requirements and configuration options, please contact our corporate events team directly for a detailed proposal.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Can Grotta Resort accommodate a full corporate retreat? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes. Grotta Resort is ideally suited for corporate retreats. We can combine accommodation (up to 26 rooms), conference facilities, team activities (cave exploration, cycling, hiking, yoga), and all-inclusive meal plans into a complete retreat package. Our events team will work with you to build a programme tailored to your objectives.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Do you provide AV and presentation equipment? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes. Our conference room is equipped with presentation facilities. For specific technical requirements, please contact our events team in advance so we can ensure everything is configured correctly for your event.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">How do I request a corporate event proposal? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Contact our events team directly at <a href="mailto:events@grottaresort.com">events@grottaresort.com</a> with your event date, number of attendees, duration, and any specific requirements. We will respond within 48 hours with a tailored proposal.</div></div>
+      </div>
+    </div>
+
+    <!-- BOOKING & PAYMENTS -->
+    <div class="faq-category" id="cat-booking">
+      <h2 class="faq-category-title">Booking & Payments</h2>
+      <span class="faq-category-sub">Reservations, cancellations, payments, and policies.</span>
+      <div class="faq-rule"></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">How do I make a reservation? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">You can make a reservation directly through our website booking form, by emailing <a href="mailto:reservations@grottaresort.com">reservations@grottaresort.com</a>, or by contacting us via WhatsApp. We recommend booking directly to ensure the best available rate and direct communication with our team.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">What currencies do you accept? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">All room rates are displayed in <strong>USD</strong>. Payments may be processed in USD or RWF depending on the payment method. Please confirm currency with our reservations team at the time of booking.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">What is the cancellation policy? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Cancellation policies vary depending on the room type, rate, and booking period. Standard bookings typically require cancellation <strong>at least 48–72 hours before arrival</strong> to avoid a charge. Event bookings, group bookings, and special rate reservations may have different terms. Full details are provided at the time of booking.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Are seasonal or peak-period surcharges applied? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes. Rates may vary during <strong>public holidays, long weekends, festive periods</strong> (Christmas, New Year), and high-demand dates. Minimum-stay requirements may also apply during peak periods. Final rates are confirmed at the time of booking.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Is a deposit required to confirm a booking? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">For standard room bookings, a deposit may be required to confirm your reservation. For events, weddings, and group bookings, a deposit is required and the terms will be outlined in your booking agreement. Please contact our reservations team for specific deposit requirements.</div></div>
+      </div>
+    </div>
+
+    <!-- Contact CTA -->
+    <div class="faq-contact">
+      <h3>Still have a question?</h3>
+      <p>Our team is here to help. Reach out directly and we will respond within 48 hours.</p>
+      <div class="faq-contact-btns">
+        <a href="booking.html" class="faq-btn-primary">Make a Reservation →</a>
+        <a href="mailto:info@grottaresort.com" class="faq-btn-ghost">Email Our Team →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="footer-holder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+function showCat(id) {
+  document.querySelectorAll('.faq-category').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('cat-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  // Close all accordions on tab switch
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+}
+
+function toggle(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  // Close all in this category
+  item.closest('.faq-category').querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// Open from URL hash e.g. faq.html#weddings
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash.replace('#','');
+  if (hash && document.getElementById('cat-' + hash)) {
+    showCat(hash);
+    document.querySelectorAll('.faq-tab').forEach(t => {
+      if (t.getAttribute('onclick').includes(hash)) t.classList.add('active');
+      else t.classList.remove('active');
+    });
+  }
+});
+</script>
+</body>
+</html>

@@ -34,7 +34,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 
 /* ══ HERO — Elevated Cinematic ══ */
 .pk-hero{position:relative;height:100vh;min-height:820px;display:grid;grid-template-rows:1fr auto;overflow:hidden}
-.pk-hero-bg{position:absolute;inset:-8%;background-image:url('images/AV7I5727.jpg');background-size:cover;background-position:center 38%;filter:brightness(.26) saturate(.6);animation:pk-ken 40s cubic-bezier(.25,.46,.45,.94) forwards;will-change:transform}
+.pk-hero-bg{position:absolute;inset:-8%;background-image:url('images/DSC02548.jpg');background-size:cover;background-position:center 38%;filter:brightness(.26) saturate(.6);animation:pk-ken 40s cubic-bezier(.25,.46,.45,.94) forwards;will-change:transform}
 @keyframes pk-ken{from{transform:scale(1.12)}to{transform:scale(1)}}
 
 /* Multi-layer cinematic overlay — stronger drama */
@@ -618,6 +618,34 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
   .wg-btn-gold{min-height:52px}
 }
 
+
+/* Material Symbols sizing overrides */
+.ms { font-family: "Material Symbols Outlined" !important; font-style: normal; font-weight: normal;
+  line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap;
+  direction: ltr; -webkit-font-smoothing: antialiased;
+  font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 40; }
+.pk-inc-card-icon.ms { font-size: 1.8rem; display: block; margin-bottom: .8rem; opacity: .7; color: rgba(201,165,82,.6); }
+.pk-nav-icon.ms { font-size: 1.1rem; vertical-align: middle; }
+.rt-included-icon.ms { font-size: 1.6rem; display: inline-block; }
+.rt-why-block-icon.ms { font-size: 1.8rem; display: block; }
+
+/* ══ PREMIUM REVIEW CARDS ══════════════════════════════════ */
+.gr-review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.8rem;max-width:1100px;margin:0 auto}
+.gr-review-card{background:#0e0c09;border:1px solid rgba(201,165,82,.1);padding:3rem 3rem 2.5rem;position:relative;overflow:hidden;transition:background .4s ease,border-color .4s ease,transform .4s ease}
+.gr-review-card:hover{background:#131109;border-color:rgba(201,165,82,.2);transform:translateY(-4px)}
+.gr-review-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,rgba(201,165,82,.5),rgba(201,165,82,.1),transparent);transform:scaleX(0);transform-origin:left;transition:transform .55s cubic-bezier(.25,.46,.45,.94)}
+.gr-review-card:hover::before{transform:scaleX(1)}
+.gr-review-qmark{font-family:"Cormorant Garamond",Georgia,serif;font-size:4.5rem;font-weight:300;line-height:.8;color:rgba(201,165,82,.12);display:block;margin-bottom:.5rem;letter-spacing:-.04em}
+.gr-review-stars{display:flex;gap:.15rem;margin-bottom:1.4rem}
+.gr-review-stars span{font-family:"Material Symbols Outlined";font-size:.95rem;color:#c9a552;font-variation-settings:"FILL" 1,"wght" 400,"GRAD" 0,"opsz" 24}
+.gr-review-text{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(1.05rem,1.4vw,1.2rem);font-weight:300;font-style:italic;color:rgba(232,224,208,.72);line-height:1.78;margin-bottom:2rem}
+.gr-review-divider{width:2rem;height:1px;background:rgba(201,165,82,.2);margin-bottom:1.2rem}
+.gr-review-author{display:flex;align-items:center;gap:.9rem}
+.gr-review-author-avatar{width:36px;height:36px;border-radius:50%;background:rgba(201,165,82,.1);border:1px solid rgba(201,165,82,.18);display:flex;align-items:center;justify-content:center;font-family:"Cormorant Garamond",serif;font-size:1rem;color:rgba(201,165,82,.6);flex-shrink:0}
+.gr-review-author-info{display:flex;flex-direction:column;gap:.2rem}
+.gr-review-author-name{font-family:"Jost",sans-serif;font-size:.78rem;font-weight:400;color:rgba(232,224,208,.75);letter-spacing:.04em}
+.gr-review-author-context{font-family:"Jost",sans-serif;font-size:.6rem;font-weight:300;color:rgba(201,165,82,.45);letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:700px){.gr-review-grid{grid-template-columns:1fr}.gr-review-card{padding:2.2rem 1.8rem 2rem}.gr-review-text{font-size:1rem}}
 </style>
 </head>
 <body>
@@ -678,41 +706,41 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         <div class="pk-nav-meta">
           <span class="pk-nav-dur">2–4 Nights</span>
           <span class="pk-nav-price"
-            data-p1="From 385,000 RWF"
-            data-p2="From 620,000 RWF">From 385,000 RWF</span>
+            data-p1="From $260"
+            data-p2="From $420">From $260</span>
         </div>
       </a>
       <a href="#pkg-wellness" class="pk-nav-item">
-        <span class="pk-nav-icon">🌿</span>
+        <span class="pk-nav-icon ms">spa</span>
         <span class="pk-nav-name">Wellness Package</span>
         <span class="pk-nav-tagline">Restoration through altitude, stillness and ritual</span>
         <div class="pk-nav-meta">
           <span class="pk-nav-dur">2–5 Nights</span>
           <span class="pk-nav-price"
-            data-p1="From 315,000 RWF"
-            data-p2="From 510,000 RWF">From 315,000 RWF</span>
+            data-p1="From $210"
+            data-p2="From $350">From $210</span>
         </div>
       </a>
       <a href="#pkg-adventure" class="pk-nav-item">
-        <span class="pk-nav-icon">🌋</span>
+        <span class="pk-nav-icon ms">volcano</span>
         <span class="pk-nav-name">Adventure Package</span>
         <span class="pk-nav-tagline">Volcanic caves, highland trails, wild luxury</span>
         <div class="pk-nav-meta">
           <span class="pk-nav-dur">2–4 Nights</span>
           <span class="pk-nav-price"
-            data-p1="From 265,000 RWF"
-            data-p2="From 430,000 RWF">From 265,000 RWF</span>
+            data-p1="From $176"
+            data-p2="From $295">From $176</span>
         </div>
       </a>
       <a href="#pkg-gorilla" class="pk-nav-item">
-        <span class="pk-nav-icon">🦍</span>
+        <span class="pk-nav-icon ms">cruelty_free</span>
         <span class="pk-nav-name">Gorilla Trek Package</span>
         <span class="pk-nav-tagline">Once-in-a-lifetime. Rwanda's rarest experience</span>
         <div class="pk-nav-meta">
           <span class="pk-nav-dur">2–3 Nights</span>
           <span class="pk-nav-price"
-            data-p1="From 480,000 RWF"
-            data-p2="From 780,000 RWF">From 480,000 RWF</span>
+            data-p1="From $325"
+            data-p2="From $530">From $325</span>
         </div>
       </a>
     </div>
@@ -769,7 +797,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <div class="pk-panel-footer">
         <div class="pk-panel-price-block">
           <span class="pk-panel-price-from">Starting from</span>
-          <span class="pk-panel-price" data-p1="385,000 RWF" data-p2="620,000 RWF">385,000 RWF</span>
+          <span class="pk-panel-price" data-p1="$260" data-p2="$420">$260</span>
           <span class="pk-panel-price-note" data-p1="per person / per night · includes breakfast" data-p2="per couple / per night · includes breakfast">per person / per night · includes breakfast</span>
         </div>
         <a href="#pk-booking" class="pk-btn-gold"><span>Reserve</span></a>
@@ -779,7 +807,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 
   <!-- 02 Wellness -->
   <div class="pk-interlude">
-    <div class="pk-interlude-bg" id="pk-int-bg-1" style="background-image:url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1400&q=85')"></div>
+    <div class="pk-interlude-bg" id="pk-int-bg-1" style="background-image:url('images/AV7I5336.jpg')"></div>
     <div class="pk-interlude-overlay"></div>
     <div class="pk-interlude-content reveal">
       <span class="pk-interlude-mark">"</span>
@@ -810,7 +838,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <div class="pk-panel-footer">
         <div class="pk-panel-price-block">
           <span class="pk-panel-price-from">Starting from</span>
-          <span class="pk-panel-price" data-p1="315,000 RWF" data-p2="510,000 RWF">315,000 RWF</span>
+          <span class="pk-panel-price" data-p1="$210" data-p2="$350">$210</span>
           <span class="pk-panel-price-note" data-p1="per person / per night · includes breakfast" data-p2="per couple / per night · includes breakfast">per person / per night · includes breakfast</span>
         </div>
         <a href="#pk-booking" class="pk-btn-gold"><span>Reserve</span></a>
@@ -842,7 +870,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <div class="pk-panel-footer">
         <div class="pk-panel-price-block">
           <span class="pk-panel-price-from">Starting from</span>
-          <span class="pk-panel-price" data-p1="265,000 RWF" data-p2="430,000 RWF">265,000 RWF</span>
+          <span class="pk-panel-price" data-p1="$176" data-p2="$295">$176</span>
           <span class="pk-panel-price-note" data-p1="per person / per night · includes breakfast" data-p2="per couple / per night · includes breakfast">per person / per night · includes breakfast</span>
         </div>
         <a href="#pk-booking" class="pk-btn-gold"><span>Reserve</span></a>
@@ -852,7 +880,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 
   <!-- 04 Gorilla Trek -->
   <div class="pk-interlude">
-    <div class="pk-interlude-bg" id="pk-int-bg-2" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=85')"></div>
+    <div class="pk-interlude-bg" id="pk-int-bg-2" style="background-image:url('images/AV7I5336.jpg')"></div>
     <div class="pk-interlude-overlay"></div>
     <div class="pk-interlude-content reveal">
       <span class="pk-interlude-mark">"</span>
@@ -884,7 +912,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <div class="pk-panel-footer">
         <div class="pk-panel-price-block">
           <span class="pk-panel-price-from">Starting from</span>
-          <span class="pk-panel-price" data-p1="480,000 RWF" data-p2="780,000 RWF">480,000 RWF</span>
+          <span class="pk-panel-price" data-p1="$325" data-p2="$530">$325</span>
           <span class="pk-panel-price-note" data-p1="per person / per night · gorilla permit not included" data-p2="per couple / per night · gorilla permit not included">per person / per night · gorilla permit not included</span>
         </div>
         <a href="#pk-booking" class="pk-btn-gold"><span>Reserve</span></a>
@@ -952,47 +980,47 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
   <div class="pk-inc-scroll-wrap reveal">
     <div class="pk-inc-scroll">
       <div class="pk-inc-card">
-        <span class="pk-inc-card-icon">🌄</span>
+        <span class="pk-inc-card-icon ms">wb_twilight</span>
         <div class="pk-inc-card-name">Highland Breakfast</div>
         <p class="pk-inc-card-desc">Locally sourced, unhurried, and generous. Served daily.</p>
       </div>
       <div class="pk-inc-card">
-        <span class="pk-inc-card-icon">🏊</span>
+        <span class="pk-inc-card-icon ms">pool</span>
         <div class="pk-inc-card-name">Swimming Pool</div>
         <p class="pk-inc-card-desc">Open daily. Morning light across still water.</p>
       </div>
       <div class="pk-inc-card">
-        <span class="pk-inc-card-icon">💪</span>
+        <span class="pk-inc-card-icon ms">fitness_center</span>
         <div class="pk-inc-card-name">Gym Access</div>
         <p class="pk-inc-card-desc">Training at altitude with views toward the volcanic peaks.</p>
       </div>
       <div class="pk-inc-card">
-        <span class="pk-inc-card-icon">🔥</span>
+        <span class="pk-inc-card-icon ms">local_fire_department</span>
         <div class="pk-inc-card-name">Evening Bonfire</div>
         <p class="pk-inc-card-desc">The highland firepit. Every evening. No invitation needed.</p>
       </div>
       <div class="pk-inc-card">
-        <span class="pk-inc-card-icon">🏔</span>
+        <span class="pk-inc-card-icon ms">landscape</span>
         <div class="pk-inc-card-name">Property Tour</div>
         <p class="pk-inc-card-desc">Guided experience of caves, gardens, and viewpoints.</p>
       </div>
       <div class="pk-inc-card">
-        <span class="pk-inc-card-icon">🚗</span>
+        <span class="pk-inc-card-icon ms">directions_car</span>
         <div class="pk-inc-card-name">Car Cleaning</div>
         <p class="pk-inc-card-desc">Complimentary. A small detail that says everything.</p>
       </div>
       <div class="pk-inc-card">
-        <span class="pk-inc-card-icon">🌋</span>
+        <span class="pk-inc-card-icon ms">volcano</span>
         <div class="pk-inc-card-name">Cave Access</div>
         <p class="pk-inc-card-desc">Ancient volcanic chambers. Unlike anywhere else on earth.</p>
       </div>
       <div class="pk-inc-card">
-        <span class="pk-inc-card-icon">🌿</span>
+        <span class="pk-inc-card-icon ms">yard</span>
         <div class="pk-inc-card-name">Highland Gardens</div>
         <p class="pk-inc-card-desc">Curated green spaces — for walking, sitting, or simply being.</p>
       </div>
       <div class="pk-inc-card">
-        <span class="pk-inc-card-icon">🛏</span>
+        <span class="pk-inc-card-icon ms">king_bed</span>
         <div class="pk-inc-card-name">Premium Accommodation</div>
         <p class="pk-inc-card-desc">Each room designed around the highland environment.</p>
       </div>
@@ -1044,16 +1072,32 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
     <p class="pk-testi-quote">The wellness package changed the quality of my silence. I arrived stressed and left with something I hadn't felt in years. The altitude does something real.</p>
     <span class="pk-testi-attr">— Amara K. · Wellness Package · 2024</span>
   </div>
-  <div class="pk-testi-grid">
-    <div class="pk-testi-card reveal d1">
-      <span class="pk-testi-stars">★★★★★</span>
-      <p class="pk-testi-text">"The couples package was everything. The private cave dinner, the jacuzzi under the open sky, the firepit on the final evening — we have been to many places. Grotta is different. It holds you."</p>
-      <span class="pk-testi-name">Sarah & Marcus · Couples Package · 2024</span>
+  <div class="gr-review-grid">
+    <div class="gr-review-card reveal">
+      <span class="gr-review-qmark">"</span>
+      <div class="gr-review-stars"><span>star</span><span>star</span><span>star</span><span>star</span><span>star</span></div>
+      <p class="gr-review-text">The couples package was everything. The private cave dinner, the jacuzzi under the open sky, the firepit on the final evening — we have been to many places. Grotta is different. It holds you.</p>
+      <div class="gr-review-divider"></div>
+      <div class="gr-review-author">
+        <div class="gr-review-author-avatar">S</div>
+        <div class="gr-review-author-info">
+          <span class="gr-review-author-name">Sarah & Marcus</span>
+          <span class="gr-review-author-context">Couples Package · 2024</span>
+        </div>
+      </div>
     </div>
-    <div class="pk-testi-card reveal d2">
-      <span class="pk-testi-stars">★★★★★</span>
-      <p class="pk-testi-text">"The gorilla trek package made an impossible experience feel seamless. Everything was handled. When we returned — tired, overwhelmed, transformed — the jacuzzi was waiting and dinner was almost ready."</p>
-      <span class="pk-testi-name">Yuki & Tom · Gorilla Trek Package · 2024</span>
+    <div class="gr-review-card reveal">
+      <span class="gr-review-qmark">"</span>
+      <div class="gr-review-stars"><span>star</span><span>star</span><span>star</span><span>star</span><span>star</span></div>
+      <p class="gr-review-text">The gorilla trek package made an impossible experience feel seamless. Everything was handled. When we returned — tired, overwhelmed, transformed — the jacuzzi was waiting and dinner was almost ready.</p>
+      <div class="gr-review-divider"></div>
+      <div class="gr-review-author">
+        <div class="gr-review-author-avatar">Y</div>
+        <div class="gr-review-author-info">
+          <span class="gr-review-author-name">Yuki & Tom</span>
+          <span class="gr-review-author-context">Gorilla Trek Package · 2024</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

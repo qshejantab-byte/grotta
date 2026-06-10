@@ -1,786 +1,1244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spaces — Grotta</title>
+<title>Spaces — Grotta Resort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <style>
 
-/* ═══════════════════════════════════════════════════════
-   RESET & TOKENS
-═══════════════════════════════════════════════════════ */
-.page-transition-out{position:fixed;inset:0;background:#060504;z-index:9999;opacity:0;pointer-events:none;transition:opacity .45s cubic-bezier(.25,.46,.45,.94)}
-.page-transition-out.active{opacity:1;pointer-events:all}
+/* ─────────────────────────────────────────
+   TOKENS & RESET
+───────────────────────────────────────── */
+:root{
+  --gold:#c9a552;
+  --gold-dim:rgba(201,165,82,.5);
+  --gold-faint:rgba(201,165,82,.12);
+  --cream:#f0e8d5;
+  --cream-dim:rgba(240,232,213,.65);
+  --text-soft:rgba(200,192,174,.55);
+  --bg:#080805;
+  --bg2:#0c0b08;
+  --bg3:#0e0d0a;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Jost',sans-serif;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+}
+.ms{font-family:"Material Symbols Outlined";font-style:normal;font-weight:normal;
+  font-size:1.2rem;line-height:1;letter-spacing:normal;text-transform:none;
+  white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;
+  font-variation-settings:"FILL" 0,"wght" 200,"GRAD" 0,"opsz" 24;
+  display:inline-block;vertical-align:middle;color:inherit}
 
-/* ═══════════════════════════════════════════════════════
-   1. CINEMATIC HERO
-═══════════════════════════════════════════════════════ */
-.sh-hero{position:relative;height:100vh;min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
-.sh-hero-bg{position:absolute;inset:-8%;background-image:url('images/AV7I5336.jpg');background-size:cover;background-position:center 38%;will-change:transform;filter:brightness(.38) saturate(.8)}
-.sh-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,5,4,.7) 0%,rgba(6,5,4,.1) 25%,rgba(6,5,4,.05) 50%,rgba(6,5,4,.65) 78%,rgba(6,5,4,1) 100%)}
-.sh-hero-content{position:relative;z-index:10;text-align:center;max-width:900px;padding:0 2rem}
-.sh-hero-location{display:inline-flex;align-items:center;gap:1rem;font-family:'Jost',sans-serif;font-size:.46rem;font-weight:400;letter-spacing:.45em;text-transform:uppercase;color:rgba(201,165,82,.4);margin-bottom:2rem;opacity:0;animation:sh-fade .9s ease .4s forwards}
-.sh-hero-location::before,.sh-hero-location::after{content:'';width:32px;height:1px;background:rgba(201,165,82,.22)}
-.sh-hero-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(5rem,13vw,11rem);font-weight:300;color:rgba(240,232,213,.95);line-height:.9;letter-spacing:-.04em;margin-bottom:1.8rem;opacity:0;transform:translateY(40px);animation:sh-rise 1.4s cubic-bezier(.22,1,.36,1) .6s forwards;text-shadow:0 8px 80px rgba(0,0,0,.4)}
-.sh-hero-sub{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1rem,1.6vw,1.3rem);font-weight:300;font-style:italic;color:rgba(201,165,82,.5);letter-spacing:.04em;line-height:1.65;display:block;max-width:580px;margin:0 auto;opacity:0;filter:blur(6px);animation:sh-blur 1s ease 1.1s forwards}
-.sh-hero-nav{display:flex;align-items:center;gap:0;margin-top:3rem;opacity:0;animation:sh-fade .8s ease 1.5s forwards;border:1px solid rgba(201,165,82,.1);overflow:hidden}
-.sh-hero-nav-item{font-family:'Jost',sans-serif;font-size:.44rem;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:rgba(200,192,174,.35);padding:.9rem 1.5rem;cursor:pointer;border-right:1px solid rgba(201,165,82,.1);transition:color .35s ease,background .35s ease;white-space:nowrap;background:transparent;border-top:none;border-bottom:none;border-left:none}
-.sh-hero-nav-item:last-child{border-right:none}
-.sh-hero-nav-item:hover{color:rgba(201,165,82,.85);background:rgba(201,165,82,.06)}
-.sh-hero-scroll{position:absolute;bottom:2.8rem;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:.6rem;opacity:0;animation:sh-fade .7s ease 2s forwards}
-.sh-hero-scroll span{font-family:'Jost',sans-serif;font-size:.4rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(201,165,82,.25)}
-.sh-scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(201,165,82,.5),transparent);animation:sh-scroll-pulse 3s cubic-bezier(.45,.05,.55,.95) infinite;transform-origin:top}
-@keyframes sh-scroll-pulse{0%{transform:scaleY(0);opacity:0}35%{opacity:1}100%{transform:scaleY(1);opacity:0}}
-@keyframes sh-fade{from{opacity:0}to{opacity:1}}
-@keyframes sh-rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-@keyframes sh-blur{from{opacity:0;filter:blur(6px);transform:translateY(12px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
-
-/* ═══════════════════════════════════════════════════════
-   2. SPACES NAVIGATION — Visual Directory
-═══════════════════════════════════════════════════════ */
-.sh-directory{padding:6rem 0 7rem;background:var(--bg);position:relative;overflow:hidden}
-.sh-directory::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,165,82,.03) 0%,transparent 70%);pointer-events:none}
-.sh-dir-header{text-align:center;max-width:560px;margin:0 auto 5rem}
-.sh-eyebrow{display:block;font-family:'Jost',sans-serif;font-size:.5rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:rgba(201,165,82,.42);margin-bottom:1.1rem}
-.sh-dir-header h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.4rem,4vw,3.8rem);font-weight:300;color:rgba(240,232,213,.9);line-height:1.06;letter-spacing:-.025em}
-.sh-dir-grid{display:grid;grid-template-columns:repeat(7,1fr);max-width:1280px;margin:0 auto;border:1px solid rgba(201,165,82,.08)}
-.sh-dir-item{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:3/5;border-right:1px solid rgba(201,165,82,.08)}
-.sh-dir-item:last-child{border-right:none}
-.sh-dir-item-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.3) saturate(.7);transition:filter .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
-.sh-dir-item:hover .sh-dir-item-bg{filter:brightness(.55) saturate(.9);transform:scale(1.06)}
-.sh-dir-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,4,.92) 0%,rgba(6,5,4,.3) 50%,transparent 100%);transition:background .6s ease}
-.sh-dir-item:hover .sh-dir-item-overlay{background:linear-gradient(to top,rgba(6,5,4,.88) 0%,rgba(6,5,4,.2) 40%,transparent 100%)}
-.sh-dir-item-content{position:absolute;bottom:0;left:0;right:0;padding:1.4rem 1rem;z-index:10}
-.sh-dir-item-num{display:block;font-family:'Jost',sans-serif;font-size:.38rem;letter-spacing:.3em;color:rgba(201,165,82,.35);margin-bottom:.6rem;transition:color .35s ease}
-.sh-dir-item:hover .sh-dir-item-num{color:rgba(201,165,82,.65)}
-.sh-dir-item-name{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(.9rem,1.2vw,1.2rem);font-weight:300;color:rgba(240,232,213,.7);line-height:1.2;transition:color .35s ease}
-.sh-dir-item:hover .sh-dir-item-name{color:rgba(240,232,213,.97)}
-.sh-dir-item-tag{display:block;font-family:'Jost',sans-serif;font-size:.38rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,165,82,0);margin-top:.4rem;transform:translateY(6px);transition:color .4s ease,transform .4s ease}
-.sh-dir-item:hover .sh-dir-item-tag{color:rgba(201,165,82,.55);transform:translateY(0)}
-.sh-dir-item-line{position:absolute;top:0;left:0;width:0;height:2px;background:var(--gold);transition:width .6s cubic-bezier(.25,.46,.45,.94)}
-.sh-dir-item:hover .sh-dir-item-line{width:100%}
-
-/* ═══════════════════════════════════════════════════════
-   3. RESTAURANT — Editorial Split
-═══════════════════════════════════════════════════════ */
-.sh-editorial{padding:0 0 2px;background:var(--bg)}
-.sh-split{display:grid;grid-template-columns:1fr 1fr;min-height:480px}
-.sh-split.sh-split-rev .sh-split-img{order:2}
-.sh-split.sh-split-rev .sh-split-body{order:1}
-.sh-split-img{position:relative;overflow:hidden;max-height:520px}
-.sh-split-img img{width:100%;height:100%;min-height:520px;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.25,.46,.45,.94)}
-.sh-split:hover .sh-split-img img{transform:scale(1.04)}
-.sh-split-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,rgba(8,7,5,.7) 100%);pointer-events:none}
-.sh-split.sh-split-rev .sh-split-img-overlay{background:linear-gradient(to left,transparent 60%,rgba(8,7,5,.7) 100%)}
-.sh-split-body{display:flex;flex-direction:column;justify-content:center;padding:3.5rem 4.5rem;background:#0b0a07;position:relative}
-.sh-split-body::after{content:'';position:absolute;top:5rem;bottom:5rem;left:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(201,165,82,.12),transparent)}
-.sh-split.sh-split-rev .sh-split-body::after{left:auto;right:0}
-.sh-split-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(5rem,8vw,8rem);font-weight:300;color:rgba(201,165,82,.06);line-height:1;position:absolute;top:3rem;right:4rem;letter-spacing:-.04em;pointer-events:none}
-.sh-split.sh-split-rev .sh-split-num{right:auto;left:4rem}
-.sh-split-eyebrow{display:block;font-family:'Jost',sans-serif;font-size:.5rem;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:rgba(201,165,82,.5);margin-bottom:1rem}
-.sh-split-body h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.4rem,3.5vw,3.8rem);font-weight:300;color:rgba(240,232,213,.94);line-height:1.04;letter-spacing:-.025em;margin-bottom:.5rem}
-.sh-split-rule{width:2.5rem;height:1px;background:rgba(201,165,82,.3);margin:1.4rem 0}
-.sh-split-body p{font-family:'Jost',sans-serif;font-size:.87rem;font-weight:300;color:rgba(200,192,174,.55);line-height:2.1;margin-bottom:.8rem;max-width:400px}
-.sh-split-hours{font-family:'Jost',sans-serif;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.38);margin:1.2rem 0 1.8rem;display:block}
-.sh-split-ctas{display:flex;flex-direction:column;gap:.7rem;align-items:flex-start}
-
-/* ═══════════════════════════════════════════════════════
-   4. CINEMATIC BREAK — full-screen image + text
-═══════════════════════════════════════════════════════ */
-.sh-cine{position:relative;height:90vh;min-height:560px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.sh-cine-bg{position:absolute;inset:-6%;background-size:cover;background-position:center;will-change:transform;filter:brightness(.35) saturate(.8)}
-.sh-cine-overlay{position:absolute;inset:0}
-.sh-cine-content{position:relative;z-index:10;text-align:center;max-width:820px;padding:0 2rem}
-.sh-cine-label{display:block;font-family:'Jost',sans-serif;font-size:.48rem;font-weight:400;letter-spacing:.42em;text-transform:uppercase;color:rgba(201,165,82,.45);margin-bottom:1.6rem}
-.sh-cine-content h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.8rem,6vw,6rem);font-weight:300;color:rgba(240,232,213,.95);line-height:1.02;letter-spacing:-.03em;margin-bottom:1.4rem}
-.sh-cine-content em{font-style:italic;color:rgba(201,165,82,.7)}
-.sh-cine-desc{font-family:'Jost',sans-serif;font-size:.87rem;font-weight:300;color:rgba(200,192,174,.5);line-height:2;max-width:480px;margin:0 auto 2.5rem}
-.sh-cine-rule{display:flex;align-items:center;gap:1.5rem;justify-content:center}
-.sh-cine-rule::before,.sh-cine-rule::after{content:'';flex:1;max-width:80px;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.3))}
-.sh-cine-rule::after{background:linear-gradient(to left,transparent,rgba(201,165,82,.3))}
-.sh-cine-rule span{color:rgba(201,165,82,.4);font-size:.65rem;letter-spacing:.3em}
-
-/* ═══════════════════════════════════════════════════════
-   5. CAFÉ — Cinematic Atmosphere Section
-═══════════════════════════════════════════════════════ */
-.sh-cafe{position:relative;min-height:480px;display:flex;align-items:center;overflow:hidden}
-.sh-cafe-bg{position:absolute;inset:0;background-image:url('images/AV7I3358.jpg');background-size:cover;background-position:center 40%;filter:brightness(.28) saturate(.8);will-change:transform}
-.sh-cafe-layers{position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 28% 50%,rgba(201,120,30,.1) 0%,transparent 60%),linear-gradient(to right,rgba(6,5,3,.92) 0%,rgba(6,5,3,.55) 42%,rgba(6,5,3,.1) 72%,transparent 100%),linear-gradient(to bottom,rgba(6,5,3,.35) 0%,transparent 25%,rgba(6,5,3,.55) 100%);z-index:1}
-.sh-cafe-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,140,40,.07) 0%,transparent 65%);top:50%;left:18%;transform:translate(-50%,-50%);z-index:1;animation:sh-glow-pulse 6s ease-in-out infinite alternate;pointer-events:none}
-@keyframes sh-glow-pulse{from{opacity:.5;transform:translate(-50%,-50%) scale(1)}to{opacity:1;transform:translate(-50%,-50%) scale(1.18)}}
-.sh-cafe-content{position:relative;z-index:10;max-width:580px;padding:4rem 7vw}
-.sh-cafe-quote{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;font-style:italic;color:rgba(240,232,213,.88);line-height:1.12;letter-spacing:-.02em;margin-bottom:1.8rem}
-.sh-cafe-quote em{color:rgba(201,165,82,.65);font-style:normal}
-.sh-cafe-divider{width:3rem;height:1px;background:rgba(201,165,82,.3);margin-bottom:1.8rem}
-.sh-cafe-body p{font-family:'Jost',sans-serif;font-size:.87rem;font-weight:300;color:rgba(200,192,174,.5);line-height:2.1;margin-bottom:.8rem}
-.sh-cafe-ctas{display:flex;gap:1.2rem;margin-top:2.2rem;flex-wrap:wrap}
-
-/* ═══════════════════════════════════════════════════════
-   6. WELLNESS TRIO — Magazine Layout
-═══════════════════════════════════════════════════════ */
-.sh-wellness{padding:8rem 0;background:var(--bg);position:relative}
-.sh-wellness::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.12),transparent)}
-.sh-wellness-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1280px;margin:0 auto 5rem;padding:0 4vw;align-items:end}
-.sh-wellness-header-left h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.8rem,5vw,5rem);font-weight:300;color:rgba(240,232,213,.92);line-height:1.02;letter-spacing:-.035em}
-.sh-wellness-header-right p{font-family:'Jost',sans-serif;font-size:.87rem;font-weight:300;color:rgba(200,192,174,.5);line-height:2.05;margin-bottom:1.5rem}
-.sh-wellness-trio{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:0;max-width:1280px;margin:0 auto;padding:0 4vw}
-.sh-wt-item{position:relative;overflow:hidden;cursor:pointer}
-.sh-wt-item:nth-child(1){grid-row:span 2}
-.sh-wt-img{width:100%;height:100%;min-height:300px;object-fit:cover;display:block;filter:brightness(.55) saturate(.8);transition:filter .8s ease,transform .9s cubic-bezier(.25,.46,.45,.94)}
-.sh-wt-item:nth-child(1) .sh-wt-img{min-height:600px}
-.sh-wt-item:hover .sh-wt-img{filter:brightness(.7) saturate(.9);transform:scale(1.04)}
-.sh-wt-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,3,.9) 0%,rgba(6,5,3,.2) 55%,transparent 100%);pointer-events:none}
-.sh-wt-body{position:absolute;bottom:0;left:0;right:0;padding:2rem;z-index:10}
-.sh-wt-type{display:block;font-family:'Jost',sans-serif;font-size:.46rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,165,82,.55);margin-bottom:.55rem}
-.sh-wt-body h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.4rem,2vw,2rem);font-weight:300;color:rgba(240,232,213,.95);line-height:1.1;letter-spacing:-.015em;margin-bottom:.5rem}
-.sh-wt-body p{font-family:'Jost',sans-serif;font-size:.78rem;color:rgba(200,192,174,.5);line-height:1.85;max-height:0;overflow:hidden;transition:max-height .45s ease,opacity .45s ease;opacity:0}
-.sh-wt-item:hover .sh-wt-body p{max-height:80px;opacity:1}
-.sh-wt-cta{display:inline-flex;align-items:center;gap:.5rem;font-family:'Jost',sans-serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,165,82,.45);margin-top:.8rem;transition:color .35s ease,gap .3s ease;background:transparent;border:none;cursor:pointer;padding:0;text-decoration:none}
-.sh-wt-item:hover .sh-wt-cta{color:rgba(201,165,82,.85);gap:.8rem}
-.sh-wt-border{position:absolute;top:0;left:0;right:0;bottom:0;border:1px solid rgba(201,165,82,0);transition:border-color .45s ease;pointer-events:none;z-index:11}
-.sh-wt-item:hover .sh-wt-border{border-color:rgba(201,165,82,.1)}
-
-/* ═══════════════════════════════════════════════════════
-   7. SPORTS & OUTDOORS — Large Type Section
-═══════════════════════════════════════════════════════ */
-.sh-active{padding:8rem 0;background:#080705;position:relative;overflow:hidden}
-.sh-active-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(8rem,18vw,18rem);font-weight:300;color:rgba(201,165,82,.025);white-space:nowrap;pointer-events:none;letter-spacing:-.04em;line-height:1}
-.sh-active-inner{max-width:1280px;margin:0 auto;padding:0 4vw;position:relative;z-index:1}
-.sh-active-top{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center;margin-bottom:5rem}
-.sh-active-left h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3rem,5.5vw,5.5rem);font-weight:300;color:rgba(240,232,213,.92);line-height:1.02;letter-spacing:-.035em;margin-bottom:1.4rem}
-.sh-active-left p{font-family:'Jost',sans-serif;font-size:.88rem;font-weight:300;color:rgba(200,192,174,.5);line-height:2.05}
-.sh-active-right{display:flex;flex-direction:column;gap:1.8rem}
-.sh-active-stat{border-left:1px solid rgba(201,165,82,.18);padding-left:1.6rem}
-.sh-active-stat-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2rem,3vw,3rem);font-weight:300;color:rgba(201,165,82,.7);display:block;line-height:1}
-.sh-active-stat-label{font-family:'Jost',sans-serif;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(200,192,174,.38);margin-top:.3rem;display:block}
-.sh-active-images{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1px;height:360px}
-.sh-active-img{overflow:hidden;position:relative}
-.sh-active-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.55);transition:filter .7s ease,transform .8s cubic-bezier(.25,.46,.45,.94)}
-.sh-active-img:hover img{filter:brightness(.75);transform:scale(1.04)}
-.sh-active-img-label{position:absolute;bottom:1.2rem;left:1.2rem;font-family:'Jost',sans-serif;font-size:.46rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(201,165,82,.55);z-index:5;opacity:0;transform:translateY(6px);transition:opacity .35s ease,transform .35s ease}
-.sh-active-img:hover .sh-active-img-label{opacity:1;transform:translateY(0)}
-
-/* ═══════════════════════════════════════════════════════
-   8. DAY-TO-NIGHT JOURNEY — Experiences
-═══════════════════════════════════════════════════════ */
-.sh-journey{padding:9rem 0 10rem;background:var(--bg);position:relative;overflow:hidden}
-.sh-journey::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.1),transparent)}
-.sh-journey-header{text-align:center;max-width:680px;margin:0 auto 7rem;padding:0 2rem}
-.sh-journey-header h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.8rem,5vw,4.8rem);font-weight:300;color:rgba(240,232,213,.93);line-height:1.04;letter-spacing:-.03em;margin-bottom:1.2rem}
-.sh-journey-header p{font-family:'Jost',sans-serif;font-size:.88rem;font-weight:300;color:rgba(200,192,174,.48);line-height:2.05}
-
-/* Timeline spine */
-.sh-journey-timeline{max-width:1280px;margin:0 auto;padding:0 4vw;position:relative}
-.sh-journey-spine{position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(201,165,82,.15) 10%,rgba(201,165,82,.15) 90%,transparent);transform:translateX(-50%)}
-
-/* Each moment */
-.sh-moment{display:grid;grid-template-columns:1fr 80px 1fr;gap:0;margin-bottom:5rem;align-items:center}
-.sh-moment:last-child{margin-bottom:0}
-.sh-moment-img-wrap{position:relative;overflow:hidden;height:380px}
-.sh-moment-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(.25,.46,.45,.94)}
-.sh-moment:hover .sh-moment-img-wrap img{transform:scale(1.04)}
-.sh-moment-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(6,5,3,.6) 100%);pointer-events:none}
-.sh-moment-node{display:flex;flex-direction:column;align-items:center;gap:.6rem;z-index:10;position:relative}
-.sh-moment-dot{width:10px;height:10px;border-radius:50%;border:1px solid rgba(201,165,82,.5);background:rgba(201,165,82,.15);transition:background .4s ease,border-color .4s ease}
-.sh-moment:hover .sh-moment-dot{background:rgba(201,165,82,.4);border-color:var(--gold)}
-.sh-moment-time{font-family:'Jost',sans-serif;font-size:.42rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,165,82,.35);writing-mode:vertical-rl;letter-spacing:.25em}
-.sh-moment-body{padding:0 3.5rem}
-.sh-moment.sh-right .sh-moment-img-wrap{order:3}
-.sh-moment.sh-right .sh-moment-node{order:2}
-.sh-moment.sh-right .sh-moment-body{order:1;text-align:right}
-.sh-moment.sh-right .sh-moment-body .sh-moment-rule{margin-left:auto}
-.sh-moment-period{display:block;font-family:'Jost',sans-serif;font-size:.48rem;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:rgba(201,165,82,.45);margin-bottom:.9rem}
-.sh-moment-body h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.8rem,2.5vw,2.8rem);font-weight:300;color:rgba(240,232,213,.93);line-height:1.08;letter-spacing:-.02em;margin-bottom:.5rem}
-.sh-moment-rule{width:2rem;height:1px;background:rgba(201,165,82,.28);margin:.9rem 0}
-.sh-moment-body p{font-family:'Jost',sans-serif;font-size:.86rem;font-weight:300;color:rgba(200,192,174,.5);line-height:2;margin-bottom:1.4rem}
-.sh-moment-space{font-family:'Jost',sans-serif;font-size:.46rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.35);display:flex;align-items:center;gap:.5rem}
-.sh-moment-space::before{content:'';width:14px;height:1px;background:rgba(201,165,82,.25)}
-.sh-moment.sh-right .sh-moment-space{justify-content:flex-end}
-.sh-moment.sh-right .sh-moment-space::before{order:2}
-
-/* ═══════════════════════════════════════════════════════
-   9. MASONRY GALLERY
-═══════════════════════════════════════════════════════ */
-
-.sh-masonry{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(3,180px);gap:4px;max-width:1280px;margin:0 auto;padding:0 4vw}
-.sh-m-item{overflow:hidden;position:relative;cursor:pointer}
-.sh-m-item img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.6) saturate(.8);transition:filter .7s ease,transform .8s cubic-bezier(.25,.46,.45,.94)}
-.sh-m-item:hover img{filter:brightness(.8) saturate(.95);transform:scale(1.06)}
-.sh-m-item::after{content:'';position:absolute;inset:0;border:1px solid rgba(201,165,82,0);transition:border-color .4s ease}
-.sh-m-item:hover::after{border-color:rgba(201,165,82,.15)}
-/* Masonry layout */
-.sh-m-1{grid-column:1/6;grid-row:1/3}
-.sh-m-2{grid-column:6/9;grid-row:1/2}
-.sh-m-3{grid-column:9/13;grid-row:1/3}
-.sh-m-4{grid-column:6/9;grid-row:2/3}
-.sh-m-5{grid-column:1/5;grid-row:3/4}
-.sh-m-6{grid-column:5/9;grid-row:3/4}
-.sh-m-7{grid-column:9/13;grid-row:3/4}
-.sh-m-label{position:absolute;bottom:1rem;left:1rem;font-family:'Jost',sans-serif;font-size:.42rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(201,165,82,.6);opacity:0;transform:translateY(5px);transition:opacity .35s ease,transform .35s ease;z-index:5}
-.sh-m-item:hover .sh-m-label{opacity:1;transform:translateY(0)}
-
-/* ═══════════════════════════════════════════════════════
-   10. SIGNATURE CLOSING SECTION
-═══════════════════════════════════════════════════════ */
-.sh-signature{position:relative;min-height:80vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.sh-sig-bg{position:absolute;inset:-6%;background-image:url('images/AV7I5727.jpg');background-size:cover;background-position:center 35%;will-change:transform;filter:brightness(.28) saturate(.75)}
-.sh-sig-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,5,4,.5) 0%,rgba(6,5,4,.25) 35%,rgba(6,5,4,.55) 70%,rgba(6,5,4,.98) 100%)}
-.sh-sig-content{position:relative;z-index:10;text-align:center;max-width:860px;padding:0 2rem}
-.sh-sig-ornament{display:flex;align-items:center;gap:1.5rem;justify-content:center;margin-bottom:2.5rem}
-.sh-sig-ornament::before,.sh-sig-ornament::after{content:'';flex:1;max-width:60px;height:1px;background:rgba(201,165,82,.25)}
-.sh-sig-ornament span{color:rgba(201,165,82,.35);font-size:.65rem;letter-spacing:.3em}
-.sh-sig-content h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.4rem,5.5vw,5.5rem);font-weight:300;color:rgba(240,232,213,.95);line-height:1.06;letter-spacing:-.03em;margin-bottom:1.8rem}
-.sh-sig-content h2 em{font-style:italic;color:rgba(201,165,82,.65)}
-.sh-sig-sub{font-family:'Jost',sans-serif;font-size:.88rem;font-weight:300;color:rgba(200,192,174,.42);line-height:2;max-width:520px;margin:0 auto 3.5rem}
-.sh-sig-ctas{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
-.sh-sig-btn-primary{display:inline-flex;align-items:center;gap:.65rem;font-family:'Jost',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#0a0a08;background:var(--gold);text-decoration:none;padding:1.1rem 2.8rem;transition:background .3s ease,transform .3s ease,box-shadow .35s ease;position:relative;overflow:hidden}
-.sh-sig-btn-primary::before{content:'';position:absolute;inset:0;background:#e8d08a;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
-.sh-sig-btn-primary span{position:relative;z-index:1}
-.sh-sig-btn-primary:hover::before{transform:scaleX(1)}
-.sh-sig-btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(201,165,82,.3)}
-.sh-sig-btn-ghost{display:inline-flex;align-items:center;gap:.65rem;font-family:'Jost',sans-serif;font-size:.6rem;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:rgba(232,224,208,.65);text-decoration:none;padding:1.1rem 2.8rem;border:1px solid rgba(232,224,208,.18);background:rgba(232,224,208,.03);transition:border-color .35s ease,color .35s ease,transform .3s ease}
-.sh-sig-btn-ghost:hover{border-color:rgba(201,165,82,.5);color:var(--gold);transform:translateY(-2px)}
-
-/* ═══════════════════════════════════════════════════════
-   SHARED LINK STYLE
-═══════════════════════════════════════════════════════ */
-.sh-link{display:inline-flex;align-items:center;gap:.55rem;font-family:'Jost',sans-serif;font-size:.56rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,165,82,.7);background:transparent;border:none;border-bottom:1px solid rgba(201,165,82,.22);padding-bottom:.3rem;cursor:pointer;transition:gap .3s ease,letter-spacing .3s ease,border-color .3s ease,color .3s ease;text-decoration:none;white-space:nowrap}
-.sh-link .arr{display:inline-block;transition:transform .3s ease}
-.sh-link:hover{gap:.85rem;letter-spacing:.26em;border-color:var(--gold);color:var(--gold)}
-.sh-link:hover .arr{transform:translateX(4px)}
-
-/* ═══════════════════════════════════════════════════════
+/* ─────────────────────────────────────────
    REVEAL ANIMATIONS
-═══════════════════════════════════════════════════════ */
-.sh-reveal{opacity:0;transform:translateY(36px);transition:opacity .85s cubic-bezier(.25,.46,.45,.94),transform .85s cubic-bezier(.25,.46,.45,.94)}
-.sh-reveal.from-left{transform:translateX(-36px)}
-.sh-reveal.from-right{transform:translateX(36px)}
-.sh-reveal.sh-vis{opacity:1!important;transform:translate(0,0)!important}
-.sh-reveal.d1{transition-delay:.1s}
-.sh-reveal.d2{transition-delay:.2s}
-.sh-reveal.d3{transition-delay:.32s}
-.sh-reveal.d4{transition-delay:.44s}
+───────────────────────────────────────── */
+.rv{opacity:0;transform:translateY(32px);
+  transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.from-l{transform:translateX(-32px)}
+.rv.from-r{transform:translateX(32px)}
+.rv.visible{opacity:1!important;transform:translate(0)!important}
+.rv.d1{transition-delay:.12s}
+.rv.d2{transition-delay:.24s}
+.rv.d3{transition-delay:.36s}
+.rv.d4{transition-delay:.48s}
 
-/* ═══════════════════════════════════════════════════════
+/* ─────────────────────────────────────────
+   1. HERO — FULL-SCREEN CINEMATIC
+───────────────────────────────────────── */
+.sp-hero{
+  position:relative;height:100vh;min-height:640px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  overflow:hidden
+}
+.sp-hero-bg{
+  position:absolute;inset:-6%;
+  background-image:url('images/AV7I5336.jpg');
+  background-size:cover;background-position:center 38%;
+  filter:brightness(.35) saturate(.75);
+  will-change:transform
+}
+.sp-hero-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom,
+      rgba(8,8,5,.6) 0%,
+      rgba(8,8,5,.08) 25%,
+      rgba(8,8,5,.08) 55%,
+      rgba(8,8,5,.7) 80%,
+      rgba(8,8,5,1) 100%)
+}
+.sp-hero-content{
+  position:relative;z-index:5;
+  text-align:center;
+  max-width:820px;padding:0 5vw;
+  margin-bottom:2rem
+}
+.sp-hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.9rem;
+  font-family:var(--sans);font-size:.46rem;font-weight:400;
+  letter-spacing:.42em;text-transform:uppercase;
+  color:rgba(201,165,82,.45);margin-bottom:1.8rem;
+  opacity:0;animation:h-up .9s ease .4s forwards
+}
+.sp-hero-eyebrow::before,.sp-hero-eyebrow::after{
+  content:'';width:28px;height:1px;background:rgba(201,165,82,.25)
+}
+.sp-hero-content h1{
+  font-family:var(--serif);
+  font-size:clamp(3rem,8.5vw,7.5rem);
+  font-weight:300;color:var(--cream);
+  line-height:.96;letter-spacing:-.035em;
+  margin-bottom:1.4rem;
+  opacity:0;transform:translateY(36px);
+  animation:h-rise 1.3s var(--ease) .55s forwards;
+  text-shadow:0 6px 60px rgba(0,0,0,.35)
+}
+.sp-hero-sub{
+  font-family:var(--serif);font-size:clamp(.95rem,1.6vw,1.2rem);
+  font-weight:300;font-style:italic;
+  color:rgba(201,165,82,.55);line-height:1.7;
+  display:block;max-width:560px;margin:0 auto;
+  opacity:0;filter:blur(5px);
+  animation:h-blur 1s ease 1.05s forwards
+}
+/* In-page nav pills */
+.sp-hero-nav{
+  display:flex;align-items:center;gap:0;
+  border:1px solid rgba(201,165,82,.1);
+  overflow:hidden;margin-top:2.8rem;
+  opacity:0;animation:h-up .8s ease 1.5s forwards;
+  flex-wrap:wrap;justify-content:center
+}
+.sp-hn-item{
+  font-family:var(--sans);font-size:.44rem;font-weight:400;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(200,192,174,.4);padding:.85rem 1.3rem;
+  background:transparent;border:none;cursor:pointer;
+  border-right:1px solid rgba(201,165,82,.1);
+  transition:color .3s ease,background .3s ease;
+  white-space:nowrap
+}
+.sp-hn-item:last-child{border-right:none}
+.sp-hn-item:hover{color:rgba(201,165,82,.85);background:rgba(201,165,82,.06)}
+/* Scroll cue */
+.sp-hero-scroll{
+  position:absolute;bottom:2.5rem;left:50%;
+  transform:translateX(-50%);z-index:5;
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  opacity:0;animation:h-up .7s ease 2s forwards
+}
+.sp-hero-scroll span{
+  font-family:var(--sans);font-size:.4rem;
+  letter-spacing:.4em;text-transform:uppercase;
+  color:rgba(201,165,82,.25)
+}
+.sp-scroll-line{
+  width:1px;height:44px;
+  background:linear-gradient(to bottom,rgba(201,165,82,.5),transparent);
+  animation:scroll-pulse 2.8s var(--ease) infinite;transform-origin:top
+}
+@keyframes h-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes h-rise{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+@keyframes h-blur{from{opacity:0;filter:blur(5px);transform:translateY(10px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+@keyframes scroll-pulse{0%{transform:scaleY(0);opacity:0}35%{opacity:1}100%{transform:scaleY(1);opacity:0}}
+
+/* ─────────────────────────────────────────
+   SHARED UTILITIES
+───────────────────────────────────────── */
+.sp-label{
+  display:block;font-family:var(--sans);font-size:.5rem;
+  font-weight:500;letter-spacing:.38em;text-transform:uppercase;
+  color:var(--gold-dim);margin-bottom:.9rem
+}
+.sp-rule{width:2rem;height:1px;background:rgba(201,165,82,.25);margin:1.1rem 0}
+.sp-link{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--sans);font-size:.56rem;font-weight:400;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold-dim);background:transparent;border:none;
+  border-bottom:1px solid rgba(201,165,82,.2);padding-bottom:.3rem;
+  cursor:pointer;text-decoration:none;
+  transition:gap .3s ease,color .3s ease,border-color .3s ease;
+  min-height:36px
+}
+.sp-link:hover{gap:.8rem;color:var(--gold);border-color:var(--gold)}
+
+/* ─────────────────────────────────────────
+   2. EXPLORE OUR SPACES — EDITORIAL LAYOUTS
+───────────────────────────────────────── */
+.sp-spaces{background:var(--bg)}
+
+.sp-spaces-intro{
+  max-width:1160px;margin:0 auto;
+  padding:7rem 5vw 5rem;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:end
+}
+.sp-spaces-intro h2{
+  font-family:var(--serif);
+  font-size:clamp(2.4rem,4.5vw,4rem);
+  font-weight:300;color:var(--cream-dim);
+  line-height:1.06;letter-spacing:-.03em
+}
+.sp-spaces-intro p{
+  font-family:var(--sans);font-size:.9rem;font-weight:300;
+  color:var(--text-soft);line-height:2.05;margin-bottom:1.5rem
+}
+
+/* ── Each space — alternating layout ── */
+.sp-space{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:560px;
+  border-top:1px solid rgba(201,165,82,.06)
+}
+.sp-space.rev .sp-space-img{order:2}
+.sp-space.rev .sp-space-body{order:1}
+
+.sp-space-img{position:relative;overflow:hidden;min-height:480px}
+.sp-space-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.2s var(--ease)
+}
+.sp-space:hover .sp-space-img img{transform:scale(1.04)}
+.sp-space-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,transparent 55%,rgba(8,8,5,.65) 100%);
+  pointer-events:none
+}
+.sp-space.rev .sp-space-img-overlay{
+  background:linear-gradient(to left,transparent 55%,rgba(8,8,5,.65) 100%)
+}
+
+.sp-space-body{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:4.5rem 5rem;background:var(--bg2);position:relative
+}
+/* gold top line on hover */
+.sp-space-body::before{
+  content:'';position:absolute;top:0;left:5rem;
+  width:0;height:1px;background:var(--gold);
+  transition:width .65s var(--ease)
+}
+.sp-space:hover .sp-space-body::before{width:calc(100% - 10rem)}
+.sp-space.rev .sp-space-body::before{left:auto;right:5rem}
+
+/* large ghost number */
+.sp-space-num{
+  position:absolute;top:2.5rem;right:3.5rem;
+  font-family:var(--serif);font-size:7rem;font-weight:300;
+  color:rgba(201,165,82,.04);line-height:1;letter-spacing:-.04em;
+  pointer-events:none
+}
+.sp-space.rev .sp-space-num{right:auto;left:3.5rem}
+
+.sp-space-body h2{
+  font-family:var(--serif);
+  font-size:clamp(2.2rem,3.5vw,3.2rem);
+  font-weight:300;color:var(--cream);
+  letter-spacing:-.025em;line-height:1.06;
+  margin-bottom:.4rem;
+  transition:color .3s ease
+}
+.sp-space:hover .sp-space-body h2{color:#fff}
+
+.sp-space-atmosphere{
+  font-family:var(--serif);font-size:.95rem;
+  font-style:italic;font-weight:300;
+  color:var(--gold-dim);margin-bottom:1rem;display:block
+}
+.sp-space-body p{
+  font-family:var(--sans);font-size:.88rem;font-weight:300;
+  color:var(--text-soft);line-height:2.05;
+  margin-bottom:.9rem;max-width:380px
+}
+.sp-space-hours{
+  font-family:var(--sans);font-size:.5rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(201,165,82,.32);margin:1rem 0 1.6rem;display:block
+}
+.sp-space-highlights{
+  display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.8rem
+}
+.sp-hl{
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--sans);font-size:.76rem;font-weight:300;
+  color:rgba(200,192,174,.48)
+}
+.sp-hl .ms{font-size:.95rem;color:rgba(201,165,82,.45)}
+.sp-space-ctas{display:flex;gap:1.2rem;flex-wrap:wrap}
+
+/* ─────────────────────────────────────────
+   3. SIGNATURE MOMENTS
+───────────────────────────────────────── */
+.sp-moments{
+  background:#060504;
+  padding:9rem 0 10rem;
+  position:relative;overflow:hidden
+}
+.sp-moments::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.12),transparent)
+}
+.sp-moments-header{
+  text-align:center;max-width:620px;
+  margin:0 auto 6rem;padding:0 5vw
+}
+.sp-moments-header h2{
+  font-family:var(--serif);
+  font-size:clamp(2.4rem,5vw,4.2rem);
+  font-weight:300;color:rgba(240,232,213,.9);
+  line-height:1.04;letter-spacing:-.03em;margin-bottom:1rem
+}
+.sp-moments-header p{
+  font-family:var(--sans);font-size:.88rem;font-weight:300;
+  color:var(--text-soft);line-height:2
+}
+
+/* ── Large hero moment ── */
+.sp-moment-hero{
+  max-width:1200px;margin:0 auto 2px;padding:0 4vw;
+  position:relative;overflow:hidden;height:500px
+}
+.sp-moment-hero-img{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center 40%;
+  filter:brightness(.45) saturate(.8);
+  transition:filter 1s ease
+}
+.sp-moment-hero:hover .sp-moment-hero-img{filter:brightness(.55) saturate(.88)}
+.sp-moment-hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(6,5,3,.95) 0%,rgba(6,5,3,.4) 45%,transparent 75%)
+}
+.sp-moment-hero-content{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:3.5rem 4rem;z-index:5
+}
+.sp-moment-hero-tag{
+  display:inline-block;
+  font-family:var(--sans);font-size:.46rem;font-weight:400;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(201,165,82,.6);
+  border:1px solid rgba(201,165,82,.18);
+  padding:.25rem .75rem;margin-bottom:.9rem
+}
+.sp-moment-hero-content h3{
+  font-family:var(--serif);
+  font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:300;color:var(--cream);
+  letter-spacing:-.025em;line-height:1.06;
+  margin-bottom:.6rem
+}
+.sp-moment-hero-content p{
+  font-family:var(--sans);font-size:.86rem;font-weight:300;
+  color:rgba(200,192,174,.6);line-height:1.9;max-width:500px
+}
+
+/* ── 4-col moment grid ── */
+.sp-moments-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;max-width:1200px;
+  margin:2px auto 0;padding:0 4vw
+}
+.sp-moment-card{
+  position:relative;overflow:hidden;
+  height:320px;cursor:default
+}
+.sp-moment-card-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  filter:brightness(.4) saturate(.75);
+  transition:filter .8s ease,transform .9s var(--ease)
+}
+.sp-moment-card:hover .sp-moment-card-bg{
+  filter:brightness(.58) saturate(.9);transform:scale(1.06)
+}
+.sp-moment-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(6,5,3,.9) 0%,rgba(6,5,3,.2) 50%,transparent 100%);
+  pointer-events:none
+}
+.sp-moment-card-body{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.8rem 1.6rem;z-index:5
+}
+.sp-moment-card-time{
+  display:block;font-family:var(--sans);font-size:.44rem;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(201,165,82,.55);margin-bottom:.45rem
+}
+.sp-moment-card-body h4{
+  font-family:var(--serif);font-size:1.35rem;font-weight:300;
+  color:rgba(240,232,213,.9);letter-spacing:-.01em;line-height:1.15;
+  margin-bottom:.4rem
+}
+.sp-moment-card-body p{
+  font-family:var(--sans);font-size:.74rem;font-weight:300;
+  color:rgba(200,192,174,.5);line-height:1.8;
+  max-height:0;overflow:hidden;
+  transition:max-height .4s ease,opacity .4s ease;opacity:0
+}
+.sp-moment-card:hover .sp-moment-card-body p{max-height:60px;opacity:1}
+
+/* ─────────────────────────────────────────
+   4. CORPORATE & GROUPS
+───────────────────────────────────────── */
+.sp-corp{
+  background:var(--bg);
+  border-top:1px solid rgba(201,165,82,.07)
+}
+.sp-corp-header{
+  max-width:1160px;margin:0 auto;
+  padding:7rem 5vw 5rem;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:end
+}
+.sp-corp-header-left h2{
+  font-family:var(--serif);
+  font-size:clamp(2.5rem,4.5vw,4rem);
+  font-weight:300;color:var(--cream-dim);
+  line-height:1.04;letter-spacing:-.03em
+}
+.sp-corp-header-right p{
+  font-family:var(--sans);font-size:.88rem;font-weight:300;
+  color:var(--text-soft);line-height:2;margin-bottom:1.5rem
+}
+/* Two venue panels side by side */
+.sp-corp-panels{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:rgba(201,165,82,.07);
+  max-width:1160px;margin:0 auto;
+  border-top:1px solid rgba(201,165,82,.07)
+}
+.sp-corp-panel{
+  background:var(--bg2);
+  display:flex;flex-direction:column;overflow:hidden
+}
+.sp-corp-panel-img{
+  height:320px;overflow:hidden;position:relative;flex-shrink:0
+}
+.sp-corp-panel-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .9s var(--ease)
+}
+.sp-corp-panel:hover .sp-corp-panel-img img{transform:scale(1.04)}
+.sp-corp-panel-img-ph{
+  width:100%;height:100%;background:#0d0c09;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.8rem
+}
+.sp-corp-panel-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(14,13,10,.7) 0%,transparent 55%);
+  pointer-events:none
+}
+.sp-corp-panel-body{flex:1;padding:3rem 3.5rem 3.5rem;position:relative}
+.sp-corp-panel-body::before{
+  content:'';position:absolute;top:0;left:3.5rem;
+  width:0;height:1px;background:var(--gold);
+  transition:width .6s var(--ease)
+}
+.sp-corp-panel:hover .sp-corp-panel-body::before{width:calc(100% - 7rem)}
+.sp-corp-tag{
+  font-family:var(--sans);font-size:.48rem;font-weight:500;
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold-dim);display:block;margin-bottom:.6rem
+}
+.sp-corp-panel-body h3{
+  font-family:var(--serif);
+  font-size:clamp(1.7rem,2.5vw,2.4rem);
+  font-weight:300;color:var(--cream);
+  letter-spacing:-.02em;margin-bottom:.5rem
+}
+.sp-corp-panel-body p{
+  font-family:var(--sans);font-size:.86rem;font-weight:300;
+  color:var(--text-soft);line-height:2;margin-bottom:1.5rem
+}
+.sp-corp-features{display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem}
+.sp-corp-feat{
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--sans);font-size:.76rem;font-weight:300;
+  color:rgba(200,192,174,.45)
+}
+.sp-corp-feat .ms{font-size:.95rem;color:rgba(201,165,82,.4)}
+/* Use-case tags */
+.sp-corp-uses{display:flex;flex-wrap:wrap;gap:.4rem}
+.sp-corp-use{
+  font-family:var(--sans);font-size:.5rem;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(200,192,174,.38);
+  border:1px solid rgba(201,165,82,.1);
+  padding:.24rem .65rem
+}
+
+/* ─────────────────────────────────────────
+   5. COMING SOON
+───────────────────────────────────────── */
+.sp-soon{
+  background:#060504;
+  border-top:1px solid rgba(201,165,82,.07);
+  padding:8rem 0 9rem;overflow:hidden
+}
+.sp-soon-inner{max-width:1160px;margin:0 auto;padding:0 5vw}
+.sp-soon-header{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:end;margin-bottom:5rem
+}
+.sp-soon-header h2{
+  font-family:var(--serif);
+  font-size:clamp(2.4rem,4.5vw,4rem);
+  font-weight:300;color:rgba(240,232,213,.85);
+  line-height:1.04;letter-spacing:-.03em
+}
+.sp-soon-header p{
+  font-family:var(--sans);font-size:.88rem;font-weight:300;
+  color:var(--text-soft);line-height:2
+}
+.sp-soon-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(201,165,82,.07)}
+.sp-soon-card{
+  background:#060504;padding:4.5rem;
+  position:relative;overflow:hidden;
+  min-height:380px;display:flex;flex-direction:column;justify-content:flex-end
+}
+.sp-soon-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 80% at 0% 100%,rgba(201,165,82,.04) 0%,transparent 60%);
+  pointer-events:none
+}
+.sp-soon-badge{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--sans);font-size:.46rem;font-weight:500;
+  letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(201,165,82,.45);
+  border:1px solid rgba(201,165,82,.15);
+  padding:.32rem .9rem;margin-bottom:2rem;width:fit-content
+}
+.sp-soon-badge .ms{font-size:.88rem;color:rgba(201,165,82,.4)}
+.sp-soon-bg-num{
+  position:absolute;top:2rem;right:3rem;
+  font-family:var(--serif);font-size:9rem;font-weight:300;
+  color:rgba(201,165,82,.03);line-height:1;
+  letter-spacing:-.04em;pointer-events:none
+}
+.sp-soon-card h3{
+  font-family:var(--serif);
+  font-size:clamp(2rem,3.5vw,3rem);
+  font-weight:300;color:rgba(240,232,213,.65);
+  letter-spacing:-.025em;line-height:1.06;margin-bottom:.8rem
+}
+.sp-soon-rule{width:2rem;height:1px;background:rgba(201,165,82,.15);margin-bottom:1.2rem}
+.sp-soon-card p{
+  font-family:var(--sans);font-size:.86rem;font-weight:300;
+  color:rgba(200,192,174,.38);line-height:1.95;
+  max-width:380px;margin-bottom:1.6rem
+}
+.sp-soon-features{display:flex;flex-direction:column;gap:.5rem}
+.sp-soon-feat{
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--sans);font-size:.76rem;font-weight:300;
+  color:rgba(200,192,174,.3)
+}
+.sp-soon-feat .ms{font-size:.95rem;color:rgba(201,165,82,.25)}
+
+/* ─────────────────────────────────────────
+   6. EXPLORE MORE — image-based nav
+───────────────────────────────────────── */
+.sp-explore{
+  background:var(--bg);
+  border-top:1px solid rgba(201,165,82,.07);
+  padding:7rem 0 0
+}
+.sp-explore-header{
+  text-align:center;max-width:520px;
+  margin:0 auto 4rem;padding:0 5vw
+}
+.sp-explore-header h2{
+  font-family:var(--serif);
+  font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:300;color:var(--cream-dim);
+  letter-spacing:-.025em;line-height:1.06;margin-bottom:.8rem
+}
+.sp-explore-header p{
+  font-family:var(--sans);font-size:.86rem;font-weight:300;
+  color:var(--text-soft);line-height:1.9
+}
+.sp-explore-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(201,165,82,.07)
+}
+.sp-explore-item{
+  position:relative;overflow:hidden;
+  height:360px;text-decoration:none;display:block
+}
+.sp-explore-item-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  filter:brightness(.35) saturate(.75);
+  transition:filter .8s ease,transform .9s var(--ease)
+}
+.sp-explore-item:hover .sp-explore-item-bg{
+  filter:brightness(.52) saturate(.88);transform:scale(1.05)
+}
+.sp-explore-item::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(6,5,3,.92) 0%,rgba(6,5,3,.2) 50%,transparent 100%);
+  pointer-events:none
+}
+.sp-explore-item-line{
+  position:absolute;top:0;left:0;right:0;
+  height:1px;background:var(--gold);
+  transform:scaleX(0);transition:transform .55s var(--ease)
+}
+.sp-explore-item:hover .sp-explore-item-line{transform:scaleX(1)}
+.sp-explore-item-body{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:2.2rem 2rem;z-index:5
+}
+.sp-explore-item-label{
+  display:block;font-family:var(--sans);font-size:.44rem;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(201,165,82,.5);margin-bottom:.5rem
+}
+.sp-explore-item-body h4{
+  font-family:var(--serif);font-size:1.6rem;font-weight:300;
+  color:rgba(240,232,213,.9);letter-spacing:-.01em;
+  line-height:1.1;margin-bottom:.5rem;
+  transition:color .3s ease
+}
+.sp-explore-item:hover .sp-explore-item-body h4{color:#fff}
+.sp-explore-item-arrow{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--sans);font-size:.46rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(201,165,82,.4);
+  transition:gap .3s ease,color .3s ease
+}
+.sp-explore-item:hover .sp-explore-item-arrow{gap:.7rem;color:rgba(201,165,82,.8)}
+
+/* ─────────────────────────────────────────
    MENU MODAL
-═══════════════════════════════════════════════════════ */
-.sh-modal-bd{position:fixed;inset:0;z-index:1100;background:rgba(6,5,3,.92);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transition:opacity .45s cubic-bezier(.25,.46,.45,.94);display:flex;align-items:flex-end;justify-content:center;padding:0}
-@media(min-width:700px){.sh-modal-bd{align-items:center;padding:1.5rem}}
-.sh-modal-bd.open{opacity:1;pointer-events:all}
-.sh-modal{background:#0d0c09;border:1px solid rgba(201,165,82,.1);border-bottom:none;width:100%;max-width:860px;max-height:92vh;overflow-y:auto;position:relative;transform:translateY(30px) scale(.97);transition:transform .5s cubic-bezier(.25,.46,.45,.94);box-shadow:0 48px 120px rgba(0,0,0,.75);border-radius:2px 2px 0 0}
-@media(min-width:700px){.sh-modal{border-bottom:1px solid rgba(201,165,82,.1);border-radius:2px;max-height:88vh}}
-.sh-modal-bd.open .sh-modal{transform:translateY(0) scale(1)}
-.sh-modal::-webkit-scrollbar{width:3px}
-.sh-modal::-webkit-scrollbar-thumb{background:rgba(201,165,82,.2);border-radius:2px}
-.sh-modal{scrollbar-width:thin;scrollbar-color:rgba(201,165,82,.18) transparent}
-.sh-modal-hd{padding:2rem 1.6rem 1.4rem;position:sticky;top:0;z-index:10;background:#0d0c09;border-bottom:1px solid rgba(201,165,82,.06)}
-@media(min-width:700px){.sh-modal-hd{padding:2.8rem 3.5rem 1.8rem}}
-.sh-modal-close{position:absolute;top:1.1rem;right:1.4rem;background:none;border:1px solid rgba(201,165,82,.14);cursor:pointer;font-family:'Jost',sans-serif;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,192,174,.35);padding:.38rem .85rem;transition:color .3s ease,border-color .3s ease}
-.sh-modal-close:hover{color:rgba(200,192,174,.8);border-color:rgba(201,165,82,.32)}
-.sh-modal-venue{font-family:'Jost',sans-serif;font-size:.52rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(201,165,82,.48);display:block;margin-bottom:.5rem}
-.sh-modal-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:300;color:#e8e0d0;line-height:1.04;letter-spacing:-.015em;margin-bottom:.3rem}
-.sh-modal-sub{font-size:.78rem;color:rgba(200,192,174,.35);font-style:italic}
-.sh-modal-body{padding:1.8rem 1.6rem 2.5rem}
-@media(min-width:700px){.sh-modal-body{padding:3rem 3.5rem 4rem}}
-.sh-modal-intro{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.1rem;font-weight:300;font-style:italic;color:rgba(232,224,208,.55);line-height:1.85;margin-bottom:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(201,165,82,.06)}
-.sh-modal-sec{margin-bottom:3.5rem}
-.sh-modal-sec-title{font-family:'Jost',sans-serif;font-size:.56rem;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:rgba(201,165,82,.52);margin-bottom:1.8rem;display:flex;align-items:center;gap:1.4rem}
-.sh-modal-sec-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,165,82,.15),transparent)}
-.sh-modal-item{display:grid;grid-template-columns:1fr auto;gap:1.8rem;padding:1.2rem 0;border-bottom:1px solid rgba(201,165,82,.04);align-items:start}
-.sh-modal-item:last-child{border-bottom:none}
-.sh-modal-item-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.1rem;font-weight:400;color:#e0d8c8;margin-bottom:.3rem;line-height:1.2}
-.sh-modal-item-desc{font-size:.76rem;color:rgba(220,212,196,.38);line-height:1.8}
-.sh-modal-item-note{font-size:.62rem;color:rgba(201,165,82,.5);font-style:italic;margin-top:.22rem}
-.sh-modal-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;color:rgba(201,165,82,.72);white-space:nowrap;padding-top:.1rem}
-.sh-modal-cta{text-align:center;padding:2.5rem 0 0;border-top:1px solid rgba(201,165,82,.06);margin-top:.5rem}
-.sh-modal-cta p{font-size:.8rem;color:rgba(200,192,174,.35);margin-bottom:1.8rem;line-height:1.9}
-@media(max-width:600px){.sh-modal-hd,.sh-modal-body{padding-left:1.5rem;padding-right:1.5rem}.sh-modal-item{grid-template-columns:1fr;gap:.3rem}}
+───────────────────────────────────────── */
+.sp-modal-bd{
+  position:fixed;inset:0;z-index:1100;
+  background:rgba(6,5,3,.93);backdrop-filter:blur(14px);
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+  display:flex;align-items:flex-end;justify-content:center
+}
+@media(min-width:700px){.sp-modal-bd{align-items:center;padding:1.5rem}}
+.sp-modal-bd.open{opacity:1;pointer-events:all}
+.sp-modal{
+  background:#0d0c09;border:1px solid rgba(201,165,82,.1);
+  border-bottom:none;width:100%;max-width:840px;
+  max-height:92vh;overflow-y:auto;
+  transform:translateY(24px) scale(.97);
+  transition:transform .45s var(--ease);
+  border-radius:2px 2px 0 0
+}
+@media(min-width:700px){.sp-modal{border-bottom:1px solid rgba(201,165,82,.1);border-radius:2px;max-height:88vh}}
+.sp-modal-bd.open .sp-modal{transform:translateY(0) scale(1)}
+.sp-modal::-webkit-scrollbar{width:3px}
+.sp-modal::-webkit-scrollbar-thumb{background:rgba(201,165,82,.2);border-radius:2px}
+.sp-modal-hd{
+  padding:2rem 1.6rem 1.4rem;position:sticky;top:0;
+  background:#0d0c09;border-bottom:1px solid rgba(201,165,82,.06);z-index:10
+}
+@media(min-width:700px){.sp-modal-hd{padding:2.5rem 3rem 1.6rem}}
+.sp-modal-close{
+  position:absolute;top:1.1rem;right:1.4rem;
+  background:none;border:1px solid rgba(201,165,82,.14);cursor:pointer;
+  font-family:var(--sans);font-size:.5rem;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(200,192,174,.35);
+  padding:.36rem .82rem;transition:color .3s ease,border-color .3s ease
+}
+.sp-modal-close:hover{color:rgba(200,192,174,.8);border-color:rgba(201,165,82,.32)}
+.sp-modal-venue{
+  font-family:var(--sans);font-size:.52rem;font-weight:500;
+  letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(201,165,82,.48);display:block;margin-bottom:.4rem
+}
+.sp-modal-title{
+  font-family:var(--serif);
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:300;color:#e8e0d0;line-height:1.04
+}
+.sp-modal-sub{font-size:.76rem;color:rgba(200,192,174,.35);font-style:italic;margin-top:.3rem;display:block}
+.sp-modal-body{padding:2rem 1.6rem 3rem}
+@media(min-width:700px){.sp-modal-body{padding:2.8rem 3rem 4rem}}
+.sp-modal-intro{
+  font-family:var(--serif);font-size:1.06rem;font-weight:300;
+  font-style:italic;color:rgba(232,224,208,.5);
+  line-height:1.85;margin-bottom:2.5rem;
+  padding-bottom:2rem;border-bottom:1px solid rgba(201,165,82,.06)
+}
+.sp-modal-sec{margin-bottom:3rem}
+.sp-modal-sec-title{
+  font-family:var(--sans);font-size:.54rem;font-weight:500;
+  letter-spacing:.35em;text-transform:uppercase;
+  color:rgba(201,165,82,.5);margin-bottom:1.6rem;
+  display:flex;align-items:center;gap:1.2rem
+}
+.sp-modal-sec-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,165,82,.14),transparent)}
+.sp-modal-item{
+  display:grid;grid-template-columns:1fr auto;gap:1.5rem;
+  padding:1.1rem 0;border-bottom:1px solid rgba(201,165,82,.04);align-items:start
+}
+.sp-modal-item:last-child{border-bottom:none}
+.sp-modal-item-name{
+  font-family:var(--serif);font-size:1.06rem;font-weight:400;
+  color:#e0d8c8;margin-bottom:.25rem;line-height:1.2
+}
+.sp-modal-item-desc{font-size:.74rem;color:rgba(220,212,196,.36);line-height:1.78}
+.sp-modal-item-note{font-size:.6rem;color:rgba(201,165,82,.48);font-style:italic;margin-top:.2rem}
+.sp-modal-price{
+  font-family:var(--serif);font-size:.98rem;
+  color:rgba(201,165,82,.7);white-space:nowrap;padding-top:.1rem
+}
+.sp-modal-cta-row{
+  text-align:center;padding:2rem 0 0;
+  border-top:1px solid rgba(201,165,82,.06);margin-top:.5rem
+}
+.sp-modal-cta-row p{font-size:.78rem;color:rgba(200,192,174,.32);margin-bottom:1.5rem;line-height:1.85}
+@media(max-width:600px){.sp-modal-item{grid-template-columns:1fr;gap:.3rem}}
 
-/* ═══════════════════════════════════════════════════════
+/* ─────────────────────────────────────────
    RESPONSIVE
-═══════════════════════════════════════════════════════ */
+───────────────────────────────────────── */
 @media(max-width:1100px){
-  .sh-split{grid-template-columns:1fr;min-height:auto}
-  .sh-split.sh-split-rev .sh-split-img,.sh-split.sh-split-rev .sh-split-body{order:unset}
-  .sh-split-img{height:320px;max-height:320px}
-  .sh-split-body{padding:4rem 3.5rem}
-  .sh-split-num{display:none}
-  .sh-wellness-trio{grid-template-columns:1fr 1fr}
-  .sh-wt-item:nth-child(1){grid-row:span 1;grid-column:span 2}
-  .sh-active-top{grid-template-columns:1fr;gap:3rem}
-  .sh-active-images{grid-template-columns:1fr 1fr 1fr}
-  .sh-moment{grid-template-columns:1fr 60px 1fr}
+  .sp-spaces-intro,.sp-corp-header,.sp-soon-header{grid-template-columns:1fr;gap:2.5rem}
+  .sp-space{grid-template-columns:1fr;min-height:auto}
+  .sp-space.rev .sp-space-img,.sp-space.rev .sp-space-body{order:unset}
+  .sp-space-img{min-height:360px}
+  .sp-space-body{padding:3.5rem 3.5rem}
+  .sp-space-body::before{left:3.5rem}
+  .sp-space.rev .sp-space-body::before{right:auto;left:3.5rem}
+  .sp-space-num{display:none}
+  .sp-corp-panels{grid-template-columns:1fr}
+  .sp-soon-header{grid-template-columns:1fr;gap:2rem}
 }
 @media(max-width:900px){
-  .sh-dir-grid{grid-template-columns:repeat(4,1fr)}
-  .sh-dir-item:nth-child(n+5){display:none}
-  .sh-wellness-header{grid-template-columns:1fr}
-  .sh-wellness-trio{grid-template-columns:1fr}
-  .sh-wt-item:nth-child(1){grid-column:span 1}
-  .sh-journey-spine{display:none}
-  .sh-moment{grid-template-columns:1fr;gap:0}
-  .sh-moment.sh-right .sh-moment-img-wrap,.sh-moment.sh-right .sh-moment-node,.sh-moment.sh-right .sh-moment-body{order:unset}
-  .sh-moment.sh-right .sh-moment-body{text-align:left}
-  .sh-moment.sh-right .sh-moment-body .sh-moment-rule{margin-left:0}
-  .sh-moment.sh-right .sh-moment-space{justify-content:flex-start}
-  .sh-moment.sh-right .sh-moment-space::before{order:0}
-  .sh-moment-node{display:none}
-  .sh-moment-img-wrap{height:300px}
-  .sh-moment-body{padding:2rem 0 3rem}
-  .sh-active-images{grid-template-columns:1fr 1fr;height:280px}
-  .sh-active-img:nth-child(3){display:none}
-  .sh-masonry{grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(4,160px)}
-  .sh-m-1{grid-column:1/4;grid-row:1/3}
-  .sh-m-2{grid-column:4/7;grid-row:1/2}
-  .sh-m-3{grid-column:4/7;grid-row:2/3}
-  .sh-m-4{grid-column:1/4;grid-row:3/4}
-  .sh-m-5{grid-column:4/7;grid-row:3/4}
-  .sh-m-6{grid-column:1/4;grid-row:4/5}
-  .sh-m-7{grid-column:4/7;grid-row:4/5}
-  .sh-hero-nav{flex-wrap:wrap}
-  .sh-cafe-content{padding:4rem 5vw}
+  .sp-moments-grid{grid-template-columns:1fr 1fr}
+  .sp-explore-grid{grid-template-columns:1fr 1fr}
+  .sp-soon-cards{grid-template-columns:1fr}
+  .sp-moment-hero{height:380px;padding:0}
+  .sp-moment-hero-content{padding:2.5rem 2.2rem}
 }
 @media(max-width:640px){
-  .sh-hero-h1{font-size:clamp(4rem,16vw,7rem)}
-  .sh-dir-grid{grid-template-columns:repeat(2,1fr)}
-  .sh-dir-item:nth-child(n+3){display:none}
-  .sh-split-img{height:240px;max-height:240px}
-  .sh-split-body{padding:3rem 1.6rem}
-  .sh-cine{height:70vh}
-  .sh-cine-content h2{font-size:clamp(2.2rem,9vw,4rem)}
-  .sh-active-top{gap:2rem}
-  .sh-active-images{grid-template-columns:1fr;height:220px}
-  .sh-active-img:nth-child(2){display:none}
-  .sh-masonry{grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,160px)}
-  .sh-m-1{grid-column:1/3;grid-row:1/2}
-  .sh-m-2{grid-column:1/2;grid-row:2/3}
-  .sh-m-3{grid-column:2/3;grid-row:2/3}
-  .sh-m-4{grid-column:1/3;grid-row:3/4}
-  .sh-m-5{grid-column:1/2;grid-row:4/5}
-  .sh-m-6{grid-column:2/3;grid-row:4/5}
-  .sh-m-7{grid-column:1/3;grid-row:5/6}
-  .sh-sig-ctas{flex-direction:column;align-items:center}
-  .sh-sig-btn-primary,.sh-sig-btn-ghost{width:100%;max-width:280px;justify-content:center}
-  .sh-hero-nav{display:none}
-  .sh-wellness-header{padding:0 5vw}
-  .sh-wellness-trio{padding:0 5vw}
-  .sh-active-inner{padding:0 5vw}
-  .sh-journey-timeline{padding:0 5vw}
-  .sh-masonry{padding:0 4vw}
+  /* Hero */
+  .sp-hero-content h1{font-size:clamp(3rem,13vw,5.5rem)}
+  .sp-hero-nav{display:none}
+  /* Space bodies */
+  .sp-space-img{min-height:280px}
+  .sp-space-body{padding:2.8rem 1.6rem}
+  .sp-space-body h2{font-size:clamp(1.9rem,8vw,2.6rem)}
+  .sp-space-body p{font-size:.92rem;max-width:100%}
+  .sp-space-ctas{flex-direction:column;gap:.7rem}
+  .sp-link{min-height:44px;padding:.6rem 0}
+  /* Corp */
+  .sp-corp-panel-body{padding:2.2rem 1.8rem 2.5rem}
+  /* Soon */
+  .sp-soon-card{padding:3rem 1.8rem}
+  .sp-soon-card h3{font-size:clamp(1.8rem,7vw,2.5rem)}
+  .sp-soon-card p{font-size:.9rem}
+  /* Moments */
+  .sp-moments-grid{grid-template-columns:1fr}
+  .sp-moment-card{height:260px}
+  .sp-moment-hero{height:300px}
+  .sp-moment-hero-content h3{font-size:clamp(1.7rem,7vw,2.5rem)}
+  /* Explore */
+  .sp-explore-grid{grid-template-columns:1fr 1fr}
+  .sp-explore-item{height:260px}
+  /* Sections */
+  .sp-spaces-intro,.sp-corp-header{padding:5rem 5vw 3rem}
+  .sp-corp-panels{margin:0 0}
+  .sp-soon-inner{padding:0 5vw}
+  .sp-moments-header{margin-bottom:4rem}
+  .sp-explore-header{padding:0 5vw}
 }
-@media(max-width:900px) and (orientation:landscape){
-  .sh-hero{min-height:100vw}
-}
-@media(min-width:1600px){
-  .sh-dir-grid,.sh-wellness-trio,.sh-active-inner,.sh-journey-timeline,.sh-masonry{max-width:1500px}
+@media(max-width:480px){
+  .sp-explore-grid{grid-template-columns:1fr}
+  .sp-explore-item{height:240px}
+  .sp-soon-card{padding:2.5rem 1.5rem}
 }
 
 </style>
 </head>
 <body>
-<div class="page-transition-out" id="page-out"></div>
 <div id="nav-holder"></div>
 
-<!-- ══════════════════════════════════════════════════════
-     1. CINEMATIC HERO
-══════════════════════════════════════════════════════ -->
-<section class="sh-hero" id="sh-hero">
-  <div class="sh-hero-bg" id="sh-hero-bg"></div>
-  <div class="sh-hero-overlay"></div>
-  <div class="sh-hero-content">
-    <span class="sh-hero-location">Musanze · Rwanda · Volcanic Highlands</span>
-    <h1 class="sh-hero-h1">Spaces</h1>
-    <span class="sh-hero-sub">Every corner of Grotta is designed for a different kind of experience.</span>
-    <div class="sh-hero-nav" role="navigation" aria-label="Spaces quick navigation">
-      <button class="sh-hero-nav-item" onclick="scrollToId('sh-restaurant')">Restaurant</button>
-      <button class="sh-hero-nav-item" onclick="scrollToId('sh-cafe-section')">Café</button>
-      <button class="sh-hero-nav-item" onclick="scrollToId('sh-wellness-section')">Wellness</button>
-      <button class="sh-hero-nav-item" onclick="scrollToId('sh-active-section')">Sports</button>
-      <button class="sh-hero-nav-item" onclick="scrollToId('sh-journey-section')">Experiences</button>
-    </div>
+<!-- ══════════════════════════════════════
+     1. HERO
+══════════════════════════════════════════ -->
+<section class="sp-hero" id="sp-hero">
+  <div class="sp-hero-bg" id="sp-hero-bg"></div>
+  <div class="sp-hero-overlay"></div>
+  <div class="sp-hero-content">
+    <span class="sp-hero-eyebrow">Grotta Resort · Musanze, Rwanda</span>
+    <h1>Discover the Spaces of Grotta Resort</h1>
+    <span class="sp-hero-sub">Volcanic dining, gardens, gathering places and future wellness experiences.</span>
+    <nav class="sp-hero-nav" aria-label="Spaces navigation">
+      <button class="sp-hn-item" onclick="goTo('sp-dining')">Dining</button>
+      <button class="sp-hn-item" onclick="goTo('sp-relaxation')">Relaxation</button>
+      <button class="sp-hn-item" onclick="goTo('sp-recreation')">Recreation</button>
+      <button class="sp-hn-item" onclick="goTo('sp-moments')">Moments</button>
+      <button class="sp-hn-item" onclick="goTo('sp-corporate')">Corporate</button>
+      <button class="sp-hn-item" onclick="goTo('sp-soon')">Coming Soon</button>
+    </nav>
   </div>
-  <div class="sh-hero-scroll" aria-hidden="true">
-    <span>Discover</span>
-    <div class="sh-scroll-line"></div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════════
-     2. SPACES VISUAL DIRECTORY
-══════════════════════════════════════════════════════ -->
-<section class="sh-directory">
-  <div class="sh-dir-header sh-reveal">
-    <span class="sh-eyebrow">The Collection</span>
-    <h2>Seven spaces.<br>Each a world of its own.</h2>
-  </div>
-  <div class="sh-dir-grid" role="list">
-    <div class="sh-dir-item sh-reveal" role="listitem" onclick="scrollToId('sh-restaurant')" tabindex="0" aria-label="Go to Restaurant">
-      <div class="sh-dir-item-bg" style="background-image:url('images/AV7I5406.jpg')"></div>
-      <div class="sh-dir-item-overlay"></div>
-      <div class="sh-dir-item-line"></div>
-      <div class="sh-dir-item-content">
-        <span class="sh-dir-item-num">01</span>
-        <span class="sh-dir-item-name">The Restaurant</span>
-        <span class="sh-dir-item-tag">Fine Dining</span>
-      </div>
-    </div>
-    <div class="sh-dir-item sh-reveal d1" role="listitem" onclick="scrollToId('sh-cafe-section')" tabindex="0" aria-label="Go to Cave Café">
-      <div class="sh-dir-item-bg" style="background-image:url('images/AV7I5717.jpg')"></div>
-      <div class="sh-dir-item-overlay"></div>
-      <div class="sh-dir-item-line"></div>
-      <div class="sh-dir-item-content">
-        <span class="sh-dir-item-num">02</span>
-        <span class="sh-dir-item-name">Cave Café</span>
-        <span class="sh-dir-item-tag">All Day</span>
-      </div>
-    </div>
-    <div class="sh-dir-item sh-reveal d2" role="listitem" onclick="scrollToId('sh-wellness-section')" tabindex="0" aria-label="Go to The Spa">
-      <div class="sh-dir-item-bg" style="background-image:url('images/AV7I5727.jpg');background-position:center 30%"></div>
-      <div class="sh-dir-item-overlay"></div>
-      <div class="sh-dir-item-line"></div>
-      <div class="sh-dir-item-content">
-        <span class="sh-dir-item-num">03</span>
-        <span class="sh-dir-item-name">The Spa</span>
-        <span class="sh-dir-item-tag">Wellness</span>
-      </div>
-    </div>
-    <div class="sh-dir-item sh-reveal d2" role="listitem" onclick="scrollToId('sh-wellness-section')" tabindex="0" aria-label="Go to Fitness Studio">
-      <div class="sh-dir-item-bg" style="background-image:url('images/AV7I5406.jpg');background-position:center 60%"></div>
-      <div class="sh-dir-item-overlay"></div>
-      <div class="sh-dir-item-line"></div>
-      <div class="sh-dir-item-content">
-        <span class="sh-dir-item-num">04</span>
-        <span class="sh-dir-item-name">Fitness Studio</span>
-        <span class="sh-dir-item-tag">Active</span>
-      </div>
-    </div>
-    <div class="sh-dir-item sh-reveal d3" role="listitem" onclick="scrollToId('sh-active-section')" tabindex="0" aria-label="Go to Sports Area">
-      <div class="sh-dir-item-bg" style="background-image:url('images/AV7I2003.jpg')"></div>
-      <div class="sh-dir-item-overlay"></div>
-      <div class="sh-dir-item-line"></div>
-      <div class="sh-dir-item-content">
-        <span class="sh-dir-item-num">05</span>
-        <span class="sh-dir-item-name">Sports Area</span>
-        <span class="sh-dir-item-tag">Outdoors</span>
-      </div>
-    </div>
-    <div class="sh-dir-item sh-reveal d3" role="listitem" onclick="scrollToId('sh-cafe-section')" tabindex="0" aria-label="Go to The Lounge">
-      <div class="sh-dir-item-bg" style="background-image:url('images/AV7I3358.jpg')"></div>
-      <div class="sh-dir-item-overlay"></div>
-      <div class="sh-dir-item-line"></div>
-      <div class="sh-dir-item-content">
-        <span class="sh-dir-item-num">06</span>
-        <span class="sh-dir-item-name">The Lounge</span>
-        <span class="sh-dir-item-tag">Evenings</span>
-      </div>
-    </div>
-    <div class="sh-dir-item sh-reveal d4" role="listitem" onclick="scrollToId('sh-active-section')" tabindex="0" aria-label="Go to Outdoor Terraces">
-      <div class="sh-dir-item-bg" style="background-image:url('images/AV7I5336.jpg');background-position:center 55%"></div>
-      <div class="sh-dir-item-overlay"></div>
-      <div class="sh-dir-item-line"></div>
-      <div class="sh-dir-item-content">
-        <span class="sh-dir-item-num">07</span>
-        <span class="sh-dir-item-name">Terraces</span>
-        <span class="sh-dir-item-tag">Open Air</span>
-      </div>
-    </div>
+  <div class="sp-hero-scroll" aria-hidden="true">
+    <span>Explore</span>
+    <div class="sp-scroll-line"></div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════
-     3. RESTAURANT — Editorial Split
-══════════════════════════════════════════════════════ -->
-<section class="sh-editorial" id="sh-restaurant">
-  <div class="sh-split sh-reveal">
-    <div class="sh-split-img">
-      <img src="images/AV7I5406.jpg" alt="The Restaurant at Grotta" style="object-position:center 38%;">
-      <div class="sh-split-img-overlay"></div>
+<!-- ══════════════════════════════════════
+     2. DINING SPACES
+══════════════════════════════════════════ -->
+<section class="sp-spaces" id="sp-dining">
+  <div class="sp-spaces-intro rv">
+    <div>
+      <span class="sp-label">Dining & Drinks</span>
+      <h2>Three spaces for every moment of the day.</h2>
     </div>
-    <div class="sh-split-body">
-      <span class="sh-split-num" aria-hidden="true">01</span>
-      <span class="sh-split-eyebrow">Fine Dining</span>
-      <h2>The Restaurant</h2>
-      <div class="sh-split-rule"></div>
-      <p>Fine dining at the edge of the highland. Hyper-local ingredients elevated by modern technique — a tasting menu that changes with the season, the harvest, the light.</p>
-      <p>Each evening is a considered experience. The kitchen's relationship with the land is not a concept. It is a practice.</p>
-      <span class="sh-split-hours">Dinner · From 6PM · Reservations Encouraged</span>
-      <div class="sh-split-ctas">
-        <button class="sh-link" onclick="openMenu('restaurant')">View Menu <span class="arr">→</span></button>
-        <a href="booking.html" class="sh-link">Reserve a Table <span class="arr">→</span></a>
+    <div>
+      <p>From a refined evening restaurant to a cave-side café and an evening cocktail lounge — Grotta Resort offers distinct dining spaces that feel unlike anything else in the region.</p>
+      <a href="booking.html" class="sp-link">Reserve a Table →</a>
+    </div>
+  </div>
+
+  <!-- Restaurant -->
+  <div class="sp-space rv" id="sp-restaurant">
+    <div class="sp-space-img">
+      <img src="images/AV7I5601.jpg" alt="The Restaurant" loading="lazy" style="object-position:center 38%">
+      <div class="sp-space-img-overlay"></div>
+    </div>
+    <div class="sp-space-body">
+      <span class="sp-space-num">01</span>
+      <span class="sp-label">The Restaurant</span>
+      <h2>Fine Dining</h2>
+      <span class="sp-space-atmosphere">Where local ingredients meet considered cooking.</span>
+      <div class="sp-rule"></div>
+      <p>Our main restaurant is open for dinner every evening. We work with local farmers and producers from the Musanze highlands to create a seasonal menu that changes with what is available and at its best.</p>
+      <p>Guests can choose from a full tasting menu or order à la carte. Private dining is available on request.</p>
+      <span class="sp-space-hours">Dinner only · Open from 6:00 PM · Reservations recommended</span>
+      <div class="sp-space-highlights">
+        <span class="sp-hl"><span class="ms">restaurant_menu</span> Tasting menu & à la carte</span>
+        <span class="sp-hl"><span class="ms">eco</span> Seasonal local ingredients</span>
+        <span class="sp-hl"><span class="ms">wine_bar</span> Wine pairing & sommelier service</span>
+        <span class="sp-hl"><span class="ms">groups</span> Private dining on request</span>
+      </div>
+      <div class="sp-space-ctas">
+        <button class="sp-link" onclick="openMenu('restaurant')">View Menu →</button>
+        <a href="booking.html" class="sp-link">Reserve a Table →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cave Café -->
+  <div class="sp-space rev rv" id="sp-cafe">
+    <div class="sp-space-img">
+      <img src="images/AV7I5717.jpg" alt="Cave Café" loading="lazy" style="object-position:center 40%">
+      <div class="sp-space-img-overlay"></div>
+    </div>
+    <div class="sp-space-body">
+      <span class="sp-space-num">02</span>
+      <span class="sp-label">Cave Café</span>
+      <h2>All-Day Café</h2>
+      <span class="sp-space-atmosphere">Coffee, drinks and bites at the cave entrance.</span>
+      <div class="sp-rule"></div>
+      <p>The Cave Café sits at the entrance to Grotta's natural cave system. It is open throughout the day for specialty coffee, hot drinks, light meals, artisanal snacks, and an evening selection of rare spirits.</p>
+      <p>No reservation needed. The café is open to all guests at any time during operating hours.</p>
+      <span class="sp-space-hours">Open Daily · 10:00 AM – 10:00 PM · No reservation required</span>
+      <div class="sp-space-highlights">
+        <span class="sp-hl"><span class="ms">coffee</span> Specialty coffee & hot drinks</span>
+        <span class="sp-hl"><span class="ms">liquor</span> Evening spirits & cave-aged selections</span>
+        <span class="sp-hl"><span class="ms">lunch_dining</span> Light meals & artisanal bites</span>
+        <span class="sp-hl"><span class="ms">explore</span> Located at the cave entrance</span>
+      </div>
+      <div class="sp-space-ctas">
+        <button class="sp-link" onclick="openMenu('cave-cafe')">View Café Menu →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cocktail Bar -->
+  <div class="sp-space rv" id="sp-bar">
+    <div class="sp-space-img">
+      <img src="images/AV7I3358.jpg" alt="Cocktail Bar & Lounge" loading="lazy" style="object-position:center 45%">
+      <div class="sp-space-img-overlay"></div>
+    </div>
+    <div class="sp-space-body">
+      <span class="sp-space-num">03</span>
+      <span class="sp-label">Cocktail Bar & Lounge</span>
+      <h2>Evening Lounge</h2>
+      <span class="sp-space-atmosphere">Crafted cocktails as the highland evening settles in.</span>
+      <div class="sp-rule"></div>
+      <p>Open every evening, our cocktail bar and lounge is a comfortable space to wind down after a day at the resort. The cocktail list draws on local botanicals and Rwandan spirits.</p>
+      <p>Wines by the glass, bar snacks, and a relaxed setting. Open to all guests from 5PM.</p>
+      <span class="sp-space-hours">Open Daily · From 5:00 PM · Open to all guests</span>
+      <div class="sp-space-highlights">
+        <span class="sp-hl"><span class="ms">local_bar</span> Signature & classic cocktails</span>
+        <span class="sp-hl"><span class="ms">wine_bar</span> Wines by the glass</span>
+        <span class="sp-hl"><span class="ms">dinner_dining</span> Bar bites & snacks</span>
+        <span class="sp-hl"><span class="ms">chair</span> Relaxed lounge seating</span>
+      </div>
+      <div class="sp-space-ctas">
+        <button class="sp-link" onclick="openMenu('cocktail-bar')">View Cocktail Menu →</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════
-     4. CINEMATIC BREAK — The Cave
-══════════════════════════════════════════════════════ -->
-<div class="sh-cine sh-reveal" style="--cine-img:url('images/AV7I2003.jpg')">
-  <div class="sh-cine-bg" style="background-image:url('images/AV7I2003.jpg')"></div>
-  <div class="sh-cine-overlay" style="background:linear-gradient(to bottom,rgba(6,5,4,.55) 0%,rgba(6,5,4,.15) 30%,rgba(6,5,4,.15) 65%,rgba(6,5,4,.85) 100%)"></div>
-  <div class="sh-cine-content">
-    <span class="sh-cine-label">Underground · Musanze</span>
-    <h2>Where stone<br>becomes <em>atmosphere</em></h2>
-    <p class="sh-cine-desc">The cave is not simply a setting. It is a presence — cool, ancient, and unlike anything found above ground.</p>
-    <div class="sh-cine-rule"><span>✦</span></div>
+<!-- ══════════════════════════════════════
+     RELAXATION SPACES
+══════════════════════════════════════════ -->
+<section class="sp-spaces" id="sp-relaxation" style="background:var(--bg2);border-top:1px solid rgba(201,165,82,.06)">
+  <div class="sp-spaces-intro rv">
+    <div>
+      <span class="sp-label">Relaxation</span>
+      <h2>Pool and gardens for every part of your stay.</h2>
+    </div>
+    <div>
+      <p>The swimming pool and outdoor gardens are available to all guests throughout the day. Both spaces are included with every room and require no reservation.</p>
+    </div>
   </div>
-</div>
 
-<!-- ══════════════════════════════════════════════════════
-     5. GROTTA CAFÉ — Cinematic Atmosphere
-══════════════════════════════════════════════════════ -->
-<section class="sh-cafe" id="sh-cafe-section">
-  <div class="sh-cafe-bg" id="sh-cafe-bg"></div>
-  <div class="sh-cafe-layers"></div>
-  <div class="sh-cafe-glow" aria-hidden="true"></div>
-  <div class="sh-cafe-content sh-reveal from-left">
-    <span class="sh-eyebrow">Primary Hub · 02</span>
-    <h2 class="sh-cafe-quote">The place where<br>every journey through<br><em>Grotta</em> begins.</h2>
-    <div class="sh-cafe-divider"></div>
-    <div class="sh-cafe-body">
-      <p>Positioned at the cave entrance, the Grotta Café is both threshold and heart. Where guests first arrive, pause, and allow the atmosphere to settle — the stone cool, the light low, the pace immediately different.</p>
-      <p>No agenda. No urgency. Just the decision, made slowly, to go deeper.</p>
+  <!-- Pool -->
+  <div class="sp-space rev rv" id="sp-gardens" style="background:var(--bg2)">
+    <div class="sp-space-img">
+      <img src="images/DSC04007.JPG" alt="Outdoor Gardens & Terraces" loading="lazy" style="object-position:center 55%">
+      <div class="sp-space-img-overlay"></div>
     </div>
-    <div class="sh-cafe-ctas">
-      <button class="sh-link" onclick="openMenu('cave-cafe')">View Café Menu <span class="arr">→</span></button>
-      <button class="sh-link" onclick="openMenu('cocktail-bar')">View Cocktail Menu <span class="arr">→</span></button>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════════
-     6. WELLNESS — Magazine Trio
-══════════════════════════════════════════════════════ -->
-<section class="sh-wellness" id="sh-wellness-section">
-  <div class="sh-wellness-header">
-    <div class="sh-wellness-header-left sh-reveal from-left">
-      <span class="sh-eyebrow">Restore · 03 — 04</span>
-      <h2>Spa.<br>Studio.<br>Stillness.</h2>
-    </div>
-    <div class="sh-wellness-header-right sh-reveal from-right d1">
-      <p>The wellness spaces at Grotta draw from the landscape itself — mineral-rich stone, highland botanicals, volcanic silence. Each treatment is a conversation between the body and the earth.</p>
-      <button class="sh-link" onclick="openMenu('spa')">View Spa Menu <span class="arr">→</span></button>
-    </div>
-  </div>
-  <div class="sh-wellness-trio">
-    <div class="sh-wt-item sh-reveal">
-      <img class="sh-wt-img" src="images/AV7I5727.jpg" alt="The Spa" style="object-position:center 30%;">
-      <div class="sh-wt-overlay"></div>
-      <div class="sh-wt-border" aria-hidden="true"></div>
-      <div class="sh-wt-body">
-        <span class="sh-wt-type">Signature · The Spa</span>
-        <h3>Volcanic Stone<br>Ritual</h3>
-        <p>Heated basalt, highland clay, 90 minutes of pure restoration.</p>
-        <button class="sh-wt-cta" onclick="openMenu('spa')">Book Treatment →</button>
+    <div class="sp-space-body" style="background:#0e0d0a">
+      <span class="sp-space-num">04</span>
+      <span class="sp-label">Swimming Pool</span>
+      <h2>The Pool</h2>
+      <span class="sp-space-atmosphere">Open every day, included with every room.</span>
+      <div class="sp-rule"></div>
+      <p>The resort swimming pool is open daily and available to all guests at no extra charge. It sits within the resort grounds with views of the surrounding highland landscape.</p>
+      <p>Towels are provided. No booking required.</p>
+      <span class="sp-space-hours">Open Daily · Included with all rooms · No reservation required</span>
+      <div class="sp-space-highlights">
+        <span class="sp-hl"><span class="ms">pool</span> Included with every room</span>
+        <span class="sp-hl"><span class="ms">landscape</span> Highland landscape views</span>
+        <span class="sp-hl"><span class="ms">dry_cleaning</span> Towels provided</span>
+        <span class="sp-hl"><span class="ms">wb_sunny</span> Open from dawn</span>
       </div>
     </div>
-    <div class="sh-wt-item sh-reveal d1">
-      <img class="sh-wt-img" src="images/AV7I5406.jpg" alt="Fitness Studio" style="object-position:center 50%;">
-      <div class="sh-wt-overlay"></div>
-      <div class="sh-wt-border" aria-hidden="true"></div>
-      <div class="sh-wt-body">
-        <span class="sh-wt-type">Active · Fitness Studio</span>
-        <h3>Movement<br>at Altitude</h3>
-        <p>Morning yoga on the terrace. Personal training. Highland running routes.</p>
-        <a class="sh-wt-cta" href="booking.html">Schedule Session →</a>
-      </div>
+  </div>
+
+  <!-- Gardens -->
+  <div class="sp-space rev rv" id="sp-gardens" style="background:var(--bg2)">
+    <div class="sp-space-img">
+      <img src="images/DSC02586.JPG" alt="Outdoor Gardens & Terraces" loading="lazy" style="object-position:center 55%">
+      <div class="sp-space-img-overlay"></div>
     </div>
-    <div class="sh-wt-item sh-reveal d2">
-      <img class="sh-wt-img" src="images/AV7I5717.jpg" alt="Cave Meditation" style="object-position:center 40%;">
-      <div class="sh-wt-overlay"></div>
-      <div class="sh-wt-border" aria-hidden="true"></div>
-      <div class="sh-wt-body">
-        <span class="sh-wt-type">Inner · Cave Sessions</span>
-        <h3>Sound Bath<br>in the Cave</h3>
-        <p>Tibetan bowls resonating within ancient stone. 45 minutes of silence.</p>
-        <button class="sh-wt-cta" onclick="openMenu('spa')">View Sessions →</button>
+    <div class="sp-space-body" style="background:#0e0d0a">
+      <span class="sp-space-num">05</span>
+      <span class="sp-label">Outdoor Gardens & Terraces</span>
+      <h2>The Gardens</h2>
+      <span class="sp-space-atmosphere">Landscaped grounds open throughout the day and evening.</span>
+      <div class="sp-rule"></div>
+      <p>The resort gardens and terraces surround the property and are open to all guests. Walk through the farm garden, sit on the highland terraces, or gather at the evening bonfire.</p>
+      <p>The gardens are also used for outdoor dining and private events during warmer months.</p>
+      <span class="sp-space-hours">Always Open · Included with all rooms</span>
+      <div class="sp-space-highlights">
+        <span class="sp-hl"><span class="ms">yard</span> Landscaped gardens & terraces</span>
+        <span class="sp-hl"><span class="ms">grass</span> Working farm garden</span>
+        <span class="sp-hl"><span class="ms">local_fire_department</span> Evening bonfire area</span>
+        <span class="sp-hl"><span class="ms">outdoor_garden</span> Outdoor dining space</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════
-     7. SPORTS & OUTDOORS — Large Type
-══════════════════════════════════════════════════════ -->
-<section class="sh-active" id="sh-active-section">
-  <div class="sh-active-bg-text" aria-hidden="true">Outdoors</div>
-  <div class="sh-active-inner">
-    <div class="sh-active-top">
-      <div class="sh-reveal from-left">
-        <span class="sh-eyebrow">Active · 05 — 07</span>
-        <h2>The land<br>is yours<br>to explore.</h2>
-        <p>Trail runs along the volcanic ridge. Cycling through highland farms. Open terraces built for evenings that refuse to end. Grotta's outdoor spaces are not amenities — they are the reason.</p>
+<!-- ══════════════════════════════════════
+     RECREATION
+══════════════════════════════════════════ -->
+<section class="sp-spaces" id="sp-recreation" style="border-top:1px solid rgba(201,165,82,.06)">
+  <div class="sp-spaces-intro rv">
+    <div>
+      <span class="sp-label">Recreation</span>
+      <h2>An outdoor area for active guests.</h2>
+    </div>
+    <div>
+      <p>The outdoor sports area is available throughout the day. Guided activities and trail access are available nearby through the resort's experiences programme.</p>
+      <a href="experiences.html" class="sp-link">View Activities →</a>
+    </div>
+  </div>
+
+  <!-- Sports Area -->
+  <div class="sp-space rv" id="sp-sports">
+    <div class="sp-space-img">
+      <img src="images/DSC02819 (1).JPG" alt="Outdoor Sports Area" loading="lazy">
+      <div class="sp-space-img-overlay"></div>
+    </div>
+    <div class="sp-space-body">
+      <span class="sp-space-num">06</span>
+      <span class="sp-label">Outdoor Sports Area</span>
+      <h2>Sports & Activity</h2>
+      <span class="sp-space-atmosphere">Open grounds with highland trail access nearby.</span>
+      <div class="sp-rule"></div>
+      <p>The outdoor sports area is available to all guests during daylight hours. Use the space for informal sport or join a guided activity arranged through the resort.</p>
+      <p>The resort also connects to highland walking trails and cycling routes. Guided and self-guided options are available on request.</p>
+      <span class="sp-space-hours">Open Daily · Daylight Hours · Equipment available on request</span>
+      <div class="sp-space-highlights">
+        <span class="sp-hl"><span class="ms">sports_tennis</span> Open sports area</span>
+        <span class="sp-hl"><span class="ms">hiking</span> Trail access nearby</span>
+        <span class="sp-hl"><span class="ms">electric_bolt</span> E-bike routes available</span>
+        <span class="sp-hl"><span class="ms">fitness_center</span> Guided activities on request</span>
       </div>
-      <div class="sh-reveal from-right d1">
-        <div class="sh-active-stat">
-          <span class="sh-active-stat-num">2,200m</span>
-          <span class="sh-active-stat-label">Elevation · Musanze Highlands</span>
+      <div class="sp-space-ctas">
+        <a href="experiences.html" class="sp-link">View All Activities →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     3. SIGNATURE MOMENTS
+══════════════════════════════════════════ -->
+<section id="sp-moments" style="background:#060504;border-top:1px solid rgba(201,165,82,.07);padding:9rem 0 0">
+  <div class="sp-moments-header rv" style="text-align:center;max-width:620px;margin:0 auto 6rem;padding:0 5vw">
+    <span class="sp-label" style="text-align:center;display:block">Signature Moments</span>
+    <h2 style="font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.2rem);font-weight:300;color:rgba(240,232,213,.9);line-height:1.04;letter-spacing:-.03em;margin-bottom:1rem">How guests experience<br>the spaces at Grotta.</h2>
+    <p style="font-family:var(--sans);font-size:.88rem;font-weight:300;color:var(--text-soft);line-height:2">From a first morning coffee to a final evening cocktail — these are the moments that make a stay at Grotta Resort memorable.</p>
+  </div>
+
+  <!-- Hero moment -->
+  <div class="sp-moment-hero rv" style="max-width:1200px;margin:0 auto 2px;padding:0 4vw">
+    <div class="sp-moment-hero-img" style="background-image:url('images/DSC03278.JPG')"></div>
+    <div class="sp-moment-hero-overlay"></div>
+    <div class="sp-moment-hero-content">
+      <span class="sp-moment-hero-tag">Morning · Cave Café</span>
+      <h3>Morning Coffee at the Cave Entrance</h3>
+      <p>Start your day with a coffee at the Cave Café. The air is cool at this altitude. The cave entrance is quiet in the morning. It is a good way to begin a day at Grotta Resort.</p>
+    </div>
+  </div>
+
+  <!-- 4-col grid -->
+  <div class="sp-moments-grid rv" style="max-width:1200px;margin:2px auto 0;padding:0 4vw">
+    <div class="sp-moment-card">
+      <div class="sp-moment-card-bg" style="background-image:url('images/DSC03832.JPG');background-position:center 55%"></div>
+      <div class="sp-moment-card-body">
+        <span class="sp-moment-card-time">Afternoon · The Pool</span>
+        <h4>Time by<br>the Pool</h4>
+        <p>An afternoon without a schedule. The pool is quiet on most days. The highland air keeps things cool.</p>
+      </div>
+    </div>
+    <div class="sp-moment-card">
+      <div class="sp-moment-card-bg" style="background-image:url('images/AV7I3358.jpg');background-position:center 42%"></div>
+      <div class="sp-moment-card-body">
+        <span class="sp-moment-card-time">Sunset · Cocktail Bar</span>
+        <h4>Sunset<br>Cocktails</h4>
+        <p>The bar opens at 5PM. The light changes in the highlands at this hour. A good time for a first drink.</p>
+      </div>
+    </div>
+    <div class="sp-moment-card">
+      <div class="sp-moment-card-bg" style="background-image:url('images/AV7I5065.jpg');background-position:center 40%"></div>
+      <div class="sp-moment-card-body">
+        <span class="sp-moment-card-time">Evening · The Restaurant</span>
+        <h4>Dinner at<br>the Restaurant</h4>
+        <p>An unhurried dinner using ingredients from the highland farms. Tasting menu or à la carte. Book ahead.</p>
+      </div>
+    </div>
+    <div class="sp-moment-card">
+      <div class="sp-moment-card-bg" style="background-image:url('images/DSC02796.JPG');background-position:center 35%"></div>
+      <div class="sp-moment-card-body">
+        <span class="sp-moment-card-time">Morning · The Gardens</span>
+        <h4>Garden<br>Walks</h4>
+        <p>The resort gardens are open from early morning. Walk through the farm, sit on the terrace, or find a quiet spot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     4. CORPORATE & GROUPS
+══════════════════════════════════════════ -->
+<section class="sp-corp" id="sp-corporate">
+  <div class="sp-corp-header">
+    <div class="sp-corp-header-left rv from-l">
+      <span class="sp-label">Corporate & Group Gatherings</span>
+      <h2>Professional spaces in a unique highland setting.</h2>
+    </div>
+    <div class="rv from-r d1">
+      <p>Grotta Resort offers two dedicated spaces for corporate groups, conferences, workshops, and large gatherings. Both venues combine a professional setup with the unique environment of a highland volcanic resort.</p>
+      <p>Our events team handles all logistics. Groups can focus on the work — or the relaxation — while we take care of everything else.</p>
+      <a href="events.html" class="sp-link">Enquire About Group Bookings →</a>
+    </div>
+  </div>
+
+  <div class="sp-corp-panels">
+    <!-- Conference Room -->
+    <div class="sp-corp-panel rv">
+      <div class="sp-corp-panel-img">
+        <div class="sp-corp-panel-img-ph">
+          <span class="ms" style="font-size:2.8rem;color:rgba(201,165,82,.12);font-variation-settings:'FILL' 0,'wght' 200,'GRAD' 0,'opsz' 40">meeting_room</span>
+          <span style="font-family:var(--sans);font-size:.44rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(201,165,82,.18)">Photo Coming Soon</span>
         </div>
-        <div class="sh-active-stat" style="margin-top:1.8rem">
-          <span class="sh-active-stat-num">40km+</span>
-          <span class="sh-active-stat-label">Trails from the Property</span>
+      </div>
+      <div class="sp-corp-panel-body">
+        <span class="sp-corp-tag">Indoor Venue</span>
+        <h3>Conference Room</h3>
+        <div class="sp-rule"></div>
+        <p>A dedicated indoor meeting room suitable for presentations, workshops, strategy sessions, and smaller group meetings. Climate-controlled with full presentation facilities.</p>
+        <div class="sp-corp-features">
+          <span class="sp-corp-feat"><span class="ms">present_to_all</span> Presentation screen & equipment</span>
+          <span class="sp-corp-feat"><span class="ms">wifi</span> High-speed Wi-Fi</span>
+          <span class="sp-corp-feat"><span class="ms">ac_unit</span> Climate controlled</span>
+          <span class="sp-corp-feat"><span class="ms">lunch_dining</span> Catering & refreshments available</span>
         </div>
-        <div class="sh-active-stat" style="margin-top:1.8rem">
-          <span class="sh-active-stat-num">5 Volcanoes</span>
-          <span class="sh-active-stat-label">Visible from the Terrace</span>
+        <div class="sp-corp-uses">
+          <span class="sp-corp-use">Meetings</span>
+          <span class="sp-corp-use">Workshops</span>
+          <span class="sp-corp-use">Presentations</span>
+          <span class="sp-corp-use">Strategy Sessions</span>
+          <span class="sp-corp-use">Training</span>
         </div>
       </div>
     </div>
-    <div class="sh-active-images sh-reveal">
-      <div class="sh-active-img">
-        <img src="images/AV7I2003.jpg" alt="Highland Trails">
-        <span class="sh-active-img-label">Highland Trails</span>
+
+    <!-- Outdoor Event Tent -->
+    <div class="sp-corp-panel rv d1">
+      <div class="sp-corp-panel-img">
+        <div class="sp-corp-panel-img-ph">
+          <span class="ms" style="font-size:2.8rem;color:rgba(201,165,82,.12);font-variation-settings:'FILL' 0,'wght' 200,'GRAD' 0,'opsz' 40">outdoor_garden</span>
+          <span style="font-family:var(--sans);font-size:.44rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(201,165,82,.18)">Photo Coming Soon</span>
+        </div>
       </div>
-      <div class="sh-active-img">
-        <img src="images/AV7I5336.jpg" alt="Open Terraces" style="object-position:center 60%;">
-        <span class="sh-active-img-label">Open Terraces</span>
-      </div>
-      <div class="sh-active-img">
-        <img src="images/AV7I3358.jpg" alt="Outdoor Dining" style="object-position:center 45%;">
-        <span class="sh-active-img-label">Outdoor Dining</span>
+      <div class="sp-corp-panel-body">
+        <span class="sp-corp-tag">Outdoor Venue</span>
+        <h3>Large Outdoor<br>Event Tent</h3>
+        <div class="sp-rule"></div>
+        <p>A large outdoor event space with tent structure, set in the resort grounds. Suitable for conferences, group dinners, team-building events, and full-resort gatherings with a highland backdrop.</p>
+        <div class="sp-corp-features">
+          <span class="sp-corp-feat"><span class="ms">landscape</span> Set in the resort grounds</span>
+          <span class="sp-corp-feat"><span class="ms">groups</span> Large group capacity</span>
+          <span class="sp-corp-feat"><span class="ms">restaurant</span> Full catering setup available</span>
+          <span class="sp-corp-feat"><span class="ms">tune</span> Flexible configuration</span>
+        </div>
+        <div class="sp-corp-uses">
+          <span class="sp-corp-use">Conferences</span>
+          <span class="sp-corp-use">Team Building</span>
+          <span class="sp-corp-use">Group Dinners</span>
+          <span class="sp-corp-use">Corporate Retreats</span>
+          <span class="sp-corp-use">Private Events</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════
-     9. DAY-TO-NIGHT JOURNEY
-══════════════════════════════════════════════════════ -->
-<section class="sh-journey" id="sh-journey-section">
-  <div class="sh-journey-header sh-reveal">
-    <span class="sh-eyebrow">A Day at Grotta</span>
-    <h2>From first light<br>to last embers</h2>
-    <p>Not a list of activities — a story. Follow a single day through the spaces of Grotta, from the quiet of dawn to the warmth of night.</p>
-  </div>
-  <div class="sh-journey-timeline">
-    <div class="sh-journey-spine" aria-hidden="true"></div>
-
-    <!-- Morning -->
-    <div class="sh-moment sh-reveal">
-      <div class="sh-moment-img-wrap">
-        <img src="images/AV7I5406.jpg" alt="Morning at Grotta" style="object-position:center 55%;">
+<!-- ══════════════════════════════════════
+     5. COMING SOON
+══════════════════════════════════════════ -->
+<section class="sp-soon" id="sp-soon">
+  <div class="sp-soon-inner">
+    <div class="sp-soon-header rv">
+      <div>
+        <span class="sp-label">Coming Soon</span>
+        <h2>Future spaces currently in development.</h2>
       </div>
-      <div class="sh-moment-node" aria-hidden="true">
-        <div class="sh-moment-dot"></div>
-        <span class="sh-moment-time">Morning</span>
-      </div>
-      <div class="sh-moment-body">
-        <span class="sh-moment-period">Morning · 06:30</span>
-        <h3>Breakfast by<br>the Farm</h3>
-        <div class="sh-moment-rule"></div>
-        <p>The mist still clings to the highland as the table is set at the edge of the farm. Freshly gathered eggs, highland honey, bread still warm. The kind of morning that makes everything else feel unhurried.</p>
-        <span class="sh-moment-space">The Restaurant · Farm Garden</span>
+      <div>
+        <p>Grotta Resort is expanding. The two facilities below are currently under development and will open in the coming years. They are not yet available but we are sharing them here so guests can plan future visits.</p>
       </div>
     </div>
-
-    <!-- Afternoon -->
-    <div class="sh-moment sh-right sh-reveal d1">
-      <div class="sh-moment-img-wrap">
-        <img src="images/AV7I2003.jpg" alt="Afternoon Exploration">
+    <div class="sp-soon-cards">
+      <!-- Spa -->
+      <div class="sp-soon-card rv">
+        <span class="sp-soon-bg-num">07</span>
+        <span class="sp-soon-badge"><span class="ms">schedule</span> Opening 2027</span>
+        <h3>Spa & Wellness Center</h3>
+        <div class="sp-soon-rule"></div>
+        <p>A full spa and wellness facility inspired by the volcanic highland environment. The space will offer massages, body treatments, and relaxation therapies. Not yet open.</p>
+        <div class="sp-soon-features">
+          <span class="sp-soon-feat"><span class="ms">spa</span> Massage & body treatments</span>
+          <span class="sp-soon-feat"><span class="ms">self_improvement</span> Relaxation & wellness therapies</span>
+          <span class="sp-soon-feat"><span class="ms">volcano</span> Volcanic stone treatments</span>
+          <span class="sp-soon-feat"><span class="ms">water_drop</span> Hydrotherapy facilities</span>
+        </div>
       </div>
-      <div class="sh-moment-node" aria-hidden="true">
-        <div class="sh-moment-dot"></div>
-        <span class="sh-moment-time">Afternoon</span>
+      <!-- Gaming Room -->
+      <div class="sp-soon-card rv d1">
+        <span class="sp-soon-bg-num">08</span>
+        <span class="sp-soon-badge"><span class="ms">schedule</span> Coming Soon</span>
+        <h3>Teenager Gaming Room</h3>
+        <div class="sp-soon-rule"></div>
+        <p>A dedicated entertainment room for teenage guests. The space will include gaming consoles, large screens, and a social area designed specifically for younger guests. Not yet open.</p>
+        <div class="sp-soon-features">
+          <span class="sp-soon-feat"><span class="ms">sports_esports</span> Gaming consoles & screens</span>
+          <span class="sp-soon-feat"><span class="ms">movie</span> Entertainment area</span>
+          <span class="sp-soon-feat"><span class="ms">groups</span> Social space for teenage guests</span>
+        </div>
       </div>
-      <div class="sh-moment-body">
-        <span class="sh-moment-period">Afternoon · 13:00</span>
-        <h3>Into the<br>Highlands</h3>
-        <div class="sh-moment-rule"></div>
-        <p>A trail run along the volcanic ridge, or a slow cycle through the farms. The landscape shifts with every kilometre. Return to the spa for a volcanic stone ritual before the afternoon deepens.</p>
-        <span class="sh-moment-space">Sports Area · The Spa</span>
-      </div>
-    </div>
-
-    <!-- Sunset -->
-    <div class="sh-moment sh-reveal d1">
-      <div class="sh-moment-img-wrap">
-        <img src="images/AV7I5336.jpg" alt="Sunset Terrace" style="object-position:center 55%;">
-      </div>
-      <div class="sh-moment-node" aria-hidden="true">
-        <div class="sh-moment-dot"></div>
-        <span class="sh-moment-time">Sunset</span>
-      </div>
-      <div class="sh-moment-body">
-        <span class="sh-moment-period">Sunset · 17:30</span>
-        <h3>The Terrace,<br>as the light changes</h3>
-        <div class="sh-moment-rule"></div>
-        <p>A cocktail in hand as the volcanoes shift from green to gold. The Lounge fills slowly. The day's conversations become the evening's ones. No particular reason to move.</p>
-        <span class="sh-moment-space">Outdoor Terraces · The Lounge</span>
-      </div>
-    </div>
-
-    <!-- Evening -->
-    <div class="sh-moment sh-right sh-reveal d1">
-      <div class="sh-moment-img-wrap">
-        <img src="images/AV7I5717.jpg" alt="Dinner at The Restaurant">
-      </div>
-      <div class="sh-moment-node" aria-hidden="true">
-        <div class="sh-moment-dot"></div>
-        <span class="sh-moment-time">Evening</span>
-      </div>
-      <div class="sh-moment-body">
-        <span class="sh-moment-period">Evening · 20:00</span>
-        <h3>Dinner in<br>the Highland Dark</h3>
-        <div class="sh-moment-rule"></div>
-        <p>The Restaurant at night. Candlelight, a tasting menu built from the day's harvest, a sommelier who knows the difference between a good wine and the right one. An evening that doesn't rush toward anything.</p>
-        <span class="sh-moment-space">The Restaurant</span>
-      </div>
-    </div>
-
-    <!-- Night -->
-    <div class="sh-moment sh-reveal d1">
-      <div class="sh-moment-img-wrap">
-        <img src="images/AV7I3358.jpg" alt="Night in the Cave" style="object-position:center 45%;">
-      </div>
-      <div class="sh-moment-node" aria-hidden="true">
-        <div class="sh-moment-dot"></div>
-        <span class="sh-moment-time">Night</span>
-      </div>
-      <div class="sh-moment-body">
-        <span class="sh-moment-period">Night · 22:30</span>
-        <h3>Into the Cave,<br>one last time</h3>
-        <div class="sh-moment-rule"></div>
-        <p>A final glass in the Cave Café. Stone walls, rare spirits, and the sound of nothing in particular. The kind of ending that makes you want to stay another night.</p>
-        <span class="sh-moment-space">Cave Café</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════════
-     11. SIGNATURE CLOSING
-══════════════════════════════════════════════════════ -->
-<section class="sh-signature">
-  <div class="sh-sig-bg" id="sh-sig-bg"></div>
-  <div class="sh-sig-overlay"></div>
-  <div class="sh-sig-content sh-reveal">
-    <div class="sh-sig-ornament"><span>✦</span></div>
-    <h2>Seven spaces.<br><em>Countless moments.</em><br>One extraordinary destination.</h2>
-    <p class="sh-sig-sub">Grotta is not a collection of facilities. It is a collection of atmospheres — each one designed to make you feel something that is difficult to name and impossible to forget.</p>
-    <div class="sh-sig-ctas">
-      <a href="booking.html" class="sh-sig-btn-primary"><span>Reserve Your Stay</span></a>
-      <a href="packages.html" class="sh-sig-btn-ghost">Explore Packages →</a>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════
-     MENU MODAL
-══════════════════════════════════════════════════════ -->
-<div class="sh-modal-bd" id="sh-modal-bd" onclick="handleModalBdClick(event)">
-  <div class="sh-modal" id="sh-modal">
-    <div class="sh-modal-hd">
-      <button class="sh-modal-close" onclick="closeMenu()">Close ✕</button>
-      <span class="sh-modal-venue" id="mm-label"></span>
-      <h2 class="sh-modal-title" id="mm-title"></h2>
-      <p class="sh-modal-sub" id="mm-sub"></p>
+<!-- ══════════════════════════════════════
+     6. EXPLORE MORE
+══════════════════════════════════════════ -->
+<section class="sp-explore" id="sp-explore-more">
+  <div class="sp-explore-header rv">
+    <h2>Explore More of Grotta Resort</h2>
+    <p>Discover our rooms, experiences, events, and wedding spaces.</p>
+  </div>
+  <div class="sp-explore-grid">
+    <a class="sp-explore-item" href="stay.html">
+      <div class="sp-explore-item-bg" style="background-image:url('images/DSC03527.JPG')"></div>
+      <div class="sp-explore-item-line"></div>
+      <div class="sp-explore-item-body">
+        <span class="sp-explore-item-label">Accommodation</span>
+        <h4>Stay</h4>
+        <span class="sp-explore-item-arrow">View Rooms <span class="ms" style="font-size:.85rem">arrow_forward</span></span>
+      </div>
+    </a>
+    <a class="sp-explore-item" href="weddings.html">
+      <div class="sp-explore-item-bg" style="background-image:url('images/Gemini_Generated_Image_ujd6emujd6emujd6.png');background-position:center 45%"></div>
+      <div class="sp-explore-item-line"></div>
+      <div class="sp-explore-item-body">
+        <span class="sp-explore-item-label">Celebrations</span>
+        <h4>Weddings</h4>
+        <span class="sp-explore-item-arrow">View Venues <span class="ms" style="font-size:.85rem">arrow_forward</span></span>
+      </div>
+    </a>
+    <a class="sp-explore-item" href="experiences.html">
+      <div class="sp-explore-item-bg" style="background-image:url('images/AV7I2003.jpg')"></div>
+      <div class="sp-explore-item-line"></div>
+      <div class="sp-explore-item-body">
+        <span class="sp-explore-item-label">Activities</span>
+        <h4>Experiences</h4>
+        <span class="sp-explore-item-arrow">View Activities <span class="ms" style="font-size:.85rem">arrow_forward</span></span>
+      </div>
+    </a>
+    <a class="sp-explore-item" href="events.html">
+      <div class="sp-explore-item-bg" style="background-image:url('images/AV7I4554.jpg');background-position:center 55%"></div>
+      <div class="sp-explore-item-line"></div>
+      <div class="sp-explore-item-body">
+        <span class="sp-explore-item-label">Gatherings</span>
+        <h4>Events & Retreats</h4>
+        <span class="sp-explore-item-arrow">View Events <span class="ms" style="font-size:.85rem">arrow_forward</span></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- MENU MODAL -->
+<div class="sp-modal-bd" id="sp-modal-bd" onclick="if(event.target===this)closeMenu()">
+  <div class="sp-modal" id="sp-modal">
+    <div class="sp-modal-hd">
+      <button class="sp-modal-close" onclick="closeMenu()">Close ✕</button>
+      <span class="sp-modal-venue" id="mm-venue"></span>
+      <h2 class="sp-modal-title" id="mm-title"></h2>
+      <span class="sp-modal-sub" id="mm-sub"></span>
     </div>
-    <div class="sh-modal-body" id="mm-body"></div>
+    <div class="sp-modal-body" id="mm-body"></div>
   </div>
 </div>
 
@@ -788,186 +1246,121 @@
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 <script>
-
-/* ── MENU DATA ─────────────────────────────────────────── */
-const MENUS = {
-  'restaurant': {
-    label: 'Fine Dining · Dinner from 6PM',
-    title: 'The Restaurant',
-    sub: 'Where the highland landscape meets the plate.',
-    intro: '"Every dish begins with a question: what does this landscape taste like today? The answer changes with the season, with the harvest, with the quiet decisions made each morning in the kitchen."',
-    cta: 'Reservations encouraged. Dietary preferences, allergies, and special occasions accommodated.',
-    sections: [
-      { title: 'Starters', items: [
-        { name: 'Volcanic Soil Beet', desc: 'Slow-roasted highland beet, smoked goat curd, wild herbs, charred lemon', note: 'From our partner farms, Musanze', price: '8,500 RWF' },
-        { name: 'Stone-Pressed Tuna', desc: 'Cold-pressed tuna, cucumber water, yuzu, toasted sesame, micro sorrel', price: '12,000 RWF' },
-        { name: 'Cave-Aged Cheese Selection', desc: 'Three artisanal cheeses aged within the Grotta cave system, honeycomb, seeded crackers', note: 'Selection changes weekly', price: '14,500 RWF' },
-        { name: 'Mushroom Duxelles Tart', desc: 'Highland mushrooms, butter pastry, truffle cream, chive oil', price: '9,000 RWF' },
+const MENUS={
+  restaurant:{
+    venue:'Fine Dining · Dinner from 6PM',title:'The Restaurant',sub:'Reservations recommended.',
+    intro:'"Every dish begins with a question: what does this landscape taste like today?"',
+    cta:'Reservations encouraged. Dietary preferences and allergies accommodated with notice.',
+    sections:[
+      {title:'Starters',items:[
+        {name:'Volcanic Soil Beet',desc:'Slow-roasted highland beet, smoked goat curd, wild herbs, charred lemon',note:'From our partner farms, Musanze',price:'8,500 RWF'},
+        {name:'Stone-Pressed Tuna',desc:'Cold-pressed tuna, cucumber water, yuzu, toasted sesame, micro sorrel',price:'12,000 RWF'},
+        {name:'Cave-Aged Cheese Selection',desc:'Three artisanal cheeses, honeycomb, seeded crackers',note:'Selection changes weekly',price:'14,500 RWF'},
+        {name:'Mushroom Duxelles Tart',desc:'Highland mushrooms, butter pastry, truffle cream, chive oil',price:'9,000 RWF'},
       ]},
-      { title: 'Main Courses', items: [
-        { name: 'Highland Grass-Fed Beef', desc: '72-hour short rib, roasted marrow bone, wild garlic purée, jus de terroir', note: 'Musanze Valley raised', price: '38,000 RWF' },
-        { name: 'Lake Kivu Tilapia', desc: 'Pan-seared tilapia, saffron butter, compressed fennel, crispy capers, lemon velouté', price: '32,000 RWF' },
-        { name: 'Roasted Root Garden', desc: 'Seasonal vegetables slow-cooked in clay, hazelnut cream, herb oil, puffed grain', note: 'Entirely plant-based', price: '28,000 RWF' },
-        { name: 'Duck Confit en Croûte', desc: 'Slow-confit duck leg, flaky pastry crust, cherry gastrique, smoked potato', price: '35,000 RWF' },
+      {title:'Main Courses',items:[
+        {name:'Highland Grass-Fed Beef',desc:'72-hour short rib, wild garlic purée, jus de terroir',note:'Musanze Valley raised',price:'38,000 RWF'},
+        {name:'Lake Kivu Tilapia',desc:'Pan-seared tilapia, saffron butter, compressed fennel, crispy capers',price:'32,000 RWF'},
+        {name:'Roasted Root Garden',desc:'Seasonal vegetables slow-cooked in clay, hazelnut cream, herb oil',note:'Plant-based',price:'28,000 RWF'},
+        {name:'Duck Confit en Croûte',desc:'Slow-confit duck leg, flaky pastry crust, cherry gastrique',price:'35,000 RWF'},
       ]},
-      { title: 'Desserts', items: [
-        { name: 'Dark Chocolate & Ash', desc: 'Volcanic ash chocolate sphere, salted caramel, miso ice cream', price: '9,500 RWF' },
-        { name: 'Passion Fruit Pavlova', desc: 'Crisp meringue, highland passion fruit, vanilla cream, edible flowers', price: '8,000 RWF' },
-        { name: 'Cheese Trolley', desc: 'A selection of cave-aged and imported cheeses, presented tableside', note: 'Seasonal availability', price: '16,000 RWF' },
-      ]},
-      { title: 'Wines & Drinks', items: [
-        { name: "Sommelier's Selection", desc: "Paired wines chosen to complement each course", price: '45,000 RWF' },
-        { name: 'Grotta Highland Tea', desc: "Rare highland blends sourced from Rwanda's northern terroir, served ceremonially", price: '4,500 RWF' },
+      {title:'Desserts',items:[
+        {name:'Dark Chocolate & Ash',desc:'Volcanic ash chocolate sphere, salted caramel, miso ice cream',price:'9,500 RWF'},
+        {name:'Passion Fruit Pavlova',desc:'Crisp meringue, highland passion fruit, vanilla cream, edible flowers',price:'8,000 RWF'},
       ]},
     ]
   },
-  'cave-cafe': {
-    label: 'Cave Café · Open Daily 10AM–10PM',
-    title: 'Cave Café',
-    sub: 'Coffee among stone walls. The cool silence of bedrock.',
-    intro: '"Coffee among stone walls. Rare spirits. The cool silence of bedrock, and light that arrives as though it has travelled far to reach you."',
-    cta: 'No reservation required. Come as you are.',
-    sections: [
-      { title: 'Coffee & Hot Drinks', items: [
-        { name: 'Grotta Cave Press', desc: 'Cold-brew pressed in the cave overnight, served black or with highland cream', price: '3,500 RWF' },
-        { name: 'Volcanic Flat White', desc: 'Single-origin Rwandan espresso, steamed oat milk, stone ceramic', price: '4,000 RWF' },
-        { name: 'Cave Stone Tea', desc: 'Ceremonial loose-leaf blend, steeped in cave-temperature spring water', note: 'Changes with the season', price: '3,800 RWF' },
-        { name: 'Spiced Highland Cacao', desc: '70% dark cacao, Rwandan spices, smoked chili, served warm', price: '4,500 RWF' },
+  'cave-cafe':{
+    venue:'Cave Café · Open Daily 10AM–10PM',title:'Cave Café Menu',sub:'No reservation required.',
+    intro:'"Coffee among stone walls. The cool silence of bedrock."',
+    cta:'No reservation required. Walk-ins welcome throughout the day.',
+    sections:[
+      {title:'Coffee & Hot Drinks',items:[
+        {name:'Grotta Cave Press',desc:'Cold-brew pressed overnight, served black or with highland cream',price:'3,500 RWF'},
+        {name:'Volcanic Flat White',desc:'Single-origin Rwandan espresso, steamed oat milk',price:'4,000 RWF'},
+        {name:'Cave Stone Tea',desc:'Ceremonial loose-leaf blend, cave-temperature spring water',note:'Changes with the season',price:'3,800 RWF'},
+        {name:'Spiced Highland Cacao',desc:'70% dark cacao, Rwandan spices, smoked chili',price:'4,500 RWF'},
       ]},
-      { title: 'Rare Spirits', items: [
-        { name: 'Cave-Aged Whisky', desc: 'Single malt aged within the cave system, neat or with one stone ice', note: 'Limited bottles available', price: '18,000 RWF' },
-        { name: 'Volcanic Gin', desc: 'Gin infused with highland botanicals, served long with cave spring water', price: '14,000 RWF' },
-        { name: "Sommelier's Cave Selection", desc: 'A glass chosen from our cellar, guided by the mood of the evening', price: '12,000 RWF' },
+      {title:'Spirits & Drinks',items:[
+        {name:'Cave-Aged Whisky',desc:'Single malt aged within the cave system, neat or with stone ice',note:'Limited bottles',price:'18,000 RWF'},
+        {name:'Volcanic Gin',desc:'Gin infused with highland botanicals, served long',price:'14,000 RWF'},
       ]},
-      { title: 'Artisanal Bites', items: [
-        { name: 'Stone-Ground Bread & Ash Butter', desc: 'Slow-fermented sourdough, charcoal butter, fleur de sel', price: '5,500 RWF' },
-        { name: 'Charcuterie of the Cave', desc: 'Cured meats, cave-aged cheeses, mustard, cornichons, seeded crisp', price: '16,000 RWF' },
-        { name: 'Dark Chocolate Truffle', desc: 'Three-piece truffle selection, finished with volcanic salt', price: '8,000 RWF' },
+      {title:'Light Bites',items:[
+        {name:'Stone-Ground Bread & Ash Butter',desc:'Slow-fermented sourdough, charcoal butter, fleur de sel',price:'5,500 RWF'},
+        {name:'Charcuterie of the Cave',desc:'Cured meats, cave-aged cheeses, mustard, cornichons',price:'16,000 RWF'},
+        {name:'Dark Chocolate Truffle',desc:'Three-piece selection, finished with volcanic salt',price:'8,000 RWF'},
       ]},
     ]
   },
-  'cocktail-bar': {
-    label: 'The Lounge · Evenings from 5PM',
-    title: 'Cocktail Menu',
-    sub: 'An evening found, not rushed.',
-    intro: '"An evening found, not rushed. Crafted drinks, warm light, and the kind of conversation that arrives naturally when time slows down."',
-    cta: 'Open to all guests from 5PM. Reservations for larger groups recommended.',
-    sections: [
-      { title: 'Signature Cocktails', items: [
-        { name: 'Volcanic Sunset', desc: 'Rwandan rum, passion fruit, hibiscus reduction, smoked chili salt rim', price: '16,000 RWF' },
-        { name: 'Cave Negroni', desc: 'Cave-aged gin, sweet vermouth, bitter orange, one black stone', note: 'Our interpretation of a classic', price: '18,000 RWF' },
-        { name: 'Highland Mist', desc: 'Whisky, honey, fresh ginger, lemon, cave spring water', price: '17,000 RWF' },
-        { name: 'Garden Spritz', desc: 'Elderflower, cucumber, prosecco, fresh mint, lime', price: '14,500 RWF' },
-        { name: 'Grotta Old Fashioned', desc: 'Single malt, raw cane sugar, aromatic bitters, orange peel', price: '19,000 RWF' },
+  'cocktail-bar':{
+    venue:'Cocktail Bar · From 5PM',title:'Cocktail Menu',sub:'Open to all guests from 5PM.',
+    intro:'"Crafted drinks, warm light, and unhurried conversation."',
+    cta:'Open to all guests from 5PM. Reservations for larger groups recommended.',
+    sections:[
+      {title:'Signature Cocktails',items:[
+        {name:'Volcanic Sunset',desc:'Rwandan rum, passion fruit, hibiscus reduction, smoked chili salt rim',price:'16,000 RWF'},
+        {name:'Cave Negroni',desc:'Cave-aged gin, sweet vermouth, bitter orange, one black stone',price:'18,000 RWF'},
+        {name:'Highland Mist',desc:'Whisky, honey, fresh ginger, lemon, cave spring water',price:'17,000 RWF'},
+        {name:'Garden Spritz',desc:'Elderflower, cucumber, prosecco, fresh mint, lime',price:'14,500 RWF'},
+        {name:'Grotta Old Fashioned',desc:'Single malt, raw cane sugar, aromatic bitters, orange peel',price:'19,000 RWF'},
       ]},
-      { title: 'Wines by the Glass', items: [
-        { name: "Sommelier's White", desc: 'Chosen weekly to complement the season', price: '12,000 RWF' },
-        { name: "Sommelier's Red", desc: 'Full-bodied or medium — discussed with your server', price: '13,500 RWF' },
-        { name: 'Sparkling Selection', desc: 'House sparkling or champagne by request', price: '15,000 RWF' },
+      {title:'Wine & Spirits',items:[
+        {name:"Sommelier's White",desc:'Chosen weekly',price:'12,000 RWF'},
+        {name:"Sommelier's Red",desc:'Full-bodied or medium',price:'13,500 RWF'},
       ]},
-      { title: 'Bar Bites', items: [
-        { name: 'Spiced Cashews & Cave Salt', desc: 'Warm house-spiced cashews, volcanic salt flakes', price: '5,000 RWF' },
-        { name: 'Charcuterie Board', desc: 'Cured meats, cave-aged cheeses, cornichons, stone bread', price: '18,000 RWF' },
+      {title:'Bar Bites',items:[
+        {name:'Spiced Cashews & Cave Salt',desc:'Warm house-spiced cashews, volcanic salt',price:'5,000 RWF'},
+        {name:'Charcuterie Board',desc:'Cured meats, cave-aged cheeses, cornichons, stone bread',price:'18,000 RWF'},
       ]},
     ]
-  },
-  'spa': {
-    label: 'The Spa · By Appointment',
-    title: 'Spa & Wellness',
-    sub: 'Restoration inspired by the volcanic landscape.',
-    intro: '"Treatments drawn from the earth itself — mineral-rich stone, highland botanicals, the weight of volcanic silence. The Spa at Grotta is where the body and the landscape enter into quiet conversation."',
-    cta: 'Advance booking recommended. All treatments tailored to individual needs.',
-    sections: [
-      { title: 'Signature Treatments', items: [
-        { name: 'Volcanic Stone Ritual', desc: 'Full body treatment using heated basalt stones, volcanic clay wrap, highland essential oils. 90 minutes.', note: 'Signature Grotta experience', price: '95,000 RWF' },
-        { name: 'Highland Botanical Massage', desc: 'Deep tissue massage using cold-pressed plant oils from the Musanze highlands. 60 or 90 minutes.', price: '65,000 RWF' },
-        { name: 'Cave Mineral Facial', desc: 'Volcanic ash, spring water extracts, and hand-harvested highland herbs.', price: '72,000 RWF' },
-      ]},
-      { title: 'Body Rituals', items: [
-        { name: 'Lava Salt Scrub', desc: 'Full body exfoliation with volcanic salt, warm oil infusion, highland honey finish', price: '55,000 RWF' },
-        { name: 'Forest Immersion Wrap', desc: 'Cedar and eucalyptus wrap, lymphatic drainage massage, cool spring rinse', price: '68,000 RWF' },
-      ]},
-      { title: 'Wellness Sessions', items: [
-        { name: 'Private Yoga — Dawn', desc: 'One-on-one session at sunrise on the highland terrace.', note: 'Available 6–8AM', price: '45,000 RWF' },
-        { name: 'Breathwork & Meditation', desc: 'Guided breathwork inside the cave. Small groups of 1–4.', price: '38,000 RWF' },
-        { name: 'Sound Bath in the Cave', desc: 'Tibetan bowls and crystal resonance. 45 minutes.', note: 'Limited availability', price: '42,000 RWF' },
-      ]},
-    ]
-  },
+  }
 };
 
-/* ── MODAL LOGIC ───────────────────────────────────────── */
-function openMenu(key) {
-  const m = MENUS[key]; if (!m) return;
-  document.getElementById('mm-label').textContent = m.label;
-  document.getElementById('mm-title').textContent = m.title;
-  document.getElementById('mm-sub').textContent   = m.sub;
-  let html = `<p class="sh-modal-intro">${m.intro}</p>`;
-  m.sections.forEach(s => {
-    html += `<div class="sh-modal-sec"><div class="sh-modal-sec-title">${s.title}</div>`;
-    s.items.forEach(i => {
-      html += `<div class="sh-modal-item"><div>
-        <div class="sh-modal-item-name">${i.name}</div>
-        <div class="sh-modal-item-desc">${i.desc}</div>
-        ${i.note ? `<div class="sh-modal-item-note">${i.note}</div>` : ''}
-      </div><div class="sh-modal-price">${i.price}</div></div>`;
+function openMenu(key){
+  const m=MENUS[key];if(!m)return;
+  document.getElementById('mm-venue').textContent=m.venue;
+  document.getElementById('mm-title').textContent=m.title;
+  document.getElementById('mm-sub').textContent=m.sub;
+  let html=`<p class="sp-modal-intro">${m.intro}</p>`;
+  m.sections.forEach(s=>{
+    html+=`<div class="sp-modal-sec"><div class="sp-modal-sec-title">${s.title}</div>`;
+    s.items.forEach(i=>{
+      html+=`<div class="sp-modal-item"><div>
+        <div class="sp-modal-item-name">${i.name}</div>
+        <div class="sp-modal-item-desc">${i.desc}</div>
+        ${i.note?`<div class="sp-modal-item-note">${i.note}</div>`:''}
+      </div><div class="sp-modal-price">${i.price}</div></div>`;
     });
-    html += `</div>`;
+    html+=`</div>`;
   });
-  html += `<div class="sh-modal-cta"><p>${m.cta}</p><a href="booking.html" class="btn btn-gold">Continue to Reservation</a></div>`;
-  document.getElementById('mm-body').innerHTML = html;
-  document.getElementById('sh-modal').scrollTop = 0;
-  document.getElementById('sh-modal-bd').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  html+=`<div class="sp-modal-cta-row"><p>${m.cta}</p><a href="booking.html" class="btn btn-gold">Continue to Reservation</a></div>`;
+  document.getElementById('mm-body').innerHTML=html;
+  document.getElementById('sp-modal').scrollTop=0;
+  document.getElementById('sp-modal-bd').classList.add('open');
+  document.body.style.overflow='hidden';
 }
-function closeMenu() {
-  document.getElementById('sh-modal-bd').classList.remove('open');
-  document.body.style.overflow = '';
+function closeMenu(){
+  document.getElementById('sp-modal-bd').classList.remove('open');
+  document.body.style.overflow='';
 }
-function handleModalBdClick(e) {
-  if (e.target === document.getElementById('sh-modal-bd')) closeMenu();
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
 
-/* ── SMOOTH SCROLL ─────────────────────────────────────── */
-function scrollToId(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+function goTo(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-/* ── SCROLL REVEAL ─────────────────────────────────────── */
-const revObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('sh-vis'); revObs.unobserve(e.target); }
-  });
-}, { threshold: 0.07 });
-document.querySelectorAll('.sh-reveal').forEach(el => revObs.observe(el));
+// Scroll reveal
+const rvObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');rvObs.unobserve(e.target);}});
+},{threshold:0.07});
+document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
 
-/* ── PARALLAX ──────────────────────────────────────────── */
-const heroBg  = document.getElementById('sh-hero-bg');
-const cafeBg  = document.getElementById('sh-cafe-bg');
-const sigBg   = document.getElementById('sh-sig-bg');
-const cafeEl  = document.getElementById('sh-cafe-section');
-const sigEl   = document.querySelector('.sh-signature');
-
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  if (heroBg) heroBg.style.transform = `translateY(${y * 0.3}px)`;
-  if (cafeBg && cafeEl) {
-    const r = cafeEl.getBoundingClientRect();
-    cafeBg.style.transform = `translateY(${(window.innerHeight / 2 - r.top - r.height / 2) * 0.12}px)`;
-  }
-  if (sigBg && sigEl) {
-    const r = sigEl.getBoundingClientRect();
-    sigBg.style.transform = `translateY(${(window.innerHeight / 2 - r.top - r.height / 2) * 0.12}px)`;
-  }
-}, { passive: true });
-
-/* ── DIRECTORY KEYBOARD NAV ────────────────────────────── */
-document.querySelectorAll('.sh-dir-item').forEach(item => {
-  item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); } });
-});
-
+// Parallax hero
+const heroBg=document.getElementById('sp-hero-bg');
+window.addEventListener('scroll',()=>{
+  if(heroBg)heroBg.style.transform=`translateY(${window.scrollY*.28}px)`;
+},{passive:true});
 </script>
 </body>
 </html>
