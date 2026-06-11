@@ -1188,31 +1188,7 @@
 </div>
 
 <!-- ══ BOOKING BAR ══ -->
-<div class="stay-booking-bar" id="stay-booking-bar">
-  <div class="booking-bar-inner">
-    <div class="booking-field">
-      <label>Check In</label>
-      <input type="date" id="bb-checkin">
-    </div>
-    <div class="booking-field">
-      <label>Check Out</label>
-      <input type="date" id="bb-checkout">
-    </div>
-    <div class="booking-field">
-      <label>Guests</label>
-      <select id="bb-guests">
-        <option value="1">1 Guest</option>
-        <option value="2" selected>2 Guests</option>
-        <option value="3">3 Guests</option>
-        <option value="4">4 Guests</option>
-        <option value="5">5+ Guests</option>
-      </select>
-    </div>
-    <button class="booking-bar-btn" onclick="searchAvailability()">
-      <span>Search Availability</span>
-    </button>
-  </div>
-</div>
+
 
 <!-- ══ LUXURY INTRO STRIP ══ -->
 <div style="background:#080805;padding:5rem 6vw 4rem;position:relative;overflow:hidden">
@@ -2275,19 +2251,11 @@ function searchAvailability() {
     alert('Please select check-in and check-out dates.');
     return;
   }
-  const url = 'https://live.ipms247.com/booking/book-rooms-grottamusanze';`;
+  const url = 'https://live.ipms247.com/booking/book-rooms-grottamusanze';
   window.open(url, '_blank');
 }
 
-// Set default dates
-(function() {
-  const today = new Date();
-  const tom   = new Date(today); tom.setDate(tom.getDate() + 1);
-  const day3  = new Date(today); day3.setDate(day3.getDate() + 3);
-  const fmt   = d => d.toISOString().split('T')[0];
-  document.getElementById('bb-checkin').value  = fmt(tom);
-  document.getElementById('bb-checkout').value = fmt(day3);
-})();
+
 
 // ── Sticky booking bar — always visible when scrolled past ───
 const bookingBar    = document.getElementById('stay-booking-bar');
