@@ -3,1087 +3,1327 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Experiences at Grotta — Adventures, Wellness, Families & Couples</title>
+<title>Experiences — Grotta Resort · Northern Rwanda</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;opacity:.55}
-.ex-label{font-family:'Jost',sans-serif;font-size:.54rem;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:rgba(201,165,82,.5);display:block;margin-bottom:.85rem}
-.ex-rule{width:2rem;height:1px;background:rgba(201,165,82,.28);margin:1.2rem 0}
-.ex-body{font-size:.88rem;color:rgba(232,224,208,.52);line-height:2.1}
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.25,.46,.45,.94),transform .9s cubic-bezier(.25,.46,.45,.94)}
-.reveal.from-left{transform:translateX(-40px)}.reveal.from-right{transform:translateX(40px)}
-.reveal.visible{opacity:1!important;transform:translate(0,0)!important}
-.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.22s}.reveal.d3{transition-delay:.34s}.reveal.d4{transition-delay:.46s}
-.ex-btn-gold{display:inline-flex;align-items:center;gap:.7rem;font-family:'Jost',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#060504;background:#c9a552;border:none;cursor:pointer;padding:1rem 2.4rem;position:relative;overflow:hidden;text-decoration:none;transition:transform .25s ease,box-shadow .3s ease}
-.ex-btn-gold::before{content:'';position:absolute;inset:0;background:#e2c97e;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.25,.46,.45,.94);z-index:0}
-.ex-btn-gold span{position:relative;z-index:1}
-.ex-btn-gold:hover::before{transform:scaleX(1)}
-.ex-btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(201,165,82,.3)}
-.ex-btn-outline{display:inline-flex;align-items:center;gap:.7rem;font-family:'Jost',sans-serif;font-size:.6rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,224,208,.65);background:transparent;border:1px solid rgba(232,224,208,.25);cursor:pointer;padding:.95rem 2.2rem;text-decoration:none;transition:border-color .3s ease,color .3s ease,transform .25s ease}
-.ex-btn-outline:hover{border-color:#c9a552;color:#c9a552;transform:translateY(-2px)}
 
-/* ══ PREVIEW CARDS ══ */
-.ex-preview-row{
-  max-width:1280px;margin:0 auto;padding:0 4vw 5rem;
-  display:grid;grid-template-columns:repeat(5,1fr);
-  gap:1px;background:rgba(201,165,82,.08);
+:root{
+  --gold:#c9a552;--gold-mid:rgba(201,165,82,.5);--gold-faint:rgba(201,165,82,.1);
+  --bg:#060504;--bg2:#0a0906;--bg3:#0e0c09;
+  --cream:#f0e8d5;--text:rgba(232,224,208,.75);--dim:rgba(200,192,174,.38);
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',sans-serif;
+  --nav-h:68px;
 }
-.ex-preview-card{
-  position:relative;height:260px;overflow:hidden;
-  display:flex;align-items:flex-end;cursor:default;
-}
-.ex-preview-card img{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;display:block;
-  filter:brightness(.42) saturate(.72);
-  transition:filter 1.2s ease,transform 1.6s cubic-bezier(.25,.46,.45,.94);
-}
-.ex-preview-card:hover img{filter:brightness(.6) saturate(.88);transform:scale(1.06)}
-.ex-preview-card::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(6,5,4,.97) 0%,rgba(6,5,4,.25) 55%,transparent 80%);
-  pointer-events:none;
-}
-.ex-preview-card::before{
-  content:'';position:absolute;top:0;left:0;
-  width:0;height:2px;background:rgba(201,165,82,.55);z-index:5;
-  transition:width .55s cubic-bezier(.25,.46,.45,.94);
-}
-.ex-preview-card:hover::before{width:100%}
-.ex-preview-text{position:relative;z-index:3;padding:1.2rem 1.4rem;width:100%}
-.ex-preview-text .ex-label{font-size:.42rem;color:rgba(201,165,82,.35);margin-bottom:.3rem}
-.ex-preview-text h5{
-  font-family:'Cormorant Garamond',Georgia,serif;
-  font-size:clamp(1rem,1.5vw,1.4rem);font-weight:300;
-  color:#f0e8d5;line-height:1.1;transition:color .3s ease;
-}
-.ex-preview-card:hover .ex-preview-text h5{color:#fff}
-.ex-preview-text p{
-  font-size:.7rem;color:rgba(232,224,208,.36);line-height:1.65;
-  margin-top:.3rem;
-  max-height:0;overflow:hidden;opacity:0;transform:translateY(5px);
-  transition:max-height .45s ease,opacity .4s ease .05s,transform .4s ease .05s;
-}
-.ex-preview-card:hover .ex-preview-text p{max-height:3.5rem;opacity:1;transform:translateY(0)}
 
-/* 4-col for wellness/couples */
-.ex-preview-row.cols-4{grid-template-columns:repeat(4,1fr)}
-.ex-preview-row.cols-6{grid-template-columns:repeat(6,1fr)}
+/* ── Shared utilities ── */
+.gold{color:var(--gold)}
+.serif{font-family:var(--serif)}
+.lbl{font-family:var(--sans);font-size:.52rem;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:var(--gold-mid);display:block}
+.hairline{height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.15) 30%,rgba(201,165,82,.15) 70%,transparent)}
+.rule{width:2.5rem;height:1px;background:rgba(201,165,82,.3);display:block}
 
+/* Reveal system */
+.rv{opacity:0;transform:translateY(36px);transition:opacity 1.1s cubic-bezier(.25,.46,.45,.94),transform 1.1s cubic-bezier(.25,.46,.45,.94)}
+.rv.fl{transform:translateX(-48px)}.rv.fr{transform:translateX(48px)}
+.rv.fu{transform:translateY(-24px)}
+.rv.on{opacity:1!important;transform:translate(0,0)!important}
+.rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.26s}.rv.d3{transition-delay:.4s}.rv.d4{transition-delay:.54s}
+
+/* Buttons */
+.btn-g{display:inline-flex;align-items:center;gap:.7rem;font-family:var(--sans);font-size:.58rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:#060504;background:var(--gold);border:none;cursor:pointer;padding:1.05rem 2.6rem;position:relative;overflow:hidden;text-decoration:none;transition:transform .3s ease,box-shadow .35s ease}
+.btn-g::before{content:'';position:absolute;inset:0;background:#e2c97e;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.25,.46,.45,.94);z-index:0}
+.btn-g span,.btn-g-arrow{position:relative;z-index:1}
+.btn-g:hover::before{transform:scaleX(1)}
+.btn-g:hover{transform:translateY(-3px);box-shadow:0 14px 42px rgba(201,165,82,.3)}
+.btn-o{display:inline-flex;align-items:center;gap:.7rem;font-family:var(--sans);font-size:.58rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:rgba(232,224,208,.62);background:transparent;border:1px solid rgba(232,224,208,.22);cursor:pointer;padding:1rem 2.4rem;text-decoration:none;backdrop-filter:blur(6px);transition:border-color .35s,color .35s,transform .3s,background .35s}
+.btn-o:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,165,82,.05);transform:translateY(-2px)}
+
+/* ════════════════════════════════════════════════════════
+   CHAPTER 00 — HERO
+════════════════════════════════════════════════════════ */
+.ch-hero{position:relative;height:100vh;min-height:720px;overflow:hidden;display:flex;align-items:flex-end}
+
+.ch-hero-bg{position:absolute;inset:-8%;background-image:url('images/AV7I5727.jpg');background-size:cover;background-position:center 40%;filter:brightness(.28) saturate(.68);will-change:transform;animation:hbreathe 28s cubic-bezier(.25,.46,.45,.94) infinite alternate}
+@keyframes hbreathe{from{transform:scale(1.1)}to{transform:scale(1)}}
+
+/* multi-layer cinematic overlay */
+.ch-hero-ov{position:absolute;inset:0;background:
+  linear-gradient(120deg,rgba(6,5,4,.96) 0%,rgba(6,5,4,.68) 36%,rgba(6,5,4,.12) 62%,rgba(6,5,4,.7) 100%),
+  linear-gradient(to bottom,rgba(6,5,4,.18) 0%,rgba(6,5,4,0) 22%,rgba(6,5,4,.48) 68%,rgba(6,5,4,1) 100%),
+  radial-gradient(ellipse 55% 48% at 18% 55%,rgba(201,120,30,.07) 0%,transparent 65%)}
+
+/* ambient mist */
+.ch-hero-mist{position:absolute;inset:0;background:radial-gradient(ellipse 120% 30% at 30% 70%,rgba(220,200,160,.04) 0%,transparent 65%);animation:mist 22s ease-in-out infinite alternate;pointer-events:none}
+@keyframes mist{from{opacity:.3;transform:translateX(-3%)}to{opacity:.8;transform:translateX(3%)}}
+
+/* vertical gold accent */
+.ch-hero-line{position:absolute;left:5.5vw;top:20%;bottom:24%;width:1px;background:linear-gradient(to bottom,transparent,rgba(201,165,82,.3) 22%,rgba(201,165,82,.3) 78%,transparent);z-index:8;opacity:0;animation:fadein .7s ease 2s forwards}
+@keyframes fadein{to{opacity:1}}
+
+/* ghost watermark */
+.ch-hero-ghost{position:absolute;right:-2vw;bottom:-3vh;font-family:var(--serif);font-size:clamp(10rem,22vw,22rem);font-weight:300;color:rgba(201,165,82,.025);line-height:1;letter-spacing:-.06em;pointer-events:none;z-index:2;white-space:nowrap;user-select:none}
+
+.ch-hero-body{position:relative;z-index:10;padding:0 6vw 5rem 8vw;max-width:820px}
+
+.ch-hero-eyebrow{display:inline-flex;align-items:center;gap:.9rem;font-family:var(--sans);font-size:.48rem;font-weight:400;letter-spacing:.42em;text-transform:uppercase;color:rgba(201,165,82,.48);margin-bottom:1.4rem;opacity:0;animation:up .8s ease .3s forwards}
+.ch-hero-eyebrow::before,.ch-hero-eyebrow::after{content:'';width:22px;height:1px;background:rgba(201,165,82,.28)}
+
+.ch-hero-h1{font-family:var(--serif);font-size:clamp(3.5rem,7.5vw,7.8rem);font-weight:300;color:var(--cream);line-height:.96;letter-spacing:-.042em;margin-bottom:1.4rem;opacity:0;transform:translateY(32px);animation:rise 1.2s cubic-bezier(.34,1.06,.64,1) .55s forwards}
+.ch-hero-h1 .italic{font-style:italic;color:rgba(240,232,213,.38);display:block;font-size:.74em;letter-spacing:-.022em;margin-top:.14em}
+
+.ch-hero-sub{font-family:var(--serif);font-size:clamp(.9rem,1.4vw,1.15rem);font-weight:300;font-style:italic;color:rgba(201,165,82,.55);line-height:1.85;display:block;max-width:400px;margin-bottom:2.8rem;opacity:0;filter:blur(3px);animation:blur .95s ease 1.05s forwards}
+
+.ch-hero-ctas{display:flex;gap:.9rem;flex-wrap:wrap;opacity:0;animation:up .8s ease 1.55s forwards}
+
+/* floating stats right */
+.ch-hero-stats{position:absolute;right:5vw;top:50%;transform:translateY(-55%);z-index:10;display:flex;flex-direction:column;gap:1px;background:rgba(201,165,82,.1);opacity:0;animation:up .8s ease 2s forwards}
+.ch-hero-stat{background:rgba(6,5,4,.78);backdrop-filter:blur(20px);padding:1.3rem 2rem;text-align:center;min-width:120px;transition:background .3s}
+.ch-hero-stat:hover{background:rgba(201,165,82,.08)}
+.ch-hero-stat-n{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--gold);display:block;line-height:1}
+.ch-hero-stat-l{font-family:var(--sans);font-size:.36rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,192,174,.32);display:block;margin-top:.3rem}
+
+/* scroll indicator */
+.ch-hero-scroll{position:absolute;bottom:2rem;right:6vw;z-index:10;display:flex;flex-direction:column;align-items:center;gap:.55rem;opacity:0;animation:up .8s ease 2.3s forwards}
+.ch-hero-scroll span{font-family:var(--sans);font-size:.42rem;letter-spacing:.36em;text-transform:uppercase;color:rgba(201,165,82,.26);writing-mode:vertical-rl}
+.ch-scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(201,165,82,.5),transparent);animation:scrollpulse 2.6s ease-in-out infinite}
+@keyframes scrollpulse{0%,100%{opacity:.35;transform:scaleY(1)}50%{opacity:.9;transform:scaleY(1.2)}}
+
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes rise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blur{from{opacity:0;filter:blur(3px);transform:translateY(10px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+
+/* ════════════════════════════════════════════════════════
+   STICKY CHAPTER NAV
+════════════════════════════════════════════════════════ */
+.ch-nav{background:rgba(6,5,4,.96);backdrop-filter:blur(28px);border-bottom:1px solid rgba(201,165,82,.1);position:sticky;top:var(--nav-h);z-index:90;transition:box-shadow .4s}
+.ch-nav.scrolled{box-shadow:0 8px 48px rgba(0,0,0,.75)}
+.ch-nav-inner{display:flex;align-items:center;justify-content:center;max-width:900px;margin:0 auto;padding:1.5rem 2rem;gap:0}
+.ch-node{display:flex;flex-direction:column;align-items:center;gap:.45rem;cursor:pointer;flex-shrink:0;opacity:.32;transition:opacity .4s}
+.ch-node.active,.ch-node:hover{opacity:1}
+.ch-node-ring{width:40px;height:40px;border-radius:50%;border:1px solid rgba(201,165,82,.15);background:rgba(10,8,6,.8);display:flex;align-items:center;justify-content:center;transition:border-color .4s,transform .35s,box-shadow .4s,background .4s}
+.ch-node.active .ch-node-ring{border-color:var(--gold);background:rgba(201,165,82,.08);box-shadow:0 0 0 5px rgba(201,165,82,.07),0 0 22px rgba(201,165,82,.14);transform:scale(1.1)}
+.ch-node-n{font-family:var(--serif);font-size:.78rem;font-weight:300;color:rgba(201,165,82,.45);transition:color .4s}
+.ch-node.active .ch-node-n{color:var(--gold)}
+.ch-node-l{font-family:var(--sans);font-size:.44rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,192,174,.32);white-space:nowrap;transition:color .4s}
+.ch-node.active .ch-node-l{color:rgba(201,165,82,.65)}
+.ch-line{flex:1;height:1px;background:rgba(201,165,82,.1);position:relative;margin-bottom:1.15rem}
+.ch-line-fill{position:absolute;top:0;left:0;height:100%;width:0;background:linear-gradient(to right,var(--gold),rgba(201,165,82,.3));transition:width .6s cubic-bezier(.25,.46,.45,.94)}
+
+/* ════════════════════════════════════════════════════════
+   CHAPTER 01 — THE TWO WORLDS (editorial split)
+════════════════════════════════════════════════════════ */
+.ch-intro{position:relative;background:var(--bg);padding:10rem 0 0;overflow:hidden}
+.ch-intro::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.12) 30%,rgba(201,165,82,.12) 70%,transparent)}
+
+/* large ghost editorial text */
+.ch-intro-ghost{position:absolute;top:6rem;left:-2vw;font-family:var(--serif);font-size:clamp(8rem,18vw,18rem);font-weight:300;color:rgba(201,165,82,.03);line-height:1;letter-spacing:-.06em;pointer-events:none;white-space:nowrap;user-select:none}
+
+.ch-intro-header{text-align:center;padding:0 4vw;margin-bottom:7rem;position:relative;z-index:2}
+.ch-intro-header .lbl{margin-bottom:1.2rem;justify-content:center;display:flex;align-items:center;gap:.8rem}
+.ch-intro-header .lbl::before,.ch-intro-header .lbl::after{content:'';width:24px;height:1px;background:rgba(201,165,82,.22)}
+.ch-intro-h2{font-family:var(--serif);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:300;color:var(--cream);line-height:1.03;letter-spacing:-.032em;margin-bottom:1rem}
+.ch-intro-sub{font-family:var(--serif);font-size:clamp(1rem,1.6vw,1.3rem);font-style:italic;color:rgba(232,224,208,.36);line-height:1.8;max-width:520px;margin:0 auto}
+
+/* two-world split — full width editorial panels */
+.ch-worlds{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(201,165,82,.08);position:relative;z-index:2}
+.ch-world{position:relative;min-height:680px;overflow:hidden;display:flex;align-items:flex-end;cursor:pointer}
+.ch-world img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.3) saturate(.65);transition:filter 2s ease,transform 2.5s cubic-bezier(.25,.46,.45,.94)}
+.ch-world:hover img{filter:brightness(.45) saturate(.82);transform:scale(1.04)}
+
+/* gradient overlay */
+.ch-world-ov{position:absolute;inset:0;pointer-events:none;transition:background .6s}
+.ch-world:first-child .ch-world-ov{background:linear-gradient(to top,rgba(6,5,4,.98) 0%,rgba(6,5,4,.5) 38%,rgba(6,5,4,.12) 65%,transparent 100%),linear-gradient(to right,rgba(6,5,4,.4) 0%,transparent 40%)}
+.ch-world:last-child .ch-world-ov{background:linear-gradient(to top,rgba(6,5,4,.98) 0%,rgba(6,5,4,.5) 38%,rgba(6,5,4,.12) 65%,transparent 100%),linear-gradient(to left,rgba(6,5,4,.4) 0%,transparent 40%)}
+.ch-world:hover .ch-world-ov{background:linear-gradient(to top,rgba(6,5,4,1) 0%,rgba(6,5,4,.62) 45%,rgba(6,5,4,.18) 72%,transparent 100%)}
+
+/* top accent line */
+.ch-world::before{content:'';position:absolute;top:0;left:0;width:0;height:3px;background:linear-gradient(to right,var(--gold),rgba(201,165,82,.3));z-index:5;transition:width .7s cubic-bezier(.25,.46,.45,.94)}
+.ch-world:hover::before{width:100%}
+
+/* chapter number ghost */
+.ch-world-num{position:absolute;top:2.5rem;right:2.5rem;font-family:var(--serif);font-size:7rem;font-weight:300;color:rgba(201,165,82,.07);line-height:1;letter-spacing:-.04em;z-index:3;transition:color .6s,transform .6s}
+.ch-world:hover .ch-world-num{color:rgba(201,165,82,.14);transform:scale(1.04)}
+
+.ch-world-body{position:relative;z-index:4;padding:3.5rem 4rem;width:100%}
+.ch-world-body .lbl{margin-bottom:1.1rem;color:rgba(201,165,82,.4)}
+.ch-world-h3{font-family:var(--serif);font-size:clamp(2.4rem,4vw,4rem);font-weight:300;color:var(--cream);line-height:1.04;letter-spacing:-.025em;margin-bottom:.6rem;transition:color .35s}
+.ch-world:hover .ch-world-h3{color:#fff}
+.ch-world-verse{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:rgba(201,165,82,.5);display:block;margin-bottom:1.2rem;line-height:1.55}
+.ch-world-desc{font-size:.84rem;color:rgba(232,224,208,.4);line-height:2;max-width:380px;max-height:0;overflow:hidden;opacity:0;transform:translateY(10px);transition:max-height .55s ease,opacity .5s ease .06s,transform .5s ease .06s}
+.ch-world:hover .ch-world-desc{max-height:8rem;opacity:1;transform:translateY(0)}
+.ch-world-cta{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--sans);font-size:.54rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.55);text-decoration:none;border-bottom:1px solid rgba(201,165,82,.18);padding-bottom:.28rem;margin-top:1.4rem;transition:color .35s,border-color .35s,gap .35s;display:none}
+.ch-world:hover .ch-world-cta{display:inline-flex}
+.ch-world-cta:hover{color:var(--gold);border-color:var(--gold);gap:.9rem}
+
+/* ════════════════════════════════════════════════════════
+   CHAPTER 02 — AT GROTTA (editorial chapters)
+════════════════════════════════════════════════════════ */
+.ch-at{background:var(--bg2);padding-bottom:0}
+
+/* Chapter intro banner */
+.ch-banner{position:relative;height:52vh;min-height:360px;overflow:hidden;display:flex;align-items:center}
+.ch-banner-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.25) saturate(.6);will-change:transform}
+.ch-banner-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(6,5,4,.94) 0%,rgba(6,5,4,.72) 42%,rgba(6,5,4,.2) 72%,rgba(6,5,4,.65) 100%),linear-gradient(to bottom,rgba(6,5,4,.4) 0%,transparent 28%,rgba(6,5,4,.6) 100%)}
+.ch-banner-body{position:relative;z-index:5;padding:0 7vw;max-width:620px}
+.ch-banner-num{font-family:var(--serif);font-size:clamp(6rem,12vw,12rem);font-weight:300;color:rgba(201,165,82,.07);line-height:1;display:block;margin-bottom:-1.5rem;letter-spacing:-.05em}
+.ch-banner-h2{font-family:var(--serif);font-size:clamp(3rem,6vw,5.5rem);font-weight:300;color:var(--cream);line-height:1.02;letter-spacing:-.03em;margin-bottom:.9rem}
+.ch-banner-sub{font-family:var(--serif);font-style:italic;font-size:clamp(.9rem,1.4vw,1.15rem);color:rgba(201,165,82,.5);line-height:1.75;max-width:420px}
+
+/* Editorial experience spread — full width alternating */
+.ch-spread{display:grid;grid-template-columns:1fr 1fr;min-height:560px;overflow:hidden;background:rgba(201,165,82,.05);margin-bottom:1px}
+.ch-spread.rev{direction:rtl}
+.ch-spread.rev>*{direction:ltr}
+.ch-spread-img{position:relative;overflow:hidden;min-height:480px}
+.ch-spread-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.48) saturate(.75);transition:filter 2s ease,transform 2.5s cubic-bezier(.25,.46,.45,.94)}
+.ch-spread:hover .ch-spread-img img{filter:brightness(.65) saturate(.88);transform:scale(1.04)}
+/* Gold line left accent */
+.ch-spread-img::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:linear-gradient(to bottom,var(--gold),rgba(201,165,82,.2));z-index:3;transition:height 1.2s cubic-bezier(.25,.46,.45,.94) .3s}
+.ch-spread:hover .ch-spread-img::before{height:100%}
+.ch-spread.rev .ch-spread-img::before{left:auto;right:0}
+/* image overlay */
+.ch-spread-img-fade{position:absolute;inset:0;background:linear-gradient(to right,transparent 55%,var(--bg2) 100%);pointer-events:none}
+.ch-spread.rev .ch-spread-img-fade{background:linear-gradient(to left,transparent 55%,var(--bg2) 100%)}
+
+/* pull quote overlay on image */
+.ch-spread-quote{position:absolute;bottom:2.5rem;left:2.5rem;right:2.5rem;z-index:4;opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+.ch-spread:hover .ch-spread-quote{opacity:1;transform:translateY(0)}
+.ch-spread.rev .ch-spread-quote{left:2.5rem;right:2.5rem}
+.ch-spread-quote p{font-family:var(--serif);font-style:italic;font-size:clamp(.88rem,1.2vw,1.05rem);color:rgba(240,232,213,.58);line-height:1.65;border-left:1px solid rgba(201,165,82,.35);padding-left:1.2rem}
+
+.ch-spread-body{background:var(--bg2);padding:4.5rem 5rem;display:flex;flex-direction:column;justify-content:center;position:relative}
+/* ghost chapter number */
+.ch-spread-ghost{position:absolute;top:1.5rem;right:2rem;font-family:var(--serif);font-size:5.5rem;font-weight:300;color:rgba(201,165,82,.04);line-height:1;letter-spacing:-.04em;pointer-events:none;transition:color .5s}
+.ch-spread:hover .ch-spread-ghost{color:rgba(201,165,82,.09)}
+.ch-spread-body .lbl{margin-bottom:.7rem}
+.ch-spread-h3{font-family:var(--serif);font-size:clamp(2rem,3.2vw,3.2rem);font-weight:300;color:var(--cream);line-height:1.06;letter-spacing:-.02em;margin-bottom:.8rem;transition:color .35s}
+.ch-spread:hover .ch-spread-h3{color:#fff}
+.ch-spread-tagline{font-family:var(--serif);font-style:italic;color:rgba(201,165,82,.48);font-size:1rem;margin-bottom:1.4rem;display:block}
+.ch-spread-desc{font-size:.86rem;color:rgba(232,224,208,.48);line-height:2.1;margin-bottom:1.6rem;max-width:400px}
+/* highlights */
+.ch-highlights{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.8rem}
+.ch-hl{font-family:var(--sans);font-size:.62rem;color:rgba(200,192,174,.46);display:flex;align-items:center;gap:.65rem}
+.ch-hl::before{content:'';width:4px;height:4px;border-radius:50%;background:rgba(201,165,82,.4);flex-shrink:0}
+/* price + cta row */
+.ch-spread-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1.5rem;border-top:1px solid rgba(201,165,82,.08);gap:1rem;flex-wrap:wrap}
+.ch-price-block{display:flex;flex-direction:column;gap:.18rem}
+.ch-price-from{font-family:var(--sans);font-size:.46rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+.ch-price{font-family:var(--serif);font-size:1.75rem;font-weight:300;color:var(--gold);line-height:1}
+.ch-price-note{font-family:var(--sans);font-size:.5rem;color:var(--dim);margin-top:.1rem}
+.ch-spread-ctas{display:flex;gap:.5rem}
+.ch-btn-add{font-family:var(--sans);font-size:.5rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:.65rem 1.4rem;background:var(--gold);color:#060504;border:none;cursor:pointer;position:relative;overflow:hidden;transition:transform .25s,box-shadow .3s}
+.ch-btn-add::before{content:'';position:absolute;inset:0;background:#e2c97e;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.25,.46,.45,.94);z-index:0}
+.ch-btn-add span{position:relative;z-index:1}
+.ch-btn-add:hover::before{transform:scaleX(1)}
+.ch-btn-add:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(201,165,82,.28)}
+.ch-btn-req{font-family:var(--sans);font-size:.5rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:.62rem 1.2rem;background:transparent;color:rgba(201,165,82,.6);border:1px solid rgba(201,165,82,.2);cursor:pointer;transition:border-color .3s,color .3s}
+.ch-btn-req:hover{border-color:var(--gold);color:var(--gold)}
+
+/* 3-col mini grid for smaller experiences */
+.ch-mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,165,82,.06)}
+.ch-mini-card{background:var(--bg3);position:relative;overflow:hidden;transition:background .4s}
+.ch-mini-card:hover{background:#121008}
+.ch-mini-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--gold);transition:width .55s cubic-bezier(.25,.46,.45,.94)}
+.ch-mini-card:hover::before{width:100%}
+.ch-mini-img{height:220px;overflow:hidden;position:relative}
+.ch-mini-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.45) saturate(.75);transition:filter 1.4s ease,transform 1.8s cubic-bezier(.25,.46,.45,.94)}
+.ch-mini-card:hover .ch-mini-img img{filter:brightness(.65) saturate(.88);transform:scale(1.06)}
+.ch-mini-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,4,.75) 0%,transparent 55%);pointer-events:none}
+.ch-mini-body{padding:1.6rem 1.8rem 2rem}
+.ch-mini-body .lbl{font-size:.44rem;margin-bottom:.5rem;color:rgba(201,165,82,.35)}
+.ch-mini-name{font-family:var(--serif);font-size:1.25rem;font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:.5rem;transition:color .3s}
+.ch-mini-card:hover .ch-mini-name{color:#fff}
+.ch-mini-desc{font-size:.76rem;color:rgba(200,192,174,.4);line-height:1.85;margin-bottom:1.2rem}
+.ch-mini-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid rgba(201,165,82,.07)}
+.ch-mini-price{font-family:var(--serif);font-size:1rem;color:var(--gold);font-weight:300}
+.ch-mini-dur{font-family:var(--sans);font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+/* ════════════════════════════════════════════════════════
+   CHAPTER 03 — CINEMATIC TRANSITION
+════════════════════════════════════════════════════════ */
+.ch-divider{position:relative;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.ch-divider-bg{position:absolute;inset:0;background-size:cover;background-position:center 30%;filter:brightness(.18) saturate(.55);will-change:transform}
+.ch-divider-ov{position:absolute;inset:0;background:
+  radial-gradient(ellipse 75% 60% at 50% 50%,rgba(6,5,4,.32) 0%,rgba(6,5,4,.88) 100%),
+  linear-gradient(to bottom,rgba(6,5,4,.7) 0%,rgba(6,5,4,.1) 35%,rgba(6,5,4,.1) 65%,rgba(6,5,4,.7) 100%)}
+/* warm amber glow */
+.ch-divider-glow{position:absolute;width:60vw;height:60vh;border-radius:50%;background:radial-gradient(ellipse,rgba(201,110,20,.06) 0%,transparent 65%);animation:dglow 8s ease-in-out infinite alternate;pointer-events:none}
+@keyframes dglow{from{opacity:.4;transform:scale(1)}to{opacity:.9;transform:scale(1.1)}}
+.ch-divider-body{position:relative;z-index:5;padding:0 3rem;max-width:820px}
+.ch-divider-mark{font-family:var(--serif);font-size:5rem;color:rgba(201,165,82,.14);display:block;line-height:.8;margin-bottom:.4rem}
+.ch-divider-text{font-family:var(--serif);font-size:clamp(2rem,4.5vw,4rem);font-weight:300;font-style:italic;color:rgba(240,232,213,.62);line-height:1.45;margin-bottom:2rem}
+.ch-divider-rule{width:2.5rem;height:1px;background:rgba(201,165,82,.3);margin:0 auto 2rem}
+.ch-divider-sub{font-family:var(--sans);font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(201,165,82,.38)}
+/* horizontal drift lines */
+.ch-divider-drift{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.ch-divider-drift::before,.ch-divider-drift::after{content:'';position:absolute;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.1) 40%,rgba(201,165,82,.1) 60%,transparent);left:0;right:0;animation:drift 12s ease-in-out infinite alternate}
+.ch-divider-drift::before{top:30%;animation-duration:12s}
+.ch-divider-drift::after{top:70%;animation-duration:16s;animation-direction:alternate-reverse}
+@keyframes drift{from{transform:translateX(-4%)}to{transform:translateX(4%)}}
+
+/* ════════════════════════════════════════════════════════
+   CHAPTER 04 — BEYOND GROTTA
+════════════════════════════════════════════════════════ */
+.ch-beyond{background:var(--bg);padding-bottom:0}
+
+/* gorilla full-width hero editorial */
+.ch-gorilla{position:relative;height:90vh;min-height:600px;overflow:hidden;display:flex;align-items:center}
+.ch-gorilla-bg{position:absolute;inset:-5%;background-image:url('images/AV7I3495.jpg');background-size:cover;background-position:center 25%;filter:brightness(.32) saturate(.68);will-change:transform}
+.ch-gorilla-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(6,5,4,.96) 0%,rgba(6,5,4,.72) 38%,rgba(6,5,4,.16) 68%,rgba(6,5,4,.65) 100%),linear-gradient(to bottom,rgba(6,5,4,.4) 0%,transparent 25%,rgba(6,5,4,.7) 100%)}
+.ch-gorilla-body{position:relative;z-index:5;padding:0 7vw;max-width:640px}
+.ch-gorilla-body .lbl{margin-bottom:1.2rem;color:rgba(201,165,82,.45)}
+.ch-gorilla-h2{font-family:var(--serif);font-size:clamp(3rem,7vw,6.5rem);font-weight:300;color:var(--cream);line-height:1.01;letter-spacing:-.04em;margin-bottom:1.1rem}
+.ch-gorilla-sub{font-family:var(--serif);font-style:italic;font-size:clamp(.9rem,1.4vw,1.2rem);color:rgba(201,165,82,.5);line-height:1.8;max-width:420px;margin-bottom:2rem}
+.ch-gorilla-stats{display:flex;gap:2.5rem;margin-bottom:2.5rem}
+.ch-gorilla-stat{display:flex;flex-direction:column;gap:.25rem}
+.ch-gorilla-stat-n{font-family:var(--serif);font-size:2rem;color:var(--gold);font-weight:300;line-height:1}
+.ch-gorilla-stat-l{font-family:var(--sans);font-size:.44rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.ch-gorilla-ctas{display:flex;gap:.8rem;flex-wrap:wrap}
+
+/* ════════════════════════════════════════════════════════
+   CHAPTER 05 — JOURNEY BUILDER (interactive)
+════════════════════════════════════════════════════════ */
+.ch-builder{background:var(--bg2);padding:9rem 0;position:relative;overflow:hidden}
+.ch-builder::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.12) 30%,rgba(201,165,82,.12) 70%,transparent)}
+.ch-builder-ghost{position:absolute;right:-4vw;bottom:-4vh;font-family:var(--serif);font-size:clamp(8rem,18vw,18rem);font-weight:300;color:rgba(201,165,82,.025);line-height:1;letter-spacing:-.06em;pointer-events:none;user-select:none}
+
+.ch-builder-inner{max-width:1280px;margin:0 auto;padding:0 4vw}
+.ch-builder-header{text-align:center;margin-bottom:5rem}
+.ch-builder-header .lbl{justify-content:center;display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+.ch-builder-header .lbl::before,.ch-builder-header .lbl::after{content:'';width:24px;height:1px;background:rgba(201,165,82,.22)}
+.ch-builder-h2{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.8rem);font-weight:300;color:var(--cream);line-height:1.04;letter-spacing:-.028em;margin-bottom:.9rem}
+.ch-builder-sub{font-family:var(--serif);font-style:italic;color:rgba(232,224,208,.38);font-size:clamp(.9rem,1.4vw,1.2rem);line-height:1.8;max-width:520px;margin:0 auto}
+
+/* 3-col layout: selector | summary | form */
+.ch-builder-grid{display:grid;grid-template-columns:1.2fr 1fr 1.1fr;gap:1px;background:rgba(201,165,82,.08);min-height:520px}
+
+/* Experience selector */
+.ch-selector{background:var(--bg3);padding:2.5rem}
+.ch-selector-label{font-family:var(--sans);font-size:.5rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,165,82,.45);display:block;margin-bottom:1.5rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,165,82,.08)}
+.ch-exp-item{display:flex;align-items:center;gap:.85rem;padding:.85rem .75rem;cursor:pointer;border-bottom:1px solid rgba(201,165,82,.05);transition:background .25s;position:relative}
+.ch-exp-item:last-child{border-bottom:none}
+.ch-exp-item:hover{background:rgba(201,165,82,.04)}
+.ch-exp-item.selected{background:rgba(201,165,82,.07)}
+.ch-exp-item.selected::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold)}
+.ch-exp-check{width:18px;height:18px;border:1px solid rgba(201,165,82,.22);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .25s,border-color .25s}
+.ch-exp-item.selected .ch-exp-check{background:var(--gold);border-color:var(--gold)}
+.ch-exp-check-mark{font-size:.6rem;color:#060504;opacity:0;transition:opacity .2s}
+.ch-exp-item.selected .ch-exp-check-mark{opacity:1}
+.ch-exp-item-info{flex:1}
+.ch-exp-item-name{font-family:var(--serif);font-size:.95rem;font-weight:300;color:rgba(232,224,208,.75);transition:color .25s}
+.ch-exp-item.selected .ch-exp-item-name{color:var(--cream)}
+.ch-exp-item-meta{font-family:var(--sans);font-size:.46rem;color:var(--dim);letter-spacing:.1em}
+.ch-exp-item-price{font-family:var(--serif);font-size:.88rem;color:rgba(201,165,82,.5);flex-shrink:0}
+
+/* Summary panel */
+.ch-summary{background:rgba(10,9,7,.95);padding:2.5rem;display:flex;flex-direction:column}
+.ch-summary-label{font-family:var(--sans);font-size:.5rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,165,82,.45);display:block;margin-bottom:1.5rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,165,82,.08)}
+.ch-summary-empty{font-family:var(--serif);font-style:italic;color:rgba(200,192,174,.2);font-size:.9rem;line-height:1.6;flex:1;display:flex;align-items:center}
+.ch-summary-list{flex:1;display:flex;flex-direction:column;gap:.35rem}
+.ch-summary-item{display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid rgba(201,165,82,.05)}
+.ch-summary-item-name{font-family:var(--serif);font-size:.88rem;color:rgba(232,224,208,.65)}
+.ch-summary-item-price{font-family:var(--serif);font-size:.88rem;color:rgba(201,165,82,.55)}
+.ch-summary-total{margin-top:auto;padding-top:1.2rem;border-top:1px solid rgba(201,165,82,.15);display:flex;justify-content:space-between;align-items:baseline}
+.ch-summary-total-label{font-family:var(--sans);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.ch-summary-total-num{font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--gold)}
+
+/* Inquiry form */
+.ch-inquiry{background:var(--bg3);padding:2.5rem;display:flex;flex-direction:column}
+.ch-inquiry-label{font-family:var(--sans);font-size:.5rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,165,82,.45);display:block;margin-bottom:1.5rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,165,82,.08)}
+.ch-field{margin-bottom:1.4rem;position:relative}
+.ch-field::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .4s cubic-bezier(.25,.46,.45,.94)}
+.ch-field:focus-within::after{width:100%}
+.ch-field label{font-family:var(--sans);font-size:.46rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(201,165,82,.42);display:block;margin-bottom:.55rem}
+.ch-field input,.ch-field select,.ch-field textarea{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(200,192,174,.1);color:var(--cream);font-family:var(--sans);font-size:.85rem;font-weight:300;padding:.6rem 0;outline:none;caret-color:var(--gold);transition:border-color .35s}
+.ch-field input::placeholder,.ch-field textarea::placeholder{color:rgba(200,192,174,.18)}
+.ch-field input:focus,.ch-field select:focus,.ch-field textarea:focus{border-bottom-color:var(--gold)}
+.ch-field select option{background:#0e0c09}
+.ch-field textarea{min-height:65px;resize:vertical}
+.ch-submit{margin-top:auto;width:100%;padding:1.05rem;font-family:var(--sans);font-size:.6rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#060504;background:var(--gold);border:none;cursor:pointer;position:relative;overflow:hidden;transition:transform .25s,box-shadow .3s}
+.ch-submit::before{content:'';position:absolute;inset:0;background:#e2c97e;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.25,.46,.45,.94);z-index:0}
+.ch-submit span{position:relative;z-index:1}
+.ch-submit:hover::before{transform:scaleX(1)}
+.ch-submit:hover{transform:translateY(-2px);box-shadow:0 10px 34px rgba(201,165,82,.3)}
+.ch-confirm{display:none;text-align:center;padding:2.5rem 1rem;flex:1;align-items:center;justify-content:center;flex-direction:column}
+.ch-confirm.show{display:flex}
+.ch-confirm-mark{width:52px;height:52px;border-radius:50%;border:1px solid rgba(201,165,82,.32);background:rgba(201,165,82,.06);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--gold);margin-bottom:1.5rem}
+.ch-confirm h3{font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--cream);margin-bottom:.7rem}
+.ch-confirm p{font-size:.78rem;color:var(--dim);line-height:1.9}
+
+/* ════════════════════════════════════════════════════════
+   CHAPTER 06 — FEATURED JOURNEYS (horizontal editorial)
+════════════════════════════════════════════════════════ */
+.ch-journeys{background:var(--bg);padding:9rem 0;position:relative}
+.ch-journeys::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.12) 30%,rgba(201,165,82,.12) 70%,transparent)}
+
+.ch-journeys-header{max-width:1280px;margin:0 auto;padding:0 4vw 5rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end}
+.ch-journeys-header .lbl{margin-bottom:1rem}
+.ch-journeys-h2{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.8rem);font-weight:300;color:var(--cream);line-height:1.04;letter-spacing:-.028em}
+.ch-journeys-intro{font-size:.88rem;color:var(--dim);line-height:2.1}
+
+/* horizontal scroll strip */
+.ch-journeys-scroll{overflow-x:scroll;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:0 0 3rem;cursor:grab}
+.ch-journeys-scroll:active{cursor:grabbing}
+.ch-journeys-scroll::-webkit-scrollbar{display:none}
+.ch-journeys-track{display:flex;gap:1px;background:rgba(201,165,82,.07);padding:0 4vw;min-width:max-content}
+
+.ch-journey-card{width:380px;flex-shrink:0;background:var(--bg3);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:background .4s}
+.ch-journey-card:hover{background:#131109}
+.ch-journey-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--gold);transition:width .6s cubic-bezier(.25,.46,.45,.94)}
+.ch-journey-card:hover::before{width:100%}
+.ch-journey-img{height:280px;position:relative;overflow:hidden}
+.ch-journey-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.44) saturate(.75);transition:filter 1.4s ease,transform 1.8s cubic-bezier(.25,.46,.45,.94)}
+.ch-journey-card:hover .ch-journey-img img{filter:brightness(.62) saturate(.88);transform:scale(1.05)}
+.ch-journey-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,4,.7) 0%,transparent 55%);pointer-events:none}
+/* duration badge */
+.ch-journey-badge{position:absolute;top:1.2rem;left:1.2rem;background:rgba(6,5,4,.78);backdrop-filter:blur(10px);border:1px solid rgba(201,165,82,.2);font-family:var(--sans);font-size:.44rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,165,82,.65);padding:.28rem .75rem}
+.ch-journey-body{padding:2rem 2.2rem 2.5rem;flex:1;display:flex;flex-direction:column}
+.ch-journey-body .lbl{font-size:.44rem;margin-bottom:.6rem;color:rgba(201,165,82,.35)}
+.ch-journey-name{font-family:var(--serif);font-size:1.55rem;font-weight:300;color:var(--cream);line-height:1.08;margin-bottom:.6rem;transition:color .3s}
+.ch-journey-card:hover .ch-journey-name{color:#fff}
+.ch-journey-desc{font-size:.76rem;color:rgba(200,192,174,.4);line-height:1.88;margin-bottom:1.4rem;flex:1}
+.ch-journey-includes{display:flex;flex-direction:column;gap:.38rem;margin-bottom:1.5rem}
+.ch-journey-inc{font-family:var(--sans);font-size:.58rem;color:rgba(200,192,174,.48);display:flex;align-items:center;gap:.55rem}
+.ch-journey-inc::before{content:'✦';color:rgba(201,165,82,.32);font-size:.46rem;flex-shrink:0}
+.ch-journey-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1.3rem;border-top:1px solid rgba(201,165,82,.07)}
+.ch-journey-price{font-family:var(--serif);font-size:1.18rem;color:var(--gold);font-weight:300}
+.ch-journey-price small{font-family:var(--sans);font-size:.48rem;color:var(--dim);display:block;margin-top:.1rem}
+
+/* scroll hint */
+.ch-journeys-hint{display:flex;align-items:center;gap:.7rem;padding:0 4vw;font-family:var(--sans);font-size:.46rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.25);margin-bottom:2rem}
+.ch-journeys-hint-bar{flex:none;width:36px;height:1px;background:rgba(201,165,82,.2)}
+
+/* ════════════════════════════════════════════════════════
+   CHAPTER 07 — FINAL CTA
+════════════════════════════════════════════════════════ */
+.ch-final{position:relative;min-height:680px;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center}
+.ch-final-bg{position:absolute;inset:0;background-image:url('images/AV7I5729.jpg');background-size:cover;background-position:center 38%;filter:brightness(.22) saturate(.6);will-change:transform}
+.ch-final-ov{position:absolute;inset:0;background:radial-gradient(ellipse 80% 62% at 50% 50%,rgba(6,5,4,.38) 0%,rgba(6,5,4,.92) 100%)}
+.ch-final-bloom{position:absolute;inset:0;background:radial-gradient(ellipse 55% 48% at 50% 50%,rgba(201,130,50,.05) 0%,transparent 70%);animation:bloom 10s ease-in-out infinite alternate;pointer-events:none}
+@keyframes bloom{from{opacity:.45;transform:scale(1)}to{opacity:1;transform:scale(1.07)}}
+.ch-final-body{position:relative;z-index:5;max-width:680px;padding:0 2rem}
+.ch-final-body .lbl{justify-content:center;display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem}
+.ch-final-body .lbl::before,.ch-final-body .lbl::after{content:'';width:22px;height:1px;background:rgba(201,165,82,.22)}
+.ch-final-h2{font-family:var(--serif);font-size:clamp(3rem,7vw,6.5rem);font-weight:300;color:var(--cream);line-height:1.01;letter-spacing:-.042em;margin-bottom:1.2rem}
+.ch-final-sub{font-family:var(--serif);font-style:italic;font-size:clamp(.9rem,1.4vw,1.2rem);color:rgba(232,224,208,.4);line-height:1.85;display:block;max-width:480px;margin:0 auto 3rem}
+.ch-final-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.ch-final-ornament{display:flex;align-items:center;gap:1.2rem;justify-content:center;margin:1.5rem auto 2.5rem;max-width:200px}
+.ch-final-ornament::before,.ch-final-ornament::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.22))}
+.ch-final-ornament::after{background:linear-gradient(to left,transparent,rgba(201,165,82,.22))}
+.ch-final-ornament-dot{font-size:.55rem;color:rgba(201,165,82,.38)}
+
+/* ════════════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════════════ */
 @media(max-width:1100px){
-  .ex-preview-row{grid-template-columns:repeat(3,1fr)}
-  .ex-preview-row.cols-4{grid-template-columns:repeat(2,1fr)}
-  .ex-preview-card{height:220px}
+  .ch-hero-stats{display:none}
+  .ch-hero-line{display:none}
+  .ch-worlds{grid-template-columns:1fr}
+  .ch-world{min-height:440px}
+  .ch-spread{grid-template-columns:1fr;min-height:auto}
+  .ch-spread.rev{direction:ltr}
+  .ch-spread-img{min-height:320px}
+  .ch-spread-img-fade{display:none}
+  .ch-spread-body{padding:3rem 2.5rem}
+  .ch-spread-ghost{display:none}
+  .ch-mini-grid{grid-template-columns:1fr 1fr}
+  .ch-builder-grid{grid-template-columns:1fr}
+  .ch-journeys-header{grid-template-columns:1fr;gap:2rem}
+  .ch-journey-card{width:320px}
+  .ch-gorilla{height:70vh}
 }
-@media(max-width:600px){
-  .ex-preview-row,.ex-preview-row.cols-4,.ex-preview-row.cols-6{grid-template-columns:1fr 1fr}
-  .ex-preview-card{height:190px}
-}
-
-/* ══ JOURNEY NAV ══ */
-.ex-journey-nav{background:rgba(6,5,4,.96);border-bottom:1px solid rgba(201,165,82,.12);position:sticky;top:var(--nav-h,60px);z-index:99;transition:box-shadow .4s ease}
-.ex-journey-nav.scrolled{box-shadow:0 8px 40px rgba(0,0,0,.7)}
-.ex-journey-nav-inner{display:flex;align-items:center;justify-content:center;max-width:820px;margin:0 auto;padding:1.6rem 2rem;gap:0}
-.ex-jnode{display:flex;flex-direction:column;align-items:center;gap:.5rem;cursor:pointer;flex-shrink:0;opacity:.38;transition:opacity .35s ease}
-.ex-jnode.active{opacity:1}
-.ex-jnode:hover{opacity:.8}
-.ex-jnode-circle{width:44px;height:44px;border-radius:50%;border:1px solid rgba(201,165,82,.2);background:rgba(10,8,6,.8);display:flex;align-items:center;justify-content:center;transition:border-color .4s ease,transform .35s ease,box-shadow .4s ease,background .4s ease}
-.ex-jnode.active .ex-jnode-circle{border-color:#c9a552;background:rgba(201,165,82,.08);box-shadow:0 0 0 4px rgba(201,165,82,.08),0 0 18px rgba(201,165,82,.12);transform:scale(1.08)}
-.ex-jnode:hover .ex-jnode-circle{border-color:rgba(201,165,82,.5);transform:scale(1.05)}
-.ex-jnode-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:.82rem;font-weight:300;color:rgba(201,165,82,.5);transition:color .35s ease}
-.ex-jnode.active .ex-jnode-num{color:#c9a552}
-.ex-jnode-label{font-family:'Jost',sans-serif;font-size:.48rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,192,174,.38);white-space:nowrap;transition:color .35s ease}
-.ex-jnode.active .ex-jnode-label{color:rgba(201,165,82,.7)}
-.ex-jline{flex:1;height:1px;background:rgba(201,165,82,.12);position:relative;margin-bottom:1.3rem}
-.ex-jline-fill{position:absolute;top:0;left:0;height:100%;width:0%;background:linear-gradient(to right,#c9a552,rgba(201,165,82,.4));transition:width .55s cubic-bezier(.25,.46,.45,.94)}
-
-/* ══ SECTION HEADER ══ */
-.ex-sec-head{max-width:1280px;margin:0 auto;padding:7rem 4vw 5rem}
-.ex-sec-head-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end}
-.ex-sec-h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.4rem,5vw,4.5rem);font-weight:300;color:#f0e8d5;line-height:1.04;letter-spacing:-.025em}
-.ex-sec-divider{height:1px;width:100%;background:linear-gradient(to right,rgba(201,165,82,.2),transparent);margin:1.5rem 0}
-.ex-sec-divider-centered{height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.2) 30%,rgba(201,165,82,.2) 70%,transparent);margin:0 0 5rem}
-
-/* ══ ADVENTURE SELECTOR ══ */
-.ex-adv-types{
-  display:flex;gap:1px;background:rgba(201,165,82,.1);
-  margin:1.8rem 0 1.4rem;
-}
-.ex-adv-type{
-  flex:1;background:rgba(6,5,4,.7);
-  padding:1rem 1.2rem;cursor:pointer;
-  border-top:2px solid transparent;
-  transition:background .3s,border-color .3s;
-  display:flex;flex-direction:column;gap:.22rem;
-}
-.ex-adv-type:hover{background:rgba(201,165,82,.06)}
-.ex-adv-type.active{
-  background:rgba(201,165,82,.08);
-  border-top-color:#c9a552;
-}
-.ex-adv-type-icon{font-size:1.1rem;line-height:1}
-.ex-adv-type-name{
-  font-family:'Cormorant Garamond',Georgia,serif;
-  font-size:.98rem;font-weight:300;
-  color:rgba(240,232,213,.75);
-  transition:color .3s;
-}
-.ex-adv-type.active .ex-adv-type-name{color:#f0e8d5}
-.ex-adv-type-sub{
-  font-family:'Jost',sans-serif;font-size:.48rem;
-  letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(200,192,174,.32);
-}
-
-/* Route chips */
-.ex-adv-routes{margin-bottom:1.4rem}
-.ex-adv-routes-label{
-  font-family:'Jost',sans-serif;font-size:.46rem;
-  font-weight:500;letter-spacing:.26em;text-transform:uppercase;
-  color:rgba(201,165,82,.38);display:block;margin-bottom:.75rem;
-}
-.ex-route-chips{display:flex;flex-direction:column;gap:2px}
-.ex-route-chip{
-  background:rgba(9,8,6,.7);border:1px solid rgba(201,165,82,.1);
-  padding:.75rem 1.1rem;cursor:pointer;text-align:left;
-  display:grid;grid-template-columns:auto 1fr auto;
-  align-items:center;gap:.6rem 1rem;
-  transition:background .3s,border-color .3s;
-  position:relative;overflow:hidden;
-}
-.ex-route-chip::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;
-  width:2px;background:rgba(201,165,82,.25);
-  transition:background .3s;
-}
-.ex-route-chip:hover{background:rgba(201,165,82,.06);border-color:rgba(201,165,82,.22)}
-.ex-route-chip.active{background:rgba(201,165,82,.08);border-color:rgba(201,165,82,.3)}
-.ex-route-chip.active::before{background:#c9a552}
-.ex-route-chip-level{
-  font-family:'Jost',sans-serif;font-size:.42rem;
-  font-weight:500;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(201,165,82,.5);white-space:nowrap;
-}
-.ex-route-chip.active .ex-route-chip-level{color:#c9a552}
-.ex-route-chip-name{
-  font-family:'Cormorant Garamond',Georgia,serif;
-  font-size:.95rem;font-weight:300;color:rgba(240,232,213,.72);
-  transition:color .3s;
-}
-.ex-route-chip:hover .ex-route-chip-name,
-.ex-route-chip.active .ex-route-chip-name{color:#f0e8d5}
-.ex-route-chip-detail{
-  font-family:'Jost',sans-serif;font-size:.42rem;
-  letter-spacing:.08em;color:rgba(200,192,174,.3);
-  white-space:nowrap;text-align:right;
-}
-
-/* Includes list */
-.ex-adv-includes{
-  display:flex;flex-wrap:wrap;gap:.5rem;
-  margin-bottom:.8rem;
-}
-.ex-adv-inc-item{
-  font-family:'Jost',sans-serif;font-size:.5rem;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(200,192,174,.45);
-  display:flex;align-items:center;gap:.45rem;
-}
-.ex-adv-inc-item::before{
-  content:'';width:4px;height:4px;border-radius:50%;
-  background:rgba(201,165,82,.4);flex-shrink:0;
-}
-
-@media(max-width:700px){
-  .ex-adv-types{flex-direction:column}
-  .ex-route-chip{grid-template-columns:auto 1fr;grid-template-rows:auto auto}
-  .ex-route-chip-detail{grid-column:2;text-align:left}
-}
-
-/* ══ PANEL SYSTEM ══ */
-.ex-panels{display:flex;flex-direction:column;gap:1px;background:rgba(201,165,82,.06)}
-.ex-panel{display:grid;grid-template-columns:1fr 1fr;min-height:400px;overflow:hidden}
-.ex-panel.rev{direction:rtl}
-.ex-panel.rev>*{direction:ltr}
-.ex-panel-img{position:relative;overflow:hidden}
-.ex-panel-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.52) saturate(.78);transition:filter 1.4s ease,transform 1.8s cubic-bezier(.25,.46,.45,.94)}
-.ex-panel:hover .ex-panel-img img{filter:brightness(.68) saturate(.9);transform:scale(1.04)}
-.ex-panel-overlay{position:absolute;inset:0;background:linear-gradient(to right,transparent 55%,var(--panel-bg,#060504) 100%);pointer-events:none}
-.ex-panel.rev .ex-panel-overlay{background:linear-gradient(to left,transparent 55%,var(--panel-bg,#060504) 100%)}
-.ex-panel-text{background:var(--panel-bg,#060504);padding:4rem 4.5rem;display:flex;flex-direction:column;justify-content:center;position:relative}
-.ex-panel-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:5.5rem;font-weight:300;color:rgba(201,165,82,.05);position:absolute;top:1.5rem;right:2rem;line-height:1;letter-spacing:-.04em;pointer-events:none;transition:color .4s ease}
-.ex-panel:hover .ex-panel-num{color:rgba(201,165,82,.1)}
-.ex-panel-text .ex-label{margin-bottom:.5rem}
-.ex-panel-text h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.8rem,2.8vw,2.8rem);font-weight:300;color:#f0e8d5;line-height:1.08;letter-spacing:-.015em;margin-bottom:.9rem}
-.ex-panel-text p{font-size:.86rem;color:rgba(232,224,208,.5);line-height:2;margin-bottom:1.2rem}
-.ex-tags{display:flex;flex-wrap:wrap;gap:.4rem}
-.ex-tag{font-family:'Jost',sans-serif;font-size:.47rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(200,192,174,.36);border:1px solid rgba(201,165,82,.1);padding:.2rem .65rem;transition:color .3s ease,border-color .3s ease}
-.ex-panel:hover .ex-tag{color:rgba(200,192,174,.6);border-color:rgba(201,165,82,.22)}
-/* Wellness steam */
-.ex-well-img::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 90%,rgba(201,140,60,.05) 0%,transparent 65%);animation:ex-steam 7s ease-in-out infinite alternate;pointer-events:none}
-@keyframes ex-steam{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:translateY(-4px)}}
-
-/* ══ FAMILIES ══ */
-.ex-fam-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:380px 300px;gap:1px;background:rgba(201,165,82,.07);max-width:100%}
-.ex-fam-card{position:relative;overflow:hidden;display:flex;align-items:flex-end;cursor:default}
-.ex-fam-card:first-child{grid-row:1/3}
-.ex-fam-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.45) saturate(.78);transition:filter 1.4s ease,transform 1.8s cubic-bezier(.25,.46,.45,.94)}
-.ex-fam-card:hover img{filter:brightness(.6) saturate(.9);transform:scale(1.05)}
-.ex-fam-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,4,.97) 0%,rgba(6,5,4,.3) 45%,transparent 72%);pointer-events:none;transition:background .5s ease}
-.ex-fam-card:hover::after{background:linear-gradient(to top,rgba(6,5,4,1) 0%,rgba(6,5,4,.5) 52%,transparent 78%)}
-.ex-fam-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:rgba(201,165,82,.55);z-index:5;transition:width .6s cubic-bezier(.25,.46,.45,.94)}
-.ex-fam-card:hover::before{width:100%}
-.ex-fam-text{position:relative;z-index:3;padding:2rem 2.2rem;width:100%}
-.ex-fam-text .ex-label{font-size:.45rem;color:rgba(201,165,82,.36);margin-bottom:.4rem}
-.ex-fam-text h4{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.4rem,2.2vw,2.2rem);font-weight:300;color:#f0e8d5;line-height:1.1;margin-bottom:.5rem;transition:color .3s ease}
-.ex-fam-card:hover .ex-fam-text h4{color:#fff}
-.ex-fam-text p{font-size:.74rem;color:rgba(232,224,208,.38);line-height:1.8;max-height:0;overflow:hidden;opacity:0;transform:translateY(7px);transition:max-height .5s ease,opacity .45s ease .05s,transform .45s ease .05s}
-.ex-fam-card:hover .ex-fam-text p{max-height:4.5rem;opacity:1;transform:translateY(0)}
-/* Family journeys */
-.ex-fam-journeys{max-width:1280px;margin:5rem auto 0;padding:0 4vw}
-.ex-fam-journeys-label{font-family:'Jost',sans-serif;font-size:.56rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,165,82,.45);margin-bottom:2rem;display:flex;align-items:center;gap:1.4rem}
-.ex-fam-journeys-label::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,165,82,.2),transparent)}
-.ex-fam-jgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(201,165,82,.07)}
-.ex-fam-j{position:relative;min-height:380px;overflow:hidden;display:flex;align-items:flex-end;cursor:default}
-.ex-fam-j img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.4) saturate(.72);transition:filter 1.4s ease,transform 1.8s cubic-bezier(.25,.46,.45,.94)}
-.ex-fam-j:hover img{filter:brightness(.58) saturate(.88);transform:scale(1.06)}
-.ex-fam-j::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,4,.97) 0%,rgba(6,5,4,.3) 52%,transparent 80%);pointer-events:none}
-.ex-fam-j::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:rgba(201,165,82,.55);z-index:5;transition:width .6s cubic-bezier(.25,.46,.45,.94)}
-.ex-fam-j:hover::before{width:100%}
-.ex-fam-j-text{position:relative;z-index:3;padding:1.8rem 1.6rem;width:100%}
-.ex-fam-j-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.2rem;font-weight:300;color:rgba(201,165,82,.1);display:block;margin-bottom:.4rem;transition:color .4s ease}
-.ex-fam-j:hover .ex-fam-j-num{color:rgba(201,165,82,.18)}
-.ex-fam-j-text .ex-label{font-size:.43rem;color:rgba(201,165,82,.33);margin-bottom:.4rem}
-.ex-fam-j-text h5{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.1rem,1.6vw,1.7rem);font-weight:300;color:#f0e8d5;line-height:1.1;margin-bottom:.4rem;transition:color .3s ease}
-.ex-fam-j:hover .ex-fam-j-text h5{color:#fff}
-.ex-fam-j-text p{font-size:.7rem;color:rgba(232,224,208,.35);line-height:1.75;max-height:0;overflow:hidden;opacity:0;transform:translateY(6px);transition:max-height .5s ease,opacity .45s ease .05s,transform .45s ease .05s}
-.ex-fam-j:hover .ex-fam-j-text p{max-height:4rem;opacity:1;transform:translateY(0)}
-
-/* ══ COUPLES ══ */
-.ex-couples-hero{position:relative;height:70vh;min-height:500px;overflow:hidden;margin-bottom:1px}
-.ex-couples-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.36) saturate(.65);transition:transform 1.8s cubic-bezier(.25,.46,.45,.94)}
-.ex-couples-hero:hover img{transform:scale(1.03)}
-.ex-couples-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(80,40,20,.15) 0%,transparent 70%),linear-gradient(to bottom,rgba(8,6,4,.5) 0%,transparent 30%,rgba(8,6,4,.85) 85%,rgba(8,6,4,1) 100%);pointer-events:none}
-.ex-couples-hero-text{position:absolute;bottom:3rem;left:0;right:0;z-index:5;text-align:center;padding:0 2rem}
-.ex-couples-hero-text .ex-label{margin-bottom:1rem;text-align:center}
-.ex-couples-hero-h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3rem,7vw,6rem);font-weight:300;color:#f0e8d5;line-height:1.04;letter-spacing:-.03em;margin-bottom:.8rem}
-.ex-couples-hero-sub{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1rem,1.8vw,1.4rem);font-style:italic;font-weight:300;color:rgba(232,224,208,.48);max-width:520px;margin:0 auto;line-height:1.65}
-.ex-couples-intro{max-width:1280px;margin:0 auto;padding:5rem 4vw 4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end}
-.ex-couple-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,165,82,.07)}
-.ex-couple-card{position:relative;min-height:460px;overflow:hidden;display:flex;align-items:flex-end;cursor:default}
-.ex-couple-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.42) saturate(.72);transition:filter 1.4s ease,transform 1.8s cubic-bezier(.25,.46,.45,.94)}
-.ex-couple-card:hover img{filter:brightness(.58) saturate(.88);transform:scale(1.06)}
-.ex-couple-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,6,4,.98) 0%,rgba(8,6,4,.45) 45%,transparent 72%);pointer-events:none;transition:background .5s ease}
-.ex-couple-card:hover::after{background:linear-gradient(to top,rgba(8,6,4,1) 0%,rgba(8,6,4,.6) 52%,transparent 80%)}
-.ex-couple-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:rgba(201,165,82,.55);z-index:5;transition:width .6s cubic-bezier(.25,.46,.45,.94)}
-.ex-couple-card:hover::before{width:100%}
-.ex-couple-text{position:relative;z-index:3;padding:2rem 2.2rem;width:100%}
-.ex-couple-text .ex-label{font-size:.45rem;color:rgba(201,165,82,.36);margin-bottom:.4rem}
-.ex-couple-text h4{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.4rem,2.2vw,2.2rem);font-weight:300;color:#f0e8d5;line-height:1.1;margin-bottom:.5rem;transition:color .3s ease}
-.ex-couple-card:hover .ex-couple-text h4{color:#fff}
-.ex-couple-text p{font-size:.74rem;color:rgba(232,224,208,.38);line-height:1.8;max-height:0;overflow:hidden;opacity:0;transform:translateY(7px);transition:max-height .5s ease,opacity .45s ease .05s,transform .45s ease .05s}
-.ex-couple-card:hover .ex-couple-text p{max-height:4.5rem;opacity:1;transform:translateY(0)}
-.ex-couples-quote{position:relative;height:300px;overflow:hidden;margin-top:1px}
-.ex-couples-quote img{width:100%;height:100%;object-fit:cover;filter:brightness(.3) saturate(.6);transition:transform 1.8s ease}
-.ex-couples-quote:hover img{transform:scale(1.03)}
-.ex-couples-quote::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(8,6,4,.8) 0%,rgba(8,6,4,.2) 35%,rgba(8,6,4,.2) 65%,rgba(8,6,4,.8) 100%);pointer-events:none}
-.ex-couples-quote-text{position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;text-align:center}
-.ex-couples-quote-text blockquote{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.3rem,2.6vw,2.1rem);font-weight:300;font-style:italic;color:rgba(240,232,213,.65);line-height:1.55;max-width:680px;padding:0 2rem}
-
-/* ══ FINAL CTA ══ */
-.ex-final{position:relative;min-height:560px;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center}
-.ex-final-bg{position:absolute;inset:0;background-image:url('images/AV7I5729.jpg');background-size:cover;background-position:center 35%;filter:brightness(.28) saturate(.65);will-change:transform}
-.ex-final-overlay{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(6,5,4,.4) 0%,rgba(6,5,4,.85) 100%)}
-.ex-final-bloom{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(201,140,60,.04) 0%,transparent 70%);animation:ex-bloom 8s ease-in-out infinite alternate;pointer-events:none}
-@keyframes ex-bloom{from{opacity:.5;transform:scale(1)}to{opacity:1;transform:scale(1.06)}}
-.ex-final-content{position:relative;z-index:5;max-width:620px;padding:0 2rem}
-.ex-final-content .ex-label{margin-bottom:1.2rem}
-.ex-final-h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:300;color:#f0e8d5;line-height:1.04;letter-spacing:-.025em;margin-bottom:1.1rem}
-.ex-final-sub{font-size:.88rem;color:rgba(232,224,208,.45);line-height:2;display:block;max-width:460px;margin:0 auto 2.8rem}
-.ex-final-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-
-/* ══ RESPONSIVE ══ */
-@media(max-width:1100px){
-  .ex-hero{grid-template-columns:1fr 1fr;grid-template-rows:50vh 50vh;height:auto;min-height:auto}
-  .ex-cat{border-right:1px solid rgba(201,165,82,.1);border-bottom:1px solid rgba(201,165,82,.1)}
-  .ex-hero-header{display:none}
-  .ex-panels .ex-panel{grid-template-columns:1fr}
-  .ex-panel.rev{direction:ltr}
-  .ex-panel-img{height:280px}
-  .ex-panel-overlay{display:none}
-  .ex-panel-text{padding:2.5rem 2rem}
-  .ex-panel-num{display:none}
-  .ex-fam-grid{grid-template-columns:1fr 1fr;grid-template-rows:300px 300px 300px}
-  .ex-fam-card:first-child{grid-row:auto;grid-column:1/-1}
-  .ex-fam-jgrid{grid-template-columns:repeat(3,1fr)}
-  .ex-couple-cards{grid-template-columns:1fr 1fr}
-  .ex-sec-head-grid{grid-template-columns:1fr;gap:1.5rem}
-  .ex-couples-intro{grid-template-columns:1fr;gap:2rem}
-}
-@media(max-width:700px){
-  /* Journey nav — shrink for mobile */
-  .ex-journey-nav-inner{padding:1rem 1rem;gap:0;overflow-x:auto;justify-content:flex-start}
-  .ex-jnode{min-width:60px;gap:.3rem}
-  .ex-jnode-circle{width:36px;height:36px}
-  .ex-jnode-num{font-size:.7rem}
-  .ex-jnode-label{font-size:.38rem;letter-spacing:.14em}
-  .ex-jline{min-width:20px;flex:1}
-  .ex-hero{grid-template-columns:1fr;grid-template-rows:repeat(4,42vh)}
-  .ex-cat{flex:1!important}
-  .ex-cat-sub{max-height:3rem;opacity:.55;transform:none}
-  .ex-cat-arrow{opacity:.6;transform:none}
-  .ex-fam-grid{grid-template-columns:1fr;grid-template-rows:auto}
-  .ex-fam-card{min-height:280px}
-  .ex-fam-card:first-child{grid-column:1}
-  .ex-fam-jgrid{grid-template-columns:1fr 1fr}
-  .ex-fam-j{min-height:280px}
-  .ex-fam-j:nth-child(5){display:none}
-  .ex-couple-cards{grid-template-columns:1fr}
-  .ex-couple-card{min-height:320px}
-  .ex-final-ctas{flex-direction:column;align-items:center}
-  .ex-couples-hero-h2{font-size:clamp(2.5rem,9vw,4rem)}
-  .ex-sec-head{padding:5.5rem 1.5rem 3rem}
-  /* Each section needs scroll margin to account for sticky navbar + journey nav */
-  .ex-section{scroll-margin-top:calc(68px + 80px)}
+@media(max-width:768px){
+  .ch-hero-body{padding:0 5vw 4rem}
+  .ch-hero-h1{font-size:clamp(3rem,11vw,5rem)}
+  .ch-hero-ctas{flex-direction:column;align-items:flex-start}
+  .ch-nav-inner{padding:1rem;overflow-x:auto;justify-content:flex-start}
+  .ch-node-l{font-size:.36rem}
+  .ch-node-ring{width:34px;height:34px}
+  .ch-banner-body{padding:0 5vw}
+  .ch-mini-grid{grid-template-columns:1fr}
+  .ch-world-body{padding:2.5rem 2rem}
+  .ch-world-h3{font-size:clamp(2rem,8vw,3rem)}
+  .ch-final-ctas{flex-direction:column;align-items:center}
+  .ch-gorilla-body{padding:0 5vw}
+  .ch-gorilla-h2{font-size:clamp(2.8rem,10vw,4.5rem)}
+  .ch-gorilla-stats{gap:1.5rem}
+  .ch-divider-text{font-size:clamp(1.6rem,6vw,2.8rem)}
+  .ch-journeys-header{padding:0 4vw 3rem}
+  .ch-journey-card{width:280px}
+  .ch-spread-body{padding:2.5rem 1.8rem}
 }
 @media(max-width:480px){
-  .ex-fam-jgrid{grid-template-columns:1fr}
-  .ex-fam-j:nth-child(5){display:flex}
-  .ex-jnode-label{display:none}
-  .ex-jnode-circle{width:32px;height:32px}
+  .ch-node-l{display:none}
+  .ch-hero-h1{font-size:clamp(2.6rem,11vw,4rem)}
+  .ch-mini-grid{grid-template-columns:1fr}
+  .ch-world{min-height:360px}
+  .ch-journey-card{width:260px}
 }
 
-/* ══════════════════════════════════════════════════════════
-   GROTTA — GLOBAL RESPONSIVE SYSTEM
-   Breakpoints: 1400 | 1100 | 900 | 768 | 600 | 480 | 380
-══════════════════════════════════════════════════════════ */
+/* Global responsive carry-over */
+@media(max-width:900px){.nav-links{display:none}.hamburger{display:flex}}
 
-/* ── Ultra-wide: prevent over-stretching ── */
-@media(min-width:1600px){
-  .hp-hero-content,.hp-section-header,
-  .hp-what-inner,.pk-intro-inner,
-  .er-hero-top,.er-featured-content,
-  .er-timeline-inner{max-width:1400px;margin-left:auto;margin-right:auto}
-}
-
-/* ── Large desktop 1100px ── */
-@media(max-width:1100px){
-  /* Typography */
-  h1,h2{letter-spacing:-.02em}
-  /* Chapters */
-  .hp-ch-content{grid-template-columns:1fr!important;gap:2.5rem;padding:5rem 5vw}
-  .hp-ch-content.right{direction:ltr!important}
-  .hp-ch-img-wrap{height:clamp(260px,40vw,420px);transform:none!important}
-  .hp-ch-num{font-size:clamp(5rem,10vw,9rem)}
-  /* Cave section */
-  .hp-cave-content{max-width:100%;padding:4rem 5vw}
-  /* Weddings */
-  .wg-pkg-grid{grid-template-columns:1fr 1fr!important}
-  .wg-hero-h1{font-size:clamp(3rem,6vw,6rem)}
-}
-
-/* ── Tablet 900px ── */
-@media(max-width:900px){
-  /* Global section padding */
-  section,.er-season,.er-atmosphere,.er-timeline,
-  .er-testimonials,.er-private,.er-featured,
-  .pk-intro,.pk-inclusions,.pk-rhythm,
-  .hp-packages,.hp-rooms,.hp-what{padding:5rem 0}
-
-  /* Hero sections */
-  .hp-hero{min-height:100svh}
-  .er-hero{min-height:100svh}
-  .hp-hero-content{padding:0 5vw;margin-bottom:220px}
-  .hp-hero-content h1{font-size:clamp(2.4rem,8vw,4rem)}
-  .hp-hero-content p{font-size:clamp(.85rem,2.5vw,1rem)}
-
-  /* Booking bar */
-  .booking-bar{width:96vw;flex-wrap:wrap;height:auto;bottom:0}
-  .bb-field{flex:1 1 45%;height:52px;border-right:none;border-bottom:1px solid rgba(201,165,82,.1)}
-  .bb-book{flex:1 1 100%;height:48px}
-
-  /* Cards & grids */
-  .hp-packages-grid{grid-template-columns:1fr}
-  .hp-rooms-grid{grid-template-columns:1fr 1fr}
-  .hp-pkg-card{min-height:320px}
-
-  /* Events */
-  .er-event{grid-template-columns:1fr!important;direction:ltr!important}
-  .er-event-img{height:280px}
-  .er-event-img-fade{display:none}
-  .er-event-body{padding:2rem 1.5rem}
-  .er-featured-content{grid-template-columns:1fr!important;padding:5rem 5vw;gap:3rem}
-
-  /* Atmosphere gallery */
-  .er-atm-grid{grid-template-columns:1fr 1fr!important;grid-template-rows:auto!important}
-  .er-atm-item{height:220px!important}
-  .er-atm-item:nth-child(1){grid-row:auto!important;grid-column:1/-1!important;height:280px!important}
-  .er-atm-item:nth-child(5){grid-column:auto!important}
-
-  /* Packages */
-  .pk-panel{grid-template-columns:1fr!important;direction:ltr!important}
-  .pk-panel.rev{direction:ltr!important}
-  .pk-panel-img{height:280px}
-  .pk-panel-img-fade{display:none!important}
-  .pk-panel-body{padding:2.5rem 1.8rem}
-  .pk-rhythm-grid{grid-template-columns:1fr 1fr!important}
-  .pk-booking-inner{grid-template-columns:1fr!important}
-  .pk-inc-split{grid-template-columns:1fr!important;gap:1.5rem}
-  .pk-gallery-grid{grid-template-columns:1fr 1fr!important}
-  .pk-testi-grid{grid-template-columns:1fr!important}
-
-  /* Stay */
-  .rc-wrap,.rc-wrap.rc-reversed{flex-direction:column!important;width:96%!important}
-  .rc-img{width:100%!important;height:260px!important}
-  .rc-panel{margin:0!important;padding:2rem 1.5rem!important}
-  .rc-ctas{flex-direction:column;gap:.5rem}
-  .rc-details-btn,.rc-book{width:100%;justify-content:center;text-align:center}
-  [style*="repeat(6,1fr)"]{grid-template-columns:repeat(3,1fr)!important}
-
-  /* Weddings */
-  .wg-pkg-grid{grid-template-columns:1fr!important}
-  .wg-hero-h1{font-size:clamp(2.8rem,7vw,5rem)}
-  .wg-why-grid{grid-template-columns:1fr 1fr!important}
-
-  /* Membership */
-  .mb-hero-h1{font-size:clamp(2.8rem,7vw,5rem)}
-  .mb-tiers-grid{grid-template-columns:1fr!important}
-
-  /* Caves */
-  .cv-featured{grid-template-columns:1fr!important}
-  .cv-gallery-grid{grid-template-columns:1fr 1fr!important}
-
-  /* Nav */
-  .nav-links{display:none}
-  .hamburger{display:flex}
-}
-
-/* ── Mobile 600px ── */
-@media(max-width:600px){
-  /* Global */
-  body{overflow-x:hidden}
-
-  /* Section padding */
-  section,.er-season,.er-atmosphere,.er-timeline,
-  .er-testimonials,.er-private,.er-featured,
-  .pk-intro,.pk-inclusions,.pk-rhythm,
-  .hp-packages,.hp-rooms,.hp-what{padding:4rem 0}
-
-  /* Typography — fluid */
-  .hp-hero-content h1{font-size:clamp(2rem,9vw,3.2rem);line-height:1.1}
-  .er-hero-h1{font-size:clamp(2.8rem,11vw,4.5rem)!important}
-  .hp-cave-h2,.er-final-h2,.er-private-h2,
-  .pk-intro-h2,.wg-hero-h1,.mb-hero-h1{font-size:clamp(2.2rem,8vw,3.5rem)!important}
-  .er-featured-h2,.er-season-h2{font-size:clamp(2rem,7vw,3rem)!important}
-  .hp-ch-title{font-size:clamp(2.2rem,8vw,3.2rem)!important}
-
-  /* Hero */
-  .hp-hero-content{margin-bottom:300px;padding:0 5vw}
-  .hp-hero-ctas{flex-direction:column;align-items:center;width:100%}
-  .hp-btn-primary,.hp-btn-secondary{width:100%;max-width:280px;justify-content:center;text-align:center}
-
-  /* Booking bar — fully stacked */
-  .booking-bar{width:100%;flex-direction:column;border-radius:0;bottom:0}
-  .bb-field{flex:1 1 100%;height:52px;border-right:none;border-bottom:1px solid rgba(201,165,82,.1);padding:0 1.2rem}
-  .bb-book{width:100%;height:52px;border-radius:0;font-size:.62rem}
-
-  /* Chapters */
-  .hp-ch{min-height:auto!important}
-  .hp-ch-content{padding:4rem 5vw!important;gap:2rem!important}
-  .hp-ch-img-wrap{height:240px!important}
-  .hp-ch-glow{display:none}
-
-  /* Experience header */
-  .hp-exp-header-clean{padding:5rem 5vw 3rem}
-  .hp-exp-header-clean h2{font-size:clamp(2rem,7vw,3rem)}
-
-  /* Nav panel packages */
-  .pk-nav-panel-inner{grid-template-columns:1fr!important;padding-top:0}
-  .pk-guest-toggle{position:static;transform:none;margin:.8rem 1rem;width:auto}
-  .pk-hero-right{flex-wrap:wrap!important;border-top:1px solid rgba(201,165,82,.08);padding:1rem}
-
-  /* Stay inclusions */
-  [style*="repeat(6,1fr)"]{grid-template-columns:repeat(2,1fr)!important}
-  [style*="repeat(3,1fr)"]{grid-template-columns:1fr!important}
-
-  /* Rooms grid */
-  .hp-rooms-grid{grid-template-columns:1fr!important}
-
-  /* Forms */
-  .pk-form{padding:1.8rem 1.2rem}
-  .pk-form-row{grid-template-columns:1fr!important}
-  .mb-form{padding:1.8rem 1.2rem}
-
-  /* CTA rows */
-  .er-final-ctas,.er-hero-ctas,.er-private-ctas,
-  .pk-final-ctas,.wg-final-ctas,.hp-final-ctas,
-  .er-featured-left>div,.pk-hero-ctas{flex-direction:column!important;align-items:center!important}
-  .er-btn-gold,.er-btn-outline,.pk-btn-gold,
-  .pk-btn-outline,.wg-btn-gold,.wg-btn-outline{width:100%;max-width:280px;justify-content:center}
-
-  /* Events calendar */
-  .er-cal-topbar{flex-wrap:wrap;padding:.7rem .9rem .6rem}
-  .er-cal-topbar-right{width:100%;gap:.4rem;justify-content:flex-start}
-  .er-view-switcher{order:-1}
-  .er-cal-legend{display:none}
-  .er-cal-day-name{font-size:.28rem;letter-spacing:.06em}
-  .er-cal-date-num{font-size:.58rem}
-  .er-month-col{min-height:50px}
-  .er-month-event-name{font-size:.26rem}
-  .er-sv-item{grid-template-columns:68px 1px 1fr!important;gap:0 1rem!important;padding:1.2rem 0}
-  .er-sv-day{font-size:1.2rem}
-  .er-sv-desc{display:none}
-
-  /* Dining modal */
-  .menu-modal{border-radius:2px 2px 0 0;border-bottom:none}
-  .menu-modal-body{padding:1.2rem 1.2rem 2rem}
-  .menu-modal-header{padding:1.2rem 1.2rem .9rem}
-
-  /* Membership modal */
-  .mb-modal{max-width:100%;margin:0;border-radius:2px 2px 0 0;border-bottom:none}
-
-  /* Footer */
-  .footer-grid{grid-template-columns:1fr!important;gap:2rem}
-  .footer-bottom{flex-direction:column;gap:.8rem;align-items:flex-start}
-  .footer-legal{flex-wrap:wrap;gap:1rem}
-
-  /* Section headers */
-  .er-season-header,.er-atm-header{grid-template-columns:1fr!important}
-  .er-tl-item{grid-template-columns:1fr!important;gap:.6rem}
-  .er-testi-grid{grid-template-columns:1fr!important}
-
-  /* Weddings */
-  .wg-why-grid{grid-template-columns:1fr!important}
-  .wg-pkg-grid{grid-template-columns:1fr!important}
-  .wg-private-types{flex-direction:column!important}
-  .wg-testi-grid{grid-template-columns:1fr!important}
-}
-
-/* ── Small phones 480px ── */
-@media(max-width:480px){
-  .hp-hero-content h1{font-size:clamp(1.9rem,9vw,2.8rem)}
-  .hp-hero-content{margin-bottom:340px}
-  .er-hero-h1{font-size:clamp(2.4rem,12vw,4rem)!important}
-  .hp-ch-title{font-size:clamp(1.9rem,8vw,2.8rem)!important}
-  .hp-ch-num{font-size:clamp(4rem,16vw,7rem)!important}
-  .hp-ch-content{padding:3.5rem 4vw!important}
-  .er-atm-grid{grid-template-columns:1fr!important}
-  .er-atm-item{height:200px!important;grid-column:auto!important;grid-row:auto!important}
-  .pk-nav-panel-inner{grid-template-columns:1fr!important}
-  .pk-rhythm-grid{grid-template-columns:1fr!important}
-  .pk-gallery-grid{grid-template-columns:1fr!important}
-  .pk-gal-item{height:220px!important;grid-column:auto!important;grid-row:auto!important}
-  .er-month-tooltip{display:none}
-  .booking-bar .bb-label{display:none}
-}
-
-/* ── Very small phones 380px ── */
-@media(max-width:380px){
-  .hp-hero-content h1{font-size:clamp(1.7rem,9vw,2.4rem)}
-  .hp-hero-content{margin-bottom:380px}
-  .er-hero-h1{font-size:clamp(2rem,11vw,3.2rem)!important}
-  .navbar{padding:0 4vw}
-  .grotta-wordmark{font-size:1.1rem!important}
-  .hp-ch-content{padding:3rem 4vw!important}
-  .er-cal-filter{font-size:.34rem;padding:.18rem .4rem}
-}
-
-/* ── Landscape phones ── */
-@media(max-width:900px) and (orientation:landscape){
-  .hp-hero{min-height:100vw}
-  .er-hero{min-height:100vw}
-  .hp-hero-content{margin-bottom:160px}
-  .hp-hero-content h1{font-size:clamp(2rem,6vw,3rem)}
-}
-
-/* ── Touch: larger tap targets ── */
-@media(hover:none){
-  .nav-links a,.footer-col a,.er-cal-filter,
-  .pk-guest-btn,.er-view-btn,.pk-nav-item{
-    min-height:44px;display:flex;align-items:center
-  }
-  .hp-btn-primary,.hp-btn-secondary,.er-btn-gold,
-  .er-btn-outline,.pk-btn-gold,.pk-btn-outline,
-  .wg-btn-gold{min-height:52px}
-}
-
-
-.ms{font-family:"Material Symbols Outlined";font-style:normal;font-weight:normal;font-size:1.2rem;line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;font-variation-settings:"FILL" 0,"wght" 200,"GRAD" 0,"opsz" 24;display:inline-block;vertical-align:middle;color:inherit}
-.ex-adv-type-icon.ms{font-family:"Material Symbols Outlined";font-style:normal;font-weight:normal;font-variation-settings:"FILL" 0,"wght" 200,"GRAD" 0,"opsz" 40;font-size:1.3rem;color:rgba(201,165,82,.7);display:block;margin-bottom:.4rem;}
+.ms{font-family:"Material Symbols Outlined";font-style:normal;font-weight:normal;font-size:1.2rem;line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;font-variation-settings:"FILL" 0,"wght" 200,"GRAD" 0,"opsz" 24;display:inline-block;vertical-align:middle}
 </style>
 </head>
 <body>
 <div id="nav-holder"></div>
 
-<!-- ══ JOURNEY NAV ══ -->
-<div class="ex-journey-nav" id="ex-journey-nav">
-  <div class="ex-journey-nav-inner">
-    <div class="ex-jnode active" id="jn-1" onclick="scrollToSection('sec-adventures')">
-      <div class="ex-jnode-circle"><span class="ex-jnode-num">01</span></div>
-      <span class="ex-jnode-label">Adventures</span>
+<!-- ════════════════════════════════════════════════════════
+     CHAPTER 00 — HERO
+════════════════════════════════════════════════════════ -->
+<section class="ch-hero" id="xp-top">
+  <div class="ch-hero-bg" id="ch-hero-bg"></div>
+  <div class="ch-hero-ov"></div>
+  <div class="ch-hero-mist"></div>
+  <div class="ch-hero-line"></div>
+  <div class="ch-hero-ghost">Grotta</div>
+
+  <div class="ch-hero-body">
+    <div class="ch-hero-eyebrow">Musanze · Northern Rwanda · Est. 2024</div>
+    <h1 class="ch-hero-h1">
+      Experiences
+      <span class="italic">at Grotta & Beyond</span>
+    </h1>
+    <span class="ch-hero-sub">Your basecamp for discovering everything Northern Rwanda holds — within the resort and far beyond its gates.</span>
+    <div class="ch-hero-ctas">
+      <a href="#ch-at" onclick="goTo('ch-at');return false" class="btn-g"><span>At Grotta</span></a>
+      <a href="#ch-beyond" onclick="goTo('ch-beyond');return false" class="btn-o">Beyond Grotta</a>
+      <a href="#ch-builder" onclick="goTo('ch-builder');return false" class="btn-o">Plan My Stay</a>
     </div>
-    <div class="ex-jline"><div class="ex-jline-fill" id="jlf-1"></div></div>
-    <div class="ex-jnode" id="jn-2" onclick="scrollToSection('sec-wellness')">
-      <div class="ex-jnode-circle"><span class="ex-jnode-num">02</span></div>
-      <span class="ex-jnode-label">Wellness</span>
+  </div>
+
+  <div class="ch-hero-stats">
+    <div class="ch-hero-stat">
+      <span class="ch-hero-stat-n">15+</span>
+      <span class="ch-hero-stat-l">Experiences</span>
     </div>
-    <div class="ex-jline"><div class="ex-jline-fill" id="jlf-2"></div></div>
-    <div class="ex-jnode" id="jn-3" onclick="scrollToSection('sec-families')">
-      <div class="ex-jnode-circle"><span class="ex-jnode-num">03</span></div>
-      <span class="ex-jnode-label">Families</span>
+    <div class="ch-hero-stat">
+      <span class="ch-hero-stat-n">2km</span>
+      <span class="ch-hero-stat-l">Volcanoes Park</span>
     </div>
-    <div class="ex-jline"><div class="ex-jline-fill" id="jlf-3"></div></div>
-    <div class="ex-jnode" id="jn-4" onclick="scrollToSection('sec-couples')">
-      <div class="ex-jnode-circle"><span class="ex-jnode-num">04</span></div>
-      <span class="ex-jnode-label">Couples</span>
+    <div class="ch-hero-stat">
+      <span class="ch-hero-stat-n">∞</span>
+      <span class="ch-hero-stat-l">Possibilities</span>
+    </div>
+  </div>
+
+  <div class="ch-hero-scroll">
+    <span>Scroll</span>
+    <div class="ch-scroll-bar"></div>
+  </div>
+</section>
+
+<!-- STICKY NAV -->
+<div class="ch-nav" id="ch-nav">
+  <div class="ch-nav-inner">
+    <div class="ch-node active" id="cn-1" onclick="goTo('ch-worlds')">
+      <div class="ch-node-ring"><span class="ch-node-n">01</span></div>
+      <span class="ch-node-l">Overview</span>
+    </div>
+    <div class="ch-line"><div class="ch-line-fill" id="clf-1"></div></div>
+    <div class="ch-node" id="cn-2" onclick="goTo('ch-at')">
+      <div class="ch-node-ring"><span class="ch-node-n">02</span></div>
+      <span class="ch-node-l">At Grotta</span>
+    </div>
+    <div class="ch-line"><div class="ch-line-fill" id="clf-2"></div></div>
+    <div class="ch-node" id="cn-3" onclick="goTo('ch-beyond')">
+      <div class="ch-node-ring"><span class="ch-node-n">03</span></div>
+      <span class="ch-node-l">Beyond</span>
+    </div>
+    <div class="ch-line"><div class="ch-line-fill" id="clf-3"></div></div>
+    <div class="ch-node" id="cn-4" onclick="goTo('ch-builder')">
+      <div class="ch-node-ring"><span class="ch-node-n">04</span></div>
+      <span class="ch-node-l">Plan Stay</span>
+    </div>
+    <div class="ch-line"><div class="ch-line-fill" id="clf-4"></div></div>
+    <div class="ch-node" id="cn-5" onclick="goTo('ch-journeys')">
+      <div class="ch-node-ring"><span class="ch-node-n">05</span></div>
+      <span class="ch-node-l">Journeys</span>
     </div>
   </div>
 </div>
 
-<!-- ══ ADVENTURES ══ -->
-<div id="sec-adventures" style="background:#060504;padding-bottom:8rem">
-  <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.12) 30%,rgba(201,165,82,.12) 70%,transparent)"></div>
-  <div class="ex-sec-head">
-    <div class="ex-sec-head-grid">
-      <div class="reveal from-left">
-        <span class="ex-label">Category 01</span>
-        <h2 class="ex-sec-h2">Adventures</h2>
-        <div class="ex-sec-divider"></div>
+<!-- ════════════════════════════════════════════════════════
+     CHAPTER 01 — TWO WORLDS
+════════════════════════════════════════════════════════ -->
+<section class="ch-intro" id="ch-worlds">
+  <div class="ch-intro-ghost">Explore</div>
+  <div class="ch-intro-header rv">
+    <span class="lbl">Your Complete Experience</span>
+    <h2 class="ch-intro-h2">Two Ways to<br>Experience Grotta</h2>
+    <p class="ch-intro-sub">Stay at Grotta. Experience Grotta. Explore beyond Grotta's gates — into one of the most extraordinary landscapes on earth.</p>
+  </div>
+
+  <div class="ch-worlds">
+    <div class="ch-world rv">
+      <img src="images/AV7I4026.jpg" alt="At Grotta" loading="lazy">
+      <div class="ch-world-ov"></div>
+      <div class="ch-world-num">01</div>
+      <div class="ch-world-body">
+        <span class="lbl">Within the Resort</span>
+        <h3 class="ch-world-h3">At Grotta</h3>
+        <span class="ch-world-verse">Relax. Recharge. Reconnect.</span>
+        <p class="ch-world-desc">Pool, sauna, farm mornings, cinema nights, bonfire evenings, cave café — experiences woven into the fabric of the resort itself.</p>
+        <a href="#ch-at" onclick="goTo('ch-at');return false" class="ch-world-cta">Enter this world →</a>
       </div>
-      <div class="reveal from-right">
-        <p class="ex-body">The volcanic highlands of Musanze offer terrain that very few places on earth can match. Grotta's adventure programme is built around this landscape — its trails, its caves, its altitude, and its light. Luxury and nature, inseparably combined.</p>
+    </div>
+    <div class="ch-world rv d2">
+      <img src="images/AV7I3495.jpg" alt="Beyond Grotta" loading="lazy">
+      <div class="ch-world-ov"></div>
+      <div class="ch-world-num">02</div>
+      <div class="ch-world-body">
+        <span class="lbl">Northern Rwanda Awaits</span>
+        <h3 class="ch-world-h3">Beyond Grotta</h3>
+        <span class="ch-world-verse">Explore. Discover. Adventure.</span>
+        <p class="ch-world-desc">Gorillas at dawn. Volcano summits. E-bike trails. Cultural encounters. Rwanda's rarest experiences, accessed from your highland basecamp.</p>
+        <a href="#ch-beyond" onclick="goTo('ch-beyond');return false" class="ch-world-cta">Enter this world →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     CHAPTER 02 — AT GROTTA
+════════════════════════════════════════════════════════ -->
+<section class="ch-at" id="ch-at">
+  <!-- Chapter intro banner -->
+  <div class="ch-banner">
+    <div class="ch-banner-bg" style="background-image:url('images/AV7I4900.jpg')" id="at-banner-bg"></div>
+    <div class="ch-banner-ov"></div>
+    <div class="ch-banner-body rv">
+      <span class="ch-banner-num">02</span>
+      <h2 class="ch-banner-h2">At Grotta</h2>
+      <p class="ch-banner-sub">Wellness. Recreation. Lifestyle. Experiences designed into every corner of the resort.</p>
+    </div>
+  </div>
+
+  <!-- WELLNESS — full editorial spread -->
+  <div class="ch-spread rv" id="panel-pool">
+    <div class="ch-spread-img">
+      <img src="images/AV7I4900.jpg" alt="Pool & Jacuzzi" loading="lazy">
+      <div class="ch-spread-img-fade"></div>
+      <div class="ch-spread-quote">
+        <p>"The pool at Grotta is still most mornings. Afternoons bring light that shifts across the surface in a way that invites you to stop thinking."</p>
+      </div>
+    </div>
+    <div class="ch-spread-body">
+      <span class="ch-spread-ghost">01</span>
+      <span class="lbl">Water & Stillness</span>
+      <h3 class="ch-spread-h3">Pool &<br>Outdoor Jacuzzi</h3>
+      <span class="ch-spread-tagline">Still water. Highland air. Nothing to do but be present.</span>
+      <p class="ch-spread-desc">The outdoor jacuzzi faces the volcanic landscape directly — steam rises against the cooler highland air as the volcanoes appear in silhouette beyond. Morning light arrives slowly here, and that is precisely the point.</p>
+      <div class="ch-highlights">
+        <span class="ch-hl">Open daily for all guests</span>
+        <span class="ch-hl">Outdoor jacuzzi with volcano views</span>
+        <span class="ch-hl">Towels & refreshments provided</span>
+      </div>
+      <div class="ch-spread-footer">
+        <div class="ch-price-block">
+          <span class="ch-price-from">Duration</span>
+          <span class="ch-price" style="font-size:1.2rem">All Day</span>
+          <span class="ch-price-note">Included with every stay</span>
+        </div>
+        <div class="ch-spread-ctas">
+          <button class="ch-btn-add" onclick="window.open('https://live.ipms247.com/booking/book-rooms-grottamusanze','_blank')"><span>Book a Room</span></button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Preview cards -->
-  <div class="ex-preview-row reveal">
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-ebike')" style="cursor:pointer">
+  <div class="ch-spread rev rv" id="panel-sauna">
+    <div class="ch-spread-img">
+      <img src="images/AV7I4026.jpg" alt="Volcanic Sauna" loading="lazy">
+      <div class="ch-spread-img-fade"></div>
+      <div class="ch-spread-quote">
+        <p>"The dry heat settles around you slowly, and the silence here is the kind that asks nothing of you. An hour inside changes the quality of the day."</p>
+      </div>
+    </div>
+    <div class="ch-spread-body">
+      <span class="ch-spread-ghost">02</span>
+      <span class="lbl">Heat & Stone</span>
+      <h3 class="ch-spread-h3">Volcanic<br>Sauna</h3>
+      <span class="ch-spread-tagline">Heated by volcanic stone. Designed for stillness.</span>
+      <p class="ch-spread-desc">There is a particular quality to the silence inside a stone sauna at altitude. The heat arrives differently. The weight of the day lifts differently. Private sessions available for those who wish to disappear entirely for an hour.</p>
+      <div class="ch-highlights">
+        <span class="ch-hl">Private sessions bookable</span>
+        <span class="ch-hl">Volcanic stone heating</span>
+        <span class="ch-hl">Cold plunge available</span>
+      </div>
+      <div class="ch-spread-footer">
+        <div class="ch-price-block">
+          <span class="ch-price-from">Starting from</span>
+          <span class="ch-price">$25</span>
+          <span class="ch-price-note">per session</span>
+        </div>
+        <div class="ch-spread-ctas">
+          <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
+          <button class="ch-btn-add" onclick="addExp('Volcanic Sauna','$25')"><span>Add to Stay</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-spread rv" id="panel-gym">
+    <div class="ch-spread-img">
+      <img src="images/gym.png" alt="Gym" loading="lazy">
+      <div class="ch-spread-img-fade"></div>
+      <div class="ch-spread-quote">
+        <p>"The highland altitude adds an edge to every session. Floor-to-ceiling windows open toward the volcano peaks."</p>
+      </div>
+    </div>
+    <div class="ch-spread-body">
+      <span class="ch-spread-ghost">03</span>
+      <span class="lbl">Movement</span>
+      <h3 class="ch-spread-h3">Gym &<br>Training</h3>
+      <span class="ch-spread-tagline">Training at altitude. Movement with a view.</span>
+      <p class="ch-spread-desc">A thoughtfully equipped space where the highland altitude becomes part of the workout. Every piece of equipment faces the landscape — because the volcanoes in the distance are the most effective motivation there is.</p>
+      <div class="ch-highlights">
+        <span class="ch-hl">Modern equipment</span>
+        <span class="ch-hl">Panoramic volcano views</span>
+        <span class="ch-hl">Open daily — all guests</span>
+      </div>
+      <div class="ch-spread-footer">
+        <div class="ch-price-block">
+          <span class="ch-price-from">Duration</span>
+          <span class="ch-price" style="font-size:1.2rem">Open Daily</span>
+          <span class="ch-price-note">Included with every stay</span>
+        </div>
+        <div class="ch-spread-ctas">
+          <button class="ch-btn-add" onclick="window.open('https://live.ipms247.com/booking/book-rooms-grottamusanze','_blank')"><span>Book a Room</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lifestyle mini grid -->
+  <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.1) 30%,rgba(201,165,82,.1) 70%,transparent)"></div>
+  <div style="max-width:1280px;margin:0 auto;padding:5rem 4vw 3rem" class="rv">
+    <span class="lbl" style="margin-bottom:.8rem">Lifestyle & Recreation</span>
+    <h3 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;color:var(--cream);letter-spacing:-.02em">Life Within the Resort</h3>
+  </div>
+
+  <div class="ch-mini-grid">
+    <div class="ch-mini-card rv">
+      <div class="ch-mini-img"><img src="images/DSC04076.JPG" alt="Farm" loading="lazy"></div>
+      <div class="ch-mini-body">
+        <span class="lbl">Morning Ritual</span>
+        <div class="ch-mini-name">Farm Experience</div>
+        <p class="ch-mini-desc">Collect eggs, meet the animals, reconnect with something simple and real before breakfast.</p>
+        <div class="ch-mini-footer">
+          <span class="ch-mini-price">Included</span>
+          <span class="ch-mini-dur">1 Hour · Morning</span>
+        </div>
+      </div>
+    </div>
+    <div class="ch-mini-card rv d1">
+      <div class="ch-mini-img"><img src="images/AV7I5521.jpg" alt="Cave Café" loading="lazy"></div>
+      <div class="ch-mini-body">
+        <span class="lbl">Signature</span>
+        <div class="ch-mini-name">Cave Café</div>
+        <p class="ch-mini-desc">Coffee among stone walls. Rare spirits. The cool silence of bedrock and light that has travelled far to reach you.</p>
+        <div class="ch-mini-footer">
+          <span class="ch-mini-price">À la carte</span>
+          <span class="ch-mini-dur">All Day</span>
+        </div>
+      </div>
+    </div>
+    <div class="ch-mini-card rv d2">
+      <div class="ch-mini-img"><img src="images/DSC03988copy.JPG" alt="Bonfire" loading="lazy"></div>
+      <div class="ch-mini-body">
+        <span class="lbl">Evening</span>
+        <div class="ch-mini-name">Bonfire Evenings</div>
+        <p class="ch-mini-desc">The fire gathers people naturally. Stories, warmth, and conversations that happen only after dark in the highland air.</p>
+        <div class="ch-mini-footer">
+          <span class="ch-mini-price">Included</span>
+          <span class="ch-mini-dur">Every Evening</span>
+        </div>
+      </div>
+    </div>
+    <div class="ch-mini-card rv">
+      <div class="ch-mini-img"><img src="images/Gemini_Generated_Image_o0g94bo0g94bo0g9.png" alt="Cinema" loading="lazy"></div>
+      <div class="ch-mini-body">
+        <span class="lbl">Entertainment</span>
+        <div class="ch-mini-name">Movie Room</div>
+        <p class="ch-mini-desc">Curated private screenings. Blankets, highland warmth, and a carefully chosen title for the evening.</p>
+        <div class="ch-mini-footer">
+          <span class="ch-mini-price">From $30</span>
+          <span class="ch-mini-dur">Evening · Private</span>
+        </div>
+      </div>
+    </div>
+    <div class="ch-mini-card rv d1">
+      <div class="ch-mini-img"><img src="images/AV7I3289.jpg" alt="Gardens" loading="lazy"></div>
+      <div class="ch-mini-body">
+        <span class="lbl">Open Space</span>
+        <div class="ch-mini-name">Highland Gardens</div>
+        <p class="ch-mini-desc">Curated gardens for walks, play, and simply being. Guided tours available in the morning mist.</p>
+        <div class="ch-mini-footer">
+          <span class="ch-mini-price">Included</span>
+          <span class="ch-mini-dur">All Day</span>
+        </div>
+      </div>
+    </div>
+    <div class="ch-mini-card rv d2">
+      <div class="ch-mini-img"><img src="images/AV7I2009.jpg" alt="Cave Spa" loading="lazy"></div>
+      <div class="ch-mini-body">
+        <span class="lbl">Coming 2027</span>
+        <div class="ch-mini-name">Cave Spa</div>
+        <p class="ch-mini-desc">A forthcoming spa within natural volcanic chambers. Ancient stone, candlelight, treatments designed around the cave environment.</p>
+        <div class="ch-mini-footer">
+          <span class="ch-mini-price">Register Interest</span>
+          <span class="ch-mini-dur">Opening 2027</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     CHAPTER 03 — CINEMATIC TRANSITION
+════════════════════════════════════════════════════════ -->
+<div class="ch-divider">
+  <div class="ch-divider-bg" style="background-image:url('images/AV7I3580.jpg')" id="ch-divider-bg"></div>
+  <div class="ch-divider-ov"></div>
+  <div class="ch-divider-glow"></div>
+  <div class="ch-divider-drift"></div>
+  <div class="ch-divider-body rv">
+    <span class="ch-divider-mark">"</span>
+    <p class="ch-divider-text">The resort gates are not a boundary.<br>They are a beginning.</p>
+    <div class="ch-divider-rule"></div>
+    <span class="ch-divider-sub">Beyond Grotta · Northern Rwanda</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     CHAPTER 04 — BEYOND GROTTA
+════════════════════════════════════════════════════════ -->
+<section class="ch-beyond" id="ch-beyond">
+
+  <!-- Gorilla editorial hero -->
+  <div class="ch-gorilla">
+    <div class="ch-gorilla-bg" id="ch-gorilla-bg"></div>
+    <div class="ch-gorilla-ov"></div>
+    <div class="ch-gorilla-body rv">
+      <span class="lbl">Once in a Lifetime</span>
+      <h2 class="ch-gorilla-h2">Gorilla<br>Trekking</h2>
+      <p class="ch-gorilla-sub">There are experiences you carry for the rest of your life. This is one. Grotta sits 2km from Volcanoes National Park — the most refined basecamp for Rwanda's rarest encounter.</p>
+      <div class="ch-gorilla-stats">
+        <div class="ch-gorilla-stat">
+          <span class="ch-gorilla-stat-n">2km</span>
+          <span class="ch-gorilla-stat-l">From the Park</span>
+        </div>
+        <div class="ch-gorilla-stat">
+          <span class="ch-gorilla-stat-n">1hr</span>
+          <span class="ch-gorilla-stat-l">With the gorillas</span>
+        </div>
+        <div class="ch-gorilla-stat">
+          <span class="ch-gorilla-stat-n">∞</span>
+          <span class="ch-gorilla-stat-l">In the memory</span>
+        </div>
+      </div>
+      <div class="ch-gorilla-ctas">
+        <button class="btn-g" onclick="addExp('Gorilla Trekking','From $600 + permit')"><span>Add to Stay</span></button>
+        <button class="btn-o" onclick="goTo('ch-builder')">Request Plan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Beyond spreads -->
+  <div class="ch-spread rv" id="panel-ebike">
+    <div class="ch-spread-img">
       <img src="images/ridinggrotta.png" alt="E-Bike" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Electric</span><h5>E-Bike Journeys</h5><p>Guided trails through volcanic highland terrain at any level.</p></div>
+      <div class="ch-spread-img-fade"></div>
+      <div class="ch-spread-quote">
+        <p>"Electric mountain bikes that take you deeper into Northern Rwanda than any other mode of travel. Open trails. Endless green."</p>
+      </div>
     </div>
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-caves')" style="cursor:pointer">
-      <img src="images/AV7I2004.jpg" alt="Caves" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Underground</span><h5>Cave Exploration</h5><p>Ancient volcanic chambers — light earned, silence kept.</p></div>
-    </div>
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-hiking')" style="cursor:pointer">
-      <img src="images/AV7I3495.jpg" alt="Hiking" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Highland Trails</span><h5>Guided Hiking</h5><p>Dawn treks, volcano viewpoints, forest paths — all guided.</p></div>
-    </div>
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-sunset')" style="cursor:pointer">
-      <img src="images/AV7I3580.jpg" alt="Sunset" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Golden Hour</span><h5>Sunset Trails</h5><p>Elevated cliffside moments as the volcanoes turn amber.</p></div>
-    </div>
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-nature')" style="cursor:pointer">
-      <img src="images/AV7I3935.jpg" alt="Nature" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Forest</span><h5>Nature Immersion</h5><p>Slow walks designed for depth, not distance.</p></div>
+    <div class="ch-spread-body" style="background:var(--bg)">
+      <span class="ch-spread-ghost">01</span>
+      <span class="lbl">Electric Exploration</span>
+      <h3 class="ch-spread-h3">E-Bike<br>Tours</h3>
+      <span class="ch-spread-tagline">The landscape moving beneath you.</span>
+      <p class="ch-spread-desc">From gentle scenic loops to full volcano ridge challenges — our electric mountain bikes open the highland terrain to every level of rider. Guided or self-guided. Your pace, your route, your Rwanda.</p>
+      <div class="ch-highlights">
+        <span class="ch-hl">All fitness levels — Easy to Challenging</span>
+        <span class="ch-hl">Helmet & safety gear included</span>
+        <span class="ch-hl">Expert Grotta guide available</span>
+      </div>
+      <div class="ch-spread-footer">
+        <div class="ch-price-block">
+          <span class="ch-price-from">Starting from</span>
+          <span class="ch-price">$45</span>
+          <span class="ch-price-note">Half or full day options</span>
+        </div>
+        <div class="ch-spread-ctas">
+          <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
+          <button class="ch-btn-add" onclick="addExp('E-Bike Tour','From $45')"><span>Add to Stay</span></button>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="ex-panels" style="--panel-bg:#060504">
 
-    <!-- ── E-BIKE ── -->
-    <div class="ex-panel reveal" id="panel-ebike">
-      <div class="ex-panel-img">
-        <img src="images/ridinggrotta.png" alt="E-Bike" loading="lazy">
-        <div class="ex-panel-overlay"></div>
+  <div class="ch-spread rev rv" id="panel-caves">
+    <div class="ch-spread-img">
+      <img src="images/AV7I1986.jpg" alt="Caves" loading="lazy">
+      <div class="ch-spread-img-fade"></div>
+      <div class="ch-spread-quote">
+        <p>"Chambers formed over millennia. A space where silence has texture — and light, when found, feels earned."</p>
       </div>
-      <div class="ex-panel-text">
-        <span class="ex-panel-num">01</span>
-        <span class="ex-label">Electric Exploration</span>
-        <h3>E-Bike Mountain Journeys</h3>
-        <p>Grotta Resort is a highland basecamp for exploration. Our electric bikes open the volcanic landscape to every guest — whether you're after a gentle scenic loop or a full mountain challenge. Guided or self-guided. Your pace, your route.</p>
+    </div>
+    <div class="ch-spread-body" style="background:var(--bg)">
+      <span class="ch-spread-ghost">02</span>
+      <span class="lbl">Underground World</span>
+      <h3 class="ch-spread-h3">Cave<br>Exploration</h3>
+      <span class="ch-spread-tagline">Ancient volcanic chambers. Light earned, silence kept.</span>
+      <p class="ch-spread-desc">Guided journeys through volcanic rock formations shaped over millennia — spaces where sound behaves differently, where the weight of the earth above becomes palpable, and where every shaft of light feels like a discovery.</p>
+      <div class="ch-highlights">
+        <span class="ch-hl">Expert guide always included</span>
+        <span class="ch-hl">Headlamps & safety equipment provided</span>
+        <span class="ch-hl">Photography opportunities throughout</span>
+      </div>
+      <div class="ch-spread-footer">
+        <div class="ch-price-block">
+          <span class="ch-price-from">Starting from</span>
+          <span class="ch-price">$35</span>
+          <span class="ch-price-note">1–2 hour guided journey</span>
+        </div>
+        <div class="ch-spread-ctas">
+          <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
+          <button class="ch-btn-add" onclick="addExp('Cave Exploration','From $35')"><span>Add to Stay</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- Adventure type selector -->
-        <div class="ex-adv-types">
-          <div class="ex-adv-type active" onclick="selectAdvType(this)">
-            <span class="ex-adv-type-icon ms">electric_bolt</span>
-            <span class="ex-adv-type-name">E-Bike Adventure</span>
-            <span class="ex-adv-type-sub">Guided or self-guided</span>
+  <div class="ch-spread rv" id="panel-hiking">
+    <div class="ch-spread-img">
+      <img src="images/DSC02802 (1).JPG" alt="Hiking" loading="lazy">
+      <div class="ch-spread-img-fade"></div>
+      <div class="ch-spread-quote">
+        <p>"Dawn treks to viewpoints where the Virunga peaks appear through the mist — a view that shifts with every hour of light."</p>
+      </div>
+    </div>
+    <div class="ch-spread-body" style="background:var(--bg)">
+      <span class="ch-spread-ghost">03</span>
+      <span class="lbl">Highland Trails</span>
+      <h3 class="ch-spread-h3">Volcano<br>Hiking</h3>
+      <span class="ch-spread-tagline">Every route matched to you. Every summit worth the climb.</span>
+      <p class="ch-spread-desc">From garden morning walks to challenging volcanic summit trails — our expert guides read the weather, the terrain, and the guest. Every distance, every difficulty. The volcano viewpoints at first light are something that no photograph captures correctly.</p>
+      <div class="ch-highlights">
+        <span class="ch-hl">Dawn treks & morning departures</span>
+        <span class="ch-hl">Easy to challenging — all levels</span>
+        <span class="ch-hl">Trail snacks & water included</span>
+      </div>
+      <div class="ch-spread-footer">
+        <div class="ch-price-block">
+          <span class="ch-price-from">Starting from</span>
+          <span class="ch-price">$55</span>
+          <span class="ch-price-note">2–7 hour guided trek</span>
+        </div>
+        <div class="ch-spread-ctas">
+          <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
+          <button class="ch-btn-add" onclick="addExp('Volcano Hiking','From $55')"><span>Add to Stay</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cultural & Discovery mini grid -->
+  <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.1) 30%,rgba(201,165,82,.1) 70%,transparent)"></div>
+  <div style="max-width:1280px;margin:0 auto;padding:5rem 4vw 3rem" class="rv">
+    <span class="lbl" style="margin-bottom:.8rem">Cultural & Discovery</span>
+    <h3 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;color:var(--cream);letter-spacing:-.02em">Rwanda Beyond the Landscape</h3>
+  </div>
+
+  <div class="ch-mini-grid">
+    <div class="ch-mini-card rv">
+      <div class="ch-mini-img"><img src="images/AV7I3449.jpg" alt="Golden Monkey" loading="lazy"></div>
+      <div class="ch-mini-body">
+        <span class="lbl">Wildlife</span>
+        <div class="ch-mini-name">Golden Monkey Trek</div>
+        <p class="ch-mini-desc">A lighter alternative to gorilla trekking — equally rare, equally unforgettable. Permits arranged by Grotta.</p>
+        <div class="ch-mini-footer">
+          <span class="ch-mini-price">From $100 + permit</span>
+          <span class="ch-mini-dur">Half Day</span>
+        </div>
+      </div>
+    </div>
+    <div class="ch-mini-card rv d1">
+      <div class="ch-mini-img"><img src="images/AV7I3289.jpg" alt="Community" loading="lazy"></div>
+      <div class="ch-mini-body">
+        <span class="lbl">Cultural</span>
+        <div class="ch-mini-name">Community Visits</div>
+        <p class="ch-mini-desc">Meet the people whose traditions form the living culture of Musanze. Arranged with care and cultural sensitivity.</p>
+        <div class="ch-mini-footer">
+          <span class="ch-mini-price">From $65</span>
+          <span class="ch-mini-dur">Half Day</span>
+        </div>
+      </div>
+    </div>
+    <div class="ch-mini-card rv d2">
+      <div class="ch-mini-img"><img src="images/AV7I5356.jpg" alt="Performances" loading="lazy"></div>
+      <div class="ch-mini-body">
+        <span class="lbl">Heritage</span>
+        <div class="ch-mini-name">Cultural Performances</div>
+        <p class="ch-mini-desc">Traditional Rwandan music, dance, and storytelling — intimate private evening experiences at Grotta.</p>
+        <div class="ch-mini-footer">
+          <span class="ch-mini-price">From $80</span>
+          <span class="ch-mini-dur">2 Hours · Evening</span>
+        </div>
+      </div>
+    </div>
+    <div class="ch-mini-card rv">
+      <div class="ch-mini-img"><img src="images/AV7I3094.jpg" alt="Kayaking" loading="lazy"></div>
+      <div class="ch-mini-body">
+        <span class="lbl">Water</span>
+        <div class="ch-mini-name">Kayaking</div>
+        <p class="ch-mini-desc">Paddle through highland waterways. A rare perspective on a landscape more often seen from above.</p>
+        <div class="ch-mini-footer">
+          <span class="ch-mini-price">From $40</span>
+          <span class="ch-mini-dur">2–3 Hours</span>
+        </div>
+      </div>
+    </div>
+    <div class="ch-mini-card rv d1">
+      <div class="ch-mini-img"><img src="images/AV7I3580.jpg" alt="Photography" loading="lazy"></div>
+      <div class="ch-mini-body">
+        <span class="lbl">Visual</span>
+        <div class="ch-mini-name">Photography Walks</div>
+        <p class="ch-mini-desc">Dawn light, volcanic backdrops, and expert composition guidance through Grotta's most photogenic settings.</p>
+        <div class="ch-mini-footer">
+          <span class="ch-mini-price">From $40</span>
+          <span class="ch-mini-dur">2 Hours · Dawn</span>
+        </div>
+      </div>
+    </div>
+    <div class="ch-mini-card rv d2">
+      <div class="ch-mini-img"><img src="images/AV7I3645.jpg" alt="Sunset" loading="lazy"></div>
+      <div class="ch-mini-body">
+        <span class="lbl">Golden Hour</span>
+        <div class="ch-mini-name">Sunset Trails</div>
+        <p class="ch-mini-desc">Guided to elevated vantage points. The volcanoes at dusk — turning shades no photograph fully captures.</p>
+        <div class="ch-mini-footer">
+          <span class="ch-mini-price">From $35</span>
+          <span class="ch-mini-dur">2 Hours · Evening</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     CHAPTER 05 — JOURNEY BUILDER
+════════════════════════════════════════════════════════ -->
+<section class="ch-builder" id="ch-builder">
+  <div class="ch-builder-ghost">Build</div>
+  <div class="ch-builder-inner">
+    <div class="ch-builder-header rv">
+      <span class="lbl">Curate Your Journey</span>
+      <h2 class="ch-builder-h2">Build Your Stay</h2>
+      <p class="ch-builder-sub">Select experiences, choose your room, and let our concierge shape it all into one seamless journey through Northern Rwanda.</p>
+    </div>
+
+    <div class="ch-builder-grid rv">
+      <!-- Experience selector -->
+      <div class="ch-selector">
+        <span class="ch-selector-label">Select Experiences</span>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Volcanic Sauna','$25')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info">
+            <div class="ch-exp-item-name">Volcanic Sauna</div>
+            <div class="ch-exp-item-meta">At Grotta · 1 Hour</div>
           </div>
-          <div class="ex-adv-type" onclick="selectAdvType(this)">
-            <span class="ex-adv-type-icon"><span class="ms">electric_bolt</span><span style="font-size:.7em;color:rgba(201,165,82,.5);margin:0 .2em">+</span><span class="ms">hiking</span></span>
-            <span class="ex-adv-type-name">Combo Adventure</span>
-            <span class="ex-adv-type-sub">Ride first, hike after</span>
+          <span class="ch-exp-item-price">$25</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Cave Exploration','$35')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info">
+            <div class="ch-exp-item-name">Cave Exploration</div>
+            <div class="ch-exp-item-meta">Beyond · 1–2 Hours</div>
           </div>
+          <span class="ch-exp-item-price">$35</span>
         </div>
-
-        <!-- Route options -->
-        <div class="ex-adv-routes">
-          <span class="ex-adv-routes-label">Choose your route</span>
-          <div class="ex-route-chips">
-            <button class="ex-route-chip active">
-              <span class="ex-route-chip-level">Easy</span>
-              <span class="ex-route-chip-name">Scenic Highland Loop</span>
-              <span class="ex-route-chip-detail">Short · Flat terrain · Village views</span>
-            </button>
-            <button class="ex-route-chip">
-              <span class="ex-route-chip-level">Moderate</span>
-              <span class="ex-route-chip-name">Viewpoints & Villages</span>
-              <span class="ex-route-chip-detail">Half-day · Rolling hills · Local stops</span>
-            </button>
-            <button class="ex-route-chip">
-              <span class="ex-route-chip-level">Challenging</span>
-              <span class="ex-route-chip-name">Volcano Ridge Ride</span>
-              <span class="ex-route-chip-detail">Full-day · Steep sections · Summit views</span>
-            </button>
+        <div class="ch-exp-item" onclick="toggleExp(this,'E-Bike Tour','$45')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info">
+            <div class="ch-exp-item-name">E-Bike Tour</div>
+            <div class="ch-exp-item-meta">Beyond · Half Day</div>
           </div>
+          <span class="ch-exp-item-price">$45</span>
         </div>
-
-        <div class="ex-adv-includes">
-          <span class="ex-adv-inc-item">Route selection + briefing</span>
-          <span class="ex-adv-inc-item">Helmet & safety gear</span>
-          <span class="ex-adv-inc-item">Grotta guide (optional)</span>
-          <span class="ex-adv-inc-item">Highland refreshments</span>
-        </div>
-        <div class="ex-tags" style="margin-top:1.5rem">
-          <span class="ex-tag">Half or full-day</span>
-          <span class="ex-tag">All fitness levels</span>
-          <span class="ex-tag">Guided or self-guided</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── CAVES ── -->
-    <div class="ex-panel rev reveal" id="panel-caves">
-      <div class="ex-panel-img">
-        <img src="images/AV7I1986.jpg" alt="Caves" loading="lazy">
-        <div class="ex-panel-overlay"></div>
-      </div>
-      <div class="ex-panel-text">
-        <span class="ex-panel-num">02</span>
-        <span class="ex-label">Underground World</span>
-        <h3>Cave Exploration</h3>
-        <p>Guided spelunking journeys through chambers of volcanic rock formed over millennia — spaces where sound behaves differently and light, when found, feels earned.</p>
-        <div class="ex-tags"><span class="ex-tag">Guided</span><span class="ex-tag">Headlamps provided</span><span class="ex-tag">1–2 hours</span><span class="ex-tag">Photography</span></div>
-      </div>
-    </div>
-
-    <!-- ── HIKING ── -->
-    <div class="ex-panel reveal" id="panel-hiking">
-      <div class="ex-panel-img">
-        <img src="images/AV7I3218.jpg" alt="Hiking" loading="lazy">
-        <div class="ex-panel-overlay"></div>
-      </div>
-      <div class="ex-panel-text">
-        <span class="ex-panel-num">03</span>
-        <span class="ex-label">Highland Trails</span>
-        <h3>Guided Hiking</h3>
-        <p>Expert-guided treks through the volcanic highlands — from gentle dawn routes to rewarding viewpoint climbs. Every route is matched to your time, fitness, and the kind of morning you want to have.</p>
-
-        <!-- Adventure type selector -->
-        <div class="ex-adv-types">
-          <div class="ex-adv-type active" onclick="selectAdvType(this)">
-            <span class="ex-adv-type-icon ms">hiking</span>
-            <span class="ex-adv-type-name">Hiking Adventure</span>
-            <span class="ex-adv-type-sub">Route by difficulty</span>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Volcano Hiking','$55')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info">
+            <div class="ch-exp-item-name">Volcano Hiking</div>
+            <div class="ch-exp-item-meta">Beyond · 2–7 Hours</div>
           </div>
-          <div class="ex-adv-type" onclick="selectAdvType(this)">
-            <span class="ex-adv-type-icon"><span class="ms">electric_bolt</span><span style="font-size:.7em;color:rgba(201,165,82,.5);margin:0 .2em">+</span><span class="ms">hiking</span></span>
-            <span class="ex-adv-type-name">Combo Adventure</span>
-            <span class="ex-adv-type-sub">Ride first, hike after</span>
+          <span class="ch-exp-item-price">$55</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Community Visit','$65')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info">
+            <div class="ch-exp-item-name">Community Visit</div>
+            <div class="ch-exp-item-meta">Cultural · Half Day</div>
           </div>
+          <span class="ch-exp-item-price">$65</span>
         </div>
-
-        <!-- Route options -->
-        <div class="ex-adv-routes">
-          <span class="ex-adv-routes-label">Choose your route</span>
-          <div class="ex-route-chips">
-            <button class="ex-route-chip active">
-              <span class="ex-route-chip-level">Easy</span>
-              <span class="ex-route-chip-name">Morning Garden Walk</span>
-              <span class="ex-route-chip-detail">1–2 hrs · Flat · Farm & gardens</span>
-            </button>
-            <button class="ex-route-chip">
-              <span class="ex-route-chip-level">Moderate</span>
-              <span class="ex-route-chip-name">Viewpoints & Villages</span>
-              <span class="ex-route-chip-detail">3–4 hrs · Rolling terrain · Panoramic stops</span>
-            </button>
-            <button class="ex-route-chip">
-              <span class="ex-route-chip-level">Challenging</span>
-              <span class="ex-route-chip-name">Volcano Summit Trail</span>
-              <span class="ex-route-chip-detail">5–7 hrs · Steep · Crater views</span>
-            </button>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Sunset Trail','$35')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info">
+            <div class="ch-exp-item-name">Sunset Trail</div>
+            <div class="ch-exp-item-meta">Beyond · 2 Hours</div>
           </div>
+          <span class="ch-exp-item-price">$35</span>
         </div>
-
-        <div class="ex-adv-includes">
-          <span class="ex-adv-inc-item">Route selection + briefing</span>
-          <span class="ex-adv-inc-item">Expert Grotta guide</span>
-          <span class="ex-adv-inc-item">Trail snacks & water</span>
-          <span class="ex-adv-inc-item">Volcano viewpoint stop</span>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Gorilla Trekking','$600+')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info">
+            <div class="ch-exp-item-name">Gorilla Trekking</div>
+            <div class="ch-exp-item-meta">Beyond · Full Day</div>
+          </div>
+          <span class="ch-exp-item-price">$600+</span>
         </div>
-        <div class="ex-tags" style="margin-top:1.5rem">
-          <span class="ex-tag">Dawn treks</span>
-          <span class="ex-tag">Volcano views</span>
-          <span class="ex-tag">All distances</span>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Movie Room','$30')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info">
+            <div class="ch-exp-item-name">Movie Room</div>
+            <div class="ch-exp-item-meta">At Grotta · Evening</div>
+          </div>
+          <span class="ch-exp-item-price">$30</span>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="ch-summary">
+        <span class="ch-summary-label">Your Journey Summary</span>
+        <div class="ch-summary-empty" id="ch-summary-empty">
+          <span>Select experiences to begin building your stay.</span>
+        </div>
+        <div class="ch-summary-list" id="ch-summary-list" style="display:none"></div>
+        <div class="ch-summary-total" id="ch-summary-total" style="display:none">
+          <span class="ch-summary-total-label">Experience Total</span>
+          <span class="ch-summary-total-num" id="ch-total-num">$0</span>
+        </div>
+      </div>
+
+      <!-- Inquiry form -->
+      <div class="ch-inquiry">
+        <span class="ch-inquiry-label">Submit Your Inquiry</span>
+        <div id="ch-form-wrap">
+          <div class="ch-field">
+            <label>Full Name</label>
+            <input type="text" id="ch-name" placeholder="Your name">
+          </div>
+          <div class="ch-field">
+            <label>Email</label>
+            <input type="email" id="ch-email" placeholder="your@email.com">
+          </div>
+          <div class="ch-field">
+            <label>Preferred Dates</label>
+            <input type="text" id="ch-dates" placeholder="Month / Year or specific dates">
+          </div>
+          <div class="ch-field">
+            <label>Room Preference</label>
+            <select id="ch-room">
+              <option value="">Select room type</option>
+              <option>Standard Room — from $115/night</option>
+              <option>King Room — from $130/night</option>
+              <option>King Volcano View — from $136/night</option>
+              <option>King Pool View — from $136/night</option>
+              <option>Family Room — from $176/night</option>
+              <option>Deluxe Room — from $210/night</option>
+              <option>Executive Room — from $260/night</option>
+            </select>
+          </div>
+          <div class="ch-field">
+            <label>Additional Notes</label>
+            <textarea id="ch-notes" placeholder="Tell us about the kind of journey you're imagining..."></textarea>
+          </div>
+          <button class="ch-submit" onclick="submitBuild(this)"><span>Send Inquiry →</span></button>
+        </div>
+        <div class="ch-confirm" id="ch-confirm">
+          <div class="ch-confirm-mark">✦</div>
+          <h3>Inquiry received.</h3>
+          <p>Our concierge will review your request personally and respond within 48 hours with a tailored journey plan.</p>
         </div>
       </div>
     </div>
-    <div class="ex-panel rev reveal" id="panel-sunset">
-      <div class="ex-panel-img">
-        <img src="images/AV7I3645.jpg" alt="Sunset" loading="lazy">
-        <div class="ex-panel-overlay"></div>
-      </div>
-      <div class="ex-panel-text">
-        <span class="ex-panel-num">04</span>
-        <span class="ex-label">Golden Hour</span>
-        <h3>Sunset Trails & Cliffside Moments</h3>
-        <p>Guided sunset experiences to elevated vantage points. A curated flask of something warm. The volcanoes at dusk turning shades that no photograph fully captures.</p>
-        <div class="ex-tags"><span class="ex-tag">Evening</span><span class="ex-tag">Small groups</span><span class="ex-tag">Photography ideal</span><span class="ex-tag">Drinks included</span></div>
-      </div>
-    </div>
-    <div class="ex-panel reveal" id="panel-nature">
-      <div class="ex-panel-img">
-        <img src="images/AV7I3449.jpg" alt="Nature" loading="lazy">
-        <div class="ex-panel-overlay"></div>
-      </div>
-      <div class="ex-panel-text">
-        <span class="ex-panel-num">05</span>
-        <span class="ex-label">Forest Meditation</span>
-        <h3>Nature Immersion</h3>
-        <p>Guided slow walks designed not for distance but for depth. Forest bathing in the Japanese tradition, adapted to the highland ecosystem of Rwanda. A walk that changes what you notice for days afterward.</p>
-        <div class="ex-tags"><span class="ex-tag">Slow pace</span><span class="ex-tag">Mindful</span><span class="ex-tag">Morning or afternoon</span><span class="ex-tag">Small groups</span></div>
-      </div>
-    </div>
   </div>
-</div>
+</section>
 
-<!-- ══ WELLNESS ══ -->
-<div id="sec-wellness" style="background:#0a0906;padding-bottom:8rem">
-  <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.12) 30%,rgba(201,165,82,.12) 70%,transparent)"></div>
-  <div class="ex-sec-head">
-    <div class="ex-sec-head-grid">
-      <div class="reveal from-left">
-        <span class="ex-label">Category 02</span>
-        <h2 class="ex-sec-h2">Wellness</h2>
-        <div class="ex-sec-divider"></div>
-      </div>
-      <div class="reveal from-right">
-        <p class="ex-body">Quiet luxury. Volcanic stillness. Spaces designed not for performance but for return — to yourself, to the body, to the present moment.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Preview cards -->
-  <div class="ex-preview-row cols-4 reveal" style="margin-bottom:0;padding-bottom:5rem">
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-sauna')" style="cursor:pointer">
-      <img src="images/AV7I4026.jpg" alt="Sauna" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Heat & Stone</span><h5>Volcanic Sauna</h5><p>Dry heat, volcanic stone, and the silence that asks nothing of you.</p></div>
-    </div>
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-jacuzzi')" style="cursor:pointer">
-      <img src="images/AV7I3094.jpg" alt="Jacuzzi" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Water & Sky</span><h5>Outdoor Jacuzzi</h5><p>Highland air, volcanic views, steam rising against the altitude.</p></div>
-    </div>
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-pool')" style="cursor:pointer">
-      <img src="images/AV7I4900.jpg" alt="Pool" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Rest</span><h5>Pool</h5><p>Still water, shifting light, and nothing to do but be present.</p></div>
-    </div>
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-gym')" style="cursor:pointer">
-      <img src="images/Gemini_Generated_Image_s1vjszs1vjszs1vj.png" alt="Gym" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Movement</span><h5>Gym & Cave Spa</h5><p>Training at altitude, and a cave spa experience unlike any other.</p></div>
-    </div>
-  </div>
-  <div class="ex-panels" style="--panel-bg:#0a0906">
-    <div class="ex-panel reveal" id="panel-sauna">
-      <div class="ex-panel-img ex-well-img">
-        <img src="images/AV7I4026.jpg" alt="Sauna" loading="lazy">
-        <div class="ex-panel-overlay" style="background:linear-gradient(to right,transparent 55%,#0a0906 100%)"></div>
-      </div>
-      <div class="ex-panel-text" style="background:#0a0906">
-        <span class="ex-panel-num">01</span>
-        <span class="ex-label">Heat & Stone</span>
-        <h3>Volcanic Sauna</h3>
-        <div class="ex-rule"></div>
-        <p>Heated by volcanic stone in a space designed for stillness. The dry heat settles around you slowly, and the silence here is the kind that asks nothing of you. An hour inside changes the quality of the day.</p>
-      </div>
-    </div>
-    <div class="ex-panel rev reveal" id="panel-jacuzzi">
-      <div class="ex-panel-img ex-well-img">
-        <img src="images/AV7I3094.jpg" alt="Jacuzzi" loading="lazy">
-        <div class="ex-panel-overlay" style="background:linear-gradient(to left,transparent 55%,#0a0906 100%)"></div>
-      </div>
-      <div class="ex-panel-text" style="background:#0a0906">
-        <span class="ex-panel-num">02</span>
-        <span class="ex-label">Water & Sky</span>
-        <h3>Outdoor Jacuzzi</h3>
-        <div class="ex-rule"></div>
-        <p>Open to the highland air, the jacuzzi faces the volcanic landscape. Steam rises against the cooler temperature of altitude. An evening here — under open sky — becomes the kind of memory guests return for.</p>
-      </div>
-    </div>
-    <div class="ex-panel reveal" id="panel-pool">
-      <div class="ex-panel-img ex-well-img">
-        <img src="images/AV7I4900.jpg" alt="Pool" loading="lazy">
-        <div class="ex-panel-overlay" style="background:linear-gradient(to right,transparent 55%,#0a0906 100%)"></div>
-      </div>
-      <div class="ex-panel-text" style="background:#0a0906">
-        <span class="ex-panel-num">03</span>
-        <span class="ex-label">Rest & Reflection</span>
-        <h3>Pool</h3>
-        <div class="ex-rule"></div>
-        <p>A serene pool set within the highland grounds. The water is still most mornings. Afternoons bring light that shifts across the surface in a way that invites you to stop thinking and simply be present.</p>
-      </div>
-    </div>
-    <div class="ex-panel rev reveal" id="panel-gym">
-      <div class="ex-panel-img ex-well-img">
-        <img src="images/gym.png" alt="Gym" loading="lazy">
-        <div class="ex-panel-overlay" style="background:linear-gradient(to left,transparent 55%,#0a0906 100%)"></div>
-      </div>
-      <div class="ex-panel-text" style="background:#0a0906">
-        <span class="ex-panel-num">04</span>
-        <span class="ex-label">Movement</span>
-        <h3>Gym & Training</h3>
-        <div class="ex-rule"></div>
-        <p>A thoughtfully equipped space for movement at any pace. The highland altitude adds an edge to every session. Floor-to-ceiling windows open toward the volcano peaks.</p>
-      </div>
-    </div>
-    <div class="ex-panel reveal" id="panel-cavespa">
-      <div class="ex-panel-img ex-well-img">
-        <img src="images/AV7I2009.jpg" alt="Cave Spa" loading="lazy">
-        <div class="ex-panel-overlay" style="background:linear-gradient(to right,transparent 55%,#0a0906 100%)"></div>
-      </div>
-      <div class="ex-panel-text" style="background:#0a0906">
-        <span class="ex-panel-num">05</span>
-        <span class="ex-label">Coming Soon</span>
-        <h3>Cave Spa</h3>
-        <div class="ex-rule"></div>
-        <p>A forthcoming spa set within the natural cave chambers. Ancient stone, candlelight, and treatments designed to use the volcanic environment as part of the ritual. A space unlike anything else in the highlands.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ FAMILIES ══ -->
-<div id="sec-families" style="background:#060504;padding-bottom:8rem">
-  <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.12) 30%,rgba(201,165,82,.12) 70%,transparent)"></div>
-  <div class="ex-sec-head">
-    <div class="ex-sec-head-grid">
-      <div class="reveal from-left">
-        <span class="ex-label">Category 03</span>
-        <h2 class="ex-sec-h2">Families</h2>
-        <div class="ex-sec-divider"></div>
-      </div>
-      <div class="reveal from-right">
-        <p class="ex-body">Grotta is designed for the whole family — not in a way that separates, but in a way that holds everyone gently within the same atmosphere. Children discover. Adults restore. Everyone remembers.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Preview cards -->
-  <div class="ex-preview-row cols-6 reveal" style="padding-bottom:5rem">
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-gardens')" style="cursor:pointer">
-      <img src="images/AV7I3289.jpg" alt="Gardens" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Open Space</span><h5>Family Gardens</h5><p>Highland gardens for movement, play, and simply being together.</p></div>
-    </div>
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-farm')" style="cursor:pointer">
-      <img src="images/DSC04076.JPG" alt="Farm Mornings" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Morning</span><h5>Farm Mornings</h5><p>Eggs, animals, and the unhurried rhythm of highland life.</p></div>
-    </div>
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-cinema')" style="cursor:pointer">
-      <img src="images/Gemini_Generated_Image_o0g94bo0g94bo0g9.png" alt="Cinema Nights" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Evening</span><h5>Cinema Nights</h5><p>Open-air screenings under the highland sky with blankets and warmth.</p></div>
-    </div>
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-firepit')" style="cursor:pointer">
-      <img src="images/DSC03988copy.JPG" alt="Evening Firepits" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Community</span><h5>Evening Firepits</h5><p>Fire, stories, and conversations that only happen after dark.</p></div>
-    </div>
-
-    <div class="ex-preview-card" onclick="scrollToPanel('panel-nursery')" style="cursor:pointer">
-      <img src="images/AV7I2753.jpg" alt="Nursery" loading="lazy">
-      <div class="ex-preview-text"><span class="ex-label">Youngest</span><h5>Nursery Room</h5><p>Professional care so parents may rest in complete peace.</p></div>
-    </div>
-  </div>
-  <div class="ex-fam-grid">
-    <div class="ex-fam-card reveal" id="panel-gardens">
-      <img src="images/AV7I3289.jpg" alt="Gardens" loading="lazy">
-      <div class="ex-fam-text"><span class="ex-label">Open Space</span><h4>Family Gardens</h4><p>Curated highland gardens where children move freely and families simply be together without agenda.</p></div>
-    </div>
-    <div class="ex-fam-card reveal d1" id="panel-farm">
-      <img src="images/DSC04076.JPG" alt="Farm Mornings" loading="lazy">
-      <div class="ex-fam-text"><span class="ex-label">Morning</span><h4>Farm Mornings</h4><p>Collect eggs, meet the animals, reconnect with something simple and real in the highland air.</p></div>
-    </div>
-    <div class="ex-fam-card reveal d2" id="panel-cinema">
-      <img src="images/Gemini_Generated_Image_o0g94bo0g94bo0g9.png" alt="Cinema Nights" loading="lazy">
-      <div class="ex-fam-text"><span class="ex-label">Evening</span><h4>Cinema Nights</h4><p>Outdoor screenings beneath the highland sky. Blankets, warmth, and a carefully chosen title.</p></div>
-    </div>
-    <div class="ex-fam-card reveal d1" id="panel-firepit">
-      <img src="images/DSC03988copy.JPG" alt="Evening Firepits" loading="lazy">
-      <div class="ex-fam-text"><span class="ex-label">Community</span><h4>Evening Firepits</h4><p>The fire gathers people naturally. Stories, warmth, and conversations that happen only after dark.</p></div>
-    </div>
-
-    <div class="ex-fam-card reveal d3" id="panel-nursery">
-      <img src="images/AV7I2753.jpg" alt="Nursery" loading="lazy">
-      <div class="ex-fam-text"><span class="ex-label">Youngest Guests</span><h4>Nursery Room</h4><p>A calm, professionally staffed space for younger children — so parents may rest in complete peace.</p></div>
-    </div>
-  </div>
-  <div class="ex-fam-journeys reveal">
-    <span class="ex-fam-journeys-label">Experience Journeys</span>
-    <div class="ex-fam-jgrid">
-      <div class="ex-fam-j"><img src="images/AV7I4026.jpg" alt="" loading="lazy"><div class="ex-fam-j-text"><span class="ex-fam-j-num">01</span><span class="ex-label">Restoration</span><h5>Wellness Journey</h5><p>Sauna at dawn. Pool in the morning stillness. A massage before lunch. The rest, silence.</p></div></div>
-      <div class="ex-fam-j"><img src="images/AV7I3289.jpg" alt="" loading="lazy"><div class="ex-fam-j-text"><span class="ex-fam-j-num">02</span><span class="ex-label">Together</span><h5>Family Weekend</h5><p>Farm mornings, garden walks, shared lunch, cinema under the sky.</p></div></div>
-      <div class="ex-fam-j"><img src="images/DSC03988copy.JPG" alt="Evening Firepits" loading="lazy"><div class="ex-fam-j-text"><span class="ex-fam-j-num">03</span><span class="ex-label">After Dark</span><h5>Evening Escape</h5><p>Cave cocktail hour. Firepit gathering. Slow dinner. The highlands at night.</p></div></div>
-      <div class="ex-fam-j"><img src="images/AV7I5356.jpg" alt="" loading="lazy"><div class="ex-fam-j-text"><span class="ex-fam-j-num">04</span><span class="ex-label">Ritual</span><h5>Slow Morning</h5><p>Café at first light. Garden walk in the mist. No agenda — just an unhurried beginning.</p></div></div>
-      <div class="ex-fam-j"><img src="images/AV7I3449.jpg" alt="" loading="lazy"><div class="ex-fam-j-text"><span class="ex-fam-j-num">05</span><span class="ex-label">Exploration</span><h5>Highlands</h5><p>Volcano viewpoints at sunrise. Cave exploration. A trek through the landscape that formed this place.</p></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ COUPLES ══ -->
-<div id="sec-couples" style="background:#080604;padding-bottom:8rem">
-  <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.12) 30%,rgba(201,165,82,.12) 70%,transparent)"></div>
-  <div class="ex-couples-hero reveal">
-    <img src="images/AV7I5551.jpg" alt="Couples" loading="lazy">
-    <div class="ex-couples-hero-text">
-      <span class="ex-label">Category 04</span>
-      <h2 class="ex-couples-hero-h2">"For Two."</h2>
-      <p class="ex-couples-hero-sub">Evenings by the fire. Mornings in the gardens. A setting designed for the kind of presence that everyday life rarely allows.</p>
-    </div>
-  </div>
-  <div class="ex-couples-intro reveal">
+<!-- ════════════════════════════════════════════════════════
+     CHAPTER 06 — FEATURED JOURNEYS
+════════════════════════════════════════════════════════ -->
+<section class="ch-journeys" id="ch-journeys">
+  <div class="ch-journeys-header rv">
     <div>
-      <span class="ex-label">Romantic Experiences</span>
-      <h2 class="ex-sec-h2">Designed for<br>Two People</h2>
-      <div class="ex-sec-divider"></div>
+      <span class="lbl" style="margin-bottom:1rem">Curated Packages</span>
+      <h2 class="ch-journeys-h2">Featured<br>Journeys</h2>
     </div>
-    <p class="ex-body">The highland environment creates a natural intimacy. The quiet, the altitude, the pace — everything here encourages presence. Grotta's couples experiences are designed around that reality: space for two people to slow down together in one of the world's most beautiful landscapes.</p>
+    <p class="ch-journeys-intro">Six curated journeys — each built around a feeling, a pace, and a particular way of experiencing Northern Rwanda. Choose one as a starting point, or let us compose something entirely your own.</p>
   </div>
 
-  <!-- Preview cards -->
-  
-  <div class="ex-couple-cards">
-    
-    <div class="ex-couple-card reveal d3" id="panel-stargazing">
-      <img src="images/Gemini_Generated_Image_4ykw4y4ykw4y4ykw.png" alt="Stargazing" loading="lazy">
-      <div class="ex-couple-text"><span class="ex-label">After Dark</span><h4>Rooftop Stargazing</h4><p>Rwanda's highland skies are exceptional. A private rooftop experience with curated drinks — two people and the full night sky.</p></div>
-    </div>
-    <div class="ex-couple-card reveal d2" id="panel-infinitypool">
-      <img src="images/DSC03819.JPG" alt="Pool" loading="lazy">
-      <div class="ex-couple-text"><span class="ex-label">Private</span><h4>Infinity Pool Evening</h4><p>A private pool session at golden hour. Champagne and the Virunga volcanoes turning amber at dusk.</p></div>
-    </div>
-    <div class="ex-couple-card reveal d3" id="panel-volcanosunrise">
-      <img src="images/AV7I3449.jpg" alt="Sunrise" loading="lazy">
-      <div class="ex-couple-text"><span class="ex-label">Sunrise Ritual</span><h4>Volcano Sunrise</h4><p>A guided dawn trek to the viewpoint. The volcanoes at first light. Breakfast waiting when you return.</p></div>
+  <div class="ch-journeys-hint rv">
+    <span class="ch-journeys-hint-bar"></span>
+    <span>Scroll to explore</span>
+  </div>
+
+  <div class="ch-journeys-scroll">
+    <div class="ch-journeys-track">
+
+      <div class="ch-journey-card">
+        <div class="ch-journey-img">
+          <img src="images/AV7I4026.jpg" alt="Wellness" loading="lazy">
+          <span class="ch-journey-badge">2–4 Nights</span>
+        </div>
+        <div class="ch-journey-body">
+          <span class="lbl">At Grotta</span>
+          <div class="ch-journey-name">The Wellness Escape</div>
+          <p class="ch-journey-desc">Sauna at dawn. Pool in the morning stillness. Yoga in the mist. Slow meals designed around nourishment. A recalibration disguised as a holiday.</p>
+          <div class="ch-journey-includes">
+            <span class="ch-journey-inc">Volcanic sauna + outdoor jacuzzi</span>
+            <span class="ch-journey-inc">Guided yoga & meditation</span>
+            <span class="ch-journey-inc">King or Deluxe Room</span>
+          </div>
+          <div class="ch-journey-footer">
+            <div class="ch-journey-price">From $210<small>per night</small></div>
+            <button class="ch-btn-add" onclick="goTo('ch-builder')"><span>Inquire</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ch-journey-card">
+        <div class="ch-journey-img">
+          <img src="images/AV7I3495.jpg" alt="Wildlife" loading="lazy">
+          <span class="ch-journey-badge">3–5 Nights</span>
+        </div>
+        <div class="ch-journey-body">
+          <span class="lbl">Beyond Grotta</span>
+          <div class="ch-journey-name">The Wildlife Explorer</div>
+          <p class="ch-journey-desc">Gorilla trekking at dawn. Golden monkey encounters. Cave exploration. E-bike trails. Recovery at Grotta each evening.</p>
+          <div class="ch-journey-includes">
+            <span class="ch-journey-inc">Gorilla trek + permit assistance</span>
+            <span class="ch-journey-inc">Cave exploration + E-bike</span>
+            <span class="ch-journey-inc">Deluxe or Executive Room</span>
+          </div>
+          <div class="ch-journey-footer">
+            <div class="ch-journey-price">From $325<small>per night</small></div>
+            <button class="ch-btn-add" onclick="goTo('ch-builder')"><span>Inquire</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ch-journey-card">
+        <div class="ch-journey-img">
+          <img src="images/AV7I5551.jpg" alt="Romance" loading="lazy">
+          <span class="ch-journey-badge">2–4 Nights</span>
+        </div>
+        <div class="ch-journey-body">
+          <span class="lbl">For Two</span>
+          <div class="ch-journey-name">The Romance Journey</div>
+          <p class="ch-journey-desc">Private firelit evenings. Cave dinner. Jacuzzi under open sky. Sunrise on the volcano. Everything for two people to be entirely present.</p>
+          <div class="ch-journey-includes">
+            <span class="ch-journey-inc">Private cave dinner</span>
+            <span class="ch-journey-inc">Rooftop stargazing + jacuzzi</span>
+            <span class="ch-journey-inc">King Volcano or Pool View</span>
+          </div>
+          <div class="ch-journey-footer">
+            <div class="ch-journey-price">From $260<small>per couple/night</small></div>
+            <button class="ch-btn-add" onclick="goTo('ch-builder')"><span>Inquire</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ch-journey-card">
+        <div class="ch-journey-img">
+          <img src="images/AV7I3289.jpg" alt="Family" loading="lazy">
+          <span class="ch-journey-badge">3–5 Nights</span>
+        </div>
+        <div class="ch-journey-body">
+          <span class="lbl">For Families</span>
+          <div class="ch-journey-name">The Family Discovery</div>
+          <p class="ch-journey-desc">Farm mornings. Garden walks. Cinema nights. Cave exploration. Something for everyone — all in one highland world.</p>
+          <div class="ch-journey-includes">
+            <span class="ch-journey-inc">Farm experience + cave exploration</span>
+            <span class="ch-journey-inc">Movie room + game room</span>
+            <span class="ch-journey-inc">Family or Deluxe Room</span>
+          </div>
+          <div class="ch-journey-footer">
+            <div class="ch-journey-price">From $176<small>per night</small></div>
+            <button class="ch-btn-add" onclick="goTo('ch-builder')"><span>Inquire</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ch-journey-card">
+        <div class="ch-journey-img">
+          <img src="images/AV7I3580.jpg" alt="Adventure" loading="lazy">
+          <span class="ch-journey-badge">3–5 Nights</span>
+        </div>
+        <div class="ch-journey-body">
+          <span class="lbl">Active</span>
+          <div class="ch-journey-name">The Adventure Journey</div>
+          <p class="ch-journey-desc">Volcano sunrise hikes. E-bike trails. Kayaking. Sunset cliffside moments. The landscape moved through, not just looked at.</p>
+          <div class="ch-journey-includes">
+            <span class="ch-journey-inc">Volcano hiking + E-bike tours</span>
+            <span class="ch-journey-inc">Kayaking + sunset trails</span>
+            <span class="ch-journey-inc">King or Deluxe Room</span>
+          </div>
+          <div class="ch-journey-footer">
+            <div class="ch-journey-price">From $176<small>per night</small></div>
+            <button class="ch-btn-add" onclick="goTo('ch-builder')"><span>Inquire</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ch-journey-card">
+        <div class="ch-journey-img">
+          <img src="images/AV7I5729.jpg" alt="Ultimate" loading="lazy">
+          <span class="ch-journey-badge">5–7 Nights</span>
+        </div>
+        <div class="ch-journey-body">
+          <span class="lbl">The Complete Experience</span>
+          <div class="ch-journey-name">The Ultimate Rwanda</div>
+          <p class="ch-journey-desc">Everything. Gorillas. Volcanoes. Culture. Wellness. Cuisine. Fire. Rwanda as a complete world, curated from your highland basecamp.</p>
+          <div class="ch-journey-includes">
+            <span class="ch-journey-inc">Gorilla trek + cultural immersion</span>
+            <span class="ch-journey-inc">Full wellness programme</span>
+            <span class="ch-journey-inc">Executive Room</span>
+          </div>
+          <div class="ch-journey-footer">
+            <div class="ch-journey-price">From $325<small>custom quote</small></div>
+            <button class="ch-btn-add" onclick="goTo('ch-builder')"><span>Inquire</span></button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-  
-</div>
+</section>
 
-<!-- ══ FINAL CTA ══ -->
-<div class="ex-final">
-  <div class="ex-final-bg" id="ex-final-bg"></div>
-  <div class="ex-final-overlay"></div>
-  <div class="ex-final-bloom"></div>
-  <div class="ex-final-content reveal">
-    <span class="ex-label">Begin Here</span>
-    <h2 class="ex-final-h2">Return to<br>What Matters</h2>
-    <span class="ex-final-sub">Whether for adventure, restoration, family time, or shared moments — Grotta offers experiences designed to stay with you long after your visit.</span>
-    <div class="ex-final-ctas">
-      <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="ex-btn-gold"><span>Plan Your Visit</span></a>
-      <a href="retreats.html" class="ex-btn-outline">Explore Retreats</a>
+<!-- ════════════════════════════════════════════════════════
+     CHAPTER 07 — FINAL CTA
+════════════════════════════════════════════════════════ -->
+<div class="ch-final">
+  <div class="ch-final-bg" id="ch-final-bg"></div>
+  <div class="ch-final-ov"></div>
+  <div class="ch-final-bloom"></div>
+  <div class="ch-final-body rv">
+    <span class="lbl">The Invitation</span>
+    <h2 class="ch-final-h2">Begin<br>Your Journey</h2>
+    <div class="ch-final-ornament"><span class="ch-final-ornament-dot">✦</span></div>
+    <span class="ch-final-sub">Whether you seek stillness within the resort or adventure beyond its borders — Grotta is your gateway to experiencing Northern Rwanda in full.</span>
+    <div class="ch-final-ctas">
+      <button class="btn-g" onclick="goTo('ch-builder')"><span>Plan My Stay</span></button>
+      <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="btn-o">Book a Room</a>
     </div>
   </div>
 </div>
@@ -1092,89 +1332,159 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 <script>
-// ── Adventure type selector ──────────────────────────────────
-function selectAdvType(el) {
-  const panel = el.closest('.ex-panel-text');
-  panel.querySelectorAll('.ex-adv-type').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-}
+// ── Navigation ───────────────────────────────────────────────
+const NAV_SECS = [
+  {id:'ch-worlds',  node:'cn-1', fill:null},
+  {id:'ch-at',      node:'cn-2', fill:'clf-1'},
+  {id:'ch-beyond',  node:'cn-3', fill:'clf-2'},
+  {id:'ch-builder', node:'cn-4', fill:'clf-3'},
+  {id:'ch-journeys',node:'cn-5', fill:'clf-4'},
+];
 
-// ── Route chip selector ───────────────────────────────────────
-document.querySelectorAll('.ex-route-chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    chip.closest('.ex-route-chips').querySelectorAll('.ex-route-chip').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active');
-  });
-});
-
-const NAV_SECTIONS=[{id:'sec-adventures',node:'jn-1',fill:null},{id:'sec-wellness',node:'jn-2',fill:'jlf-1'},{id:'sec-families',node:'jn-3',fill:'jlf-2'},{id:'sec-couples',node:'jn-4',fill:'jlf-3'}];
-
-function scrollToPanel(id){
-  const el=document.getElementById(id);
-  if(!el)return;
-  const navH=document.getElementById('ex-journey-nav').offsetHeight+60;
-  window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-navH,behavior:'smooth'});
-}
-
-function scrollToSection(id){
-  const el=document.getElementById(id);
-  if(!el)return;
-  const navH=document.getElementById('ex-journey-nav').offsetHeight+60;
-  window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-navH,behavior:'smooth'});
+function goTo(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const navH = document.getElementById('ch-nav').offsetHeight + 68;
+  window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - navH, behavior:'smooth'});
 }
 
 function updateNav(){
-  const navH=document.getElementById('ex-journey-nav').offsetHeight;
-  const y=window.scrollY+navH+100;
-  document.getElementById('ex-journey-nav').classList.toggle('scrolled',window.scrollY>20);
-  let active=0;
-  NAV_SECTIONS.forEach((s,i)=>{
-    const el=document.getElementById(s.id);
-    if(el&&el.getBoundingClientRect().top+window.scrollY<=y)active=i;
+  const nav = document.getElementById('ch-nav');
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+  const y = window.scrollY + nav.offsetHeight + 130;
+  let active = 0;
+  NAV_SECS.forEach((s,i) => {
+    const el = document.getElementById(s.id);
+    if(el && el.getBoundingClientRect().top + window.scrollY <= y) active = i;
   });
-  NAV_SECTIONS.forEach((s,i)=>{
-    document.getElementById(s.node).classList.toggle('active',i===active);
-    if(s.fill)document.getElementById(s.fill).style.width=i<=active?'100%':'0%';
+  NAV_SECS.forEach((s,i) => {
+    const node = document.getElementById(s.node);
+    if(node) node.classList.toggle('active', i === active);
+    if(s.fill) document.getElementById(s.fill).style.width = i <= active ? '100%' : '0%';
   });
 }
-
-window.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll', updateNav, {passive:true});
 updateNav();
 
-// ── Fix section head overlap with sticky journey nav on mobile ─
-function fixSectionHeadPadding() {
-  const journeyNav = document.querySelector('.ex-journey-nav');
-  const sections   = document.querySelectorAll('.ex-section');
-  if (!journeyNav) return;
-  if (window.innerWidth <= 700) {
-    const navH       = journeyNav.offsetHeight;
-    const totalPad   = 68 + navH + 20;
-    sections.forEach(sec => {
-      const head = sec.querySelector('.ex-sec-head');
-      if (head) head.style.paddingTop = totalPad + 'px';
-      sec.style.scrollMarginTop = (68 + navH) + 'px';
-    });
+// ── Reveal observer ───────────────────────────────────────────
+const rvObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); rvObs.unobserve(e.target); } });
+}, {threshold:0.07});
+document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
+
+// ── Parallax ─────────────────────────────────────────────────
+const heroBg    = document.getElementById('ch-hero-bg');
+const finalBg   = document.getElementById('ch-final-bg');
+const divBg     = document.getElementById('ch-divider-bg');
+const gorillaBg = document.getElementById('ch-gorilla-bg');
+const atBanner  = document.getElementById('at-banner-bg');
+const transBg   = document.getElementById('ch-divider-bg');
+
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if(heroBg) heroBg.style.transform = `translateY(${y * 0.22}px)`;
+  [finalBg, divBg, gorillaBg, atBanner].forEach(bg => {
+    if(!bg) return;
+    const el = bg.parentElement;
+    const r = el.getBoundingClientRect();
+    bg.style.transform = `translateY(${(window.innerHeight/2 - r.top - r.height/2) * .14}px)`;
+  });
+}, {passive:true});
+
+// ── Interactive builder ───────────────────────────────────────
+const selectedExps = {};
+
+function toggleExp(el, name, price){
+  el.classList.toggle('selected');
+  if(el.classList.contains('selected')){
+    selectedExps[name] = price;
   } else {
-    sections.forEach(sec => {
-      const head = sec.querySelector('.ex-sec-head');
-      if (head) head.style.paddingTop = '';
-      sec.style.scrollMarginTop = '';
+    delete selectedExps[name];
+  }
+  updateSummary();
+}
+
+function addExp(name, price){
+  // Add from outside the builder — scroll to builder and preselect
+  goTo('ch-builder');
+  setTimeout(() => {
+    selectedExps[name] = price;
+    updateSummary();
+    // highlight matching item if exists
+    document.querySelectorAll('.ch-exp-item').forEach(item => {
+      if(item.querySelector('.ch-exp-item-name').textContent === name){
+        item.classList.add('selected');
+      }
     });
+  }, 800);
+}
+
+function updateSummary(){
+  const keys = Object.keys(selectedExps);
+  const empty = document.getElementById('ch-summary-empty');
+  const list  = document.getElementById('ch-summary-list');
+  const total = document.getElementById('ch-summary-total');
+  const totalNum = document.getElementById('ch-total-num');
+
+  if(keys.length === 0){
+    empty.style.display = 'flex';
+    list.style.display = 'none';
+    total.style.display = 'none';
+  } else {
+    empty.style.display = 'none';
+    list.style.display = 'flex';
+    total.style.display = 'flex';
+    list.innerHTML = keys.map(k => `
+      <div class="ch-summary-item">
+        <span class="ch-summary-item-name">${k}</span>
+        <span class="ch-summary-item-price">${selectedExps[k]}</span>
+      </div>
+    `).join('');
+    // compute numeric total where possible
+    let num = 0;
+    keys.forEach(k => {
+      const m = selectedExps[k].match(/\d+/);
+      if(m) num += parseInt(m[0]);
+    });
+    totalNum.textContent = '$' + num + (Object.values(selectedExps).some(p => p.includes('+')) ? '+' : '');
   }
 }
-fixSectionHeadPadding();
-window.addEventListener('resize', fixSectionHeadPadding, { passive: true });
 
-const revObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target)}});
-},{threshold:0.07});
-document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+// ── Drag-to-scroll journeys ───────────────────────────────────
+const scrollEl = document.querySelector('.ch-journeys-scroll');
+if(scrollEl){
+  let isDown = false, startX, scrollLeft;
+  scrollEl.addEventListener('mousedown', e => {
+    isDown = true;
+    startX = e.pageX - scrollEl.offsetLeft;
+    scrollLeft = scrollEl.scrollLeft;
+    scrollEl.style.cursor = 'grabbing';
+  });
+  document.addEventListener('mouseup', () => {
+    isDown = false;
+    scrollEl.style.cursor = 'grab';
+  });
+  document.addEventListener('mousemove', e => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - scrollEl.offsetLeft;
+    const walk = (x - startX);
+    scrollEl.scrollLeft = scrollLeft - walk;
+  });
+}
 
-const finalBg=document.getElementById('ex-final-bg');
-const finalEl=document.querySelector('.ex-final');
-window.addEventListener('scroll',()=>{
-  if(finalBg&&finalEl){const r=finalEl.getBoundingClientRect();finalBg.style.transform=`translateY(${(window.innerHeight/2-r.top-r.height/2)*.14}px)`}
-},{passive:true});
+// ── Form submit ───────────────────────────────────────────────
+function submitBuild(btn){
+  const name  = document.getElementById('ch-name').value.trim();
+  const email = document.getElementById('ch-email').value.trim();
+  if(!name || !email){
+    btn.style.outline = '1px solid rgba(201,80,60,.5)';
+    setTimeout(() => btn.style.outline = '', 1400);
+    return;
+  }
+  document.getElementById('ch-form-wrap').style.display = 'none';
+  document.getElementById('ch-confirm').classList.add('show');
+}
 </script>
 </body>
 </html>
