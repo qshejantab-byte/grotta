@@ -51,7 +51,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 ════════════════════════════════════════════════════════ */
 .ch-hero{position:relative;height:100vh;min-height:720px;overflow:hidden;display:flex;align-items:flex-end}
 
-.ch-hero-bg{position:absolute;inset:-8%;background-image:url('images/DSC02819 (1).JPG');background-size:cover;background-position:center 40%;filter:brightness(.28) saturate(.68);will-change:transform;animation:hbreathe 28s cubic-bezier(.25,.46,.45,.94) infinite alternate}
+.ch-hero-bg{position:absolute;inset:-8%;background-image:url('images/DSC02819 (1).jpg');background-size:cover;background-position:center 40%;filter:brightness(.28) saturate(.68);will-change:transform;animation:hbreathe 28s cubic-bezier(.25,.46,.45,.94) infinite alternate}
 @keyframes hbreathe{from{transform:scale(1.1)}to{transform:scale(1)}}
 
 /* multi-layer cinematic overlay */
@@ -275,7 +275,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 
 /* gorilla full-width hero editorial */
 .ch-gorilla{position:relative;height:90vh;min-height:600px;overflow:hidden;display:flex;align-items:center}
-.ch-gorilla-bg{position:absolute;inset:-5%;background-image:url('images/AV7I3495.jpg');background-size:cover;background-position:center 25%;filter:brightness(.32) saturate(.68);will-change:transform}
+.ch-gorilla-bg{position:absolute;inset:-5%;background-image:url('images/DSC02802 (1).jpg');background-size:cover;background-position:center 25%;filter:brightness(.32) saturate(.68);will-change:transform}
 .ch-gorilla-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(6,5,4,.96) 0%,rgba(6,5,4,.72) 38%,rgba(6,5,4,.16) 68%,rgba(6,5,4,.65) 100%),linear-gradient(to bottom,rgba(6,5,4,.4) 0%,transparent 25%,rgba(6,5,4,.7) 100%)}
 .ch-gorilla-body{position:relative;z-index:5;padding:0 7vw;max-width:640px}
 .ch-gorilla-body .lbl{margin-bottom:1.2rem;color:rgba(201,165,82,.45)}
@@ -564,7 +564,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 
   <div class="ch-worlds">
     <div class="ch-world rv">
-      <img src="images/AV7I4026.jpg" alt="At Grotta" loading="lazy">
+      <img src="images/DSC03819.JPG" alt="At Grotta" loading="lazy">
       <div class="ch-world-ov"></div>
       <div class="ch-world-num">01</div>
       <div class="ch-world-body">
@@ -596,7 +596,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 <section class="ch-at" id="ch-at">
   <!-- Chapter intro banner -->
   <div class="ch-banner">
-    <div class="ch-banner-bg" style="background-image:url('images/AV7I4900.jpg')" id="at-banner-bg"></div>
+    <div class="ch-banner-bg" style="background-image:url('images/DSC02770.JPG')" id="at-banner-bg"></div>
     <div class="ch-banner-ov"></div>
     <div class="ch-banner-body rv">
       <span class="ch-banner-num">02</span>
@@ -606,16 +606,50 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
   </div>
 
   <!-- WELLNESS — full editorial spread -->
+  <!-- CAVE EXPLORATION — first editorial spread -->
+  <div class="ch-spread rev rv" id="panel-caves">
+    <div class="ch-spread-img">
+      <img src="images/AV7I1986.jpg" alt="Caves" loading="lazy">
+      <div class="ch-spread-img-fade"></div>
+      <div class="ch-spread-quote">
+        <p>"Chambers formed over millennia. A space where silence has texture — and light, when found, feels earned."</p>
+      </div>
+    </div>
+    <div class="ch-spread-body">
+      <span class="ch-spread-ghost">01</span>
+      <span class="lbl">Underground World</span>
+      <h3 class="ch-spread-h3">Cave<br>Exploration</h3>
+      <span class="ch-spread-tagline">Ancient volcanic chambers. Light earned, silence kept.</span>
+      <p class="ch-spread-desc">Guided journeys through volcanic rock formations shaped over millennia — spaces where sound behaves differently, where the weight of the earth above becomes palpable, and where every shaft of light feels like a discovery.</p>
+      <div class="ch-highlights">
+        <span class="ch-hl">Expert guide always included</span>
+        <span class="ch-hl">Headlamps & safety equipment provided</span>
+        <span class="ch-hl">Photography opportunities throughout</span>
+      </div>
+      <div class="ch-spread-footer">
+        <div class="ch-price-block">
+          <span class="ch-price-from">Starting from</span>
+          <span class="ch-price">$35</span>
+          <span class="ch-price-note">1–2 hour guided journey</span>
+        </div>
+        <div class="ch-spread-ctas">
+          <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
+          <button class="ch-btn-add" onclick="addExp('Cave Exploration','From $35')"><span>Add to Stay</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="ch-spread rv" id="panel-pool">
     <div class="ch-spread-img">
-      <img src="images/AV7I4900.jpg" alt="Pool & Jacuzzi" loading="lazy">
+      <img src="images/DSC03832.jpg" alt="Pool & Jacuzzi" loading="lazy">
       <div class="ch-spread-img-fade"></div>
       <div class="ch-spread-quote">
         <p>"The pool at Grotta is still most mornings. Afternoons bring light that shifts across the surface in a way that invites you to stop thinking."</p>
       </div>
     </div>
     <div class="ch-spread-body">
-      <span class="ch-spread-ghost">01</span>
+      <span class="ch-spread-ghost">02</span>
       <span class="lbl">Water & Stillness</span>
       <h3 class="ch-spread-h3">Pool &<br>Outdoor Jacuzzi</h3>
       <span class="ch-spread-tagline">Still water. Highland air. Nothing to do but be present.</span>
@@ -647,7 +681,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       </div>
     </div>
     <div class="ch-spread-body">
-      <span class="ch-spread-ghost">02</span>
+      <span class="ch-spread-ghost">03</span>
       <span class="lbl">Heat & Stone</span>
       <h3 class="ch-spread-h3">Volcanic<br>Sauna</h3>
       <span class="ch-spread-tagline">Heated by volcanic stone. Designed for stillness.</span>
@@ -680,7 +714,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       </div>
     </div>
     <div class="ch-spread-body">
-      <span class="ch-spread-ghost">03</span>
+      <span class="ch-spread-ghost">04</span>
       <span class="lbl">Movement</span>
       <h3 class="ch-spread-h3">Gym &<br>Training</h3>
       <span class="ch-spread-tagline">Training at altitude. Movement with a view.</span>
@@ -870,49 +904,16 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
     </div>
   </div>
 
-  <div class="ch-spread rev rv" id="panel-caves">
+  <div class="ch-spread rev rv" id="panel-hiking">
     <div class="ch-spread-img">
-      <img src="images/AV7I1986.jpg" alt="Caves" loading="lazy">
-      <div class="ch-spread-img-fade"></div>
-      <div class="ch-spread-quote">
-        <p>"Chambers formed over millennia. A space where silence has texture — and light, when found, feels earned."</p>
-      </div>
-    </div>
-    <div class="ch-spread-body" style="background:var(--bg)">
-      <span class="ch-spread-ghost">02</span>
-      <span class="lbl">Underground World</span>
-      <h3 class="ch-spread-h3">Cave<br>Exploration</h3>
-      <span class="ch-spread-tagline">Ancient volcanic chambers. Light earned, silence kept.</span>
-      <p class="ch-spread-desc">Guided journeys through volcanic rock formations shaped over millennia — spaces where sound behaves differently, where the weight of the earth above becomes palpable, and where every shaft of light feels like a discovery.</p>
-      <div class="ch-highlights">
-        <span class="ch-hl">Expert guide always included</span>
-        <span class="ch-hl">Headlamps & safety equipment provided</span>
-        <span class="ch-hl">Photography opportunities throughout</span>
-      </div>
-      <div class="ch-spread-footer">
-        <div class="ch-price-block">
-          <span class="ch-price-from">Starting from</span>
-          <span class="ch-price">$35</span>
-          <span class="ch-price-note">1–2 hour guided journey</span>
-        </div>
-        <div class="ch-spread-ctas">
-          <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
-          <button class="ch-btn-add" onclick="addExp('Cave Exploration','From $35')"><span>Add to Stay</span></button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ch-spread rv" id="panel-hiking">
-    <div class="ch-spread-img">
-      <img src="images/DSC02802 (1).JPG" alt="Hiking" loading="lazy">
+      <img src="images/DSC02802 (1).jpg" alt="Hiking" loading="lazy">
       <div class="ch-spread-img-fade"></div>
       <div class="ch-spread-quote">
         <p>"Dawn treks to viewpoints where the Virunga peaks appear through the mist — a view that shifts with every hour of light."</p>
       </div>
     </div>
     <div class="ch-spread-body" style="background:var(--bg)">
-      <span class="ch-spread-ghost">03</span>
+      <span class="ch-spread-ghost">02</span>
       <span class="lbl">Highland Trails</span>
       <h3 class="ch-spread-h3">Volcano<br>Hiking</h3>
       <span class="ch-spread-tagline">Every route matched to you. Every summit worth the climb.</span>
@@ -957,7 +958,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       </div>
     </div>
     <div class="ch-mini-card rv d1">
-      <div class="ch-mini-img"><img src="images/AV7I3289.jpg" alt="Community" loading="lazy"></div>
+      <div class="ch-mini-img"><img src="images/DSF9609.jpeg" alt="Community" loading="lazy"></div>
       <div class="ch-mini-body">
         <span class="lbl">Cultural</span>
         <div class="ch-mini-name">Community Visits</div>
@@ -969,7 +970,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       </div>
     </div>
     <div class="ch-mini-card rv d2">
-      <div class="ch-mini-img"><img src="images/AV7I5356.jpg" alt="Performances" loading="lazy"></div>
+      <div class="ch-mini-img"><img src="images/_DSF9634.jpeg" alt="Performances" loading="lazy"></div>
       <div class="ch-mini-body">
         <span class="lbl">Heritage</span>
         <div class="ch-mini-name">Cultural Performances</div>
