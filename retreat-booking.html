@@ -901,7 +901,7 @@ const RETREATS = [
     label: 'Restoration', name: 'Wellness Deep Reset',
     tagline: '"Three days structured around the body and the breath."',
     desc: 'Each morning begins with guided movement at altitude. Afternoons move between the volcanic sauna, the outdoor jacuzzi, and stillness. Evenings are slow, warm, and shared around the fire. The landscape does the rest.',
-    img: 'https://images.unsplash.com/photo-1544148103-0773bf10d330?w=1400&q=85',
+    img: 'images/AV7I5336.jpg',
     duration: '3 Nights', nights: 3, price: 480000,
     itinerary: [
       { time: 'Dawn', text: 'Highland movement session as the mist settles across the grounds.' },
@@ -916,7 +916,7 @@ const RETREATS = [
     label: 'Immersion', name: 'Volcano Silence Retreat',
     tagline: '"Altitude, stone, and the particular silence of ancient places."',
     desc: 'A journey through the volcanic landscape — cave explorations, dawn treks to the viewpoints, and evenings by open fire. For those who find clarity through movement and the particular quiet of highlands.',
-    img: 'https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=1400&q=85',
+    img: 'images/AV7I5336.jpg',
     duration: '4 Nights', nights: 4, price: 620000,
     itinerary: [
       { time: 'Sunrise', text: 'Trek to the volcanic viewpoint. Breakfast at altitude.' },
@@ -931,7 +931,7 @@ const RETREATS = [
     label: 'Creativity', name: 'Creative Residency',
     tagline: '"Five days of uninterrupted creative time in the volcanic highlands."',
     desc: 'Morning sessions in curated work spaces with highland views. Afternoons free for exploration, reflection, and nature immersion. The distance from ordinary life creates conditions for extraordinary work.',
-    img: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1400&q=85',
+    img: 'images/AV7I5336.jpg',
     duration: '5 Nights', nights: 5, price: 750000,
     itinerary: [
       { time: 'Morning', text: 'Dedicated creative session in highland studio space.' },
@@ -946,7 +946,7 @@ const RETREATS = [
     label: 'Clarity', name: 'Leadership Retreat',
     tagline: '"The volcanic highlands create conditions for honest conversation."',
     desc: 'Morning strategy sessions with highland views. Afternoon reflection and nature immersion to let ideas settle. Fireside evenings that create the conditions for real conversation — the kind that changes things.',
-    img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1400&q=85',
+    img: 'images/AV7I5336.jpg',
     duration: '3 Nights', nights: 3, price: 540000,
     itinerary: [
       { time: 'Morning', text: 'Facilitated strategy session in the highland meeting space.' },
@@ -961,7 +961,7 @@ const RETREATS = [
     label: 'Unhurried', name: 'Slow Living Weekend',
     tagline: '"A weekend with no agenda beyond presence."',
     desc: 'Café mornings with no meetings to attend. Garden walks with no destination. Pool afternoons with no notifications. The firepit in the evening with people who matter. For those who need to remember what rest actually feels like.',
-    img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&q=85',
+    img: 'images/AV7I5336.jpg',
     duration: '2 Nights', nights: 2, price: 320000,
     itinerary: [
       { time: 'Morning', text: 'Café breakfast. Open time. No agenda.' },
@@ -976,7 +976,7 @@ const RETREATS = [
     label: 'Connection', name: 'Couples Reconnection',
     tagline: '"Evenings by the fire. Mornings in the gardens."',
     desc: 'A setting designed for the kind of presence that everyday life rarely allows. Private jacuzzi evenings, farm mornings, and a cave dinner for two. For two people who want to slow down together.',
-    img: 'https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=1400&q=85',
+    img: 'images/AV7I5336.jpg',
     duration: '3 Nights', nights: 3, price: 580000,
     itinerary: [
       { time: 'Morning', text: 'Farm walk and private breakfast in the gardens.' },
@@ -1010,7 +1010,7 @@ function renderRetreats() {
         <div class="rb-retreat-tagline">${r.tagline}</div>
         <div class="rb-retreat-footer">
           <div class="rb-retreat-price">
-            ${(r.price).toLocaleString()} RWF<small>/ person</small>
+            $${(r.price).toLocaleString()}<small>/ person</small>
           </div>
           <span class="rb-retreat-arrow">→</span>
         </div>
@@ -1042,7 +1042,7 @@ function selectRetreat(id) {
   document.getElementById('rb-d-title').textContent = selectedRetreat.name;
   document.getElementById('rb-d-tagline').textContent = selectedRetreat.tagline;
   document.getElementById('rb-d-desc').textContent = selectedRetreat.desc;
-  document.getElementById('rb-d-price').textContent = selectedRetreat.price.toLocaleString() + ' RWF';
+  document.getElementById('rb-d-price').textContent = selectedRetreat.price.toLocaleString();
   document.getElementById('rb-d-duration').textContent = selectedRetreat.duration;
 
   document.getElementById('rb-d-itinerary').innerHTML = selectedRetreat.itinerary.map(i =>
@@ -1119,7 +1119,7 @@ function selectArrival(y, m, d) {
   document.getElementById('rb-stay-arrival').textContent = fmtShort(selectedArrival);
   document.getElementById('rb-stay-departure').textContent = fmtShort(dep);
   document.getElementById('rb-stay-nights').textContent = selectedRetreat?.nights || 2;
-  document.getElementById('rb-stay-total').textContent = (selectedRetreat?.price || 0).toLocaleString() + ' RWF';
+  document.getElementById('rb-stay-total').textContent = (selectedRetreat?.price || 0).toLocaleString();
   document.getElementById('rb-stay-bar').style.display = 'flex';
   document.getElementById('rb-dates-next').style.display = 'inline-flex';
 }
@@ -1139,7 +1139,7 @@ function buildConfirmation() {
   const fmt = dt => dt.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
 
   document.getElementById('rb-conf-img').src = selectedRetreat.img;
-  document.getElementById('rb-conf-total').textContent = selectedRetreat.price.toLocaleString() + ' RWF';
+  document.getElementById('rb-conf-total').textContent = selectedRetreat.price.toLocaleString();
   document.getElementById('rb-dates-retreat-label').textContent = selectedRetreat.label + ' · ' + selectedRetreat.name;
 
   document.getElementById('rb-summary-rows').innerHTML = [
@@ -1148,7 +1148,7 @@ function buildConfirmation() {
     { l: 'Arrival', v: fmt(selectedArrival) },
     { l: 'Departure', v: fmt(dep) },
     { l: 'Included', v: selectedRetreat.inclusions.slice(0,3).join(', ') + '...' },
-    { l: 'Rate', v: selectedRetreat.price.toLocaleString() + ' RWF / person' },
+    { l: 'Rate', v: selectedRetreat.price.toLocaleString() + ' / person' },
   ].map(r => `<div class="rb-summary-row">
     <span class="rb-summary-row-lbl">${r.l}</span>
     <span class="rb-summary-row-val">${r.v}</span>
