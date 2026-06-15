@@ -1,5 +1,13 @@
 const NAV_HTML = `
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style>
+.ms { font-family: "Material Symbols Outlined"; font-size: 1.2rem; font-style: normal;
+  font-weight: normal; line-height: 1; letter-spacing: normal; text-transform: none;
+  white-space: nowrap; word-wrap: normal; direction: ltr; -webkit-font-smoothing: antialiased;
+  font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 24;
+  color: inherit; display: inline-block; vertical-align: middle; }
+</style>
 <style>
 /* ══ NAVBAR ══ */
 .navbar {
@@ -349,18 +357,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 <nav class="navbar">
-  <a href="index.html" class="grotta-wordmark">GROTTA</a>
+  <a href="index.html" class="grotta-wordmark">GROTTA RESORT</a>
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="stay.html">Stay</a>
     <a href="experiences.html">Experiences</a>
     <a href="caves.html">Caves</a>
-    <a href="dining.html">Dining</a>
+    <a href="dining.html">Spaces</a>
     <a href="events.html">Events & Retreats</a>
     <a href="packages.html">Packages</a>
     <a href="weddings.html">Weddings</a>
     <a href="membership.html">Membership</a>
-  </div>
+    <a href="faq.html">FAQ</a>
   <button class="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -374,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   <!-- Header bar -->
   <div class="mobile-nav-header">
-    <a href="index.html" class="mobile-nav-logo">GROTTA</a>
+    <a href="index.html" class="mobile-nav-logo">GROTTA RESORT</a>
     <button class="mobile-nav-close" id="mob-close" aria-label="Close menu">
       <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2">
         <line x1="2" y1="2" x2="16" y2="16"/>
@@ -401,12 +409,12 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- Secondary links -->
     <nav class="mn-secondary">
       <a href="caves.html">Caves</a>
-      <a href="dining.html">Dining</a>
+      <a href="dining.html">Spaces</a>
       <a href="events.html">Events & Retreats</a>
       <a href="packages.html">Packages</a>
       <a href="weddings.html">Weddings</a>
       <a href="membership.html">Membership</a>
-    </nav>
+      <a href="faq.html">FAQ</a>
   </div>
 
   <!-- Footer detail -->
@@ -421,15 +429,15 @@ const FOOTER_HTML = `
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <span class="grotta-wordmark-footer">GROTTA</span>
-        <p>A volcano-highland destination combining caves, nature retreats, family travel, wellness experiences, and exploration in Musanze, Rwanda.</p>
+        <span class="grotta-wordmark-footer">GROTTA RESORT</span>
+        <p>A luxury highland resort in Musanze, Rwanda — combining volcanic caves, premium accommodation, fine dining, wellness, and unforgettable experiences.</p>
       </div>
       <div class="footer-col">
         <h5>Explore</h5>
         <a href="stay.html">Stay</a>
         <a href="experiences.html">Experiences</a>
         <a href="caves.html">Caves</a>
-        <a href="dining.html">Dining</a>
+        <a href="dining.html">Spaces</a>
       </div>
       <div class="footer-col">
         <h5>Activities</h5>

@@ -25,7 +25,7 @@
 }
 .bk-hero-bg {
   position: absolute; inset: -5%;
-  background-image: url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1600&q=85');
+  background-image: url('images/AV7I5336.jpg');
   background-size: cover; background-position: center 30%;
   filter: brightness(.45) saturate(.75);
   animation: bk-zoom 24s cubic-bezier(.25,.46,.45,.94) forwards;
@@ -1217,7 +1217,7 @@ textarea.bk-input:focus { border-color: var(--gold); }
   <!-- SUMMARY SIDE -->
   <div class="bk-summary">
     <div class="bk-sum-room-img" id="sum-room-img">
-      <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=700&q=85" id="sum-room-img-el" alt="Selected Room">
+      <img src="images/AV7I5336.jpg" id="sum-room-img-el" alt="Selected Room">
     </div>
     <div class="bk-sum-body">
       <span class="bk-sum-title">Booking Summary</span>
@@ -1267,62 +1267,62 @@ const ROOMS = {
     desc: 'Crafted from local stone and reclaimed wood. Breakfast, swimming, gym, property tour, car cleaning, bonfire.',
     chips: ['King Bed', 'Rain Shower', 'Garden View', '32m²'],
     badge: null,
-    img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=85'
+    img: 'images/AV7I5336.jpg'
   },
   king: {
     name: 'King Room', label: 'Elevated Comfort', price: 195000,
     desc: 'All Standard inclusions plus Jacuzzi access and gaming room.',
     chips: ['Oversized King', 'Jacuzzi Access', 'Gaming', '44m²'],
     badge: 'Most Popular',
-    img: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=700&q=85'
+    img: 'images/AV7I5336.jpg'
   },
   king_volcano: {
     name: 'King Volcano View', label: 'The Volcano Vista', price: 205000,
     desc: 'Wake to panoramic mist over the Virunga volcanic peaks. Private terrace, soaking tub, Jacuzzi and gaming access.',
     chips: ['Volcano View', 'Private Terrace', 'Soaking Tub', '48m²'],
     badge: null,
-    img: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=700&q=85'
+    img: 'images/AV7I5336.jpg'
   },
   king_pool: {
     name: 'King Pool View', label: 'The Pool Vista', price: 205000,
     desc: 'Overlooking the resort pool with highland landscape beyond. Private terrace, soaking tub, Jacuzzi and gaming access.',
     chips: ['Pool View', 'Private Terrace', 'Soaking Tub', '48m²'],
     badge: null,
-    img: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=700&q=85'
+    img: 'images/AV7I5336.jpg'
   },
   family: {
     name: 'Family Room', label: 'For Every Generation', price: 265000,
     desc: 'All King Room inclusions plus farm experience and kids movie room.',
     chips: ['King + Twin Beds', 'Farm Experience', 'Movie Room', '55m²'],
     badge: 'Family Pick',
-    img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=85'
+    img: 'images/AV7I5336.jpg'
   },
   deluxe: {
     name: 'Deluxe Room', label: 'Refined Grandeur', price: 315000,
     desc: 'All Family inclusions plus yoga access. Stone bath, separate lounge, premium bar.',
     chips: ['Stone Bath', 'Yoga Access', 'Farm Experience', '64m²'],
     badge: null,
-    img: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=700&q=85'
+    img: 'images/AV7I5336.jpg'
   },
   executive: {
     name: 'Executive Room', label: 'The Pinnacle', price: 385000,
     desc: 'All Deluxe inclusions plus massage chair and sauna. Private pool, butler service.',
     chips: ['Private Pool', 'Massage Chair', 'Sauna', '120m²'],
     badge: 'Best Value',
-    img: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=700&q=85'
+    img: 'images/AV7I5336.jpg'
   }
 };
 
 // Add-ons
 const ADDONS = [
-  { id: 'sauna',    icon: '🌋', name: 'Volcanic Sauna Ritual',    desc: 'An hour-long immersive sauna ritual using volcanic stones and highland herbs.',           price: 45000 },
-  { id: 'jacuzzi',  icon: '♾',  name: 'Private Jacuzzi Session',  desc: 'A dedicated jacuzzi setting prepared exclusively for your evening.',                       price: 35000 },
-  { id: 'massage',  icon: '🌿', name: 'In-Room Massage',          desc: 'A 60-minute therapeutic massage delivered in the privacy of your room.',                   price: 60000 },
-  { id: 'trek',     icon: '🏔', name: 'Volcano Trek Experience',  desc: 'A guided dawn trek to the volcanic viewpoint with breakfast at the summit.',               price: 55000 },
+  { id: 'sauna',    icon: 'volcano', name: 'Volcanic Sauna Ritual',    desc: 'An hour-long immersive sauna ritual using volcanic stones and highland herbs.',           price: 35 },
+  { id: 'jacuzzi',  icon: 'hot_tub',  name: 'Private Jacuzzi Session',  desc: 'A dedicated jacuzzi setting prepared exclusively for your evening.',                       price: 27 },
+  { id: 'massage',  icon: 'spa', name: 'In-Room Massage',          desc: 'A 60-minute therapeutic massage delivered in the privacy of your room.',                   price: 46 },
+  { id: 'trek',     icon: 'landscape', name: 'Volcano Trek Experience',  desc: 'A guided dawn trek to the volcanic viewpoint with breakfast at the summit.',               price: 42 },
   { id: 'romantic', icon: '🕯', name: 'Romantic Cave Setup',      desc: 'Private candlelit dinner arrangement within the cave, for two.',                           price: 80000 },
-  { id: 'transfer', icon: '🚗', name: 'Airport Transfer',         desc: 'Private vehicle to and from Kigali International Airport.',                                price: 40000 },
+  { id: 'transfer', icon: 'directions_car', name: 'Airport Transfer',         desc: 'Private vehicle to and from Kigali International Airport.',                                price: 31 },
   { id: 'wellness', icon: '✨', name: 'Full Wellness Package',    desc: 'Sauna, massage, and jacuzzi — the complete restoration experience.',                       price: 120000 },
-  { id: 'sunrise',  icon: '🌅', name: 'Sunrise Cave Experience',  desc: 'Enter the caves as the first light finds its way through. A rare and quiet beginning.',    price: 30000 },
+  { id: 'sunrise',  icon: 'wb_twilight', name: 'Sunrise Cave Experience',  desc: 'Enter the caves as the first light finds its way through. A rare and quiet beginning.',    price: 23 },
 ];
 
 // State
@@ -1350,7 +1350,7 @@ function selectMeal(plan) {
   updateSummary();
 }
 
-function fmtPrice(n) { return n.toLocaleString() + ' RWF'; }
+function fmtPrice(n) { return '$' + n.toLocaleString(); }
 function fmtDate(str) {
   if (!str) return '—';
   return new Date(str + 'T12:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
