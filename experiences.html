@@ -76,7 +76,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 .ch-hero-eyebrow{display:inline-flex;align-items:center;gap:.9rem;font-family:var(--sans);font-size:.48rem;font-weight:400;letter-spacing:.42em;text-transform:uppercase;color:rgba(201,165,82,.48);margin-bottom:1.4rem;opacity:0;animation:up .8s ease .3s forwards}
 .ch-hero-eyebrow::before,.ch-hero-eyebrow::after{content:'';width:22px;height:1px;background:rgba(201,165,82,.28)}
 
-.ch-hero-h1{font-family:var(--serif);font-size:clamp(3.5rem,7.5vw,7.8rem);font-weight:300;color:var(--cream);line-height:.96;letter-spacing:-.042em;margin-bottom:1.4rem;opacity:0;transform:translateY(32px);animation:rise 1.2s cubic-bezier(.34,1.06,.64,1) .55s forwards}
+.ch-hero-h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,5.5rem);font-weight:300;color:var(--cream);line-height:1.02;letter-spacing:-.03em;margin-bottom:1.4rem;opacity:0;transform:translateY(32px);animation:rise 1.2s cubic-bezier(.34,1.06,.64,1) .55s forwards}
 .ch-hero-h1 .italic{font-style:italic;color:rgba(240,232,213,.38);display:block;font-size:.74em;letter-spacing:-.022em;margin-top:.14em}
 
 .ch-hero-sub{font-family:var(--serif);font-size:clamp(.9rem,1.4vw,1.15rem);font-weight:300;font-style:italic;color:rgba(201,165,82,.55);line-height:1.85;display:block;max-width:400px;margin-bottom:2.8rem;opacity:0;filter:blur(3px);animation:blur .95s ease 1.05s forwards}
@@ -305,7 +305,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 .ch-builder-grid{display:grid;grid-template-columns:1.2fr 1fr 1.1fr;gap:1px;background:rgba(201,165,82,.08);min-height:520px}
 
 /* Experience selector */
-.ch-selector{background:var(--bg3);padding:2.5rem}
+.ch-selector{background:var(--bg3);padding:2.5rem;overflow-y:auto;max-height:580px;scrollbar-width:thin;scrollbar-color:rgba(201,165,82,.2) transparent}
 .ch-selector-label{font-family:var(--sans);font-size:.5rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,165,82,.45);display:block;margin-bottom:1.5rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,165,82,.08)}
 .ch-exp-item{display:flex;align-items:center;gap:.85rem;padding:.85rem .75rem;cursor:pointer;border-bottom:1px solid rgba(201,165,82,.05);transition:background .25s;position:relative}
 .ch-exp-item:last-child{border-bottom:none}
@@ -471,6 +471,94 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 @media(max-width:900px){.nav-links{display:none}.hamburger{display:flex}}
 
 .ms{font-family:"Material Symbols Outlined";font-style:normal;font-weight:normal;font-size:1.2rem;line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;font-variation-settings:"FILL" 0,"wght" 200,"GRAD" 0,"opsz" 24;display:inline-block;vertical-align:middle}
+
+/* ════════════════════════════════════════════════════════
+   LUXURY COLLECTION — Category system & card upgrades
+════════════════════════════════════════════════════════ */
+
+/* Category section wrapper */
+.ch-cat-section{padding:5rem 0 0;background:var(--bg2)}
+.ch-cat-header{max-width:1280px;margin:0 auto;padding:3rem 4vw 2.5rem;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;border-bottom:1px solid rgba(201,165,82,.07);margin-bottom:0}
+.ch-cat-header-left .lbl{margin-bottom:.7rem}
+.ch-cat-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--cream);letter-spacing:-.022em;line-height:1.06}
+.ch-cat-sub{font-family:var(--serif);font-style:italic;font-size:.88rem;color:rgba(201,165,82,.38);margin-top:.35rem;display:block}
+.ch-cat-count{font-family:var(--serif);font-size:4rem;font-weight:300;color:rgba(201,165,82,.07);letter-spacing:-.04em;line-height:1;flex-shrink:0}
+
+/* Mini card upgrades */
+.ch-mini-card{background:var(--bg3);position:relative;overflow:hidden;transition:background .5s ease,transform .4s cubic-bezier(.25,.46,.45,.94),box-shadow .4s ease}
+.ch-mini-card:hover{background:#121008;transform:translateY(-3px);box-shadow:0 18px 48px rgba(0,0,0,.45)}
+.ch-mini-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:linear-gradient(to right,var(--gold),rgba(201,165,82,.35));transition:width .6s cubic-bezier(.25,.46,.45,.94)}
+.ch-mini-card:hover::before{width:100%}
+.ch-mini-img{height:240px;overflow:hidden;position:relative}
+.ch-mini-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.44) saturate(.75);transition:filter 1.8s ease,transform 2.2s cubic-bezier(.25,.46,.45,.94)}
+.ch-mini-card:hover .ch-mini-img img{filter:brightness(.65) saturate(.9);transform:scale(1.07)}
+.ch-mini-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,4,.88) 0%,rgba(6,5,4,.15) 55%,transparent 100%);pointer-events:none}
+.ch-mini-body{padding:1.8rem 2rem 2.2rem}
+.ch-mini-body .lbl{font-size:.42rem;margin-bottom:.55rem;color:rgba(201,165,82,.32)}
+.ch-mini-name{font-family:var(--serif);font-size:1.3rem;font-weight:300;color:var(--cream);line-height:1.08;margin-bottom:.55rem;transition:color .3s ease;letter-spacing:-.01em}
+.ch-mini-card:hover .ch-mini-name{color:#fff}
+.ch-mini-desc{font-size:.76rem;color:rgba(200,192,174,.4);line-height:1.9;margin-bottom:1.3rem}
+.ch-mini-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid rgba(201,165,82,.07);flex-wrap:wrap;gap:.5rem}
+.ch-mini-price{font-family:var(--serif);font-size:1.05rem;color:var(--gold);font-weight:300}
+.ch-mini-dur{font-family:var(--sans);font-size:.44rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.ch-mini-add{font-family:var(--sans);font-size:.4rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;background:transparent;border:1px solid rgba(201,165,82,.16);color:rgba(201,165,82,.45);padding:.35rem .8rem;cursor:pointer;transition:border-color .3s,color .3s,background .3s;white-space:nowrap}
+.ch-mini-add:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,165,82,.04)}
+
+/* No-image mini card (for new activities without photos) */
+.ch-mini-noimg{height:140px;background:linear-gradient(135deg,rgba(201,165,82,.05) 0%,rgba(201,165,82,.01) 100%);display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(201,165,82,.06);position:relative;overflow:hidden}
+.ch-mini-noimg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,4,.7) 0%,transparent 100%);pointer-events:none}
+.ch-mini-noimg-sym{font-family:var(--serif);font-size:3.5rem;font-weight:300;color:rgba(201,165,82,.1);letter-spacing:-.04em;user-select:none;position:relative;z-index:2}
+
+/* Group Experience Feature Block */
+.ch-group{background:var(--bg);padding:8rem 0;position:relative;overflow:hidden}
+.ch-group::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.12) 30%,rgba(201,165,82,.12) 70%,transparent)}
+.ch-group-inner{max-width:1280px;margin:0 auto;padding:0 4vw}
+.ch-group-header{text-align:center;margin-bottom:5rem}
+.ch-group-header .lbl{justify-content:center;display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+.ch-group-header .lbl::before,.ch-group-header .lbl::after{content:'';width:24px;height:1px;background:rgba(201,165,82,.22)}
+.ch-group-h2{font-family:var(--serif);font-size:clamp(2.2rem,4.5vw,4rem);font-weight:300;color:var(--cream);line-height:1.04;letter-spacing:-.028em}
+.ch-group-panel{display:grid;grid-template-columns:1.2fr 1fr;gap:1px;background:rgba(201,165,82,.08);min-height:440px}
+.ch-group-img{position:relative;overflow:hidden}
+.ch-group-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.44) saturate(.75);transition:filter 2s ease,transform 2.5s cubic-bezier(.25,.46,.45,.94)}
+.ch-group-panel:hover .ch-group-img img{filter:brightness(.62) saturate(.88);transform:scale(1.04)}
+.ch-group-img::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:linear-gradient(to bottom,var(--gold),rgba(201,165,82,.2));z-index:3;transition:height 1.2s cubic-bezier(.25,.46,.45,.94) .3s}
+.ch-group-panel:hover .ch-group-img::before{height:100%}
+.ch-group-img-fade{position:absolute;inset:0;background:linear-gradient(to right,transparent 55%,var(--bg) 100%);pointer-events:none}
+.ch-group-body{background:var(--bg);padding:4.5rem 5rem;display:flex;flex-direction:column;justify-content:center;position:relative}
+.ch-group-ghost{position:absolute;top:1.5rem;right:2rem;font-family:var(--serif);font-size:5rem;font-weight:300;color:rgba(201,165,82,.04);line-height:1;letter-spacing:-.04em;pointer-events:none;transition:color .5s}
+.ch-group-panel:hover .ch-group-ghost{color:rgba(201,165,82,.09)}
+.ch-group-body .lbl{margin-bottom:.7rem}
+.ch-group-h3{font-family:var(--serif);font-size:clamp(2rem,3.2vw,3.2rem);font-weight:300;color:var(--cream);line-height:1.06;letter-spacing:-.02em;margin-bottom:.7rem;transition:color .35s}
+.ch-group-panel:hover .ch-group-h3{color:#fff}
+.ch-group-tagline{font-family:var(--serif);font-style:italic;color:rgba(201,165,82,.48);font-size:1rem;margin-bottom:1.4rem;display:block}
+.ch-group-desc{font-size:.86rem;color:rgba(232,224,208,.48);line-height:2.1;margin-bottom:1.6rem;max-width:400px}
+.ch-group-highlights{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.8rem}
+.ch-group-hl{font-family:var(--sans);font-size:.62rem;color:rgba(200,192,174,.46);display:flex;align-items:center;gap:.65rem}
+.ch-group-hl::before{content:'';width:4px;height:4px;border-radius:50%;background:rgba(201,165,82,.4);flex-shrink:0}
+.ch-group-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1.5rem;border-top:1px solid rgba(201,165,82,.08);gap:1rem;flex-wrap:wrap}
+
+/* Builder experience category dividers */
+.ch-exp-cat-lbl{font-family:var(--sans);font-size:.42rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:rgba(201,165,82,.28);padding:.55rem .75rem .45rem;background:rgba(201,165,82,.03);border-bottom:1px solid rgba(201,165,82,.06);display:block}
+
+/* Journey card upgrades */
+.ch-journey-card:hover{background:#131109;transform:translateY(-4px);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.ch-journey-img{height:300px;position:relative;overflow:hidden}
+.ch-journey-card:hover .ch-journey-img img{filter:brightness(.65) saturate(.9);transform:scale(1.07)}
+
+/* Responsive additions */
+@media(max-width:1100px){
+  .ch-group-panel{grid-template-columns:1fr;min-height:auto}
+  .ch-group-img{height:320px}
+  .ch-group-img-fade{display:none}
+  .ch-group-body{padding:3rem 2.5rem}
+  .ch-group-ghost{display:none}
+}
+@media(max-width:768px){
+  .ch-group-body{padding:2.5rem 1.8rem}
+  .ch-cat-header{flex-direction:column;align-items:flex-start;gap:1rem}
+  .ch-cat-count{display:none}
+  .ch-mini-img{height:200px}
+}
 </style>
 </head>
 <body>
@@ -496,7 +584,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
     <div class="ch-hero-ctas">
       <a href="#ch-at" onclick="goTo('ch-at');return false" class="btn-g"><span>At Grotta</span></a>
       <a href="#ch-beyond" onclick="goTo('ch-beyond');return false" class="btn-o">Beyond Grotta</a>
-      <a href="#ch-builder" onclick="goTo('ch-builder');return false" class="btn-o">Plan My Stay</a>
+      <a href="#ch-builder" onclick="goTo('ch-builder');return false" class="btn-o">Plan My Experiences</a>
     </div>
   </div>
 
@@ -541,7 +629,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
     <div class="ch-line"><div class="ch-line-fill" id="clf-3"></div></div>
     <div class="ch-node" id="cn-4" onclick="goTo('ch-builder')">
       <div class="ch-node-ring"><span class="ch-node-n">04</span></div>
-      <span class="ch-node-l">Plan Stay</span>
+      <span class="ch-node-l">Plan</span>
     </div>
     <div class="ch-line"><div class="ch-line-fill" id="clf-4"></div></div>
     <div class="ch-node" id="cn-5" onclick="goTo('ch-journeys')">
@@ -634,7 +722,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         </div>
         <div class="ch-spread-ctas">
           <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
-          <button class="ch-btn-add" onclick="addExp('Cave Exploration','From $35')"><span>Add to Stay</span></button>
+          <button class="ch-btn-add" onclick="addExp('Cave Exploration','From $35')"><span>Add to Inquiry</span></button>
         </div>
       </div>
     </div>
@@ -642,7 +730,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 
   <div class="ch-spread rv" id="panel-pool">
     <div class="ch-spread-img">
-      <img src="images/DSC04007.jpg" alt="Pool & Jacuzzi" loading="lazy">
+      <img src="images/DSC03832.jpg" alt="Pool & Jacuzzi" loading="lazy">
       <div class="ch-spread-img-fade"></div>
       <div class="ch-spread-quote">
         <p>"The pool at Grotta is still most mornings. Afternoons bring light that shifts across the surface in a way that invites you to stop thinking."</p>
@@ -663,10 +751,10 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         <div class="ch-price-block">
           <span class="ch-price-from">Duration</span>
           <span class="ch-price" style="font-size:1.2rem">All Day</span>
-          <span class="ch-price-note">Included with every stay</span>
+          <span class="ch-price-note">Included for all guests</span>
         </div>
         <div class="ch-spread-ctas">
-          <button class="ch-btn-add" onclick="window.open('https://live.ipms247.com/booking/book-rooms-grottamusanze','_blank')"><span>Book a Room</span></button>
+          <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
         </div>
       </div>
     </div>
@@ -699,7 +787,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         </div>
         <div class="ch-spread-ctas">
           <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
-          <button class="ch-btn-add" onclick="addExp('Volcanic Sauna','$25')"><span>Add to Stay</span></button>
+          <button class="ch-btn-add" onclick="addExp('Volcanic Sauna','$25')"><span>Add to Inquiry</span></button>
         </div>
       </div>
     </div>
@@ -728,92 +816,237 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         <div class="ch-price-block">
           <span class="ch-price-from">Duration</span>
           <span class="ch-price" style="font-size:1.2rem">Open Daily</span>
-          <span class="ch-price-note">Included with every stay</span>
+          <span class="ch-price-note">Included for all guests</span>
         </div>
         <div class="ch-spread-ctas">
-          <button class="ch-btn-add" onclick="window.open('https://live.ipms247.com/booking/book-rooms-grottamusanze','_blank')"><span>Book a Room</span></button>
+          <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Lifestyle mini grid -->
-  <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.1) 30%,rgba(201,165,82,.1) 70%,transparent)"></div>
-  <div style="max-width:1280px;margin:0 auto;padding:5rem 4vw 3rem" class="rv">
-    <span class="lbl" style="margin-bottom:.8rem">Lifestyle & Recreation</span>
-    <h3 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;color:var(--cream);letter-spacing:-.02em">Life Within the Resort</h3>
+  <!-- SPORT & ACTIVE -->
+  <div class="ch-spread rev rv" id="panel-sport">
+    <div class="ch-spread-img">
+      <img src="images/YOUR_IMAGE.jpg" alt="Sport & Active" loading="lazy">
+      <div class="ch-spread-img-fade"></div>
+      <div class="ch-spread-quote">
+        <p>"Fresh highland air, open courts, and the kind of movement that reminds you what your body is for."</p>
+      </div>
+    </div>
+    <div class="ch-spread-body">
+      <span class="ch-spread-ghost">05</span>
+      <span class="lbl">Sport & Active</span>
+      <h3 class="ch-spread-h3">Sport &<br>Active Experiences</h3>
+      <span class="ch-spread-tagline">Energy. Movement. Fresh highland air.</span>
+      <p class="ch-spread-desc">From competitive pickleball to five-a-side football on an open highland pitch — Grotta's sport facilities bring movement into the landscape. Light fitness activities available for guests who prefer to stay active without the intensity.</p>
+      <div class="ch-highlights">
+        <span class="ch-hl">Pickleball court — equipment provided</span>
+        <span class="ch-hl">Mini football pitch — private bookings available</span>
+        <span class="ch-hl">Light fitness activities for all levels</span>
+      </div>
+      <div class="ch-spread-footer">
+        <div class="ch-price-block">
+          <span class="ch-price-from">Starting from</span>
+          <span class="ch-price">$15</span>
+          <span class="ch-price-note">Per session · equipment included</span>
+        </div>
+        <div class="ch-spread-ctas">
+          <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
+          <button class="ch-btn-add" onclick="addExp('Sport & Active','From $15')"><span>Add to Inquiry</span></button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="ch-mini-grid">
-    <div class="ch-mini-card rv">
-      <div class="ch-mini-img"><img src="images/DSC04076.JPG" alt="Farm" loading="lazy"></div>
-      <div class="ch-mini-body">
-        <span class="lbl">Morning Ritual</span>
-        <div class="ch-mini-name">Farm Experience</div>
-        <p class="ch-mini-desc">Collect eggs, meet the animals, reconnect with something simple and real before breakfast.</p>
-        <div class="ch-mini-footer">
-          <span class="ch-mini-price">Included</span>
-          <span class="ch-mini-dur">1 Hour · Morning</span>
+  <!-- ── WELLNESS CATEGORY ── -->
+  <div class="ch-cat-section">
+    <div class="ch-cat-header rv">
+      <div class="ch-cat-header-left">
+        <span class="lbl">At Grotta</span>
+        <h3 class="ch-cat-title">Wellness</h3>
+        <span class="ch-cat-sub">Restore, rebalance, and breathe.</span>
+      </div>
+      <span class="ch-cat-count">03</span>
+    </div>
+    <div class="ch-mini-grid">
+      <div class="ch-mini-card rv">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">◊</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Body Treatment</span>
+          <div class="ch-mini-name">Massage</div>
+          <p class="ch-mini-desc">Skilled hands, warm oil, and an hour that belongs entirely to you. A deeply restorative treatment in the highland stillness.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $30</span>
+            <span class="ch-mini-dur">60 Min · On Request</span>
+            <button class="ch-mini-add" onclick="addExp('Massage','From $30')">Add to Inquiry</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d1">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">~</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Movement & Water</span>
+          <div class="ch-mini-name">Aqua Aerobics</div>
+          <p class="ch-mini-desc">Low impact, high reward. Guided movement in the pool — energising without effort, in the cool highland air.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $4</span>
+            <span class="ch-mini-dur">45 Min · Morning</span>
+            <button class="ch-mini-add" onclick="addExp('Aqua Aerobics','$4')">Add to Inquiry</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d2">
+        <div class="ch-mini-img"><img src="images/AV7I4026.jpg" alt="Sauna" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Heat & Stone</span>
+          <div class="ch-mini-name">Volcanic Sauna</div>
+          <p class="ch-mini-desc">The dry heat settles slowly. Volcanic stone, cool plunge, and a silence that asks nothing of you in return.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $25</span>
+            <span class="ch-mini-dur">Per Session</span>
+            <button class="ch-mini-add" onclick="addExp('Volcanic Sauna','$25')">Add to Inquiry</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="ch-mini-card rv d1">
-      <div class="ch-mini-img"><img src="images/AV7I5521.jpg" alt="Cave Café" loading="lazy"></div>
-      <div class="ch-mini-body">
-        <span class="lbl">Signature</span>
-        <div class="ch-mini-name">Cave Café</div>
-        <p class="ch-mini-desc">Coffee among stone walls. Rare spirits. The cool silence of bedrock and light that has travelled far to reach you.</p>
-        <div class="ch-mini-footer">
-          <span class="ch-mini-price">À la carte</span>
-          <span class="ch-mini-dur">All Day</span>
+  </div>
+
+  <!-- ── CULINARY CATEGORY ── -->
+  <div class="ch-cat-section">
+    <div class="ch-cat-header rv">
+      <div class="ch-cat-header-left">
+        <span class="lbl">At Grotta</span>
+        <h3 class="ch-cat-title">Culinary</h3>
+        <span class="ch-cat-sub">Taste the highlands.</span>
+      </div>
+      <span class="ch-cat-count">03</span>
+    </div>
+    <div class="ch-mini-grid">
+      <div class="ch-mini-card rv">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">✦</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Open Fire Dining</span>
+          <div class="ch-mini-name">Garden BBQ</div>
+          <p class="ch-mini-desc">Grills lit at golden hour. Smoke rising into the highland air. Food cooked simply and shared in the open gardens of Grotta.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $40</span>
+            <span class="ch-mini-dur">Evening</span>
+            <button class="ch-mini-add" onclick="addExp('Garden BBQ','From $40')">Add to Inquiry</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d1">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">◎</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Kitchen Experience</span>
+          <div class="ch-mini-name">Live Cooking</div>
+          <p class="ch-mini-desc">Step into the kitchen. A hands-on session with our chef — learning techniques, ingredients, and stories behind highland cuisine.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $25</span>
+            <span class="ch-mini-dur">2 Hours</span>
+            <button class="ch-mini-add" onclick="addExp('Live Cooking','From $25')">Add to Inquiry</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d2">
+        <div class="ch-mini-img"><img src="images/AV7I5521.jpg" alt="Cave Café" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Signature</span>
+          <div class="ch-mini-name">Cave Café</div>
+          <p class="ch-mini-desc">Coffee among stone walls. Rare spirits. The cool silence of bedrock and light that has travelled far to reach you.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">À la carte</span>
+            <span class="ch-mini-dur">All Day</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="ch-mini-card rv d2">
-      <div class="ch-mini-img"><img src="images/DSC03988copy.JPG" alt="Bonfire" loading="lazy"></div>
-      <div class="ch-mini-body">
-        <span class="lbl">Evening</span>
-        <div class="ch-mini-name">Bonfire Evenings</div>
-        <p class="ch-mini-desc">The fire gathers people naturally. Stories, warmth, and conversations that happen only after dark in the highland air.</p>
-        <div class="ch-mini-footer">
-          <span class="ch-mini-price">Included</span>
-          <span class="ch-mini-dur">Every Evening</span>
+  </div>
+
+  <!-- ── LIFESTYLE CATEGORY ── -->
+  <div class="ch-cat-section" style="padding-bottom:6rem">
+    <div class="ch-cat-header rv">
+      <div class="ch-cat-header-left">
+        <span class="lbl">At Grotta</span>
+        <h3 class="ch-cat-title">Lifestyle & Recreation</h3>
+        <span class="ch-cat-sub">Life woven into the resort.</span>
+      </div>
+      <span class="ch-cat-count">05</span>
+    </div>
+    <div class="ch-mini-grid">
+      <div class="ch-mini-card rv">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">∿</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Creative</span>
+          <div class="ch-mini-name">Sip & Paint</div>
+          <p class="ch-mini-desc">A glass of wine, a canvas, and no pressure. Guided painting sessions where the view outside is often better than anything on paper.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $15</span>
+            <span class="ch-mini-dur">2 Hours · Afternoon</span>
+            <button class="ch-mini-add" onclick="addExp('Sip & Paint','From $15')">Add to Inquiry</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="ch-mini-card rv">
-      <div class="ch-mini-img"><img src="images/Gemini_Generated_Image_o0g94bo0g94bo0g9.png" alt="Cinema" loading="lazy"></div>
-      <div class="ch-mini-body">
-        <span class="lbl">Entertainment</span>
-        <div class="ch-mini-name">Movie Room</div>
-        <p class="ch-mini-desc">Curated private screenings. Blankets, highland warmth, and a carefully chosen title for the evening.</p>
-        <div class="ch-mini-footer">
-          <span class="ch-mini-price">From $30</span>
-          <span class="ch-mini-dur">Evening · Private</span>
+      <div class="ch-mini-card rv d1">
+        <div class="ch-mini-img"><img src="images/DSC03988copy.JPG" alt="Bonfire" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Evening</span>
+          <div class="ch-mini-name">Bonfire Evenings</div>
+          <p class="ch-mini-desc">The fire gathers people naturally. Stories, warmth, and conversations that only happen after dark in the highland air.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">Included</span>
+            <span class="ch-mini-dur">Every Evening</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="ch-mini-card rv d1">
-      <div class="ch-mini-img"><img src="images/AV7I3289.jpg" alt="Gardens" loading="lazy"></div>
-      <div class="ch-mini-body">
-        <span class="lbl">Open Space</span>
-        <div class="ch-mini-name">Highland Gardens</div>
-        <p class="ch-mini-desc">Curated gardens for walks, play, and simply being. Guided tours available in the morning mist.</p>
-        <div class="ch-mini-footer">
-          <span class="ch-mini-price">Included</span>
-          <span class="ch-mini-dur">All Day</span>
+      <div class="ch-mini-card rv d2">
+        <div class="ch-mini-img"><img src="images/Gemini_Generated_Image_o0g94bo0g94bo0g9.png" alt="Cinema" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Entertainment</span>
+          <div class="ch-mini-name">Movie Room</div>
+          <p class="ch-mini-desc">Curated private screenings. Blankets, highland warmth, and a carefully chosen title for the evening.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $30</span>
+            <span class="ch-mini-dur">Evening · Private</span>
+            <button class="ch-mini-add" onclick="addExp('Movie Room','From $30')">Add to Inquiry</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="ch-mini-card rv d2">
-      <div class="ch-mini-img"><img src="images/AV7I2009.jpg" alt="Cave Spa" loading="lazy"></div>
-      <div class="ch-mini-body">
-        <span class="lbl">Coming 2027</span>
-        <div class="ch-mini-name">Cave Spa</div>
-        <p class="ch-mini-desc">A forthcoming spa within natural volcanic chambers. Ancient stone, candlelight, treatments designed around the cave environment.</p>
-        <div class="ch-mini-footer">
-          <span class="ch-mini-price">Register Interest</span>
-          <span class="ch-mini-dur">Opening 2027</span>
+      <div class="ch-mini-card rv">
+        <div class="ch-mini-img"><img src="images/DSC04076.JPG" alt="Farm" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Morning Ritual</span>
+          <div class="ch-mini-name">Farm Experience</div>
+          <p class="ch-mini-desc">Collect eggs, meet the animals, reconnect with something simple and real before the day begins.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">Included</span>
+            <span class="ch-mini-dur">1 Hour · Morning</span>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d1">
+        <div class="ch-mini-img"><img src="images/AV7I3289.jpg" alt="Gardens" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Open Space</span>
+          <div class="ch-mini-name">Highland Gardens</div>
+          <p class="ch-mini-desc">Curated gardens for walks, play, and simply being. Guided tours available in the morning mist.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">Included</span>
+            <span class="ch-mini-dur">All Day</span>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d2">
+        <div class="ch-mini-img"><img src="images/AV7I2009.jpg" alt="Cave Spa" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Coming 2027</span>
+          <div class="ch-mini-name">Cave Spa</div>
+          <p class="ch-mini-desc">A forthcoming spa within natural volcanic chambers. Ancient stone, candlelight, treatments designed around the cave environment.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">Register Interest</span>
+            <span class="ch-mini-dur">Opening 2027</span>
+          </div>
         </div>
       </div>
     </div>
@@ -864,7 +1097,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         </div>
       </div>
       <div class="ch-gorilla-ctas">
-        <button class="btn-g" onclick="addExp('Gorilla Trekking','From $600 + permit')"><span>Add to Stay</span></button>
+        <button class="btn-g" onclick="addExp('Gorilla Trekking','From $600 + permit')"><span>Add to Inquiry</span></button>
         <button class="btn-o" onclick="goTo('ch-builder')">Request Plan</button>
       </div>
     </div>
@@ -898,7 +1131,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         </div>
         <div class="ch-spread-ctas">
           <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
-          <button class="ch-btn-add" onclick="addExp('E-Bike Tour','From $45')"><span>Add to Stay</span></button>
+          <button class="ch-btn-add" onclick="addExp('E-Bike Tour','From $45')"><span>Add to Inquiry</span></button>
         </div>
       </div>
     </div>
@@ -931,94 +1164,291 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         </div>
         <div class="ch-spread-ctas">
           <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
-          <button class="ch-btn-add" onclick="addExp('Volcano Hiking','From $55')"><span>Add to Stay</span></button>
+          <button class="ch-btn-add" onclick="addExp('Volcano Hiking','From $55')"><span>Add to Inquiry</span></button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Cultural & Discovery mini grid -->
-  <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.1) 30%,rgba(201,165,82,.1) 70%,transparent)"></div>
-  <div style="max-width:1280px;margin:0 auto;padding:5rem 4vw 3rem" class="rv">
-    <span class="lbl" style="margin-bottom:.8rem">Cultural & Discovery</span>
-    <h3 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;color:var(--cream);letter-spacing:-.02em">Rwanda Beyond the Landscape</h3>
+  <!-- ── ADVENTURE CATEGORY ── -->
+  <div class="ch-cat-section" style="background:var(--bg)">
+    <div class="ch-cat-header rv">
+      <div class="ch-cat-header-left">
+        <span class="lbl">Beyond Grotta</span>
+        <h3 class="ch-cat-title">Adventure</h3>
+        <span class="ch-cat-sub">Move through the landscape.</span>
+      </div>
+      <span class="ch-cat-count">04</span>
+    </div>
+    <div class="ch-mini-grid">
+      <div class="ch-mini-card rv">
+        <div class="ch-mini-img"><img src="images/AV7I3449.jpg" alt="Golden Monkey" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Wildlife</span>
+          <div class="ch-mini-name">Golden Monkey Trek</div>
+          <p class="ch-mini-desc">A lighter alternative to gorilla trekking — equally rare, equally unforgettable. Permits arranged by Grotta.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $100 + permit</span>
+            <span class="ch-mini-dur">Half Day</span>
+            <button class="ch-mini-add" onclick="addExp('Golden Monkey Trek','From $100')">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d1">
+        <div class="ch-mini-img"><img src="images/AV7I3094.jpg" alt="Kayaking" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Water</span>
+          <div class="ch-mini-name">Kayaking</div>
+          <p class="ch-mini-desc">Paddle through highland waterways. A rare perspective on a landscape more often seen from above.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $40</span>
+            <span class="ch-mini-dur">2–3 Hours</span>
+            <button class="ch-mini-add" onclick="addExp('Kayaking','From $40')">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d2">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">~</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Water Sport</span>
+          <div class="ch-mini-name">Fishing</div>
+          <p class="ch-mini-desc">Early morning, quiet water, and the particular patience that only highland fishing demands. Rods and guides provided.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $50</span>
+            <span class="ch-mini-dur">Half Day · Dawn</span>
+            <button class="ch-mini-add" onclick="addExp('Fishing','From $50')">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">◈</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Two Wheels</span>
+          <div class="ch-mini-name">Bike Rental</div>
+          <p class="ch-mini-desc">Classic bicycle rental for self-guided exploration of the village tracks and countryside roads surrounding Musanze.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $35</span>
+            <span class="ch-mini-dur">Half or Full Day</span>
+            <button class="ch-mini-add" onclick="addExp('Bike Rental','From $35')">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d1">
+        <div class="ch-mini-img"><img src="images/AV7I3580.jpg" alt="Photography" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Visual</span>
+          <div class="ch-mini-name">Photography Walks</div>
+          <p class="ch-mini-desc">Dawn light, volcanic backdrops, and expert composition guidance through Grotta's most photogenic settings.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $40</span>
+            <span class="ch-mini-dur">2 Hours · Dawn</span>
+            <button class="ch-mini-add" onclick="addExp('Photography Walk','From $40')">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d2">
+        <div class="ch-mini-img"><img src="images/AV7I3645.jpg" alt="Sunset" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Golden Hour</span>
+          <div class="ch-mini-name">Sunset Trails</div>
+          <p class="ch-mini-desc">Guided to elevated vantage points. The volcanoes at dusk — turning shades no photograph fully captures.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $35</span>
+            <span class="ch-mini-dur">2 Hours · Evening</span>
+            <button class="ch-mini-add" onclick="addExp('Sunset Trail','From $35')">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="ch-mini-grid">
-    <div class="ch-mini-card rv">
-      <div class="ch-mini-img"><img src="images/AV7I3449.jpg" alt="Golden Monkey" loading="lazy"></div>
-      <div class="ch-mini-body">
-        <span class="lbl">Wildlife</span>
-        <div class="ch-mini-name">Golden Monkey Trek</div>
-        <p class="ch-mini-desc">A lighter alternative to gorilla trekking — equally rare, equally unforgettable. Permits arranged by Grotta.</p>
-        <div class="ch-mini-footer">
-          <span class="ch-mini-price">From $100 + permit</span>
-          <span class="ch-mini-dur">Half Day</span>
+  <!-- ── CULTURE CATEGORY ── -->
+  <div class="ch-cat-section" style="background:var(--bg)">
+    <div class="ch-cat-header rv">
+      <div class="ch-cat-header-left">
+        <span class="lbl">Beyond Grotta</span>
+        <h3 class="ch-cat-title">Culture & People</h3>
+        <span class="ch-cat-sub">Rwanda as it has always lived.</span>
+      </div>
+      <span class="ch-cat-count">05</span>
+    </div>
+    <div class="ch-mini-grid">
+      <div class="ch-mini-card rv">
+        <div class="ch-mini-img"><img src="images/DSF9609.jpeg" alt="Community" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Cultural</span>
+          <div class="ch-mini-name">Community Visits</div>
+          <p class="ch-mini-desc">Meet the people whose traditions form the living culture of Musanze. Arranged with care and cultural sensitivity.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $65</span>
+            <span class="ch-mini-dur">Half Day</span>
+            <button class="ch-mini-add" onclick="addExp('Community Visit','From $65')">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d1">
+        <div class="ch-mini-img"><img src="images/_DSF9634.jpeg" alt="Performances" loading="lazy"></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Heritage</span>
+          <div class="ch-mini-name">Cultural Performances</div>
+          <p class="ch-mini-desc">Traditional Rwandan music, dance, and storytelling — intimate private evening experiences at Grotta.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $80</span>
+            <span class="ch-mini-dur">2 Hours · Evening</span>
+            <button class="ch-mini-add" onclick="addExp('Cultural Performances','From $80')">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d2">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">◇</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Local Life</span>
+          <div class="ch-mini-name">Sawa Experience</div>
+          <p class="ch-mini-desc">An immersive journey into the local Sawa community — their craft, their rhythm, their welcoming hospitality.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $20</span>
+            <span class="ch-mini-dur">2–3 Hours</span>
+            <button class="ch-mini-add" onclick="addExp('Sawa Experience','From $20')">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">◈</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Local Life</span>
+          <div class="ch-mini-name">Sooko Experience</div>
+          <p class="ch-mini-desc">Visit the local Sooko market — a sensory world of colour, commerce, and community in the heart of Musanze.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $10</span>
+            <span class="ch-mini-dur">2 Hours</span>
+            <button class="ch-mini-add" onclick="addExp('Sooko Experience','From $10')">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d1">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">◉</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Local Life</span>
+          <div class="ch-mini-name">Ikirenge Experience</div>
+          <p class="ch-mini-desc">Explore the Ikirenge neighbourhood — artisan workshops, local life, and stories told in the language of everyday Rwanda.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $20</span>
+            <span class="ch-mini-dur">2–3 Hours</span>
+            <button class="ch-mini-add" onclick="addExp('Ikirenge Experience','From $20')">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="ch-mini-card rv d2">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">∞</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Scenic</span>
+          <div class="ch-mini-name">Virunga Experience</div>
+          <p class="ch-mini-desc">A curated journey into the Virunga landscape — scenic routes, viewpoints, and the grandeur of one of Africa's great volcanic ranges.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $80</span>
+            <span class="ch-mini-dur">Half Day</span>
+            <button class="ch-mini-add" onclick="addExp('Virunga Experience','From $80')">Add</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="ch-mini-card rv d1">
-      <div class="ch-mini-img"><img src="images/DSF9609.jpeg" alt="Community" loading="lazy"></div>
-      <div class="ch-mini-body">
-        <span class="lbl">Cultural</span>
-        <div class="ch-mini-name">Community Visits</div>
-        <p class="ch-mini-desc">Meet the people whose traditions form the living culture of Musanze. Arranged with care and cultural sensitivity.</p>
-        <div class="ch-mini-footer">
-          <span class="ch-mini-price">From $65</span>
-          <span class="ch-mini-dur">Half Day</span>
+  </div>
+
+  <!-- ── TASTE OF RWANDA CATEGORY ── -->
+  <div class="ch-cat-section" style="background:var(--bg);padding-bottom:6rem">
+    <div class="ch-cat-header rv">
+      <div class="ch-cat-header-left">
+        <span class="lbl">Beyond Grotta</span>
+        <h3 class="ch-cat-title">Taste of Rwanda</h3>
+        <span class="ch-cat-sub">Flavours rooted in the highlands.</span>
+      </div>
+      <span class="ch-cat-count">03</span>
+    </div>
+    <div class="ch-mini-grid">
+      <div class="ch-mini-card rv">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">◎</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Brewing</span>
+          <div class="ch-mini-name">Local Beer Brewing</div>
+          <p class="ch-mini-desc">Join a local brewer for a hands-on session in traditional Rwandan beer making. Ancient grain, open fire, shared knowledge.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $50</span>
+            <span class="ch-mini-dur">3 Hours</span>
+            <button class="ch-mini-add" onclick="addExp('Local Beer Brewing','From $50')">Add</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="ch-mini-card rv d2">
-      <div class="ch-mini-img"><img src="images/_DSF9634.jpeg" alt="Performances" loading="lazy"></div>
-      <div class="ch-mini-body">
-        <span class="lbl">Heritage</span>
-        <div class="ch-mini-name">Cultural Performances</div>
-        <p class="ch-mini-desc">Traditional Rwandan music, dance, and storytelling — intimate private evening experiences at Grotta.</p>
-        <div class="ch-mini-footer">
-          <span class="ch-mini-price">From $80</span>
-          <span class="ch-mini-dur">2 Hours · Evening</span>
+      <div class="ch-mini-card rv d1">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">✦</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Artisan</span>
+          <div class="ch-mini-name">Chocolate Experience</div>
+          <p class="ch-mini-desc">From cacao bean to finished bar — a guided journey through Rwanda's emerging chocolate culture with tasting throughout.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $35</span>
+            <span class="ch-mini-dur">2 Hours</span>
+            <button class="ch-mini-add" onclick="addExp('Chocolate Experience','From $35')">Add</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="ch-mini-card rv">
-      <div class="ch-mini-img"><img src="images/AV7I3094.jpg" alt="Kayaking" loading="lazy"></div>
-      <div class="ch-mini-body">
-        <span class="lbl">Water</span>
-        <div class="ch-mini-name">Kayaking</div>
-        <p class="ch-mini-desc">Paddle through highland waterways. A rare perspective on a landscape more often seen from above.</p>
-        <div class="ch-mini-footer">
-          <span class="ch-mini-price">From $40</span>
-          <span class="ch-mini-dur">2–3 Hours</span>
-        </div>
-      </div>
-    </div>
-    <div class="ch-mini-card rv d1">
-      <div class="ch-mini-img"><img src="images/AV7I3580.jpg" alt="Photography" loading="lazy"></div>
-      <div class="ch-mini-body">
-        <span class="lbl">Visual</span>
-        <div class="ch-mini-name">Photography Walks</div>
-        <p class="ch-mini-desc">Dawn light, volcanic backdrops, and expert composition guidance through Grotta's most photogenic settings.</p>
-        <div class="ch-mini-footer">
-          <span class="ch-mini-price">From $40</span>
-          <span class="ch-mini-dur">2 Hours · Dawn</span>
-        </div>
-      </div>
-    </div>
-    <div class="ch-mini-card rv d2">
-      <div class="ch-mini-img"><img src="images/AV7I3645.jpg" alt="Sunset" loading="lazy"></div>
-      <div class="ch-mini-body">
-        <span class="lbl">Golden Hour</span>
-        <div class="ch-mini-name">Sunset Trails</div>
-        <p class="ch-mini-desc">Guided to elevated vantage points. The volcanoes at dusk — turning shades no photograph fully captures.</p>
-        <div class="ch-mini-footer">
-          <span class="ch-mini-price">From $35</span>
-          <span class="ch-mini-dur">2 Hours · Evening</span>
+      <div class="ch-mini-card rv d2">
+        <div class="ch-mini-noimg"><span class="ch-mini-noimg-sym">◊</span></div>
+        <div class="ch-mini-body">
+          <span class="lbl">Highland Coffee</span>
+          <div class="ch-mini-name">Bigogwe Coffee Tasting</div>
+          <p class="ch-mini-desc">Rwanda grows some of the world's finest coffee. This tasting experience traces the cup from farm to filter in the Bigogwe highlands.</p>
+          <div class="ch-mini-footer">
+            <span class="ch-mini-price">From $20</span>
+            <span class="ch-mini-dur">2 Hours</span>
+            <button class="ch-mini-add" onclick="addExp('Bigogwe Coffee Tasting','From $20')">Add</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ════════════════════════════════════════════════════════
+     GROUP EXPERIENCES — Musanze Nature Walk
+════════════════════════════════════════════════════════ -->
+<div class="ch-group">
+  <div class="ch-group-inner">
+    <div class="ch-group-header rv">
+      <span class="lbl">Shared Discoveries</span>
+      <h2 class="ch-group-h2">Group Experiences</h2>
+    </div>
+    <div class="ch-group-panel rv">
+      <div class="ch-group-img">
+        <img src="images/AV7I3094.jpg" alt="Musanze Nature Walk" loading="lazy">
+        <div class="ch-group-img-fade"></div>
+      </div>
+      <div class="ch-group-body">
+        <span class="ch-group-ghost">✦</span>
+        <span class="lbl">Group · Nature</span>
+        <h3 class="ch-group-h3">Musanze<br>Nature Walk</h3>
+        <span class="ch-group-tagline">The landscape as a shared discovery.</span>
+        <p class="ch-group-desc">A guided walk through the natural environments surrounding Musanze — volcanic soil underfoot, the volcanoes visible above, and a guide who has walked these paths all his life. Ideal for groups who want to explore together.</p>
+        <div class="ch-group-highlights">
+          <span class="ch-group-hl">Expert local guide throughout</span>
+          <span class="ch-group-hl">Suitable for all fitness levels</span>
+          <span class="ch-group-hl">Private group bookings available</span>
+          <span class="ch-group-hl">Duration 2–3 hours, morning departure</span>
+        </div>
+        <div class="ch-group-footer">
+          <div class="ch-price-block">
+            <span class="ch-price-from">Starting from</span>
+            <span class="ch-price">$25</span>
+            <span class="ch-price-note">Per person · Group rates available</span>
+          </div>
+          <div class="ch-spread-ctas">
+            <button class="ch-btn-req" onclick="goTo('ch-builder')">Request Plan</button>
+            <button class="ch-btn-add" onclick="addExp('Musanze Nature Walk','From $25')"><span>Add to Inquiry</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ════════════════════════════════════════════════════════
      CHAPTER 05 — JOURNEY BUILDER
@@ -1028,77 +1458,154 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
   <div class="ch-builder-inner">
     <div class="ch-builder-header rv">
       <span class="lbl">Curate Your Journey</span>
-      <h2 class="ch-builder-h2">Build Your Stay</h2>
-      <p class="ch-builder-sub">Select experiences, choose your room, and let our concierge shape it all into one seamless journey through Northern Rwanda.</p>
+      <h2 class="ch-builder-h2">Plan Your Experiences</h2>
+      <p class="ch-builder-sub">Select the experiences you're interested in and send us an inquiry — our concierge will respond with full details and availability.</p>
     </div>
 
     <div class="ch-builder-grid rv">
       <!-- Experience selector -->
       <div class="ch-selector">
         <span class="ch-selector-label">Select Experiences</span>
+
+        <span class="ch-exp-cat-lbl">At Grotta — Wellness</span>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Massage','$30')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Massage</div><div class="ch-exp-item-meta">At Grotta · 60 Min</div></div>
+          <span class="ch-exp-item-price">$30</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Aqua Aerobics','$4')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Aqua Aerobics</div><div class="ch-exp-item-meta">At Grotta · 45 Min</div></div>
+          <span class="ch-exp-item-price">$4</span>
+        </div>
         <div class="ch-exp-item" onclick="toggleExp(this,'Volcanic Sauna','$25')">
           <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
-          <div class="ch-exp-item-info">
-            <div class="ch-exp-item-name">Volcanic Sauna</div>
-            <div class="ch-exp-item-meta">At Grotta · 1 Hour</div>
-          </div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Volcanic Sauna</div><div class="ch-exp-item-meta">At Grotta · 1 Hour</div></div>
           <span class="ch-exp-item-price">$25</span>
         </div>
+
+        <span class="ch-exp-cat-lbl">At Grotta — Culinary</span>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Garden BBQ','$40')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Garden BBQ</div><div class="ch-exp-item-meta">At Grotta · Evening</div></div>
+          <span class="ch-exp-item-price">$40</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Live Cooking','$25')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Live Cooking</div><div class="ch-exp-item-meta">At Grotta · 2 Hours</div></div>
+          <span class="ch-exp-item-price">$25</span>
+        </div>
+
+        <span class="ch-exp-cat-lbl">At Grotta — Lifestyle</span>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Sip & Paint','$15')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Sip & Paint</div><div class="ch-exp-item-meta">At Grotta · Afternoon</div></div>
+          <span class="ch-exp-item-price">$15</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Movie Room','$30')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Movie Room</div><div class="ch-exp-item-meta">At Grotta · Evening</div></div>
+          <span class="ch-exp-item-price">$30</span>
+        </div>
+
+        <span class="ch-exp-cat-lbl">At Grotta — Signature</span>
         <div class="ch-exp-item" onclick="toggleExp(this,'Cave Exploration','$35')">
           <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
-          <div class="ch-exp-item-info">
-            <div class="ch-exp-item-name">Cave Exploration</div>
-            <div class="ch-exp-item-meta">Beyond · 1–2 Hours</div>
-          </div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Cave Exploration</div><div class="ch-exp-item-meta">At Grotta · 1–2 Hours</div></div>
           <span class="ch-exp-item-price">$35</span>
+        </div>
+
+        <span class="ch-exp-cat-lbl">Beyond Grotta — Adventure</span>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Gorilla Trekking','$600+')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Gorilla Trekking</div><div class="ch-exp-item-meta">Beyond · Full Day</div></div>
+          <span class="ch-exp-item-price">$600+</span>
         </div>
         <div class="ch-exp-item" onclick="toggleExp(this,'E-Bike Tour','$45')">
           <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
-          <div class="ch-exp-item-info">
-            <div class="ch-exp-item-name">E-Bike Tour</div>
-            <div class="ch-exp-item-meta">Beyond · Half Day</div>
-          </div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">E-Bike Tour</div><div class="ch-exp-item-meta">Beyond · Half Day</div></div>
           <span class="ch-exp-item-price">$45</span>
         </div>
         <div class="ch-exp-item" onclick="toggleExp(this,'Volcano Hiking','$55')">
           <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
-          <div class="ch-exp-item-info">
-            <div class="ch-exp-item-name">Volcano Hiking</div>
-            <div class="ch-exp-item-meta">Beyond · 2–7 Hours</div>
-          </div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Volcano Hiking</div><div class="ch-exp-item-meta">Beyond · 2–7 Hours</div></div>
           <span class="ch-exp-item-price">$55</span>
         </div>
-        <div class="ch-exp-item" onclick="toggleExp(this,'Community Visit','$65')">
+        <div class="ch-exp-item" onclick="toggleExp(this,'Kayaking','$40')">
           <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
-          <div class="ch-exp-item-info">
-            <div class="ch-exp-item-name">Community Visit</div>
-            <div class="ch-exp-item-meta">Cultural · Half Day</div>
-          </div>
-          <span class="ch-exp-item-price">$65</span>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Kayaking</div><div class="ch-exp-item-meta">Beyond · 2–3 Hours</div></div>
+          <span class="ch-exp-item-price">$40</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Fishing','$50')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Fishing</div><div class="ch-exp-item-meta">Beyond · Half Day</div></div>
+          <span class="ch-exp-item-price">$50</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Bike Rental','$35')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Bike Rental</div><div class="ch-exp-item-meta">Beyond · Half or Full Day</div></div>
+          <span class="ch-exp-item-price">$35</span>
         </div>
         <div class="ch-exp-item" onclick="toggleExp(this,'Sunset Trail','$35')">
           <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
-          <div class="ch-exp-item-info">
-            <div class="ch-exp-item-name">Sunset Trail</div>
-            <div class="ch-exp-item-meta">Beyond · 2 Hours</div>
-          </div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Sunset Trail</div><div class="ch-exp-item-meta">Beyond · 2 Hours</div></div>
           <span class="ch-exp-item-price">$35</span>
         </div>
-        <div class="ch-exp-item" onclick="toggleExp(this,'Gorilla Trekking','$600+')">
+
+        <span class="ch-exp-cat-lbl">Beyond Grotta — Culture</span>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Community Visit','$65')">
           <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
-          <div class="ch-exp-item-info">
-            <div class="ch-exp-item-name">Gorilla Trekking</div>
-            <div class="ch-exp-item-meta">Beyond · Full Day</div>
-          </div>
-          <span class="ch-exp-item-price">$600+</span>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Community Visit</div><div class="ch-exp-item-meta">Cultural · Half Day</div></div>
+          <span class="ch-exp-item-price">$65</span>
         </div>
-        <div class="ch-exp-item" onclick="toggleExp(this,'Movie Room','$30')">
+        <div class="ch-exp-item" onclick="toggleExp(this,'Cultural Performances','$80')">
           <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
-          <div class="ch-exp-item-info">
-            <div class="ch-exp-item-name">Movie Room</div>
-            <div class="ch-exp-item-meta">At Grotta · Evening</div>
-          </div>
-          <span class="ch-exp-item-price">$30</span>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Cultural Performances</div><div class="ch-exp-item-meta">Cultural · Evening</div></div>
+          <span class="ch-exp-item-price">$80</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Sawa Experience','$20')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Sawa Experience</div><div class="ch-exp-item-meta">Cultural · 2–3 Hours</div></div>
+          <span class="ch-exp-item-price">$20</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Sooko Experience','$10')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Sooko Experience</div><div class="ch-exp-item-meta">Cultural · 2 Hours</div></div>
+          <span class="ch-exp-item-price">$10</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Ikirenge Experience','$20')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Ikirenge Experience</div><div class="ch-exp-item-meta">Cultural · 2–3 Hours</div></div>
+          <span class="ch-exp-item-price">$20</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Virunga Experience','$80')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Virunga Experience</div><div class="ch-exp-item-meta">Scenic · Half Day</div></div>
+          <span class="ch-exp-item-price">$80</span>
+        </div>
+
+        <span class="ch-exp-cat-lbl">Beyond Grotta — Taste</span>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Local Beer Brewing','$50')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Local Beer Brewing</div><div class="ch-exp-item-meta">Taste · 3 Hours</div></div>
+          <span class="ch-exp-item-price">$50</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Chocolate Experience','$35')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Chocolate Experience</div><div class="ch-exp-item-meta">Taste · 2 Hours</div></div>
+          <span class="ch-exp-item-price">$35</span>
+        </div>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Bigogwe Coffee Tasting','$20')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Bigogwe Coffee Tasting</div><div class="ch-exp-item-meta">Taste · 2 Hours</div></div>
+          <span class="ch-exp-item-price">$20</span>
+        </div>
+
+        <span class="ch-exp-cat-lbl">Group Experiences</span>
+        <div class="ch-exp-item" onclick="toggleExp(this,'Musanze Nature Walk','$25')">
+          <div class="ch-exp-check"><span class="ch-exp-check-mark">✓</span></div>
+          <div class="ch-exp-item-info"><div class="ch-exp-item-name">Musanze Nature Walk</div><div class="ch-exp-item-meta">Group · 2–3 Hours</div></div>
+          <span class="ch-exp-item-price">$25</span>
         </div>
       </div>
 
@@ -1106,7 +1613,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <div class="ch-summary">
         <span class="ch-summary-label">Your Journey Summary</span>
         <div class="ch-summary-empty" id="ch-summary-empty">
-          <span>Select experiences to begin building your stay.</span>
+          <span>Select experiences to begin your inquiry.</span>
         </div>
         <div class="ch-summary-list" id="ch-summary-list" style="display:none"></div>
         <div class="ch-summary-total" id="ch-summary-total" style="display:none">
@@ -1132,19 +1639,6 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
             <input type="text" id="ch-dates" placeholder="Month / Year or specific dates">
           </div>
           <div class="ch-field">
-            <label>Room Preference</label>
-            <select id="ch-room">
-              <option value="">Select room type</option>
-              <option>Standard Room — from $115/night</option>
-              <option>King Room — from $130/night</option>
-              <option>King Volcano View — from $136/night</option>
-              <option>King Pool View — from $136/night</option>
-              <option>Family Room — from $176/night</option>
-              <option>Deluxe Room — from $210/night</option>
-              <option>Executive Room — from $260/night</option>
-            </select>
-          </div>
-          <div class="ch-field">
             <label>Additional Notes</label>
             <textarea id="ch-notes" placeholder="Tell us about the kind of journey you're imagining..."></textarea>
           </div>
@@ -1153,7 +1647,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         <div class="ch-confirm" id="ch-confirm">
           <div class="ch-confirm-mark">✦</div>
           <h3>Inquiry received.</h3>
-          <p>Our concierge will review your request personally and respond within 48 hours with a tailored journey plan.</p>
+          <p>Your email client should now open with your inquiry ready to send to info@grottaresort.rw. Our concierge will respond within 48 hours with full details on your selected experiences.</p>
         </div>
       </div>
     </div>
@@ -1323,8 +1817,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
     <div class="ch-final-ornament"><span class="ch-final-ornament-dot">✦</span></div>
     <span class="ch-final-sub">Whether you seek stillness within the resort or adventure beyond its borders — Grotta is your gateway to experiencing Northern Rwanda in full.</span>
     <div class="ch-final-ctas">
-      <button class="btn-g" onclick="goTo('ch-builder')"><span>Plan My Stay</span></button>
-      <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="btn-o">Book a Room</a>
+      <button class="btn-g" onclick="goTo('ch-builder')"><span>Send an Inquiry</span></button>
     </div>
   </div>
 </div>
@@ -1483,6 +1976,24 @@ function submitBuild(btn){
     setTimeout(() => btn.style.outline = '', 1400);
     return;
   }
+  const dates = document.getElementById('ch-dates').value.trim();
+  const notes = document.getElementById('ch-notes').value.trim();
+  const keys = Object.keys(selectedExps);
+  const expLines = keys.length
+    ? keys.map(k => '- ' + k + ' (' + selectedExps[k] + ')').join('\n')
+    : 'No specific experiences selected';
+
+  const subject = encodeURIComponent('Experience Inquiry - ' + name);
+  const body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Preferred Dates: ' + (dates || 'Not specified') + '\n\n' +
+    'Selected Experiences:\n' + expLines + '\n\n' +
+    'Additional Notes:\n' + (notes || 'None')
+  );
+
+  window.location.href = 'mailto:info@grottaresort.rw?subject=' + subject + '&body=' + body;
+
   document.getElementById('ch-form-wrap').style.display = 'none';
   document.getElementById('ch-confirm').classList.add('show');
 }
