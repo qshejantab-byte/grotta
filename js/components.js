@@ -369,6 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <a href="weddings.html">Weddings</a>
     <a href="membership.html">Membership</a>
     <a href="faq.html">FAQ</a>
+  </div>
   <button class="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -415,6 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <a href="weddings.html">Weddings</a>
       <a href="membership.html">Membership</a>
       <a href="faq.html">FAQ</a>
+    </nav>
   </div>
 
   <!-- Footer detail -->
