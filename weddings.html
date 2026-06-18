@@ -2220,8 +2220,28 @@ function submitWedding(btn) {
     setTimeout(() => btn.style.outline = '', 1400);
     return;
   }
+  const date    = document.getElementById('wg-date').value.trim();
+  const guests  = document.getElementById('wg-guests').value.trim();
+  const vision  = document.getElementById('wg-vision').value.trim();
+  const venueEl = document.querySelector('input[name="wg-venue"]:checked');
+  const pkgEl   = document.querySelector('input[name="wg-pkg"]:checked');
+  const venue   = venueEl ? venueEl.value : 'Not specified';
+  const pkg     = pkgEl ? pkgEl.value : 'Not specified';
+
+  const subject = encodeURIComponent('Wedding Inquiry - ' + name);
+  const body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Preferred Date: ' + (date || 'Not specified') + '\n' +
+    'Estimated Guests: ' + (guests || 'Not specified') + '\n' +
+    'Preferred Venue: ' + venue + '\n' +
+    'Package Interest: ' + pkg + '\n\n' +
+    'Vision:\n' + (vision || 'None')
+  );
+
+  window.location.href = 'mailto:info@grottaresort.rw?subject=' + subject + '&body=' + body;
+
   const form = btn.closest('.wg-concierge-form');
-  // Hide all form children except confirm
   Array.from(form.children).forEach(el => {
     if (!el.classList.contains('wg-cf-confirm')) el.style.display = 'none';
   });
