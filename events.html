@@ -101,7 +101,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
 
 /* ══ HERO ══ */
 .er-hero{position:relative;height:100vh;min-height:820px;display:grid;grid-template-rows:1fr auto;overflow:hidden}
-.er-hero-bg{position:absolute;inset:-8%;background:url('images/AV7I3950.jpg') center 40%/cover;filter:brightness(.36) saturate(.65);animation:er-ken 38s cubic-bezier(.25,.46,.45,.94) forwards;will-change:transform}
+.er-hero-bg{position:absolute;inset:-8%;background:url('images/AV7I5727.jpg') center 40%/cover;filter:brightness(.36) saturate(.65);animation:er-ken 38s cubic-bezier(.25,.46,.45,.94) forwards;will-change:transform}
 @keyframes er-ken{from{transform:scale(1.1)}to{transform:scale(1)}}
 .er-hero-overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(6,5,4,.85) 0%,rgba(6,5,4,.52) 38%,rgba(6,5,4,.1) 62%,rgba(6,5,4,.5) 100%),linear-gradient(to bottom,rgba(6,5,4,.05) 0%,rgba(6,5,4,0) 25%,rgba(6,5,4,.38) 72%,rgba(6,5,4,.98) 100%)}
 .er-hero-glow{position:absolute;left:-5%;bottom:18%;width:55vw;height:50vh;background:radial-gradient(ellipse,rgba(201,120,30,.08) 0%,transparent 65%);pointer-events:none;animation:er-glow 9s ease-in-out infinite alternate}
@@ -770,6 +770,117 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
 .gr-review-author-name{font-family:"Jost",sans-serif;font-size:.78rem;font-weight:400;color:rgba(232,224,208,.75);letter-spacing:.04em}
 .gr-review-author-context{font-family:"Jost",sans-serif;font-size:.6rem;font-weight:300;color:rgba(201,165,82,.45);letter-spacing:.12em;text-transform:uppercase}
 @media(max-width:700px){.gr-review-grid{grid-template-columns:1fr}.gr-review-card{padding:2.2rem 1.8rem 2rem}.gr-review-text{font-size:1rem}}
+
+/* ══ EVENTS ENQUIRY MODAL ══ */
+.er-enq-bd{
+  position:fixed;inset:0;z-index:1200;
+  background:rgba(4,3,2,.93);backdrop-filter:blur(14px);
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+}
+.er-enq-bd.open{opacity:1;pointer-events:all}
+.er-enq-modal{
+  background:#0e0c09;border:1px solid rgba(201,165,82,.15);
+  max-width:540px;width:100%;
+  max-height:92vh;overflow-y:auto;
+  transform:translateY(28px) scale(.97);
+  transition:transform .45s cubic-bezier(.25,.46,.45,.94);
+  scrollbar-width:thin;scrollbar-color:rgba(201,165,82,.2) transparent;
+  box-shadow:0 40px 100px rgba(0,0,0,.75);
+}
+.er-enq-bd.open .er-enq-modal{transform:translateY(0) scale(1)}
+.er-enq-modal::-webkit-scrollbar{width:3px}
+.er-enq-modal::-webkit-scrollbar-thumb{background:rgba(201,165,82,.2)}
+.er-enq-top{padding:2.8rem 3rem 0;position:relative}
+.er-enq-close{
+  position:absolute;top:1.4rem;right:1.4rem;
+  background:none;border:1px solid rgba(201,165,82,.15);cursor:pointer;
+  font-family:'Jost',sans-serif;font-size:.5rem;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(200,192,174,.38);padding:.38rem .85rem;
+  transition:color .3s,border-color .3s;
+}
+.er-enq-close:hover{color:rgba(200,192,174,.8);border-color:rgba(201,165,82,.35)}
+.er-enq-lbl{
+  font-family:'Jost',sans-serif;font-size:.5rem;font-weight:500;
+  letter-spacing:.36em;text-transform:uppercase;
+  color:rgba(201,165,82,.48);display:block;margin-bottom:.6rem;
+}
+.er-enq-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,3.5vw,2.4rem);
+  font-weight:300;color:#e8e0d0;line-height:1.08;margin-bottom:.4rem;
+}
+.er-enq-event-name{
+  font-family:'Cormorant Garamond',serif;font-size:1.05rem;
+  font-style:italic;color:rgba(201,165,82,.65);display:block;margin-bottom:.2rem;
+}
+.er-enq-event-date{
+  font-family:'Jost',sans-serif;font-size:.48rem;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(201,165,82,.38);display:block;
+}
+.er-enq-div{
+  height:1px;margin:2rem 3rem;
+  background:linear-gradient(to right,rgba(201,165,82,.2),transparent);
+}
+.er-enq-form{padding:0 3rem 3rem}
+.er-enq-field{margin-bottom:1.8rem;position:relative}
+.er-enq-field::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:1px;background:#c9a552;
+  transition:width .4s cubic-bezier(.25,.46,.45,.94);
+}
+.er-enq-field:focus-within::after{width:100%}
+.er-enq-field-lbl{
+  font-family:'Jost',sans-serif;font-size:.5rem;font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(201,165,82,.48);display:block;margin-bottom:.65rem;
+}
+.er-enq-input{
+  width:100%;background:transparent;border:none;
+  border-bottom:1px solid rgba(200,192,174,.14);
+  color:#e8e0d0;font-family:'Jost',sans-serif;
+  font-size:.88rem;font-weight:300;
+  padding:.65rem 0;outline:none;caret-color:#c9a552;
+  transition:border-color .35s;
+}
+.er-enq-input::placeholder{color:rgba(200,192,174,.22)}
+.er-enq-input:focus{border-bottom-color:#c9a552}
+.er-enq-textarea{min-height:68px;resize:vertical}
+.er-enq-submit{
+  width:100%;padding:1.1rem;margin-top:.5rem;
+  font-family:'Jost',sans-serif;font-size:.62rem;font-weight:500;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:#060504;background:#c9a552;border:none;cursor:pointer;
+  position:relative;overflow:hidden;transition:transform .25s,box-shadow .3s;
+}
+.er-enq-submit::before{
+  content:'';position:absolute;inset:0;background:#e2c97e;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s cubic-bezier(.25,.46,.45,.94);z-index:0;
+}
+.er-enq-submit span{position:relative;z-index:1}
+.er-enq-submit:hover::before{transform:scaleX(1)}
+.er-enq-submit:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(201,165,82,.3)}
+.er-enq-confirm{display:none;text-align:center;padding:3.5rem 3rem}
+.er-enq-confirm.show{display:block}
+.er-enq-confirm-icon{
+  width:58px;height:58px;border-radius:50%;
+  border:1px solid rgba(201,165,82,.3);background:rgba(201,165,82,.06);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:#c9a552;margin:0 auto 1.8rem;
+}
+.er-enq-confirm h3{
+  font-family:'Cormorant Garamond',serif;font-size:1.8rem;
+  font-weight:300;color:#e8e0d0;margin-bottom:.7rem;
+}
+.er-enq-confirm p{font-size:.82rem;color:rgba(200,192,174,.48);line-height:2}
+@media(max-width:600px){
+  .er-enq-top,.er-enq-form{padding-left:1.8rem;padding-right:1.8rem}
+  .er-enq-div{margin-left:1.8rem;margin-right:1.8rem}
+}
+
 </style>
 </head>
 <body>
@@ -777,7 +888,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
 <!-- ══ NAVBAR ══ -->
 <div id="nav-holder"></div>
 
-<button class="er-float" id="er-float" onclick="document.getElementById('er-reserve').scrollIntoView({behavior:'smooth'})">Reserve a Place →</button>
+<button class="er-float" id="er-float" onclick="openEventModal('general')">Reserve a Place →</button>
 
 <!-- ══ HERO ══ -->
 <div class="er-hero">
@@ -793,7 +904,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
       <span class="er-hero-sub">Moments worth travelling for. Gatherings shaped by highland fire, volcanic silence, and the particular beauty of being somewhere rare.</span>
       <div class="er-hero-ctas">
         <a href="#er-season" class="er-btn-gold"><span>This Season</span></a>
-        <a href="#er-reserve" class="er-btn-outline">Reserve Your Place</a>
+        <button onclick="openEventModal('general')" class="er-btn-outline">Reserve Your Place</button>
       </div>
     </div>
   </div>
@@ -878,7 +989,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
         <p class="er-event-desc">Three evenings of live performance in the highland gardens. Artists selected for atmosphere, not spectacle. Cave cocktail hour, firepit finale, open-air dining.</p>
         <div class="er-event-meta"><span class="er-event-meta-item">July 26–28, 2025</span><span class="er-event-meta-item">3 Nights</span><span class="er-event-meta-item">Garden & Cave</span></div>
         <div class="er-event-avail"><div class="er-event-avail-dot"></div> Limited places remaining</div>
-        <a href="#er-reserve" class="er-btn-gold"><span>Reserve Your Place</span></a>
+        <button onclick="openEventModal('music')" class="er-btn-gold"><span>Reserve Your Place</span></button>
       </div>
     </div>
     <div class="er-event alt reveal">
@@ -891,7 +1002,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
         <p class="er-event-desc">Four days of intentional slowing. Volcano sunrise treks. Sauna mornings. Shared dining under open sky. No agenda beyond presence.</p>
         <div class="er-event-meta"><span class="er-event-meta-item">Aug 3–6, 2025</span><span class="er-event-meta-item">4 Days / 3 Nights</span><span class="er-event-meta-item">Max 18 Guests</span></div>
         <div class="er-event-avail"><div class="er-event-avail-dot"></div> Only 6 places remaining</div>
-        <a href="#er-reserve" class="er-btn-gold"><span>Reserve Your Place</span></a>
+        <button onclick="openEventModal('retreat')" class="er-btn-gold"><span>Reserve Your Place</span></button>
       </div>
     </div>
     <div class="er-event reveal">
@@ -904,11 +1015,11 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
         <p class="er-event-desc">A single evening gathered around the highland fire. A curated menu, open wine, and the kind of conversation that emerges when strangers share something rare.</p>
         <div class="er-event-meta"><span class="er-event-meta-item">August 18, 2025</span><span class="er-event-meta-item">One Evening</span><span class="er-event-meta-item">Firepit Garden</span></div>
         <div class="er-event-avail"><div class="er-event-avail-dot"></div> 24 seats — booking essential</div>
-        <a href="#er-reserve" class="er-btn-gold"><span>Reserve Your Place</span></a>
+        <button onclick="openEventModal('fireside')" class="er-btn-gold"><span>Reserve Your Place</span></button>
       </div>
     </div>
     <div class="er-event alt reveal">
-      <div class="er-event-img"><img src="images/DSC02802 (1).JPG" alt="Volcano Sunrise" loading="lazy"><div class="er-event-img-fade"></div></div>
+      <div class="er-event-img"><img src="images/DSC02802-1.JPG" alt="Volcano Sunrise" loading="lazy"><div class="er-event-img-fade"></div></div>
       <div class="er-event-body">
         <div class="er-event-date">Sept<br>6</div>
         <span class="er-event-label">Sunrise · Nature · Stillness</span>
@@ -917,7 +1028,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
         <p class="er-event-desc">A guided pre-dawn walk to the highest viewpoint on the property. The volcanoes at first light. Silence shared with a small group. Breakfast waiting on return.</p>
         <div class="er-event-meta"><span class="er-event-meta-item">September 6, 2025</span><span class="er-event-meta-item">Dawn to Breakfast</span><span class="er-event-meta-item">Max 12 Guests</span></div>
         <div class="er-event-avail"><div class="er-event-avail-dot"></div> Very limited — 12 max</div>
-        <a href="#er-reserve" class="er-btn-gold"><span>Reserve Your Place</span></a>
+        <button onclick="openEventModal('sunrise')" class="er-btn-gold"><span>Reserve Your Place</span></button>
       </div>
     </div>
   </div>
@@ -936,7 +1047,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
       <p class="er-featured-desc">Four days held entirely within the volcanic highland environment of Grotta. No programme to follow. Just a setting that asks something of you — to slow down, to be present.</p>
       <p class="er-featured-desc">Mornings that begin before sunrise. Communal meals prepared with highland ingredients. Wellness rituals designed for the altitude. Evenings around fire.</p>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.8rem">
-        <a href="#er-reserve" class="er-btn-gold"><span>Reserve a Place</span></a>
+        <button onclick="openEventModal('retreat')" class="er-btn-gold"><span>Reserve a Place</span></button>
         <a href="#er-season" class="er-btn-outline">All Experiences</a>
       </div>
     </div>
@@ -963,7 +1074,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
       <p class="er-body">Every gathering here exists within a landscape that does something to people. The altitude. The fire. The silence of the highland morning.</p>
     </div>
     <div class="er-atm-grid">
-      <div class="er-atm-item"><img src="images/DSC02802 (1).JPG" alt="Highlands" loading="lazy"><div class="er-atm-caption"><span class="er-label">The Landscape</span><h4>Volcanic Highlands at Dawn</h4></div></div>
+      <div class="er-atm-item"><img src="images/DSC02802-1.JPG" alt="Highlands" loading="lazy"><div class="er-atm-caption"><span class="er-label">The Landscape</span><h4>Volcanic Highlands at Dawn</h4></div></div>
       <div class="er-atm-item"><img src="images/DSC02775.JPG" alt="Music" loading="lazy"><div class="er-atm-caption"><span class="er-label">Live Music</span><h4>Garden Evenings</h4></div></div>
       <div class="er-atm-item"><img src="images/AV7I4026.jpg" alt="Wellness" loading="lazy"><div class="er-atm-caption"><span class="er-label">Wellness</span><h4>Morning Ritual</h4></div></div>
       <div class="er-atm-item"><img src="images/AV7I3935.jpg" alt="Fire" loading="lazy"><div class="er-atm-caption"><span class="er-label">Community</span><h4>Fireside Evenings</h4></div></div>
@@ -1058,51 +1169,13 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
     <h2 class="er-final-h2">Reserve<br>Your Place</h2>
     <span class="er-final-sub">Spaces at every Grotta gathering are intentionally limited. When they are gone, they are gone. Tell us which experience calls to you and we will hold your place.</span>
     <div class="er-final-ctas">
-      <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="er-btn-gold"><span>Reserve Now</span></a>
+      <button onclick="openEventModal('general')" class="er-btn-gold"><span>Reserve Now</span></button>
       <a href="retreats.html" class="er-btn-outline">Explore Retreats</a>
     </div>
   </div>
 </div>
 
-<!-- ══ FOOTER ══ -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="grotta-footer-mark">GROTTA</span>
-        <p>A luxury cave resort in the volcanic highlands of Musanze, Rwanda. Where the earth becomes the experience.</p>
-      </div>
-      <div class="footer-col">
-        <h5>Explore</h5>
-        <a href="stay.html">Stay</a>
-        <a href="experiences.html">Experiences</a>
-        <a href="caves.html">Cave Journeys</a>
-        <a href="dining.html">Dining</a>
-      </div>
-      <div class="footer-col">
-        <h5>Gather</h5>
-        <a href="events.html">Events & Retreats</a>
-        <a href="packages.html">Packages</a>
-        <a href="weddings.html">Weddings</a>
-        <a href="membership.html">Membership</a>
-      </div>
-      <div class="footer-col">
-        <h5>Contact</h5>
-        <a href="mailto:hello@grottalodge.com">hello@grottalodge.com</a>
-        <a href="tel:+250788000000">+250 788 000 000</a>
-        <a href="#">Musanze, Rwanda</a>
-        <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank">Reserve Now</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 Grotta Lodge Ltd. All rights reserved.</p>
-      <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-      </div>
-    </div>
-  </div>
-</footer>
+
 
 <script>
 // ══ ALL DATA — defined first ══
@@ -1240,9 +1313,112 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 const tlObs = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');tlObs.unobserve(e.target);}}),{threshold:.1});
 document.querySelectorAll('.er-tl-item').forEach(el=>tlObs.observe(el));
 </script>
+
+<!-- ══ EVENTS ENQUIRY MODAL ══ -->
+<div class="er-enq-bd" id="er-enq-bd" onclick="if(event.target===this)closeEventModal()">
+  <div class="er-enq-modal" id="er-enq-modal">
+    <div class="er-enq-top">
+      <button class="er-enq-close" onclick="closeEventModal()">Close ✕</button>
+      <span class="er-enq-lbl">Reserve Your Place</span>
+      <h2 class="er-enq-title">Complete<br>Your Reservation</h2>
+      <span class="er-enq-event-name" id="er-enq-event-name"></span>
+      <span class="er-enq-event-date" id="er-enq-event-date"></span>
+    </div>
+    <div class="er-enq-div"></div>
+    <div class="er-enq-form" id="er-enq-form-content">
+      <div class="er-enq-field">
+        <label class="er-enq-field-lbl">Full Name</label>
+        <input class="er-enq-input" type="text" id="er-enq-name" placeholder="Your name">
+      </div>
+      <div class="er-enq-field">
+        <label class="er-enq-field-lbl">Email</label>
+        <input class="er-enq-input" type="email" id="er-enq-email" placeholder="your@email.com">
+      </div>
+      <div class="er-enq-field">
+        <label class="er-enq-field-lbl">Number of Guests</label>
+        <input class="er-enq-input" type="text" id="er-enq-guests" placeholder="e.g. 2">
+      </div>
+      <div class="er-enq-field">
+        <label class="er-enq-field-lbl">Additional Notes (Optional)</label>
+        <textarea class="er-enq-input er-enq-textarea" id="er-enq-notes" placeholder="Dietary requirements, special requests..."></textarea>
+      </div>
+      <button class="er-enq-submit" onclick="submitEventEnquiry(this)"><span>Reserve My Place →</span></button>
+    </div>
+    <div class="er-enq-confirm" id="er-enq-confirm">
+      <div class="er-enq-confirm-icon">✦</div>
+      <h3>Place Reserved</h3>
+      <p>Your enquiry has been sent to our team. We will confirm your place within 48 hours.</p>
+    </div>
+  </div>
+</div>
+
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
+<script>
+// ── Events Modal ─────────────────────────────────────────────
+const ER_EVENTS = {
+  music:    {name:'Summer Live Music Weekend',     date:'July 26–28, 2025'},
+  retreat:  {name:'August Highlands Retreat',      date:'August 3–6, 2025'},
+  fireside: {name:'Fireside Dining Evening',       date:'August 18, 2025'},
+  sunrise:  {name:'Volcano Sunrise Gathering',     date:'September 6, 2025'},
+  general:  {name:'General Enquiry',               date:''},
+};
+
+function openEventModal(key) {
+  const ev = ER_EVENTS[key] || ER_EVENTS.general;
+  document.getElementById('er-enq-event-name').textContent = ev.name;
+  document.getElementById('er-enq-event-date').textContent = ev.date;
+  document.getElementById('er-enq-form-content').style.display = 'block';
+  document.getElementById('er-enq-confirm').classList.remove('show');
+  document.getElementById('er-enq-name').value = '';
+  document.getElementById('er-enq-email').value = '';
+  document.getElementById('er-enq-guests').value = '';
+  document.getElementById('er-enq-notes').value = '';
+  document.getElementById('er-enq-modal').scrollTop = 0;
+  document.getElementById('er-enq-bd').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEventModal() {
+  document.getElementById('er-enq-bd').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeEventModal();
+});
+
+function submitEventEnquiry(btn) {
+  const name   = document.getElementById('er-enq-name').value.trim();
+  const email  = document.getElementById('er-enq-email').value.trim();
+  if (!name || !email) {
+    btn.style.outline = '1px solid rgba(201,80,60,.5)';
+    setTimeout(() => btn.style.outline = '', 1400);
+    return;
+  }
+  const guests = document.getElementById('er-enq-guests').value.trim();
+  const notes  = document.getElementById('er-enq-notes').value.trim();
+  const evName = document.getElementById('er-enq-event-name').textContent;
+  const evDate = document.getElementById('er-enq-event-date').textContent;
+
+  const subject = encodeURIComponent('Event Reservation - ' + evName + ' - ' + name);
+  const body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Event: ' + evName + '\n' +
+    'Date: ' + (evDate || 'TBC') + '\n' +
+    'Guests: ' + (guests || 'Not specified') + '\n\n' +
+    'Notes:\n' + (notes || 'None')
+  );
+
+  window.location.href = 'mailto:info@grottaresort.rw?subject=' + subject + '&body=' + body;
+
+  document.getElementById('er-enq-form-content').style.display = 'none';
+  document.getElementById('er-enq-confirm').classList.add('show');
+}
+
+</script>
 </body>
 </html>
 

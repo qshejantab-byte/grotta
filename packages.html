@@ -646,11 +646,52 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 .gr-review-author-name{font-family:"Jost",sans-serif;font-size:.78rem;font-weight:400;color:rgba(232,224,208,.75);letter-spacing:.04em}
 .gr-review-author-context{font-family:"Jost",sans-serif;font-size:.6rem;font-weight:300;color:rgba(201,165,82,.45);letter-spacing:.12em;text-transform:uppercase}
 @media(max-width:700px){.gr-review-grid{grid-template-columns:1fr}.gr-review-card{padding:2.2rem 1.8rem 2rem}.gr-review-text{font-size:1rem}}
+
+/* ── Package checkboxes ── */
+.pk-f-checkboxes{flex-direction:column;gap:.35rem;margin-top:.5rem}
+.pk-f-cb-item{width:100%}
+.pk-f-cb-item .pk-f-pill-label{
+  width:100%;display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;
+  padding:.55rem 1rem;
+}
+.pk-f-cb{display:none}
+.pk-cb-name{font-size:.54rem;letter-spacing:.16em}
+.pk-cb-price{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:.88rem;color:rgba(201,165,82,.55);
+  letter-spacing:0;text-transform:none;font-style:italic;
+  flex-shrink:0;
+}
+.pk-f-cb:checked + .pk-f-pill-label .pk-cb-price{color:#c9a552}
+
+/* Total display */
+.pk-f-total{
+  margin-top:1rem;padding:1rem 1.2rem;
+  background:rgba(201,165,82,.04);
+  border:1px solid rgba(201,165,82,.15);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:.5rem;
+}
+.pk-f-total-label{
+  font-family:'Jost',sans-serif;font-size:.48rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(201,165,82,.45);
+}
+.pk-f-total-amount{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:1.6rem;color:#c9a552;font-weight:300;
+}
+.pk-f-total-note{
+  width:100%;font-family:'Jost',sans-serif;font-size:.44rem;
+  color:rgba(200,192,174,.3);letter-spacing:.1em;
+}
+
 </style>
 </head>
 <body>
 <div id="nav-holder"></div>
-<a href="mailto:info@grottaresort.rw?subject=Package%20Inquiry" class="pk-float" id="pk-float">Enquire Now →</a>
+<button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-float" id="pk-float">Enquire Now →</button>
 
 <!-- ══ HERO ══ -->
 <div class="pk-hero">
@@ -668,7 +709,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <span class="pk-hero-sub">Not itineraries. Not offers. These are carefully curated rhythms of experience — combining accommodation, dining, wellness, nature, and the particular atmosphere of the volcanic highlands.</span>
       <div class="pk-hero-ctas">
         <a href="#pk-packages" class="pk-btn-gold"><span>Explore Packages</span></a>
-        <a href="mailto:info@grottaresort.rw?subject=Package%20Inquiry" class="pk-btn-outline">Enquire Now</a>
+        <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-outline">Enquire Now</button>
       </div>
     </div>
   </div>
@@ -800,7 +841,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
           <span class="pk-panel-price" data-p1="$260" data-p2="$420">$260</span>
           <span class="pk-panel-price-note" data-p1="per person / per night · includes breakfast" data-p2="per couple / per night · includes breakfast">per person / per night · includes breakfast</span>
         </div>
-        <a href="mailto:info@grottaresort.rw?subject=Package%20Inquiry" class="pk-btn-gold"><span>Enquire Now</span></a>
+        <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold"><span>Enquire Now</span></button>
       </div>
     </div>
   </div>
@@ -841,7 +882,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
           <span class="pk-panel-price" data-p1="$210" data-p2="$350">$210</span>
           <span class="pk-panel-price-note" data-p1="per person / per night · includes breakfast" data-p2="per couple / per night · includes breakfast">per person / per night · includes breakfast</span>
         </div>
-        <a href="mailto:info@grottaresort.rw?subject=Package%20Inquiry" class="pk-btn-gold"><span>Enquire Now</span></a>
+        <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold"><span>Enquire Now</span></button>
       </div>
     </div>
   </div>
@@ -873,7 +914,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
           <span class="pk-panel-price" data-p1="$176" data-p2="$295">$176</span>
           <span class="pk-panel-price-note" data-p1="per person / per night · includes breakfast" data-p2="per couple / per night · includes breakfast">per person / per night · includes breakfast</span>
         </div>
-        <a href="mailto:info@grottaresort.rw?subject=Package%20Inquiry" class="pk-btn-gold"><span>Enquire Now</span></a>
+        <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold"><span>Enquire Now</span></button>
       </div>
     </div>
   </div>
@@ -915,7 +956,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
           <span class="pk-panel-price" data-p1="$325" data-p2="$530">$325</span>
           <span class="pk-panel-price-note" data-p1="per person / per night · gorilla permit not included" data-p2="per couple / per night · gorilla permit not included">per person / per night · gorilla permit not included</span>
         </div>
-        <a href="mailto:info@grottaresort.rw?subject=Package%20Inquiry" class="pk-btn-gold"><span>Enquire Now</span></a>
+        <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold"><span>Enquire Now</span></button>
       </div>
     </div>
   </div>
@@ -1152,17 +1193,41 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         </div>
         <div class="pk-f-field" style="margin-bottom:1.4rem">
           <label class="pk-f-label">Package Interest</label>
-          <div class="pk-f-pills">
-            <input type="radio" name="pk-pkg" id="pk-couples" class="pk-f-pill-input" value="couples">
-            <label class="pk-f-pill-label" for="pk-couples">Couples</label>
-            <input type="radio" name="pk-pkg" id="pk-wellness" class="pk-f-pill-input" value="wellness">
-            <label class="pk-f-pill-label" for="pk-wellness">Wellness</label>
-            <input type="radio" name="pk-pkg" id="pk-adventure" class="pk-f-pill-input" value="adventure">
-            <label class="pk-f-pill-label" for="pk-adventure">Adventure</label>
-            <input type="radio" name="pk-pkg" id="pk-gorilla" class="pk-f-pill-input" value="gorilla">
-            <label class="pk-f-pill-label" for="pk-gorilla">Gorilla Trek</label>
-            <input type="radio" name="pk-pkg" id="pk-custom-pkg" class="pk-f-pill-input" value="custom" checked>
-            <label class="pk-f-pill-label" for="pk-custom-pkg">Tell Us Your Vision</label>
+          <div class="pk-f-pills pk-f-checkboxes">
+            <div class="pk-f-cb-item">
+              <input type="checkbox" name="pk-pkg" id="pk-couples" class="pk-f-pill-input pk-f-cb" value="Couples Package" data-p1="$260" data-p2="$420" onchange="updatePkTotal()">
+              <label class="pk-f-pill-label" for="pk-couples">
+                <span class="pk-cb-name">Couples Package</span>
+                <span class="pk-cb-price" id="pk-price-couples">$260 / person</span>
+              </label>
+            </div>
+            <div class="pk-f-cb-item">
+              <input type="checkbox" name="pk-pkg" id="pk-wellness" class="pk-f-pill-input pk-f-cb" value="Wellness Package" data-p1="$210" data-p2="$350" onchange="updatePkTotal()">
+              <label class="pk-f-pill-label" for="pk-wellness">
+                <span class="pk-cb-name">Wellness Package</span>
+                <span class="pk-cb-price" id="pk-price-wellness">$210 / person</span>
+              </label>
+            </div>
+            <div class="pk-f-cb-item">
+              <input type="checkbox" name="pk-pkg" id="pk-adventure" class="pk-f-pill-input pk-f-cb" value="Adventure Package" data-p1="$176" data-p2="$295" onchange="updatePkTotal()">
+              <label class="pk-f-pill-label" for="pk-adventure">
+                <span class="pk-cb-name">Adventure Package</span>
+                <span class="pk-cb-price" id="pk-price-adventure">$176 / person</span>
+              </label>
+            </div>
+            <div class="pk-f-cb-item">
+              <input type="checkbox" name="pk-pkg" id="pk-gorilla" class="pk-f-pill-input pk-f-cb" value="Gorilla Trek Package" data-p1="$325" data-p2="$530" onchange="updatePkTotal()">
+              <label class="pk-f-pill-label" for="pk-gorilla">
+                <span class="pk-cb-name">Gorilla Trek Package</span>
+                <span class="pk-cb-price" id="pk-price-gorilla">$325 / person</span>
+              </label>
+            </div>
+          </div>
+          <!-- Live total -->
+          <div class="pk-f-total" id="pk-f-total" style="display:none">
+            <span class="pk-f-total-label">Estimated Starting From</span>
+            <span class="pk-f-total-amount" id="pk-f-total-amount">$0</span>
+            <span class="pk-f-total-note" id="pk-f-total-note">per person / per night · prices vary by season</span>
           </div>
         </div>
         <div class="pk-f-field">
@@ -1190,11 +1255,12 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
     <h2 class="pk-final-h2">Some Experiences<br>Stay With You<br>Forever</h2>
     <span class="pk-final-sub">The volcanic highlands do not offer a standard stay. They offer something rarer — a setting that changes you quietly, in ways you only notice after you leave.</span>
     <div class="pk-final-ctas">
-      <a href="mailto:info@grottaresort.rw?subject=Package%20Inquiry" class="pk-btn-gold"><span>Enquire Now</span></a>
+      <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold"><span>Enquire Now</span></button>
       <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="pk-btn-outline">Book a Room</a>
     </div>
   </div>
 </div>
+
 
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
@@ -1219,8 +1285,48 @@ function setGuests(count) {
   pkBtn2.classList.toggle('active', count === 2);
 }
 
-pkBtn1.addEventListener('click', () => setGuests(1));
-pkBtn2.addEventListener('click', () => setGuests(2));
+pkBtn1.addEventListener('click', () => { setGuests(1); updatePkTotal(); });
+pkBtn2.addEventListener('click', () => { setGuests(2); updatePkTotal(); });
+
+
+// ── Package checkboxes & live total ──────────────────────────
+function updatePkTotal() {
+  const guestMode = document.getElementById('pk-btn-2').classList.contains('active') ? 2 : 1;
+  const attr = guestMode === 2 ? 'data-p2' : 'data-p1';
+  const note = guestMode === 2 ? 'per couple / per night · prices vary by season' : 'per person / per night · prices vary by season';
+
+  // Update individual price labels
+  document.querySelectorAll('.pk-f-cb').forEach(cb => {
+    const priceAttr = cb.getAttribute(attr);
+    const priceEl = cb.parentElement.querySelector('.pk-cb-price');
+    if (priceEl) priceEl.textContent = priceAttr + (guestMode === 2 ? ' / couple' : ' / person');
+  });
+
+  // Calculate total from checked boxes
+  const checked = [...document.querySelectorAll('.pk-f-cb:checked')];
+  const totalEl = document.getElementById('pk-f-total');
+  const amountEl = document.getElementById('pk-f-total-amount');
+  const noteEl = document.getElementById('pk-f-total-note');
+
+  if (checked.length === 0) {
+    totalEl.style.display = 'none';
+    return;
+  }
+
+  // Sum the numeric values
+  let total = 0;
+  checked.forEach(cb => {
+    const val = parseInt(cb.getAttribute(attr).replace('$', ''));
+    total += val;
+  });
+
+  amountEl.textContent = '$' + total;
+  noteEl.textContent = note;
+  totalEl.style.display = 'flex';
+}
+
+// Hook into guest toggle to update prices
+const _origSetGuests = setGuests;
 
 // Float CTA
 const pkFloat = document.getElementById('pk-float');
@@ -1264,8 +1370,8 @@ document.querySelectorAll('.pk-nav-item').forEach(item => {
 
 // Form submit
 function submitPackage(btn) {
-  const name     = document.getElementById('pk-name').value.trim();
-  const email    = document.getElementById('pk-email').value.trim();
+  const name  = document.getElementById('pk-name').value.trim();
+  const email = document.getElementById('pk-email').value.trim();
   if (!name || !email) {
     btn.style.outline = '1px solid rgba(201,80,60,.5)';
     setTimeout(() => btn.style.outline = '', 1400);
@@ -1274,16 +1380,16 @@ function submitPackage(btn) {
   const dates    = document.getElementById('pk-dates').value.trim();
   const guests   = document.getElementById('pk-guests').value.trim();
   const requests = document.getElementById('pk-requests').value.trim();
-  const pkgEl    = document.querySelector('input[name="pk-pkg"]:checked');
-  const pkg      = pkgEl ? pkgEl.value : 'Not specified';
+  const checked   = [...document.querySelectorAll('input[name="pk-pkg"]:checked')];
+  const pkg      = checked.length > 0 ? checked.map(c => c.value).join(', ') : 'Not specified';
 
-  const subject = encodeURIComponent('Package Inquiry - ' + name);
+  const subject = encodeURIComponent('Package Enquiry - ' + name);
   const body = encodeURIComponent(
     'Name: ' + name + '\n' +
     'Email: ' + email + '\n' +
+    'Package(s) Selected: ' + pkg + '\n' +
     'Preferred Dates: ' + (dates || 'Not specified') + '\n' +
-    'Guests: ' + (guests || 'Not specified') + '\n' +
-    'Package Interest: ' + pkg + '\n\n' +
+    'Guests: ' + (guests || 'Not specified') + '\n\n' +
     'Special Requests:\n' + (requests || 'None')
   );
 

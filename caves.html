@@ -481,6 +481,8 @@ body {
   position: relative;
   padding-bottom: .3rem;
   transition: gap .3s ease, color .3s ease;
+  background: transparent; border: none; cursor: pointer;
+  font-family: var(--sans);
 }
 .cave-cta::after {
   content: '';
@@ -736,6 +738,128 @@ body {
   .er-btn-outline,.pk-btn-gold,.pk-btn-outline,
   .wg-btn-gold{min-height:52px}
 }
+
+/* ══ CAVE MODAL ══ */
+.cv-modal-bd {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(4,3,2,.92);
+  backdrop-filter: blur(12px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .4s ease;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.5rem;
+}
+.cv-modal-bd.open { opacity: 1; pointer-events: all; }
+.cv-modal {
+  background: #0e0c09;
+  border: 1px solid rgba(201,165,82,.15);
+  max-width: 560px; width: 100%;
+  max-height: 92vh; overflow-y: auto;
+  transform: translateY(28px) scale(.97);
+  transition: transform .45s cubic-bezier(.25,.46,.45,.94);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201,165,82,.2) transparent;
+  box-shadow: 0 40px 100px rgba(0,0,0,.7);
+}
+.cv-modal-bd.open .cv-modal { transform: translateY(0) scale(1); }
+.cv-modal::-webkit-scrollbar { width: 3px; }
+.cv-modal::-webkit-scrollbar-thumb { background: rgba(201,165,82,.2); }
+.cv-modal-top { padding: 2.8rem 3rem 0; position: relative; }
+.cv-modal-close {
+  position: absolute; top: 1.4rem; right: 1.4rem;
+  background: none; border: 1px solid rgba(201,165,82,.15);
+  cursor: pointer; font-family: var(--sans); font-size: .52rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(200,192,174,.38); padding: .38rem .85rem;
+  transition: color .3s, border-color .3s;
+}
+.cv-modal-close:hover { color: rgba(200,192,174,.8); border-color: rgba(201,165,82,.35); }
+.cv-modal-label {
+  font-family: var(--sans); font-size: .5rem; font-weight: 500;
+  letter-spacing: .36em; text-transform: uppercase;
+  color: rgba(201,165,82,.48); display: block; margin-bottom: .6rem;
+}
+.cv-modal-title {
+  font-family: var(--serif); font-size: clamp(1.8rem,3.5vw,2.4rem);
+  font-weight: 300; color: #e8e0d0; line-height: 1.08; margin-bottom: .5rem;
+}
+.cv-modal-sub { font-size: .78rem; color: rgba(200,192,174,.42); line-height: 1.85; }
+.cv-modal-divider {
+  height: 1px; margin: 2rem 3rem;
+  background: linear-gradient(to right, rgba(201,165,82,.2), transparent);
+}
+.cv-modal-form { padding: 0 3rem 3rem; }
+.cv-field { margin-bottom: 1.8rem; position: relative; }
+.cv-field::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: var(--gold);
+  transition: width .4s cubic-bezier(.25,.46,.45,.94);
+}
+.cv-field:focus-within::after { width: 100%; }
+.cv-field-label {
+  font-family: var(--sans); font-size: .5rem; font-weight: 500;
+  letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(201,165,82,.48); display: block; margin-bottom: .65rem;
+}
+.cv-input {
+  width: 100%; background: transparent; border: none;
+  border-bottom: 1px solid rgba(200,192,174,.14);
+  color: #e8e0d0; font-family: var(--sans);
+  font-size: .88rem; font-weight: 300;
+  padding: .65rem 0; outline: none; caret-color: var(--gold);
+  transition: border-color .35s;
+}
+.cv-input::placeholder { color: rgba(200,192,174,.22); }
+.cv-input:focus { border-bottom-color: var(--gold); }
+.cv-textarea { min-height: 72px; resize: vertical; }
+.cv-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+.cv-pill-input { display: none; }
+.cv-pill-label {
+  font-family: var(--sans); font-size: .56rem; letter-spacing: .16em;
+  text-transform: uppercase; color: rgba(200,192,174,.42);
+  border: 1px solid rgba(201,165,82,.14); padding: .38rem 1rem;
+  cursor: pointer; transition: border-color .25s, color .25s, background .25s;
+}
+.cv-pill-input:checked + .cv-pill-label {
+  border-color: var(--gold); color: var(--gold); background: rgba(201,165,82,.06);
+}
+.cv-pill-label:hover { border-color: rgba(201,165,82,.4); color: rgba(201,165,82,.8); }
+.cv-submit {
+  width: 100%; padding: 1.1rem; margin-top: .5rem;
+  font-family: var(--sans); font-size: .62rem; font-weight: 500;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: #080805; background: var(--gold); border: none; cursor: pointer;
+  position: relative; overflow: hidden;
+  transition: transform .25s, box-shadow .3s;
+}
+.cv-submit::before {
+  content: ''; position: absolute; inset: 0;
+  background: #e2c97e; transform: scaleX(0);
+  transform-origin: left; transition: transform .4s cubic-bezier(.25,.46,.45,.94); z-index: 0;
+}
+.cv-submit span { position: relative; z-index: 1; }
+.cv-submit:hover::before { transform: scaleX(1); }
+.cv-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(201,165,82,.3); }
+.cv-confirm {
+  display: none; text-align: center; padding: 3.5rem 3rem;
+}
+.cv-confirm.show { display: block; }
+.cv-confirm-icon {
+  width: 58px; height: 58px; border-radius: 50%;
+  border: 1px solid rgba(201,165,82,.3); background: rgba(201,165,82,.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; color: var(--gold); margin: 0 auto 1.8rem;
+}
+.cv-confirm h3 {
+  font-family: var(--serif); font-size: 1.8rem;
+  font-weight: 300; color: #e8e0d0; margin-bottom: .7rem;
+}
+.cv-confirm p { font-size: .82rem; color: rgba(200,192,174,.48); line-height: 2; }
+@media(max-width:600px){
+  .cv-modal-top, .cv-modal-form { padding-left: 1.8rem; padding-right: 1.8rem; }
+  .cv-modal-divider { margin-left: 1.8rem; margin-right: 1.8rem; }
+}
+
 </style>
 </head>
 <body>
@@ -812,7 +936,7 @@ body {
   <!-- Zone C: Deep Cave -->
   <div class="zone-connector"></div>
   <div class="cj-zone cj-zone-c" id="zone-c">
-    <div class="cj-bg-img" style="background-image:url('images/AV7I5710.jpg')"></div>
+    <div class="cj-bg-img" style="background-image:url('images/DSC02857.JPG')"></div>
     <div class="cj-fog"></div>
     <div class="cj-content">
       <div class="cj-depth">
@@ -858,12 +982,12 @@ body {
         <h2>Scenic Cave Walk</h2>
         <p class="cave-desc">Illuminated passages. Geological wonders. Perfect for first-timers.</p>
         <p class="cave-hover-desc">A gentle guided walk through lit passages revealing hidden geology. Even path, well-lit, rich with formations. Families welcome.</p>
-        <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="cave-cta">
+        <button onclick="openCaveModal('scenic')" class="cave-cta">
           Begin This Experience
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -885,12 +1009,12 @@ body {
         <h2>Adventure Route</h2>
         <p class="cave-desc">Deeper passages. Ancient labyrinths. Expert guides.</p>
         <p class="cave-hover-desc">Extended exploration through deeper passages. Some stooping required. Sturdy shoes recommended. Maximum 8 guests.</p>
-        <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="cave-cta">
+        <button onclick="openCaveModal('adventure')" class="cave-cta">
           Explore Further
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -912,12 +1036,12 @@ body {
         <h2>Cave Café</h2>
         <p class="cave-desc">Coffee among stone walls. Rare spirits. Quiet light.</p>
         <p class="cave-hover-desc">Enjoy coffee beside natural rock formations. Hot drinks, light meals, and the cool silence of stone. Open 10AM–6PM.</p>
-        <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="cave-cta">
+        <button onclick="openCaveModal('cafe')" class="cave-cta">
           Begin This Experience
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -929,6 +1053,61 @@ body {
   <span class="cs-label">Coming Soon</span>
   <h2>Future Cave Spa</h2>
   <p>A cave-side wellness experience inspired by volcanic landscapes and natural stone environments. Opening 2025.</p>
+</div>
+
+
+<!-- ══ CAVE INQUIRY MODAL ══ -->
+<div class="cv-modal-bd" id="cv-modal-bd" onclick="if(event.target===this)closeCaveModal()">
+  <div class="cv-modal" id="cv-modal">
+    <div class="cv-modal-top">
+      <button class="cv-modal-close" onclick="closeCaveModal()">Close ✕</button>
+      <span class="cv-modal-label">Cave Experience Inquiry</span>
+      <h2 class="cv-modal-title">Plan Your<br>Cave Visit</h2>
+      <p class="cv-modal-sub">Our team will confirm availability and details within 48 hours.</p>
+    </div>
+    <div class="cv-modal-divider"></div>
+    <div class="cv-modal-form" id="cv-form-content">
+      <div class="cv-field">
+        <label class="cv-field-label">Full Name</label>
+        <input class="cv-input" type="text" id="cv-name" placeholder="Your name">
+      </div>
+      <div class="cv-field">
+        <label class="cv-field-label">Email</label>
+        <input class="cv-input" type="email" id="cv-email" placeholder="your@email.com">
+      </div>
+      <div class="cv-field">
+        <label class="cv-field-label">Preferred Date</label>
+        <input class="cv-input" type="text" id="cv-date" placeholder="e.g. July 2025 or specific date">
+      </div>
+      <div class="cv-field">
+        <label class="cv-field-label">Cave Experience</label>
+        <div class="cv-pills">
+          <div>
+            <input type="radio" name="cv-exp" id="cv-exp-scenic" class="cv-pill-input" value="Scenic Cave Walk">
+            <label class="cv-pill-label" for="cv-exp-scenic">Scenic Cave Walk</label>
+          </div>
+          <div>
+            <input type="radio" name="cv-exp" id="cv-exp-adventure" class="cv-pill-input" value="Adventure Route">
+            <label class="cv-pill-label" for="cv-exp-adventure">Adventure Route</label>
+          </div>
+          <div>
+            <input type="radio" name="cv-exp" id="cv-exp-cafe" class="cv-pill-input" value="Cave Café">
+            <label class="cv-pill-label" for="cv-exp-cafe">Cave Café</label>
+          </div>
+        </div>
+      </div>
+      <div class="cv-field">
+        <label class="cv-field-label">Additional Notes (Optional)</label>
+        <textarea class="cv-input cv-textarea" id="cv-notes" placeholder="Group size, special requirements..."></textarea>
+      </div>
+      <button class="cv-submit" onclick="submitCaveInquiry(this)"><span>Send Inquiry →</span></button>
+    </div>
+    <div class="cv-confirm" id="cv-confirm">
+      <div class="cv-confirm-icon">✦</div>
+      <h3>Inquiry Received</h3>
+      <p>Our team will reach out within 48 hours to confirm your cave experience at Grotta.</p>
+    </div>
+  </div>
 </div>
 
 <div id="footer-holder"></div>
@@ -959,6 +1138,71 @@ const zoneObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.cj-zone').forEach(z => zoneObs.observe(z));
+
+// ── Cave Modal ───────────────────────────────────────────────
+function openCaveModal(experience) {
+  // Reset form
+  document.getElementById('cv-form-content').style.display = 'block';
+  document.getElementById('cv-confirm').classList.remove('show');
+  document.getElementById('cv-name').value = '';
+  document.getElementById('cv-email').value = '';
+  document.getElementById('cv-date').value = '';
+  document.getElementById('cv-notes').value = '';
+
+  // Pre-select the experience
+  const map = {
+    'scenic':    'cv-exp-scenic',
+    'adventure': 'cv-exp-adventure',
+    'cafe':      'cv-exp-cafe'
+  };
+  const radioId = map[experience];
+  if (radioId) {
+    const radio = document.getElementById(radioId);
+    if (radio) radio.checked = true;
+  }
+
+  document.getElementById('cv-modal').scrollTop = 0;
+  document.getElementById('cv-modal-bd').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCaveModal() {
+  document.getElementById('cv-modal-bd').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeCaveModal();
+});
+
+function submitCaveInquiry(btn) {
+  const name  = document.getElementById('cv-name').value.trim();
+  const email = document.getElementById('cv-email').value.trim();
+  if (!name || !email) {
+    btn.style.outline = '1px solid rgba(201,80,60,.5)';
+    setTimeout(() => btn.style.outline = '', 1400);
+    return;
+  }
+  const date    = document.getElementById('cv-date').value.trim();
+  const notes   = document.getElementById('cv-notes').value.trim();
+  const expEl   = document.querySelector('input[name="cv-exp"]:checked');
+  const exp     = expEl ? expEl.value : 'Not specified';
+
+  const subject = encodeURIComponent('Cave Experience Inquiry - ' + name);
+  const body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Preferred Date: ' + (date || 'Not specified') + '\n' +
+    'Experience: ' + exp + '\n\n' +
+    'Notes:\n' + (notes || 'None')
+  );
+
+  window.location.href = 'mailto:info@grottaresort.rw?subject=' + subject + '&body=' + body;
+
+  document.getElementById('cv-form-content').style.display = 'none';
+  document.getElementById('cv-confirm').classList.add('show');
+}
+
 </script>
 </body>
 </html>

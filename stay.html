@@ -1188,7 +1188,31 @@
 </div>
 
 <!-- ══ BOOKING BAR ══ -->
-
+<div class="stay-booking-bar" id="stay-booking-bar">
+  <div class="booking-bar-inner">
+    <div class="booking-field">
+      <label>Check In</label>
+      <input type="date" id="bb-checkin">
+    </div>
+    <div class="booking-field">
+      <label>Check Out</label>
+      <input type="date" id="bb-checkout">
+    </div>
+    <div class="booking-field">
+      <label>Guests</label>
+      <select id="bb-guests">
+        <option value="1">1 Guest</option>
+        <option value="2" selected>2 Guests</option>
+        <option value="3">3 Guests</option>
+        <option value="4">4 Guests</option>
+        <option value="5">5+ Guests</option>
+      </select>
+    </div>
+    <button class="booking-bar-btn" onclick="searchAvailability()">
+      <span>Search Availability</span>
+    </button>
+  </div>
+</div>
 
 <!-- ══ LUXURY INTRO STRIP ══ -->
 <div style="background:#080805;padding:5rem 6vw 4rem;position:relative;overflow:hidden">
@@ -1308,13 +1332,11 @@
         <span class="rc-highlight"><span class="rc-highlight-icon"></span> 32m²</span>
       </div>
       <div class="rc-tags">
-        <span class="rc-tag">King Bed</span>
-        <span class="rc-tag">Rain Shower</span>
-        <span class="rc-tag">Wi-Fi</span>
-        <span class="rc-tag">Garden View</span>
+        <span class="rc-tag">Complimentary Breakfast</span>
         <span class="rc-tag">Swimming Pool</span>
         <span class="rc-tag">Gym</span>
         <span class="rc-tag">Property Tour</span>
+        <span class="rc-tag">Car Cleaning</span>
         <span class="rc-tag">Bonfire</span>
       </div>
       <div class="rc-bottom">
@@ -1370,12 +1392,14 @@
         <span class="rc-highlight"><span class="rc-highlight-icon"></span> 44m²</span>
       </div>
       <div class="rc-tags">
-        <span class="rc-tag">Oversized King Bed</span>
-        <span class="rc-tag">Lounge Area</span>
-        <span class="rc-tag">Minibar</span>
-        <span class="rc-tag">Rainfall Shower</span>
+        <span class="rc-tag">Complimentary Breakfast</span>
         <span class="rc-tag">Swimming Pool</span>
         <span class="rc-tag">Gym</span>
+        <span class="rc-tag">Property Tour</span>
+        <span class="rc-tag">Car Cleaning</span>
+        <span class="rc-tag">Bonfire</span>
+        <span class="rc-tag">Jacuzzi</span>
+        <span class="rc-tag">Gaming</span>
       </div>
       <div class="rc-bottom">
         <div class="rc-price-block">
@@ -1453,13 +1477,14 @@
         <span class="rc-highlight"><span class="rc-highlight-icon"></span> 48m²</span>
       </div>
       <div class="rc-tags">
-        <span class="rc-tag">Volcano View</span>
-        <span class="rc-tag">Private Terrace</span>
-        <span class="rc-tag">Soaking Tub</span>
-        <span class="rc-tag">Jacuzzi</span>
-        <span class="rc-tag">Gaming</span>
+        <span class="rc-tag">Complimentary Breakfast</span>
         <span class="rc-tag">Swimming Pool</span>
         <span class="rc-tag">Gym</span>
+        <span class="rc-tag">Property Tour</span>
+        <span class="rc-tag">Car Cleaning</span>
+        <span class="rc-tag">Bonfire</span>
+        <span class="rc-tag">Jacuzzi</span>
+        <span class="rc-tag">Gaming</span>
       </div>
       <div class="rc-bottom">
         <div class="rc-price-block">
@@ -1484,7 +1509,7 @@
       Compare
     </label>
     <div class="rc-img">
-      <img src="images/DSC03515.JPG " alt="King Pool View" loading="lazy">
+      <img src="images/Gemini_Generated_Image_piu9nepiu9nepiu9.png" alt="King Pool View" loading="lazy">
       <div class="rc-img-info">
         <span class="rc-img-chip">2 Guests</span>
         <span class="rc-img-chip">48m²</span>
@@ -1509,13 +1534,14 @@
         <span class="rc-highlight"><span class="rc-highlight-icon"></span> 48m²</span>
       </div>
       <div class="rc-tags">
-        <span class="rc-tag">Pool View</span>
-        <span class="rc-tag">Private Terrace</span>
-        <span class="rc-tag">Soaking Tub</span>
-        <span class="rc-tag">Jacuzzi</span>
-        <span class="rc-tag">Gaming</span>
+        <span class="rc-tag">Complimentary Breakfast</span>
         <span class="rc-tag">Swimming Pool</span>
         <span class="rc-tag">Gym</span>
+        <span class="rc-tag">Property Tour</span>
+        <span class="rc-tag">Car Cleaning</span>
+        <span class="rc-tag">Bonfire</span>
+        <span class="rc-tag">Jacuzzi</span>
+        <span class="rc-tag">Gaming</span>
       </div>
       <div class="rc-bottom">
         <div class="rc-price-block">
@@ -1565,11 +1591,16 @@
         <span class="rc-highlight"><span class="rc-highlight-icon"></span> 55m²</span>
       </div>
       <div class="rc-tags">
-        <span class="rc-tag">King + Twin Beds</span>
+        <span class="rc-tag">Complimentary Breakfast</span>
+        <span class="rc-tag">Swimming Pool</span>
+        <span class="rc-tag">Gym</span>
+        <span class="rc-tag">Property Tour</span>
+        <span class="rc-tag">Car Cleaning</span>
+        <span class="rc-tag">Bonfire</span>
+        <span class="rc-tag">Jacuzzi</span>
+        <span class="rc-tag">Gaming</span>
         <span class="rc-tag">Farm Experience</span>
         <span class="rc-tag">Kids Movie Room</span>
-        <span class="rc-tag">Jacuzzi Access</span>
-        <span class="rc-tag">Gaming</span>
       </div>
       <div class="rc-bottom">
         <div class="rc-price-block">
@@ -1594,7 +1625,7 @@
       Compare
     </label>
     <div class="rc-img">
-      <img src="images/DSC03590.JPG" alt="Deluxe Room" loading="lazy">
+      <img src="images/DSC03416.JPG" alt="Deluxe Room" loading="lazy">
       <div class="rc-img-info">
         <span class="rc-img-chip">3 Guests</span>
         <span class="rc-img-chip">64m²</span>
@@ -1619,14 +1650,17 @@
         <span class="rc-highlight"><span class="rc-highlight-icon"></span> 64m²</span>
       </div>
       <div class="rc-tags">
-        <span class="rc-tag">Stone Tub</span>
-        <span class="rc-tag">Separate Lounge</span>
-        <span class="rc-tag">Premium Bar</span>
-        <span class="rc-tag">Yoga</span>
-        <span class="rc-tag">Farm Experience</span>
-        <span class="rc-tag">Kids Movie Room</span>
+        <span class="rc-tag">Complimentary Breakfast</span>
+        <span class="rc-tag">Swimming Pool</span>
+        <span class="rc-tag">Gym</span>
+        <span class="rc-tag">Property Tour</span>
+        <span class="rc-tag">Car Cleaning</span>
+        <span class="rc-tag">Bonfire</span>
         <span class="rc-tag">Jacuzzi</span>
         <span class="rc-tag">Gaming</span>
+        <span class="rc-tag">Farm Experience</span>
+        <span class="rc-tag">Kids Movie Room</span>
+        <span class="rc-tag">Yoga</span>
       </div>
       <div class="rc-bottom">
         <div class="rc-price-block">
@@ -1681,14 +1715,19 @@
         <span class="rc-highlight"><span class="rc-highlight-icon"></span> 120m²</span>
       </div>
       <div class="rc-tags">
-        <span class="rc-tag">Private Pool</span>
-        <span class="rc-tag">Butler Service</span>
-        <span class="rc-tag">2 Bedrooms</span>
-        <span class="rc-tag">Full Terrace</span>
+        <span class="rc-tag">Complimentary Breakfast</span>
+        <span class="rc-tag">Swimming Pool</span>
+        <span class="rc-tag">Gym</span>
+        <span class="rc-tag">Property Tour</span>
+        <span class="rc-tag">Car Cleaning</span>
+        <span class="rc-tag">Bonfire</span>
+        <span class="rc-tag">Jacuzzi</span>
+        <span class="rc-tag">Gaming</span>
+        <span class="rc-tag">Farm Experience</span>
+        <span class="rc-tag">Kids Movie Room</span>
+        <span class="rc-tag">Yoga</span>
         <span class="rc-tag">Massage Chair</span>
         <span class="rc-tag">Sauna</span>
-        <span class="rc-tag">Yoga</span>
-        <span class="rc-tag">Farm Experience</span>
       </div>
       <div class="rc-bottom">
         <div class="rc-price-block">
@@ -2252,10 +2291,18 @@ function searchAvailability() {
     return;
   }
   const url = 'https://live.ipms247.com/booking/book-rooms-grottamusanze';
-  window.open(url, '_blank');
+  window.location.href = url;
 }
 
-
+// Set default dates
+(function() {
+  const today = new Date();
+  const tom   = new Date(today); tom.setDate(tom.getDate() + 1);
+  const day3  = new Date(today); day3.setDate(day3.getDate() + 3);
+  const fmt   = d => d.toISOString().split('T')[0];
+  document.getElementById('bb-checkin').value  = fmt(tom);
+  document.getElementById('bb-checkout').value = fmt(day3);
+})();
 
 // ── Sticky booking bar — always visible when scrolled past ───
 const bookingBar    = document.getElementById('stay-booking-bar');
@@ -2367,3 +2414,4 @@ document.addEventListener('keydown', e => {
 </script>
 </body>
 </html>
+   

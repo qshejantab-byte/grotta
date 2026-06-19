@@ -766,6 +766,121 @@
   .sp-soon-card{padding:2.5rem 1.5rem}
 }
 
+
+/* ══ DINING ENQUIRY MODAL ══ */
+.sp-enq-bd {
+  position:fixed;inset:0;z-index:1100;
+  background:rgba(6,5,3,.93);backdrop-filter:blur(14px);
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+}
+.sp-enq-bd.open{opacity:1;pointer-events:all}
+.sp-enq-modal{
+  background:#0d0c09;border:1px solid rgba(201,165,82,.15);
+  max-width:520px;width:100%;
+  max-height:92vh;overflow-y:auto;
+  transform:translateY(24px) scale(.97);
+  transition:transform .45s var(--ease);
+  scrollbar-width:thin;scrollbar-color:rgba(201,165,82,.2) transparent;
+  box-shadow:0 40px 100px rgba(0,0,0,.7);
+}
+.sp-enq-bd.open .sp-enq-modal{transform:translateY(0) scale(1)}
+.sp-enq-modal::-webkit-scrollbar{width:3px}
+.sp-enq-modal::-webkit-scrollbar-thumb{background:rgba(201,165,82,.2)}
+.sp-enq-top{padding:2.8rem 3rem 0;position:relative}
+.sp-enq-close{
+  position:absolute;top:1.4rem;right:1.4rem;
+  background:none;border:1px solid rgba(201,165,82,.15);cursor:pointer;
+  font-family:var(--sans);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(200,192,174,.38);padding:.38rem .85rem;
+  transition:color .3s,border-color .3s;
+}
+.sp-enq-close:hover{color:rgba(200,192,174,.8);border-color:rgba(201,165,82,.35)}
+.sp-enq-lbl{
+  font-family:var(--sans);font-size:.5rem;font-weight:500;
+  letter-spacing:.36em;text-transform:uppercase;
+  color:rgba(201,165,82,.48);display:block;margin-bottom:.6rem;
+}
+.sp-enq-title{
+  font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.4rem);
+  font-weight:300;color:#e8e0d0;line-height:1.08;margin-bottom:.5rem;
+}
+.sp-enq-sub{font-size:.78rem;color:rgba(200,192,174,.42);line-height:1.85}
+.sp-enq-div{
+  height:1px;margin:2rem 3rem;
+  background:linear-gradient(to right,rgba(201,165,82,.2),transparent);
+}
+.sp-enq-form{padding:0 3rem 3rem}
+.sp-enq-field{margin-bottom:1.8rem;position:relative}
+.sp-enq-field::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:1px;background:var(--gold);
+  transition:width .4s var(--ease);
+}
+.sp-enq-field:focus-within::after{width:100%}
+.sp-enq-field-lbl{
+  font-family:var(--sans);font-size:.5rem;font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(201,165,82,.48);display:block;margin-bottom:.65rem;
+}
+.sp-enq-input{
+  width:100%;background:transparent;border:none;
+  border-bottom:1px solid rgba(200,192,174,.14);
+  color:#e8e0d0;font-family:var(--sans);
+  font-size:.88rem;font-weight:300;
+  padding:.65rem 0;outline:none;caret-color:var(--gold);
+  transition:border-color .35s;
+}
+.sp-enq-input::placeholder{color:rgba(200,192,174,.22)}
+.sp-enq-input:focus{border-bottom-color:var(--gold)}
+.sp-enq-textarea{min-height:68px;resize:vertical}
+.sp-enq-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
+.sp-enq-pill-input{display:none}
+.sp-enq-pill-lbl{
+  font-family:var(--sans);font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(200,192,174,.42);border:1px solid rgba(201,165,82,.14);
+  padding:.36rem .95rem;cursor:pointer;
+  transition:border-color .25s,color .25s,background .25s;
+}
+.sp-enq-pill-input:checked + .sp-enq-pill-lbl{
+  border-color:var(--gold);color:var(--gold);background:rgba(201,165,82,.06);
+}
+.sp-enq-pill-lbl:hover{border-color:rgba(201,165,82,.4);color:rgba(201,165,82,.8)}
+.sp-enq-submit{
+  width:100%;padding:1.1rem;margin-top:.5rem;
+  font-family:var(--sans);font-size:.62rem;font-weight:500;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:#080805;background:var(--gold);border:none;cursor:pointer;
+  position:relative;overflow:hidden;transition:transform .25s,box-shadow .3s;
+}
+.sp-enq-submit::before{
+  content:'';position:absolute;inset:0;background:#e2c97e;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);z-index:0;
+}
+.sp-enq-submit span{position:relative;z-index:1}
+.sp-enq-submit:hover::before{transform:scaleX(1)}
+.sp-enq-submit:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(201,165,82,.3)}
+.sp-enq-confirm{display:none;text-align:center;padding:3.5rem 3rem}
+.sp-enq-confirm.show{display:block}
+.sp-enq-confirm-icon{
+  width:58px;height:58px;border-radius:50%;
+  border:1px solid rgba(201,165,82,.3);background:rgba(201,165,82,.06);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:var(--gold);margin:0 auto 1.8rem;
+}
+.sp-enq-confirm h3{
+  font-family:var(--serif);font-size:1.8rem;
+  font-weight:300;color:#e8e0d0;margin-bottom:.7rem;
+}
+.sp-enq-confirm p{font-size:.82rem;color:rgba(200,192,174,.48);line-height:2}
+@media(max-width:600px){
+  .sp-enq-top,.sp-enq-form{padding-left:1.8rem;padding-right:1.8rem}
+  .sp-enq-div{margin-left:1.8rem;margin-right:1.8rem}
+}
+
 </style>
 </head>
 <body>
@@ -807,7 +922,7 @@
     </div>
     <div>
       <p>From a refined evening restaurant to a cave-side café and an evening cocktail lounge — Grotta Resort offers distinct dining spaces that feel unlike anything else in the region.</p>
-      <a href="mailto:info@grottaresort.rw?subject=Table%20Reservation%20Inquiry" class="sp-link">Enquire Now →</a>
+      <button onclick="openEnquiry('general')" class="sp-link">Enquire Now →</button>
     </div>
   </div>
 
@@ -834,7 +949,7 @@
       </div>
       <div class="sp-space-ctas">
         <button class="sp-link" onclick="openMenu('restaurant')">View Menu →</button>
-        <a href="mailto:info@grottaresort.rw?subject=Table%20Reservation%20Inquiry" class="sp-link">Enquire Now →</a>
+        <button onclick="openEnquiry('restaurant')" class="sp-link">Enquire Now →</button>
       </div>
     </div>
   </div>
@@ -1242,6 +1357,65 @@
   </div>
 </div>
 
+
+<!-- ══ DINING ENQUIRY MODAL ══ -->
+<div class="sp-enq-bd" id="sp-enq-bd" onclick="if(event.target===this)closeEnquiry()">
+  <div class="sp-enq-modal" id="sp-enq-modal">
+    <div class="sp-enq-top">
+      <button class="sp-enq-close" onclick="closeEnquiry()">Close ✕</button>
+      <span class="sp-enq-lbl">Dining Enquiry</span>
+      <h2 class="sp-enq-title">Make a<br>Reservation</h2>
+      <p class="sp-enq-sub">Our team will confirm your reservation within 48 hours.</p>
+    </div>
+    <div class="sp-enq-div"></div>
+    <div class="sp-enq-form" id="sp-enq-form-content">
+      <div class="sp-enq-field">
+        <label class="sp-enq-field-lbl">Full Name</label>
+        <input class="sp-enq-input" type="text" id="sp-enq-name" placeholder="Your name">
+      </div>
+      <div class="sp-enq-field">
+        <label class="sp-enq-field-lbl">Email</label>
+        <input class="sp-enq-input" type="email" id="sp-enq-email" placeholder="your@email.com">
+      </div>
+      <div class="sp-enq-field">
+        <label class="sp-enq-field-lbl">Preferred Date</label>
+        <input class="sp-enq-input" type="text" id="sp-enq-date" placeholder="e.g. Saturday 12 July, 7PM">
+      </div>
+      <div class="sp-enq-field">
+        <label class="sp-enq-field-lbl">Space</label>
+        <div class="sp-enq-pills">
+          <div>
+            <input type="radio" name="sp-enq-space" id="sp-enq-restaurant" class="sp-enq-pill-input" value="The Restaurant">
+            <label class="sp-enq-pill-lbl" for="sp-enq-restaurant">The Restaurant</label>
+          </div>
+          <div>
+            <input type="radio" name="sp-enq-space" id="sp-enq-cafe" class="sp-enq-pill-input" value="Cave Café">
+            <label class="sp-enq-pill-lbl" for="sp-enq-cafe">Cave Café</label>
+          </div>
+          <div>
+            <input type="radio" name="sp-enq-space" id="sp-enq-bar" class="sp-enq-pill-input" value="Cocktail Bar">
+            <label class="sp-enq-pill-lbl" for="sp-enq-bar">Cocktail Bar</label>
+          </div>
+          <div>
+            <input type="radio" name="sp-enq-space" id="sp-enq-general" class="sp-enq-pill-input" value="General Enquiry" checked>
+            <label class="sp-enq-pill-lbl" for="sp-enq-general">Not Sure Yet</label>
+          </div>
+        </div>
+      </div>
+      <div class="sp-enq-field">
+        <label class="sp-enq-field-lbl">Additional Notes (Optional)</label>
+        <textarea class="sp-enq-input sp-enq-textarea" id="sp-enq-notes" placeholder="Group size, dietary requirements, special occasion..."></textarea>
+      </div>
+      <button class="sp-enq-submit" onclick="submitEnquiry(this)"><span>Send Enquiry →</span></button>
+    </div>
+    <div class="sp-enq-confirm" id="sp-enq-confirm">
+      <div class="sp-enq-confirm-icon">✦</div>
+      <h3>Enquiry Received</h3>
+      <p>Our team will be in touch within 48 hours to confirm your reservation at Grotta.</p>
+    </div>
+  </div>
+</div>
+
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
@@ -1361,6 +1535,68 @@ const heroBg=document.getElementById('sp-hero-bg');
 window.addEventListener('scroll',()=>{
   if(heroBg)heroBg.style.transform=`translateY(${window.scrollY*.28}px)`;
 },{passive:true});
+
+// ── Dining Enquiry Modal ─────────────────────────────────────
+function openEnquiry(space) {
+  document.getElementById('sp-enq-form-content').style.display = 'block';
+  document.getElementById('sp-enq-confirm').classList.remove('show');
+  document.getElementById('sp-enq-name').value = '';
+  document.getElementById('sp-enq-email').value = '';
+  document.getElementById('sp-enq-date').value = '';
+  document.getElementById('sp-enq-notes').value = '';
+
+  const map = {
+    'restaurant': 'sp-enq-restaurant',
+    'cafe':       'sp-enq-cafe',
+    'bar':        'sp-enq-bar',
+    'general':    'sp-enq-general'
+  };
+  const radioId = map[space] || 'sp-enq-general';
+  const radio = document.getElementById(radioId);
+  if (radio) radio.checked = true;
+
+  document.getElementById('sp-enq-modal').scrollTop = 0;
+  document.getElementById('sp-enq-bd').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEnquiry() {
+  document.getElementById('sp-enq-bd').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeEnquiry(); closeMenu(); }
+});
+
+function submitEnquiry(btn) {
+  const name  = document.getElementById('sp-enq-name').value.trim();
+  const email = document.getElementById('sp-enq-email').value.trim();
+  if (!name || !email) {
+    btn.style.outline = '1px solid rgba(201,80,60,.5)';
+    setTimeout(() => btn.style.outline = '', 1400);
+    return;
+  }
+  const date    = document.getElementById('sp-enq-date').value.trim();
+  const notes   = document.getElementById('sp-enq-notes').value.trim();
+  const spaceEl = document.querySelector('input[name="sp-enq-space"]:checked');
+  const space   = spaceEl ? spaceEl.value : 'Not specified';
+
+  const subject = encodeURIComponent('Dining Enquiry - ' + name);
+  const body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Preferred Date: ' + (date || 'Not specified') + '\n' +
+    'Space: ' + space + '\n\n' +
+    'Notes:\n' + (notes || 'None')
+  );
+
+  window.location.href = 'mailto:info@grottaresort.rw?subject=' + subject + '&body=' + body;
+
+  document.getElementById('sp-enq-form-content').style.display = 'none';
+  document.getElementById('sp-enq-confirm').classList.add('show');
+}
+
 </script>
 </body>
 </html>
