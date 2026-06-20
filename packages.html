@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Packages at Grotta — Curated Experiences in the Volcanic Highlands</title>
+<title>Packages at Grotta Resort — Curated Experiences in the Volcanic Highlands</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 
 /* ══ HERO — Elevated Cinematic ══ */
 .pk-hero{position:relative;height:100vh;min-height:820px;display:grid;grid-template-rows:1fr auto;overflow:hidden}
-.pk-hero-bg{position:absolute;inset:-8%;background-image:url('images/DSC03590.JPG');background-size:cover;background-position:center 38%;filter:brightness(.26) saturate(.6);animation:pk-ken 40s cubic-bezier(.25,.46,.45,.94) forwards;will-change:transform}
+.pk-hero-bg{position:absolute;inset:-8%;background-image:url('images/AV7I5727.jpg');background-size:cover;background-position:center 38%;filter:brightness(.26) saturate(.6);animation:pk-ken 40s cubic-bezier(.25,.46,.45,.94) forwards;will-change:transform}
 @keyframes pk-ken{from{transform:scale(1.12)}to{transform:scale(1)}}
 
 /* Multi-layer cinematic overlay — stronger drama */
@@ -335,7 +335,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
   .pk-intro-images{height:340px}
   .pk-intro-img-2{display:none}
   .pk-intro-img-1{right:0;height:100%}
-  .pk-panel{grid-template-columns:1fr}
+  .pk-panel{grid-template-columns:1fr;min-height:auto;overflow:visible}
   .pk-panel.rev{direction:ltr}
   .pk-panel-img{height:280px}
   .pk-panel-img-fade{display:none}
@@ -432,7 +432,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
   .er-atm-item:nth-child(5){grid-column:auto!important}
 
   /* Packages */
-  .pk-panel{grid-template-columns:1fr!important;direction:ltr!important}
+  .pk-panel{grid-template-columns:1fr!important;direction:ltr!important;min-height:auto!important;overflow:visible!important}
   .pk-panel.rev{direction:ltr!important}
   .pk-panel-img{height:280px}
   .pk-panel-img-fade{display:none!important}
@@ -646,11 +646,52 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 .gr-review-author-name{font-family:"Jost",sans-serif;font-size:.78rem;font-weight:400;color:rgba(232,224,208,.75);letter-spacing:.04em}
 .gr-review-author-context{font-family:"Jost",sans-serif;font-size:.6rem;font-weight:300;color:rgba(201,165,82,.45);letter-spacing:.12em;text-transform:uppercase}
 @media(max-width:700px){.gr-review-grid{grid-template-columns:1fr}.gr-review-card{padding:2.2rem 1.8rem 2rem}.gr-review-text{font-size:1rem}}
+
+/* ── Package checkboxes ── */
+.pk-f-checkboxes{flex-direction:column;gap:.35rem;margin-top:.5rem}
+.pk-f-cb-item{width:100%}
+.pk-f-cb-item .pk-f-pill-label{
+  width:100%;display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;
+  padding:.55rem 1rem;
+}
+.pk-f-cb{display:none}
+.pk-cb-name{font-size:.54rem;letter-spacing:.16em}
+.pk-cb-price{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:.88rem;color:rgba(201,165,82,.55);
+  letter-spacing:0;text-transform:none;font-style:italic;
+  flex-shrink:0;
+}
+.pk-f-cb:checked + .pk-f-pill-label .pk-cb-price{color:#c9a552}
+
+/* Total display */
+.pk-f-total{
+  margin-top:1rem;padding:1rem 1.2rem;
+  background:rgba(201,165,82,.04);
+  border:1px solid rgba(201,165,82,.15);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:.5rem;
+}
+.pk-f-total-label{
+  font-family:'Jost',sans-serif;font-size:.48rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(201,165,82,.45);
+}
+.pk-f-total-amount{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:1.6rem;color:#c9a552;font-weight:300;
+}
+.pk-f-total-note{
+  width:100%;font-family:'Jost',sans-serif;font-size:.44rem;
+  color:rgba(200,192,174,.3);letter-spacing:.1em;
+}
+
 </style>
 </head>
 <body>
 <div id="nav-holder"></div>
-<a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="pk-float" id="pk-float">Reserve Experience →</a>
+<button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-float" id="pk-float">Enquire Now →</button>
 
 <!-- ══ HERO ══ -->
 <div class="pk-hero">
@@ -663,12 +704,12 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 
   <div class="pk-hero-top">
     <div class="pk-hero-left">
-      <span class="pk-label">Grotta · Musanze, Rwanda</span>
-      <h1 class="pk-hero-h1">Curated<br><em>Packages</em></h1>
+      <span class="pk-label">Grotta Resort · Musanze, Rwanda</span>
+      <h1 class="pk-hero-h1">Curated<br><em>Experiences</em></h1>
       <span class="pk-hero-sub">Not itineraries. Not offers. These are carefully curated rhythms of experience — combining accommodation, dining, wellness, nature, and the particular atmosphere of the volcanic highlands.</span>
       <div class="pk-hero-ctas">
         <a href="#pk-packages" class="pk-btn-gold"><span>Explore Packages</span></a>
-        <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="pk-btn-outline">Reserve Experience</a>
+        <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-outline">Enquire Now</button>
       </div>
     </div>
   </div>
@@ -680,7 +721,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <span class="pk-hero-stat-label">Packages</span>
     </div>
     <div class="pk-hero-stat">
-      <span class="pk-hero-stat-num">29</span>
+      <span class="pk-hero-stat-num">26</span>
       <span class="pk-hero-stat-label">Rooms</span>
     </div>
     <div class="pk-hero-stat">
@@ -756,7 +797,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <span class="pk-label">The Philosophy</span>
       <h2 class="pk-intro-h2">Not Packages.<br>Curated<br>Rhythms.</h2>
       <div class="pk-rule"></div>
-      <p class="pk-body" style="margin-bottom:1rem">A Grotta package is not a checklist of inclusions. It is a considered sequence of experiences designed to feel like a complete world within the volcanic highland landscape.</p>
+      <p class="pk-body" style="margin-bottom:1rem">A Grotta Resort package is not a checklist of inclusions. It is a considered sequence of experiences designed to feel like a complete world within the volcanic highland landscape.</p>
       <p class="pk-body">Each one has been shaped around a feeling — romance, restoration, discovery, or something rarer still. They can be booked any time of year, for any occasion, or for no occasion at all.</p>
     </div>
     <div class="pk-intro-images reveal from-right">
@@ -786,12 +827,11 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <p class="pk-panel-desc">Private firelit evenings in the highland gardens. A candlelit dinner crafted for the occasion. Jacuzzi under open sky with the volcanoes behind. Breakfast served in your room as the mist moves through the valley. Designed entirely around the art of being present together.</p>
       <div class="pk-panel-includes">
         <span class="pk-panel-include">Romantic Room Setup</span>
-        <span class="pk-panel-include">Private Cave Dinner</span>
+        <span class="pk-panel-include">Private Dinner Experience</span>
         <span class="pk-panel-include">Jacuzzi Access</span>
         <span class="pk-panel-include">Breakfast in Bed</span>
         <span class="pk-panel-include">Bonfire Evening</span>
         <span class="pk-panel-include">Couples Spa</span>
-        <span class="pk-panel-include">Welcome Champagne</span>
         <span class="pk-panel-include">Sunset View</span>
       </div>
       <div class="pk-panel-footer">
@@ -800,7 +840,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
           <span class="pk-panel-price" data-p1="$260" data-p2="$420">$260</span>
           <span class="pk-panel-price-note" data-p1="per person / per night · includes breakfast" data-p2="per couple / per night · includes breakfast">per person / per night · includes breakfast</span>
         </div>
-        <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="pk-btn-gold"><span>Reserve</span></a>
+        <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold"><span>Enquire Now</span></button>
       </div>
     </div>
   </div>
@@ -824,9 +864,9 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <span class="pk-label">Restoration · Stillness · Ritual</span>
       <h3 class="pk-panel-h3">Wellness Package</h3>
       <span class="pk-panel-tagline">"The highlands do something to the body that nothing else can."</span>
-      <p class="pk-panel-desc">Begin with volcanic sauna at altitude. Move through guided yoga in the highland gardens. Float in the pool as morning light shifts across the water. Take meals designed around nourishment. Allow the environment to carry you. This is not a spa day — it is a recalibration.</p>
+      <p class="pk-panel-desc">Begin with infra-red sauna at altitude. Move through guided yoga in the highland gardens. Float in the pool as morning light shifts across the water. Take meals designed around nourishment. Allow the environment to carry you. This is not a spa day — it is a recalibration.</p>
       <div class="pk-panel-includes">
-        <span class="pk-panel-include">Volcanic Sauna</span>
+        <span class="pk-panel-include">Infra-red Sauna</span>
         <span class="pk-panel-include">Highland Yoga</span>
         <span class="pk-panel-include">Pool Access</span>
         <span class="pk-panel-include">Wellness Meals</span>
@@ -841,7 +881,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
           <span class="pk-panel-price" data-p1="$210" data-p2="$350">$210</span>
           <span class="pk-panel-price-note" data-p1="per person / per night · includes breakfast" data-p2="per couple / per night · includes breakfast">per person / per night · includes breakfast</span>
         </div>
-        <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="pk-btn-gold"><span>Reserve</span></a>
+        <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold"><span>Enquire Now</span></button>
       </div>
     </div>
   </div>
@@ -856,24 +896,25 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
       <span class="pk-label">Exploration · Discovery · Wild Luxury</span>
       <h3 class="pk-panel-h3">Adventure Package</h3>
       <span class="pk-panel-tagline">"The landscape is not a backdrop. It is the experience."</span>
-      <p class="pk-panel-desc">Cave exploration in ancient volcanic chambers. E-bike trails through highland terrain. Guided sunrise treks to volcano viewpoints. Nature immersion walks through forest at altitude. This is adventure with no compromise — wild enough to feel real, refined enough to feel like Grotta.</p>
+      <p class="pk-panel-desc">Cave exploration in ancient volcanic chambers. E-bike trails through highland terrain. Guided sunrise treks to volcano viewpoints. Nature immersion walks through forest at altitude. These are suggested activities, shaped around your dates, fitness level, and interests — not every activity will suit every stay. This is adventure with no compromise — wild enough to feel real, refined enough to feel like Grotta Resort.</p>
       <div class="pk-panel-includes">
-        <span class="pk-panel-include">Cave Exploration</span>
-        <span class="pk-panel-include">E-Bike Trails</span>
-        <span class="pk-panel-include">Sunrise Trek</span>
-        <span class="pk-panel-include">Highland Hiking</span>
-        <span class="pk-panel-include">Nature Walk</span>
+        <span class="pk-panel-include">Cave Exploration*</span>
+        <span class="pk-panel-include">E-Bike Trails*</span>
+        <span class="pk-panel-include">Sunrise Trek*</span>
+        <span class="pk-panel-include">Highland Hiking*</span>
+        <span class="pk-panel-include">Nature Walk*</span>
         <span class="pk-panel-include">Packed Lunch</span>
         <span class="pk-panel-include">Property Tour</span>
         <span class="pk-panel-include">Firepit Evening</span>
       </div>
+      <p style="font-family:'Jost',sans-serif;font-size:.6rem;letter-spacing:.04em;color:rgba(200,192,174,.35);margin-top:-1.4rem;margin-bottom:1.6rem">*Suggested activities — selection and availability shaped around your stay.</p>
       <div class="pk-panel-footer">
         <div class="pk-panel-price-block">
           <span class="pk-panel-price-from">Starting from</span>
           <span class="pk-panel-price" data-p1="$176" data-p2="$295">$176</span>
           <span class="pk-panel-price-note" data-p1="per person / per night · includes breakfast" data-p2="per couple / per night · includes breakfast">per person / per night · includes breakfast</span>
         </div>
-        <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="pk-btn-gold"><span>Reserve</span></a>
+        <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold"><span>Enquire Now</span></button>
       </div>
     </div>
   </div>
@@ -909,17 +950,33 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         <span class="pk-panel-include">Local Dining</span>
         <span class="pk-panel-include">Premium Stay</span>
       </div>
+      <div style="font-family:'Jost',sans-serif;font-size:.74rem;line-height:1.75;color:rgba(201,165,82,.85);border:1px solid rgba(201,165,82,.3);background:rgba(201,165,82,.06);padding:.85rem 1.1rem;margin-bottom:1.6rem;max-width:420px">
+        <strong style="color:#c9a552">Please note:</strong> Gorilla permit/license not included in the package price. Grotta Resort can assist with the permit process.
+      </div>
       <div class="pk-panel-footer">
         <div class="pk-panel-price-block">
           <span class="pk-panel-price-from">Starting from</span>
           <span class="pk-panel-price" data-p1="$325" data-p2="$530">$325</span>
           <span class="pk-panel-price-note" data-p1="per person / per night · gorilla permit not included" data-p2="per couple / per night · gorilla permit not included">per person / per night · gorilla permit not included</span>
         </div>
-        <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="pk-btn-gold"><span>Reserve</span></a>
+        <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold"><span>Enquire Now</span></button>
       </div>
     </div>
   </div>
 
+</div>
+
+<!-- ══ BUILD YOUR OWN ══ -->
+<div class="pk-intro" style="border-top:1px solid rgba(201,165,82,.1)">
+  <div class="pk-intro-inner" style="grid-template-columns:1fr;text-align:center;max-width:760px">
+    <div class="reveal">
+      <span class="pk-label">A Fifth Option</span>
+      <h2 class="pk-intro-h2" style="font-size:clamp(2rem,4vw,3.2rem)">Build Your Own<br>Grotta Resort Stay</h2>
+      <div class="pk-rule" style="margin-left:auto;margin-right:auto"></div>
+      <p class="pk-body" style="max-width:560px;margin:1.2rem auto 0">Choose your room, meals, wellness, adventure, family activities, and special requests. Our team will shape the package around your dates and budget.</p>
+      <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold" style="margin-top:2rem"><span>Start Building Your Stay</span></button>
+    </div>
+  </div>
 </div>
 
 <!-- ══ RHYTHM ══ -->
@@ -930,9 +987,9 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
     <div class="pk-rhythm-bg-text">Grotta</div>
     <div class="pk-rhythm-header reveal">
       <span class="pk-label">The Rhythm of Experience</span>
-      <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.2rem,4vw,4.2rem);font-weight:300;color:#f0e8d5;line-height:1.04;letter-spacing:-.025em;margin-bottom:.5rem">A Day at Grotta</h2>
+      <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.2rem,4vw,4.2rem);font-weight:300;color:#f0e8d5;line-height:1.04;letter-spacing:-.025em;margin-bottom:.5rem">A Day at Grotta Resort</h2>
       <div class="pk-rule"></div>
-      <p class="pk-body" style="max-width:420px;margin-top:.5rem">Every package shapes its own rhythm. But every day at Grotta moves through the same four moments.</p>
+      <p class="pk-body" style="max-width:420px;margin-top:.5rem">Every package shapes its own rhythm. But every day at Grotta Resort moves through the same four moments.</p>
     </div>
     <div class="pk-rhythm-grid">
       <div class="pk-rhythm-item reveal d1">
@@ -967,13 +1024,13 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 <div class="pk-inclusions">
   <div class="pk-inc-split reveal">
     <div class="pk-inc-split-left">
-      <span class="pk-label">Grotta Suite Privileges</span>
+      <span class="pk-label">Grotta Resort Suite Privileges</span>
       <h2 class="pk-inc-split-h2">What Every<br>Package<br>Includes</h2>
       <div class="pk-rule"></div>
-      <p class="pk-inc-split-sub">Every stay at Grotta — regardless of package — carries the same foundation of experience. Scroll to explore.</p>
+      <p class="pk-inc-split-sub">Every stay at Grotta Resort — regardless of package — carries the same foundation of experience. Scroll to explore.</p>
     </div>
     <div>
-      <p class="pk-body" style="max-width:500px;margin-bottom:1.5rem">These are not optional additions. They are the standard of what Grotta considers a complete stay — present in every room, every night, for every guest.</p>
+      <p class="pk-body" style="max-width:500px;margin-bottom:1.5rem">These are not optional additions. They are the standard of what Grotta Resort considers a complete stay — present in every room, every night, for every guest.</p>
       <div class="pk-inc-scroll-hint"><span>Scroll to explore</span> <span style="font-size:.7rem;opacity:.5">→</span></div>
     </div>
   </div>
@@ -1064,51 +1121,13 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
   </div>
 </div>
 
-<!-- ══ TESTIMONIALS ══ -->
-<div class="pk-testi">
-  <div class="pk-testi-featured reveal" style="margin-bottom:5rem">
-    <span class="pk-label" style="text-align:center;margin-bottom:1rem">Experiences That Stay</span>
-    <span class="pk-testi-mark">"</span>
-    <p class="pk-testi-quote">The wellness package changed the quality of my silence. I arrived stressed and left with something I hadn't felt in years. The altitude does something real.</p>
-    <span class="pk-testi-attr">— Amara K. · Wellness Package · 2024</span>
-  </div>
-  <div class="gr-review-grid">
-    <div class="gr-review-card reveal">
-      <span class="gr-review-qmark">"</span>
-      <div class="gr-review-stars"><span>star</span><span>star</span><span>star</span><span>star</span><span>star</span></div>
-      <p class="gr-review-text">The couples package was everything. The private cave dinner, the jacuzzi under the open sky, the firepit on the final evening — we have been to many places. Grotta is different. It holds you.</p>
-      <div class="gr-review-divider"></div>
-      <div class="gr-review-author">
-        <div class="gr-review-author-avatar">S</div>
-        <div class="gr-review-author-info">
-          <span class="gr-review-author-name">Sarah & Marcus</span>
-          <span class="gr-review-author-context">Couples Package · 2024</span>
-        </div>
-      </div>
-    </div>
-    <div class="gr-review-card reveal">
-      <span class="gr-review-qmark">"</span>
-      <div class="gr-review-stars"><span>star</span><span>star</span><span>star</span><span>star</span><span>star</span></div>
-      <p class="gr-review-text">The gorilla trek package made an impossible experience feel seamless. Everything was handled. When we returned — tired, overwhelmed, transformed — the jacuzzi was waiting and dinner was almost ready.</p>
-      <div class="gr-review-divider"></div>
-      <div class="gr-review-author">
-        <div class="gr-review-author-avatar">Y</div>
-        <div class="gr-review-author-info">
-          <span class="gr-review-author-name">Yuki & Tom</span>
-          <span class="gr-review-author-context">Gorilla Trek Package · 2024</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- ══ BOOKING ══ -->
 <div class="pk-booking" id="pk-booking">
   <div class="pk-booking-inner">
     <div class="pk-booking-left reveal from-left">
       <span class="pk-label">Reserve Your Experience</span>
       <h2 class="pk-booking-h2">Speak with<br>Our Concierge</h2>
-      <p class="pk-booking-sub">Every Grotta package is shaped around you — your dates, your preferences, your intention for the stay. Tell us what calls to you and we will take care of the rest.</p>
+      <p class="pk-booking-sub">Every Grotta Resort package is shaped around you — your dates, your preferences, your intention for the stay. Tell us what calls to you and we will take care of the rest.</p>
       <div class="pk-booking-promises">
         <div class="pk-promise">
           <span class="pk-promise-icon">✦</span>
@@ -1127,6 +1146,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
           <div class="pk-promise-text"><h6>No Obligation</h6><p>An inquiry is a conversation. Nothing more.</p></div>
         </div>
       </div>
+      <p style="font-family:var(--sans);font-size:.74rem;line-height:1.8;color:rgba(200,192,174,.45);margin-top:1.8rem;padding-top:1.5rem;border-top:1px solid rgba(201,165,82,.1)">Looking for regular access rather than a stay package? Explore <a href="membership.html" style="color:#c9a552;text-decoration:underline">Grotta Resort Membership</a>.</p>
     </div>
 
     <div class="pk-form reveal from-right">
@@ -1152,29 +1172,54 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
         </div>
         <div class="pk-f-field" style="margin-bottom:1.4rem">
           <label class="pk-f-label">Package Interest</label>
-          <div class="pk-f-pills">
-            <input type="radio" name="pk-pkg" id="pk-couples" class="pk-f-pill-input" value="couples">
-            <label class="pk-f-pill-label" for="pk-couples">Couples</label>
-            <input type="radio" name="pk-pkg" id="pk-wellness" class="pk-f-pill-input" value="wellness">
-            <label class="pk-f-pill-label" for="pk-wellness">Wellness</label>
-            <input type="radio" name="pk-pkg" id="pk-adventure" class="pk-f-pill-input" value="adventure">
-            <label class="pk-f-pill-label" for="pk-adventure">Adventure</label>
-            <input type="radio" name="pk-pkg" id="pk-gorilla" class="pk-f-pill-input" value="gorilla">
-            <label class="pk-f-pill-label" for="pk-gorilla">Gorilla Trek</label>
-            <input type="radio" name="pk-pkg" id="pk-custom-pkg" class="pk-f-pill-input" value="custom" checked>
-            <label class="pk-f-pill-label" for="pk-custom-pkg">Tell Us Your Vision</label>
+          <div class="pk-f-pills pk-f-checkboxes">
+            <div class="pk-f-cb-item">
+              <input type="checkbox" name="pk-pkg" id="pk-couples" class="pk-f-pill-input pk-f-cb" value="Couples Package" data-p1="$260" data-p2="$420" onchange="updatePkTotal()">
+              <label class="pk-f-pill-label" for="pk-couples">
+                <span class="pk-cb-name">Couples Package</span>
+                <span class="pk-cb-price" id="pk-price-couples">$260 / person</span>
+              </label>
+            </div>
+            <div class="pk-f-cb-item">
+              <input type="checkbox" name="pk-pkg" id="pk-wellness" class="pk-f-pill-input pk-f-cb" value="Wellness Package" data-p1="$210" data-p2="$350" onchange="updatePkTotal()">
+              <label class="pk-f-pill-label" for="pk-wellness">
+                <span class="pk-cb-name">Wellness Package</span>
+                <span class="pk-cb-price" id="pk-price-wellness">$210 / person</span>
+              </label>
+            </div>
+            <div class="pk-f-cb-item">
+              <input type="checkbox" name="pk-pkg" id="pk-adventure" class="pk-f-pill-input pk-f-cb" value="Adventure Package" data-p1="$176" data-p2="$295" onchange="updatePkTotal()">
+              <label class="pk-f-pill-label" for="pk-adventure">
+                <span class="pk-cb-name">Adventure Package</span>
+                <span class="pk-cb-price" id="pk-price-adventure">$176 / person</span>
+              </label>
+            </div>
+            <div class="pk-f-cb-item">
+              <input type="checkbox" name="pk-pkg" id="pk-gorilla" class="pk-f-pill-input pk-f-cb" value="Gorilla Trek Package" data-p1="$325" data-p2="$530" onchange="updatePkTotal()">
+              <label class="pk-f-pill-label" for="pk-gorilla">
+                <span class="pk-cb-name">Gorilla Trek Package</span>
+                <span class="pk-cb-price" id="pk-price-gorilla">$325 / person</span>
+              </label>
+            </div>
+          </div>
+          <div style="font-family:'Jost',sans-serif;font-size:.7rem;line-height:1.7;color:rgba(201,165,82,.8);border-left:2px solid rgba(201,165,82,.4);padding:.6rem 0 .6rem .9rem;margin-top:1rem">Gorilla permit/license not included in the package price. Grotta Resort can assist with the permit process.</div>
+          <!-- Live total -->
+          <div class="pk-f-total" id="pk-f-total" style="display:none">
+            <span class="pk-f-total-label">Estimated Starting From</span>
+            <span class="pk-f-total-amount" id="pk-f-total-amount">$0</span>
+            <span class="pk-f-total-note" id="pk-f-total-note">per person / per night · prices vary by season</span>
           </div>
         </div>
         <div class="pk-f-field">
           <label class="pk-f-label">Special Requests</label>
-          <textarea class="pk-f-textarea" id="pk-requests" placeholder="Tell us what you are hoping to feel, experience, or celebrate during your stay at Grotta..."></textarea>
+          <textarea class="pk-f-textarea" id="pk-requests" placeholder="Tell us what you are hoping to feel, experience, or celebrate during your stay at Grotta Resort..."></textarea>
         </div>
         <button class="pk-f-submit" onclick="submitPackage(this)"><span>Reserve Your Experience →</span></button>
       </div>
       <div class="pk-f-confirm" id="pk-confirm">
         <div class="pk-f-check">✦</div>
         <h3>Your inquiry has been received.</h3>
-        <p>Our concierge will review your request personally and reach out within 48 hours to shape your Grotta experience.</p>
+        <p>Our concierge will review your request personally and reach out within 48 hours to shape your Grotta Resort experience.</p>
       </div>
     </div>
   </div>
@@ -1190,11 +1235,12 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
     <h2 class="pk-final-h2">Some Experiences<br>Stay With You<br>Forever</h2>
     <span class="pk-final-sub">The volcanic highlands do not offer a standard stay. They offer something rarer — a setting that changes you quietly, in ways you only notice after you leave.</span>
     <div class="pk-final-ctas">
-      <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="pk-btn-gold"><span>Reserve Your Experience</span></a>
+      <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold"><span>Enquire Now</span></button>
       <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="pk-btn-outline">Book a Room</a>
     </div>
   </div>
 </div>
+
 
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
@@ -1219,8 +1265,48 @@ function setGuests(count) {
   pkBtn2.classList.toggle('active', count === 2);
 }
 
-pkBtn1.addEventListener('click', () => setGuests(1));
-pkBtn2.addEventListener('click', () => setGuests(2));
+pkBtn1.addEventListener('click', () => { setGuests(1); updatePkTotal(); });
+pkBtn2.addEventListener('click', () => { setGuests(2); updatePkTotal(); });
+
+
+// ── Package checkboxes & live total ──────────────────────────
+function updatePkTotal() {
+  const guestMode = document.getElementById('pk-btn-2').classList.contains('active') ? 2 : 1;
+  const attr = guestMode === 2 ? 'data-p2' : 'data-p1';
+  const note = guestMode === 2 ? 'per couple / per night · prices vary by season' : 'per person / per night · prices vary by season';
+
+  // Update individual price labels
+  document.querySelectorAll('.pk-f-cb').forEach(cb => {
+    const priceAttr = cb.getAttribute(attr);
+    const priceEl = cb.parentElement.querySelector('.pk-cb-price');
+    if (priceEl) priceEl.textContent = priceAttr + (guestMode === 2 ? ' / couple' : ' / person');
+  });
+
+  // Calculate total from checked boxes
+  const checked = [...document.querySelectorAll('.pk-f-cb:checked')];
+  const totalEl = document.getElementById('pk-f-total');
+  const amountEl = document.getElementById('pk-f-total-amount');
+  const noteEl = document.getElementById('pk-f-total-note');
+
+  if (checked.length === 0) {
+    totalEl.style.display = 'none';
+    return;
+  }
+
+  // Sum the numeric values
+  let total = 0;
+  checked.forEach(cb => {
+    const val = parseInt(cb.getAttribute(attr).replace('$', ''));
+    total += val;
+  });
+
+  amountEl.textContent = '$' + total;
+  noteEl.textContent = note;
+  totalEl.style.display = 'flex';
+}
+
+// Hook into guest toggle to update prices
+const _origSetGuests = setGuests;
 
 // Float CTA
 const pkFloat = document.getElementById('pk-float');
@@ -1271,6 +1357,24 @@ function submitPackage(btn) {
     setTimeout(() => btn.style.outline = '', 1400);
     return;
   }
+  const dates    = document.getElementById('pk-dates').value.trim();
+  const guests   = document.getElementById('pk-guests').value.trim();
+  const requests = document.getElementById('pk-requests').value.trim();
+  const checked   = [...document.querySelectorAll('input[name="pk-pkg"]:checked')];
+  const pkg      = checked.length > 0 ? checked.map(c => c.value).join(', ') : 'Not specified';
+
+  const subject = encodeURIComponent('Package Enquiry - ' + name);
+  const body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Package(s) Selected: ' + pkg + '\n' +
+    'Preferred Dates: ' + (dates || 'Not specified') + '\n' +
+    'Guests: ' + (guests || 'Not specified') + '\n\n' +
+    'Special Requests:\n' + (requests || 'None')
+  );
+
+  window.location.href = 'mailto:info@grottaresort.rw?subject=' + subject + '&body=' + body;
+
   document.getElementById('pk-form-content').style.display = 'none';
   document.getElementById('pk-confirm').classList.add('show');
   window.scrollTo({ top: document.getElementById('pk-booking').offsetTop - 60, behavior: 'smooth' });
