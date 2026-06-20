@@ -10,11 +10,6 @@
 <link rel="stylesheet" href="css/style.css">
 <style>
 
-/* ══════════════════════
-   FAQ PAGE
-══════════════════════ */
-
-/* Hero */
 .faq-hero {
   position: relative;
   height: 52vh; min-height: 380px;
@@ -57,7 +52,6 @@
   max-width: 460px;
 }
 
-/* Category tabs */
 .faq-tabs-wrap {
   background: #0a0906;
   border-bottom: 1px solid rgba(201,165,82,.08);
@@ -95,7 +89,6 @@
 .faq-tab.active { color: rgba(201,165,82,.85); }
 .faq-tab.active::after { transform: scaleX(1); }
 
-/* Main layout */
 .faq-main {
   background: #080805;
   padding: 5rem 0 8rem;
@@ -106,7 +99,6 @@
   padding: 0 4vw;
 }
 
-/* Category section */
 .faq-category {
   display: none;
   animation: faq-in .45s cubic-bezier(.25,.46,.45,.94);
@@ -135,7 +127,6 @@
   margin-bottom: 2.5rem;
 }
 
-/* Accordion */
 .faq-item {
   border-bottom: 1px solid rgba(201,165,82,.08);
 }
@@ -196,7 +187,6 @@
 }
 .faq-a a:hover { color: #c9a552; border-color: #c9a552; }
 
-/* Contact CTA at bottom */
 .faq-contact {
   margin-top: 5rem;
   padding: 3rem;
@@ -240,7 +230,6 @@
 }
 .faq-btn-ghost:hover { border-color: rgba(201,165,82,.45); color: #c9a552; }
 
-/* Responsive */
 @media(max-width:600px) {
   .faq-tabs { padding: 0 4vw; }
   .faq-tab { padding: 1rem .9rem; font-size: .48rem; }
@@ -256,7 +245,6 @@
 <body>
 <div id="nav-holder"></div>
 
-<!-- HERO -->
 <div class="faq-hero">
   <div class="faq-hero-bg"></div>
   <div class="faq-hero-overlay"></div>
@@ -267,7 +255,6 @@
   </div>
 </div>
 
-<!-- CATEGORY TABS -->
 <div class="faq-tabs-wrap">
   <div class="faq-tabs" role="tablist">
     <button class="faq-tab active" onclick="showCat('rooms')" role="tab">Rooms</button>
@@ -280,11 +267,9 @@
   </div>
 </div>
 
-<!-- FAQ CONTENT -->
 <div class="faq-main">
   <div class="faq-inner">
 
-    <!-- ROOMS -->
     <div class="faq-category active" id="cat-rooms">
       <h2 class="faq-category-title">Rooms & Accommodation</h2>
       <span class="faq-category-sub">Everything about our 26 rooms, amenities, and staying at Grotta Resort.</span>
@@ -298,6 +283,16 @@
       <div class="faq-item">
         <button class="faq-q" onclick="toggle(this)">What is included in every room? <span class="faq-icon"></span></button>
         <div class="faq-a-wrap"><div class="faq-a">Every room at Grotta Resort includes: <strong>daily highland breakfast</strong>, access to the swimming pool, gym access, a guided property tour, complimentary car cleaning, and an evening bonfire. Wi-Fi, air conditioning, in-room safe, smart TV, and bathrobes are also standard in all rooms.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Is the evening bonfire included every night? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes — the evening bonfire is part of the standard inclusions for every room, every night, weather permitting.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Is there an extra person charge? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">An additional charge may apply for guests beyond standard room occupancy. Please confirm exact extra-person rates with our reservations team at the time of booking.</div></div>
       </div>
 
       <div class="faq-item">
@@ -334,12 +329,21 @@
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" onclick="toggle(this)">Is the resort suitable for children? <span class="faq-icon"></span></button>
-        <div class="faq-a-wrap"><div class="faq-a">Yes. Grotta Resort welcomes families. The Family Room and Deluxe Room include access to the kids movie room and farm experience. The property also has outdoor spaces suited for families. We recommend the Family Room configuration for families with children.</div></div>
+        <button class="faq-q" onclick="toggle(this)">Is the resort suitable for children? Are kids allowed? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes. Grotta Resort welcomes families and children of all ages. The Family Room and Deluxe Room include access to the kids movie room and farm experience. The property also has outdoor spaces suited for families. We recommend the Family Room configuration for families with children.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Is there a Kids Area? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes — the property includes a dedicated kids movie room and farm experience, accessible with the Family Room and Deluxe Room. Please confirm with our reservations team whether Kids Area access is available with other room types for your stay.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Can guests build their own package? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Yes. Beyond the standard room rate, guests can customize their stay with optional upgrades such as Half Board or Full Board meal plans, guided activities, and experiences. Contact our reservations team to build a stay tailored to your visit.</div></div>
       </div>
     </div>
 
-    <!-- DINING -->
     <div class="faq-category" id="cat-dining">
       <h2 class="faq-category-title">Dining</h2>
       <span class="faq-category-sub">Our restaurant, Cave Café, Cocktail Bar, and meal plan options.</span>
@@ -366,12 +370,11 @@
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" onclick="toggle(this)">Can I bring outside food or beverages? <span class="faq-icon"></span></button>
-        <div class="faq-a-wrap"><div class="faq-a"><strong>Outside catering for food is not permitted</strong> at Grotta Resort. All food and beverages must be provided by the resort. This ensures the quality and consistency of your dining experience. Exceptions may apply for special celebration cakes with prior arrangement — please contact our team.</div></div>
+        <button class="faq-q" onclick="toggle(this)">Can I bring outside food or beverages? Is outside food catering allowed? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><strong>Outside food catering is not permitted</strong> at Grotta Resort. All food and beverages must be provided by the resort. This ensures the quality and consistency of your dining experience. Exceptions may apply for special celebration cakes with prior arrangement — please contact our team.</div></div>
       </div>
     </div>
 
-    <!-- ACTIVITIES -->
     <div class="faq-category" id="cat-activities">
       <h2 class="faq-category-title">Activities & Experiences</h2>
       <span class="faq-category-sub">Caves, outdoor sports, wellness, and experiences available at the resort.</span>
@@ -383,22 +386,26 @@
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" onclick="toggle(this)">Do I need to book activities in advance? <span class="faq-icon"></span></button>
-        <div class="faq-a-wrap"><div class="faq-a">Some activities such as cave adventure routes, yoga sessions, and guided experiences require advance booking due to limited availability. Pool and gym access are available to all guests at any time. We recommend booking any experiences at least 24–48 hours in advance.</div></div>
+        <button class="faq-q" onclick="toggle(this)">What activities require advance booking? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Cave adventure routes, yoga sessions, and other guided experiences require advance booking due to limited availability. Pool and gym access are available to all guests at any time without booking. We recommend booking any guided experiences at least 24–48 hours in advance.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" onclick="toggle(this)">Is the cave suitable for everyone? <span class="faq-icon"></span></button>
-        <div class="faq-a-wrap"><div class="faq-a">The <strong>Scenic Cave Walk</strong> (16 minutes, easy) is suitable for most guests including families and older visitors. The <strong>Adventure Route</strong> (up to 1 hour, moderate) requires some stooping and sturdy footwear, with a maximum of 8 guests. All cave visits are guided by our team. Guests with mobility challenges should speak to our team for personalised advice.</div></div>
+        <button class="faq-q" onclick="toggle(this)">Are the cave experiences open to all guests? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">The <strong>Scenic Cave Walk</strong> (16 minutes, easy) is open to all guests and suitable for most, including families and older visitors. The <strong>Adventure Route</strong> (up to 1 hour, moderate) requires some stooping and sturdy footwear, with a maximum of 8 guests per group. All cave visits are guided by our team. Guests with mobility challenges should speak to our team for personalised advice.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" onclick="toggle(this)">Can I arrange gorilla trekking through Grotta Resort? <span class="faq-icon"></span></button>
+        <button class="faq-q" onclick="toggle(this)">Can I arrange gorilla trekking through Grotta Resort? Can Grotta Resort help arrange permits? <span class="faq-icon"></span></button>
         <div class="faq-a-wrap"><div class="faq-a">Yes. Our concierge team can assist with arranging gorilla trekking permits and logistics through Volcanoes National Park. Grotta Resort is ideally positioned as a base for gorilla trekking — minutes from the park entrance. Please contact us in advance as permits must be secured early, especially during peak season.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Is the gorilla trekking permit included in my stay? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">No. Gorilla trekking permits are issued separately by Rwanda Development Board and are <strong>not included</strong> in room rates or packages. Our concierge team can assist with arranging your permit and logistics in advance — please contact us as early as possible, as permits must be secured ahead of your visit.</div></div>
       </div>
     </div>
 
-    <!-- WEDDINGS -->
     <div class="faq-category" id="cat-weddings">
       <h2 class="faq-category-title">Weddings</h2>
       <span class="faq-category-sub">Celebrations, receptions, and wedding events at Grotta Resort.</span>
@@ -415,8 +422,8 @@
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" onclick="toggle(this)">Are outside caterers permitted at weddings? <span class="faq-icon"></span></button>
-        <div class="faq-a-wrap"><div class="faq-a"><strong>Outside catering for food is not permitted.</strong> All food and beverage at wedding events must be provided by Grotta Resort. External vendors for other services — such as photography, floristry, and entertainment — may be considered subject to prior approval by our events team. A coordination fee may apply.</div></div>
+        <button class="faq-q" onclick="toggle(this)">Are outside caterers or other vendors permitted at weddings? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><strong>Outside food catering is not permitted.</strong> All food and beverage at wedding events must be provided by Grotta Resort. Other external vendors — such as photography, floristry, and entertainment — may be allowed with prior approval and must follow Grotta Resort rules. A coordination fee may apply.</div></div>
       </div>
 
       <div class="faq-item">
@@ -435,7 +442,6 @@
       </div>
     </div>
 
-    <!-- EVENTS -->
     <div class="faq-category" id="cat-events">
       <h2 class="faq-category-title">Events & Retreats</h2>
       <span class="faq-category-sub">Private events, retreats, and group bookings at Grotta Resort.</span>
@@ -452,12 +458,16 @@
       </div>
 
       <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Are outside caterers or other vendors permitted at events? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><strong>Outside food catering is not permitted</strong> at private or corporate events. All food and beverage must be provided by Grotta Resort. Other external vendors may be allowed with prior approval and must follow Grotta Resort rules. A coordination fee may apply.</div></div>
+      </div>
+
+      <div class="faq-item">
         <button class="faq-q" onclick="toggle(this)">Do you offer wellness and yoga retreats? <span class="faq-icon"></span></button>
         <div class="faq-a-wrap"><div class="faq-a">Yes. Grotta Resort offers curated wellness retreat packages combining accommodation, guided yoga sessions, highland activities, and full-board meals. Retreats can be tailored for groups or individuals. Visit our Retreats page for more information or contact us to discuss a bespoke retreat.</div></div>
       </div>
     </div>
 
-    <!-- CORPORATE -->
     <div class="faq-category" id="cat-corporate">
       <h2 class="faq-category-title">Corporate & Group Events</h2>
       <span class="faq-category-sub">Conferences, team building, workshops, and corporate retreats.</span>
@@ -489,7 +499,6 @@
       </div>
     </div>
 
-    <!-- BOOKING & PAYMENTS -->
     <div class="faq-category" id="cat-booking">
       <h2 class="faq-category-title">Booking & Payments</h2>
       <span class="faq-category-sub">Reservations, cancellations, payments, and policies.</span>
@@ -498,6 +507,11 @@
       <div class="faq-item">
         <button class="faq-q" onclick="toggle(this)">How do I make a reservation? <span class="faq-icon"></span></button>
         <div class="faq-a-wrap"><div class="faq-a">You can make a reservation directly through our website booking form, by emailing <a href="mailto:reservations@grottaresort.com">reservations@grottaresort.com</a>, or by contacting us via WhatsApp. We recommend booking directly to ensure the best available rate and direct communication with our team.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">Is transport included in packages? <span class="faq-icon"></span></button>
+        <div class="faq-a-wrap"><div class="faq-a">Transport arrangements vary by package. Please confirm with our reservations team whether transport or airport transfers are included in your specific booking, or can be arranged separately.</div></div>
       </div>
 
       <div class="faq-item">
@@ -521,13 +535,11 @@
       </div>
     </div>
 
-    <!-- Contact CTA -->
     <div class="faq-contact">
       <h3>Still have a question?</h3>
       <p>Our team is here to help. Reach out directly and we will respond within 48 hours.</p>
       <div class="faq-contact-btns">
         <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="faq-btn-primary">Make a Reservation →</a>
-        <a href="mailto:info@grottaresort.com" class="faq-btn-ghost">Email Our Team →</a>
       </div>
     </div>
 
@@ -543,19 +555,16 @@ function showCat(id) {
   document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('cat-' + id).classList.add('active');
   event.currentTarget.classList.add('active');
-  // Close all accordions on tab switch
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
 }
 
 function toggle(btn) {
   const item = btn.closest('.faq-item');
   const wasOpen = item.classList.contains('open');
-  // Close all in this category
   item.closest('.faq-category').querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   if (!wasOpen) item.classList.add('open');
 }
 
-// Open from URL hash e.g. faq.html#weddings
 window.addEventListener('DOMContentLoaded', () => {
   const hash = window.location.hash.replace('#','');
   if (hash && document.getElementById('cat-' + hash)) {
