@@ -948,7 +948,7 @@ body {
       <div class="cj-rule"></div>
       <p>A deeper layer. Reserved for those who wish to go further. Details are few — the experience speaks for itself.</p>
       <p>Coming soon.</p>
-      <span class="cj-soon">Advanced Experiences — Opening 2025</span>
+      <span class="cj-soon">Advanced Experiences — under review. Opening date to be confirmed.</span>
     </div>
   </div>
 
@@ -1009,12 +1009,10 @@ body {
         <h2>Adventure Route</h2>
         <p class="cave-desc">Deeper passages. Ancient labyrinths. Expert guides.</p>
         <p class="cave-hover-desc">Extended exploration through deeper passages. Some stooping required. Sturdy shoes recommended. Maximum 8 guests.</p>
-        <button onclick="openCaveModal('adventure')" class="cave-cta">
-          Explore Further
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg>
-        </button>
+        <p style="font-family:var(--sans);font-size:.66rem;letter-spacing:.04em;color:rgba(201,165,82,.5);margin-top:1.2rem;line-height:1.7">Not currently open for guest booking.</p>
+        <span class="cave-cta" style="opacity:.45;cursor:default;pointer-events:none;">
+          Currently Unavailable
+        </span>
       </div>
     </div>
   </div>
@@ -1052,7 +1050,7 @@ body {
 <div class="coming-soon">
   <span class="cs-label">Coming Soon</span>
   <h2>Future Cave Spa</h2>
-  <p>A cave-side wellness experience inspired by volcanic landscapes and natural stone environments. Opening 2025.</p>
+  <p>A cave-side wellness experience inspired by volcanic landscapes and natural stone environments. Future wellness concept under review. Opening date to be confirmed.</p>
 </div>
 
 
@@ -1085,10 +1083,6 @@ body {
           <div>
             <input type="radio" name="cv-exp" id="cv-exp-scenic" class="cv-pill-input" value="Scenic Cave Walk">
             <label class="cv-pill-label" for="cv-exp-scenic">Scenic Cave Walk</label>
-          </div>
-          <div>
-            <input type="radio" name="cv-exp" id="cv-exp-adventure" class="cv-pill-input" value="Adventure Route">
-            <label class="cv-pill-label" for="cv-exp-adventure">Adventure Route</label>
           </div>
           <div>
             <input type="radio" name="cv-exp" id="cv-exp-cafe" class="cv-pill-input" value="Cave Café">
@@ -1152,7 +1146,6 @@ function openCaveModal(experience) {
   // Pre-select the experience
   const map = {
     'scenic':    'cv-exp-scenic',
-    'adventure': 'cv-exp-adventure',
     'cafe':      'cv-exp-cafe'
   };
   const radioId = map[experience];

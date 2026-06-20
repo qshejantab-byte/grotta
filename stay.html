@@ -120,100 +120,6 @@
 }
 
 /* ══════════════════════════════════════
-   BOOKING BAR
-══════════════════════════════════════ */
-.stay-booking-bar {
-  position: relative; z-index: 50;
-  background: rgba(14,12,9,.88);
-  backdrop-filter: blur(24px) saturate(1.2);
-  -webkit-backdrop-filter: blur(24px) saturate(1.2);
-  border-top: 1px solid rgba(201,165,82,.1);
-  border-bottom: 1px solid rgba(201,165,82,.08);
-  padding: 1.6rem 6vw;
-  transition: background .5s ease, box-shadow .5s ease,
-              opacity .5s ease, transform .5s ease;
-}
-/* Sticky — semi-transparent, always visible */
-.stay-booking-bar.sticky {
-  position: fixed; top: 68px; left: 0; right: 0;
-  background: rgba(8,7,5,.72);
-  backdrop-filter: blur(28px) saturate(1.5);
-  -webkit-backdrop-filter: blur(28px) saturate(1.5);
-  box-shadow: 0 6px 32px rgba(0,0,0,.55),
-              inset 0 -1px 0 rgba(201,165,82,.08);
-  z-index: 200;
-  opacity: 1;
-  transform: translateY(0);
-}
-/* Slide in smoothly when becoming sticky */
-.stay-booking-bar.sticky.entering {
-  animation: bar-slide-in .55s cubic-bezier(.25,.46,.45,.94) forwards;
-}
-@keyframes bar-slide-in {
-  from { opacity: 0; transform: translateY(-12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.booking-bar-inner {
-  display: flex; align-items: center;
-  gap: 1px; max-width: 1200px; margin: 0 auto;
-  background: rgba(201,165,82,.08);
-}
-
-.booking-field {
-  flex: 1; display: flex; flex-direction: column;
-  padding: .8rem 1.4rem; position: relative;
-  background: rgba(8,8,5,.5); min-width: 0;
-  border-right: 1px solid rgba(201,165,82,.08);
-  transition: background .3s ease;
-}
-.booking-field:hover, .booking-field:focus-within {
-  background: rgba(201,165,82,.04);
-}
-.booking-field:last-of-type { border-right: none; }
-
-.booking-field label {
-  font-family: var(--sans); font-size: .5rem;
-  font-weight: 500; letter-spacing: .28em;
-  text-transform: uppercase; color: rgba(201,165,82,.5);
-  margin-bottom: .35rem; display: block;
-}
-.booking-field input, .booking-field select {
-  background: transparent; border: none;
-  color: #e8e0d0; font-family: var(--sans);
-  font-size: .86rem; font-weight: 300;
-  outline: none; width: 100%; cursor: pointer;
-  caret-color: var(--gold);
-}
-.booking-field input::placeholder { color: rgba(200,192,174,.4); }
-.booking-field input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(.6) sepia(1) saturate(.5) hue-rotate(10deg);
-  cursor: pointer; opacity: .5;
-}
-.booking-field select option { background: #0e0c09; color: #e8e0d0; }
-
-.booking-bar-btn {
-  flex-shrink: 0; padding: 0 2.2rem;
-  font-family: var(--sans); font-size: .62rem;
-  font-weight: 500; letter-spacing: .24em;
-  text-transform: uppercase; color: #080805;
-  background: var(--gold); border: none;
-  cursor: pointer; height: 100%; min-height: 62px;
-  position: relative; overflow: hidden;
-  transition: background .3s ease, transform .25s ease;
-  white-space: nowrap;
-}
-.booking-bar-btn::before {
-  content: ''; position: absolute; inset: 0;
-  background: #e2c97e; transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .4s cubic-bezier(.25,.46,.45,.94); z-index: 0;
-}
-.booking-bar-btn span { position: relative; z-index: 1; }
-.booking-bar-btn:hover::before { transform: scaleX(1); }
-.booking-bar-btn:hover { transform: translateY(-1px); }
-
-/* ══════════════════════════════════════
    ROOM CARDS — Enhanced
 ══════════════════════════════════════ */
 .rc-section {
@@ -370,26 +276,6 @@
   transition: width .65s cubic-bezier(.25,.46,.45,.94) .1s;
 }
 .rc-wrap:hover .rc-panel::before { width: calc(100% - 6rem); }
-
-/* Social proof */
-.rc-social-proof {
-  display: flex; align-items: center; gap: .6rem;
-  margin-bottom: .9rem;
-}
-.rc-social-proof-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: #c97a3a; flex-shrink: 0;
-  animation: sp-pulse 2s ease-in-out infinite;
-}
-@keyframes sp-pulse {
-  0%,100% { opacity: 1; transform: scale(1); }
-  50% { opacity: .6; transform: scale(.8); }
-}
-.rc-social-proof-text {
-  font-family: var(--sans); font-size: .68rem;
-  font-weight: 300; color: rgba(201,140,60,.7);
-  letter-spacing: .04em;
-}
 
 .rc-panel .label {
   display: block; font-size: .6rem; letter-spacing: .3em;
@@ -800,13 +686,6 @@
   content: '—'; color: rgba(201,165,82,.4); flex-shrink: 0;
 }
 
-.modal-booking-bar {
-  display: flex; align-items: center; gap: 1px;
-  background: rgba(201,165,82,.08); padding: 0;
-  border: 1px solid rgba(201,165,82,.1); margin-bottom: 1.5rem;
-}
-.modal-booking-bar .booking-field { flex: 1; }
-
 .modal-price-row {
   display: flex; align-items: center;
   justify-content: space-between; flex-wrap: wrap; gap: 1rem;
@@ -846,9 +725,6 @@
    RESPONSIVE
 ══════════════════════════════════════ */
 @media(max-width:900px){
-  .booking-bar-inner { flex-direction: column; }
-  .booking-field { border-right: none; border-bottom: 1px solid rgba(201,165,82,.08); }
-  .booking-bar-btn { min-height: 52px; }
   .stay-exp-strip { grid-template-columns: 1fr; }
   .stay-exp-item { height: 240px; }
   .rc-wrap, .rc-wrap.rc-reversed {
@@ -888,8 +764,6 @@
   .compare-table{min-width:600px;font-size:.65rem}
   .stay-float-btn { bottom: 1rem; right: 1rem; font-size: .54rem; padding: .85rem 1.4rem; }
 
-  /* Hide booking bar on mobile */
-  .stay-booking-bar{ display:none !important; }
   #rc-rooms{ padding-top:0 !important; }
   [style*="repeat(6,1fr)"]{ grid-template-columns: repeat(2,1fr) !important; }
   [style*="repeat(3,1fr)"]{ grid-template-columns: 1fr !important; }
@@ -1187,33 +1061,6 @@
   </div>
 </div>
 
-<!-- ══ BOOKING BAR ══ -->
-<div class="stay-booking-bar" id="stay-booking-bar">
-  <div class="booking-bar-inner">
-    <div class="booking-field">
-      <label>Check In</label>
-      <input type="date" id="bb-checkin">
-    </div>
-    <div class="booking-field">
-      <label>Check Out</label>
-      <input type="date" id="bb-checkout">
-    </div>
-    <div class="booking-field">
-      <label>Guests</label>
-      <select id="bb-guests">
-        <option value="1">1 Guest</option>
-        <option value="2" selected>2 Guests</option>
-        <option value="3">3 Guests</option>
-        <option value="4">4 Guests</option>
-        <option value="5">5+ Guests</option>
-      </select>
-    </div>
-    <button class="booking-bar-btn" onclick="searchAvailability()">
-      <span>Search Availability</span>
-    </button>
-  </div>
-</div>
-
 <!-- ══ LUXURY INTRO STRIP ══ -->
 <div style="background:#080805;padding:5rem 6vw 4rem;position:relative;overflow:hidden">
   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(201,165,82,.03) 0%,transparent 70%);pointer-events:none"></div>
@@ -1230,7 +1077,7 @@
         <div style="font-family:var(--sans);font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,192,174,.4)">Rooms & Suites</div>
       </div>
       <div style="background:#0e0c09;padding:2rem 1.8rem;transition:background .3s ease" onmouseover="this.style.background='#131109'" onmouseout="this.style.background='#0e0c09'">
-        <div style="font-family:var(--serif);font-size:2.2rem;color:#c9a552;font-weight:300;line-height:1;margin-bottom:.4rem">6</div>
+        <div style="font-family:var(--serif);font-size:2.2rem;color:#c9a552;font-weight:300;line-height:1;margin-bottom:.4rem">7</div>
         <div style="font-family:var(--sans);font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,192,174,.4)">Room Categories</div>
       </div>
       <div style="background:#0e0c09;padding:2rem 1.8rem;transition:background .3s ease" onmouseover="this.style.background='#131109'" onmouseout="this.style.background='#0e0c09'">
@@ -1303,7 +1150,7 @@
       Compare
     </label>
     <div class="rc-img">
-      <img src="images/DSC03706.JPG" alt="Standard Room" loading="lazy">
+      <img src="images/DSC03400.JPG" alt="Standard Room" loading="lazy">
       <div class="rc-img-info">
         <span class="rc-img-chip">2 Guests</span>
         <span class="rc-img-chip">32m²</span>
@@ -1315,10 +1162,6 @@
     </div>
     <div class="rc-num">01</div>
     <div class="rc-panel">
-      <div class="rc-social-proof">
-        <div class="rc-social-proof-dot"></div>
-        <span class="rc-social-proof-text">4 people viewing · Booked 3 times today</span>
-      </div>
       <span class="label">The Essential</span>
       <h3>Standard Room</h3>
       <span class="rc-subtitle">Where simplicity becomes a statement.</span>
@@ -1337,7 +1180,7 @@
         <span class="rc-tag">Gym</span>
         <span class="rc-tag">Property Tour</span>
         <span class="rc-tag">Car Cleaning</span>
-        <span class="rc-tag">Bonfire</span>
+        <span class="rc-tag">Bonfire (on request)</span>
       </div>
       <div class="rc-bottom">
         <div class="rc-price-block">
@@ -1375,10 +1218,6 @@
     </div>
     <div class="rc-num">02</div>
     <div class="rc-panel">
-      <div class="rc-social-proof">
-        <div class="rc-social-proof-dot"></div>
-        <span class="rc-social-proof-text">7 people viewing · Booked 8 times today</span>
-      </div>
       <span class="label">Elevated Comfort</span>
       <h3>King Room</h3>
       <span class="rc-subtitle">Space to breathe. Time to linger.</span>
@@ -1397,7 +1236,7 @@
         <span class="rc-tag">Gym</span>
         <span class="rc-tag">Property Tour</span>
         <span class="rc-tag">Car Cleaning</span>
-        <span class="rc-tag">Bonfire</span>
+        <span class="rc-tag">Bonfire (on request)</span>
         <span class="rc-tag">Jacuzzi</span>
         <span class="rc-tag">Gaming</span>
       </div>
@@ -1460,10 +1299,6 @@
     </div>
     <div class="rc-num">03</div>
     <div class="rc-panel">
-      <div class="rc-social-proof">
-        <div class="rc-social-proof-dot"></div>
-        <span class="rc-social-proof-text">5 people viewing · Only 3 left</span>
-      </div>
       <span class="label">The Volcano Vista</span>
       <h3>King Volcano View</h3>
       <span class="rc-subtitle">Wake to ancient peaks and highland mist.</span>
@@ -1482,7 +1317,7 @@
         <span class="rc-tag">Gym</span>
         <span class="rc-tag">Property Tour</span>
         <span class="rc-tag">Car Cleaning</span>
-        <span class="rc-tag">Bonfire</span>
+        <span class="rc-tag">Bonfire (on request)</span>
         <span class="rc-tag">Jacuzzi</span>
         <span class="rc-tag">Gaming</span>
       </div>
@@ -1539,7 +1374,7 @@
         <span class="rc-tag">Gym</span>
         <span class="rc-tag">Property Tour</span>
         <span class="rc-tag">Car Cleaning</span>
-        <span class="rc-tag">Bonfire</span>
+        <span class="rc-tag">Bonfire (on request)</span>
         <span class="rc-tag">Jacuzzi</span>
         <span class="rc-tag">Gaming</span>
       </div>
@@ -1583,7 +1418,7 @@
       <span class="rc-subtitle">Space for all the people who matter most.</span>
       <div style="font-family:var(--sans);font-size:.68rem;font-weight:300;color:rgba(201,165,82,.55);margin-bottom:1rem;padding:.5rem .8rem;border:1px solid rgba(201,165,82,.15);display:inline-block;line-height:1.6">Room configuration · Created by combining two double rooms.<br>Availability subject to configuration at time of booking.</div>
       <div class="rc-divider"></div>
-      <p>Designed for families who want to stay close without compromising comfort. Dedicated sleeping areas, farm experience access, kids movie room, Jacuzzi, and gaming — everything for the whole family.</p>
+      <p>Designed for families who want to stay close without compromising comfort. Dedicated sleeping areas just steps from the dedicated <a href="families.html#fm-experiences" style="color:#c9a552;text-decoration:underline">Kids Area</a> — with its own pool play, garden paths, and supervised activities — plus farm experience access, Jacuzzi, and gaming for the whole family.</p>
       <div class="rc-highlights">
         <span class="rc-highlight"><span class="rc-highlight-icon"></span> King + Twin Beds</span>
         <span class="rc-highlight"><span class="rc-highlight-icon"></span> Kids Movie Room</span>
@@ -1596,7 +1431,7 @@
         <span class="rc-tag">Gym</span>
         <span class="rc-tag">Property Tour</span>
         <span class="rc-tag">Car Cleaning</span>
-        <span class="rc-tag">Bonfire</span>
+        <span class="rc-tag">Bonfire (on request)</span>
         <span class="rc-tag">Jacuzzi</span>
         <span class="rc-tag">Gaming</span>
         <span class="rc-tag">Farm Experience</span>
@@ -1655,7 +1490,7 @@
         <span class="rc-tag">Gym</span>
         <span class="rc-tag">Property Tour</span>
         <span class="rc-tag">Car Cleaning</span>
-        <span class="rc-tag">Bonfire</span>
+        <span class="rc-tag">Bonfire (on request)</span>
         <span class="rc-tag">Jacuzzi</span>
         <span class="rc-tag">Gaming</span>
         <span class="rc-tag">Farm Experience</span>
@@ -1686,7 +1521,7 @@
       Compare
     </label>
     <div class="rc-img">
-      <img src="images/DSC03400.JPG" alt="Executive Room" loading="lazy">
+      <img src="images/DSC03706.JPG" alt="Executive Room" loading="lazy">
       <div class="rc-img-info">
         <span class="rc-img-chip">4 Guests</span>
         <span class="rc-img-chip">120m²</span>
@@ -1698,10 +1533,6 @@
     </div>
     <div class="rc-num">07</div>
     <div class="rc-panel">
-      <div class="rc-social-proof">
-        <div class="rc-social-proof-dot"></div>
-        <span class="rc-social-proof-text">2 rooms remaining this month</span>
-      </div>
       <span class="label">The Pinnacle</span>
       <h3>Executive Room</h3>
       <span class="rc-subtitle">Grotta's most immersive expression of luxury.</span>
@@ -1720,7 +1551,7 @@
         <span class="rc-tag">Gym</span>
         <span class="rc-tag">Property Tour</span>
         <span class="rc-tag">Car Cleaning</span>
-        <span class="rc-tag">Bonfire</span>
+        <span class="rc-tag">Bonfire (on request)</span>
         <span class="rc-tag">Jacuzzi</span>
         <span class="rc-tag">Gaming</span>
         <span class="rc-tag">Farm Experience</span>
@@ -1764,7 +1595,7 @@
   <div style="max-width:1260px;margin:0 auto">
     <div style="text-align:center;margin-bottom:5rem" class="fade-up">
       <span style="font-family:var(--sans);font-size:.54rem;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:rgba(201,165,82,.5);display:block;margin-bottom:.9rem">The Grotta Difference</span>
-      <h2 style="font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:#e8e0d0;line-height:1.06;letter-spacing:-.02em">Why Guests Choose<br>Grotta Suites</h2>
+      <h2 style="font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:#e8e0d0;line-height:1.06;letter-spacing:-.02em">Why Guests Choose<br>Grotta Resort</h2>
       <div style="width:2rem;height:1px;background:rgba(201,165,82,.3);margin:1.2rem auto"></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,165,82,.08)" class="fade-up">
@@ -1976,8 +1807,18 @@
     </div>
 
     <!-- Seasonal note -->
-    <div style="background:rgba(201,165,82,.04);border-left:2px solid rgba(201,165,82,.25);padding:1.2rem 1.8rem">
+    <div style="background:rgba(201,165,82,.04);border-left:2px solid rgba(201,165,82,.25);padding:1.2rem 1.8rem;margin-bottom:1rem">
       <p style="font-size:.8rem;color:rgba(200,192,174,.5);line-height:1.9"><strong style="color:rgba(201,165,82,.6);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase">Seasonal Pricing Note &nbsp;&nbsp;</strong>Rates may vary during public holidays, long weekends, festive periods, and high-demand dates. Premium pricing and minimum-stay requirements may apply. Final rates are confirmed at booking.</p>
+    </div>
+
+    <!-- Extra person note -->
+    <div style="background:rgba(201,165,82,.04);border-left:2px solid rgba(201,165,82,.25);padding:1.2rem 1.8rem;margin-bottom:1rem">
+      <p style="font-size:.8rem;color:rgba(200,192,174,.5);line-height:1.9"><strong style="color:rgba(201,165,82,.6);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase">Extra Person Charge &nbsp;&nbsp;</strong>An additional $35 per night applies for each guest beyond standard room occupancy.</p>
+    </div>
+
+    <!-- Bonfire note -->
+    <div style="background:rgba(201,165,82,.04);border-left:2px solid rgba(201,165,82,.25);padding:1.2rem 1.8rem">
+      <p style="font-size:.8rem;color:rgba(200,192,174,.5);line-height:1.9"><strong style="color:rgba(201,165,82,.6);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase">Bonfire &nbsp;&nbsp;</strong>Bonfire available subject to weather, occupancy, and prior arrangement.</p>
     </div>
   </div>
 </div>
@@ -2086,7 +1927,7 @@ const roomData = {
     desc: 'Crafted from local stone and reclaimed wood, with floor-to-ceiling windows framing misty highland mornings. Every material in this room was chosen with restraint and intention. The light changes slowly here — and that is precisely the point.',
     amenities: ['King Bed', 'Rain Shower', 'Wi-Fi', 'Garden View', 'In-room Safe', 'Air Conditioning', 'Smart TV', 'Minibar', 'Bathrobes & Slippers', 'Nightly Turndown'],
     images: [
-      'images/DSC03706.JPG',
+      'images/DSC03400.JPG',
       'images/DSC03590.JPG',
       'images/DSC03444.JPG',
     ]
@@ -2135,7 +1976,7 @@ const roomData = {
     subtitle: 'Space for all the people who matter most.',
     price: '$176', tagline: 'Together, comfortably.',
     guests: '4', size: '55m²', bed: 'King + Twin Beds', view: 'Garden & Highlands',
-    desc: 'Designed for families who want to stay close without compromising comfort. A generous layout with dedicated sleeping areas, farm experience access, and the kids movie room make this the most complete family offering in the highlands.',
+    desc: 'Designed for families who want to stay close without compromising comfort. A generous layout with dedicated sleeping areas, direct access to the Kids Area — pool play, garden paths, and supervised activities for the youngest guests — plus farm experience and gaming make this the most complete family offering in the highlands.',
     amenities: ['King Bed + Twin Beds', 'Farm Experience Access', 'Kids Movie Room', 'Jacuzzi Access', 'Gaming', 'Family Bathroom', 'Wi-Fi', 'Smart TV', 'Air Conditioning', 'In-room Safe', 'Bathrobes & Slippers'],
     images: [
       'images/DSC03706.JPG',
@@ -2164,7 +2005,7 @@ const roomData = {
     desc: "A private pool, two bedrooms, full terrace, and dedicated butler service. Includes massage chair, sauna access, and the complete wellness experience. This is not a room — it is a residence. Nothing in the Grotta inventory surpasses what is offered here.",
     amenities: ['2× King Beds', 'Private Pool', 'Butler Service', 'Massage Chair', 'Sauna Access', 'Full Terrace', 'Stone Bath', 'Premium Bar', 'Yoga Access', 'Farm Experience', 'Multiple Smart TVs', 'Welcome Hamper'],
     images: [
-      'images/DSC03400.JPG',
+      'images/DSC03706.JPG',
       'images/DSC03542.JPG',
       'images/DSC03527.JPG',
     ]
@@ -2281,75 +2122,15 @@ document.getElementById('compare-modal').addEventListener('click', function(e) {
   if (e.target === this) closeCompare();
 });
 
-// ── Booking bar ───────────────────────────────────────────────
-function searchAvailability() {
-  const checkin  = document.getElementById('bb-checkin').value;
-  const checkout = document.getElementById('bb-checkout').value;
-  const guests   = document.getElementById('bb-guests').value;
-  if (!checkin || !checkout) {
-    alert('Please select check-in and check-out dates.');
-    return;
-  }
-  const url = 'https://live.ipms247.com/booking/book-rooms-grottamusanze';
-  window.location.href = url;
-}
-
-// Set default dates
-(function() {
-  const today = new Date();
-  const tom   = new Date(today); tom.setDate(tom.getDate() + 1);
-  const day3  = new Date(today); day3.setDate(day3.getDate() + 3);
-  const fmt   = d => d.toISOString().split('T')[0];
-  document.getElementById('bb-checkin').value  = fmt(tom);
-  document.getElementById('bb-checkout').value = fmt(day3);
-})();
-
-// ── Sticky booking bar — always visible when scrolled past ───
-const bookingBar    = document.getElementById('stay-booking-bar');
+// ── Float booking button — visible after scroll ────────────────
 const floatBtn      = document.getElementById('stay-float-btn');
-let wasSticky       = false;
 let ticking         = false;
-
-// Measure bar position after fonts/images load
-let bookingBarTop   = 0;
-function measureBarTop() {
-  if (bookingBar) {
-    bookingBar.classList.remove('sticky');
-    bookingBarTop = bookingBar.getBoundingClientRect().top + window.scrollY;
-  }
-}
-window.addEventListener('load', measureBarTop);
-measureBarTop();
 
 window.addEventListener('scroll', () => {
   if (!ticking) {
     requestAnimationFrame(() => {
       const y = window.scrollY;
-
-      // Float button
       if (floatBtn) floatBtn.classList.toggle('visible', y > 600);
-
-      // Sticky logic — desktop only (mobile hidden via CSS)
-      if (bookingBar && window.innerWidth > 600) {
-        const isPastBar = y > bookingBarTop - 68;
-
-        if (isPastBar && !wasSticky) {
-          // Just became sticky — animate in
-          bookingBar.classList.add('sticky', 'entering');
-          document.getElementById('rc-rooms').style.paddingTop =
-            bookingBar.offsetHeight + 'px';
-          // Remove entering class after animation
-          setTimeout(() => bookingBar.classList.remove('entering'), 600);
-          wasSticky = true;
-
-        } else if (!isPastBar && wasSticky) {
-          // Back to natural position
-          bookingBar.classList.remove('sticky', 'entering');
-          document.getElementById('rc-rooms').style.paddingTop = '';
-          wasSticky = false;
-        }
-      }
-
       ticking = false;
     });
     ticking = true;
