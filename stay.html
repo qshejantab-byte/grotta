@@ -1149,6 +1149,16 @@
   .wg-btn-gold{min-height:52px}
 }
 
+
+/* Material Symbols sizing overrides */
+.ms { font-family: "Material Symbols Outlined" !important; font-style: normal; font-weight: normal;
+  line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap;
+  direction: ltr; -webkit-font-smoothing: antialiased;
+  font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 40; }
+.pk-inc-card-icon.ms { font-size: 1.8rem; display: block; margin-bottom: .8rem; opacity: .7; color: rgba(201,165,82,.6); }
+.pk-nav-icon.ms { font-size: 1.1rem; vertical-align: middle; }
+.rt-included-icon.ms { font-size: 1.6rem; display: inline-block; }
+.rt-why-block-icon.ms { font-size: 1.8rem; display: block; }
 </style>
 </head>
 <body>
@@ -1164,7 +1174,7 @@
   <div class="stay-hero-content">
     <span class="label">Suites & Rooms</span>
     <h1>Stay at<br>Grotta</h1>
-    <p>Fifty thoughtfully designed rooms surrounded by gardens, highland views, and the quiet that comes only from altitude.</p>
+    <p>Twenty-six thoughtfully designed rooms surrounded by gardens, highland views, and the quiet that comes only from altitude.</p>
     <a href="#rc-rooms" class="rc-book" style="opacity:0;animation:sh-up .8s ease 1.5s forwards;text-decoration:none;">
       <span>Explore Rooms</span>
       <span class="rc-book-arrow">→</span>
@@ -1178,31 +1188,7 @@
 </div>
 
 <!-- ══ BOOKING BAR ══ -->
-<div class="stay-booking-bar" id="stay-booking-bar">
-  <div class="booking-bar-inner">
-    <div class="booking-field">
-      <label>Check In</label>
-      <input type="date" id="bb-checkin">
-    </div>
-    <div class="booking-field">
-      <label>Check Out</label>
-      <input type="date" id="bb-checkout">
-    </div>
-    <div class="booking-field">
-      <label>Guests</label>
-      <select id="bb-guests">
-        <option value="1">1 Guest</option>
-        <option value="2" selected>2 Guests</option>
-        <option value="3">3 Guests</option>
-        <option value="4">4 Guests</option>
-        <option value="5">5+ Guests</option>
-      </select>
-    </div>
-    <button class="booking-bar-btn" onclick="searchAvailability()">
-      <span>Search Availability</span>
-    </button>
-  </div>
-</div>
+
 
 <!-- ══ LUXURY INTRO STRIP ══ -->
 <div style="background:#080805;padding:5rem 6vw 4rem;position:relative;overflow:hidden">
@@ -1216,11 +1202,11 @@
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(201,165,82,.08)" class="fade-up">
       <div style="background:#0e0c09;padding:2rem 1.8rem;transition:background .3s ease" onmouseover="this.style.background='#131109'" onmouseout="this.style.background='#0e0c09'">
-        <div style="font-family:var(--serif);font-size:2.2rem;color:#c9a552;font-weight:300;line-height:1;margin-bottom:.4rem">29</div>
+        <div style="font-family:var(--serif);font-size:2.2rem;color:#c9a552;font-weight:300;line-height:1;margin-bottom:.4rem">26</div>
         <div style="font-family:var(--sans);font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,192,174,.4)">Rooms & Suites</div>
       </div>
       <div style="background:#0e0c09;padding:2rem 1.8rem;transition:background .3s ease" onmouseover="this.style.background='#131109'" onmouseout="this.style.background='#0e0c09'">
-        <div style="font-family:var(--serif);font-size:2.2rem;color:#c9a552;font-weight:300;line-height:1;margin-bottom:.4rem">7</div>
+        <div style="font-family:var(--serif);font-size:2.2rem;color:#c9a552;font-weight:300;line-height:1;margin-bottom:.4rem">6</div>
         <div style="font-family:var(--sans);font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,192,174,.4)">Room Categories</div>
       </div>
       <div style="background:#0e0c09;padding:2rem 1.8rem;transition:background .3s ease" onmouseover="this.style.background='#131109'" onmouseout="this.style.background='#0e0c09'">
@@ -1244,32 +1230,32 @@
     </div>
     <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(201,165,82,.08)" class="fade-up">
       <div style="background:#0e0c09;padding:2rem 1.4rem;text-align:center;transition:background .35s ease" onmouseover="this.style.background='#131109'" onmouseout="this.style.background='#0e0c09'">
-        <div style="font-size:1.5rem;margin-bottom:.8rem;opacity:.75">🌄</div>
+        <div style="font-size:1.8rem;margin-bottom:.8rem;opacity:.7;font-family:"Material Symbols Outlined";font-style:normal;font-weight:normal;font-variation-settings:"FILL" 0,"wght" 200,"GRAD" 0,"opsz" 40;color:rgba(201,165,82,.6)"><span class="ms">wb_twilight</span></div>
         <div style="font-family:var(--serif);font-size:.95rem;color:#e8e0d0;margin-bottom:.3rem">Breakfast</div>
         <div style="font-size:.7rem;color:rgba(200,192,174,.38);line-height:1.6">Highland breakfast served daily</div>
       </div>
       <div style="background:#0e0c09;padding:2rem 1.4rem;text-align:center;transition:background .35s ease" onmouseover="this.style.background='#131109'" onmouseout="this.style.background='#0e0c09'">
-        <div style="font-size:1.5rem;margin-bottom:.8rem;opacity:.75">🏊</div>
+        <div style="font-size:1.8rem;margin-bottom:.8rem;opacity:.7;font-family:"Material Symbols Outlined";font-style:normal;font-weight:normal;font-variation-settings:"FILL" 0,"wght" 200,"GRAD" 0,"opsz" 40;color:rgba(201,165,82,.6)"><span class="ms">pool</span></div>
         <div style="font-family:var(--serif);font-size:.95rem;color:#e8e0d0;margin-bottom:.3rem">Swimming Pool</div>
         <div style="font-size:.7rem;color:rgba(200,192,174,.38);line-height:1.6">Open daily for all guests</div>
       </div>
       <div style="background:#0e0c09;padding:2rem 1.4rem;text-align:center;transition:background .35s ease" onmouseover="this.style.background='#131109'" onmouseout="this.style.background='#0e0c09'">
-        <div style="font-size:1.5rem;margin-bottom:.8rem;opacity:.75">💪</div>
+        <div style="font-size:1.8rem;margin-bottom:.8rem;opacity:.7;font-family:"Material Symbols Outlined";font-style:normal;font-weight:normal;font-variation-settings:"FILL" 0,"wght" 200,"GRAD" 0,"opsz" 40;color:rgba(201,165,82,.6)"><span class="ms">fitness_center</span></div>
         <div style="font-family:var(--serif);font-size:.95rem;color:#e8e0d0;margin-bottom:.3rem">Gym Access</div>
         <div style="font-size:.7rem;color:rgba(200,192,174,.38);line-height:1.6">Highland altitude training</div>
       </div>
       <div style="background:#0e0c09;padding:2rem 1.4rem;text-align:center;transition:background .35s ease" onmouseover="this.style.background='#131109'" onmouseout="this.style.background='#0e0c09'">
-        <div style="font-size:1.5rem;margin-bottom:.8rem;opacity:.75">🏔</div>
+        <div style="font-size:1.8rem;margin-bottom:.8rem;opacity:.7;font-family:"Material Symbols Outlined";font-style:normal;font-weight:normal;font-variation-settings:"FILL" 0,"wght" 200,"GRAD" 0,"opsz" 40;color:rgba(201,165,82,.6)"><span class="ms">landscape</span></div>
         <div style="font-family:var(--serif);font-size:.95rem;color:#e8e0d0;margin-bottom:.3rem">Property Tour</div>
         <div style="font-size:.7rem;color:rgba(200,192,174,.38);line-height:1.6">Guided grounds experience</div>
       </div>
       <div style="background:#0e0c09;padding:2rem 1.4rem;text-align:center;transition:background .35s ease" onmouseover="this.style.background='#131109'" onmouseout="this.style.background='#0e0c09'">
-        <div style="font-size:1.5rem;margin-bottom:.8rem;opacity:.75">🚗</div>
+        <div style="font-size:1.8rem;margin-bottom:.8rem;opacity:.7;font-family:"Material Symbols Outlined";font-style:normal;font-weight:normal;font-variation-settings:"FILL" 0,"wght" 200,"GRAD" 0,"opsz" 40;color:rgba(201,165,82,.6)"><span class="ms">directions_car</span></div>
         <div style="font-family:var(--serif);font-size:.95rem;color:#e8e0d0;margin-bottom:.3rem">Car Cleaning</div>
         <div style="font-size:.7rem;color:rgba(200,192,174,.38);line-height:1.6">Complimentary service</div>
       </div>
       <div style="background:#0e0c09;padding:2rem 1.4rem;text-align:center;transition:background .35s ease" onmouseover="this.style.background='#131109'" onmouseout="this.style.background='#0e0c09'">
-        <div style="font-size:1.5rem;margin-bottom:.8rem;opacity:.75">🔥</div>
+        <div style="font-size:1.8rem;margin-bottom:.8rem;opacity:.7;font-family:"Material Symbols Outlined";font-style:normal;font-weight:normal;font-variation-settings:"FILL" 0,"wght" 200,"GRAD" 0,"opsz" 40;color:rgba(201,165,82,.6)"><span class="ms">local_fire_department</span></div>
         <div style="font-family:var(--serif);font-size:.95rem;color:#e8e0d0;margin-bottom:.3rem">Evening Bonfire</div>
         <div style="font-size:.7rem;color:rgba(200,192,174,.38);line-height:1.6">Highland firepit ritual</div>
       </div>
@@ -1295,9 +1281,9 @@
     <div class="rc-img">
       <img src="images/DSC03706.JPG" alt="Standard Room" loading="lazy">
       <div class="rc-img-info">
-        <span class="rc-img-chip">👤 2 Guests</span>
-        <span class="rc-img-chip">📐 32m²</span>
-        <span class="rc-img-chip">🏔 Garden View</span>
+        <span class="rc-img-chip">2 Guests</span>
+        <span class="rc-img-chip">32m²</span>
+        <span class="rc-img-chip">Garden View</span>
       </div>
       <div class="rc-img-hover-overlay">
         <span onclick="openModal('standard')">View Details</span>
@@ -1334,11 +1320,11 @@
       <div class="rc-bottom">
         <div class="rc-price-block">
           <span class="from">From</span>
-          <span class="amount">180,000 RWF<span class="per"> / night</span></span>
+          <span class="amount">$115<span class="per"> / night</span></span>
         </div>
         <div class="rc-ctas">
           <button class="rc-details-btn" onclick="openModal('standard')">Details</button>
-          <a href="booking.html?room=standard" class="rc-book" id="book-standard">
+          <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="rc-book" id="book-standard">
             <span>Book Now</span><span class="rc-book-arrow">→</span>
           </a>
         </div>
@@ -1357,9 +1343,9 @@
     <div class="rc-img">
       <img src="images/DSC03420.JPG" alt="King Room" loading="lazy">
       <div class="rc-img-info">
-        <span class="rc-img-chip">👤 2 Guests</span>
-        <span class="rc-img-chip">📐 44m²</span>
-        <span class="rc-img-chip">🌅 Sunrise View</span>
+        <span class="rc-img-chip">2 Guests</span>
+        <span class="rc-img-chip">44m²</span>
+        <span class="rc-img-chip">Sunrise View</span>
       </div>
       <div class="rc-img-hover-overlay">
         <span onclick="openModal('king')">View Details</span>
@@ -1388,19 +1374,17 @@
         <span class="rc-tag">Lounge Area</span>
         <span class="rc-tag">Minibar</span>
         <span class="rc-tag">Rainfall Shower</span>
-        <span class="rc-tag">Jacuzzi</span>
-        <span class="rc-tag">Gaming</span>
         <span class="rc-tag">Swimming Pool</span>
         <span class="rc-tag">Gym</span>
       </div>
       <div class="rc-bottom">
         <div class="rc-price-block">
           <span class="from">From</span>
-          <span class="amount">195,000 RWF<span class="per"> / night</span></span>
+          <span class="amount">$130<span class="per"> / night</span></span>
         </div>
         <div class="rc-ctas">
           <button class="rc-details-btn" onclick="openModal('king')">Details</button>
-          <a href="booking.html?room=king" class="rc-book" id="book-king">
+          <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="rc-book" id="book-king">
             <span>Book Now</span><span class="rc-book-arrow">→</span>
           </a>
         </div>
@@ -1414,7 +1398,7 @@
       <img src="images/AV7I5406.jpg" alt="Dining" loading="lazy">
       <div class="stay-exp-text">
         <span class="label">Culinary</span>
-        <h4>Five Dining Venues</h4>
+        <h4>Restaurant & Cave Café</h4>
       </div>
     </div>
     <div class="stay-exp-item">
@@ -1441,11 +1425,10 @@
       Compare
     </label>
     <div class="rc-img">
-      <img src="images/DSC03527.JPG" alt="King Volcano View" loading="lazy">
-      <div class="rc-img-info">
-        <span class="rc-img-chip">👤 2 Guests</span>
-        <span class="rc-img-chip">📐 48m²</span>
-        <span class="rc-img-chip">🌋 Volcano View</span>
+<img src="images/DSC03527.JPG" alt="King Volcano View" loading="lazy">      <div class="rc-img-info">
+        <span class="rc-img-chip">2 Guests</span>
+        <span class="rc-img-chip">48m²</span>
+        <span class="rc-img-chip">Volcano View</span>
       </div>
       <div class="rc-img-hover-overlay">
         <span onclick="openModal('king_volcano')">View Details</span>
@@ -1481,11 +1464,11 @@
       <div class="rc-bottom">
         <div class="rc-price-block">
           <span class="from">From</span>
-          <span class="amount">205,000 RWF<span class="per"> / night</span></span>
+          <span class="amount">$136<span class="per"> / night</span></span>
         </div>
         <div class="rc-ctas">
           <button class="rc-details-btn" onclick="openModal('king_volcano')">Details</button>
-          <a href="booking.html?room=king_volcano" class="rc-book" id="book-king_volcano">
+          <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="rc-book" id="book-king_volcano">
             <span>Book Now</span><span class="rc-book-arrow">→</span>
           </a>
         </div>
@@ -1501,11 +1484,11 @@
       Compare
     </label>
     <div class="rc-img">
-      <img src="images/DSC03444.JPG" alt="King Pool View" loading="lazy">
+      <img src="images/DSC03515.JPG " alt="King Pool View" loading="lazy">
       <div class="rc-img-info">
-        <span class="rc-img-chip">👤 2 Guests</span>
-        <span class="rc-img-chip">📐 48m²</span>
-        <span class="rc-img-chip">♾ Pool View</span>
+        <span class="rc-img-chip">2 Guests</span>
+        <span class="rc-img-chip">48m²</span>
+        <span class="rc-img-chip">Pool View</span>
       </div>
       <div class="rc-img-hover-overlay">
         <span onclick="openModal('king_pool')">View Details</span>
@@ -1537,11 +1520,11 @@
       <div class="rc-bottom">
         <div class="rc-price-block">
           <span class="from">From</span>
-          <span class="amount">205,000 RWF<span class="per"> / night</span></span>
+          <span class="amount">$136<span class="per"> / night</span></span>
         </div>
         <div class="rc-ctas">
           <button class="rc-details-btn" onclick="openModal('king_pool')">Details</button>
-          <a href="booking.html?room=king_pool" class="rc-book" id="book-king_pool">
+          <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="rc-book" id="book-king_pool">
             <span>Book Now</span><span class="rc-book-arrow">→</span>
           </a>
         </div>
@@ -1557,11 +1540,11 @@
       Compare
     </label>
     <div class="rc-img">
-      <img src="images/DSC03706.JPG" alt="Family Room" loading="lazy">
+      <img src="images/Gemini_Generated_Image_pub0lppub0lppub0.png" alt="Family Room" loading="lazy">
       <div class="rc-img-info">
-        <span class="rc-img-chip">👤 4 Guests</span>
-        <span class="rc-img-chip">📐 55m²</span>
-        <span class="rc-img-chip">🌿 Garden View</span>
+        <span class="rc-img-chip">4 Guests</span>
+        <span class="rc-img-chip">55m²</span>
+        <span class="rc-img-chip">Garden View</span>
       </div>
       <div class="rc-img-hover-overlay">
         <span onclick="openModal('family')">View Details</span>
@@ -1572,7 +1555,7 @@
       <span class="label">For Every Generation</span>
       <h3>Family Room</h3>
       <span class="rc-subtitle">Space for all the people who matter most.</span>
-      <div class="rc-avail-text" id="avail-family">3 rooms available</div>
+      <div style="font-family:var(--sans);font-size:.68rem;font-weight:300;color:rgba(201,165,82,.55);margin-bottom:1rem;padding:.5rem .8rem;border:1px solid rgba(201,165,82,.15);display:inline-block;line-height:1.6">Room configuration · Created by combining two double rooms.<br>Availability subject to configuration at time of booking.</div>
       <div class="rc-divider"></div>
       <p>Designed for families who want to stay close without compromising comfort. Dedicated sleeping areas, farm experience access, kids movie room, Jacuzzi, and gaming — everything for the whole family.</p>
       <div class="rc-highlights">
@@ -1591,11 +1574,11 @@
       <div class="rc-bottom">
         <div class="rc-price-block">
           <span class="from">From</span>
-          <span class="amount">265,000 RWF<span class="per"> / night</span></span>
+          <span class="amount">$176<span class="per"> / night</span></span>
         </div>
         <div class="rc-ctas">
           <button class="rc-details-btn" onclick="openModal('family')">Details</button>
-          <a href="booking.html?room=family" class="rc-book" id="book-family">
+          <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="rc-book" id="book-family">
             <span>Book Now</span><span class="rc-book-arrow">→</span>
           </a>
         </div>
@@ -1611,11 +1594,11 @@
       Compare
     </label>
     <div class="rc-img">
-      <img src="images/DSC03542.JPG" alt="Deluxe Room" loading="lazy">
+      <img src="images/DSC03590.JPG" alt="Deluxe Room" loading="lazy">
       <div class="rc-img-info">
-        <span class="rc-img-chip">👤 3 Guests</span>
-        <span class="rc-img-chip">📐 64m²</span>
-        <span class="rc-img-chip">🌄 Panoramic</span>
+        <span class="rc-img-chip">3 Guests</span>
+        <span class="rc-img-chip">64m²</span>
+        <span class="rc-img-chip">Panoramic</span>
       </div>
       <div class="rc-img-hover-overlay">
         <span onclick="openModal('deluxe')">View Details</span>
@@ -1648,11 +1631,11 @@
       <div class="rc-bottom">
         <div class="rc-price-block">
           <span class="from">From</span>
-          <span class="amount">315,000 RWF<span class="per"> / night</span></span>
+          <span class="amount">$210<span class="per"> / night</span></span>
         </div>
         <div class="rc-ctas">
           <button class="rc-details-btn" onclick="openModal('deluxe')">Details</button>
-          <a href="booking.html?room=deluxe" class="rc-book" id="book-deluxe">
+          <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="rc-book" id="book-deluxe">
             <span>Book Now</span><span class="rc-book-arrow">→</span>
           </a>
         </div>
@@ -1671,9 +1654,9 @@
     <div class="rc-img">
       <img src="images/DSC03400.JPG" alt="Executive Room" loading="lazy">
       <div class="rc-img-info">
-        <span class="rc-img-chip">👤 4 Guests</span>
-        <span class="rc-img-chip">📐 120m²</span>
-        <span class="rc-img-chip">♾ Private Pool</span>
+        <span class="rc-img-chip">4 Guests</span>
+        <span class="rc-img-chip">120m²</span>
+        <span class="rc-img-chip">Private Pool</span>
       </div>
       <div class="rc-img-hover-overlay">
         <span onclick="openModal('executive')">View Details</span>
@@ -1710,11 +1693,11 @@
       <div class="rc-bottom">
         <div class="rc-price-block">
           <span class="from">From</span>
-          <span class="amount">385,000 RWF<span class="per"> / night</span></span>
+          <span class="amount">$260<span class="per"> / night</span></span>
         </div>
         <div class="rc-ctas">
           <button class="rc-details-btn" onclick="openModal('executive')">Details</button>
-          <a href="booking.html?room=executive" class="rc-book" id="book-executive">
+          <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="rc-book" id="book-executive">
             <span>Book Now</span><span class="rc-book-arrow">→</span>
           </a>
         </div>
@@ -1874,45 +1857,45 @@
           <tbody>
             <tr style="border-bottom:1px solid rgba(201,165,82,.06)">
               <td style="padding:.9rem 1rem;color:rgba(200,192,174,.7)">Standard</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">180,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">220,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">270,000 RWF</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$115</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$160</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$205</td>
             </tr>
             <tr style="border-bottom:1px solid rgba(201,165,82,.06)">
               <td style="padding:.9rem 1rem;color:rgba(200,192,174,.7)">King Room</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">195,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">260,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">330,000 RWF</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$130</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$175</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$220</td>
             </tr>
             <tr style="border-bottom:1px solid rgba(201,165,82,.06)">
               <td style="padding:.9rem 1rem;color:rgba(200,192,174,.7)">King Volcano View</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">205,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">285,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">375,000 RWF</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$136</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$181</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$226</td>
             </tr>
             <tr style="border-bottom:1px solid rgba(201,165,82,.06)">
               <td style="padding:.9rem 1rem;color:rgba(200,192,174,.7)">King Pool View</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">205,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">285,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">375,000 RWF</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$136</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$181</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$226</td>
             </tr>
             <tr style="border-bottom:1px solid rgba(201,165,82,.06)">
-              <td style="padding:.9rem 1rem;color:rgba(200,192,174,.7)">Family</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">265,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">330,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">400,000 RWF</td>
+              <td style="padding:.9rem 1rem;color:rgba(200,192,174,.7)">Family <span style="font-size:.7rem;color:rgba(201,165,82,.45)">(room config)</span></td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$176</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$266</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$356</td>
             </tr>
             <tr style="border-bottom:1px solid rgba(201,165,82,.06)">
               <td style="padding:.9rem 1rem;color:rgba(200,192,174,.7)">Deluxe</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">315,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">360,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">420,000 RWF</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$210</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$255</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$300</td>
             </tr>
             <tr>
               <td style="padding:.9rem 1rem;color:rgba(200,192,174,.7)">Executive</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">385,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">415,000 RWF</td>
-              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">480,000 RWF</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$260</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$350</td>
+              <td style="text-align:center;padding:.9rem 1rem;font-family:var(--serif);color:#c9a552">$440</td>
             </tr>
           </tbody>
         </table>
@@ -1974,7 +1957,7 @@
     </div>
     <p style="font-size:.88rem;color:rgba(232,224,208,.45);line-height:2;margin-bottom:2.8rem;max-width:440px;margin-left:auto;margin-right:auto">Every room includes breakfast. Every stay includes the landscape. Some things cannot be replicated — begin yours now.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-      <a href="booking.html" class="rc-book" style="text-decoration:none"><span>Reserve a Room</span><span class="rc-book-arrow">→</span></a>
+      <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="rc-book" style="text-decoration:none"><span>Reserve a Room</span><span class="rc-book-arrow">→</span></a>
       <button onclick="openCompare()" style="font-family:var(--sans);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,224,208,.6);background:transparent;border:1px solid rgba(232,224,208,.22);padding:.95rem 2rem;cursor:pointer;transition:border-color .3s ease,color .3s ease" onmouseover="this.style.borderColor='#c9a552';this.style.color='#c9a552'" onmouseout="this.style.borderColor='rgba(232,224,208,.22)';this.style.color='rgba(232,224,208,.6)'">Compare Rooms</button>
     </div>
   </div>
@@ -2017,13 +2000,13 @@
           <tr><td>Private Pool</td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-x">✕</span></td><td><span class="compare-check">✓</span></td></tr>
           <tr>
             <td>Price / Night</td>
-            <td><span class="compare-price">180k RWF</span></td>
-            <td><span class="compare-price">195k RWF</span></td>
-            <td><span class="compare-price">205k RWF</span></td>
-            <td><span class="compare-price">205k RWF</span></td>
-            <td><span class="compare-price">265k RWF</span></td>
-            <td><span class="compare-price">315k RWF</span></td>
-            <td><span class="compare-price">385k RWF</span></td>
+            <td><span class="compare-price">$115</span></td>
+            <td><span class="compare-price">$130</span></td>
+            <td><span class="compare-price">$136</span></td>
+            <td><span class="compare-price">$136</span></td>
+            <td><span class="compare-price">$176</span></td>
+            <td><span class="compare-price">$210</span></td>
+            <td><span class="compare-price">$260</span></td>
           </tr>
         </tbody>
       </table>
@@ -2048,7 +2031,7 @@
 </div>
 
 <!-- ══ STICKY FLOAT BTN ══ -->
-<a href="booking.html" class="stay-float-btn" id="stay-float-btn">Reserve Your Room →</a>
+<a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="stay-float-btn" id="stay-float-btn">Reserve Your Room →</a>
 
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
@@ -2059,7 +2042,7 @@ const roomData = {
   standard: {
     name: 'Standard Room', label: 'The Essential',
     subtitle: 'Where simplicity becomes a statement.',
-    price: '180,000 RWF', tagline: 'Crafted calm, from floor to sky.',
+    price: '$115', tagline: 'Crafted calm, from floor to sky.',
     guests: '2', size: '32m²', bed: 'King', view: 'Garden',
     desc: 'Crafted from local stone and reclaimed wood, with floor-to-ceiling windows framing misty highland mornings. Every material in this room was chosen with restraint and intention. The light changes slowly here — and that is precisely the point.',
     amenities: ['King Bed', 'Rain Shower', 'Wi-Fi', 'Garden View', 'In-room Safe', 'Air Conditioning', 'Smart TV', 'Minibar', 'Bathrobes & Slippers', 'Nightly Turndown'],
@@ -2072,7 +2055,7 @@ const roomData = {
   king: {
     name: 'King Room', label: 'Elevated Comfort',
     subtitle: 'Space to breathe. Time to linger.',
-    price: '195,000 RWF', tagline: 'More room for what matters.',
+    price: '$130', tagline: 'More room for what matters.',
     guests: '2', size: '44m²', bed: 'Oversized King', view: 'Sunrise',
     desc: 'A separate lounge area creates natural space to unwind after a day in the highlands. Enhanced amenities and a generous footprint make this the choice for guests who refuse to rush. The windows face east — wake to light before the world does.',
     amenities: ['Oversized King Bed', 'Lounge Area', 'Minibar', 'Rainfall Shower', 'Jacuzzi Access', 'Gaming', 'Wi-Fi', 'Smart TV', 'In-room Safe', 'Air Conditioning', 'Bathrobes & Slippers', 'Nightly Turndown'],
@@ -2085,7 +2068,7 @@ const roomData = {
   king_volcano: {
     name: 'King Volcano View', label: 'The Volcano Vista',
     subtitle: 'Wake to ancient peaks and highland mist.',
-    price: '205,000 RWF', tagline: 'The volcano at your window.',
+    price: '$136', tagline: 'The volcano at your window.',
     guests: '2', size: '48m²', bed: 'Oversized King', view: 'Volcano Panorama',
     desc: 'Wake to panoramic mist rolling over the Virunga volcanic peaks from your private terrace. Floor-to-ceiling windows frame one of Rwanda\'s most dramatic landscapes — a view that shifts with every hour of light and never becomes ordinary.',
     amenities: ['Oversized King Bed', 'Private Terrace', 'Soaking Tub', 'Volcano Panorama', 'Jacuzzi Access', 'Gaming', 'Minibar', 'Wi-Fi', 'Smart TV', 'Air Conditioning', 'Bathrobes & Slippers', 'Nightly Turndown'],
@@ -2098,7 +2081,7 @@ const roomData = {
   king_pool: {
     name: 'King Pool View', label: 'The Pool Vista',
     subtitle: 'Stillness, water, and highland light.',
-    price: '205,000 RWF', tagline: 'Morning light across still water.',
+    price: '$136', tagline: 'Morning light across still water.',
     guests: '2', size: '48m²', bed: 'Oversized King', view: 'Pool & Highlands',
     desc: 'Overlooking the resort pool with the highland landscape stretching beyond. Morning light across the water, evenings of perfect stillness. A soaking tub and private terrace make this a room designed for unhurried living at altitude.',
     amenities: ['Oversized King Bed', 'Private Terrace', 'Soaking Tub', 'Pool View', 'Jacuzzi Access', 'Gaming', 'Minibar', 'Wi-Fi', 'Smart TV', 'Air Conditioning', 'Bathrobes & Slippers', 'Nightly Turndown'],
@@ -2111,7 +2094,7 @@ const roomData = {
   family: {
     name: 'Family Room', label: 'For Every Generation',
     subtitle: 'Space for all the people who matter most.',
-    price: '265,000 RWF', tagline: 'Together, comfortably.',
+    price: '$176', tagline: 'Together, comfortably.',
     guests: '4', size: '55m²', bed: 'King + Twin Beds', view: 'Garden & Highlands',
     desc: 'Designed for families who want to stay close without compromising comfort. A generous layout with dedicated sleeping areas, farm experience access, and the kids movie room make this the most complete family offering in the highlands.',
     amenities: ['King Bed + Twin Beds', 'Farm Experience Access', 'Kids Movie Room', 'Jacuzzi Access', 'Gaming', 'Family Bathroom', 'Wi-Fi', 'Smart TV', 'Air Conditioning', 'In-room Safe', 'Bathrobes & Slippers'],
@@ -2124,7 +2107,7 @@ const roomData = {
   deluxe: {
     name: 'Deluxe Room', label: 'Refined Grandeur',
     subtitle: 'Hand-selected. Bespoke. Unforgettable.',
-    price: '315,000 RWF', tagline: 'Every detail, considered.',
+    price: '$210', tagline: 'Every detail, considered.',
     guests: '3', size: '64m²', bed: 'King + Day Bed', view: 'Panoramic',
     desc: 'Hand-selected materials, stone finishes, and bespoke furnishings define every corner of this extraordinary space. Separate sleeping and lounging quarters create a private world within the resort. Includes yoga access, farm experience, and full wellness facilities.',
     amenities: ['King Bed + Day Bed', 'Stone Bath', 'Separate Lounge', 'Premium Bar', 'Yoga Access', 'Farm Experience', 'Jacuzzi Access', 'Butler Call', 'Private Terrace', 'Wi-Fi', 'Smart TV', 'Welcome Champagne'],
@@ -2137,7 +2120,7 @@ const roomData = {
   executive: {
     name: 'Executive Room', label: 'The Pinnacle',
     subtitle: "Grotta's most immersive expression of luxury.",
-    price: '385,000 RWF', tagline: 'Nothing withheld. Nothing ordinary.',
+    price: '$260', tagline: 'Nothing withheld. Nothing ordinary.',
     guests: '4', size: '120m²', bed: '2× King Beds', view: '360° Highland',
     desc: "A private pool, two bedrooms, full terrace, and dedicated butler service. Includes massage chair, sauna access, and the complete wellness experience. This is not a room — it is a residence. Nothing in the Grotta inventory surpasses what is offered here.",
     amenities: ['2× King Beds', 'Private Pool', 'Butler Service', 'Massage Chair', 'Sauna Access', 'Full Terrace', 'Stone Bath', 'Premium Bar', 'Yoga Access', 'Farm Experience', 'Multiple Smart TVs', 'Welcome Hamper'],
@@ -2206,7 +2189,7 @@ function openModal(roomKey) {
         <div class="modal-price">${room.price}</div>
         <span class="modal-price-label">per night · taxes included</span>
       </div>
-      <a href="booking.html?room=${roomKey}" class="rc-book" style="text-decoration:none;">
+      <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="rc-book" style="text-decoration:none;">
         <span>Book This Room</span><span class="rc-book-arrow">→</span>
       </a>
     </div>
@@ -2268,19 +2251,11 @@ function searchAvailability() {
     alert('Please select check-in and check-out dates.');
     return;
   }
-  const url = `booking.html?checkin=${checkin}&checkout=${checkout}&guests=${guests}`;
-  window.location.href = url;
+  const url = 'https://live.ipms247.com/booking/book-rooms-grottamusanze';
+  window.open(url, '_blank');
 }
 
-// Set default dates
-(function() {
-  const today = new Date();
-  const tom   = new Date(today); tom.setDate(tom.getDate() + 1);
-  const day3  = new Date(today); day3.setDate(day3.getDate() + 3);
-  const fmt   = d => d.toISOString().split('T')[0];
-  document.getElementById('bb-checkin').value  = fmt(tom);
-  document.getElementById('bb-checkout').value = fmt(day3);
-})();
+
 
 // ── Sticky booking bar — always visible when scrolled past ───
 const bookingBar    = document.getElementById('stay-booking-bar');
@@ -2337,7 +2312,8 @@ window.addEventListener('scroll', () => {
 // ── Availability ──────────────────────────────────────────────
 const STAY_ROOM_TOTALS = {
   standard: 3, king: 6, king_volcano: 3, king_pool: 6,
-  family: 3, deluxe: 6, executive: 2
+  deluxe: 6, executive: 2
+  // Family rooms are not counted separately — they are created by combining two double rooms
 };
 document.addEventListener('DOMContentLoaded', () => {
   Object.entries(STAY_ROOM_TOTALS).forEach(([key, total]) => {

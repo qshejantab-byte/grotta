@@ -101,7 +101,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
 
 /* ══ HERO ══ */
 .er-hero{position:relative;height:100vh;min-height:820px;display:grid;grid-template-rows:1fr auto;overflow:hidden}
-.er-hero-bg{position:absolute;inset:-8%;background:url('images/AV7I5727.jpg') center 40%/cover;filter:brightness(.36) saturate(.65);animation:er-ken 38s cubic-bezier(.25,.46,.45,.94) forwards;will-change:transform}
+.er-hero-bg{position:absolute;inset:-8%;background:url('images/AV7I3950.jpg') center 40%/cover;filter:brightness(.36) saturate(.65);animation:er-ken 38s cubic-bezier(.25,.46,.45,.94) forwards;will-change:transform}
 @keyframes er-ken{from{transform:scale(1.1)}to{transform:scale(1)}}
 .er-hero-overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(6,5,4,.85) 0%,rgba(6,5,4,.52) 38%,rgba(6,5,4,.1) 62%,rgba(6,5,4,.5) 100%),linear-gradient(to bottom,rgba(6,5,4,.05) 0%,rgba(6,5,4,0) 25%,rgba(6,5,4,.38) 72%,rgba(6,5,4,.98) 100%)}
 .er-hero-glow{position:absolute;left:-5%;bottom:18%;width:55vw;height:50vh;background:radial-gradient(ellipse,rgba(201,120,30,.08) 0%,transparent 65%);pointer-events:none;animation:er-glow 9s ease-in-out infinite alternate}
@@ -752,65 +752,30 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
   .wg-btn-gold{min-height:52px}
 }
 
+
+/* ══ PREMIUM REVIEW CARDS ══════════════════════════════════ */
+.gr-review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.8rem;max-width:1100px;margin:0 auto}
+.gr-review-card{background:#0e0c09;border:1px solid rgba(201,165,82,.1);padding:3rem 3rem 2.5rem;position:relative;overflow:hidden;transition:background .4s ease,border-color .4s ease,transform .4s ease}
+.gr-review-card:hover{background:#131109;border-color:rgba(201,165,82,.2);transform:translateY(-4px)}
+.gr-review-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,rgba(201,165,82,.5),rgba(201,165,82,.1),transparent);transform:scaleX(0);transform-origin:left;transition:transform .55s cubic-bezier(.25,.46,.45,.94)}
+.gr-review-card:hover::before{transform:scaleX(1)}
+.gr-review-qmark{font-family:"Cormorant Garamond",Georgia,serif;font-size:4.5rem;font-weight:300;line-height:.8;color:rgba(201,165,82,.12);display:block;margin-bottom:.5rem;letter-spacing:-.04em}
+.gr-review-stars{display:flex;gap:.15rem;margin-bottom:1.4rem}
+.gr-review-stars span{font-family:"Material Symbols Outlined";font-size:.95rem;color:#c9a552;font-variation-settings:"FILL" 1,"wght" 400,"GRAD" 0,"opsz" 24}
+.gr-review-text{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(1.05rem,1.4vw,1.2rem);font-weight:300;font-style:italic;color:rgba(232,224,208,.72);line-height:1.78;margin-bottom:2rem}
+.gr-review-divider{width:2rem;height:1px;background:rgba(201,165,82,.2);margin-bottom:1.2rem}
+.gr-review-author{display:flex;align-items:center;gap:.9rem}
+.gr-review-author-avatar{width:36px;height:36px;border-radius:50%;background:rgba(201,165,82,.1);border:1px solid rgba(201,165,82,.18);display:flex;align-items:center;justify-content:center;font-family:"Cormorant Garamond",serif;font-size:1rem;color:rgba(201,165,82,.6);flex-shrink:0}
+.gr-review-author-info{display:flex;flex-direction:column;gap:.2rem}
+.gr-review-author-name{font-family:"Jost",sans-serif;font-size:.78rem;font-weight:400;color:rgba(232,224,208,.75);letter-spacing:.04em}
+.gr-review-author-context{font-family:"Jost",sans-serif;font-size:.6rem;font-weight:300;color:rgba(201,165,82,.45);letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:700px){.gr-review-grid{grid-template-columns:1fr}.gr-review-card{padding:2.2rem 1.8rem 2rem}.gr-review-text{font-size:1rem}}
 </style>
 </head>
 <body>
 
 <!-- ══ NAVBAR ══ -->
-<nav class="navbar" id="er-navbar">
-  <a href="index.html" class="grotta-wordmark">GROTTA</a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="stay.html">Stay</a>
-    <a href="experiences.html">Experiences</a>
-    <a href="caves.html">Caves</a>
-    <a href="dining.html">Dining</a>
-    <a href="events.html" class="active">Events & Retreats</a>
-    <a href="packages.html">Packages</a>
-    <a href="weddings.html">Weddings</a>
-    <a href="membership.html">Membership</a>
-  </div>
-  <button class="hamburger" id="er-ham" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<div class="mobile-nav" id="er-mob">
-  <div class="mobile-nav-bg"></div>
-  <div class="mobile-nav-grain"></div>
-  <div class="mobile-nav-glow"></div>
-  <div class="mobile-nav-vignette"></div>
-  <div class="mobile-nav-header">
-    <a href="index.html" class="mobile-nav-logo">GROTTA</a>
-    <button class="mobile-nav-close" id="er-mob-close" aria-label="Close menu">
-      <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2">
-        <line x1="2" y1="2" x2="16" y2="16"/>
-        <line x1="16" y1="2" x2="2" y2="16"/>
-      </svg>
-    </button>
-  </div>
-  <div class="mobile-nav-content">
-    <div class="mobile-nav-line"></div>
-    <nav class="mn-primary">
-      <a href="index.html">Home</a>
-      <a href="stay.html">Stay</a>
-      <a href="experiences.html">Experiences</a>
-    </nav>
-    <div class="mn-divider"></div>
-    <nav class="mn-secondary">
-      <a href="caves.html">Caves</a>
-      <a href="dining.html">Dining</a>
-      <a href="events.html">Events & Retreats</a>
-      <a href="packages.html">Packages</a>
-      <a href="weddings.html">Weddings</a>
-      <a href="membership.html">Membership</a>
-    </nav>
-  </div>
-  <div class="mobile-nav-footer">
-    <span class="mn-location">Musanze · Rwanda · Volcanic Highlands</span>
-    <a href="booking.html" class="mn-book-link">Reserve →</a>
-  </div>
-</div>
+<div id="nav-holder"></div>
 
 <button class="er-float" id="er-float" onclick="document.getElementById('er-reserve').scrollIntoView({behavior:'smooth'})">Reserve a Place →</button>
 
@@ -904,7 +869,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
   </div>
   <div class="er-events-list">
     <div class="er-event reveal">
-      <div class="er-event-img"><img src="images/AV7I5571.jpg" alt="Live Music" loading="lazy"><div class="er-event-img-fade"></div></div>
+      <div class="er-event-img"><img src="images/Gemini_Generated_Image_4qx75j4qx75j4qx7.png" alt="Live Music" loading="lazy"><div class="er-event-img-fade"></div></div>
       <div class="er-event-body">
         <div class="er-event-date">July<br>26–28</div>
         <span class="er-event-label">Music · Celebration · Social</span>
@@ -930,7 +895,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
       </div>
     </div>
     <div class="er-event reveal">
-      <div class="er-event-img"><img src="images/AV7I3580.jpg" alt="Fireside Dining" loading="lazy"><div class="er-event-img-fade"></div></div>
+      <div class="er-event-img"><img src="images/DSC03988copy.JPG" alt="Fireside Dining" loading="lazy"><div class="er-event-img-fade"></div></div>
       <div class="er-event-body">
         <div class="er-event-date">Aug<br>18</div>
         <span class="er-event-label">Dining · Fire · Community</span>
@@ -943,7 +908,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
       </div>
     </div>
     <div class="er-event alt reveal">
-      <div class="er-event-img"><img src="images/AV7I3495.jpg" alt="Volcano Sunrise" loading="lazy"><div class="er-event-img-fade"></div></div>
+      <div class="er-event-img"><img src="images/DSC02802 (1).JPG" alt="Volcano Sunrise" loading="lazy"><div class="er-event-img-fade"></div></div>
       <div class="er-event-body">
         <div class="er-event-date">Sept<br>6</div>
         <span class="er-event-label">Sunrise · Nature · Stillness</span>
@@ -998,11 +963,11 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
       <p class="er-body">Every gathering here exists within a landscape that does something to people. The altitude. The fire. The silence of the highland morning.</p>
     </div>
     <div class="er-atm-grid">
-      <div class="er-atm-item"><img src="images/AV7I5727.jpg" alt="Highlands" loading="lazy"><div class="er-atm-caption"><span class="er-label">The Landscape</span><h4>Volcanic Highlands at Dawn</h4></div></div>
-      <div class="er-atm-item"><img src="images/AV7I5356.jpg" alt="Music" loading="lazy"><div class="er-atm-caption"><span class="er-label">Live Music</span><h4>Garden Evenings</h4></div></div>
+      <div class="er-atm-item"><img src="images/DSC02802 (1).JPG" alt="Highlands" loading="lazy"><div class="er-atm-caption"><span class="er-label">The Landscape</span><h4>Volcanic Highlands at Dawn</h4></div></div>
+      <div class="er-atm-item"><img src="images/DSC02775.JPG" alt="Music" loading="lazy"><div class="er-atm-caption"><span class="er-label">Live Music</span><h4>Garden Evenings</h4></div></div>
       <div class="er-atm-item"><img src="images/AV7I4026.jpg" alt="Wellness" loading="lazy"><div class="er-atm-caption"><span class="er-label">Wellness</span><h4>Morning Ritual</h4></div></div>
       <div class="er-atm-item"><img src="images/AV7I3935.jpg" alt="Fire" loading="lazy"><div class="er-atm-caption"><span class="er-label">Community</span><h4>Fireside Evenings</h4></div></div>
-      <div class="er-atm-item"><img src="images/AV7I5406.jpg" alt="Dining" loading="lazy"><div class="er-atm-caption"><span class="er-label">Shared Dining</span><h4>Long Table Moments</h4></div></div>
+      <div class="er-atm-item"><img src="images/DSC04886.JPG" alt="Dining" loading="lazy"><div class="er-atm-caption"><span class="er-label">Shared Dining</span><h4>Long Table Moments</h4></div></div>
       <div class="er-atm-item"><img src="images/AV7I2004.jpg" alt="Caves" loading="lazy"><div class="er-atm-caption"><span class="er-label">Underground</span><h4>Cave Exploration</h4></div></div>
     </div>
   </div>
@@ -1053,9 +1018,33 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
     <p class="er-testi-quote">Grotta changed the rhythm of our gathering entirely. People slowed down, connected more deeply, and left transformed. The landscape held something none of us expected.</p>
     <span class="er-testi-attr">— Sarah K. · August Highlands Retreat · 2024</span>
   </div>
-  <div class="er-testi-grid">
-    <div class="er-testi-card reveal d1"><span class="er-testi-stars">★★★★★</span><p class="er-testi-text">"The live music weekend was unlike any festival I have attended. Intimate, warm, and perfectly curated. The cave cocktail hour on the final night was something I will carry for years."</p><span class="er-testi-name">Marcus A. · Summer Music Weekend · 2024</span></div>
-    <div class="er-testi-card reveal d2"><span class="er-testi-stars">★★★★★</span><p class="er-testi-text">"The fireside dinner was one of the most memorable evenings of my life. Strangers around a fire, the volcanoes behind us, a meal that lasted three hours. I came alone and left with friends."</p><span class="er-testi-name">Yuki M. · Fireside Dining Evening · 2024</span></div>
+  <div class="gr-review-grid" style="max-width:1100px;margin:0 auto;padding:0 4vw">
+    <div class="gr-review-card reveal">
+      <span class="gr-review-qmark">"</span>
+      <div class="gr-review-stars"><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">star</span><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">star</span><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">star</span><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">star</span><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">star</span></div>
+      <p class="gr-review-text">The live music weekend was unlike any festival I have attended. Intimate, warm, and perfectly curated. The cave cocktail hour on the final night was something I will carry for years.</p>
+      <div class="gr-review-divider"></div>
+      <div class="gr-review-author">
+        <div class="gr-review-author-avatar">M</div>
+        <div class="gr-review-author-info">
+          <span class="gr-review-author-name">Marcus A.</span>
+          <span class="gr-review-author-context">Summer Music Weekend · 2024</span>
+        </div>
+      </div>
+    </div>
+    <div class="gr-review-card reveal">
+      <span class="gr-review-qmark">"</span>
+      <div class="gr-review-stars"><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">star</span><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">star</span><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">star</span><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">star</span><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">star</span></div>
+      <p class="gr-review-text">The fireside dinner was one of the most memorable evenings of my life. Strangers around a fire, the volcanoes behind us, a meal that lasted three hours. I came alone and left with friends.</p>
+      <div class="gr-review-divider"></div>
+      <div class="gr-review-author">
+        <div class="gr-review-author-avatar">Y</div>
+        <div class="gr-review-author-info">
+          <span class="gr-review-author-name">Yuki M.</span>
+          <span class="gr-review-author-context">Fireside Dining Evening · 2024</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1069,7 +1058,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
     <h2 class="er-final-h2">Reserve<br>Your Place</h2>
     <span class="er-final-sub">Spaces at every Grotta gathering are intentionally limited. When they are gone, they are gone. Tell us which experience calls to you and we will hold your place.</span>
     <div class="er-final-ctas">
-      <a href="booking.html" class="er-btn-gold"><span>Reserve Now</span></a>
+      <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="er-btn-gold"><span>Reserve Now</span></a>
       <a href="retreats.html" class="er-btn-outline">Explore Retreats</a>
     </div>
   </div>
@@ -1102,7 +1091,7 @@ body{background:#060504;color:#e8e0d0;font-family:'Jost',sans-serif;font-weight:
         <a href="mailto:hello@grottalodge.com">hello@grottalodge.com</a>
         <a href="tel:+250788000000">+250 788 000 000</a>
         <a href="#">Musanze, Rwanda</a>
-        <a href="booking.html">Reserve Now</a>
+        <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank">Reserve Now</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1130,18 +1119,6 @@ const ANNUAL_EVENTS = [
 
 const MONTH_NAMES    = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MONTH_TAGLINES = {0:'New Year Celebrations',1:"Valentine's Retreat Season",2:'Highland Wellness',3:'Spring Gatherings',4:"Mother's Day & Labour Day",5:'Midsummer Evenings',6:'Live Music Season',7:'Flagship August Festival',8:'Sunrise Gatherings',9:'Harvest Evenings',10:'Late Season Retreats',11:'Christmas Flagship Festival'};
-
-// ══ NAVBAR ══
-const nav = document.getElementById('er-navbar');
-const ham = document.getElementById('er-ham');
-const mob = document.getElementById('er-mob');
-const mobClose = document.getElementById('er-mob-close');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), {passive:true});
-function openNav(){ ham.classList.add('open'); mob.classList.add('open'); document.body.style.overflow='hidden'; }
-function closeNav(){ ham.classList.remove('open'); mob.classList.remove('open'); document.body.style.overflow=''; }
-ham.addEventListener('click', () => mob.classList.contains('open') ? closeNav() : openNav());
-mobClose?.addEventListener('click', closeNav);
-mob.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
 
 // ══ CALENDAR ══
 let calDate = new Date();
@@ -1263,6 +1240,9 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 const tlObs = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');tlObs.unobserve(e.target);}}),{threshold:.1});
 document.querySelectorAll('.er-tl-item').forEach(el=>tlObs.observe(el));
 </script>
+<div id="footer-holder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
 
