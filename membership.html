@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Membership — Grotta</title>
+<title>Membership — GROTTA RESORT</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -25,7 +25,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Grain texture overlay ── */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: 999;
@@ -33,7 +32,6 @@ body::before {
   pointer-events: none; opacity: .55;
 }
 
-/* ── Shared reveal ── */
 .reveal {
   opacity: 0; transform: translateY(34px);
   transition: opacity .95s cubic-bezier(.25,.46,.45,.94),
@@ -47,7 +45,6 @@ body::before {
 .reveal.d3 { transition-delay: .34s; }
 .reveal.d4 { transition-delay: .46s; }
 
-/* ── Shared typography ── */
 .mb-label {
   font-family: 'Jost', sans-serif;
   font-size: .55rem; font-weight: 500;
@@ -80,7 +77,6 @@ body::before {
 .mb-ornament::after { background: linear-gradient(to left, transparent, rgba(201,165,82,.22)); }
 .mb-ornament-dot { font-size: .6rem; color: rgba(201,165,82,.38); }
 
-/* ── Buttons ── */
 .mb-btn-gold {
   display: inline-flex; align-items: center; gap: .7rem;
   font-family: 'Jost', sans-serif; font-size: .58rem;
@@ -111,9 +107,6 @@ body::before {
 }
 .mb-btn-outline:hover { border-color: #c9a552; color: #c9a552; transform: translateY(-2px); }
 
-/* ══════════════════════════════════════
-   1. HERO
-══════════════════════════════════════ */
 .mb-hero {
   position: relative; height: 100vh; min-height: 680px;
   display: flex; align-items: center; justify-content: center;
@@ -145,7 +138,6 @@ body::before {
       rgba(8,8,5,1) 100%);
 }
 
-/* Warm ambient bloom */
 .mb-hero-bloom {
   position: absolute; inset: 0;
   background: radial-gradient(ellipse 60% 40% at 50% 55%,
@@ -206,7 +198,6 @@ body::before {
   to   { opacity: 1; filter: blur(0); transform: translateY(0); }
 }
 
-/* Scroll hint */
 .mb-hero-scroll {
   position: absolute; bottom: 2.2rem; left: 50%;
   transform: translateX(-50%); z-index: 10;
@@ -228,9 +219,6 @@ body::before {
   50% { opacity: .8; transform: scaleY(1.18); }
 }
 
-/* ══════════════════════════════════════
-   2. PURPOSE — A Space to Return To
-══════════════════════════════════════ */
 .mb-purpose {
   background: #080805; padding: 9rem 0;
   position: relative; overflow: hidden;
@@ -252,7 +240,6 @@ body::before {
 .mb-purpose-text .mb-title { margin-bottom: 1.4rem; }
 .mb-purpose-text .mb-body { margin-bottom: 1.8rem; }
 
-/* Concept blocks */
 .mb-concepts { display: flex; flex-direction: column; gap: 1px; background: rgba(201,165,82,.08); }
 .mb-concept {
   background: #0e0c09; padding: 1.8rem 2rem;
@@ -281,7 +268,6 @@ body::before {
 }
 .mb-concept:hover .mb-concept-desc { color: rgba(200,192,174,.65); }
 
-/* Purpose image side */
 .mb-purpose-img {
   position: relative; height: 520px; overflow: hidden;
 }
@@ -297,7 +283,6 @@ body::before {
               linear-gradient(to bottom, transparent 50%, rgba(8,8,5,.5) 100%);
   pointer-events: none;
 }
-/* Gold corner */
 .mb-purpose-img::before {
   content: ''; position: absolute; bottom: 0; right: 0;
   width: 48px; height: 48px;
@@ -306,9 +291,6 @@ body::before {
   z-index: 2; pointer-events: none;
 }
 
-/* ══════════════════════════════════════
-   3. WHAT'S INCLUDED — Access Cards
-══════════════════════════════════════ */
 .mb-included {
   background: #0a0906; padding: 8rem 0;
   position: relative;
@@ -325,7 +307,7 @@ body::before {
 .mb-included-header .mb-rule { margin: 1.2rem auto; }
 
 .mb-access-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1px; background: rgba(201,165,82,.08);
   max-width: 1400px; margin: 0 auto;
 }
@@ -361,7 +343,6 @@ body::before {
     transparent 100%);
 }
 
-/* Gold top line */
 .mb-access-card::before {
   content: ''; position: absolute; top: 0; left: 0;
   width: 0; height: 2px; background: rgba(201,165,82,.6); z-index: 5;
@@ -369,7 +350,6 @@ body::before {
 }
 .mb-access-card:hover::before { width: 100%; }
 
-/* Included badge */
 .mb-access-badge {
   position: absolute; top: 1.4rem; left: 1.4rem; z-index: 5;
   font-family: 'Jost', sans-serif; font-size: .46rem;
@@ -397,9 +377,6 @@ body::before {
 }
 .mb-access-card:hover .mb-access-desc { max-height: 5rem; opacity: 1; transform: translateY(0); }
 
-/* ══════════════════════════════════════
-   4. OPTIONAL ENHANCEMENTS
-══════════════════════════════════════ */
 .mb-optional {
   background: #080805; padding: 8rem 0;
 }
@@ -448,16 +425,21 @@ body::before {
 }
 .mb-opt-card:hover .mb-opt-desc { color: rgba(200,192,174,.62); }
 
-/* Subtle "optional" note */
+.mb-opt-tag {
+  display: inline-block; margin-top: 1.1rem;
+  font-family: 'Jost', sans-serif; font-size: .5rem;
+  font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(201,165,82,.75);
+  border: 1px solid rgba(201,165,82,.28);
+  padding: .3rem .7rem;
+}
+
 .mb-opt-note {
   text-align: center; margin-top: 3rem;
   font-family: 'Jost', sans-serif; font-size: .72rem;
   color: rgba(200,192,174,.35); font-style: italic;
 }
 
-/* ══════════════════════════════════════
-   5. LIFESTYLE SECTION
-══════════════════════════════════════ */
 .mb-lifestyle {
   background: #0a0906; padding: 8rem 0;
   position: relative; overflow: hidden;
@@ -471,14 +453,12 @@ body::before {
   max-width: 1300px; margin: 0 auto; padding: 0 2rem;
 }
 
-/* Editorial split */
 .mb-lifestyle-top {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 5rem; align-items: center; margin-bottom: 4rem;
 }
 .mb-lifestyle-text .mb-title { margin-bottom: 1.4rem; }
 
-/* Overlapping image composition */
 .mb-lifestyle-images {
   position: relative; height: 480px;
 }
@@ -504,7 +484,6 @@ body::before {
   pointer-events: none;
 }
 
-/* Gold overlap border */
 .mb-ls-img-1::before {
   content: ''; position: absolute;
   top: -1px; left: -1px; right: -1px; bottom: -1px;
@@ -512,7 +491,6 @@ body::before {
   pointer-events: none;
 }
 
-/* Horizontal full-bleed atmosphere strip */
 .mb-lifestyle-strip {
   height: 320px; overflow: hidden; position: relative;
 }
@@ -542,9 +520,6 @@ body::before {
   line-height: 1.5; max-width: 680px; padding: 0 2rem;
 }
 
-/* ══════════════════════════════════════
-   6. FINAL CTA
-══════════════════════════════════════ */
 .mb-final {
   position: relative; min-height: 600px;
   display: flex; align-items: center; justify-content: center;
@@ -562,7 +537,6 @@ body::before {
   background: radial-gradient(ellipse 80% 60% at 50% 50%,
     rgba(8,8,5,.4) 0%, rgba(8,8,5,.82) 100%);
 }
-/* Warm bloom */
 .mb-final-bloom {
   position: absolute; inset: 0;
   background: radial-gradient(ellipse 60% 50% at 50% 50%,
@@ -589,9 +563,6 @@ body::before {
   display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
 }
 
-/* ══════════════════════════════════════
-   MODAL — Application
-══════════════════════════════════════ */
 .mb-modal-backdrop {
   position: fixed; inset: 0; z-index: 800;
   background: rgba(8,8,5,.88);
@@ -650,7 +621,6 @@ body::before {
   background: linear-gradient(to right, rgba(201,165,82,.2), transparent);
 }
 
-/* Modal form */
 .mb-modal-form { padding: 0 3rem 3rem; }
 
 .mb-modal-field {
@@ -674,7 +644,6 @@ body::before {
 }
 .mb-modal-input:focus, .mb-modal-textarea:focus { border-bottom-color: #c9a552; }
 
-/* Animated underline */
 .mb-modal-field::after {
   content: ''; position: absolute;
   bottom: 0; left: 0; width: 0; height: 1px;
@@ -685,7 +654,6 @@ body::before {
 
 .mb-modal-textarea { min-height: 80px; resize: vertical; }
 
-/* Interest pills */
 .mb-interest-pills { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .6rem; }
 .mb-interest-input { display: none; }
 .mb-interest-label {
@@ -702,7 +670,6 @@ body::before {
 
 .mb-modal-submit { width: 100%; padding: 1.1rem; margin-top: .5rem; }
 
-/* Modal confirmation */
 .mb-modal-confirm {
   display: none; text-align: center; padding: 3.5rem 3rem;
   animation: mb-up .6s ease;
@@ -732,9 +699,6 @@ body::before {
   font-style: italic; letter-spacing: .06em;
 }
 
-/* ══════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════ */
 @media(max-width:1100px){
   .mb-access-grid { grid-template-columns: repeat(2, 1fr); }
   .mb-opt-grid { grid-template-columns: 1fr 1fr; }
@@ -757,12 +721,6 @@ body::before {
   .mb-lifestyle-strip { height: 240px; }
 }
 
-/* ══════════════════════════════════════════════════════════
-   GROTTA — GLOBAL RESPONSIVE SYSTEM
-   Breakpoints: 1400 | 1100 | 900 | 768 | 600 | 480 | 380
-══════════════════════════════════════════════════════════ */
-
-/* ── Ultra-wide: prevent over-stretching ── */
 @media(min-width:1600px){
   .hp-hero-content,.hp-section-header,
   .hp-what-inner,.pk-intro-inner,
@@ -770,61 +728,42 @@ body::before {
   .er-timeline-inner{max-width:1400px;margin-left:auto;margin-right:auto}
 }
 
-/* ── Large desktop 1100px ── */
 @media(max-width:1100px){
-  /* Typography */
   h1,h2{letter-spacing:-.02em}
-  /* Chapters */
   .hp-ch-content{grid-template-columns:1fr!important;gap:2.5rem;padding:5rem 5vw}
   .hp-ch-content.right{direction:ltr!important}
   .hp-ch-img-wrap{height:clamp(260px,40vw,420px);transform:none!important}
   .hp-ch-num{font-size:clamp(5rem,10vw,9rem)}
-  /* Cave section */
   .hp-cave-content{max-width:100%;padding:4rem 5vw}
-  /* Weddings */
   .wg-pkg-grid{grid-template-columns:1fr 1fr!important}
   .wg-hero-h1{font-size:clamp(3rem,6vw,6rem)}
 }
 
-/* ── Tablet 900px ── */
 @media(max-width:900px){
-  /* Global section padding */
   section,.er-season,.er-atmosphere,.er-timeline,
   .er-testimonials,.er-private,.er-featured,
   .pk-intro,.pk-inclusions,.pk-rhythm,
   .hp-packages,.hp-rooms,.hp-what{padding:5rem 0}
-
-  /* Hero sections */
   .hp-hero{min-height:100svh}
   .er-hero{min-height:100svh}
   .hp-hero-content{padding:0 5vw;margin-bottom:220px}
   .hp-hero-content h1{font-size:clamp(2.4rem,8vw,4rem)}
   .hp-hero-content p{font-size:clamp(.85rem,2.5vw,1rem)}
-
-  /* Booking bar */
   .booking-bar{width:96vw;flex-wrap:wrap;height:auto;bottom:0}
   .bb-field{flex:1 1 45%;height:52px;border-right:none;border-bottom:1px solid rgba(201,165,82,.1)}
   .bb-book{flex:1 1 100%;height:48px}
-
-  /* Cards & grids */
   .hp-packages-grid{grid-template-columns:1fr}
   .hp-rooms-grid{grid-template-columns:1fr 1fr}
   .hp-pkg-card{min-height:320px}
-
-  /* Events */
   .er-event{grid-template-columns:1fr!important;direction:ltr!important}
   .er-event-img{height:280px}
   .er-event-img-fade{display:none}
   .er-event-body{padding:2rem 1.5rem}
   .er-featured-content{grid-template-columns:1fr!important;padding:5rem 5vw;gap:3rem}
-
-  /* Atmosphere gallery */
   .er-atm-grid{grid-template-columns:1fr 1fr!important;grid-template-rows:auto!important}
   .er-atm-item{height:220px!important}
   .er-atm-item:nth-child(1){grid-row:auto!important;grid-column:1/-1!important;height:280px!important}
   .er-atm-item:nth-child(5){grid-column:auto!important}
-
-  /* Packages */
   .pk-panel{grid-template-columns:1fr!important;direction:ltr!important}
   .pk-panel.rev{direction:ltr!important}
   .pk-panel-img{height:280px}
@@ -835,97 +774,61 @@ body::before {
   .pk-inc-split{grid-template-columns:1fr!important;gap:1.5rem}
   .pk-gallery-grid{grid-template-columns:1fr 1fr!important}
   .pk-testi-grid{grid-template-columns:1fr!important}
-
-  /* Stay */
   .rc-wrap,.rc-wrap.rc-reversed{flex-direction:column!important;width:96%!important}
   .rc-img{width:100%!important;height:260px!important}
   .rc-panel{margin:0!important;padding:2rem 1.5rem!important}
   .rc-ctas{flex-direction:column;gap:.5rem}
   .rc-details-btn,.rc-book{width:100%;justify-content:center;text-align:center}
   [style*="repeat(6,1fr)"]{grid-template-columns:repeat(3,1fr)!important}
-
-  /* Weddings */
   .wg-pkg-grid{grid-template-columns:1fr!important}
   .wg-hero-h1{font-size:clamp(2.8rem,7vw,5rem)}
   .wg-why-grid{grid-template-columns:1fr 1fr!important}
-
-  /* Membership */
   .mb-hero-h1{font-size:clamp(2.8rem,7vw,5rem)}
   .mb-tiers-grid{grid-template-columns:1fr!important}
-
-  /* Caves */
   .cv-featured{grid-template-columns:1fr!important}
   .cv-gallery-grid{grid-template-columns:1fr 1fr!important}
-
-  /* Nav */
   .nav-links{display:none}
   .hamburger{display:flex}
 }
 
-/* ── Mobile 600px ── */
 @media(max-width:600px){
-  /* Global */
   body{overflow-x:hidden}
-
-  /* Section padding */
   section,.er-season,.er-atmosphere,.er-timeline,
   .er-testimonials,.er-private,.er-featured,
   .pk-intro,.pk-inclusions,.pk-rhythm,
   .hp-packages,.hp-rooms,.hp-what{padding:4rem 0}
-
-  /* Typography — fluid */
   .hp-hero-content h1{font-size:clamp(2rem,9vw,3.2rem);line-height:1.1}
   .er-hero-h1{font-size:clamp(2.8rem,11vw,4.5rem)!important}
   .hp-cave-h2,.er-final-h2,.er-private-h2,
   .pk-intro-h2,.wg-hero-h1,.mb-hero-h1{font-size:clamp(2.2rem,8vw,3.5rem)!important}
   .er-featured-h2,.er-season-h2{font-size:clamp(2rem,7vw,3rem)!important}
   .hp-ch-title{font-size:clamp(2.2rem,8vw,3.2rem)!important}
-
-  /* Hero */
   .hp-hero-content{margin-bottom:300px;padding:0 5vw}
   .hp-hero-ctas{flex-direction:column;align-items:center;width:100%}
   .hp-btn-primary,.hp-btn-secondary{width:100%;max-width:280px;justify-content:center;text-align:center}
-
-  /* Booking bar — fully stacked */
   .booking-bar{width:100%;flex-direction:column;border-radius:0;bottom:0}
   .bb-field{flex:1 1 100%;height:52px;border-right:none;border-bottom:1px solid rgba(201,165,82,.1);padding:0 1.2rem}
   .bb-book{width:100%;height:52px;border-radius:0;font-size:.62rem}
-
-  /* Chapters */
   .hp-ch{min-height:auto!important}
   .hp-ch-content{padding:4rem 5vw!important;gap:2rem!important}
   .hp-ch-img-wrap{height:240px!important}
   .hp-ch-glow{display:none}
-
-  /* Experience header */
   .hp-exp-header-clean{padding:5rem 5vw 3rem}
   .hp-exp-header-clean h2{font-size:clamp(2rem,7vw,3rem)}
-
-  /* Nav panel packages */
   .pk-nav-panel-inner{grid-template-columns:1fr!important;padding-top:0}
   .pk-guest-toggle{position:static;transform:none;margin:.8rem 1rem;width:auto}
   .pk-hero-right{flex-wrap:wrap!important;border-top:1px solid rgba(201,165,82,.08);padding:1rem}
-
-  /* Stay inclusions */
   [style*="repeat(6,1fr)"]{grid-template-columns:repeat(2,1fr)!important}
   [style*="repeat(3,1fr)"]{grid-template-columns:1fr!important}
-
-  /* Rooms grid */
   .hp-rooms-grid{grid-template-columns:1fr!important}
-
-  /* Forms */
   .pk-form{padding:1.8rem 1.2rem}
   .pk-form-row{grid-template-columns:1fr!important}
   .mb-form{padding:1.8rem 1.2rem}
-
-  /* CTA rows */
   .er-final-ctas,.er-hero-ctas,.er-private-ctas,
   .pk-final-ctas,.wg-final-ctas,.hp-final-ctas,
   .er-featured-left>div,.pk-hero-ctas{flex-direction:column!important;align-items:center!important}
   .er-btn-gold,.er-btn-outline,.pk-btn-gold,
   .pk-btn-outline,.wg-btn-gold,.wg-btn-outline{width:100%;max-width:280px;justify-content:center}
-
-  /* Events calendar */
   .er-cal-topbar{flex-wrap:wrap;padding:.7rem .9rem .6rem}
   .er-cal-topbar-right{width:100%;gap:.4rem;justify-content:flex-start}
   .er-view-switcher{order:-1}
@@ -937,33 +840,22 @@ body::before {
   .er-sv-item{grid-template-columns:68px 1px 1fr!important;gap:0 1rem!important;padding:1.2rem 0}
   .er-sv-day{font-size:1.2rem}
   .er-sv-desc{display:none}
-
-  /* Dining modal */
   .menu-modal{border-radius:2px 2px 0 0;border-bottom:none}
   .menu-modal-body{padding:1.2rem 1.2rem 2rem}
   .menu-modal-header{padding:1.2rem 1.2rem .9rem}
-
-  /* Membership modal */
   .mb-modal{max-width:100%;margin:0;border-radius:2px 2px 0 0;border-bottom:none}
-
-  /* Footer */
   .footer-grid{grid-template-columns:1fr!important;gap:2rem}
   .footer-bottom{flex-direction:column;gap:.8rem;align-items:flex-start}
   .footer-legal{flex-wrap:wrap;gap:1rem}
-
-  /* Section headers */
   .er-season-header,.er-atm-header{grid-template-columns:1fr!important}
   .er-tl-item{grid-template-columns:1fr!important;gap:.6rem}
   .er-testi-grid{grid-template-columns:1fr!important}
-
-  /* Weddings */
   .wg-why-grid{grid-template-columns:1fr!important}
   .wg-pkg-grid{grid-template-columns:1fr!important}
   .wg-private-types{flex-direction:column!important}
   .wg-testi-grid{grid-template-columns:1fr!important}
 }
 
-/* ── Small phones 480px ── */
 @media(max-width:480px){
   .hp-hero-content h1{font-size:clamp(1.9rem,9vw,2.8rem)}
   .hp-hero-content{margin-bottom:340px}
@@ -981,7 +873,6 @@ body::before {
   .booking-bar .bb-label{display:none}
 }
 
-/* ── Very small phones 380px ── */
 @media(max-width:380px){
   .hp-hero-content h1{font-size:clamp(1.7rem,9vw,2.4rem)}
   .hp-hero-content{margin-bottom:380px}
@@ -992,7 +883,6 @@ body::before {
   .er-cal-filter{font-size:.34rem;padding:.18rem .4rem}
 }
 
-/* ── Landscape phones ── */
 @media(max-width:900px) and (orientation:landscape){
   .hp-hero{min-height:100vw}
   .er-hero{min-height:100vw}
@@ -1000,7 +890,6 @@ body::before {
   .hp-hero-content h1{font-size:clamp(2rem,6vw,3rem)}
 }
 
-/* ── Touch: larger tap targets ── */
 @media(hover:none){
   .nav-links a,.footer-col a,.er-cal-filter,
   .pk-guest-btn,.er-view-btn,.pk-nav-item{
@@ -1011,14 +900,12 @@ body::before {
   .wg-btn-gold{min-height:52px}
 }
 
-
 .mb-concept-icon.ms,.mb-opt-icon.ms{font-family:"Material Symbols Outlined";font-style:normal;font-weight:normal;font-variation-settings:"FILL" 0,"wght" 200,"GRAD" 0,"opsz" 24;font-size:1.1rem;display:flex;align-items:center;justify-content:center;line-height:1;}
 </style>
 </head>
 <body>
 <div id="nav-holder"></div>
 
-<!-- ══ 1. HERO ══ -->
 <div class="mb-hero" id="mb-hero">
   <div class="mb-hero-bg" id="mb-hero-bg"></div>
   <div class="mb-hero-overlay"></div>
@@ -1026,7 +913,7 @@ body::before {
 
   <div class="mb-hero-content">
     <span class="mb-label">For Those Who Return</span>
-    <h1>The Grotta<br>Membership</h1>
+    <h1>The Grotta Resort<br>Membership</h1>
     <span class="mb-hero-sub">"A more continuous way to experience Grotta."</span>
     <p class="mb-hero-desc">Designed for those who return, the membership offers ongoing access to selected spaces and experiences across the property.</p>
     <div class="mb-hero-ctas">
@@ -1041,7 +928,6 @@ body::before {
   </div>
 </div>
 
-<!-- ══ 2. PURPOSE ══ -->
 <div class="mb-purpose" id="mb-purpose">
   <div class="mb-purpose-inner">
 
@@ -1073,6 +959,13 @@ body::before {
             <div class="mb-concept-desc">The gardens, the café, the stillness — they become part of your regular life.</div>
           </div>
         </div>
+        <div class="mb-concept">
+          <div class="mb-concept-icon ms">compare_arrows</div>
+          <div class="mb-concept-body">
+            <div class="mb-concept-title">Different From a Stay</div>
+            <div class="mb-concept-desc">Packages are booked for a specific visit, with a defined arrival and departure. Membership has no dates — it's ongoing access to the property between stays, all year round.</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1083,30 +976,30 @@ body::before {
   </div>
 </div>
 
-<!-- ══ 3. WHAT'S INCLUDED ══ -->
 <div class="mb-included">
   <div class="mb-included-header reveal">
     <span class="mb-label">Membership Access</span>
     <h2 class="mb-title">What You<br>Return To</h2>
     <div class="mb-rule" style="margin:1.2rem auto"></div>
-    <p class="mb-body" style="max-width:420px;margin:0 auto">Each space is chosen for how it feels across seasons, across moods, across visits.</p>
+    <p class="mb-body" style="max-width:420px;margin:0 auto">Each space is chosen for how it feels across seasons, across moods, across visits. These are included with every membership — no booking, no extra cost.</p>
   </div>
+  <div class="mb-access-grid">
     <div class="mb-access-card reveal d2">
-      <img src="images/DSC02586.JPG" alt="Family Gardens" loading="lazy">
+      <img src="images/DSC02586.JPG" alt="Kids Area" loading="lazy">
       <span class="mb-access-badge">Included</span>
       <div class="mb-access-text">
-        <span class="mb-label">Play & Open Space</span>
+        <span class="mb-label">Kids Area</span>
         <div class="mb-access-name">Family Gardens</div>
         <p class="mb-access-desc">"Space designed for children to roam freely while the wider property stays calm and unhurried."</p>
       </div>
     </div>
 
     <div class="mb-access-card reveal d3">
-      <img src="images/AV7I4470.jpg" alt="Garden Spaces" loading="lazy">
+      <img src="images/AV7I4470.jpg" alt="Garden Trails" loading="lazy">
       <span class="mb-access-badge">Included</span>
       <div class="mb-access-text">
         <span class="mb-label">Nature & Stillness</span>
-        <div class="mb-access-name">Pool Access</div>
+        <div class="mb-access-name">Garden Trails</div>
         <p class="mb-access-desc">"Curated paths through highland greenery. No agenda. Just the kind of quiet that arrives without asking."</p>
       </div>
     </div>
@@ -1122,15 +1015,15 @@ body::before {
     </div>
 
   </div>
+</div>
 
 
-<!-- ══ 4. OPTIONAL ENHANCEMENTS ══ -->
 <div class="mb-optional">
   <div class="mb-optional-header reveal">
     <span class="mb-label">At Your Discretion</span>
     <h2 class="mb-title">Optional<br>Enhancements</h2>
     <div class="mb-rule" style="margin:1.2rem auto"></div>
-    <p class="mb-body" style="max-width:400px;margin:0 auto">Available as part of an extended experience, whenever the moment calls for it.</p>
+    <p class="mb-body" style="max-width:400px;margin:0 auto">Available as part of an extended experience, whenever the moment calls for it — booked separately and billed in addition to membership.</p>
   </div>
 
   <div class="mb-opt-grid reveal">
@@ -1138,23 +1031,25 @@ body::before {
       <span class="mb-opt-icon ms">water</span>
       <div class="mb-opt-name">Pool</div>
       <p class="mb-opt-desc">"Water, light, and the open highland air. An afternoon that asks nothing of you in return."</p>
+      <span class="mb-opt-tag">Booking required · Additional charge</span>
     </div>
     <div class="mb-opt-card">
       <span class="mb-opt-icon ms">volcano</span>
       <div class="mb-opt-name">Sauna</div>
       <p class="mb-opt-desc">"Volcanic stone, dry heat, and a silence that belongs only to this place."</p>
+      <span class="mb-opt-tag">Booking required · Additional charge</span>
     </div>
     <div class="mb-opt-card">
       <span class="mb-opt-icon ms">movie</span>
-      <div class="mb-opt-name">Cinema</div>
+      <div class="mb-opt-name">Movie Room</div>
       <p class="mb-opt-desc">"Curated screenings under the highland sky. Blankets, warmth, and a carefully chosen title."</p>
+      <span class="mb-opt-tag">Booking required · Additional charge</span>
     </div>
   </div>
 
   <p class="mb-opt-note reveal">Enhancements may be accessed individually and are not part of the core membership.</p>
 </div>
 
-<!-- ══ 5. LIFESTYLE ══ -->
 <div class="mb-lifestyle">
   <div class="mb-lifestyle-inner">
 
@@ -1186,7 +1081,6 @@ body::before {
   </div>
 </div>
 
-<!-- ══ 6. FINAL CTA ══ -->
 <div class="mb-final" id="mb-final-cta">
   <div class="mb-final-bg" id="mb-final-bg"></div>
   <div class="mb-final-overlay"></div>
@@ -1203,7 +1097,6 @@ body::before {
   </div>
 </div>
 
-<!-- ══ MODAL ══ -->
 <div class="mb-modal-backdrop" id="mb-modal-backdrop" onclick="handleBackdropClick(event)">
   <div class="mb-modal" id="mb-modal">
 
@@ -1271,7 +1164,6 @@ body::before {
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 <script>
-// ── Modal ─────────────────────────────────────────────────────
 function openModal() {
   document.getElementById('mb-modal-backdrop').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1315,7 +1207,6 @@ function submitMembership() {
   document.getElementById('mb-confirm').classList.add('show');
 }
 
-// ── Scroll reveal ─────────────────────────────────────────────
 const revObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
@@ -1323,7 +1214,6 @@ const revObs = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-// ── Parallax ──────────────────────────────────────────────────
 const heroBg  = document.getElementById('mb-hero-bg');
 const finalBg = document.getElementById('mb-final-bg');
 const finalEl = document.getElementById('mb-final-cta');
