@@ -471,7 +471,7 @@ const FOOTER_HTML = `
    ══════════════════════════════════════════════════════ */
 
 /* Single config point for the WhatsApp number */
-const GROTTA_WHATSAPP_NUMBER = '250796154855'; // PLACEHOLDER — replace with real number, country code, no + or spaces
+const GROTTA_WHATSAPP_NUMBER = '250796149891'; // PLACEHOLDER — replace with real number, country code, no + or spaces
 
 const CONCIERGE_HTML = `
 <style>
