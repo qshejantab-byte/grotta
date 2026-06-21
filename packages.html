@@ -312,10 +312,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 .pk-final-sub{font-size:.9rem;color:rgba(232,224,208,.42);line-height:2.1;display:block;max-width:480px;margin:0 auto 3rem}
 .pk-final-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
-/* Float CTA */
-.pk-float{position:fixed;bottom:2rem;right:2rem;z-index:500;background:#c9a552;color:#060504;font-family:'Jost',sans-serif;font-size:.58rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;border:none;cursor:pointer;padding:1rem 1.8rem;box-shadow:0 8px 32px rgba(201,165,82,.35);opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease,background .3s ease;text-decoration:none}
-.pk-float.visible{opacity:1;transform:translateY(0)}
-.pk-float:hover{background:#e2c97e;box-shadow:0 12px 42px rgba(201,165,82,.5);transform:translateY(-3px)}
+/* Float CTA — removed; replaced by the site-wide Grotta Concierge launcher */
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:1100px){
@@ -691,7 +688,6 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 </head>
 <body>
 <div id="nav-holder"></div>
-<button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-float" id="pk-float">Enquire Now →</button>
 
 <!-- ══ HERO ══ -->
 <div class="pk-hero">
@@ -1307,12 +1303,6 @@ function updatePkTotal() {
 
 // Hook into guest toggle to update prices
 const _origSetGuests = setGuests;
-
-// Float CTA
-const pkFloat = document.getElementById('pk-float');
-window.addEventListener('scroll', () => {
-  pkFloat.classList.toggle('visible', window.scrollY > 600);
-}, { passive: true });
 
 // Parallax
 const pkHeroBg   = document.getElementById('pk-hero-bg');

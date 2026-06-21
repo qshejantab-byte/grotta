@@ -55,23 +55,7 @@ body {
 .wg-section-header { text-align: center; margin-bottom: 5rem; }
 .wg-section-header .wg-rule { margin: 1.2rem auto; }
 
-.wg-float {
-  position: fixed; bottom: 2.5rem; right: 2.5rem; z-index: 500;
-  font-family: 'Jost', sans-serif; font-size: .58rem;
-  font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
-  color: #080805; background: #c9a552;
-  border: none; cursor: pointer; padding: .9rem 1.8rem;
-  box-shadow: 0 8px 32px rgba(201,165,82,.35);
-  opacity: 0; transform: translateY(20px);
-  transition: opacity .5s ease, transform .5s ease,
-              background .3s ease, box-shadow .3s ease;
-}
-.wg-float.visible { opacity: 1; transform: translateY(0); }
-.wg-float:hover {
-  background: #e2c97e;
-  box-shadow: 0 12px 44px rgba(201,165,82,.5);
-  transform: translateY(-3px);
-}
+/* Float CTA — removed; replaced by the site-wide Grotta Concierge launcher */
 
 .wg-hero {
   position: relative; height: 100vh; min-height: 680px;
@@ -104,7 +88,7 @@ body {
 .wg-hero-content .wg-label { opacity: 0; animation: wg-up .85s ease .35s forwards; margin-bottom: 1.4rem; }
 .wg-hero-content h1 {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  font-size: clamp(3.5rem, 7vw, 5rem);
   font-weight: 300; color: #f0e8d5;
   line-height: 1.02; letter-spacing: -.03em;
   margin-bottom: 1.3rem;
@@ -464,7 +448,6 @@ body::before {
   .wg-gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
   .wg-gallery-item:first-child { grid-column: 1; height: 280px; }
   .wg-gallery-item { height: 240px; }
-  .wg-float { bottom: 1.2rem; right: 1.2rem; }
   .wg-hero-ctas { flex-direction: column; align-items: center; }
 }
 
@@ -501,10 +484,6 @@ body::before {
 </head>
 <body>
 <div id="nav-holder"></div>
-
-<button class="wg-float" id="wg-float" onclick="document.getElementById('wg-inquiry-section').scrollIntoView({behavior:'smooth'})">
-  Inquire →
-</button>
 
 <div class="wg-hero" id="wg-hero">
   <div class="wg-hero-bg" id="wg-hero-bg"></div>
@@ -1008,11 +987,6 @@ body::before {
   }
 })();
 
-const floatBtn = document.getElementById('wg-float');
-window.addEventListener('scroll', () => {
-  floatBtn.classList.toggle('visible', window.scrollY > 500);
-}, { passive: true });
-
 const heroBg   = document.getElementById('wg-hero-bg');
 const quoteBg  = document.getElementById('wg-quote-bg');
 const testiBg  = document.getElementById('wg-testi-bg');
@@ -1102,4 +1076,3 @@ function submitWedding(btn) {
 </script>
 </body>
 </html>
-  
