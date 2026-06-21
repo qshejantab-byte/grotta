@@ -701,25 +701,9 @@
 }
 
 /* ══════════════════════════════════════
-   STICKY FLOAT BUTTON
+   STICKY FLOAT BUTTON — removed; replaced by
+   the site-wide Grotta Concierge launcher
 ══════════════════════════════════════ */
-.stay-float-btn {
-  position: fixed; bottom: 2rem; right: 2rem; z-index: 300;
-  background: var(--gold); color: #080805;
-  font-family: var(--sans); font-size: .58rem;
-  font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
-  text-decoration: none; padding: 1rem 1.8rem;
-  box-shadow: 0 8px 32px rgba(201,165,82,.35);
-  opacity: 0; transform: translateY(20px);
-  transition: opacity .4s ease, transform .4s ease,
-              background .3s ease, box-shadow .3s ease;
-}
-.stay-float-btn.visible { opacity: 1; transform: translateY(0); }
-.stay-float-btn:hover {
-  background: #e2c97e;
-  box-shadow: 0 12px 42px rgba(201,165,82,.5);
-  transform: translateY(-3px);
-}
 
 /* ══════════════════════════════════════
    RESPONSIVE
@@ -762,7 +746,6 @@
   .modal-amenities { grid-template-columns: 1fr 1fr; }
   .compare-inner{padding:1rem;overflow-x:auto}
   .compare-table{min-width:600px;font-size:.65rem}
-  .stay-float-btn { bottom: 1rem; right: 1rem; font-size: .54rem; padding: .85rem 1.4rem; }
 
   #rc-rooms{ padding-top:0 !important; }
   [style*="repeat(6,1fr)"]{ grid-template-columns: repeat(2,1fr) !important; }
@@ -1165,7 +1148,6 @@
       <span class="label">The Essential</span>
       <h3>Standard Room</h3>
       <span class="rc-subtitle">Where simplicity becomes a statement.</span>
-      <div class="rc-avail-text" id="avail-standard">10 rooms available</div>
       <div class="rc-divider"></div>
       <p>Crafted from local stone and reclaimed wood, with floor-to-ceiling windows framing misty highland mornings. Ideal for short stays and weekend escapes.</p>
       <div class="rc-highlights">
@@ -1221,7 +1203,6 @@
       <span class="label">Elevated Comfort</span>
       <h3>King Room</h3>
       <span class="rc-subtitle">Space to breathe. Time to linger.</span>
-      <div class="rc-avail-text" id="avail-king">10 rooms available</div>
       <div class="rc-divider"></div>
       <p>Spacious with enhanced amenities for a longer, more comfortable stay. A separate lounge area creates natural space to unwind after a day in the highlands.</p>
       <div class="rc-highlights">
@@ -1302,7 +1283,6 @@
       <span class="label">The Volcano Vista</span>
       <h3>King Volcano View</h3>
       <span class="rc-subtitle">Wake to ancient peaks and highland mist.</span>
-      <div class="rc-avail-text" id="avail-king_volcano">3 rooms available</div>
       <div class="rc-divider"></div>
       <p>Wake to panoramic mist rolling over ancient volcanic peaks from your private terrace. Floor-to-ceiling windows frame the Virunga volcanoes — a view that changes with every hour of light.</p>
       <div class="rc-highlights">
@@ -1344,7 +1324,7 @@
       Compare
     </label>
     <div class="rc-img">
-      <img src="images/Gemini_Generated_Image_piu9nepiu9nepiu9.png" alt="King Pool View" loading="lazy">
+      <img src="images/DSC03444.JPG" alt="King Pool View" loading="lazy">
       <div class="rc-img-info">
         <span class="rc-img-chip">2 Guests</span>
         <span class="rc-img-chip">48m²</span>
@@ -1359,7 +1339,6 @@
       <span class="label">The Pool Vista</span>
       <h3>King Pool View</h3>
       <span class="rc-subtitle">Stillness, water, and highland light.</span>
-      <div class="rc-avail-text" id="avail-king_pool">6 rooms available</div>
       <div class="rc-divider"></div>
       <p>Overlooking the resort pool with the highland landscape beyond. Morning light across the water, evenings of perfect stillness. A room that makes the most of every hour spent inside it.</p>
       <div class="rc-highlights">
@@ -1475,7 +1454,6 @@
       <span class="label">Refined Grandeur</span>
       <h3>Deluxe Room</h3>
       <span class="rc-subtitle">Hand-selected. Bespoke. Unforgettable.</span>
-      <div class="rc-avail-text" id="avail-deluxe">10 rooms available</div>
       <div class="rc-divider"></div>
       <p>Separate sleeping and lounging quarters with premium amenities. Hand-selected materials, stone finishes, and bespoke furnishings define every corner of this extraordinary space.</p>
       <div class="rc-highlights">
@@ -1536,7 +1514,6 @@
       <span class="label">The Pinnacle</span>
       <h3>Executive Room</h3>
       <span class="rc-subtitle">Grotta's most immersive expression of luxury.</span>
-      <div class="rc-avail-text" id="avail-executive">10 rooms available</div>
       <div class="rc-divider"></div>
       <p>A private pool, two bedrooms, full terrace, and dedicated butler service. The ultimate expression of the Grotta experience — nothing withheld, nothing ordinary.</p>
       <div class="rc-highlights">
@@ -1910,9 +1887,6 @@
   </div>
 </div>
 
-<!-- ══ STICKY FLOAT BTN ══ -->
-<a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="stay-float-btn" id="stay-float-btn">Reserve Your Room →</a>
-
 <div id="footer-holder"></div>
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
@@ -2122,35 +2096,6 @@ document.getElementById('compare-modal').addEventListener('click', function(e) {
   if (e.target === this) closeCompare();
 });
 
-// ── Float booking button — visible after scroll ────────────────
-const floatBtn      = document.getElementById('stay-float-btn');
-let ticking         = false;
-
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    requestAnimationFrame(() => {
-      const y = window.scrollY;
-      if (floatBtn) floatBtn.classList.toggle('visible', y > 600);
-      ticking = false;
-    });
-    ticking = true;
-  }
-}, { passive: true });
-
-// ── Availability ──────────────────────────────────────────────
-const STAY_ROOM_TOTALS = {
-  standard: 3, king: 6, king_volcano: 3, king_pool: 6,
-  deluxe: 6, executive: 2
-  // Family rooms are not counted separately — they are created by combining two double rooms
-};
-document.addEventListener('DOMContentLoaded', () => {
-  Object.entries(STAY_ROOM_TOTALS).forEach(([key, total]) => {
-    const availEl = document.getElementById('avail-' + key);
-    if (availEl) {
-      availEl.textContent = total + ' room' + (total > 1 ? 's' : '') + ' available';
-    }
-  });
-});
 
 // ── Scroll reveal ─────────────────────────────────────────────
 const revealObs = new IntersectionObserver((entries) => {

@@ -465,9 +465,642 @@ const FOOTER_HTML = `
   </div>
 </footer>`;
 
+/* ══════════════════════════════════════════════════════
+   GROTTA CONCIERGE — Luxury WhatsApp Inquiry System
+   Site-wide, injected via components.js
+   ══════════════════════════════════════════════════════ */
+
+/* Single config point for the WhatsApp number */
+const GROTTA_WHATSAPP_NUMBER = '250788000000'; // PLACEHOLDER — replace with real number, country code, no + or spaces
+
+const CONCIERGE_HTML = `
+<style>
+/* ── Launcher ── */
+.gc-launcher {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  z-index: 700;
+  display: flex; align-items: center; gap: .7rem;
+  padding: .9rem 1.5rem .9rem 1rem;
+  background: rgba(14,12,9,.7);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  border: 1px solid rgba(201,165,82,.28);
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 12px 40px rgba(0,0,0,.45), 0 0 0 1px rgba(201,165,82,.05) inset;
+  opacity: 0; transform: translateY(16px) scale(.96);
+  transition: opacity .6s cubic-bezier(.25,.46,.45,.94), transform .6s cubic-bezier(.25,.46,.45,.94),
+              border-color .35s ease, box-shadow .35s ease, background .35s ease;
+}
+.gc-launcher.visible { opacity: 1; transform: translateY(0) scale(1); }
+.gc-launcher:hover {
+  border-color: rgba(201,165,82,.55);
+  background: rgba(18,15,11,.8);
+  box-shadow: 0 16px 50px rgba(0,0,0,.55), 0 0 28px rgba(201,165,82,.12);
+}
+.gc-launcher:active { transform: scale(.97); }
+
+.gc-launcher-icon-wrap {
+  position: relative;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(201,165,82,.35), rgba(201,165,82,.08));
+  border: 1px solid rgba(201,165,82,.4);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.gc-launcher-icon-wrap .ms {
+  font-size: 1.05rem; color: #f0d878;
+  font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 24;
+}
+.gc-pulse-ring {
+  position: absolute; inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,165,82,.5);
+  animation: gc-pulse 2.6s cubic-bezier(.25,.46,.45,.94) infinite;
+  pointer-events: none;
+}
+@keyframes gc-pulse {
+  0%   { transform: scale(.92); opacity: .8; }
+  70%  { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+.gc-launcher-text { display: flex; flex-direction: column; gap: 1px; line-height: 1.15; }
+.gc-launcher-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: .98rem; font-weight: 400; font-style: italic;
+  color: #f0e8d5; white-space: nowrap;
+}
+.gc-launcher-sub {
+  font-family: 'Jost', sans-serif;
+  font-size: .5rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(201,165,82,.6); white-space: nowrap;
+}
+
+/* Mobile launcher: compact, icon-forward */
+@media(max-width:700px){
+  .gc-launcher {
+    bottom: 1.1rem; right: 1.1rem;
+    padding: .65rem .9rem .65rem .65rem;
+    gap: .55rem;
+  }
+  .gc-launcher-icon-wrap { width: 34px; height: 34px; }
+  .gc-launcher-icon-wrap .ms { font-size: .95rem; }
+  .gc-launcher-label { font-size: .82rem; }
+  .gc-launcher-sub { display: none; }
+}
+@media(max-width:380px){
+  .gc-launcher-text { display: none; }
+  .gc-launcher { padding: .7rem; border-radius: 50%; }
+}
+
+/* ── Backdrop ── */
+.gc-backdrop {
+  position: fixed; inset: 0; z-index: 850;
+  background: rgba(5,4,3,.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .5s ease;
+  display: flex; align-items: center; justify-content: flex-end;
+}
+.gc-backdrop.open { opacity: 1; pointer-events: all; }
+
+/* ── Panel ── */
+.gc-panel {
+  position: relative;
+  width: 100%; max-width: 480px;
+  height: 100%;
+  background: linear-gradient(165deg, rgba(14,12,9,.98) 0%, rgba(9,8,6,.99) 100%);
+  border-left: 1px solid rgba(201,165,82,.16);
+  box-shadow: -40px 0 100px rgba(0,0,0,.5);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201,165,82,.2) transparent;
+  transform: translateX(100%);
+  transition: transform .55s cubic-bezier(.25,.46,.45,.94);
+}
+.gc-panel::-webkit-scrollbar { width: 3px; }
+.gc-panel::-webkit-scrollbar-track { background: transparent; }
+.gc-panel::-webkit-scrollbar-thumb { background: rgba(201,165,82,.22); border-radius: 2px; }
+.gc-backdrop.open .gc-panel { transform: translateX(0); }
+
+.gc-panel::before {
+  content: ''; position: fixed; inset: 0; z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none; opacity: .5;
+}
+
+/* ── Header ── */
+.gc-header {
+  position: relative;
+  padding: 2.4rem 2.4rem 1.6rem;
+  border-bottom: 1px solid rgba(201,165,82,.1);
+}
+.gc-close {
+  position: absolute; top: 1.6rem; right: 1.6rem;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(201,165,82,.06);
+  border: 1px solid rgba(201,165,82,.18);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(200,192,174,.6);
+  transition: color .3s ease, border-color .3s ease, background .3s ease, transform .3s ease;
+}
+.gc-close:hover { color: #c9a552; border-color: rgba(201,165,82,.4); background: rgba(201,165,82,.1); transform: rotate(90deg); }
+.gc-close .ms { font-size: 1.1rem; }
+
+.gc-status {
+  display: inline-flex; align-items: center; gap: .5rem;
+  margin-bottom: 1.3rem;
+  font-family: 'Jost', sans-serif; font-size: .56rem; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(140,200,150,.85);
+}
+.gc-status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #7fc98c;
+  box-shadow: 0 0 0 0 rgba(127,201,140,.6);
+  animation: gc-dot-pulse 2.2s ease-in-out infinite;
+}
+@keyframes gc-dot-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(127,201,140,.5); }
+  70%  { box-shadow: 0 0 0 6px rgba(127,201,140,0); }
+  100% { box-shadow: 0 0 0 0 rgba(127,201,140,0); }
+}
+.gc-response-time {
+  font-family: 'Jost', sans-serif; font-size: .68rem; font-weight: 300;
+  color: rgba(200,192,174,.4); margin-bottom: 1.4rem;
+}
+
+.gc-eyebrow {
+  font-family: 'Jost', sans-serif; font-size: .55rem; font-weight: 500;
+  letter-spacing: .36em; text-transform: uppercase;
+  color: rgba(201,165,82,.5); display: block; margin-bottom: .7rem;
+}
+.gc-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 300;
+  color: #f0e8d5; line-height: 1.1; letter-spacing: -.02em;
+  margin-bottom: .7rem;
+}
+.gc-subtitle {
+  font-family: 'Jost', sans-serif; font-size: .8rem; font-weight: 300;
+  color: rgba(200,192,174,.48); line-height: 1.8; max-width: 380px;
+}
+
+/* ── Suggested journeys ── */
+.gc-journeys {
+  padding: 1.6rem 2.4rem;
+  border-bottom: 1px solid rgba(201,165,82,.08);
+}
+.gc-journeys-label {
+  font-family: 'Jost', sans-serif; font-size: .52rem; font-weight: 500;
+  letter-spacing: .26em; text-transform: uppercase;
+  color: rgba(201,165,82,.4); margin-bottom: .9rem; display: block;
+}
+.gc-journeys-row { display: flex; gap: .6rem; overflow-x: auto; padding-bottom: .3rem; scrollbar-width: none; }
+.gc-journeys-row::-webkit-scrollbar { display: none; }
+.gc-journey-chip {
+  flex-shrink: 0;
+  font-family: 'Jost', sans-serif; font-size: .66rem; font-weight: 400;
+  color: rgba(232,224,208,.7);
+  background: rgba(201,165,82,.05);
+  border: 1px solid rgba(201,165,82,.16);
+  padding: .55rem 1.05rem;
+  border-radius: 100px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color .25s ease, color .25s ease, background .25s ease;
+}
+.gc-journey-chip:hover, .gc-journey-chip.active {
+  border-color: rgba(201,165,82,.55); color: #f0d878; background: rgba(201,165,82,.1);
+}
+
+/* ── Form ── */
+.gc-form { padding: 1.8rem 2.4rem 2.4rem; }
+.gc-section-label {
+  font-family: 'Jost', sans-serif; font-size: .54rem; font-weight: 500;
+  letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(201,165,82,.55); margin: 1.8rem 0 1rem;
+  display: flex; align-items: center; gap: .6rem;
+}
+.gc-section-label:first-child { margin-top: 0; }
+.gc-section-label::after { content: ''; flex: 1; height: 1px; background: rgba(201,165,82,.12); }
+
+.gc-field { margin-bottom: 1.3rem; position: relative; }
+.gc-label {
+  font-family: 'Jost', sans-serif; font-size: .58rem; font-weight: 400;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(200,192,174,.45); display: block; margin-bottom: .55rem;
+}
+.gc-input, .gc-select, .gc-textarea {
+  width: 100%; background: rgba(201,165,82,.03);
+  border: 1px solid rgba(200,192,174,.12);
+  color: #e8e0d0; font-family: 'Jost', sans-serif;
+  font-size: .85rem; font-weight: 300;
+  padding: .75rem .9rem; outline: none; caret-color: #c9a552;
+  transition: border-color .3s ease, background .3s ease;
+  -webkit-appearance: none; appearance: none;
+}
+.gc-input::placeholder, .gc-textarea::placeholder { color: rgba(200,192,174,.22); }
+.gc-input:focus, .gc-select:focus, .gc-textarea:focus { border-color: rgba(201,165,82,.5); background: rgba(201,165,82,.05); }
+.gc-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23c9a552' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right .9rem center; background-size: 10px;
+  padding-right: 2.2rem;
+}
+.gc-select option { background: #0e0c09; }
+.gc-textarea { min-height: 90px; resize: vertical; }
+.gc-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+
+/* Experience pills */
+.gc-exp-group { margin-bottom: 1.2rem; }
+.gc-exp-group-title {
+  font-family: 'Jost', sans-serif; font-size: .56rem; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(201,165,82,.4); margin-bottom: .7rem; display: block;
+}
+.gc-pills { display: flex; flex-wrap: wrap; gap: .45rem; }
+.gc-pill-input { display: none; }
+.gc-pill-label {
+  font-family: 'Jost', sans-serif; font-size: .68rem; font-weight: 400;
+  color: rgba(200,192,174,.5);
+  border: 1px solid rgba(201,165,82,.14);
+  padding: .42rem .85rem;
+  cursor: pointer;
+  transition: border-color .25s ease, color .25s ease, background .25s ease;
+}
+.gc-pill-input:checked + .gc-pill-label {
+  border-color: #c9a552; color: #f0d878; background: rgba(201,165,82,.08);
+}
+.gc-pill-label:hover { border-color: rgba(201,165,82,.4); color: rgba(232,224,208,.85); }
+
+/* Smart suggestion banner */
+.gc-suggestion {
+  display: none;
+  margin-top: 1rem;
+  padding: .9rem 1.1rem;
+  background: rgba(201,165,82,.06);
+  border: 1px solid rgba(201,165,82,.2);
+  font-family: 'Jost', sans-serif; font-size: .72rem; font-weight: 300;
+  color: rgba(232,224,208,.7); line-height: 1.7;
+}
+.gc-suggestion.show { display: block; animation: gc-fade-in .4s ease; }
+.gc-suggestion strong { color: #c9a552; font-weight: 500; }
+@keyframes gc-fade-in { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+
+.gc-submit {
+  width: 100%; margin-top: 1.8rem;
+  display: flex; align-items: center; justify-content: center; gap: .7rem;
+  font-family: 'Jost', sans-serif; font-size: .62rem; font-weight: 600;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: #080805; background: linear-gradient(135deg, #e2c97e, #c9a552);
+  border: none; cursor: pointer; padding: 1.15rem;
+  position: relative; overflow: hidden;
+  transition: transform .25s ease, box-shadow .3s ease;
+}
+.gc-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(201,165,82,.32); }
+.gc-submit:active { transform: translateY(0); }
+.gc-submit .ms { font-size: 1rem; }
+
+.gc-disclaimer {
+  text-align: center; margin-top: 1rem;
+  font-family: 'Jost', sans-serif; font-size: .64rem; font-weight: 300;
+  color: rgba(200,192,174,.32); line-height: 1.7;
+}
+
+/* ── Success state ── */
+.gc-success {
+  display: none; text-align: center;
+  padding: 4rem 2.4rem;
+}
+.gc-success.show { display: block; animation: gc-fade-in .5s ease; }
+.gc-success-icon {
+  width: 64px; height: 64px; margin: 0 auto 2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(201,165,82,.35);
+  background: rgba(201,165,82,.07);
+  display: flex; align-items: center; justify-content: center;
+  animation: gc-pop .6s cubic-bezier(.34,1.56,.64,1) .1s both;
+}
+@keyframes gc-pop { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+.gc-success-icon .ms { font-size: 1.6rem; color: #c9a552; }
+.gc-success h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.8rem; font-weight: 300; color: #f0e8d5; margin-bottom: 1rem;
+}
+.gc-success p {
+  font-family: 'Jost', sans-serif; font-size: .85rem; font-weight: 300;
+  color: rgba(200,192,174,.55); line-height: 2; max-width: 320px; margin: 0 auto;
+}
+
+@media(max-width:600px){
+  .gc-panel { max-width: 100%; }
+  .gc-header { padding: 2rem 1.5rem 1.4rem; }
+  .gc-journeys { padding: 1.3rem 1.5rem; }
+  .gc-form { padding: 1.5rem 1.5rem 2rem; }
+  .gc-row-2 { grid-template-columns: 1fr; }
+  .gc-success { padding: 3.5rem 1.5rem; }
+}
+</style>
+
+<button class="gc-launcher" id="gc-launcher">
+  <span class="gc-launcher-icon-wrap">
+    <span class="ms">forum</span>
+    <span class="gc-pulse-ring"></span>
+  </span>
+  <span class="gc-launcher-text">
+    <span class="gc-launcher-label">Talk to Our Concierge</span>
+    <span class="gc-launcher-sub">Plan Your Stay</span>
+  </span>
+</button>
+
+<div class="gc-backdrop" id="gc-backdrop">
+  <div class="gc-panel" id="gc-panel">
+
+    <div id="gc-form-view">
+      <div class="gc-header">
+        <button class="gc-close" id="gc-close" aria-label="Close concierge"><span class="ms">close</span></button>
+        <div class="gc-status"><span class="gc-status-dot"></span>Concierge Team Online</div>
+        <div class="gc-response-time">Average response time: under 15 minutes</div>
+        <span class="gc-eyebrow">Create Your Grotta Journey</span>
+        <h2 class="gc-title">Plan Your Grotta Experience</h2>
+        <p class="gc-subtitle">Tell us about your journey and our concierge team will create a personalized proposal.</p>
+      </div>
+
+      <div class="gc-journeys">
+        <span class="gc-journeys-label">Suggested Journeys</span>
+        <div class="gc-journeys-row">
+          <button type="button" class="gc-journey-chip" data-journey="Romance Journey">Romance Journey</button>
+          <button type="button" class="gc-journey-chip" data-journey="Wildlife Explorer">Wildlife Explorer</button>
+          <button type="button" class="gc-journey-chip" data-journey="Wellness Escape">Wellness Escape</button>
+          <button type="button" class="gc-journey-chip" data-journey="Family Discovery">Family Discovery</button>
+          <button type="button" class="gc-journey-chip" data-journey="Custom Journey">Custom Journey</button>
+        </div>
+      </div>
+
+      <div class="gc-form">
+
+        <div class="gc-section-label">Your Details</div>
+        <div class="gc-field">
+          <label class="gc-label">Full Name</label>
+          <input class="gc-input" type="text" id="gc-name" placeholder="Your name">
+        </div>
+        <div class="gc-row-2">
+          <div class="gc-field">
+            <label class="gc-label">Phone Number</label>
+            <input class="gc-input" type="tel" id="gc-phone" placeholder="+250 ...">
+          </div>
+          <div class="gc-field">
+            <label class="gc-label">Email</label>
+            <input class="gc-input" type="email" id="gc-email" placeholder="your@email.com">
+          </div>
+        </div>
+
+        <div class="gc-section-label">Your Journey</div>
+        <div class="gc-row-2">
+          <div class="gc-field">
+            <label class="gc-label">Preferred Dates</label>
+            <input class="gc-input" type="text" id="gc-dates" placeholder="e.g. 12–15 August">
+          </div>
+          <div class="gc-field">
+            <label class="gc-label">Number of Guests</label>
+            <input class="gc-input" type="text" id="gc-guests" placeholder="e.g. 2">
+          </div>
+        </div>
+        <div class="gc-field">
+          <label class="gc-label">Room Interest</label>
+          <select class="gc-select" id="gc-room">
+            <option value="">No preference yet</option>
+            <option>Standard Room</option>
+            <option>King Room</option>
+            <option>King Volcano View</option>
+            <option>King Pool View</option>
+            <option>Family Room</option>
+            <option>Deluxe Room</option>
+            <option>Executive Room</option>
+          </select>
+        </div>
+        <div class="gc-field">
+          <label class="gc-label">Package Interest</label>
+          <select class="gc-select" id="gc-package">
+            <option value="">No preference yet</option>
+            <option>Wellness Escape</option>
+            <option>Wildlife Explorer</option>
+            <option>Romance Journey</option>
+            <option>Family Discovery</option>
+            <option>Adventure Journey</option>
+            <option>Ultimate Rwanda</option>
+            <option>Custom Journey</option>
+          </select>
+        </div>
+
+        <div class="gc-section-label">Experience Interest</div>
+
+        <div class="gc-exp-group">
+          <span class="gc-exp-group-title">At Grotta</span>
+          <div class="gc-pills" id="gc-exp-at-grotta">
+            <input type="checkbox" class="gc-pill-input" id="exp-cave-exploration" value="Cave Exploration"><label class="gc-pill-label" for="exp-cave-exploration">Cave Exploration</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-pool-jacuzzi" value="Pool & Jacuzzi"><label class="gc-pill-label" for="exp-pool-jacuzzi">Pool & Jacuzzi</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-volcanic-sauna" value="Volcanic Sauna"><label class="gc-pill-label" for="exp-volcanic-sauna">Volcanic Sauna</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-gym" value="Gym"><label class="gc-pill-label" for="exp-gym">Gym</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-farm" value="Farm Experience"><label class="gc-pill-label" for="exp-farm">Farm Experience</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-cave-cafe" value="Cave Café"><label class="gc-pill-label" for="exp-cave-cafe">Cave Café</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-bonfire" value="Bonfire Evenings"><label class="gc-pill-label" for="exp-bonfire">Bonfire Evenings</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-movie" value="Movie Room"><label class="gc-pill-label" for="exp-movie">Movie Room</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-gardens" value="Highland Gardens"><label class="gc-pill-label" for="exp-gardens">Highland Gardens</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-massage" value="Massage"><label class="gc-pill-label" for="exp-massage">Massage</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-sip-paint" value="Sip & Paint"><label class="gc-pill-label" for="exp-sip-paint">Sip & Paint</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-aqua-aerobics" value="Aqua Aerobics"><label class="gc-pill-label" for="exp-aqua-aerobics">Aqua Aerobics</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-garden-bbq" value="Garden BBQ"><label class="gc-pill-label" for="exp-garden-bbq">Garden BBQ</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-live-cooking" value="Live Cooking"><label class="gc-pill-label" for="exp-live-cooking">Live Cooking</label>
+          </div>
+        </div>
+
+        <div class="gc-exp-group">
+          <span class="gc-exp-group-title">Beyond Grotta</span>
+          <div class="gc-pills" id="gc-exp-beyond">
+            <input type="checkbox" class="gc-pill-input" id="exp-gorilla" value="Gorilla Trekking"><label class="gc-pill-label" for="exp-gorilla">Gorilla Trekking</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-ebike" value="E-Bike Tours"><label class="gc-pill-label" for="exp-ebike">E-Bike Tours</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-volcano-hiking" value="Volcano Hiking"><label class="gc-pill-label" for="exp-volcano-hiking">Volcano Hiking</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-golden-monkey" value="Golden Monkey Trek"><label class="gc-pill-label" for="exp-golden-monkey">Golden Monkey Trek</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-community" value="Community Visits"><label class="gc-pill-label" for="exp-community">Community Visits</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-cultural" value="Cultural Performances"><label class="gc-pill-label" for="exp-cultural">Cultural Performances</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-kayaking" value="Kayaking"><label class="gc-pill-label" for="exp-kayaking">Kayaking</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-photo-walks" value="Photography Walks"><label class="gc-pill-label" for="exp-photo-walks">Photography Walks</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-sunset-trails" value="Sunset Trails"><label class="gc-pill-label" for="exp-sunset-trails">Sunset Trails</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-bike-rental" value="Bike Rental"><label class="gc-pill-label" for="exp-bike-rental">Bike Rental</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-fishing" value="Fishing"><label class="gc-pill-label" for="exp-fishing">Fishing</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-beer" value="Local Beer Brewing"><label class="gc-pill-label" for="exp-beer">Local Beer Brewing</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-chocolate" value="Chocolate Experience"><label class="gc-pill-label" for="exp-chocolate">Chocolate Experience</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-virunga" value="Virunga Experience"><label class="gc-pill-label" for="exp-virunga">Virunga Experience</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-bigogwe" value="Bigogwe Coffee Tasting"><label class="gc-pill-label" for="exp-bigogwe">Bigogwe Coffee Tasting</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-sawa" value="Sawa Experience"><label class="gc-pill-label" for="exp-sawa">Sawa Experience</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-sooko" value="Sooko Experience"><label class="gc-pill-label" for="exp-sooko">Sooko Experience</label>
+            <input type="checkbox" class="gc-pill-input" id="exp-ikirenge" value="Ikirenge Experience"><label class="gc-pill-label" for="exp-ikirenge">Ikirenge Experience</label>
+          </div>
+        </div>
+
+        <div class="gc-exp-group">
+          <span class="gc-exp-group-title">Group Experiences</span>
+          <div class="gc-pills" id="gc-exp-group">
+            <input type="checkbox" class="gc-pill-input" id="exp-nature-walk" value="Musanze Nature Walk"><label class="gc-pill-label" for="exp-nature-walk">Musanze Nature Walk</label>
+          </div>
+        </div>
+
+        <div class="gc-suggestion" id="gc-suggestion">
+          <strong>You might also like:</strong> <span id="gc-suggestion-text"></span>
+        </div>
+
+        <div class="gc-section-label">Special Requests</div>
+        <div class="gc-field">
+          <textarea class="gc-textarea" id="gc-notes" placeholder="Honeymoon, anniversary, family trip, gorilla trekking focus, wellness retreat, corporate retreat..."></textarea>
+        </div>
+
+        <button class="gc-submit" id="gc-submit" type="button">
+          <span class="ms">send</span>
+          <span>Send to Our Concierge</span>
+        </button>
+        <p class="gc-disclaimer">Your inquiry opens directly in WhatsApp, addressed to our concierge team.</p>
+      </div>
+    </div>
+
+    <div class="gc-success" id="gc-success">
+      <div class="gc-success-icon"><span class="ms">check</span></div>
+      <h3>Thank You</h3>
+      <p>Your journey request has been prepared and sent to our concierge team.<br><br>We look forward to designing your Grotta experience.</p>
+    </div>
+
+  </div>
+</div>
+`;
+
+/* ── Concierge behavior ── */
+function initGrottaConcierge() {
+  const launcher = document.getElementById('gc-launcher');
+  const backdrop = document.getElementById('gc-backdrop');
+  const closeBtn = document.getElementById('gc-close');
+  const submitBtn = document.getElementById('gc-submit');
+  const formView = document.getElementById('gc-form-view');
+  const successView = document.getElementById('gc-success');
+
+  if (!launcher || !backdrop) return;
+
+  // Reveal launcher shortly after load
+  setTimeout(() => launcher.classList.add('visible'), 600);
+
+  function openConcierge() {
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeConcierge() {
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  launcher.addEventListener('click', openConcierge);
+  closeBtn?.addEventListener('click', closeConcierge);
+  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeConcierge(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeConcierge(); });
+
+  // Suggested journey chips -> set package select
+  document.querySelectorAll('.gc-journey-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.gc-journey-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const pkgSelect = document.getElementById('gc-package');
+      if (pkgSelect) pkgSelect.value = chip.dataset.journey;
+    });
+  });
+
+  // Smart experience recommendations
+  const SMART_MAP = {
+    'Gorilla Trekking': { suggest: ['Volcano Hiking', 'E-Bike Tours'], room: 'Executive Room' }
+  };
+  document.querySelectorAll('.gc-pill-input').forEach(input => {
+    input.addEventListener('change', () => {
+      if (input.checked && SMART_MAP[input.value]) {
+        const rule = SMART_MAP[input.value];
+        const banner = document.getElementById('gc-suggestion');
+        const text = document.getElementById('gc-suggestion-text');
+        if (banner && text) {
+          text.textContent = rule.suggest.join(', ') + (rule.room ? `, and the ${rule.room}` : '');
+          banner.classList.add('show');
+        }
+      }
+    });
+  });
+
+  // Submit -> build WhatsApp message
+  submitBtn?.addEventListener('click', () => {
+    const val = (id) => document.getElementById(id)?.value?.trim() || '';
+    const name = val('gc-name');
+    const phone = val('gc-phone');
+
+    if (!name || !phone) {
+      [('gc-name'), ('gc-phone')].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && !el.value.trim()) {
+          el.style.borderColor = 'rgba(201,80,60,.6)';
+          setTimeout(() => { el.style.borderColor = ''; }, 1400);
+        }
+      });
+      return;
+    }
+
+    const email = val('gc-email');
+    const dates = val('gc-dates');
+    const guests = val('gc-guests');
+    const room = val('gc-room');
+    const pkg = val('gc-package');
+    const notes = val('gc-notes');
+
+    const experiences = Array.from(document.querySelectorAll('.gc-pill-input:checked')).map(i => i.value);
+
+    let msg = '━━━━━━━━━━━━━━\n';
+    msg += 'GROTTA RESORT INQUIRY\n';
+    msg += '━━━━━━━━━━━━━━\n\n';
+    msg += `Guest Name:\n${name}\n\n`;
+    msg += `Phone:\n${phone}\n\n`;
+    if (email) msg += `Email:\n${email}\n\n`;
+    if (dates) msg += `Dates:\n${dates}\n\n`;
+    if (guests) msg += `Guests:\n${guests}\n\n`;
+    if (room) msg += `Room Interest:\n${room}\n\n`;
+    if (pkg) msg += `Package:\n${pkg}\n\n`;
+    if (experiences.length) {
+      msg += `Experiences:\n`;
+      experiences.forEach(e => { msg += `• ${e}\n`; });
+      msg += '\n';
+    }
+    if (notes) msg += `Special Requests:\n${notes}\n\n`;
+    msg += '━━━━━━━━━━━━━━';
+
+    const waUrl = `https://wa.me/${GROTTA_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, '_blank');
+
+    if (formView) formView.style.display = 'none';
+    if (successView) successView.classList.add('show');
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const navHolder = document.getElementById('nav-holder');
   if (navHolder) navHolder.innerHTML = NAV_HTML;
   const footerHolder = document.getElementById('footer-holder');
   if (footerHolder) footerHolder.innerHTML = FOOTER_HTML;
+
+  // Inject Grotta Concierge globally (skip if already present, e.g. double-include)
+  if (!document.getElementById('gc-launcher')) {
+    const gcHolder = document.createElement('div');
+    gcHolder.id = 'gc-holder';
+    gcHolder.innerHTML = CONCIERGE_HTML;
+    document.body.appendChild(gcHolder);
+    initGrottaConcierge();
+  }
 });
