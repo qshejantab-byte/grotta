@@ -574,6 +574,7 @@ const CONCIERGE_HTML = `
   position: relative;
   width: 100%; max-width: 480px;
   height: 100%;
+  padding-top: 68px;
   background: linear-gradient(165deg, rgba(14,12,9,.98) 0%, rgba(9,8,6,.99) 100%);
   border-left: 1px solid rgba(201,165,82,.16);
   box-shadow: -40px 0 100px rgba(0,0,0,.5);
