@@ -239,6 +239,7 @@ const NAV_HTML = `
 .mobile-nav.open .mn-secondary a:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: .62s; }
 .mobile-nav.open .mn-secondary a:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: .68s; }
 .mobile-nav.open .mn-secondary a:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: .74s; }
+.mobile-nav.open .mn-secondary a:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: .80s; }
 
 /* Reset on close */
 .mobile-nav:not(.open) .mn-primary a,
@@ -422,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- Footer detail -->
   <div class="mobile-nav-footer">
     <span class="mn-location">Musanze · Rwanda · Volcanic Highlands</span>
-    <a href="booking.html" class="mn-book-link">Reserve →</a>
+    <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="mn-book-link">Reserve →</a>
   </div>
 </div>`;
 
