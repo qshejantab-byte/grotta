@@ -601,7 +601,7 @@ const CONCIERGE_HTML = `
   border-bottom: 1px solid rgba(201,165,82,.1);
 }
 .gc-close {
-  position: absolute; top: 1.6rem; right: 1.6rem;
+  position: absolute; top: 1rem; right: 1.6rem;
   width: 36px; height: 36px;
   border-radius: 50%;
   background: rgba(201,165,82,.06);
