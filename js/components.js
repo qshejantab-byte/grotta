@@ -151,10 +151,10 @@ const NAV_HTML = `
 .mobile-nav-content {
   position: relative; z-index: 10;
   flex: 1; display: flex; flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 2rem 6vw 1.5rem clamp(3rem, 10vw, 6rem);
   min-height: 0;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 /* ── Gold accent line ── */
