@@ -1207,251 +1207,157 @@
    Target: phones < 768px
 ══════════════════════════════════════ */
 /* ══════════════════════════════════════════════════════════
-   MOBILE HERO — Luxury First Experience
-   Applies ONLY below 768px. Desktop is untouched above this.
+   MOBILE HERO — Image-first composition
+   Desktop (769px+) is completely untouched.
 ══════════════════════════════════════════════════════════ */
 @media(max-width:768px){
 
-  /* ── 1. Hero container: 85vh, image-forward ── */
+  /* Hero: 90vh so image fills the screen */
   .hp-hero{
-    height:85svh;
-    min-height:560px;
-    max-height:780px;
+    height:90svh;
+    min-height:580px;
+    max-height:860px;
     padding-top:0;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-end;
     align-items:center;
   }
 
-  /* ── 2. Image: crop to show 65% building, minimal sky ── */
+  /* Image: push crop DOWN so building fills frame, sky disappears */
   .hp-hero-video{
-    object-position:center 60%;
-    filter:brightness(.52) saturate(.88);
+    object-position:center 72%;
+    filter:brightness(.72) saturate(.92);
   }
   .hp-hero-video-fallback{
-    background-position:center 62%;
-    filter:brightness(.48) saturate(.85);
+    background-position:center 70%;
+    filter:brightness(.68) saturate(.9);
   }
 
-  /* ── 3. Overlay: protect sky top, clear mid, dark bottom ── */
+  /* Overlay: almost nothing over the building.
+     Only a gentle gradient at bottom for text legibility. */
   .hp-hero-overlay{
     background:
       linear-gradient(to bottom,
-        rgba(6,5,4,.72) 0%,
-        rgba(6,5,4,.22) 22%,
-        rgba(6,5,4,.08) 42%,
-        rgba(6,5,4,.55) 70%,
-        rgba(6,5,4,.96) 100%),
-      radial-gradient(ellipse 180% 50% at 50% 70%,
-        transparent 30%, rgba(6,5,4,.45) 100%);
+        rgba(6,5,4,.35) 0%,
+        rgba(6,5,4,0)   15%,
+        rgba(6,5,4,0)   50%,
+        rgba(6,5,4,.55) 75%,
+        rgba(6,5,4,.92) 100%);
   }
 
-  /* ── 4. Luxury glass content panel ── */
+  /* Content: floats at bottom over the image, no background panel */
   .hp-hero-content{
     position:relative;
     text-align:center;
-    padding:2rem 6vw 2.2rem;
-    margin:0;
+    padding:0 6vw;
+    margin-bottom:clamp(40px,10vw,80px);
     max-width:100%;
     width:100%;
-
-    /* Glass panel */
-    background:rgba(6,5,4,.38);
-    backdrop-filter:blur(18px) saturate(1.3);
-    -webkit-backdrop-filter:blur(18px) saturate(1.3);
-    border-top:1px solid rgba(201,165,82,.18);
-    border-bottom:1px solid rgba(201,165,82,.08);
-
-    /* Gold accent line at very top */
-    box-shadow:
-      0 -1px 0 rgba(201,165,82,.22),
-      inset 0 1px 0 rgba(201,165,82,.06);
+    background:none;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    border:none;
+    box-shadow:none;
   }
+  .hp-hero-content::before{ display:none; }
 
-  /* Gold top accent bar */
-  .hp-hero-content::before{
-    content:'';
-    position:absolute;
-    top:0; left:50%;
-    transform:translateX(-50%);
-    width:2.5rem; height:2px;
-    background:linear-gradient(to right,transparent,rgba(201,165,82,.7),transparent);
-  }
-
-  /* ── 5. Location label ── */
+  /* Location label */
   .hp-hero-location{
     font-size:.44rem;
-    letter-spacing:.34em;
+    letter-spacing:.32em;
     color:rgba(201,165,82,.65);
-    margin-bottom:.75rem;
-    gap:.55rem;
+    margin-bottom:.8rem;
     opacity:0;
-    animation:hp-up .7s ease .15s forwards;
-  }
-  .hp-hero-location::before,
-  .hp-hero-location::after{
-    width:14px;
-    background:rgba(201,165,82,.3);
+    animation:hp-up .7s ease .2s forwards;
   }
 
-  /* ── 6. Headline: editorial, vertical center focal point ── */
+  /* Headline: large, directly over the building */
   .hp-hero-content h1{
-    font-size:clamp(2.8rem,11vw,4.2rem);
-    line-height:1.02;
-    letter-spacing:-.035em;
-    margin-bottom:.55rem;
-    color:rgba(240,232,213,.98);
-    text-shadow:0 2px 32px rgba(0,0,0,.4);
+    font-size:clamp(2.6rem,10.5vw,4rem);
+    line-height:1.03;
+    letter-spacing:-.03em;
+    margin-bottom:.6rem;
+    color:rgba(240,232,213,.97);
+    text-shadow:0 1px 24px rgba(0,0,0,.5);
     opacity:0;
-    transform:translateY(28px);
-    animation:hp-rise 1s cubic-bezier(.34,1.06,.64,1) .35s forwards;
+    transform:translateY(24px);
+    animation:hp-rise 1s cubic-bezier(.34,1.06,.64,1) .4s forwards;
   }
 
-  /* ── 7. Tagline: one luxury line ── */
+  /* Tagline: one line, gold italic */
   .hp-hero-tagline{
     display:block;
-    font-family:var(--serif);
-    font-size:clamp(.72rem,2.8vw,.84rem);
+    font-size:clamp(.74rem,2.9vw,.86rem);
     font-style:italic;
-    font-weight:300;
-    color:rgba(201,165,82,.6);
-    letter-spacing:.03em;
+    color:rgba(201,165,82,.62);
     line-height:1.55;
-    margin-bottom:1.4rem;
+    margin-bottom:1.3rem;
     opacity:0;
     filter:blur(3px);
-    animation:hp-blur .85s ease .8s forwards;
+    animation:hp-blur .85s ease .85s forwards;
   }
 
-  /* ── 8. Paragraph: hidden ── */
+  /* Paragraph and tags: hidden */
   .hp-hero-content p{ display:none; }
-
-  /* ── 9. Tags: hidden ── */
   .hp-hero-tags{ display:none; }
 
-  /* ── 10. CTAs: premium full-width buttons ── */
+  /* CTAs */
   .hp-hero-ctas{
     flex-direction:column;
     align-items:center;
-    gap:.45rem;
+    gap:.5rem;
     width:100%;
     opacity:0;
-    animation:hp-up .75s ease 1.2s forwards;
+    animation:hp-up .75s ease 1.25s forwards;
   }
   .hp-btn-primary,.hp-btn-secondary{
     width:100%;
     max-width:100%;
     justify-content:center;
-    padding:.78rem 1.4rem;
-    font-size:.52rem;
-    letter-spacing:.26em;
+    padding:.8rem 1.4rem;
+    font-size:.54rem;
+    letter-spacing:.25em;
     min-height:48px;
   }
   .hp-btn-primary{
-    box-shadow:0 6px 28px rgba(201,165,82,.3);
+    box-shadow:0 6px 28px rgba(201,165,82,.28);
   }
   .hp-btn-secondary{
-    border-color:rgba(201,165,82,.22);
-    color:rgba(232,224,208,.72);
-    background:rgba(6,5,4,.15);
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
+    border-color:rgba(232,224,208,.2);
+    background:rgba(6,5,4,.18);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
   }
 
-  /* ── 11. Compact reserve floating button ── */
-  .hp-mobile-reserve{
-    display:flex;
-    position:absolute;
-    top:1.2rem;
-    right:1.2rem;
-    z-index:25;
-    align-items:center;
-    gap:.45rem;
-    background:rgba(8,7,5,.82);
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
-    border:1px solid rgba(201,165,82,.22);
-    padding:.42rem .9rem .42rem .65rem;
-    cursor:pointer;
-    opacity:0;
-    animation:hp-up .7s ease 1.8s forwards;
-    transition:background .3s,border-color .3s;
-  }
-  .hp-mobile-reserve:hover{
-    background:rgba(201,165,82,.12);
-    border-color:rgba(201,165,82,.45);
-  }
-  .hp-mobile-reserve-dot{
-    width:6px; height:6px;
-    border-radius:50%;
-    background:var(--gold);
-    flex-shrink:0;
-    animation:scrollpulse 2.6s ease-in-out infinite;
-  }
-  .hp-mobile-reserve-label{
-    font-family:var(--sans);
-    font-size:.38rem;
-    font-weight:500;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    color:rgba(201,165,82,.7);
-    white-space:nowrap;
-  }
-
-  /* ── 12. Concierge: minimised, corner ── */
+  /* Concierge: small, corner, non-competing */
   #gc-launcher{
     bottom:1.2rem !important;
-    right:1.1rem !important;
-    transform:scale(.76) !important;
+    right:1rem !important;
+    transform:scale(.75) !important;
     transform-origin:bottom right !important;
-    opacity:.75 !important;
-    transition:opacity .3s,transform .3s !important;
-  }
-  #gc-launcher:hover{
-    opacity:1 !important;
-    transform:scale(.82) !important;
+    opacity:.7 !important;
   }
 
-  /* ── 13. Scroll + booking bar: hidden ── */
   .hp-scroll{ display:none; }
   .booking-bar{ display:none !important; }
 }
 
 /* ── Small phones 390px ── */
 @media(max-width:390px){
-  .hp-hero{
-    height:88svh;
-    min-height:540px;
-  }
-  .hp-hero-content h1{
-    font-size:clamp(2.5rem,11vw,3.4rem);
-  }
-  .hp-hero-content{
-    padding:1.7rem 5vw 1.9rem;
-  }
-  .hp-btn-primary,.hp-btn-secondary{
-    font-size:.5rem;
-    padding:.74rem 1.2rem;
-  }
-  .hp-mobile-reserve{
-    top:1rem; right:1rem;
-  }
+  .hp-hero-content h1{ font-size:clamp(2.4rem,10.5vw,3.4rem); }
+  .hp-hero-content{ margin-bottom:clamp(36px,9vw,68px); }
+  .hp-btn-primary,.hp-btn-secondary{ font-size:.52rem; }
 }
 
 /* ── Landscape phones ── */
 @media(max-width:900px) and (orientation:landscape){
-  .hp-hero{
-    height:100svh;
-    justify-content:flex-end;
-  }
-  .hp-hero-content{
-    padding:1.4rem 6vw 1.6rem;
-    margin-bottom:0;
-  }
-  .hp-hero-content h1{ font-size:clamp(1.8rem,5vw,2.6rem); }
+  .hp-hero{ height:100svh; justify-content:flex-end; }
+  .hp-hero-video{ object-position:center 65%; }
+  .hp-hero-video-fallback{ background-position:center 65%; }
+  .hp-hero-content{ margin-bottom:clamp(20px,5vw,48px); }
+  .hp-hero-content h1{ font-size:clamp(1.8rem,5vw,2.8rem); }
   .hp-hero-tags{ display:none; }
-  .hp-mobile-reserve{ display:none; }
 }
 
 /* ══════════════════════════════════════
