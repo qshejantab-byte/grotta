@@ -168,14 +168,6 @@
   from { opacity: 0; transform: translateY(30px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-@keyframes hp-up-mobile-loc {
-  from { opacity:0; transform:translateY(calc(-18vh + 16px)); }
-  to   { opacity:1; transform:translateY(-18vh); }
-}
-@keyframes hp-rise-mobile {
-  from { opacity: 0; transform: translateY(calc(-18vh + 26px)); }
-  to   { opacity: 1; transform: translateY(-18vh); }
-}
 @keyframes hp-blur {
   from { opacity: 0; filter: blur(4px); transform: translateY(10px); }
   to   { opacity: 1; filter: blur(0); transform: translateY(0); }
@@ -1214,168 +1206,109 @@
    MOBILE HERO — Premium
    Target: phones < 768px
 ══════════════════════════════════════ */
-/* ══════════════════════════════════════════════════════════
-   MOBILE HERO — Luxury editorial composition
-   Desktop (769px+) is completely untouched.
-══════════════════════════════════════════════════════════ */
 @media(max-width:768px){
-
-  /* ── Hero container ── */
   .hp-hero{
-    height:90svh;
-    min-height:580px;
-    max-height:860px;
-    padding-top:0;
-    display:flex;
-    flex-direction:column;
+    height:100svh; min-height:600px;
+    padding-top:68px;
     justify-content:flex-end;
-    align-items:center;
   }
-
-  /* ── Image: building as focal point, sky minimised ── */
-  .hp-hero-video{
-    object-position:center 72%;
-    filter:brightness(.72) saturate(.92);
-  }
-  .hp-hero-video-fallback{
-    background-position:center 70%;
-    filter:brightness(.68) saturate(.9);
-  }
-
-  /* ── Overlay: transparent over building, fades at edges ── */
   .hp-hero-overlay{
     background:
       linear-gradient(to bottom,
-        rgba(6,5,4,.35) 0%,
-        rgba(6,5,4,0)   15%,
-        rgba(6,5,4,0)   48%,
-        rgba(6,5,4,.48) 72%,
-        rgba(6,5,4,.94) 100%);
+        rgba(6,5,4,.18) 0%,
+        rgba(6,5,4,.04) 18%,
+        rgba(6,5,4,.48) 58%,
+        rgba(6,5,4,.92) 80%,
+        rgba(6,5,4,1) 100%),
+      radial-gradient(ellipse 140% 60% at 50% 60%,
+        transparent 30%, rgba(6,5,4,.5) 100%);
   }
-
-  /* ── Content block ── */
   .hp-hero-content{
-    position:relative;
-    text-align:center;
+    text-align:left;
     padding:0 7vw;
-    margin-bottom:clamp(90px,20vw,140px);
+    margin-bottom:clamp(56px,13vw,88px);
+    transform:translateY(-28px);
     max-width:100%;
-    width:100%;
-    background:none;
-    backdrop-filter:none;
-    -webkit-backdrop-filter:none;
-    border:none;
-    box-shadow:none;
   }
-  .hp-hero-content::before{ display:none; }
-
-  /* ── Text group: floats over building area ── */
-  .hp-hero-location,
-  .hp-hero-content h1{
-    position:relative;
-    z-index:11;
-  }
-
-  /* ── Location label ── */
   .hp-hero-location{
-    font-family:var(--sans);
-    font-size:.4rem;
+    font-size:9px;
     font-weight:200;
-    letter-spacing:.48em;
-    color:rgba(201,165,82,.7);
-    margin-bottom:1.5rem;
-    gap:.7rem;
-    opacity:0;
-    animation:hp-up-mobile-loc .75s ease .2s forwards;
+    letter-spacing:.52em;
+    color:rgba(201,165,82,.72);
+    margin-bottom:24px;
+    display:inline-flex;
   }
   .hp-hero-location::before,
   .hp-hero-location::after{
-    width:20px;
-    height:1px;
+    width:22px;
     background:rgba(201,165,82,.38);
   }
-
-  /* ── Headline ── */
   .hp-hero-content h1{
-    font-family:var(--serif);
-    font-size:clamp(2.7rem,10.8vw,4.2rem);
-    font-weight:300;
+    font-size:clamp(2.5rem,10.5vw,3.6rem);
     line-height:1.06;
     letter-spacing:-.025em;
-    margin-bottom:0;
-    color:rgba(240,232,213,.97);
-    text-shadow:0 2px 30px rgba(0,0,0,.45);
-    opacity:0;
-    transform:translateY(calc(-18vh + 26px));
-    animation:hp-rise-mobile 1.1s cubic-bezier(.34,1.06,.64,1) .4s forwards;
+    margin-bottom:24px;
+    text-align:left;
   }
-
-  /* ── Tagline: hidden on mobile ── */
-  .hp-hero-tagline{ display:none; }
-
-  /* ── Paragraph and tags: hidden ── */
+  .hp-hero-tagline{
+    font-size:clamp(.82rem,3.4vw,.96rem);
+    letter-spacing:.02em;
+    color:rgba(201,165,82,.55);
+    margin-bottom:40px;
+    display:block;
+    text-align:left;
+  }
   .hp-hero-content p{ display:none; }
   .hp-hero-tags{ display:none; }
-
-  /* ── CTAs: compact, sketch-accurate sizing ── */
   .hp-hero-ctas{
     flex-direction:column;
-    align-items:center;
-    gap:.6rem;
+    align-items:flex-start;
+    gap:14px;
     width:100%;
-    opacity:0;
-    animation:hp-up .8s ease 1.3s forwards;
-  }
-  .hp-btn-primary,.hp-btn-secondary{
-    width:72%;
-    max-width:260px;
-    justify-content:center;
-    font-size:.5rem;
-    letter-spacing:.26em;
-    min-height:44px;
   }
   .hp-btn-primary{
-    padding:.7rem 1.4rem;
-    box-shadow:0 6px 24px rgba(201,165,82,.22);
+    width:200px;
+    max-width:none;
+    justify-content:center;
+    padding:.9rem 0;
+    font-size:.58rem;
+    letter-spacing:.28em;
+    box-shadow:0 8px 28px rgba(201,165,82,.18);
   }
   .hp-btn-secondary{
-    padding:.68rem 1.4rem;
-    border-color:rgba(232,224,208,.22);
-    color:rgba(232,224,208,.72);
-    background:rgba(6,5,4,.15);
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
+    width:228px;
+    max-width:none;
+    justify-content:center;
+    padding:.87rem 0;
+    font-size:.58rem;
+    letter-spacing:.28em;
   }
-
-  /* ── Concierge: minimal, corner ── */
-  #gc-launcher{
-    bottom:1.2rem !important;
-    right:1rem !important;
-    transform:scale(.75) !important;
-    transform-origin:bottom right !important;
-    opacity:.7 !important;
-  }
-
   .hp-scroll{ display:none; }
   .booking-bar{ display:none !important; }
 }
 
-/* ── Small phones 390px ── */
 @media(max-width:390px){
-  .hp-hero-content h1{ font-size:clamp(2.4rem,10.5vw,3.4rem); }
-  .hp-hero-content{ margin-bottom:clamp(52px,12vw,84px); }
-  .hp-btn-primary,.hp-btn-secondary{ font-size:.5rem; min-height:48px; }
-  .hp-hero-tagline{ margin-bottom:2rem; }
+  .hp-hero-content h1{
+    font-size:clamp(2.3rem,10vw,3.2rem);
+  }
+  .hp-hero-content{
+    transform:translateY(-24px);
+    margin-bottom:clamp(52px,12vw,80px);
+  }
+  .hp-btn-primary{ width:188px; }
+  .hp-btn-secondary{ width:214px; }
 }
 
-/* ── Landscape phones ── */
 @media(max-width:900px) and (orientation:landscape){
-  .hp-hero{ height:100svh; justify-content:flex-end; }
-  .hp-hero-video{ object-position:center 65%; }
-  .hp-hero-video-fallback{ background-position:center 65%; }
-  .hp-hero-content{ margin-bottom:clamp(20px,5vw,44px); }
-  .hp-hero-content h1{ font-size:clamp(1.8rem,5vw,2.8rem); line-height:1.04; }
-  .hp-hero-tagline{ margin-bottom:1.4rem; }
+  .hp-hero{ justify-content:center; }
+  .hp-hero-content{
+    transform:none;
+    margin-bottom:0;
+    padding-bottom:80px;
+    text-align:center;
+  }
+  .hp-hero-ctas{ align-items:center; }
+  .hp-btn-primary,.hp-btn-secondary{ width:220px; }
   .hp-hero-tags{ display:none; }
 }
 
@@ -1778,12 +1711,6 @@
     </div>
   </div>
 
-  <!-- Mobile-only compact reserve button -->
-  <div class="hp-mobile-reserve" onclick="goToBooking()" role="button" aria-label="Reserve your experience">
-    <span class="hp-mobile-reserve-dot"></span>
-    <span class="hp-mobile-reserve-label">Reserve</span>
-  </div>
-
   <!-- Booking bar -->
   <div class="booking-bar" id="booking-bar">
     <div class="bb-field" id="field-checkin" onclick="toggleCal('checkin')">
@@ -1840,7 +1767,7 @@
       <p class="hp-dest-body">At Grotta Resort, Northern Rwanda begins within, inside volcanic caves that have existed for thousands of years, 
                               and extends outward into a collection of the region’s most exceptional experiences.</p>
       <p class="hp-dest-body">Explore gorilla trekking, volcano hikes, mountain e-biking, caves, wildlife, and cultural journeys, all carefully curated to give you a complete and immersive stay.</p>
-      <p class="hp-dest-body">Then return to fireside evenings, open views, and the quiet rhythm that defines Grotta.</p>
+      <p class="hp-dest-body">Then return to fireside evenings, open views, and the quiet rhythm that defines Grotta Resort.</p>
       <p class="hp-dest-body hp-dest-body-em">More than a place to stay, this is how you experience Northern Rwanda, fully.</p>
       <a href="experiences.html" class="hp-dest-cta"><span>Explore All Experiences</span></a>
     </div>
@@ -1894,14 +1821,14 @@
   <div class="hp-why-inner">
     <div class="hp-why-left reveal from-left">
       <div class="hp-why-accent-line"></div>
-      <span class="label">Why Grotta</span>
+      <span class="label">Why Grotta Resort</span>
       <h2 class="hp-why-title">More Than a<br>Place to Stay</h2>
       <div class="hp-why-rule"></div>
     </div>
     <div class="hp-why-right reveal from-right d1">
       <p class="hp-why-lead">Most journeys to Northern Rwanda are defined by what people go to see.</p>
-      <p class="hp-why-body">At Grotta, the experience starts the moment you arrive.</p>
-      <p class="hp-why-body">You're not staying on the edge of adventure — you're staying inside it. Volcanoes rise in the distance, trails begin nearby, and every direction leads to something worth discovering.</p>
+      <p class="hp-why-body">At Grotta Resort, the experience starts the moment you arrive.</p>
+      <p class="hp-why-body">You're not staying on the edge of adventure you're staying inside it. Volcanoes rise in the distance, trails begin nearby, and every direction leads to something worth discovering.</p>
       <p class="hp-why-em">This is where exploration and stillness meet.</p>
       <a href="experiences.html" class="hp-why-cta">Discover What Awaits <span>→</span></a>
     </div>
@@ -1917,8 +1844,8 @@
       <span class="hp-sig-cave-label">Signature Experience · Underground</span>
       <h2 class="hp-sig-cave-title">The Cave<br>Experience</h2>
       <div class="hp-sig-cave-rule"></div>
-      <p class="hp-sig-cave-quote">"Chambers formed over millennia. Volcanic stone worn smooth by underground rivers. A space where silence has texture — and light, when found, feels earned."</p>
-      <p class="hp-sig-cave-body">There is nothing else like the Grotta cave in Northern Rwanda. Ancient geological formations. Atmospheric depth. An experience that begins before you enter and stays with you long after you leave.</p>
+      <p class="hp-sig-cave-quote">"Chambers formed over millennia. Volcanic stone worn smooth by underground rivers. A space where silence has texture and light, when found, feels earned."</p>
+      <p class="hp-sig-cave-body">There is nothing else like the Grotta Resort cave in Northern Rwanda. Ancient geological formations. Atmospheric depth. An experience that begins before you enter and stays with you long after you leave.</p>
       <div class="hp-sig-cave-stats">
         <div class="hp-sig-cave-stat">
           <span class="hp-sig-cave-stat-num">150m</span>
@@ -1938,7 +1865,7 @@
       <a href="caves.html" class="hp-btn-primary" style="margin-top:2.5rem"><span>Enter the Cave</span></a>
     </div>
     <div class="hp-sig-cave-img reveal d2">
-      <img src="images/AV7I1986.jpg" alt="The Grotta Cave" loading="lazy">
+      <img src="images/AV7I1986.jpg" alt="The Grotta Resort Cave" loading="lazy">
       <div class="hp-sig-cave-img-overlay"></div>
     </div>
   </div>
@@ -1946,7 +1873,7 @@
 
 <!-- ══ BECOME A MEMBER BANNER ══ -->
 <div class="hp-offer reveal">
-  <p>✦ <strong>GROTTA MEMBERSHIP:</strong> A more continuous way to experience the property — gardens, café, gym, and more.</p>
+  <p>✦ <strong>GROTTA RESORT MEMBERSHIP:</strong> A more continuous way to experience the property gardens, café, gym, and more.</p>
   <span class="hp-offer-badge">Now Open</span>
   <a href="membership.html" class="hp-btn-secondary" style="font-size:.56rem;padding:.6rem 1.4rem;">Become a Member</a>
 </div>
@@ -1996,7 +1923,7 @@
       <div class="hp-room-body">
         <span class="label">The Pinnacle</span>
         <h4>Executive Room</h4>
-        <p>Pool Access, butler service, two bedrooms — the ultimate expression of Grotta.</p>
+        <p>Pool Access, butler service, two bedrooms the ultimate expression of Grotta Resort.</p>
         <div class="hp-room-bottom">
           <div class="hp-room-price">$260<small>/ night</small></div>
           <a href="stay.html" class="hp-btn-secondary" style="font-size:.54rem;padding:.6rem 1.2rem;">View Room</a>
@@ -2016,7 +1943,7 @@
   <!-- Section header — clean, no background image -->
   <div class="hp-exp-header-clean">
     <span class="label">The Journey</span>
-    <h2>The Grotta Experiences</h2>
+    <h2>The Grotta Resort  Experiences</h2>
     <p class="hp-exp-header-sub">Discover. Explore. Adventure. Restore.</p>
     <div class="hp-exp-header-rule"></div>
   </div>
@@ -2041,7 +1968,7 @@
         <span class="hp-ch-label">Discover · Underground · Ancient</span>
         <h2 class="hp-ch-title">The Cave<br>Experience</h2>
         <div class="hp-ch-rule"></div>
-        <p class="hp-ch-body">Chambers formed over millennia. Volcanic stone worn smooth by underground rivers. A space where silence has texture — and light, when found, feels earned. This is Grotta's signature experience. There is nothing else like it in Northern Rwanda.</p>
+        <p class="hp-ch-body">Chambers formed over millennia. Volcanic stone worn smooth by underground rivers. A space where silence has texture and light, when found, feels earned. This is Grotta Resort's signature experience. There is nothing else like it in Northern Rwanda.</p>
         <a href="caves.html" class="hp-ch-cta">Enter the Cave →</a>
       </div>
       <div class="hp-ch-img-wrap">
@@ -2145,7 +2072,7 @@
     <div class="hp-ch-final-content reveal">
       <span class="label" style="text-align:center;display:block;margin-bottom:1.2rem">The Gateway</span>
       <h2 class="hp-ch-final-h2">Northern Rwanda.<br>Fully experienced.</h2>
-      <span class="hp-ch-final-sub">Adventure, nature, exploration, wellness, and luxury — designed as one seamless journey.</span>
+      <span class="hp-ch-final-sub">Adventure, nature, exploration, wellness, and luxury designed as one seamless journey.</span>
       <a href="experiences.html" class="hp-btn-primary"><span>Begin Your Journey</span></a>
     </div>
   </div>
@@ -2156,7 +2083,7 @@
 <section class="hp-social">
   <div class="hp-section-header reveal">
     <span class="label">After Dark</span>
-    <h2>Life at Grotta</h2>
+    <h2>Life at Grotta Resort</h2>
   </div>
 
   <div class="hp-social-grid">
