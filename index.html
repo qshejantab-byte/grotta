@@ -1245,12 +1245,12 @@
         rgba(6,5,4,.94) 100%);
   }
 
-  /* ── Content block: raised 50px from bottom, no panel ── */
+  /* ── Content block: raised higher, no panel ── */
   .hp-hero-content{
     position:relative;
     text-align:center;
     padding:0 7vw;
-    margin-bottom:clamp(60px,14vw,100px);
+    margin-bottom:clamp(90px,20vw,140px);
     max-width:100%;
     width:100%;
     background:none;
@@ -1315,29 +1315,29 @@
   .hp-hero-content p{ display:none; }
   .hp-hero-tags{ display:none; }
 
-  /* ── CTAs: refined, premium hierarchy ── */
+  /* ── CTAs: compact, sketch-accurate sizing ── */
   .hp-hero-ctas{
     flex-direction:column;
     align-items:center;
-    gap:1rem;
+    gap:.6rem;
     width:100%;
     opacity:0;
     animation:hp-up .8s ease 1.3s forwards;
   }
   .hp-btn-primary,.hp-btn-secondary{
-    width:100%;
-    max-width:100%;
+    width:72%;
+    max-width:260px;
     justify-content:center;
-    font-size:.52rem;
-    letter-spacing:.28em;
-    min-height:50px;
+    font-size:.5rem;
+    letter-spacing:.26em;
+    min-height:44px;
   }
   .hp-btn-primary{
-    padding:.85rem 1.8rem;
-    box-shadow:0 8px 32px rgba(201,165,82,.25);
+    padding:.7rem 1.4rem;
+    box-shadow:0 6px 24px rgba(201,165,82,.22);
   }
   .hp-btn-secondary{
-    padding:.82rem 1.8rem;
+    padding:.68rem 1.4rem;
     border-color:rgba(232,224,208,.22);
     color:rgba(232,224,208,.72);
     background:rgba(6,5,4,.15);
