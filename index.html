@@ -1229,16 +1229,19 @@
   text-align:center;
   /* padding:0 7vw; */
   max-width:100%;
-  margin-bottom:0;
+  min-height: 60vh;
+  /* margin-bottom:clamp(180px,30vw,240px); */
+  /* margin-top: 80%; */
   position:static;
-  bottom:clamp(150px,35vw,240px);
+  /* bottom:clamp(150px,35vw,240px); */
 }
   .hp-hero-location{
+    /* background: #00ff15; */
     font-size:9px;
     font-weight:200;
     letter-spacing:.52em;
     color:rgba(201,165,82,.72);
-    margin-bottom:20px;
+    /* margin-bottom:20px; */
     display:inline-flex;
   }
   .hp-hero-location::before,
@@ -1248,10 +1251,14 @@
   }
   .hp-hero-content h1{ 
     /* background: #000; */
+    z-index: 30000000000;
     font-size:clamp(1.6rem,7vw,2.3rem);
     line-height:1.08;
     letter-spacing:-.025em;
     margin-bottom:0;
+    /* margin-top: 20px; */
+    padding-top: 10px;
+    position:absolute;
     text-align:left;
   }
   .hp-hero-tagline{ display:none; }
@@ -1263,9 +1270,9 @@
   align-items:flex-start !important;
   gap:14px;
   width:100%;
-  /* background: #dd0c0c; */
+   /* background: #dd0c0c;  */
   
-  margin-top: 200px;
+  margin-top: 250px;
   
 }
   .hp-btn-primary{
@@ -1698,7 +1705,8 @@
     <!-- Fallback image shown if video fails -->
     <div class="hp-hero-video-fallback"></div>
   </div>
-  <div class="hp-hero-overlay"></div>
+  <!-- <div class="hp-hero-overlay" style="background: rgba(162, 0, 255, 0.6);"></div> -->
+  <div class="hp-hero-overlay" "></div>
 
   <div class="hp-hero-content">
     <div class="hp-hero-location">Musanze · Northern Rwanda</div>
@@ -1713,7 +1721,7 @@
       <span class="hp-hero-tag">E-Bike Adventures</span>
     </div>
     <div class="hp-hero-ctas">
-<a href="packages.html" class="hp-btn-primary"><span>Explore Packages</span></a>       <a href="stay.html" class="hp-btn-secondary">Book Your Stay</a>
+<a href="packages.html" class="hp-btn-primary"><span>Explore Packages</span></a>       <a href="stay.html" class="hp-btn-secondary">Explore Your Stay</a>
     </div>
   </div>
 
