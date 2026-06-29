@@ -1225,11 +1225,12 @@
         transparent 30%, rgba(6,5,4,.5) 100%);
   }
   .hp-hero-content{
+    /* background: #0077ffa9; */
   text-align:center;
-  padding:0 7vw;
+  /* padding:0 7vw; */
   max-width:100%;
   margin-bottom:0;
-  position:relative;
+  position:static;
   bottom:clamp(150px,35vw,240px);
 }
   .hp-hero-location{
@@ -1245,7 +1246,8 @@
     width:22px;
     background:rgba(201,165,82,.38);
   }
-  .hp-hero-content h1{
+  .hp-hero-content h1{ 
+    /* background: #000; */
     font-size:clamp(1.6rem,7vw,2.3rem);
     line-height:1.08;
     letter-spacing:-.025em;
@@ -1256,11 +1258,15 @@
   .hp-hero-content p{ display:none; }
   .hp-hero-tags{ display:none; }
   .hp-hero-ctas{
+   
   flex-direction:column !important;
   align-items:flex-start !important;
   gap:14px;
   width:100%;
-  margin-top: clamp(120px,28vw,200px);
+  /* background: #dd0c0c; */
+  
+  margin-top: 200px;
+  
 }
   .hp-btn-primary{
   width:62% !important;
@@ -1306,7 +1312,7 @@
   align-items:flex-start;
   gap:14px;
   width:100%;
-  margin-top:clamp(280px,60vw,380px);
+  margin-top:clamp(240px,28vw,200px);
 }
   .hp-btn-primary,.hp-btn-secondary{ width:220px; }
   .hp-hero-tags{ display:none; }
