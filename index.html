@@ -1256,14 +1256,15 @@
   .hp-hero-content p{ display:none; }
   .hp-hero-tags{ display:none; }
   .hp-hero-ctas{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:14px;
-    width:100%;
-    margin-top:clamp(28px,6vw,44px);
-  }
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  gap:14px;
+  width:100%;
+  margin-top:0;
+  padding-top:clamp(280px,60vw,380px) !important;
+}
   .hp-btn-primary{
-  width:62%;
+  width:62% !important;
   max-width:none;
   justify-content:center;
   padding:.8rem 0;
@@ -1272,7 +1273,7 @@
   box-shadow:0 8px 28px rgba(201,165,82,.18);
 }
   .hp-btn-secondary{
-  width:72%;
+  width:72% !important;
   max-width:none;
   justify-content:center;
   padding:.78rem 0;
