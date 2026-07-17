@@ -1216,112 +1216,47 @@
   .hp-hero-overlay{
     background:
       linear-gradient(to bottom,
-        rgba(6,5,4,.18) 0%,
-        rgba(6,5,4,.04) 18%,
-        rgba(6,5,4,.48) 58%,
-        rgba(6,5,4,.92) 80%,
+        rgba(6,5,4,.2) 0%,
+        rgba(6,5,4,.05) 20%,
+        rgba(6,5,4,.4) 55%,
+        rgba(6,5,4,.88) 78%,
         rgba(6,5,4,1) 100%),
       radial-gradient(ellipse 140% 60% at 50% 60%,
         transparent 30%, rgba(6,5,4,.5) 100%);
   }
   .hp-hero-content{
-    /* background: #0077ffa9; */
-  text-align:center;
-  /* padding:0 7vw; */
-  max-width:100%;
-  min-height: 60vh;
-  /* margin-bottom:clamp(180px,30vw,240px); */
-  /* margin-top: 80%; */
-  position:static;
-  /* bottom:clamp(150px,35vw,240px); */
-}
-  .hp-hero-location{
-    /* background: #00ff15; */
-    font-size:9px;
-    font-weight:200;
-    letter-spacing:.52em;
-    color:rgba(201,165,82,.72);
-    /* margin-bottom:20px; */
-    display:inline-flex;
+    text-align:center;
+    padding:0 6vw;
+    margin-bottom:clamp(50px,12vw,90px);
+    max-width:100%;
   }
-  .hp-hero-location::before,
-  .hp-hero-location::after{
-    width:22px;
-    background:rgba(201,165,82,.38);
+  .hp-hero-location{ font-size:.42rem; letter-spacing:.28em; margin-bottom:1rem; }
+  .hp-hero-content h1{
+    font-size:clamp(2.2rem, 9vw, 3.4rem);
+    line-height:1.06; letter-spacing:-.02em; margin-bottom:.6rem;
   }
-  .hp-hero-content h1{ 
-    /* background: #000; */
-    z-index: 30000000000;
-    font-size:clamp(1.6rem,7vw,2.3rem);
-    line-height:1.08;
-    letter-spacing:-.025em;
-    margin-bottom:0;
-    /* margin-top: 20px; */
-    padding-top: 10px;
-    position:absolute;
-    text-align:left;
-  }
-  .hp-hero-tagline{ display:none; }
+  .hp-hero-tagline{ font-size:clamp(.78rem,3.2vw,.9rem); margin-bottom:1rem; }
   .hp-hero-content p{ display:none; }
   .hp-hero-tags{ display:none; }
-  .hp-hero-ctas{
-   
-  flex-direction:column !important;
-  align-items:flex-start !important;
-  gap:14px;
-  width:100%;
-   /* background: #dd0c0c;  */
-  
-  margin-top: 250px;
-  
-}
-  .hp-btn-primary{
-  width:62% !important;
-  max-width:none;
-  justify-content:center;
-  padding:.8rem 0;
-  font-size:.56rem;
-  letter-spacing:.26em;
-  box-shadow:0 8px 28px rgba(201,165,82,.18);
-}
-  .hp-btn-secondary{
-  width:72% !important;
-  max-width:none;
-  justify-content:center;
-  padding:.78rem 0;
-  font-size:.56rem;
-  letter-spacing:.26em;
-}
+  .hp-hero-tag{ font-size:.4rem; padding:.28rem .7rem; }
+  .hp-hero-ctas{ flex-direction:column; align-items:center; gap:.65rem; width:100%; margin-top:4rem; }
+  .hp-btn-primary,.hp-btn-secondary{
+    width:100%; max-width:260px;
+    justify-content:center;
+    padding:.7rem 1.4rem; font-size:.5rem;
+  }
+  .hp-btn-primary{ box-shadow:0 8px 28px rgba(201,165,82,.22); }
   .hp-scroll{ display:none; }
   .booking-bar{ display:none !important; }
 }
-
 @media(max-width:390px){
-  .hp-hero-content h1{
-    font-size:clamp(1.7rem,8.5vw,2.4rem);
-  }
-  .hp-hero-content{
-    margin-bottom:clamp(60px,13vw,88px);
-  }
-  .hp-btn-primary{ width:78%; }
-  .hp-btn-secondary{ width:88%; }
+  .hp-hero-content h1{ font-size:clamp(2.2rem,9.5vw,3.2rem); }
+  .hp-hero-content{ margin-bottom:clamp(50px,12vw,90px); }
+  .hp-hero-tags{ display:none; }
 }
-
 @media(max-width:900px) and (orientation:landscape){
-  .hp-hero{ justify-content:center; }
-  .hp-hero-content{
-    margin-bottom:0;
-    padding-bottom:80px;
-    text-align:center;
-  }
-  .hp-hero-ctas{
-  flex-direction:column;
-  align-items:flex-start;
-  gap:14px;
-  width:100%;
-  margin-top:clamp(240px,28vw,200px);
-}
-  .hp-btn-primary,.hp-btn-secondary{ width:220px; }
+  .hp-hero{justify-content:center}
+  .hp-hero-content{margin-bottom:0;padding-bottom:90px}
   .hp-hero-tags{ display:none; }
 }
 
@@ -1706,7 +1641,7 @@
     <div class="hp-hero-video-fallback"></div>
   </div>
   <!-- <div class="hp-hero-overlay" style="background: rgba(162, 0, 255, 0.6);"></div> -->
-  <div class="hp-hero-overlay" "></div>
+  <div class="hp-hero-overlay" ></div>
 
   <div class="hp-hero-content">
     <div class="hp-hero-location">Musanze · Northern Rwanda</div>
@@ -1902,7 +1837,7 @@
   <div class="hp-rooms-grid">
     <div class="hp-room-card">
       <div class="hp-room-img">
-        <img src="images/DSC03706.JPG" alt="Standard Room" loading="lazy">
+        <img src="images/standard.JPG" alt="Standard Room" loading="lazy">
       </div>
       <div class="hp-room-body">
         <span class="label">The Essential</span>
@@ -1917,7 +1852,7 @@
 
     <div class="hp-room-card">
       <div class="hp-room-img">
-        <img src="images/DSC03420.JPG" alt="King View" loading="lazy">
+        <img src="images/kingvolacnoview.png" alt="King View" loading="lazy">
       </div>
       <div class="hp-room-body">
         <span class="label">The Vista</span>
@@ -1932,7 +1867,7 @@
 
     <div class="hp-room-card">
       <div class="hp-room-img">
-        <img src="images/DSC03566.JPG" alt="Executive Room" loading="lazy">
+        <img src="images/kingroom.png" alt="Executive Room" loading="lazy">
       </div>
       <div class="hp-room-body">
         <span class="label">The Pinnacle</span>
@@ -2030,7 +1965,7 @@
         <a href="experiences.html" class="hp-ch-cta">Find Your Trail →</a>
       </div>
       <div class="hp-ch-img-wrap">
-        <img class="hp-ch-img" src="images/AV7I3218.jpg" alt="Hiking Trails" loading="lazy">
+        <img class="hp-ch-img" src="images/gorillas.jpg" alt="Hiking Trails" loading="lazy">
       </div>
     </div>
   </div>
@@ -2052,7 +1987,7 @@
         <a href="experiences.html#sec-wellness" class="hp-ch-cta">Find Your Stillness →</a>
       </div>
       <div class="hp-ch-img-wrap">
-        <img class="hp-ch-img" src="images/AV7I3765.jpg" alt="Wellness at Altitude" loading="lazy">
+        <img class="hp-ch-img" src="images/wellness.jpg" alt="Wellness at Altitude" loading="lazy">
       </div>
     </div>
   </div>
@@ -2109,9 +2044,9 @@
       </div>
     </div>
     <div class="hp-social-item">
-<img src="images/Gemini_Generated_Image_4qx75j4qx75j4qx7.png" alt="Live Music" loading="lazy">      <div class="hp-social-text">
-        <span class="label">Weekend Events</span>
-        <h4>Live Music</h4>
+<img src="images/picleball.jpg" alt="Live Music" loading="lazy">      <div class="hp-social-text">
+        <span class="label">Wellness</span>
+        <h4>Activities</h4>
       </div>
     </div>
     <div class="hp-social-item">
