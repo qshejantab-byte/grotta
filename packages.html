@@ -140,6 +140,16 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 .pk-panel-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.8rem;color:#c9a552;font-weight:300;line-height:1}
 .pk-panel-price-note{font-family:'Jost',sans-serif;font-size:.46rem;color:rgba(200,192,174,.3);margin-top:.2rem}
 
+/* ══ COUPLES TIER TOGGLE (card) ══ */
+.pk-tier-toggle{display:flex;gap:1px;background:rgba(201,165,82,.12);width:fit-content;margin-bottom:1.8rem}
+.pk-tier-btn{display:flex;flex-direction:column;align-items:flex-start;gap:.15rem;background:rgba(8,7,5,.9);border:none;cursor:pointer;padding:.75rem 1.7rem;transition:background .3s ease}
+.pk-tier-btn.active{background:rgba(201,165,82,.13)}
+.pk-tier-btn:hover:not(.active){background:rgba(201,165,82,.06)}
+.pk-tier-name{font-family:'Jost',sans-serif;font-size:.5rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,192,174,.4)}
+.pk-tier-btn.active .pk-tier-name{color:#c9a552}
+.pk-tier-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.1rem;color:rgba(232,224,208,.45)}
+.pk-tier-btn.active .pk-tier-price{color:#f0e8d5}
+
 /* ══ INTERLUDE QUOTE ══ */
 .pk-interlude{position:relative;height:360px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
 .pk-interlude-bg{position:absolute;inset:-5%;background-size:cover;background-position:center;filter:brightness(.22) saturate(.55);will-change:transform}
@@ -258,15 +268,15 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 .pk-final-sub{font-size:.9rem;color:rgba(232,224,208,.42);line-height:2.1;display:block;max-width:480px;margin:0 auto 3rem}
 .pk-final-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
-<<<<<<< HEAD
-/* Float CTA — removed; replaced by the site-wide Grotta Concierge launcher */
-=======
 /* ══════════════════════════════════════════════════════════
-   LUXURY EXPERIENCE MODAL — Aman/Six Senses editorial reveal
+   LUXURY EXPERIENCE MODAL — a mini luxury landing page,
+   not a spec sheet. The guest moves through a journey:
+   hero → arrival → signature moment → discovery → stillness
+   → privileges → perfect for → final invitation.
 ══════════════════════════════════════════════════════════ */
 .pk-modal-overlay{position:fixed;inset:0;background:rgba(4,3,2,.8);backdrop-filter:blur(10px) saturate(1.1);-webkit-backdrop-filter:blur(10px) saturate(1.1);z-index:500;display:flex;align-items:center;justify-content:center;padding:4vh 3vw;opacity:0;visibility:hidden;transition:opacity .55s cubic-bezier(.25,.46,.45,.94),visibility 0s linear .55s}
 .pk-modal-overlay.open{opacity:1;visibility:visible;transition:opacity .55s cubic-bezier(.25,.46,.45,.94),visibility 0s linear 0s}
-.pk-modal{background:#080705;border:1px solid rgba(201,165,82,.16);width:min(900px,94vw);max-height:90vh;position:relative;box-shadow:0 50px 140px rgba(0,0,0,.75),inset 0 1px 0 rgba(201,165,82,.08);transform:translateY(36px) scale(.97);opacity:0;transition:transform .6s cubic-bezier(.25,.46,.45,.94),opacity .6s cubic-bezier(.25,.46,.45,.94)}
+.pk-modal{background:#080705;border:1px solid rgba(201,165,82,.16);width:min(940px,94vw);max-height:90vh;position:relative;box-shadow:0 50px 140px rgba(0,0,0,.75),inset 0 1px 0 rgba(201,165,82,.08);transform:translateY(36px) scale(.97);opacity:0;transition:transform .6s cubic-bezier(.25,.46,.45,.94),opacity .6s cubic-bezier(.25,.46,.45,.94)}
 .pk-modal-overlay.open .pk-modal{transform:translateY(0) scale(1);opacity:1}
 .pk-modal-scroll{max-height:90vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(201,165,82,.3) transparent}
 .pk-modal-scroll::-webkit-scrollbar{width:5px}
@@ -275,42 +285,146 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 .pk-modal-close{position:absolute;top:1.5rem;right:1.5rem;z-index:30;width:42px;height:42px;border-radius:50%;background:rgba(6,5,4,.5);backdrop-filter:blur(12px);border:1px solid rgba(201,165,82,.22);color:#e8e0d0;font-family:'Jost',sans-serif;font-size:.9rem;font-weight:300;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s ease,border-color .3s ease,transform .4s cubic-bezier(.25,.46,.45,.94)}
 .pk-modal-close:hover{background:rgba(201,165,82,.16);border-color:rgba(201,165,82,.45);transform:rotate(90deg)}
 
-.pk-modal-hero{position:relative;height:340px;overflow:hidden;flex-shrink:0}
-.pk-modal-hero img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.5) saturate(.78)}
-.pk-modal-hero-fade{position:absolute;inset:0;background:linear-gradient(to top,#080705 0%,rgba(8,7,5,.2) 60%,rgba(8,7,5,.45) 100%)}
-.pk-modal-hero-content{position:absolute;left:3.2rem;right:3.2rem;bottom:2.2rem;z-index:2}
-.pk-modal-eyebrow{opacity:.85}
-.pk-modal-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.1rem,4.2vw,3.4rem);font-weight:300;color:#f5efe0;letter-spacing:-.02em;line-height:1.02}
-
-.pk-modal-body{padding:3.2rem 3.5rem 3.6rem}
-.pk-modal-intro{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.22rem;font-style:italic;font-weight:300;color:rgba(232,224,208,.72);line-height:1.8;margin-bottom:2.8rem;padding-bottom:2.6rem;border-bottom:1px solid rgba(201,165,82,.1)}
-
-.pk-modal-section{margin-bottom:2.4rem}
-.pk-modal-section-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.34rem;font-weight:400;color:#c9a552;margin-bottom:.65rem;letter-spacing:-.01em}
-.pk-modal-section-text{font-size:.84rem;color:rgba(232,224,208,.48);line-height:1.95;margin-bottom:1.1rem;max-width:580px}
-.pk-modal-section-list{list-style:none;display:flex;flex-direction:column;gap:.55rem}
-.pk-modal-section-list li{font-family:'Jost',sans-serif;font-size:.78rem;font-weight:300;color:rgba(232,224,208,.7);padding-left:1.3rem;position:relative;line-height:1.6}
-.pk-modal-section-list li::before{content:'—';position:absolute;left:0;color:rgba(201,165,82,.5)}
-
-.pk-modal-note{font-family:'Jost',sans-serif;font-size:.72rem;line-height:1.75;color:rgba(201,165,82,.82);border-left:2px solid rgba(201,165,82,.4);padding:.15rem 0 .15rem 1rem;margin-top:1rem;max-width:560px}
-
-.pk-modal-perfect-for{margin-top:2.8rem;padding-top:2.4rem;border-top:1px solid rgba(201,165,82,.1)}
-.pk-modal-perfect-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem}
-.pk-modal-perfect-tags span{font-family:'Jost',sans-serif;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(201,165,82,.75);border:1px solid rgba(201,165,82,.24);padding:.42rem .9rem}
-
-.pk-modal-final{text-align:center;margin-top:3.2rem;padding-top:2.8rem;border-top:1px solid rgba(201,165,82,.1)}
-.pk-modal-final-q{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.55rem;font-style:italic;font-weight:300;color:#f0e8d5;margin-bottom:1.8rem}
-.pk-modal-final-price{display:flex;flex-direction:column;align-items:center;margin-bottom:1.8rem}
-
 body.pk-modal-lock{overflow:hidden}
 
+/* Journey reveal (own observer, scoped to the modal scroller) */
+.pkm-reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.25,.46,.45,.94),transform .9s cubic-bezier(.25,.46,.45,.94)}
+.pkm-reveal.visible{opacity:1!important;transform:translateY(0)!important}
+
+/* ── 1. Hero ── */
+.pkm-hero{position:relative;height:60vh;min-height:400px;max-height:540px;overflow:hidden;flex-shrink:0}
+.pkm-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.5) saturate(.75);transform:scale(1.06);animation:pkm-hero-in 6s cubic-bezier(.25,.46,.45,.94) forwards}
+@keyframes pkm-hero-in{to{transform:scale(1)}}
+.pkm-hero-scrim{position:absolute;inset:0;background:linear-gradient(to top,#080705 0%,rgba(8,7,5,.15) 45%,rgba(8,7,5,.5) 100%),linear-gradient(120deg,rgba(8,7,5,.55) 0%,transparent 55%)}
+.pkm-hero-content{position:absolute;left:3.4rem;right:3.4rem;bottom:2.6rem;z-index:2}
+.pkm-hero-eyebrow{opacity:.9;margin-bottom:.9rem!important;display:block}
+.pkm-hero-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.3rem,5vw,4rem);font-weight:300;color:#f5efe0;letter-spacing:-.025em;line-height:1;margin-bottom:.9rem}
+.pkm-hero-tagline{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1rem,1.6vw,1.3rem);font-style:italic;font-weight:300;color:rgba(232,224,208,.72);max-width:460px;line-height:1.6}
+
+/* ── 2. Editorial split (arrival / discovery) ── */
+.pkm-split{display:grid;grid-template-columns:1fr 1fr;min-height:380px}
+.pkm-split-rev{direction:rtl}
+.pkm-split-rev>*{direction:ltr}
+.pkm-split-img{position:relative;overflow:hidden}
+.pkm-split-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.55) saturate(.8);transition:transform 2s cubic-bezier(.25,.46,.45,.94),filter 1.2s ease}
+.pkm-split:hover .pkm-split-img img{transform:scale(1.045);filter:brightness(.65) saturate(.9)}
+.pkm-split-text{padding:3.4rem 3.8rem;display:flex;flex-direction:column;justify-content:center}
+.pkm-split-eyebrow{margin-bottom:.7rem!important}
+.pkm-split-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,2.6vw,2.3rem);font-weight:300;color:#f0e8d5;line-height:1.12;margin-bottom:1rem;letter-spacing:-.015em}
+.pkm-split-body{font-size:.88rem;color:rgba(232,224,208,.55);line-height:2;max-width:380px}
+
+/* ── 3. Full-bleed signature moment ── */
+.pkm-moment{position:relative;min-height:420px;background-size:cover;background-position:center;display:flex;align-items:flex-end}
+.pkm-moment-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,4,.92) 0%,rgba(6,5,4,.35) 55%,rgba(6,5,4,.15) 100%)}
+.pkm-moment-content{position:relative;z-index:2;padding:3rem 3.8rem;max-width:540px}
+.pkm-moment-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;color:#f5efe0;margin-bottom:.9rem;letter-spacing:-.02em}
+.pkm-moment-body{font-size:.9rem;color:rgba(232,224,208,.62);line-height:2}
+
+/* ── 4. Calm interlude — pure typography, generous air ── */
+.pkm-calm{padding:5rem 3.8rem;text-align:center;position:relative}
+.pkm-calm::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:2.6rem;background:linear-gradient(to bottom,transparent,rgba(201,165,82,.4))}
+.pkm-calm-eyebrow{display:block;margin:0 auto .9rem}
+.pkm-calm-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:300;font-style:italic;color:#f0e8d5;max-width:600px;margin:0 auto 1.2rem;line-height:1.4}
+.pkm-calm-body{font-size:.84rem;color:rgba(200,192,174,.45);max-width:460px;margin:0 auto;line-height:2}
+
+/* ── 5. Exclusive Privileges — refined cards, not bullets ── */
+.pkm-note{font-family:'Jost',sans-serif;font-size:.7rem;line-height:1.75;color:rgba(201,165,82,.82);border-left:2px solid rgba(201,165,82,.4);padding:.15rem 0 .15rem 1rem;margin-top:1.6rem;max-width:520px}
+
+/* ── 6. Perfect For — icon cards ── */
+.pkm-perfect{padding:0 3.8rem 4.2rem}
+.pkm-perfect-head{text-align:center;margin-bottom:1.8rem}
+.pkm-perfect-grid{display:flex;flex-wrap:wrap;gap:.65rem;justify-content:center}
+.pkm-perfect-card{display:flex;align-items:center;gap:.55rem;border:1px solid rgba(201,165,82,.2);padding:.7rem 1.25rem;transition:border-color .3s ease,background .3s ease}
+.pkm-perfect-card:hover{border-color:rgba(201,165,82,.5);background:rgba(201,165,82,.04)}
+.pkm-perfect-icon{font-size:.95rem;color:rgba(201,165,82,.75)}
+.pkm-perfect-label{font-family:'Jost',sans-serif;font-size:.7rem;letter-spacing:.06em;color:rgba(232,224,208,.75)}
+
+/* ── 7. Final invitation ── */
+/* ── Experience Overview ── */
+.pkm-overview{padding:3.6rem 3.8rem;display:grid;grid-template-columns:1fr 1.7fr;gap:3rem;border-top:1px solid rgba(201,165,82,.1)}
+.pkm-overview-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.5rem,2.4vw,2rem);font-weight:300;color:#f0e8d5;line-height:1.15;letter-spacing:-.015em}
+.pkm-overview-text{font-size:.9rem;color:rgba(232,224,208,.58);line-height:2.05;align-self:center}
+
+/* ── Signature Experiences ── */
+.pkm-sig{padding:4rem 3.8rem;border-top:1px solid rgba(201,165,82,.1)}
+.pkm-sig-head{text-align:center;margin-bottom:2.4rem}
+.pkm-sig-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.5rem,2.4vw,2rem);font-weight:300;color:#f0e8d5;margin-top:.5rem}
+.pkm-sig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,165,82,.08)}
+.pkm-sig-card{background:#0c0b08;padding:2rem 1.7rem;position:relative;overflow:hidden;transition:background .3s ease}
+.pkm-sig-card:hover{background:#111009}
+.pkm-sig-card::before{content:'';position:absolute;top:0;left:0;width:0;height:1px;background:rgba(201,165,82,.45);transition:width .55s cubic-bezier(.25,.46,.45,.94)}
+.pkm-sig-card:hover::before{width:100%}
+.pkm-sig-icon{font-size:1.3rem;color:rgba(201,165,82,.7);display:block;margin-bottom:1rem}
+.pkm-sig-card-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;font-weight:400;color:#e8e0d0;margin-bottom:.45rem;line-height:1.25}
+.pkm-sig-text{font-size:.75rem;color:rgba(200,192,174,.42);line-height:1.75;font-style:italic}
+
+/* ── Why Choose This Experience ── */
+.pkm-why{padding:4rem 3.8rem;border-top:1px solid rgba(201,165,82,.1)}
+.pkm-why-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.7rem,2.8vw,2.3rem);font-weight:300;color:#f0e8d5;line-height:1.15;letter-spacing:-.015em;margin-bottom:1.1rem;max-width:520px}
+.pkm-why-text{font-size:.9rem;color:rgba(232,224,208,.58);line-height:2.05;max-width:560px;margin-bottom:1.8rem}
+.pkm-why-pills{display:flex;flex-wrap:wrap;gap:.6rem}
+.pkm-why-pill{display:inline-flex;align-items:center;gap:.5rem;font-family:'Jost',sans-serif;font-size:.66rem;letter-spacing:.05em;color:rgba(200,192,174,.55);border:1px solid rgba(201,165,82,.16);padding:.5rem 1rem}
+.pkm-why-pill .ms{font-size:.85rem;color:rgba(201,165,82,.65)}
+
+/* ── FAQ accordion ── */
+.pkm-faq{padding:4rem 3.8rem;border-top:1px solid rgba(201,165,82,.1)}
+.pkm-faq-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,2.6vw,2.1rem);font-weight:300;color:#f0e8d5;margin-top:.5rem;margin-bottom:2rem}
+.pkm-faq-list{display:flex;flex-direction:column;gap:1px;background:rgba(201,165,82,.08)}
+.pkm-faq-item{background:#0c0b08}
+.pkm-faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;background:transparent;border:none;cursor:pointer;padding:1.2rem 1.6rem;text-align:left;font-family:'Jost',sans-serif;font-size:.84rem;color:rgba(232,224,208,.8);transition:color .3s ease}
+.pkm-faq-q:hover{color:#f0e8d5}
+.pkm-faq-icon{font-size:1rem;color:rgba(201,165,82,.6);flex-shrink:0;transition:transform .35s cubic-bezier(.25,.46,.45,.94)}
+.pkm-faq-item.open .pkm-faq-icon{transform:rotate(45deg)}
+.pkm-faq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.25,.46,.45,.94)}
+.pkm-faq-item.open .pkm-faq-a{max-height:220px}
+.pkm-faq-a p{padding:0 1.6rem 1.3rem;font-size:.8rem;color:rgba(200,192,174,.48);line-height:1.85;max-width:560px}
+
+.pkm-final{position:relative;min-height:400px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;text-align:center}
+.pkm-final-scrim{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(6,5,4,.55) 0%,rgba(6,5,4,.94) 100%)}
+.pkm-final-content{position:relative;z-index:2;padding:3.2rem 2rem;max-width:540px}
+.pkm-final-quote{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,3.2vw,2.5rem);font-weight:300;font-style:italic;color:#f5efe0;line-height:1.35;margin-bottom:1.8rem}
+.pkm-final-price-row{display:flex;flex-direction:column;align-items:center;margin-bottom:1.7rem}
+
+/* ── Tier bar (Couples: Basic / Premium) ── */
+.pkm-tier-bar{display:flex;justify-content:center;padding:2.6rem 3.8rem 0}
+.pkm-tier-toggle{display:flex;gap:1px;background:rgba(201,165,82,.14)}
+.pkm-tier-btn{display:flex;flex-direction:column;align-items:center;gap:.2rem;background:#0c0b08;border:none;cursor:pointer;padding:.85rem 2.2rem;transition:background .3s ease}
+.pkm-tier-btn.active{background:rgba(201,165,82,.14)}
+.pkm-tier-btn:hover:not(.active){background:#111009}
+.pkm-tier-name{font-family:'Jost',sans-serif;font-size:.52rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,192,174,.4)}
+.pkm-tier-btn.active .pkm-tier-name{color:#c9a552}
+.pkm-tier-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;color:rgba(232,224,208,.5)}
+.pkm-tier-btn.active .pkm-tier-price{color:#f0e8d5}
+@media(max-width:820px){
+  .pkm-tier-bar{padding:2rem 1.7rem 0}
+  .pkm-tier-btn{padding:.7rem 1.4rem}
+}
+
+@media(max-width:820px){
+  .pkm-split{grid-template-columns:1fr}
+  .pkm-split-rev{direction:ltr}
+  .pkm-split-img{height:240px}
+  .pkm-split-text{padding:2.2rem 1.7rem}
+  .pkm-hero-content{left:1.7rem;right:1.7rem;bottom:1.5rem}
+  .pkm-moment-content{padding:2.2rem 1.7rem}
+  .pkm-calm{padding:3.4rem 1.7rem}
+  .pkm-overview{padding:2.6rem 1.7rem;grid-template-columns:1fr;gap:1.2rem}
+  .pkm-sig{padding:3rem 1.7rem}
+  .pkm-sig-grid{grid-template-columns:1fr 1fr}
+  .pkm-why{padding:3rem 1.7rem}
+  .pkm-faq{padding:3rem 1.7rem}
+  .pkm-faq-q{padding:1rem 1.2rem}
+  .pkm-faq-a p{padding:0 1.2rem 1.1rem}
+  .pkm-perfect{padding:0 1.7rem 3rem}
+}
+@media(max-width:480px){
+  .pkm-sig-grid{grid-template-columns:1fr}
+  .pkm-hero{height:50vh;min-height:300px}
+}
+
 @media(max-width:700px){
-  .pk-modal-body{padding:2.4rem 1.7rem 2.8rem}
-  .pk-modal-hero{height:230px}
-  .pk-modal-hero-content{left:1.7rem;right:1.7rem;bottom:1.4rem}
   .pk-modal-close{top:1rem;right:1rem;width:38px;height:38px}
 }
->>>>>>> c38021471838246e7aa483830cd6ea944e7343e6
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:1100px){
@@ -421,10 +535,10 @@ body.pk-modal-lock{overflow:hidden}
       </div>
 
       <a href="#pkg-couples" class="pk-nav-item active">
-        <span class="pk-nav-icon">🕯</span>
+        <span class="pk-nav-icon ms">favorite</span>
         <span class="pk-nav-name">Couples Package</span>
         <span class="pk-nav-tagline">Private firelit moments in the volcanic highlands</span>
-        <div class="pk-nav-meta"><span class="pk-nav-dur">2–4 Nights</span><span class="pk-nav-price" data-p1="From $260" data-p2="From $420">From $260</span></div>
+        <div class="pk-nav-meta"><span class="pk-nav-dur">2–4 Nights</span><span class="pk-nav-price">From $260</span></div>
       </a>
       <a href="#pkg-wellness" class="pk-nav-item">
         <span class="pk-nav-icon ms">spa</span>
@@ -481,25 +595,27 @@ body.pk-modal-lock{overflow:hidden}
       <span class="pk-panel-num">01</span>
       <span class="pk-label">Romance · Fire · Intimacy</span>
       <h3 class="pk-panel-h3">Couples Package</h3>
-      <span class="pk-panel-tagline">"Available by request"</span>
-      <p class="pk-panel-desc">An intimate escape shaped entirely around the two of you — fire, stillness, and the quiet ceremony of being present together.</p>
-      <div class="pk-panel-includes">
-        <span class="pk-panel-include">Romantic Room Transformation</span>
-        <span class="pk-panel-include">Private Cave Journey</span>
-        <span class="pk-panel-include">Exclusive Candlelit Dinner</span>
-        <span class="pk-panel-include">Couples Spa Ritual</span>
-        <span class="pk-panel-include">Breakfast Served In-Room</span>
-        <span class="pk-panel-include">Professional Photoshoot</span>
-        <span class="pk-panel-include">Private Firepit Experience</span>
-        <span class="pk-panel-include">Dedicated Experience Concierge</span>
+      <span class="pk-panel-tagline">"Every love story deserves a setting worthy of it."</span>
+      <p class="pk-panel-desc">An intimate escape shaped entirely around the two of you — choose the rhythm that fits your celebration. Always priced per couple.</p>
+
+      <div class="pk-tier-toggle" id="pk-couples-tier-toggle">
+        <button class="pk-tier-btn active" data-tier="basic" onclick="setCouplesTier('basic')" type="button">
+          <span class="pk-tier-name">Basic</span><span class="pk-tier-price">$260</span>
+        </button>
+        <button class="pk-tier-btn" data-tier="premium" onclick="setCouplesTier('premium')" type="button">
+          <span class="pk-tier-name">Premium</span><span class="pk-tier-price">$420</span>
+        </button>
       </div>
+
+      <div class="pk-panel-includes" id="pk-couples-includes"></div>
+
       <div class="pk-panel-footer">
         <div class="pk-panel-price-block">
-          <span class="pk-panel-price-from">Starting from</span>
-          <span class="pk-panel-price" data-p1="$260" data-p2="$420">$260</span>
-          <span class="pk-panel-price-note" data-p1="per person / per night" data-p2="per couple / per night">per person / per night</span>
+          <span class="pk-panel-price-from" id="pk-couples-tier-label">Basic Package</span>
+          <span class="pk-panel-price" id="pk-couples-price">$260</span>
+          <span class="pk-panel-price-note">per couple / per night</span>
         </div>
-        <button class="pk-btn-gold" onclick="openPkModal('couples')"><span>Explore Experience</span></button>
+        <button class="pk-btn-gold" onclick="openPkModal('couples', pkCouplesTier)"><span>Explore Experience</span></button>
       </div>
     </div>
   </div>
@@ -691,10 +807,10 @@ body.pk-modal-lock{overflow:hidden}
     </div>
   </div>
   <div class="pk-gallery-grid reveal">
-    <div class="pk-gal-item"><img src="images/AV7I3760.jpg" alt="Highlands" loading="lazy"><div class="pk-gal-caption"><span>Wellness</span></div></div>
+    <div class="pk-gal-item"><img src="images/AV7I3760.jpg" alt="Highlands" loading="lazy"><div class="pk-gal-caption"><span>Highland Wellness</span></div></div>
     <div class="pk-gal-item"><img src="images/AV7I2004.jpg" alt="Cave Experience" loading="lazy"><div class="pk-gal-caption"><span>Cave Experience</span></div></div>
-    <div class="pk-gal-item"><img src="images/AV7I2905.jpg" alt="Wellness Morning" loading="lazy"><div class="pk-gal-caption"><span>Private Dining</span></div></div>
-    <div class="pk-gal-item"><img src="images/AV7I3219.jpg" alt="Fireside Evening" loading="lazy"><div class="pk-gal-caption"><span>Nature Walk</span></div></div>
+    <div class="pk-gal-item"><img src="images/AV7I2905.jpg" alt="Wellness Morning" loading="lazy"><div class="pk-gal-caption"><span>Wellness Morning</span></div></div>
+    <div class="pk-gal-item"><img src="images/AV7I3219.jpg" alt="Fireside Evening" loading="lazy"><div class="pk-gal-caption"><span>Fireside Evening</span></div></div>
     <div class="pk-gal-item"><img src="images/AV7I2753.jpg" alt="Highlands" loading="lazy"><div class="pk-gal-caption"><span>Swimming Pool</span></div></div>
   </div>
 </div>
@@ -728,8 +844,12 @@ body.pk-modal-lock{overflow:hidden}
           <label class="pk-f-label">Package Interest</label>
           <div class="pk-f-pills pk-f-checkboxes">
             <div class="pk-f-cb-item">
-              <input type="checkbox" name="pk-pkg" id="pk-couples" class="pk-f-pill-input pk-f-cb" value="Couples Package" data-p1="$260" data-p2="$420" onchange="updatePkTotal()">
-              <label class="pk-f-pill-label" for="pk-couples"><span class="pk-cb-name">Couples Package</span><span class="pk-cb-price" id="pk-price-couples">$260 / person</span></label>
+              <input type="radio" name="pk-couples-tier" id="pk-couples-basic" class="pk-f-pill-input pk-f-cb" value="Couples Package (Basic)" data-fixed="$260" onchange="updatePkTotal()">
+              <label class="pk-f-pill-label" for="pk-couples-basic"><span class="pk-cb-name">Couples — Basic</span><span class="pk-cb-price">$260 / couple</span></label>
+            </div>
+            <div class="pk-f-cb-item">
+              <input type="radio" name="pk-couples-tier" id="pk-couples-premium" class="pk-f-pill-input pk-f-cb" value="Couples Package (Premium)" data-fixed="$420" onchange="updatePkTotal()">
+              <label class="pk-f-pill-label" for="pk-couples-premium"><span class="pk-cb-name">Couples — Premium</span><span class="pk-cb-price">$420 / couple</span></label>
             </div>
             <div class="pk-f-cb-item">
               <input type="checkbox" name="pk-pkg" id="pk-wellness" class="pk-f-pill-input pk-f-cb" value="Wellness Package" data-p1="$210" data-p2="$350" onchange="updatePkTotal()">
@@ -782,38 +902,12 @@ body.pk-modal-lock{overflow:hidden}
   </div>
 </div>
 
-<!-- ══ EXPERIENCE MODAL ══ -->
+<!-- ══ EXPERIENCE MODAL — a mini luxury landing page ══ -->
 <div class="pk-modal-overlay" id="pk-modal-overlay" aria-hidden="true">
-  <div class="pk-modal" id="pk-modal" role="dialog" aria-modal="true" aria-labelledby="pk-modal-title">
+  <div class="pk-modal" id="pk-modal" role="dialog" aria-modal="true" aria-label="Package experience details">
     <button class="pk-modal-close" id="pk-modal-close" aria-label="Close experience details">✕</button>
     <div class="pk-modal-scroll">
-      <div class="pk-modal-hero">
-        <img id="pk-modal-hero-img" src="" alt="">
-        <div class="pk-modal-hero-fade"></div>
-        <div class="pk-modal-hero-content">
-          <span class="pk-label pk-modal-eyebrow" id="pk-modal-eyebrow"></span>
-          <h2 class="pk-modal-title" id="pk-modal-title"></h2>
-        </div>
-      </div>
-      <div class="pk-modal-body">
-        <p class="pk-modal-intro" id="pk-modal-intro"></p>
-        <div id="pk-modal-sections"></div>
-
-        <div class="pk-modal-perfect-for">
-          <span class="pk-label">Perfect For</span>
-          <div class="pk-modal-perfect-tags" id="pk-modal-perfect-tags"></div>
-        </div>
-
-        <div class="pk-modal-final">
-          <p class="pk-modal-final-q" id="pk-modal-final-q"></p>
-          <div class="pk-modal-final-price">
-            <span class="pk-panel-price-from">Starting from</span>
-            <span class="pk-panel-price" id="pk-modal-price" data-p1="" data-p2="">$0</span>
-            <span class="pk-panel-price-note" id="pk-modal-price-note" data-p1="" data-p2=""></span>
-          </div>
-          <button class="pk-btn-gold" id="pk-modal-reserve"><span>Reserve This Experience →</span></button>
-        </div>
-      </div>
+      <div id="pk-modal-inner"></div>
     </div>
   </div>
 </div>
@@ -834,8 +928,8 @@ function setGuests(count) {
   pkBtn1.classList.toggle('active', count === 1);
   pkBtn2.classList.toggle('active', count === 2);
 }
-pkBtn1.addEventListener('click', () => { setGuests(1); updatePkTotal(); });
-pkBtn2.addEventListener('click', () => { setGuests(2); updatePkTotal(); });
+pkBtn1.addEventListener('click', () => { setGuests(1); updatePkTotal(); if (pkModalCurrentKey) renderPkModal(pkModalCurrentKey); });
+pkBtn2.addEventListener('click', () => { setGuests(2); updatePkTotal(); if (pkModalCurrentKey) renderPkModal(pkModalCurrentKey); });
 
 // ── Package checkboxes & live total ──────────────────────────
 function updatePkTotal() {
@@ -844,6 +938,7 @@ function updatePkTotal() {
   const note = guestMode === 2 ? 'per couple / per night · prices vary by season' : 'per person / per night · prices vary by season';
 
   document.querySelectorAll('.pk-f-cb').forEach(cb => {
+    if (cb.hasAttribute('data-fixed')) return; // couples tiers are always priced per couple, not tied to the guest toggle
     const priceAttr = cb.getAttribute(attr);
     const priceEl = cb.parentElement.querySelector('.pk-cb-price');
     if (priceEl) priceEl.textContent = priceAttr + (guestMode === 2 ? ' / couple' : ' / person');
@@ -857,19 +952,16 @@ function updatePkTotal() {
   if (checked.length === 0) { totalEl.style.display = 'none'; return; }
 
   let total = 0;
-  checked.forEach(cb => { total += parseInt(cb.getAttribute(attr).replace('$', '')); });
+  checked.forEach(cb => {
+    const raw = cb.hasAttribute('data-fixed') ? cb.getAttribute('data-fixed') : cb.getAttribute(attr);
+    total += parseInt(raw.replace('$', ''));
+  });
 
   amountEl.textContent = '$' + total;
   noteEl.textContent = note;
   totalEl.style.display = 'flex';
 }
 
-<<<<<<< HEAD
-// Hook into guest toggle to update prices
-const _origSetGuests = setGuests;
-
-=======
->>>>>>> c38021471838246e7aa483830cd6ea944e7343e6
 // Parallax
 const pkHeroBg   = document.getElementById('pk-hero-bg');
 const pkFinalBg  = document.getElementById('pk-final-bg');
@@ -885,7 +977,7 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
-// Reveal
+// Reveal (main page sections)
 const revObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
 }, { threshold: 0.07 });
@@ -911,7 +1003,7 @@ function submitPackage(btn) {
   const dates    = document.getElementById('pk-dates').value.trim();
   const guests   = document.getElementById('pk-guests').value.trim();
   const requests = document.getElementById('pk-requests').value.trim();
-  const checked  = [...document.querySelectorAll('input[name="pk-pkg"]:checked')];
+  const checked  = [...document.querySelectorAll('.pk-f-cb:checked')];
   const pkg      = checked.length > 0 ? checked.map(c => c.value).join(', ') : 'Not specified';
 
   const subject = encodeURIComponent('Package Enquiry - ' + name);
@@ -930,94 +1022,261 @@ function submitPackage(btn) {
 }
 
 // ══════════════════════════════════════════════════════════
-// LUXURY EXPERIENCE MODAL
+// LUXURY EXPERIENCE MODAL — data + editorial journey renderer
 // ══════════════════════════════════════════════════════════
 const pkData = {
   couples: {
     eyebrow: 'Romance · Fire · Intimacy',
     title: 'Couples Package',
     hero: 'images/couplespackage.jpg',
-    intro: 'Celebrate love in one of Rwanda\u2019s most extraordinary destinations. Every moment of your stay has been carefully designed to create unforgettable memories together.',
-    priceP1: '$260', priceP2: '$420',
-    priceNoteP1: 'per person / per night', priceNoteP2: 'per couple / per night',
-    finalQ: 'Ready to create your unforgettable escape?',
-    perfectFor: ['Anniversaries', 'Honeymoons', 'Proposals', 'Romantic Getaways', 'Special Celebrations'],
-    sections: [
-      { title: 'A Romantic Welcome', text: 'Your journey begins the moment you arrive \u2014 the room transformed, a personal note waiting, and a toast to what\u2019s ahead.',
-        items: ['Romantic room transformation', 'Personalized welcome card', 'Sparkling wine', 'Handcrafted chocolates'] },
-      { title: 'Signature Romantic Moments', text: 'The evenings are yours \u2014 unhurried, intimate, and entirely your own.',
-        items: ['Exclusive candlelit dinner', 'Breakfast served in-room', 'Reserved private firepit experience'] },
-      { title: 'Discover Grotta Together', text: 'Descend into chambers formed over millennia, guided by someone who knows every turn.',
-        items: ['Private guided cave journey', 'Personalized storytelling'] },
-      { title: 'Relax Together', text: 'Let the highlands slow you both down, together.',
-        items: ['Signature couples spa treatment', 'Private relaxation experience'] },
-      { title: 'Take the Memories Home', text: 'Long after you leave, the story stays with you.',
-        items: ['Professional couple photoshoot', 'Edited digital gallery', 'Luxury keepsake gift'] },
-      { title: 'Exclusive Privileges', text: 'Every detail considered, so nothing is left to chance.',
-        items: ['Dedicated Experience Concierge', 'Personalized itinerary planning', 'Priority dining reservations', 'Complimentary late checkout (subject to availability)'] }
+    tagline: 'Every love story deserves a setting worthy of it.',
+    // Couples is always priced per couple — no 1/2 person toggle. Instead it splits into two tiers.
+    // Only the price changes with tier. The story, the journey, and the signature experiences never do.
+    tiers: {
+      basic:   { price: '$260', label: 'Basic Package' },
+      premium: { price: '$420', label: 'Premium Package' }
+    },
+    priceNote: 'per couple / per night',
+    finalImage: 'images/AV7I4900.jpg',
+    finalQuote: 'Some love stories are written in volcanic stone.',
+    overview: {
+      eyebrow: 'What This Package Is',
+      title: 'An Escape Built for Two',
+      text: 'The Couples Package is a fully private, romance-first stay — designed for partners who want more than a nice room, whether celebrating an anniversary, planning a proposal, or simply choosing each other for a few days. Every inclusion exists to create a moment you will return to in memory long after checkout.'
+    },
+    journey: [
+      { type: 'split', eyebrow: 'The Welcome', title: 'Before You Even Arrive',
+        text: 'Your suite is already transformed. Fresh flowers. Soft candlelight. Every detail arranged before you walk through the door.',
+        image: 'images/AV7I3289.jpg' },
+      { type: 'split', rev: true, eyebrow: 'Discover Together', title: 'Into the Earth',
+        text: 'Descend into chambers formed over millennia, guided by someone who knows every turn. A quiet kind of wonder, shared.',
+        image: 'images/AV7I2004.jpg' },
+      { type: 'moment', eyebrow: 'Signature Dining', title: 'Dinner, Just for Two',
+        text: 'A private table. Candlelight against the dark. The kind of evening that quietly becomes the story you tell for years.',
+        image: 'images/AV7I2905.jpg' },
+      { type: 'calm', eyebrow: 'Relax Together',
+        title: 'Let the highlands slow you both down.',
+        text: 'A signature spa ritual, side by side. No schedule. No agenda. Just stillness, together.' },
+      { type: 'split', eyebrow: 'Memories', title: 'What You Take Home',
+        text: 'A professional photoshoot, edited and gifted to you. Long after the trip ends, the story stays — in frame.',
+        image: 'images/AV7I2753.jpg' }
+    ],
+    signatureExperiences: [
+      { icon: 'king_bed', title: 'Romantic Room Transformation', text: 'Your suite reshaped for the occasion, before you even arrive.' },
+      { icon: 'terrain', title: 'Private Cave Journey', text: 'A guided descent into chambers formed over millennia, just the two of you.' },
+      { icon: 'restaurant', title: 'Exclusive Candlelit Dinner', text: 'A table set only for you, lit by fire, not fluorescent light.' },
+      { icon: 'spa', title: 'Couples Spa Ritual', text: 'Stillness, shared, side by side.' },
+      { icon: 'free_breakfast', title: 'Breakfast Served In-Room', text: 'Morning, uninterrupted.' },
+      { icon: 'photo_camera', title: 'Professional Photoshoot', text: 'A story captured, edited, and gifted to you.' },
+      { icon: 'local_fire_department', title: 'Private Firepit Experience', text: 'An evening that becomes the memory of the whole trip.' },
+      { icon: 'support_agent', title: 'Dedicated Experience Concierge', text: 'One contact, shaping every detail.' }
+    ],
+    whyChoose: {
+      title: 'More Than a Room. A Love Story.',
+      text: 'Any hotel can offer a bed and a view. What we offer is a story — one written in candlelight, volcanic stone, and the quiet moments only the two of you will remember. This is where anniversaries become traditions, and proposals become the beginning of something larger.'
+    },
+    faqs: [
+      { q: 'Can I customize the romantic experience?', a: 'Every detail — from the room transformation to the dinner setting — can be shaped around your story. Just tell your concierge what you\u2019re celebrating.' },
+      { q: 'Can you help me plan a surprise proposal or anniversary?', a: 'Yes. Our concierge has guided many proposals here and can help arrange the moment discreetly and beautifully.' },
+      { q: 'Can I request special room decorations or flowers?', a: 'Of course. Share your vision in the special requests field and we will arrange it before you arrive.' },
+      { q: 'Can dietary preferences be accommodated during the candlelit dinner?', a: 'Always. Let us know any preferences or restrictions in advance and our kitchen will design around them.' },
+      { q: 'Can I extend my stay after the package?', a: 'Yes, subject to availability — simply mention it when you enquire and we will extend the package accordingly.' }
+    ],
+    privileges: [
+      { icon: 'support_agent', title: 'Dedicated Experience Concierge' },
+      { icon: 'calendar_month', title: 'Personalized Itinerary Planning' },
+      { icon: 'restaurant', title: 'Priority Dining Reservations' },
+      { icon: 'schedule', title: 'Complimentary Late Checkout' }
+    ],
+    perfectFor: [
+      { icon: 'favorite', label: 'Anniversaries' },
+      { icon: 'diamond', label: 'Honeymoons' },
+      { icon: 'celebration', label: 'Proposals' },
+      { icon: 'local_fire_department', label: 'Romantic Getaways' },
+      { icon: 'auto_awesome', label: 'Special Celebrations' }
     ]
   },
   wellness: {
     eyebrow: 'Restoration · Stillness · Ritual',
     title: 'Wellness Package',
     hero: 'images/wellness.jpg',
-    intro: 'A stay shaped entirely around restoration \u2014 where altitude, stillness, and ritual work together to recalibrate the body and mind.',
+    tagline: 'The highlands hold a particular silence. It settles into the body, and stays.',
     priceP1: '$210', priceP2: '$350',
     priceNoteP1: 'per person / per night', priceNoteP2: 'per couple / per night',
-    finalQ: 'Ready to begin your restoration?',
-    perfectFor: ['Solo Retreats', 'Digital Detox', 'Post-Trek Recovery', 'Mindful Getaways', 'Personal Reset'],
-    sections: [
-      { title: 'A Grounding Arrival', text: 'Your stay begins with intention \u2014 a quiet welcome, a personal wellness conversation, and the first breath of highland air.',
-        items: ['Wellness welcome amenity', 'Personalized wellness consultation', 'Guided orientation walk'] },
-      { title: 'Restore the Body', text: 'Heat, movement, and stillness \u2014 moved through slowly, at altitude.',
-        items: ['Infra-red sauna ritual', 'Guided highland yoga', 'Outdoor jacuzzi under the stars'] },
-      { title: 'Restore the Mind', text: 'The silence of the highlands settles into the body within hours \u2014 and stays with you long after.',
-        items: ['Private meditation walk', 'Guided breathwork session'] },
-      { title: 'Nourish', text: 'Meals designed around what your body actually needs.',
-        items: ['Wellness-curated cuisine', 'Herbal tea ceremony'] },
-      { title: 'Exclusive Privileges', text: 'A personal guide through every part of your restoration.',
-        items: ['Dedicated Wellness Concierge', 'Personalized itinerary planning', 'Priority spa reservations', 'Complimentary late checkout (subject to availability)'] }
+    finalImage: 'images/AV7I5336.jpg',
+    finalQuote: 'Come back to yourself.',
+    overview: {
+      eyebrow: 'What This Package Is',
+      title: 'A Stay Shaped Around Restoration',
+      text: 'The Wellness Package is built for guests who need to slow down deliberately — solo travelers, couples, or anyone arriving depleted. Every ritual, meal, and quiet hour is designed around recovery, not sightseeing, so you leave lighter than you arrived.'
+    },
+    journey: [
+      { type: 'split', eyebrow: 'The Welcome', title: 'A Grounding Arrival',
+        text: 'A quiet welcome. A personal conversation about what you need. Then, nothing to do but breathe the first clean air of the highlands.',
+        image: 'images/AV7I5729.jpg' },
+      { type: 'moment', eyebrow: 'Heat & Breath', title: 'Restore the Body',
+        text: 'Infra-red warmth. Highland yoga, guided slowly. An outdoor jacuzzi beneath a sky full of stars.',
+        image: 'images/AV7I3760.jpg' },
+      { type: 'split', rev: true, eyebrow: 'The Quiet Mind', title: 'A Silence That Settles In',
+        text: 'A private meditation walk through highland forest. The kind of stillness that takes hours to arrive — and stays with you for weeks after you leave.',
+        image: 'images/AV7I3035.jpg' },
+      { type: 'calm', eyebrow: 'Nourish',
+        title: 'Meals shaped around what your body actually needs.',
+        text: 'Wellness-curated cuisine. A herbal tea ceremony, unhurried. Nothing rushed, nothing wasted.' }
+    ],
+    signatureExperiences: [
+      { icon: 'whatshot', title: 'Infra-Red Sauna Ritual', text: 'Deep heat, at altitude.' },
+      { icon: 'self_improvement', title: 'Guided Highland Yoga', text: 'Movement, paced to the mountain air.' },
+      { icon: 'directions_walk', title: 'Private Meditation Walk', text: 'A silence that takes hours to arrive, and stays for weeks.' },
+      { icon: 'restaurant', title: 'Wellness-Curated Cuisine', text: 'Meals built around what your body needs, not a menu.' },
+      { icon: 'hot_tub', title: 'Outdoor Jacuzzi Under Stars', text: 'Warm water, a sky full of stars, nothing else.' },
+      { icon: 'local_cafe', title: 'Herbal Tea Ceremony', text: 'A ritual, not a routine.' },
+      { icon: 'pool', title: 'Recovery Pool Access', text: 'For the body, after the body has worked.' },
+      { icon: 'support_agent', title: 'Dedicated Wellness Concierge', text: 'One contact for your entire restoration.' }
+    ],
+    whyChoose: {
+      title: 'A Return, Not Just a Rest.',
+      text: 'A room can offer sleep. It cannot offer the particular stillness of these highlands, or the sense of returning to yourself that follows days shaped entirely around restoration. This package exists for the version of you that needs more than a vacation — it needs a reset.'
+    },
+    faqs: [
+      { q: 'Can I customize my wellness schedule?', a: 'Yes. Your concierge will shape each day\u2019s rituals around your energy and goals, not a fixed timetable.' },
+      { q: 'Can I replace an activity with another wellness experience?', a: 'Certainly. If a ritual does not suit you, we will offer an alternative from the same tier of care.' },
+      { q: 'Are treatments suitable for couples?', a: 'Most rituals can be shared, including the outdoor jacuzzi and guided yoga sessions.' },
+      { q: 'What should I bring for the wellness sessions?', a: 'Comfortable clothing and an open mind — we provide everything else, from mats to robes.' },
+      { q: 'Can dietary requirements be accommodated?', a: 'Yes, our wellness-curated cuisine is adapted to any dietary need or restriction you share with us in advance.' }
+    ],
+    privileges: [
+      { icon: 'support_agent', title: 'Dedicated Wellness Concierge' },
+      { icon: 'calendar_month', title: 'Personalized Itinerary Planning' },
+      { icon: 'spa', title: 'Priority Spa Reservations' },
+      { icon: 'schedule', title: 'Complimentary Late Checkout' }
+    ],
+    perfectFor: [
+      { icon: 'self_improvement', label: 'Solo Retreats' },
+      { icon: 'eco', label: 'Digital Detox' },
+      { icon: 'spa', label: 'Post-Trek Recovery' },
+      { icon: 'nights_stay', label: 'Mindful Getaways' },
+      { icon: 'auto_awesome', label: 'Personal Reset' }
     ]
   },
   adventure: {
     eyebrow: 'Exploration · Discovery · Wild Luxury',
     title: 'Adventure Package',
     hero: 'images/adventure.jpg',
-    intro: 'The volcanic highlands are not a backdrop here \u2014 they are the experience. A stay shaped around discovery, at your own pace.',
+    tagline: 'The landscape is not a backdrop. It is the experience.',
     priceP1: '$176', priceP2: '$295',
     priceNoteP1: 'per person / per night', priceNoteP2: 'per couple / per night',
-    finalQ: 'Ready to explore the highlands?',
-    perfectFor: ['Active Explorers', 'First-Time Visitors', 'Small Groups', 'Independent Travelers', 'Multi-Generational Trips'],
-    sections: [
-      { title: 'Before You Set Out', text: 'A proper introduction to the property and the terrain ahead.',
-        items: ['Guided property discovery tour', 'Trail briefing with a resident guide', 'Curated trail lunch preparation'] },
-      { title: 'Into the Highlands', text: 'Suggested activities, shaped around your dates, fitness level, and interests \u2014 not every activity will suit every stay.',
-        items: ['Guided cave exploration', 'Highland e-bike trail', 'Sunrise volcano trek', 'Private nature immersion walk'] },
-      { title: 'Return to Comfort', text: 'The adventure gives way to rest \u2014 evenings by the fire, mornings by the pool.',
-        items: ['Firepit storytelling evening', 'Recovery jacuzzi soak'] },
-      { title: 'Exclusive Privileges', text: 'A personal concierge shaping the days around you.',
-        items: ['Dedicated Adventure Concierge', 'Personalized itinerary planning', 'Priority activity scheduling', 'Complimentary late checkout (subject to availability)'] }
+    finalImage: 'images/nactivities.jpg',
+    finalQuote: 'Some places are worth the climb.',
+    overview: {
+      eyebrow: 'What This Package Is',
+      title: 'The Highlands, Fully Explored',
+      text: 'The Adventure Package is for guests who want the volcanic highlands as an active discovery, not a backdrop — first-time visitors, small groups, and independent travelers who would rather move through the landscape than look at it from a window.'
+    },
+    journey: [
+      { type: 'split', eyebrow: 'Before You Set Out', title: 'A Proper Introduction',
+        text: 'A guided tour of the property. A briefing with a resident guide who knows the terrain. Lunch, prepared and packed, before the trail even begins.',
+        image: 'images/AV7I5729.jpg' },
+      { type: 'moment', eyebrow: 'Into the Highlands', title: 'The Landscape Is the Experience',
+        text: 'Cave systems carved by time. E-bike trails through highland forest. A sunrise trek toward the volcanoes. Shaped around your pace, your dates, your appetite for wild.',
+        image: 'images/AV7I2004.jpg' },
+      { type: 'split', rev: true, eyebrow: 'Return to Comfort', title: 'Fire, After the Trail',
+        text: 'Storytelling by the firepit. A recovery soak as the sky changes color. The adventure gives way, gently, to rest.',
+        image: 'images/AV7I3219.jpg' }
+    ],
+    signatureExperiences: [
+      { icon: 'terrain', title: 'Guided Cave Exploration', text: 'Chambers carved by time, opened just for you.' },
+      { icon: 'pedal_bike', title: 'Highland E-Bike Trail', text: 'The highlands, covered at your own pace.' },
+      { icon: 'volcano', title: 'Sunrise Volcano Trek', text: 'The peaks, before the crowds arrive.' },
+      { icon: 'forest', title: 'Private Nature Immersion', text: 'The forest, without an itinerary.' },
+      { icon: 'lunch_dining', title: 'Curated Trail Lunch', text: 'A meal earned by the morning\u2019s effort.' },
+      { icon: 'local_fire_department', title: 'Firepit Storytelling Evening', text: 'The day\u2019s adventure, retold by firelight.' },
+      { icon: 'support_agent', title: 'Dedicated Adventure Concierge', text: 'One contact, shaping every trail.' }
+    ],
+    signatureNote: 'Not every activity suits every stay — your concierge shapes the mix around your dates, fitness, and appetite for wild.',
+    whyChoose: {
+      title: 'Rwanda, On Your Terms.',
+      text: 'A room only gets you to the doorstep. This package gets you into the caves, onto the trails, and toward the volcanoes — guided, safe, and shaped around your own sense of adventure. It is the difference between visiting the highlands and actually knowing them.'
+    },
+    faqs: [
+      { q: 'Can activities be adjusted to my fitness level?', a: 'Yes — your guide will shape the pace and difficulty of each activity around your comfort and experience.' },
+      { q: 'What should I bring for the adventure?', a: 'Sturdy footwear and light layers; we provide safety equipment and trail gear for every activity.' },
+      { q: 'What happens if the weather changes?', a: 'Activities are rescheduled or substituted at no extra cost — the highlands are unpredictable, and we plan for it.' },
+      { q: 'Can I add more outdoor experiences?', a: 'Absolutely. Your concierge can add extra treks, trails, or excursions to your itinerary.' },
+      { q: 'Is the package suitable for beginners?', a: 'Yes. Each activity has a beginner-friendly version, guided at a pace that keeps it enjoyable rather than exhausting.' }
+    ],
+    privileges: [
+      { icon: 'support_agent', title: 'Dedicated Adventure Concierge' },
+      { icon: 'calendar_month', title: 'Personalized Itinerary Planning' },
+      { icon: 'hiking', title: 'Priority Activity Scheduling' },
+      { icon: 'schedule', title: 'Complimentary Late Checkout' }
+    ],
+    perfectFor: [
+      { icon: 'hiking', label: 'Active Explorers' },
+      { icon: 'landscape', label: 'First-Time Visitors' },
+      { icon: 'groups', label: 'Small Groups' },
+      { icon: 'directions_walk', label: 'Independent Travelers' },
+      { icon: 'diversity_3', label: 'Multi-Generational Trips' }
     ]
   },
   gorilla: {
     eyebrow: 'Exclusive · Rare · Once in a Lifetime',
     title: 'Gorilla Trek Package',
     hero: 'images/AV7I3495.jpg',
-    intro: 'There are experiences you carry for the rest of your life. This is one \u2014 held within a stay built entirely around the journey before and after it.',
+    tagline: 'There are experiences you carry for the rest of your life. This is one.',
     priceP1: '$325', priceP2: '$530',
     priceNoteP1: 'per person / per night · permit not included', priceNoteP2: 'per couple / per night · permit not included',
-    finalQ: 'Ready for Rwanda\u2019s rarest experience?',
-    perfectFor: ['Once-in-a-Lifetime Celebrations', 'Wildlife Enthusiasts', 'Bucket-List Travelers', 'Milestone Anniversaries', 'Solo Adventurers'],
-    sections: [
-      { title: 'Before Dawn', text: 'The morning begins early, and every detail is handled.',
-        items: ['Pre-dawn trek preparation', 'Personal trek briefing', 'Professional gear and shoe care'] },
-      { title: 'Into Volcanoes National Park', text: 'Minutes from the park gates, staying at Grotta means more time on the trail and less in transit.',
-        items: ['Trek support and guidance', 'Priority permit assistance'],
-        note: 'Please note: the gorilla permit/license is not included in the package price \u2014 our concierge can assist with the permit process.' },
-      { title: 'After the Trek', text: 'Recovery, waiting for you the moment you return.',
-        items: ['Recovery spa ritual', 'Curated local dining experience'] },
-      { title: 'Exclusive Privileges', text: 'A dedicated concierge for the journey before and after the permit.',
-        items: ['Dedicated Trek Concierge', 'Personalized itinerary planning', 'Priority dining reservations', 'Complimentary late checkout (subject to availability)'] }
+    finalImage: 'images/AV7I5336.jpg',
+    finalQuote: 'Minutes from Volcanoes National Park. A lifetime from anywhere else.',
+    overview: {
+      eyebrow: 'What This Package Is',
+      title: 'Built Around One Extraordinary Morning',
+      text: 'The Gorilla Trek Package exists for guests making the journey to Volcanoes National Park — often once in a lifetime — who want the entire stay, before and after the permit, to support that single unforgettable morning rather than compete with it.'
+    },
+    journey: [
+      { type: 'split', eyebrow: 'Before Dawn', title: 'Every Detail, Handled',
+        text: 'The morning begins early. Gear checked and cared for. A personal briefing before you step toward the park gates.',
+        image: 'images/AV7I5336.jpg' },
+      { type: 'moment', eyebrow: 'Into Volcanoes National Park', title: 'Minutes Away, A Lifetime Ahead',
+        text: 'Staying at Grotta means more time face-to-face with Rwanda\u2019s rarest encounter, and less time in transit to reach it.',
+        image: 'images/AV7I3495.jpg' },
+      { type: 'split', rev: true, eyebrow: 'After the Trek', title: 'Recovery, Waiting for You',
+        text: 'A spa ritual for tired legs. A curated local dining experience. The story already forming, before you\u2019ve even changed out of your boots.',
+        image: 'images/AV7I2905.jpg' }
+    ],
+    signatureExperiences: [
+      { icon: 'nights_stay', title: 'Pre-Dawn Trek Preparation', text: 'Every detail ready before the sun is up.' },
+      { icon: 'fact_check', title: 'Personal Trek Briefing', text: 'What to expect, from someone who has done this many times.' },
+      { icon: 'backpack', title: 'Professional Gear Care', text: 'Boots and equipment, cared for like they matter.' },
+      { icon: 'spa', title: 'Recovery Spa Ritual', text: 'For legs that carried you somewhere extraordinary.' },
+      { icon: 'restaurant', title: 'Curated Local Dining Experience', text: 'A meal that belongs to this place.' },
+      { icon: 'verified', title: 'Priority Permit Assistance', text: 'The paperwork, handled — so you can focus on the trek.' },
+      { icon: 'support_agent', title: 'Dedicated Trek Concierge', text: 'One contact before and after the permit.' }
+    ],
+    signatureNote: 'Gorilla permit/license is not included in the package price — our concierge can assist with the permit process.',
+    whyChoose: {
+      title: 'The Encounter of a Lifetime, Made Effortless.',
+      text: 'The trek itself is Rwanda\u2019s rarest gift. Everything else — the early mornings, the permit logistics, the recovery afterward — is ours to carry, so the only thing you have to hold onto is the memory of standing minutes from a mountain gorilla family in the wild.'
+    },
+    faqs: [
+      { q: 'Does the package include the gorilla permit?', a: 'No — the permit is priced separately, but our concierge handles the entire application process for you.' },
+      { q: 'Can Grotta assist with the permit application?', a: 'Yes, this is one of our most requested services — we manage the paperwork and timing so nothing is left to chance.' },
+      { q: 'How early does the trek begin?', a: 'Guests typically depart before dawn to reach the park briefing on time; your trek concierge will confirm exact timing.' },
+      { q: 'What fitness level is required?', a: 'A moderate level of fitness is recommended; treks can last several hours over uneven highland terrain.' },
+      { q: 'Can my itinerary be customized?', a: 'Yes. The days around your trek — dining, recovery, and rest — are shaped entirely around you.' }
+    ],
+    privileges: [
+      { icon: 'support_agent', title: 'Dedicated Trek Concierge' },
+      { icon: 'calendar_month', title: 'Personalized Itinerary Planning' },
+      { icon: 'restaurant', title: 'Priority Dining Reservations' },
+      { icon: 'schedule', title: 'Complimentary Late Checkout' }
+    ],
+    perfectFor: [
+      { icon: 'auto_awesome', label: 'Once-in-a-Lifetime Celebrations' },
+      { icon: 'cruelty_free', label: 'Wildlife Enthusiasts' },
+      { icon: 'star', label: 'Bucket-List Travelers' },
+      { icon: 'favorite', label: 'Milestone Anniversaries' },
+      { icon: 'hiking', label: 'Solo Adventurers' }
     ]
   }
 };
@@ -1025,54 +1284,195 @@ const pkData = {
 const pkModalOverlay = document.getElementById('pk-modal-overlay');
 const pkModal = document.getElementById('pk-modal');
 let pkModalCurrentKey = null;
+let pkModalCurrentTier = null; // only meaningful for 'couples'
 let pkModalLastFocused = null;
+
+// ── Couples tier state (card + modal share this) ──────────────
+let pkCouplesTier = 'basic';
+
+function setCouplesTier(tier) {
+  pkCouplesTier = tier;
+  const d = pkData.couples.tiers[tier];
+  document.querySelectorAll('#pk-couples-tier-toggle .pk-tier-btn').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-tier') === tier);
+  });
+  document.getElementById('pk-couples-price').textContent = d.price;
+  document.getElementById('pk-couples-tier-label').textContent = d.label;
+  const includesEl = document.getElementById('pk-couples-includes');
+  const includes = couplesIncludesForTier(tier);
+  includesEl.innerHTML = includes.map(i => `<span class="pk-panel-include">${i}</span>`).join('');
+}
+
+// Derives the visible chip list on the card from the same journey data used in the modal,
+// so the card and the modal never fall out of sync.
+function couplesIncludesForTier(tier) {
+  const basicIncludes = ['Romantic Room Transformation', 'Private Cave Journey', 'Breakfast Served In-Room', 'Dedicated Experience Concierge'];
+  const premiumIncludes = ['Exclusive Candlelit Dinner', 'Couples Spa Ritual', 'Professional Photoshoot', 'Private Firepit Experience'];
+  return tier === 'premium' ? basicIncludes.concat(premiumIncludes) : basicIncludes;
+}
+
+// Scoped reveal observer for content injected into the modal
+const pkmObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); pkmObserver.unobserve(e.target); } });
+}, { root: document.querySelector('.pk-modal-scroll'), threshold: 0.1 });
 
 function renderPkModal(key) {
   const d = pkData[key];
   if (!d) return;
 
-  document.getElementById('pk-modal-hero-img').src = d.hero;
-  document.getElementById('pk-modal-hero-img').alt = d.title;
-  document.getElementById('pk-modal-eyebrow').textContent = d.eyebrow;
-  document.getElementById('pk-modal-title').textContent = d.title;
-  document.getElementById('pk-modal-intro').textContent = d.intro;
-  document.getElementById('pk-modal-final-q').textContent = d.finalQ;
+  const hasTiers = !!d.tiers;
+  const tier = hasTiers ? (pkModalCurrentTier || 'basic') : null;
+  const price = hasTiers ? d.tiers[tier].price : (document.getElementById('pk-btn-2').classList.contains('active') ? d.priceP2 : d.priceP1);
+  const priceNote = hasTiers ? d.priceNote : (document.getElementById('pk-btn-2').classList.contains('active') ? d.priceNoteP2 : d.priceNoteP1);
+  const tierLabel = hasTiers ? d.tiers[tier].label : null;
 
-  const guestMode = document.getElementById('pk-btn-2').classList.contains('active') ? 2 : 1;
-  const priceEl = document.getElementById('pk-modal-price');
-  const noteEl = document.getElementById('pk-modal-price-note');
-  priceEl.setAttribute('data-p1', d.priceP1);
-  priceEl.setAttribute('data-p2', d.priceP2);
-  noteEl.setAttribute('data-p1', d.priceNoteP1);
-  noteEl.setAttribute('data-p2', d.priceNoteP2);
-  priceEl.textContent = guestMode === 2 ? d.priceP2 : d.priceP1;
-  noteEl.textContent = guestMode === 2 ? d.priceNoteP2 : d.priceNoteP1;
+  let html = `
+    <div class="pkm-hero pkm-reveal">
+      <img class="pkm-hero-img" src="${d.hero}" alt="${d.title}">
+      <div class="pkm-hero-scrim"></div>
+      <div class="pkm-hero-content">
+        <span class="pk-label pkm-hero-eyebrow">${d.eyebrow}</span>
+        <h2 class="pkm-hero-title">${d.title}</h2>
+        <p class="pkm-hero-tagline">${d.tagline}</p>
+      </div>
+    </div>`;
 
-  const sectionsHTML = d.sections.map(s => `
-    <div class="pk-modal-section">
-      <h4 class="pk-modal-section-title">${s.title}</h4>
-      <p class="pk-modal-section-text">${s.text}</p>
-      <ul class="pk-modal-section-list">${s.items.map(i => `<li>${i}</li>`).join('')}</ul>
-      ${s.note ? `<p class="pk-modal-note">${s.note}</p>` : ''}
+  if (hasTiers) {
+    html += `
+      <div class="pkm-tier-bar pkm-reveal">
+        <div class="pkm-tier-toggle">
+          <button class="pkm-tier-btn ${tier === 'basic' ? 'active' : ''}" data-action="modal-tier" data-tier="basic" type="button">
+            <span class="pkm-tier-name">Basic</span><span class="pkm-tier-price">${d.tiers.basic.price}</span>
+          </button>
+          <button class="pkm-tier-btn ${tier === 'premium' ? 'active' : ''}" data-action="modal-tier" data-tier="premium" type="button">
+            <span class="pkm-tier-name">Premium</span><span class="pkm-tier-price">${d.tiers.premium.price}</span>
+          </button>
+        </div>
+      </div>`;
+  }
+
+  html += `
+    <div class="pkm-overview pkm-reveal">
+      <div>
+        <span class="pk-label">${d.overview.eyebrow}</span>
+        <h3 class="pkm-overview-title">${d.overview.title}</h3>
+      </div>
+      <p class="pkm-overview-text">${d.overview.text}</p>
+    </div>`;
+
+  // The journey is always shown in full — it's inspiration, not a comparison chart.
+  // Only the final price changes with the selected tier (couples only).
+  d.journey.forEach(section => {
+    if (section.type === 'split') {
+      html += `
+        <div class="pkm-split pkm-reveal ${section.rev ? 'pkm-split-rev' : ''}">
+          <div class="pkm-split-img"><img src="${section.image}" alt="${section.title}" loading="lazy"></div>
+          <div class="pkm-split-text">
+            <span class="pk-label pkm-split-eyebrow">${section.eyebrow}</span>
+            <h3 class="pkm-split-title">${section.title}</h3>
+            <p class="pkm-split-body">${section.text}</p>
+          </div>
+        </div>`;
+    } else if (section.type === 'moment') {
+      html += `
+        <div class="pkm-moment pkm-reveal" style="background-image:url('${section.image}')">
+          <div class="pkm-moment-scrim"></div>
+          <div class="pkm-moment-content">
+            <span class="pk-label">${section.eyebrow}</span>
+            <h3 class="pkm-moment-title">${section.title}</h3>
+            <p class="pkm-moment-body">${section.text}</p>
+          </div>
+        </div>`;
+    } else if (section.type === 'calm') {
+      html += `
+        <div class="pkm-calm pkm-reveal">
+          <span class="pk-label pkm-calm-eyebrow">${section.eyebrow}</span>
+          <p class="pkm-calm-title">${section.title}</p>
+          <p class="pkm-calm-body">${section.text}</p>
+        </div>`;
+    }
+  });
+
+  html += `
+    <div class="pkm-sig pkm-reveal">
+      <div class="pkm-sig-head">
+        <span class="pk-label">Signature Experiences</span>
+        <h3 class="pkm-sig-title">Everything This Package Includes</h3>
+      </div>
+      <div class="pkm-sig-grid">
+        ${d.signatureExperiences.map(s => `
+          <div class="pkm-sig-card">
+            <span class="ms pkm-sig-icon">${s.icon}</span>
+            <div class="pkm-sig-card-title">${s.title}</div>
+            <p class="pkm-sig-text">${s.text}</p>
+          </div>`).join('')}
+      </div>
+      ${d.signatureNote ? `<p class="pkm-note">${d.signatureNote}</p>` : ''}
     </div>
-  `).join('');
-  document.getElementById('pk-modal-sections').innerHTML = sectionsHTML;
 
-  document.getElementById('pk-modal-perfect-tags').innerHTML =
-    d.perfectFor.map(p => `<span>${p}</span>`).join('');
+    <div class="pkm-why pkm-reveal">
+      <span class="pk-label">Why Choose This Experience</span>
+      <h3 class="pkm-why-title">${d.whyChoose.title}</h3>
+      <p class="pkm-why-text">${d.whyChoose.text}</p>
+      <div class="pkm-why-pills">
+        ${d.privileges.map(p => `
+          <span class="pkm-why-pill"><span class="ms">${p.icon}</span>${p.title}</span>`).join('')}
+      </div>
+    </div>
 
-    
+    <div class="pkm-perfect pkm-reveal">
+      <div class="pkm-perfect-head"><span class="pk-label">Perfect For</span></div>
+      <div class="pkm-perfect-grid">
+        ${d.perfectFor.map(p => `
+          <div class="pkm-perfect-card">
+            <span class="ms pkm-perfect-icon">${p.icon}</span>
+            <span class="pkm-perfect-label">${p.label}</span>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="pkm-faq pkm-reveal">
+      <span class="pk-label">Questions, Answered</span>
+      <h3 class="pkm-faq-title">Before You Reserve</h3>
+      <div class="pkm-faq-list">
+        ${d.faqs.map((f, i) => `
+          <div class="pkm-faq-item">
+            <button class="pkm-faq-q" data-action="faq-toggle" type="button">
+              <span>${f.q}</span><span class="ms pkm-faq-icon">add</span>
+            </button>
+            <div class="pkm-faq-a"><p>${f.a}</p></div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="pkm-final pkm-reveal" style="background-image:url('${d.finalImage}')">
+      <div class="pkm-final-scrim"></div>
+      <div class="pkm-final-content">
+        ${tierLabel ? `<span class="pk-label">${tierLabel}</span>` : ''}
+        <p class="pkm-final-quote">${d.finalQuote}</p>
+        <div class="pkm-final-price-row">
+          <span class="pk-panel-price-from">Starting from</span>
+          <span class="pk-panel-price">${price}</span>
+          <span class="pk-panel-price-note">${priceNote}</span>
+        </div>
+        <button class="pk-btn-gold" data-action="reserve"><span>Reserve This Experience →</span></button>
+      </div>
+    </div>`;
+
+  document.getElementById('pk-modal-inner').innerHTML = html;
+
+  document.querySelectorAll('#pk-modal-inner .pkm-reveal').forEach(el => pkmObserver.observe(el));
 }
 
-function openPkModal(key) {
+function openPkModal(key, tier) {
   pkModalCurrentKey = key;
+  pkModalCurrentTier = tier || null;
   pkModalLastFocused = document.activeElement;
   renderPkModal(key);
   pkModalOverlay.classList.add('open');
   pkModalOverlay.setAttribute('aria-hidden', 'false');
   document.body.classList.add('pk-modal-lock');
   document.getElementById('pk-modal-close').focus();
-  document.getElementById('pk-modal').scrollTop = 0;
   const scroller = document.querySelector('.pk-modal-scroll');
   if (scroller) scroller.scrollTop = 0;
 }
@@ -1094,10 +1494,28 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && pkModalOverlay.classList.contains('open')) closePkModal();
 });
 
-document.getElementById('pk-modal-reserve').addEventListener('click', () => {
+// Delegated clicks inside the modal: tier switch, FAQ accordion, and the reserve CTA
+document.getElementById('pk-modal-inner').addEventListener('click', (e) => {
+  const tierBtn = e.target.closest('[data-action="modal-tier"]');
+  if (tierBtn) {
+    pkModalCurrentTier = tierBtn.getAttribute('data-tier');
+    if (pkModalCurrentKey === 'couples') setCouplesTier(pkModalCurrentTier); // keep the card behind the modal in sync
+    renderPkModal(pkModalCurrentKey);
+    return;
+  }
+
+  const faqBtn = e.target.closest('[data-action="faq-toggle"]');
+  if (faqBtn) {
+    faqBtn.closest('.pkm-faq-item').classList.toggle('open');
+    return;
+  }
+
+  const reserveBtn = e.target.closest('[data-action="reserve"]');
+  if (!reserveBtn) return;
   const key = pkModalCurrentKey;
+  const tier = pkModalCurrentTier;
   closePkModal();
-  const checkboxId = 'pk-' + key;
+  const checkboxId = key === 'couples' ? 'pk-couples-' + (tier || 'basic') : 'pk-' + key;
   const checkbox = document.getElementById(checkboxId);
   if (checkbox) {
     checkbox.checked = true;
@@ -1107,6 +1525,9 @@ document.getElementById('pk-modal-reserve').addEventListener('click', () => {
     document.getElementById('pk-booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 150);
 });
+
+// Initialize the couples card chips on page load
+setCouplesTier('basic');
 </script>
 </body>
 </html>
