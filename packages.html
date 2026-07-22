@@ -179,6 +179,30 @@ body::before{content:'';position:fixed;inset:0;z-index:1;background-image:url("d
 .pk-inc-card-desc{font-size:.68rem;color:rgba(200,192,174,.36);line-height:1.8}
 .pk-inc-scroll-hint{display:flex;align-items:center;gap:.6rem;padding:0 4vw .5rem;font-family:'Jost',sans-serif;font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,165,82,.28)}
 
+/* ══ WEEKEND PROMOTION ══ */
+.pk-weekend{position:relative;overflow:hidden;background:#060504;padding:8rem 0}
+.pk-weekend::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,165,82,.12) 30%,rgba(201,165,82,.12) 70%,transparent)}
+.pk-weekend-bg{position:absolute;inset:-5%;background-image:url('images/AV7I3219.jpg');background-size:cover;background-position:center 45%;filter:brightness(.22) saturate(.55);will-change:transform}
+.pk-weekend-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,5,4,.94) 0%,rgba(6,5,4,.78) 42%,rgba(6,5,4,.55) 100%)}
+.pk-weekend-inner{position:relative;z-index:5;max-width:1280px;margin:0 auto;padding:0 4vw;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.pk-weekend-h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.4rem,4.5vw,4.4rem);font-weight:300;color:#f0e8d5;line-height:1.05;letter-spacing:-.025em;margin-bottom:.4rem}
+.pk-weekend-h2 em{font-style:italic;color:#c9a552}
+.pk-weekend-badge{display:inline-flex;align-items:center;gap:1.1rem;border:1px solid rgba(201,165,82,.3);padding:1rem 1.6rem;background:rgba(201,165,82,.05)}
+.pk-weekend-badge-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.6rem;font-weight:300;color:#c9a552;line-height:1}
+.pk-weekend-badge-label{font-family:'Jost',sans-serif;font-size:.55rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,224,208,.55);line-height:1.5}
+
+.pk-weekend-nights{display:flex;flex-direction:column;gap:1px;background:rgba(201,165,82,.1)}
+.pk-weekend-night{background:rgba(8,7,5,.85);backdrop-filter:blur(10px);padding:1.3rem 1.8rem;display:flex;align-items:center;justify-content:space-between;transition:background .35s ease}
+.pk-weekend-night-highlight{background:rgba(201,165,82,.1)}
+.pk-weekend-day{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;font-weight:300;color:#f0e8d5}
+.pk-weekend-tag{font-family:'Jost',sans-serif;font-size:.5rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,192,174,.4);border:1px solid rgba(201,165,82,.2);padding:.35rem .8rem}
+.pk-weekend-tag-gold{color:#060504;background:#c9a552;border-color:#c9a552}
+.pk-weekend-note{font-family:'Jost',sans-serif;font-size:.68rem;line-height:1.8;color:rgba(200,192,174,.4);padding:1.2rem 1.8rem 0;margin-top:.5rem}
+
+@media(max-width:1000px){
+  .pk-weekend-inner{grid-template-columns:1fr;gap:3rem}
+}
+
 /* ══ RHYTHM ══ */
 .pk-rhythm{position:relative;overflow:hidden}
 .pk-rhythm-bg{position:absolute;inset:0;background-image:url('images/AV7I5729.jpg');background-size:cover;background-position:center 40%;filter:brightness(.2) saturate(.55);will-change:transform}
@@ -530,6 +554,7 @@ body.pk-modal-lock{overflow:hidden}
 .pk-f-total-label{font-family:'Jost',sans-serif;font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,165,82,.45)}
 .pk-f-total-amount{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.6rem;color:#c9a552;font-weight:300}
 .pk-f-total-note{width:100%;font-family:'Jost',sans-serif;font-size:.44rem;color:rgba(200,192,174,.3);letter-spacing:.1em}
+.pk-f-cb-standalone + .pk-f-pill-label{justify-content:flex-start}
 </style>
 </head>
 <body>
@@ -770,6 +795,41 @@ body.pk-modal-lock{overflow:hidden}
 
 </div>
 
+<!-- ══ WEEKEND PROMOTION ══ -->
+<div class="pk-weekend">
+  <div class="pk-weekend-bg" id="pk-weekend-bg"></div>
+  <div class="pk-weekend-overlay"></div>
+  <div class="pk-weekend-inner">
+    <div class="pk-weekend-content reveal">
+      <span class="pk-label">A Weekend Invitation</span>
+      <h2 class="pk-weekend-h2">Stay the<br>Weekend.<br><em>Save on Sunday.</em></h2>
+      <div class="pk-rule"></div>
+      <p class="pk-body" style="max-width:440px;margin-bottom:2.2rem">Book Friday, Saturday, and Sunday together and your Sunday night is reduced by half. A quiet reward for those who let the weekend run its full, unhurried course.</p>
+      <div class="pk-weekend-badge">
+        <span class="pk-weekend-badge-num">50%</span>
+        <span class="pk-weekend-badge-label">Off Your<br>Sunday Night</span>
+      </div>
+      <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold" style="margin-top:2.4rem"><span>Enquire About This Weekend</span></button>
+    </div>
+
+    <div class="pk-weekend-nights reveal from-right">
+      <div class="pk-weekend-night">
+        <span class="pk-weekend-day">Friday</span>
+        <span class="pk-weekend-tag">Full Rate</span>
+      </div>
+      <div class="pk-weekend-night">
+        <span class="pk-weekend-day">Saturday</span>
+        <span class="pk-weekend-tag">Full Rate</span>
+      </div>
+      <div class="pk-weekend-night pk-weekend-night-highlight">
+        <span class="pk-weekend-day">Sunday</span>
+        <span class="pk-weekend-tag pk-weekend-tag-gold">50% Off</span>
+      </div>
+      <p class="pk-weekend-note">Applies to consecutive Friday–Sunday stays booked for the same room. Subject to availability. Speak with our concierge to apply this to your package of choice.</p>
+    </div>
+  </div>
+</div>
+
 <!-- ══ BUILD YOUR OWN ══ -->
 <div class="pk-intro" style="border-top:1px solid rgba(201,165,82,.1)">
   <div class="pk-intro-inner" style="grid-template-columns:1fr;text-align:center;max-width:760px">
@@ -874,6 +934,12 @@ body.pk-modal-lock{overflow:hidden}
           <div class="pk-f-field"><label class="pk-f-label">Guests</label><input class="pk-f-input" type="text" id="pk-guests" placeholder="e.g. 2 adults"></div>
         </div>
         <div class="pk-f-field" style="margin-bottom:1.4rem">
+          <div class="pk-f-field" style="margin-bottom:1.4rem">
+          <div class="pk-f-cb-item">
+            <input type="checkbox" id="pk-weekend-promo" class="pk-f-pill-input pk-f-cb-standalone">
+            <label class="pk-f-pill-label" for="pk-weekend-promo"><span class="pk-cb-name">I'm booking Fri–Sun — apply the 50% Sunday rate</span></label>
+          </div>
+        </div>
           <label class="pk-f-label">Package Interest</label>
           <div class="pk-f-pills pk-f-checkboxes">
             <div class="pk-f-cb-item">
@@ -999,16 +1065,17 @@ function updatePkTotal() {
 const pkHeroBg   = document.getElementById('pk-hero-bg');
 const pkFinalBg  = document.getElementById('pk-final-bg');
 const pkRhythmBg = document.getElementById('pk-rhythm-bg');
+const pkWeekendBg = document.getElementById('pk-weekend-bg');
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
   if (pkHeroBg) pkHeroBg.style.transform = `translateY(${y * 0.24}px)`;
-  [pkFinalBg, pkRhythmBg].forEach(bg => {
+  [pkFinalBg, pkRhythmBg, pkWeekendBg].forEach(bg => {
     if (!bg) return;
     const el = bg.parentElement;
     const r = el.getBoundingClientRect();
     bg.style.transform = `translateY(${(window.innerHeight/2 - r.top - r.height/2) * .13}px)`;
   });
-}, { passive: true });
+}, { passive: true });;
 
 // Reveal (main page sections)
 const revObs = new IntersectionObserver(entries => {
@@ -1038,11 +1105,15 @@ function submitPackage(btn) {
   const requests = document.getElementById('pk-requests').value.trim();
   const checked  = [...document.querySelectorAll('.pk-f-cb:checked')];
   const pkg      = checked.length > 0 ? checked.map(c => c.value).join(', ') : 'Not specified';
+  const weekendPromo = document.getElementById('pk-weekend-promo').checked
+    ? 'Yes — Friday–Sunday stay, 50% off Sunday night'
+    : 'No';
 
   const subject = encodeURIComponent('Package Enquiry - ' + name);
   const body = encodeURIComponent(
     'Name: ' + name + '\n' + 'Email: ' + email + '\n' +
     'Package(s) Selected: ' + pkg + '\n' +
+    'Weekend Promotion (Fri–Sun, 50% off Sunday): ' + weekendPromo + '\n' +
     'Preferred Dates: ' + (dates || 'Not specified') + '\n' +
     'Guests: ' + (guests || 'Not specified') + '\n\n' +
     'Special Requests:\n' + (requests || 'None')
