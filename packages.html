@@ -339,6 +339,41 @@ body.pk-modal-lock{overflow:hidden}
 .pkm-perfect-icon{font-size:.95rem;color:rgba(201,165,82,.75)}
 .pkm-perfect-label{font-family:'Jost',sans-serif;font-size:.7rem;letter-spacing:.06em;color:rgba(232,224,208,.75)}
 
+/* ── Choose Your Experience (tier intro, couples modal) ── */
+.pkm-choose{padding:3.6rem 3.8rem 1rem;text-align:center;border-top:1px solid rgba(201,165,82,.1)}
+.pkm-choose-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,2.6vw,2.1rem);font-weight:300;color:#f0e8d5;margin:.5rem auto 1rem}
+.pkm-choose-text{font-size:.86rem;color:rgba(232,224,208,.5);line-height:2;max-width:540px;margin:0 auto}
+
+/* ── Tier experience section (Basic / Premium feature groups, couples modal) ── */
+.pkm-tier-section{padding:3.4rem 3.8rem;position:relative}
+.pkm-tier-section.is-premium{background:linear-gradient(180deg,rgba(201,165,82,.045) 0%,transparent 100%)}
+.pkm-tier-section-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:.9rem}
+.pkm-tier-section-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,2.6vw,2.15rem);font-weight:300;color:#f0e8d5;letter-spacing:-.015em}
+.pkm-tier-section.is-premium .pkm-tier-section-title{color:#f5efe0}
+.pkm-tier-section-badge{font-family:'Jost',sans-serif;font-size:.5rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#060504;background:#c9a552;padding:.42rem 1rem;flex-shrink:0;white-space:nowrap}
+.pkm-tier-section.is-premium .pkm-tier-section-badge{background:transparent;color:#c9a552;border:1px solid rgba(201,165,82,.5)}
+.pkm-tier-section-intro{font-size:.85rem;color:rgba(200,192,174,.5);line-height:1.9;max-width:600px;margin-bottom:2.1rem}
+.pkm-tier-section-intro em{font-style:italic;color:rgba(201,165,82,.75)}
+
+.pkm-feature-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(201,165,82,.08);margin-bottom:2.2rem}
+.pkm-feature-card{background:#0c0b08;padding:1.8rem 1.8rem;position:relative;overflow:hidden;transition:background .3s ease}
+.pkm-tier-section.is-premium .pkm-feature-card{background:#100e09}
+.pkm-feature-card:hover{background:#131109}
+.pkm-feature-card::before{content:'';position:absolute;top:0;left:0;width:0;height:1px;background:rgba(201,165,82,.5);transition:width .55s cubic-bezier(.25,.46,.45,.94)}
+.pkm-feature-card:hover::before{width:100%}
+.pkm-feature-card-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;font-weight:400;color:#e8e0d0;margin-bottom:.9rem;letter-spacing:-.005em}
+.pkm-feature-list{display:flex;flex-direction:column;gap:.55rem}
+.pkm-feature-item{display:flex;align-items:flex-start;gap:.6rem;font-size:.8rem;color:rgba(200,192,174,.55);line-height:1.55}
+.pkm-feature-item .ms{font-size:.85rem;color:rgba(201,165,82,.65);flex-shrink:0;margin-top:.1rem}
+
+.pkm-tier-cta{display:flex;justify-content:center}
+
+@media(max-width:820px){
+  .pkm-choose{padding:2.6rem 1.7rem 1rem}
+  .pkm-tier-section{padding:2.6rem 1.7rem}
+  .pkm-feature-groups{grid-template-columns:1fr}
+}
+
 /* ── 7. Final invitation ── */
 /* ── Experience Overview ── */
 .pkm-overview{padding:3.6rem 3.8rem;display:grid;grid-template-columns:1fr 1.7fr;gap:3rem;border-top:1px solid rgba(201,165,82,.1)}
@@ -513,7 +548,7 @@ body.pk-modal-lock{overflow:hidden}
     <div class="pk-hero-left">
       <span class="pk-label">Grotta Resort · Musanze, Rwanda</span>
       <h1 class="pk-hero-h1">Curated<br><em>Experiences</em></h1>
-      <span class="pk-hero-sub">Not itineraries. Not offers. These are carefully curated rhythms of experience — combining accommodation, dining, wellness, nature, and the particular atmosphere of the volcanic highlands.</span>
+      <span class="pk-hero-sub">Not itineraries. Not offers. These are carefully curated rhythms of experience combining accommodation, dining, wellness, nature, and the particular atmosphere of the volcanic highlands.</span>
       <div class="pk-hero-ctas">
         <a href="#pk-packages" class="pk-btn-gold"><span>Explore Packages</span></a>
         <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-outline">Enquire Now</button>
@@ -544,7 +579,7 @@ body.pk-modal-lock{overflow:hidden}
         <span class="pk-nav-icon ms">spa</span>
         <span class="pk-nav-name">Wellness Package</span>
         <span class="pk-nav-tagline">Restoration through altitude, stillness and ritual</span>
-        <div class="pk-nav-meta"><span class="pk-nav-dur">2–5 Nights</span><span class="pk-nav-price" data-p1="From $210" data-p2="From $350">From $210</span></div>
+        <div class="pk-nav-meta"><span class="pk-nav-dur">2–5 Nights</span><span class="pk-nav-price" data-p1="From $280" data-p2="From $460">From $280</span></div>
       </a>
       <a href="#pkg-adventure" class="pk-nav-item">
         <span class="pk-nav-icon ms">volcano</span>
@@ -572,7 +607,7 @@ body.pk-modal-lock{overflow:hidden}
       <h2 class="pk-intro-h2">Not Packages.<br>Curated<br>Rhythms.</h2>
       <div class="pk-rule"></div>
       <p class="pk-body" style="margin-bottom:1rem">A Grotta Resort package is not a checklist of inclusions. It is a considered sequence of experiences designed to feel like a complete world within the volcanic highland landscape.</p>
-      <p class="pk-body">Each one has been shaped around a feeling — romance, restoration, discovery, or something rarer still. They can be booked any time of year, for any occasion, or for no occasion at all.</p>
+      <p class="pk-body">Each one has been shaped around a feeling romance, restoration, discovery, or something rarer still. They can be booked any time of year, for any occasion, or for no occasion at all.</p>
     </div>
     <div class="pk-intro-images reveal from-right">
       <div class="pk-intro-img-1"><img src="images/AV7I3289.jpg" alt="Grotta Room" loading="lazy"></div>
@@ -596,7 +631,7 @@ body.pk-modal-lock{overflow:hidden}
       <span class="pk-label">Romance · Fire · Intimacy</span>
       <h3 class="pk-panel-h3">Couples Package</h3>
       <span class="pk-panel-tagline">"Every love story deserves a setting worthy of it."</span>
-      <p class="pk-panel-desc">An intimate escape shaped entirely around the two of you — choose the rhythm that fits your celebration. Always priced per couple.</p>
+      <p class="pk-panel-desc">An intimate escape shaped entirely around the two of you choose the rhythm that fits your celebration. Always priced per couple.</p>
 
       <div class="pk-tier-toggle" id="pk-couples-tier-toggle">
         <button class="pk-tier-btn active" data-tier="basic" onclick="setCouplesTier('basic')" type="button">
@@ -640,21 +675,19 @@ body.pk-modal-lock{overflow:hidden}
       <span class="pk-label">Restoration · Stillness · Ritual</span>
       <h3 class="pk-panel-h3">Wellness Package</h3>
       <span class="pk-panel-tagline">"The highlands do something to the body that nothing else can."</span>
-      <p class="pk-panel-desc">A recalibration for the body and mind, carried by altitude, silence, and the ritual of restoration.</p>
+      <p class="pk-panel-desc">A complete, all-inclusive recalibration for the body and mind, carried by altitude, silence, and the ritual of restoration.</p>
       <div class="pk-panel-includes">
-        <span class="pk-panel-include">Infra-Red Sauna Ritual</span>
-        <span class="pk-panel-include">Guided Highland Yoga</span>
-        <span class="pk-panel-include">Private Meditation Walk</span>
-        <span class="pk-panel-include">Wellness-Curated Cuisine</span>
-        <span class="pk-panel-include">Outdoor Jacuzzi Under Stars</span>
-        <span class="pk-panel-include">Herbal Tea Ceremony</span>
-        <span class="pk-panel-include">Recovery Pool Access</span>
+        <span class="pk-panel-include">Full-Body Massage & Spa Ritual</span>
+        <span class="pk-panel-include">Guided Yoga & Meditation</span>
+        <span class="pk-panel-include">Healthy Curated Dining</span>
+        <span class="pk-panel-include">Guided Nature & Cave Experience</span>
+        <span class="pk-panel-include">Wellness Keepsake Gift</span>
         <span class="pk-panel-include">Dedicated Wellness Concierge</span>
       </div>
       <div class="pk-panel-footer">
         <div class="pk-panel-price-block">
           <span class="pk-panel-price-from">Starting from</span>
-          <span class="pk-panel-price" data-p1="$210" data-p2="$350">$210</span>
+          <span class="pk-panel-price" data-p1="$280" data-p2="$460">$280</span>
           <span class="pk-panel-price-note" data-p1="per person / per night" data-p2="per couple / per night">per person / per night</span>
         </div>
         <button class="pk-btn-gold" onclick="openPkModal('wellness')"><span>Explore Experience</span></button>
@@ -673,7 +706,7 @@ body.pk-modal-lock{overflow:hidden}
       <span class="pk-label">Exploration · Discovery · Wild Luxury</span>
       <h3 class="pk-panel-h3">Adventure Package</h3>
       <span class="pk-panel-tagline">"The landscape is not a backdrop. It is the experience."</span>
-      <p class="pk-panel-desc">The volcanic highlands, discovered on your own terms — wild enough to feel real, refined enough to feel like Grotta.</p>
+      <p class="pk-panel-desc">The volcanic highlands, discovered on your own terms wild enough to feel real, refined enough to feel like Grotta.</p>
       <div class="pk-panel-includes">
         <span class="pk-panel-include">Guided Cave Exploration*</span>
         <span class="pk-panel-include">Highland E-Bike Trail*</span>
@@ -778,10 +811,10 @@ body.pk-modal-lock{overflow:hidden}
       <span class="pk-label">Grotta Resort Stay Privileges</span>
       <h2 class="pk-inc-split-h2">What Every<br>Package<br>Includes</h2>
       <div class="pk-rule"></div>
-      <p class="pk-inc-split-sub">Every stay at Grotta Resort — regardless of package — carries the same foundation of experience. Scroll to explore.</p>
+      <p class="pk-inc-split-sub">Every stay at Grotta Resort regardless of package carries the same foundation of experience. Scroll to explore.</p>
     </div>
     <div>
-      <p class="pk-body" style="max-width:500px;margin-bottom:1.5rem">These are not optional additions. They are the standard of what Grotta Resort considers a complete stay — present in every room, every night, for every guest.</p>
+      <p class="pk-body" style="max-width:500px;margin-bottom:1.5rem">These are not optional additions. They are the standard of what Grotta Resort considers a complete stay present in every room, every night, for every guest.</p>
       <div class="pk-inc-scroll-hint"><span>Scroll to explore</span> <span style="font-size:.7rem;opacity:.5">→</span></div>
     </div>
   </div>
@@ -793,7 +826,7 @@ body.pk-modal-lock{overflow:hidden}
       <div class="pk-inc-card"><span class="pk-inc-card-icon ms">local_fire_department</span><div class="pk-inc-card-name">Evening Bonfire</div><p class="pk-inc-card-desc">Bonfire available on selected evenings, subject to weather, occupancy, and prior arrangement.</p></div>
       <div class="pk-inc-card"><span class="pk-inc-card-icon ms">landscape</span><div class="pk-inc-card-name">Property Tour</div><p class="pk-inc-card-desc">Guided experience of caves, gardens, and viewpoints.</p></div>
       <div class="pk-inc-card"><span class="pk-inc-card-icon ms">directions_car</span><div class="pk-inc-card-name">Car Cleaning</div><p class="pk-inc-card-desc">Complimentary. A small detail that says everything.</p></div>
-      <div class="pk-inc-card"><span class="pk-inc-card-icon ms">yard</span><div class="pk-inc-card-name">Highland Gardens</div><p class="pk-inc-card-desc">Curated green spaces — for walking, sitting, or simply being.</p></div>
+      <div class="pk-inc-card"><span class="pk-inc-card-icon ms">yard</span><div class="pk-inc-card-name">Highland Gardens</div><p class="pk-inc-card-desc">Curated green spaces for walking, sitting, or simply being.</p></div>
       <div class="pk-inc-card"><span class="pk-inc-card-icon ms">king_bed</span><div class="pk-inc-card-name">Premium Accommodation</div><p class="pk-inc-card-desc">Each room designed around the highland environment.</p></div>
     </div>
   </div>
@@ -821,9 +854,9 @@ body.pk-modal-lock{overflow:hidden}
     <div class="pk-booking-left reveal from-left">
       <span class="pk-label">Reserve Your Experience</span>
       <h2 class="pk-booking-h2">Speak with<br>Our Concierge</h2>
-      <p class="pk-booking-sub">Every Grotta Resort package is shaped around you — your dates, your preferences, your intention for the stay. Tell us what calls to you and we will take care of the rest.</p>
+      <p class="pk-booking-sub">Every Grotta Resort package is shaped around you your dates, your preferences, your intention for the stay. Tell us what calls to you and we will take care of the rest.</p>
       <div class="pk-booking-promises">
-        <div class="pk-promise"><span class="pk-promise-icon">✦</span><div class="pk-promise-text"><h6>Personal Response</h6><p>Every inquiry is reviewed personally — not automated.</p></div></div>
+        <div class="pk-promise"><span class="pk-promise-icon">✦</span><div class="pk-promise-text"><h6>Personal Response</h6><p>Every inquiry is reviewed personally not automated.</p></div></div>
         <div class="pk-promise"><span class="pk-promise-icon">✦</span><div class="pk-promise-text"><h6>Fully Customisable</h6><p>Every package can be adapted around your specific needs.</p></div></div>
         <div class="pk-promise"><span class="pk-promise-icon">✦</span><div class="pk-promise-text"><h6>48-Hour Confirmation</h6><p>We confirm availability and details within 48 hours.</p></div></div>
         <div class="pk-promise"><span class="pk-promise-icon">✦</span><div class="pk-promise-text"><h6>No Obligation</h6><p>An inquiry is a conversation. Nothing more.</p></div></div>
@@ -852,8 +885,8 @@ body.pk-modal-lock{overflow:hidden}
               <label class="pk-f-pill-label" for="pk-couples-premium"><span class="pk-cb-name">Couples — Premium</span><span class="pk-cb-price">$420 / couple</span></label>
             </div>
             <div class="pk-f-cb-item">
-              <input type="checkbox" name="pk-pkg" id="pk-wellness" class="pk-f-pill-input pk-f-cb" value="Wellness Package" data-p1="$210" data-p2="$350" onchange="updatePkTotal()">
-              <label class="pk-f-pill-label" for="pk-wellness"><span class="pk-cb-name">Wellness Package</span><span class="pk-cb-price" id="pk-price-wellness">$210 / person</span></label>
+              <input type="checkbox" name="pk-pkg" id="pk-wellness" class="pk-f-pill-input pk-f-cb" value="Wellness Package" data-p1="$280" data-p2="$460" onchange="updatePkTotal()">
+              <label class="pk-f-pill-label" for="pk-wellness"><span class="pk-cb-name">Wellness Package</span><span class="pk-cb-price" id="pk-price-wellness">$280 / person</span></label>
             </div>
             <div class="pk-f-cb-item">
               <input type="checkbox" name="pk-pkg" id="pk-adventure" class="pk-f-pill-input pk-f-cb" value="Adventure Package" data-p1="$176" data-p2="$295" onchange="updatePkTotal()">
@@ -894,7 +927,7 @@ body.pk-modal-lock{overflow:hidden}
   <div class="pk-final-content reveal">
     <span class="pk-label">The Invitation</span>
     <h2 class="pk-final-h2">Some Experiences<br>Stay With You<br>Forever</h2>
-    <span class="pk-final-sub">The volcanic highlands do not offer a standard stay. They offer something rarer — a setting that changes you quietly, in ways you only notice after you leave.</span>
+    <span class="pk-final-sub">The volcanic highlands do not offer a standard stay. They offer something rarer a setting that changes you quietly, in ways you only notice after you leave.</span>
     <div class="pk-final-ctas">
       <button onclick="document.getElementById('pk-booking').scrollIntoView({behavior:'smooth',block:'start'})" class="pk-btn-gold"><span>Enquire Now</span></button>
       <a href="https://live.ipms247.com/booking/book-rooms-grottamusanze" target="_blank" class="pk-btn-outline">Book a Room</a>
@@ -1027,11 +1060,12 @@ function submitPackage(btn) {
 const pkData = {
   couples: {
     eyebrow: 'Romance · Fire · Intimacy',
-    title: 'Couples Package',
+    title: 'Romantic Escape',
     hero: 'images/couplespackage.jpg',
     tagline: 'Every love story deserves a setting worthy of it.',
-    // Couples is always priced per couple — no 1/2 person toggle. Instead it splits into two tiers.
-    // Only the price changes with tier. The story, the journey, and the signature experiences never do.
+    // Couples is always priced per couple — no 1/2 person toggle.
+    // Both tiers are presented in full within the modal so guests can compare
+    // exactly what each one includes, side by side, rather than toggling between them.
     tiers: {
       basic:   { price: '$260', label: 'Basic Package' },
       premium: { price: '$420', label: 'Premium Package' }
@@ -1041,59 +1075,97 @@ const pkData = {
     finalQuote: 'Some love stories are written in volcanic stone.',
     overview: {
       eyebrow: 'What This Package Is',
-      title: 'An Escape Built for Two',
-      text: 'The Couples Package is a fully private, romance-first stay — designed for partners who want more than a nice room, whether celebrating an anniversary, planning a proposal, or simply choosing each other for a few days. Every inclusion exists to create a moment you will return to in memory long after checkout.'
+      title: 'A Complete Romantic Journey',
+      text: 'The Romantic Escape is a fully private, romance-first stay designed for couples who want more than a nice room and a dinner reservation booked separately. Every inclusion has been planned as part of one continuous story, from the moment you arrive to the moment you leave, so nothing is left for you to coordinate. It is the difference between visiting Grotta Resort and being cared for by it.'
     },
-    journey: [
-      { type: 'split', eyebrow: 'The Welcome', title: 'Before You Even Arrive',
-        text: 'Your suite is already transformed. Fresh flowers. Soft candlelight. Every detail arranged before you walk through the door.',
-        image: 'images/AV7I3289.jpg' },
-      { type: 'split', rev: true, eyebrow: 'Discover Together', title: 'Into the Earth',
-        text: 'Descend into chambers formed over millennia, guided by someone who knows every turn. A quiet kind of wonder, shared.',
-        image: 'images/AV7I2004.jpg' },
-      { type: 'moment', eyebrow: 'Signature Dining', title: 'Dinner, Just for Two',
-        text: 'A private table. Candlelight against the dark. The kind of evening that quietly becomes the story you tell for years.',
-        image: 'images/AV7I2905.jpg' },
-      { type: 'calm', eyebrow: 'Relax Together',
-        title: 'Let the highlands slow you both down.',
-        text: 'A signature spa ritual, side by side. No schedule. No agenda. Just stillness, together.' },
-      { type: 'split', eyebrow: 'Memories', title: 'What You Take Home',
-        text: 'A professional photoshoot, edited and gifted to you. Long after the trip ends, the story stays — in frame.',
-        image: 'images/AV7I2753.jpg' }
-    ],
-    signatureExperiences: [
-      { icon: 'king_bed', title: 'Romantic Room Transformation', text: 'Your suite reshaped for the occasion, before you even arrive.' },
-      { icon: 'terrain', title: 'Private Cave Journey', text: 'A guided descent into chambers formed over millennia, just the two of you.' },
-      { icon: 'restaurant', title: 'Exclusive Candlelit Dinner', text: 'A table set only for you, lit by fire, not fluorescent light.' },
-      { icon: 'spa', title: 'Couples Spa Ritual', text: 'Stillness, shared, side by side.' },
-      { icon: 'free_breakfast', title: 'Breakfast Served In-Room', text: 'Morning, uninterrupted.' },
-      { icon: 'photo_camera', title: 'Professional Photoshoot', text: 'A story captured, edited, and gifted to you.' },
-      { icon: 'local_fire_department', title: 'Private Firepit Experience', text: 'An evening that becomes the memory of the whole trip.' },
-      { icon: 'support_agent', title: 'Dedicated Experience Concierge', text: 'One contact, shaping every detail.' }
-    ],
+    chooseIntro: {
+      eyebrow: 'Choose Your Experience',
+      title: 'Two Ways to Celebrate',
+      text: 'Every Romantic Escape includes luxury accommodation and carefully curated experiences. Choose the experience that best suits your celebration — both are built around the same story, one simply goes further.'
+    },
+    tierContent: {
+      basic: {
+        sectionTitle: 'Signature Experience',
+        intro: 'A complete romantic escape, thoughtfully arranged from arrival to departure — everything you need for an intimate celebration, with nothing left to plan yourselves.',
+        groups: [
+          { title: 'Romantic Welcome', items: [
+            'Romantic room transformation',
+            'Luxury floral styling throughout the suite',
+            'Personalized welcome card'
+          ] },
+          { title: 'Romantic Dining', items: [
+            'Exclusive candlelit dinner',
+            'Private breakfast served on your terrace'
+          ] },
+          { title: 'Discover Together', items: [
+            'Guided cave journey'
+          ] },
+          { title: 'Relax Together', items: [
+            'Signature Couples Spa Ritual'
+          ] },
+          { title: 'Exclusive Privileges', items: [
+            'Personal Experience Concierge throughout your stay',
+            'Late checkout (subject to availability)'
+          ] }
+        ]
+      },
+      premium: {
+        sectionTitle: 'Prestige Experience',
+        intro: 'Everything in the Signature Experience, elevated further — for couples who want the full weight of the occasion marked, captured, and remembered.',
+        groups: [
+          { title: 'Luxury Arrival', items: [
+            'Champagne Welcome Experience',
+            'Luxury Floral Suite Styling',
+            'Artisan Chocolate Collection'
+          ] },
+          { title: 'Exclusive Moments', items: [
+            'Professional couple photoshoot',
+            'Edited digital gallery',
+            'Luxury Memory Collection'
+          ] },
+          { title: 'Private Experiences', items: [
+            'Private Cave Discovery Experience',
+            'Exclusive Cave Photography Session'
+          ] },
+          { title: 'Romantic Evening Upgrade', items: [
+            'Private Firepit Under the Stars',
+            'Premium Wine or Signature Cocktail Pairing'
+          ] },
+          { title: 'Premium Privileges', items: [
+            'Dedicated Private Concierge',
+            'Personalized Romantic Itinerary',
+            'Priority Spa & Dining Reservations',
+            'Flexible Late Checkout',
+            'Anniversary Surprise Planning'
+          ] }
+        ]
+      }
+    },
     whyChoose: {
-      title: 'More Than a Room. A Love Story.',
-      text: 'Any hotel can offer a bed and a view. What we offer is a story — one written in candlelight, volcanic stone, and the quiet moments only the two of you will remember. This is where anniversaries become traditions, and proposals become the beginning of something larger.'
+      title: 'Why Book the Escape, Not Just the Room',
+      text: 'Booking a room and arranging dinner, a spa slot, and a cave guide separately means juggling reservations, paying separate rates, and hoping it all comes together. The Romantic Escape removes that entirely — one price, one concierge, and a sequence of moments designed to build on each other. It is more convenient, more exclusive, and shaped around the two of you specifically, so the memory you leave with is one you could not have arranged on your own.',
+      pillars: [
+        { icon: 'done_all', label: 'Convenience' },
+        { icon: 'diamond', label: 'Exclusivity' },
+        { icon: 'auto_awesome', label: 'Personalization' },
+        { icon: 'savings', label: 'Better Value' },
+        { icon: 'favorite', label: 'Unforgettable Memories' }
+      ]
     },
     faqs: [
-      { q: 'Can I customize the romantic experience?', a: 'Every detail — from the room transformation to the dinner setting — can be shaped around your story. Just tell your concierge what you\u2019re celebrating.' },
-      { q: 'Can you help me plan a surprise proposal or anniversary?', a: 'Yes. Our concierge has guided many proposals here and can help arrange the moment discreetly and beautifully.' },
-      { q: 'Can I request special room decorations or flowers?', a: 'Of course. Share your vision in the special requests field and we will arrange it before you arrive.' },
-      { q: 'Can dietary preferences be accommodated during the candlelit dinner?', a: 'Always. Let us know any preferences or restrictions in advance and our kitchen will design around them.' },
-      { q: 'Can I extend my stay after the package?', a: 'Yes, subject to availability — simply mention it when you enquire and we will extend the package accordingly.' }
-    ],
-    privileges: [
-      { icon: 'support_agent', title: 'Dedicated Experience Concierge' },
-      { icon: 'calendar_month', title: 'Personalized Itinerary Planning' },
-      { icon: 'restaurant', title: 'Priority Dining Reservations' },
-      { icon: 'schedule', title: 'Complimentary Late Checkout' }
+      { q: 'Can I personalize the experience?', a: 'Every detail — from the room transformation to the dinner setting — can be shaped around your story. Just tell your concierge what you\u2019re celebrating.' },
+      { q: 'Can I plan a surprise proposal?', a: 'Yes. Our concierge has guided many proposals here and can help arrange the moment discreetly and beautifully.' },
+      { q: 'Can I add extra nights?', a: 'Yes, subject to availability — simply mention it when you enquire and we will extend the package accordingly.' },
+      { q: 'Can dietary requirements be accommodated?', a: 'Always. Let us know any preferences or restrictions in advance and our kitchen will design around them, including the candlelit dinner.' },
+      { q: 'Can the Experience Concierge help customize our stay?', a: 'Yes, your concierge is your single point of contact for the entire stay, from special requests to timing every moment of the day.' }
     ],
     perfectFor: [
-      { icon: 'favorite', label: 'Anniversaries' },
-      { icon: 'diamond', label: 'Honeymoons' },
-      { icon: 'celebration', label: 'Proposals' },
-      { icon: 'local_fire_department', label: 'Romantic Getaways' },
-      { icon: 'auto_awesome', label: 'Special Celebrations' }
+      { icon: 'diamond', label: 'Honeymoon' },
+      { icon: 'favorite', label: 'Anniversary' },
+      { icon: 'celebration', label: 'Proposal' },
+      { icon: 'local_fire_department', label: 'Romantic Getaway' },
+      { icon: 'cake', label: 'Birthday Celebration' },
+      { icon: 'auto_awesome', label: 'Special Occasion' }
     ]
   },
   wellness: {
@@ -1101,62 +1173,87 @@ const pkData = {
     title: 'Wellness Package',
     hero: 'images/wellness.jpg',
     tagline: 'The highlands hold a particular silence. It settles into the body, and stays.',
-    priceP1: '$210', priceP2: '$350',
+    priceP1: '$280', priceP2: '$460',
     priceNoteP1: 'per person / per night', priceNoteP2: 'per couple / per night',
     finalImage: 'images/AV7I5336.jpg',
     finalQuote: 'Come back to yourself.',
     overview: {
       eyebrow: 'What This Package Is',
-      title: 'A Stay Shaped Around Restoration',
-      text: 'The Wellness Package is built for guests who need to slow down deliberately — solo travelers, couples, or anyone arriving depleted. Every ritual, meal, and quiet hour is designed around recovery, not sightseeing, so you leave lighter than you arrived.'
+      title: 'A Complete Wellness Retreat',
+      text: 'The Wellness Package is a full journey of relaxation, renewal, and well-being — not a room with a spa treatment added on. Every ritual, meal, and quiet hour has been planned in sequence, so you are not assembling a wellness break yourself; you are simply moving through one, already arranged around what your body and mind need to properly reset. One all-inclusive experience, one price, everything included.'
     },
-    journey: [
-      { type: 'split', eyebrow: 'The Welcome', title: 'A Grounding Arrival',
-        text: 'A quiet welcome. A personal conversation about what you need. Then, nothing to do but breathe the first clean air of the highlands.',
-        image: 'images/AV7I5729.jpg' },
-      { type: 'moment', eyebrow: 'Heat & Breath', title: 'Restore the Body',
-        text: 'Infra-red warmth. Highland yoga, guided slowly. An outdoor jacuzzi beneath a sky full of stars.',
-        image: 'images/AV7I3760.jpg' },
-      { type: 'split', rev: true, eyebrow: 'The Quiet Mind', title: 'A Silence That Settles In',
-        text: 'A private meditation walk through highland forest. The kind of stillness that takes hours to arrive — and stays with you for weeks after you leave.',
-        image: 'images/AV7I3035.jpg' },
-      { type: 'calm', eyebrow: 'Nourish',
-        title: 'Meals shaped around what your body actually needs.',
-        text: 'Wellness-curated cuisine. A herbal tea ceremony, unhurried. Nothing rushed, nothing wasted.' }
-    ],
-    signatureExperiences: [
-      { icon: 'whatshot', title: 'Infra-Red Sauna Ritual', text: 'Deep heat, at altitude.' },
-      { icon: 'self_improvement', title: 'Guided Highland Yoga', text: 'Movement, paced to the mountain air.' },
-      { icon: 'directions_walk', title: 'Private Meditation Walk', text: 'A silence that takes hours to arrive, and stays for weeks.' },
-      { icon: 'restaurant', title: 'Wellness-Curated Cuisine', text: 'Meals built around what your body needs, not a menu.' },
-      { icon: 'hot_tub', title: 'Outdoor Jacuzzi Under Stars', text: 'Warm water, a sky full of stars, nothing else.' },
-      { icon: 'local_cafe', title: 'Herbal Tea Ceremony', text: 'A ritual, not a routine.' },
-      { icon: 'pool', title: 'Recovery Pool Access', text: 'For the body, after the body has worked.' },
-      { icon: 'support_agent', title: 'Dedicated Wellness Concierge', text: 'One contact for your entire restoration.' }
+    groups: [
+      { title: 'Wellness Welcome', items: [
+        'Luxury wellness suite preparation',
+        'Herbal welcome elixir',
+        'Seasonal fruit & healthy treats',
+        'Personalized wellness itinerary'
+      ] },
+      { title: 'Relax & Restore', items: [
+        'Signature full-body massage',
+        'Luxury spa ritual',
+        'Hot stone therapy',
+        'Private jacuzzi experience',
+        'Finnish sauna session'
+      ] },
+      { title: 'Mind & Body', items: [
+        'Sunrise yoga session',
+        'Guided meditation',
+        'Breathwork therapy',
+        'Sound healing session',
+        'Relaxation lounge access'
+      ] },
+      { title: 'Wellness Cuisine', items: [
+        'Gourmet wellness breakfast',
+        'Cold-pressed detox juices',
+        'Chef-curated healthy lunch',
+        'Farm-to-table wellness dinner',
+        'Personalized nutrition consultation'
+      ] },
+      { title: 'Nature Therapy', items: [
+        'Guided forest wellness walk',
+        'Cave meditation experience',
+        'Outdoor mindfulness session',
+        'Sunset relaxation by the firepit'
+      ] },
+      { title: 'Luxury Keepsake', items: [
+        'Luxury wellness gift set',
+        'Signature herbal tea collection',
+        'Handmade Grotta wellness souvenir'
+      ] },
+      { title: 'Exclusive Privileges', items: [
+        'Personal Wellness Concierge',
+        'Personalized wellness itinerary',
+        'Priority spa reservations',
+        'Flexible activity scheduling',
+        'Late checkout (subject to availability)'
+      ] }
     ],
     whyChoose: {
-      title: 'A Return, Not Just a Rest.',
-      text: 'A room can offer sleep. It cannot offer the particular stillness of these highlands, or the sense of returning to yourself that follows days shaped entirely around restoration. This package exists for the version of you that needs more than a vacation — it needs a reset.'
+      title: 'A Retreat, Not a Room With a Spa Menu.',
+      text: 'Booking a room and adding on massages and yoga classes one at a time still leaves you managing the schedule. The Wellness Package removes that entirely — one concierge, one flowing itinerary, and every ritual sequenced to build on the last, from morning stillness to evening rest. It is more relaxing, more personal, and more complete than anything you could piece together on your own.',
+      pillars: [
+        { icon: 'spa', label: 'Relaxation' },
+        { icon: 'done_all', label: 'Convenience' },
+        { icon: 'auto_awesome', label: 'Personalization' },
+        { icon: 'diamond', label: 'Exclusive Experiences' },
+        { icon: 'self_improvement', label: 'Complete Wellness Journey' }
+      ]
     },
     faqs: [
-      { q: 'Can I customize my wellness schedule?', a: 'Yes. Your concierge will shape each day\u2019s rituals around your energy and goals, not a fixed timetable.' },
-      { q: 'Can I replace an activity with another wellness experience?', a: 'Certainly. If a ritual does not suit you, we will offer an alternative from the same tier of care.' },
-      { q: 'Are treatments suitable for couples?', a: 'Most rituals can be shared, including the outdoor jacuzzi and guided yoga sessions.' },
-      { q: 'What should I bring for the wellness sessions?', a: 'Comfortable clothing and an open mind — we provide everything else, from mats to robes.' },
-      { q: 'Can dietary requirements be accommodated?', a: 'Yes, our wellness-curated cuisine is adapted to any dietary need or restriction you share with us in advance.' }
-    ],
-    privileges: [
-      { icon: 'support_agent', title: 'Dedicated Wellness Concierge' },
-      { icon: 'calendar_month', title: 'Personalized Itinerary Planning' },
-      { icon: 'spa', title: 'Priority Spa Reservations' },
-      { icon: 'schedule', title: 'Complimentary Late Checkout' }
+      { q: 'Can I customize my wellness itinerary?', a: 'Yes. Your concierge will shape each day\u2019s rituals around your energy and goals, not a fixed timetable.' },
+      { q: 'Can I choose my spa treatments?', a: 'Certainly. If a ritual does not suit you, we will offer an alternative from the same package.' },
+      { q: 'Are dietary requirements accommodated?', a: 'Yes, our wellness-curated cuisine and meal plans are adapted to any dietary need or restriction you share with us in advance.' },
+      { q: 'Can I add extra nights?', a: 'Yes, subject to availability — simply mention it when you enquire and we will extend the package accordingly.' },
+      { q: 'Can I book private wellness sessions?', a: 'Private sessions such as sunrise yoga and private jacuzzi time are already included — just let your concierge know your preferred timing.' }
     ],
     perfectFor: [
-      { icon: 'self_improvement', label: 'Solo Retreats' },
+      { icon: 'self_improvement', label: 'Stress Relief' },
+      { icon: 'nights_stay', label: 'Weekend Escape' },
+      { icon: 'spa', label: 'Self-Care Retreat' },
+      { icon: 'favorite', label: 'Couples Wellness Getaway' },
       { icon: 'eco', label: 'Digital Detox' },
-      { icon: 'spa', label: 'Post-Trek Recovery' },
-      { icon: 'nights_stay', label: 'Mindful Getaways' },
-      { icon: 'auto_awesome', label: 'Personal Reset' }
+      { icon: 'auto_awesome', label: 'Personal Rejuvenation' }
     ]
   },
   adventure: {
@@ -1176,22 +1273,22 @@ const pkData = {
     journey: [
       { type: 'split', eyebrow: 'Before You Set Out', title: 'A Proper Introduction',
         text: 'A guided tour of the property. A briefing with a resident guide who knows the terrain. Lunch, prepared and packed, before the trail even begins.',
-        image: 'images/AV7I5729.jpg' },
+        image: 'images/intro.jpg' },
       { type: 'moment', eyebrow: 'Into the Highlands', title: 'The Landscape Is the Experience',
         text: 'Cave systems carved by time. E-bike trails through highland forest. A sunrise trek toward the volcanoes. Shaped around your pace, your dates, your appetite for wild.',
         image: 'images/AV7I2004.jpg' },
-      { type: 'split', rev: true, eyebrow: 'Return to Comfort', title: 'Fire, After the Trail',
-        text: 'Storytelling by the firepit. A recovery soak as the sky changes color. The adventure gives way, gently, to rest.',
-        image: 'images/AV7I3219.jpg' }
+      
     ],
     signatureExperiences: [
-      { icon: 'terrain', title: 'Guided Cave Exploration', text: 'Chambers carved by time, opened just for you.' },
-      { icon: 'pedal_bike', title: 'Highland E-Bike Trail', text: 'The highlands, covered at your own pace.' },
-      { icon: 'volcano', title: 'Sunrise Volcano Trek', text: 'The peaks, before the crowds arrive.' },
-      { icon: 'forest', title: 'Private Nature Immersion', text: 'The forest, without an itinerary.' },
-      { icon: 'lunch_dining', title: 'Curated Trail Lunch', text: 'A meal earned by the morning\u2019s effort.' },
-      { icon: 'local_fire_department', title: 'Firepit Storytelling Evening', text: 'The day\u2019s adventure, retold by firelight.' },
-      { icon: 'support_agent', title: 'Dedicated Adventure Concierge', text: 'One contact, shaping every trail.' }
+      { icon: 'terrain', title: 'Signature Cave Expedition', text: 'Explore Grotta ancient lava caves with an expert guide.' },
+      { icon: 'pedal_bike', title: 'Guided E-Bike Adventure', text: 'Ride scenic volcanic trails with premium electric bikes.' },
+      { icon: 'volcano', title: 'Volcano Hiking Experience', text: 'Discover breathtaking volcanic landscapes on a guided hike.' },
+      { icon: 'forest', title: 'Kayaking Adventure', text: 'Paddle across Northern Rwanda peaceful lakes and waterways.' },
+      { icon: 'lunch_dining', title: 'Sunset Highland Trail', text: 'Experience unforgettable sunset views across the highlands.' },
+      { icon: 'local_fire_department', title: 'Encounter Rwanda playful golden monkeys in their natural habitat.' },
+      { icon: 'support_agent', title: 'Golden Monkey Trek', text: 'Immerse yourself in authentic Rwandan culture and traditions.' },
+      { icon: 'forest', title: 'Cultural Discovery Experience', text: '	Unwind beside the fire with signature refreshments under the stars.' },
+
     ],
     signatureNote: 'Not every activity suits every stay — your concierge shapes the mix around your dates, fitness, and appetite for wild.',
     whyChoose: {
@@ -1234,24 +1331,17 @@ const pkData = {
       text: 'The Gorilla Trek Package exists for guests making the journey to Volcanoes National Park — often once in a lifetime — who want the entire stay, before and after the permit, to support that single unforgettable morning rather than compete with it.'
     },
     journey: [
-      { type: 'split', eyebrow: 'Before Dawn', title: 'Every Detail, Handled',
-        text: 'The morning begins early. Gear checked and cared for. A personal briefing before you step toward the park gates.',
-        image: 'images/AV7I5336.jpg' },
-      { type: 'moment', eyebrow: 'Into Volcanoes National Park', title: 'Minutes Away, A Lifetime Ahead',
-        text: 'Staying at Grotta means more time face-to-face with Rwanda\u2019s rarest encounter, and less time in transit to reach it.',
-        image: 'images/AV7I3495.jpg' },
-      { type: 'split', rev: true, eyebrow: 'After the Trek', title: 'Recovery, Waiting for You',
-        text: 'A spa ritual for tired legs. A curated local dining experience. The story already forming, before you\u2019ve even changed out of your boots.',
-        image: 'images/AV7I2905.jpg' }
+      
     ],
     signatureExperiences: [
-      { icon: 'nights_stay', title: 'Pre-Dawn Trek Preparation', text: 'Every detail ready before the sun is up.' },
-      { icon: 'fact_check', title: 'Personal Trek Briefing', text: 'What to expect, from someone who has done this many times.' },
-      { icon: 'backpack', title: 'Professional Gear Care', text: 'Boots and equipment, cared for like they matter.' },
-      { icon: 'spa', title: 'Recovery Spa Ritual', text: 'For legs that carried you somewhere extraordinary.' },
-      { icon: 'restaurant', title: 'Curated Local Dining Experience', text: 'A meal that belongs to this place.' },
-      { icon: 'verified', title: 'Priority Permit Assistance', text: 'The paperwork, handled — so you can focus on the trek.' },
-      { icon: 'support_agent', title: 'Dedicated Trek Concierge', text: 'One contact before and after the permit.' }
+      { icon: 'nights_stay', title: 'Gorilla Trek Experience', text: 'Meet Rwanda majestic mountain gorillas in the wild.' },
+      { icon: 'fact_check', title: 'Guided Volcanoes National Park Trek', text: 'Explore breathtaking rainforest with expert guides.' },
+      { icon: 'backpack', title: 'Gorilla Permit Assistance', text: 'Seamless support throughout the permit process.' },
+      { icon: 'spa', title: 'Private Park Transfers', text: 'Comfortable transfers between Grotta and the park.' },
+      { icon: 'restaurant', title: 'Early Trek Breakfast', text: 'Begin your adventure with a nourishing gourmet breakfast.' },
+      { icon: 'verified', title: 'Recovery Spa Treatment', text: 'Relax tired muscles after an unforgettable trek.' },
+      { icon: 'support_agent', title: 'Curated Dining Experience', text: 'Celebrate the day with exceptional local cuisine.' },
+      { icon: 'spa', title: 'Dedicated Trek Concierge', text: 'Every detail arranged by your personal concierge.' }
     ],
     signatureNote: 'Gorilla permit/license is not included in the package price — our concierge can assist with the permit process.',
     whyChoose: {
@@ -1316,9 +1406,220 @@ const pkmObserver = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); pkmObserver.unobserve(e.target); } });
 }, { root: document.querySelector('.pk-modal-scroll'), threshold: 0.1 });
 
+// Renders a Basic/Premium feature-group section (used only by the Couples/Romantic Escape modal).
+function buildPkTierSection(tierKey, content, priceObj, isPremium) {
+  const itemIcon = isPremium ? 'auto_awesome' : 'check';
+  const badgeLabel = content.badgeLabel || (isPremium ? 'Premium' : 'Basic');
+  const badge = priceObj ? `${badgeLabel} · ${priceObj.price}` : badgeLabel;
+  const ctaLabel = `Reserve the ${isPremium ? 'Prestige' : 'Signature'} Experience${priceObj ? ' — ' + priceObj.price : ''}`;
+  return `
+    <div class="pkm-tier-section pkm-reveal ${isPremium ? 'is-premium' : ''}">
+      <div class="pkm-tier-section-head">
+        <h3 class="pkm-tier-section-title">${content.sectionTitle}</h3>
+        <span class="pkm-tier-section-badge">${badge}</span>
+      </div>
+      <p class="pkm-tier-section-intro">${content.intro}</p>
+      <div class="pkm-feature-groups">
+        ${content.groups.map(g => `
+          <div class="pkm-feature-card">
+            <div class="pkm-feature-card-title">${g.title}</div>
+            <div class="pkm-feature-list">
+              ${g.items.map(it => `<div class="pkm-feature-item"><span class="ms">${itemIcon}</span><span>${it}</span></div>`).join('')}
+            </div>
+          </div>`).join('')}
+      </div>
+      <div class="pkm-tier-cta">
+        <button class="pk-btn-gold" data-action="reserve" data-tier="${tierKey}"><span>${ctaLabel}</span></button>
+      </div>
+    </div>`;
+}
+
+// Renders the merged, all-inclusive Wellness modal: one price, one full set of feature groups.
+function renderWellnessModal() {
+  const d = pkData.wellness;
+  const guestMode2 = document.getElementById('pk-btn-2').classList.contains('active');
+  const price = guestMode2 ? d.priceP2 : d.priceP1;
+  const priceNote = guestMode2 ? d.priceNoteP2 : d.priceNoteP1;
+
+  let html = `
+    <div class="pkm-hero pkm-reveal">
+      <img class="pkm-hero-img" src="${d.hero}" alt="${d.title}">
+      <div class="pkm-hero-scrim"></div>
+      <div class="pkm-hero-content">
+        <span class="pk-label pkm-hero-eyebrow">${d.eyebrow}</span>
+        <h2 class="pkm-hero-title">${d.title}</h2>
+        <p class="pkm-hero-tagline">${d.tagline}</p>
+      </div>
+    </div>
+
+    <div class="pkm-overview pkm-reveal">
+      <div>
+        <span class="pk-label">${d.overview.eyebrow}</span>
+        <h3 class="pkm-overview-title">${d.overview.title}</h3>
+      </div>
+      <p class="pkm-overview-text">${d.overview.text}</p>
+    </div>
+
+    <div class="pkm-tier-section pkm-reveal">
+      <div class="pkm-tier-section-head">
+        <h3 class="pkm-tier-section-title">Everything Included</h3>
+        <span class="pkm-tier-section-badge">${price} / night</span>
+      </div>
+      <p class="pkm-tier-section-intro">One all-inclusive wellness journey — every ritual, meal, and moment of stillness, already arranged from arrival to departure.</p>
+      <div class="pkm-feature-groups">
+        ${d.groups.map(g => `
+          <div class="pkm-feature-card">
+            <div class="pkm-feature-card-title">${g.title}</div>
+            <div class="pkm-feature-list">
+              ${g.items.map(it => `<div class="pkm-feature-item"><span class="ms">check</span><span>${it}</span></div>`).join('')}
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="pkm-why pkm-reveal">
+      <span class="pk-label">Why Choose This Experience</span>
+      <h3 class="pkm-why-title">${d.whyChoose.title}</h3>
+      <p class="pkm-why-text">${d.whyChoose.text}</p>
+      <div class="pkm-why-pills">
+        ${d.whyChoose.pillars.map(p => `<span class="pkm-why-pill"><span class="ms">${p.icon}</span>${p.label}</span>`).join('')}
+      </div>
+    </div>
+
+    <div class="pkm-perfect pkm-reveal">
+      <div class="pkm-perfect-head"><span class="pk-label">Perfect For</span></div>
+      <div class="pkm-perfect-grid">
+        ${d.perfectFor.map(p => `
+          <div class="pkm-perfect-card">
+            <span class="ms pkm-perfect-icon">${p.icon}</span>
+            <span class="pkm-perfect-label">${p.label}</span>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="pkm-faq pkm-reveal">
+      <span class="pk-label">Questions, Answered</span>
+      <h3 class="pkm-faq-title">Before You Reserve</h3>
+      <div class="pkm-faq-list">
+        ${d.faqs.map(f => `
+          <div class="pkm-faq-item">
+            <button class="pkm-faq-q" data-action="faq-toggle" type="button">
+              <span>${f.q}</span><span class="ms pkm-faq-icon">add</span>
+            </button>
+            <div class="pkm-faq-a"><p>${f.a}</p></div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="pkm-final pkm-reveal" style="background-image:url('${d.finalImage}')">
+      <div class="pkm-final-scrim"></div>
+      <div class="pkm-final-content">
+        <p class="pkm-final-quote">${d.finalQuote}</p>
+        <div class="pkm-final-price-row">
+          <span class="pk-panel-price-from">Starting from</span>
+          <span class="pk-panel-price">${price}</span>
+          <span class="pk-panel-price-note">${priceNote}</span>
+        </div>
+        <button class="pk-btn-gold" data-action="reserve" data-tier="wellness"><span>Reserve This Experience →</span></button>
+      </div>
+    </div>`;
+
+  document.getElementById('pk-modal-inner').innerHTML = html;
+  document.querySelectorAll('#pk-modal-inner .pkm-reveal').forEach(el => pkmObserver.observe(el));
+}
+
+// Renders the Romantic Escape (couples) modal: overview → choose your experience →
+// full Basic feature groups → full Premium feature groups (everything in Basic, plus...) →
+// why choose → perfect for → FAQ → final CTA. Both tiers are shown in full for comparison,
+// rather than toggled, so guests can see exactly what each includes side by side.
+function renderCouplesModal() {
+  const d = pkData.couples;
+
+  let html = `
+    <div class="pkm-hero pkm-reveal">
+      <img class="pkm-hero-img" src="${d.hero}" alt="${d.title}">
+      <div class="pkm-hero-scrim"></div>
+      <div class="pkm-hero-content">
+        <span class="pk-label pkm-hero-eyebrow">${d.eyebrow}</span>
+        <h2 class="pkm-hero-title">${d.title}</h2>
+        <p class="pkm-hero-tagline">${d.tagline}</p>
+      </div>
+    </div>
+
+    <div class="pkm-overview pkm-reveal">
+      <div>
+        <span class="pk-label">${d.overview.eyebrow}</span>
+        <h3 class="pkm-overview-title">${d.overview.title}</h3>
+      </div>
+      <p class="pkm-overview-text">${d.overview.text}</p>
+    </div>
+
+    <div class="pkm-choose pkm-reveal">
+      <span class="pk-label">${d.chooseIntro.eyebrow}</span>
+      <h3 class="pkm-choose-title">${d.chooseIntro.title}</h3>
+      <p class="pkm-choose-text">${d.chooseIntro.text}</p>
+    </div>`;
+
+  html += buildPkTierSection('basic', d.tierContent.basic, d.tiers.basic, false);
+  html += buildPkTierSection('premium', d.tierContent.premium, d.tiers.premium, true);
+
+  html += `
+    <div class="pkm-why pkm-reveal">
+      <span class="pk-label">Why Choose This Experience</span>
+      <h3 class="pkm-why-title">${d.whyChoose.title}</h3>
+      <p class="pkm-why-text">${d.whyChoose.text}</p>
+      <div class="pkm-why-pills">
+        ${d.whyChoose.pillars.map(p => `<span class="pkm-why-pill"><span class="ms">${p.icon}</span>${p.label}</span>`).join('')}
+      </div>
+    </div>
+
+    <div class="pkm-perfect pkm-reveal">
+      <div class="pkm-perfect-head"><span class="pk-label">Perfect For</span></div>
+      <div class="pkm-perfect-grid">
+        ${d.perfectFor.map(p => `
+          <div class="pkm-perfect-card">
+            <span class="ms pkm-perfect-icon">${p.icon}</span>
+            <span class="pkm-perfect-label">${p.label}</span>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="pkm-faq pkm-reveal">
+      <span class="pk-label">Questions, Answered</span>
+      <h3 class="pkm-faq-title">Before You Reserve</h3>
+      <div class="pkm-faq-list">
+        ${d.faqs.map(f => `
+          <div class="pkm-faq-item">
+            <button class="pkm-faq-q" data-action="faq-toggle" type="button">
+              <span>${f.q}</span><span class="ms pkm-faq-icon">add</span>
+            </button>
+            <div class="pkm-faq-a"><p>${f.a}</p></div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="pkm-final pkm-reveal" style="background-image:url('${d.finalImage}')">
+      <div class="pkm-final-scrim"></div>
+      <div class="pkm-final-content">
+        <p class="pkm-final-quote">${d.finalQuote}</p>
+        <div class="pkm-final-price-row">
+          <span class="pk-panel-price-from">Romantic Escape</span>
+          <span class="pk-panel-price">${d.tiers.basic.price} – ${d.tiers.premium.price}</span>
+          <span class="pk-panel-price-note">per couple / per night · Basic or Premium</span>
+        </div>
+        <button class="pk-btn-gold" data-action="reserve" data-tier="premium"><span>Reserve This Experience →</span></button>
+      </div>
+    </div>`;
+
+  document.getElementById('pk-modal-inner').innerHTML = html;
+  document.querySelectorAll('#pk-modal-inner .pkm-reveal').forEach(el => pkmObserver.observe(el));
+}
+
 function renderPkModal(key) {
   const d = pkData[key];
   if (!d) return;
+  if (key === 'couples') { renderCouplesModal(); return; }
+  if (key === 'wellness') { renderWellnessModal(); return; }
 
   const hasTiers = !!d.tiers;
   const tier = hasTiers ? (pkModalCurrentTier || 'basic') : null;
@@ -1361,7 +1662,6 @@ function renderPkModal(key) {
     </div>`;
 
   // The journey is always shown in full — it's inspiration, not a comparison chart.
-  // Only the final price changes with the selected tier (couples only).
   d.journey.forEach(section => {
     if (section.type === 'split') {
       html += `
@@ -1513,7 +1813,7 @@ document.getElementById('pk-modal-inner').addEventListener('click', (e) => {
   const reserveBtn = e.target.closest('[data-action="reserve"]');
   if (!reserveBtn) return;
   const key = pkModalCurrentKey;
-  const tier = pkModalCurrentTier;
+  const tier = reserveBtn.getAttribute('data-tier') || pkModalCurrentTier;
   closePkModal();
   const checkboxId = key === 'couples' ? 'pk-couples-' + (tier || 'basic') : 'pk-' + key;
   const checkbox = document.getElementById(checkboxId);
@@ -1526,8 +1826,9 @@ document.getElementById('pk-modal-inner').addEventListener('click', (e) => {
   }, 150);
 });
 
-// Initialize the couples card chips on page load
+// Initialize the couples card chips and guest-toggle-dependent prices on page load
 setCouplesTier('basic');
+setGuests(1);
 </script>
 </body>
 </html>
